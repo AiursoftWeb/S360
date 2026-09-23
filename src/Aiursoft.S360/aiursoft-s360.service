@@ -1,0 +1,17 @@
+[Unit]
+Description=Aiursoft S360 Web Application
+After=network.target
+
+[Service]
+WorkingDirectory=/usr/share/aiursoft-s360
+ExecStart=/usr/bin/dotnet /usr/share/aiursoft-s360/Aiursoft.S360.dll --urls http://*:5000
+Restart=always
+RestartSec=10
+KillSignal=SIGINT
+SyslogIdentifier=aiursoft-s360
+User=www-data
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=HOME=/var/lib/aiursoft-s360
+
+[Install]
+WantedBy=multi-user.target

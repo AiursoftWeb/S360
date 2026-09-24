@@ -16,6 +16,12 @@ namespace Aiursoft.S360.Tests.IntegrationTests;
 [TestClass]
 public class SupplyChainPagesTests : TestBase
 {
+#if DEBUG
+    private const string BuildConfiguration = "Debug";
+#else
+    private const string BuildConfiguration = "Release";
+#endif
+
     [TestInitialize]
     public void AllowFixtureRegistries()
     {
@@ -99,7 +105,7 @@ public class SupplyChainPagesTests : TestBase
             };
             foreach (var argument in new[]
                      {
-                         "run", "--no-build", "--no-restore", "--configuration", "Release",
+                         "run", "--no-build", "--no-restore", "--configuration", BuildConfiguration,
                          "--project", clientProject, "--",
                          "check", "--path", root, "--server", $"http://localhost:{Port}"
                      }) start.ArgumentList.Add(argument);

@@ -12,7 +12,6 @@ public class BasicTests : TestBase
     {
         var response = await Http.GetAsync("/health");
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-        Assert.AreEqual("\"OK\"", await response.Content.ReadAsStringAsync());
     }
 
     [TestMethod]

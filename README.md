@@ -1,88 +1,47 @@
-# S360 - A sample project
+# S360 - Supply-chain control (under development)
 
-[![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/aiursoftweb/s360/blob/master/LICENSE)
-[![Pipeline stat](https://gitlab.aiursoft.com/aiursoft/s360/badges/master/pipeline.svg)](https://gitlab.aiursoft.com/aiursoft/s360/-/pipelines)
-[![Test Coverage](https://gitlab.aiursoft.com/aiursoft/s360/badges/master/coverage.svg)](https://gitlab.aiursoft.com/aiursoft/s360/-/pipelines)
-[![Man hours](https://manhours.aiursoft.com/r/github.com/aiursoftweb/s360.svg)](https://manhours.aiursoft.com/r/github.com/aiursoftweb/s360.html)
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fs360.aiursoft.com)](https://s360.aiursoft.com)
-[![Docker](https://img.shields.io/docker/pulls/aiursoft/s360.svg)](https://hub.docker.com/r/aiursoft/s360)
+This repository is being converted from the Template sample into the S360 supply-chain service. **Do not enable CI enforcement or deploy it as an approval authority yet.** The worktree now contains employee requests and dependency resolution, batch approvals, trust rules and an absolute blocklist, OSV synchronization and vulnerability audit pages, build check records, an AiurProtocol check endpoint, the `s360 check` CLI, and SQLite/MySQL migrations. These are still under integration and security review; GitLab enforcement has not been rolled out. The requirements document is currently a sibling workspace file, `../S360-开发需求文档.md`, and is not included in this repository.
 
-S360 is a sample project.
+The CLI requires `S360_SERVER` and `S360_CHECK_KEY`. Its `check --path .` command runs after `dotnet restore` and `npm ci`; missing artifacts, unsupported inputs, an unavailable S360 service, or any denied dependency produce a nonzero exit code. The API key authenticates a dedicated CI identity with `CanCheckDependencies`; a browser user's permission grant cannot replace that key. CI observations and server-side archive verification accept only sources configured in `SupplyChain:NuGetSources` or `SupplyChain:NpmSources`. A dependency from an unconfigured source is reported as a denied check decision with its name, version and source, but is not added to the artifact catalog or fetched by the vulnerability job. The scanner checks NuGet `.nupkg` and npm tarball identities inside their package manifests, as well as archive integrity evidence. It also requires every package reachable through mandatory npm lockfile edges to be installed, even if a tampered entry claims to be optional; genuinely optional absent packages are reported separately. For a denied dependency, the CLI prints an introduction chain reconstructed from NuGet restore or npm lock data; a NuGet package whose root cannot be identified is labelled as such instead of claiming a known direct parent. The check does not prove installed files were not changed by package scripts. Do not put the check key in source or logs. The Web resolver requires the .NET SDK and Node.js/npm at runtime and must be isolated from production secrets and unrelated files before production use. It rejects npm lockfiles whose tarball URLs leave the selected registry before running `npm ci`, and its own archive fetches do not follow redirects. This is not yet an egress sandbox for the npm and dotnet subprocesses: registry metadata and redirects during their resolution still need network-level controls before production use.
 
-![screenshot](./screenshot.png)
+The GitLab pipeline and Docker build do not run S360 against this repository. The inherited Template pipeline still packs and publishes the CLI NuGet tool on master; publishing does not install it on a Runner or enable enforcement. Deployment of the Web service comes first; Runner installation and CI enforcement will be designed afterward. When that integration is discussed, the check key will be supplied through an environment variable, not a Docker secret.
 
-Default user name is `admin@default.com` and default password is `Admin@123456!`.
+On 2026-09-24, the inherited pipeline's local `Release` build and `pack --no-build` sequence produced `Aiursoft.S360.Client.1.0.1.nupkg`. Installing that package into a disposable tool path succeeded, and the installed `s360` exposed only the `check` subcommand. This verifies the local package, not a remote feed push or Runner installation.
 
-## Projects using Aiursoft S360
+## Web pilot deployment
 
-* [Stathub](https://github.com/aiursoftweb/stathub)
-* [MarkToHtml](https://github.com/aiursoftweb/marktohtml)
-* [MusicTools](https://github.com/aiursoftweb/musictools)
-* [AnduinOS Home](https://github.com/aiursoftweb/AnduinOS-Home)
-* [Manhours](https://github.com/aiursoftweb/manhours)
-* [Tracer](https://github.com/aiursoftweb/tracer)
-* [Warp](https://github.com/aiursoftweb/warp)
-* [AiurDrive](https://github.com/aiursoftweb/aiurdrive)
-* [EmployeeCenter](https://github.com/aiursoftweb/employeecenter)
-* [Git Mirror Server](https://github.com/aiursoftweb/gitmirrorserver)
-* [CppRunner](https://github.com/aiursoftweb/cpprunner)
-* [Ollama Gateway](https://github.com/aiursoftweb/ollamagateway)
-* [Polls](https://github.com/aiursoftweb/polls)
-* [WeChatExam](https://github.com/aiursoftweb/wechatexam)
-* [MusicExam](https://github.com/aiursoftweb/musicexam)
-* [CorpHome](https://github.com/aiursoftweb/corphome)
-* [Events Recorder](https://github.com/aiursoftweb/eventsrecorder)
-* [Translate](https://github.com/aiursoftweb/translate)
-* [Apkg](https://github.com/aiursoftweb/apkg)
-* [HowToCook Viewer](https://github.com/aiursoftweb/howtocookviewer)
-* [Kanban](https://github.com/aiursoftweb/kanban)
-* [MoongladeV2](https://github.com/aiursoftweb/moongladev2)
-* [DocsViewer](https://github.com/aiursoftweb/docsviewer)
+The initial Web pilot needs a writable database and storage path, a .NET 10 SDK, Node.js/npm, access to the configured NuGet/npm mirrors, and access to OSV for vulnerability checks. Give the resolver a scratch volume with enough space for temporary package caches; set `TMPDIR` if the default `/tmp` is too small. An active package-name wildcard rule makes the periodic audit download OSV's full archive for that ecosystem so it can find advisories for packages never downloaded by S360. The npm archive was about 216 MB on 2026-09-24; allow for growth, download time, and temporary disk use. Archive failure leaves the previous audit findings in place and marks the new sync unsuccessful. Run the resolver in an isolated environment: it intentionally restores untrusted dependency metadata and archives, and subprocess network egress is not yet constrained by the application. Do not give this process production secrets unrelated to S360.
 
-## Try
+The intended deployment uses OIDC for staff identity. Keep the Template authentication defaults in source; configure `AppSettings__AuthProvider=OIDC`, `AppSettings__OIDC__Authority`, `AppSettings__OIDC__ClientId`, `AppSettings__OIDC__ClientSecret`, and the role-claim mapping through environment variables. Set `AppSettings__DefaultRole=Employees` only if every authenticated staff member should be able to submit requests. Set `SupplyChain__CheckApiKey` only when the check API is to be used; it remains blank for this Web-only stage. Configure each permitted mirror with an indexed array override, for example `SupplyChain__NuGetSources__0=https://nuget.aiursoft.com/v3/index.json` and `SupplyChain__NpmSources__0=https://npm.aiursoft.com` (then `__1`, `__2`, etc. for additional sources); an unindexed `SupplyChain__NuGetSources` string is not an array override. Grant employee/reviewer permissions through the application's role page. Keep the service's data and Data Protection keys persistent and back them up.
 
-Try a running S360 [here](https://s360.aiursoft.com).
+To validate locally, restore the application and run `dotnet test`; build frontend assets with `npm ci --prefix src/Aiursoft.S360/wwwroot` followed by `npm run build --prefix src/Aiursoft.S360/wwwroot`. A plain `dotnet publish` omits the ignored `wwwroot/node_modules` directory, so its output alone is **not** a complete manual deployment artifact: the inherited profile and settings pages still request Dropify CSS and JavaScript from that directory. The Dockerfile explicitly copies the slimmed frontend files into `/app/wwwroot`. A manual pilot must copy those built files into the publish output as well and verify the resulting URLs before deployment. The current worktree has not passed a container build or deployment verification. Do not enable CI enforcement merely because a local Web build succeeds.
+
+The Web app is based on Aiursoft Template. No downstream project is using S360 enforcement yet.
+
+On 2026-09-24, a local Release `dotnet publish` succeeded. After copying the built `wwwroot/node_modules` files into that temporary publish directory as the Dockerfile does, the published application started with a disposable SQLite database; `/health`, `/`, and the Dropify CSS URL each returned HTTP 200. This verifies one manual publish/startup path, not a container image or production OIDC deployment. Docker was unavailable to this workspace user, so the image itself remains unverified.
+
+A local OIDC-mode startup using environment overrides and a disposable SQLite database also returned HTTP 200 for `/health` and `/`; `/Dashboard` redirected to sign-in. The test used a deliberately nonexistent identity-provider address, so the actual OIDC challenge failed while fetching discovery metadata. This does not verify a real provider login. A solution-level Release `dotnet pack` produced `Aiursoft.S360.Client.1.0.1.nupkg`; installation from that local package into a temporary tool directory succeeded, and `s360 --help` exposed only `check`. No CLI was installed on a Runner, and the Template `.gitlab-ci.yml` remains unchanged.
+
+On 2026-09-24, a controlled local smoke run invoked `PackageResolutionService.ResolveAsync` against the configured internal mirrors: `Newtonsoft.Json@13.0.3` resolved from NuGet and `is-odd@3.0.1` resolved from npm with its transitive `is-number` edge. The run verified 64-character SHA-256 values for the returned artifacts and passed without enabling CI enforcement. This checks one small real resolution path; it does not establish mirror availability, resolver isolation, or package safety in production.
+
+A read-only scan of this repository on 2026-09-24 failed closed before contacting S360: the inherited Template `wwwroot/package-lock.json` lists `@aiursoft/uistack` as a root dependency, while `wwwroot/package.json` does not. Both files match the current Template copies. They have not been changed here to preserve Template symmetry; resolve the shared lockfile inconsistency before considering S360 self-enforcement. This does not affect the Web-only pilot or the existing CLI package publication.
+
+`ninja all --path .` completed with exit code 0 on 2026-09-24. Its only suggestion was to replace “this s360” with “this template” in a `.gitlab-ci.yml` comment; that automatic edit was reverted because the pipeline file must remain untouched. Consequently this run is **not suggestion-free**. The Template frontend `npm ci` and `npm run build` both succeeded, with Dropify retained in the slimmed output. A Docker image build remains unverified because this workspace user cannot access the Docker socket.
 
 ## Run in Ubuntu
 
-The following script will install\update this app on your Ubuntu server. Supports Ubuntu 25.04.
+The inherited Template installer and apt packaging have not been verified for this worktree. Do not use the commands below for a production S360 deployment without first validating the package and bootstrap configuration.
 
-On your Ubuntu server, run the following command:
-
-```bash
-curl -sL https://github.com/aiursoftweb/s360/raw/master/install.sh | sudo bash
-```
-
-Of course it is suggested that append a custom port number to the command:
-
-```bash
-curl -sL https://github.com/aiursoftweb/s360/raw/master/install.sh | sudo bash -s 8080
-```
-
-It will install the app as a systemd service, and start it automatically. Binary files will be located at `/opt/apps`. Service files will be located at `/etc/systemd/system`.
-
-### apt package filesystem layout
-
-When installed via `apt install aiursoft-s360`, the following paths are created:
-
-| Role | Path | `apt remove` | `apt purge` |
-|------|------|:---:|:---:|
-| Working directory & binaries | `/usr/share/aiursoft-s360/` | ✓ | ✓ |
-| Config file | `/etc/aiursoft-s360/appsettings.json` | | ✓ |
-| Runtime data (DB, storage, keys) | `/var/lib/aiursoft-s360/` | | |
-| systemd unit | `/lib/systemd/system/aiursoft-s360.service` | ✓ | ✓ |
-
-The config file is a dpkg conffile — kept on `remove`, deleted only on `purge`.
-Runtime data under `/var/lib/aiursoft-s360/` is user data and intentionally never removed by dpkg.
+For now, use a controlled Web pilot from a locally verified complete artifact, including the frontend files described above; do not pipe an unverified installer into a privileged shell.
 
 ## Run manually
 
-Requirements about how to run
+Local development prerequisites:
 
 1. Install [.NET 10 SDK](http://dot.net/) and [Node.js](https://nodejs.org/).
-2. Execute `npm install` at `wwwroot` folder to install the dependencies.
-3. Execute `dotnet run` to run the app.
-4. Use your browser to view [http://localhost:5000](http://localhost:5000).
+2. Configure the Template authentication settings for your local environment.
+3. Run `npm ci --prefix src/Aiursoft.S360/wwwroot` and `npm run build --prefix src/Aiursoft.S360/wwwroot`.
+4. Run `dotnet run --project src/Aiursoft.S360`; use the URL printed by the host.
 
 ## Run in Microsoft Visual Studio
 
@@ -93,22 +52,12 @@ Requirements about how to run
 
 First, install Docker [here](https://docs.docker.com/get-docker/).
 
-Then run the following commands in a Linux shell:
+The repository Dockerfile is available for a later deployment rehearsal. Do not assume a public `aiursoft/s360` image contains these changes; this worktree has not been container-built here.
 
-```bash
-image=aiursoft/s360
-appName=s360
-sudo docker pull $image
-sudo docker run -d --name $appName --restart unless-stopped -p 5000:5000 -v /var/www/$appName:/data $image
-```
-
-That will start a web server at `http://localhost:5000` and you can test the app.
-
-The docker image has the following context:
+The repository Dockerfile is designed for this context, pending a real image build:
 
 | Properties  | Value                           |
 |-------------|---------------------------------|
-| Image       | aiursoft/s360               |
 | Ports       | 5000                            |
 | Binary path | /app                            |
 | Data path   | /data                           |

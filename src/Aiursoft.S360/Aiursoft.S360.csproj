@@ -10,13 +10,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Aiursoft.AiurProtocol.Server" Version="10.0.32" />
     <PackageReference Include="Aiursoft.ClickhouseLoggerProvider" Version="10.0.25" />
     <PackageReference Include="Aiursoft.DbTools.Switchable" Version="10.0.25" />
     <PackageReference Include="Aiursoft.Scanner" Version="10.0.12" />
     <PackageReference Include="Aiursoft.UiStack" Version="10.0.26" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="10.0.12" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="10.0.12" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.12">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
@@ -29,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Aiursoft.S360.InMemory\Aiursoft.S360.InMemory.csproj" />
+    <ProjectReference Include="..\Aiursoft.S360.SDK\Aiursoft.S360.SDK.csproj" />
     <ProjectReference Include="..\Aiursoft.S360.MySql\Aiursoft.S360.MySql.csproj" />
     <ProjectReference Include="..\Aiursoft.S360.Sqlite\Aiursoft.S360.Sqlite.csproj" />
   </ItemGroup>

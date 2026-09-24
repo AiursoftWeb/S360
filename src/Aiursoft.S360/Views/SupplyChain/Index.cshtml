@@ -1,0 +1,183 @@
+@using Aiursoft.S360.Authorization
+@using Microsoft.AspNetCore.Authorization
+@using Aiursoft.S360.Models.Shared
+@using Aiursoft.S360.Models.SupplyChainViewModels
+@model Aiursoft.S360.Models.SupplyChainViewModels.CatalogViewModel
+@inject IAuthorizationService Authorization
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
+@{
+    var canManageRules = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageTrustRules)).Succeeded;
+    var canManageBlocks = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageBlocklist)).Succeeded;
+    var canRequest = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanSubmitDependencyRequests)).Succeeded;
+}
+
+<div class="s360-workspace">
+<div class="s360-workspace-head"><div class="row mb-3"><div class="col"><h1>@Localizer["Available dependencies"]</h1>
+    <p class="text-muted">@Localizer["A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency."]</p>
+    @if (canRequest) { <p><a asp-controller="DependencyRequests" asp-action="Index">@Localizer["Can't find a package? Submit a request"]</a></p> }
+</div></div></div>
+
+<div class="s360-workspace-layout">
+<div class="s360-workspace-main">
+@if (Model.AuditStatus == CatalogAuditStatus.Failed)
+{
+    <div class="alert alert-warning" role="status">@Localizer["The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit."]</div>
+}
+else if (Model.AuditStatus == CatalogAuditStatus.Missing)
+{
+    <div class="alert alert-warning" role="status">@Localizer["Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available."]</div>
+}
+else if (Model.AuditStatus == CatalogAuditStatus.Stale)
+{
+    <div class="alert alert-warning" role="status">@Localizer["Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes."]</div>
+}
+<nav class="s360-workspace-jumps" aria-label="@Localizer["Page sections"]">
+    <a href="#s360-catalog-search"><i data-lucide="search"></i>@Localizer["Find packages"]</a>
+    <a href="#s360-catalog-rules"><i data-lucide="shield-check"></i>@Localizer["Trust rules"]</a>
+    <a href="#s360-catalog-artifacts"><i data-lucide="package"></i>@Localizer["Recorded artifacts"]</a>
+    @if (canManageRules) { <a href="#s360-catalog-manage"><i data-lucide="sliders-horizontal"></i>@Localizer["Manage policy"]</a> }
+    @if (canManageBlocks) { <a asp-action="Blocklist" asp-route-ecosystem="@Model.Ecosystem"><i data-lucide="shield-ban"></i>@Localizer["Manage blocklist"]</a> }
+</nav>
+
+<div id="s360-catalog-search" class="s360-workspace-anchor">
+<form method="get" class="row g-2 mb-4">
+    <div class="col-auto"><select name="ecosystem" class="form-select">
+        <option value="nuget" selected="@(Model.Ecosystem == "nuget")">NuGet</option>
+        <option value="npm" selected="@(Model.Ecosystem == "npm")">npm</option>
+    </select></div>
+    <div class="col"><input name="query" value="@Model.Query" class="form-control" placeholder="@Localizer["Package name"]" /></div>
+    <div class="col-auto"><select name="supplierId" class="form-select">
+        <option value="">@Localizer["All suppliers"]</option>
+        @foreach (var supplier in Model.Suppliers)
+        {
+            <option value="@supplier.Id" selected="@(Model.SupplierId == supplier.Id)">@supplier.Name</option>
+        }
+    </select></div>
+    <div class="col-auto"><button class="btn btn-primary">@Localizer["Search"]</button></div>
+</form>
+<div class="card mb-4"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Check a concrete package against rules"]</h2></div>
+    <div class="card-body">
+        <form method="get" class="row g-2">
+            <input type="hidden" name="ecosystem" value="@Model.Ecosystem" />
+            <div class="col-md-3"><input name="lookupName" value="@Model.LookupName" required maxlength="214" class="form-control" placeholder="@Localizer["Exact package name"]" /></div>
+            <div class="col-md-2"><input name="lookupVersion" value="@Model.LookupVersion" required maxlength="128" class="form-control" placeholder="@Localizer["Exact version"]" /></div>
+            <div class="col-md-5"><input name="lookupSource" value="@Model.LookupSource" required type="url" maxlength="500" class="form-control" placeholder="@Localizer["HTTPS package source"]" /></div>
+            <div class="col-md-2"><button class="btn btn-outline-primary">@Localizer["Match rules"]</button></div>
+        </form>
+        @if (Model.LookupStatus != null)
+        {
+            <div class="alert alert-info mt-3 mb-0"><strong>@Model.LookupStatus</strong><br />@Model.LookupReason</div>
+        }
+    </div>
+</div>
+@if (Model.ResultsTruncated)
+{
+    <p class="alert alert-warning">@Localizer["Only the first 500 results are shown. Narrow the package search to inspect more results."]</p>
+}
+</div>
+
+<div id="s360-catalog-rules" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Active trust rules"]</h2></div>
+    <div class="card-body small text-muted">@Localizer["Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies."]</div>
+    <div class="table-responsive"><table class="table table-hover mb-0"><thead><tr>
+        <th>@Localizer["Supplier"]</th><th>@Localizer["Package"]</th><th>@Localizer["Version"]</th>
+        <th>@Localizer["Source"]</th><th>@Localizer["Expires"]</th>@if (canManageRules) { <th></th> }
+    </tr></thead><tbody>
+    @foreach (var rule in Model.Rules)
+    {
+        <tr><td>@rule.Supplier?.Name</td><td><code>@rule.PackagePattern</code>
+                @if (Model.BlockedRuleReasons.TryGetValue(rule.Id, out var blockedReason))
+                {
+                    <span class="badge bg-danger" title="@blockedReason">@Localizer["Overridden by blocklist"]</span>
+                }
+            </td><td><code>@rule.Version</code></td>
+            <td><small>@rule.Source</small></td><td>@rule.ExpiresAtUtc?.ToString("u")</td>
+            @if (canManageRules) { <td><form asp-action="RevokeRule" method="post">
+                <input type="hidden" name="id" value="@rule.Id" />
+                <input name="reason" required maxlength="2000" placeholder="@Localizer["Reason"]" />
+                <button class="btn btn-sm btn-outline-danger">@Localizer["Revoke"]</button>
+            </form></td> }
+        </tr>
+    }
+    </tbody></table></div>
+</div>
+
+<div id="s360-catalog-artifacts" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recorded artifacts"]</h2></div>
+    <div class="table-responsive"><table class="table table-hover mb-0"><thead><tr>
+        <th>@Localizer["Package"]</th><th>@Localizer["Version"]</th><th>@Localizer["Supplier"]</th>
+        <th>@Localizer["Authorization"]</th><th>@Localizer["Expires (UTC)"]</th>
+        <th>@Localizer["SHA-256"]</th><th>@Localizer["Source"]</th><th>@Localizer["Last checked (UTC)"]</th>
+    </tr></thead><tbody>
+    @foreach (var row in Model.Artifacts)
+    {
+        var artifact = row.Artifact;
+        var rule = row.AuthorizingRule;
+        var method = rule.Sha256 != null ? Localizer["Pinned SHA-256"] :
+            rule.PackagePattern.Contains('*') || rule.Version.Contains('*') ? Localizer["Wildcard rule"] : Localizer["Unpinned exact rule"];
+        <tr><td><a asp-action="Details" asp-route-id="@artifact.Id"><code>@artifact.Name</code></a></td>
+            <td>@artifact.Version</td><td>@rule.Supplier?.Name</td>
+            <td><small>@method · #@rule.Id</small></td><td><small>@rule.ExpiresAtUtc?.ToString("u")</small></td>
+            <td><code title="@artifact.Sha256">@artifact.Sha256[..Math.Min(16, artifact.Sha256.Length)]…</code></td>
+            <td><small>@artifact.Source</small></td><td><small>@artifact.LastCheckedAtUtc?.ToString("u")</small></td></tr>
+    }
+    </tbody></table></div>
+    <div class="card-footer small text-muted">@Localizer["Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph."]</div>
+</div>
+
+@if (canManageRules)
+{
+    <div id="s360-catalog-manage" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Manage suppliers and trust rules"]</h2></div><div class="card-body">
+        <form asp-action="AddSupplier" method="post" class="row g-2 mb-3">
+            <div class="col"><input class="form-control" name="name" required minlength="2" maxlength="128" placeholder="@Localizer["Supplier name"]" /></div>
+            <div class="col-auto"><button class="btn btn-outline-primary">@Localizer["Add supplier"]</button></div>
+        </form>
+        <form asp-action="AddRule" method="post" class="row g-2">
+            <input type="hidden" name="ecosystem" value="@Model.Ecosystem" />
+            <div class="col-md-3"><label class="form-label">@Localizer["Supplier"] <span class="s360-field-help" title="@Localizer["A label for grouping trust rules, not verified proof of a package publisher."]" aria-label="@Localizer["A label for grouping trust rules, not verified proof of a package publisher."]" tabindex="0">?</span></label><select name="supplierId" class="form-select" required><option value="">@Localizer["Supplier"]</option>
+                @foreach (var supplier in Model.Suppliers) { <option value="@supplier.Id">@supplier.Name</option> }
+            </select></div>
+            <div class="col-md-3"><label class="form-label">@Localizer["Package pattern"] <span class="s360-field-help" title="@Localizer["A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft."]" aria-label="@Localizer["A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft."]" tabindex="0">?</span></label><input class="form-control" name="packagePattern" required placeholder="Microsoft.* / @("@example/*")" /></div>
+            <div class="col-md-2"><label class="form-label">@Localizer["Version pattern"] <span class="s360-field-help" title="@Localizer["10.0.* can cover future releases. Prefer an exact version when the scope should be narrow."]" aria-label="@Localizer["10.0.* can cover future releases. Prefer an exact version when the scope should be narrow."]" tabindex="0">?</span></label><input class="form-control" name="version" required placeholder="10.0.*" /></div>
+            <div class="col-md-4"><label class="form-label">@Localizer["Package source"] <span class="s360-field-help" title="@Localizer["The approved registry URL is part of the rule. The same package from a different source is not covered."]" aria-label="@Localizer["The approved registry URL is part of the rule. The same package from a different source is not covered."]" tabindex="0">?</span></label><input class="form-control" name="source" type="url" required placeholder="https://registry.example.com" /></div>
+            <div class="col-12 s360-inline-help"><i data-lucide="circle-help" aria-hidden="true"></i><span>@Localizer["A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry."]</span></div>
+            <div class="col-md-5"><input class="form-control" name="justification" required minlength="10" maxlength="2000" placeholder="@Localizer["Approval reason"]" /></div>
+            <div class="col-md-4"><label for="s360-rule-expiry" class="form-label">@Localizer["Expires at (UTC)"]</label><input id="s360-rule-expiry" class="form-control" name="expiresAtUtc" type="datetime-local" required /><div class="form-text">@Localizer["Enter the UTC time; this field does not convert your device's local time."]</div></div>
+            <div class="col-md-3"><label class="form-check-label"><input type="checkbox" name="includePrerelease" value="true" /> @Localizer["Include prerelease"]</label></div>
+            <div class="col-12"><button class="btn btn-primary">@Localizer["Approve rule"]</button>
+                <small class="text-warning ms-2">@Localizer["Wildcard rules automatically admit future versions; first-seen hashes are still recorded."]</small></div>
+        </form>
+        <div class="border-top mt-4 pt-3">
+            <h3 class="h6">@Localizer["Preview a rule before approval"]</h3>
+            <p class="small text-muted">@Localizer["Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision."]</p>
+            <form asp-action="PreviewRule" method="get" class="row g-2">
+                <input type="hidden" name="ecosystem" value="@Model.Ecosystem" />
+                <div class="col-md-3"><input class="form-control" name="packagePattern" required maxlength="214" aria-label="@Localizer["Package pattern"]" placeholder="Microsoft.* / @("@example/*")" /></div>
+                <div class="col-md-2"><input class="form-control" name="version" required maxlength="128" aria-label="@Localizer["Version pattern"]" placeholder="10.0.*" /></div>
+                <div class="col-md-4"><input class="form-control" name="source" type="url" required maxlength="500" aria-label="@Localizer["Package source"]" placeholder="https://registry.example.com" /></div>
+                <div class="col-md-1"><label class="form-check-label small"><input type="checkbox" name="includePrerelease" value="true" /> @Localizer["Prerelease"]</label></div>
+                <div class="col-md-2"><button class="btn btn-outline-primary w-100">@Localizer["Preview"]</button></div>
+            </form>
+        </div>
+    </div></div>
+}
+
+@if (canManageBlocks)
+{
+    <p class="small text-muted"><a asp-action="Blocklist" asp-route-ecosystem="@Model.Ecosystem">@Localizer["Open the separate absolute blocklist management page"]</a></p>
+}
+</div>
+@await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+    Localizer["How to read the catalog"].Value,
+    "library-big",
+    [
+        new ConceptTerm(Localizer["Supplier"].Value, Localizer["A label used to group related rules. It does not prove who published a package."].Value),
+        new ConceptTerm(Localizer["Package source"].Value, Localizer["The registry URL from which the archive was obtained. It is part of the authorization and is different from the supplier label."].Value),
+        new ConceptTerm(Localizer["Trust rule"].Value, Localizer["A condition on package name, version, source, and UTC expiry. Matching a rule alone does not mean an archive or its vulnerability data has been checked."].Value),
+        new ConceptTerm(Localizer["Exact versus wildcard"].Value, Localizer["An exact rule names one package version. A trailing * covers a prefix, potentially including future versions that are not listed in this catalog."].Value),
+        new ConceptTerm(Localizer["Recorded artifact"].Value, Localizer["A concrete NuGet .nupkg or npm tarball with an exact version, source, and SHA-256 fingerprint."].Value),
+        new ConceptTerm(Localizer["Absolute blocklist"].Value, Localizer["A forbidden name or version. It takes precedence over every approval and trust rule, including for indirect dependencies."].Value),
+        new ConceptTerm(Localizer["Prerelease"].Value, Localizer["Preview, alpha, beta, and release-candidate versions are normally outside a rule unless explicitly included."].Value)
+    ],
+    Localizer["Wildcard rules can cover packages not yet listed here. Use the exact-package lookup, then review the full dependency graph."].Value))
+</div>
+</div>

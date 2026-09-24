@@ -1,0 +1,22 @@
+@model Aiursoft.S360.Models.Shared.ConceptGuideViewModel
+
+<aside class="s360-concept-rail" aria-label="@Model.Title">
+    <div class="s360-concept-card">
+        <span class="s360-concept-icon" aria-hidden="true"><i data-lucide="@Model.Icon"></i></span>
+        <span class="s360-kicker">@Localizer["New to S360?"]</span>
+        <h2>@Model.Title</h2>
+        <dl>
+            @foreach (var term in Model.Terms)
+            {
+                <div>
+                    <dt>@term.Name</dt>
+                    <dd>@term.Explanation</dd>
+                </div>
+            }
+        </dl>
+        @if (!string.IsNullOrWhiteSpace(Model.Tip))
+        {
+            <p class="s360-concept-tip"><i data-lucide="lightbulb" aria-hidden="true"></i><span><strong>@Localizer["Tip:"]</strong> @Model.Tip</span></p>
+        }
+    </div>
+</aside>

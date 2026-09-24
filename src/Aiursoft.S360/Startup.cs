@@ -19,6 +19,10 @@ using Aiursoft.ClickhouseLoggerProvider;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using System.Diagnostics.CodeAnalysis;
+using Aiursoft.AiurProtocol.Server;
+using Aiursoft.S360.Services.Vulnerability;
+using Aiursoft.S360.Services.Resolution;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Aiursoft.S360;
 
@@ -49,10 +53,18 @@ public class Startup : IWebStartup
 
         // Authentication and Authorization
         services.AddTemplateAuth(configuration);
+        services.AddAuthentication().AddScheme<AuthenticationSchemeOptions, S360CheckKeyHandler>(
+            S360CheckKeyHandler.SchemeName, _ => { });
 
         // Services
         services.AddMemoryCache();
         services.AddHttpClient();
+        services.AddHttpClient(PackageResolutionService.ArchiveClientName)
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
+        services.AddHttpClient<OsvClient>(client => client.Timeout = TimeSpan.FromMinutes(2));
+        services.AddHttpClient<OsvWildcardFeed>(client => client.Timeout = TimeSpan.FromMinutes(15));
+        services.AddScoped<PackageResolutionService>();
+        services.AddScoped<IArtifactSourceVerifier, ArtifactSourceVerifier>();
         services.AddAssemblyDependencies(typeof(Startup).Assembly);
         services.AddSingleton<NavigationState<Startup>>();
 
@@ -63,15 +75,26 @@ public class Startup : IWebStartup
         // Background jobs
         services.RegisterBackgroundJob<DummyJob>();
         var orphanAvatarCleanupJob = services.RegisterBackgroundJob<OrphanAvatarCleanupJob>();
+        var vulnerabilityAuditJob = services.RegisterBackgroundJob<VulnerabilityAuditJob>();
+        var dependencyResolutionJob = services.RegisterBackgroundJob<DependencyResolutionJob>();
 
         // Scheduled tasks (attach a schedule to any registered background job)
         services.RegisterScheduledTask(
             registration: orphanAvatarCleanupJob,
             period:     TimeSpan.FromHours(6),
             startDelay: TimeSpan.FromMinutes(5));
+        services.RegisterScheduledTask(
+            registration: vulnerabilityAuditJob,
+            period: TimeSpan.FromHours(6),
+            startDelay: TimeSpan.FromMinutes(2));
+        services.RegisterScheduledTask(
+            registration: dependencyResolutionJob,
+            period: TimeSpan.FromMinutes(1),
+            startDelay: TimeSpan.FromMinutes(1));
 
         // Controllers and localization
         services.AddControllersWithViews()
+            .AddAiurProtocol()
             .AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Utc;
@@ -92,6 +115,7 @@ public class Startup : IWebStartup
         app.UseRouting();
         app.UseAuthentication();
         app.UseAuthorization();
+        app.MapGet("/health", () => Results.Ok("OK"));
         app.MapDefaultControllerRoute();
     }
 }

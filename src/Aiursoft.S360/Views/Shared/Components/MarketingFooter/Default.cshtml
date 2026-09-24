@@ -1,91 +1,58 @@
 @model Aiursoft.S360.Views.Shared.Components.MarketingFooter.MarketingFooterViewModel
 @using Microsoft.AspNetCore.Localization
-<footer class="py-5 bg-dark">
+
+<footer class="py-5 bg-dark text-white">
     <div class="container">
-        <div class="row mb-4">
-            <div class="col-12 col-lg-4">
-                <div class="mb-3">
-                    <img src="@Model.LogoUrl" alt="logo" style="width: 24px; height: 24px;" loading="lazy" />
+        <div class="row g-4">
+            <div class="col-12 col-lg-5">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <span class="s360-brand-mark" aria-hidden="true">S</span>
+                    <strong class="fs-4">S360</strong>
                 </div>
-                <p class="text-white-50">
-                    @Localizer["Aiursoft Template - A modern, feature-rich, and highly extensible foundation for your next web application."]
-                </p>
-                <div class="dropdown mt-3 mb-3">
-                    @{
-                        var currentCulture = ViewContext.HttpContext.Features
-                            .Get<IRequestCultureFeature>()?
-                            .RequestCulture.Culture.Name;
-                    }
-                    <form asp-controller="Culture" asp-action="Set" method="post" class="d-inline" asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">
-                        <select name="culture" onchange="this.form.submit()" class="form-select form-select-sm w-auto">
-                            @foreach (var culture in Aiursoft.WebTools.OfficialPlugins.LocalizationPlugin.SupportedCultures)
-                            {
-                                <option value="@culture.Key"
-                                        selected="@(culture.Key == currentCulture ? "selected" : null)">
-                                    @culture.Value
-                                </option>
-                            }
-                        </select>
-                    </form>
-                </div>
+                <p class="text-white-50 mb-3">@Localizer["A clearer way to request, approve, and keep watch over the software your teams depend on."]</p>
+                @{
+                    var currentCulture = ViewContext.HttpContext.Features.Get<IRequestCultureFeature>()?
+                        .RequestCulture.Culture.Name;
+                }
+                <form asp-controller="Culture" asp-action="Set" method="post" class="d-inline"
+                      asp-route-returnUrl="@(Context.Request.Path + Context.Request.QueryString)">
+                    <label for="s360-footer-language" class="visually-hidden">@Localizer["Language"]</label>
+                    <select id="s360-footer-language" name="culture" onchange="this.form.submit()" class="form-select form-select-sm w-auto">
+                        @foreach (var culture in Aiursoft.WebTools.OfficialPlugins.LocalizationPlugin.SupportedCultures)
+                        {
+                            <option value="@culture.Key" selected="@(culture.Key == currentCulture ? "selected" : null)">@culture.Value</option>
+                        }
+                    </select>
+                </form>
             </div>
-            <div class="col-12 col-md-4 col-lg-2 mb-3 mb-md-0">
-                <h4 class="text-light fs-5">@Localizer["Resources"]</h4>
-                <ul class="list-unstyled ps-0 mb-0 mt-3">
-                    <li class="mt-2">
-                        <a href="https://template-docs.aiursoft.com/en/Tutorial/before.html" class="text-white-50">@Localizer["Get Started"]</a>
-                    </li>
-                    <li class="mt-2">
-                        <a href="https://template-docs.aiursoft.com/" class="text-white-50">@Localizer["Documentation"]</a>
-                    </li>
-                    <li class="mt-2">
-                        <a href="https://github.com/aiursoftweb/template/discussions" class="text-white-50">@Localizer["Community"]</a>
-                    </li>
+            <div class="col-6 col-md-4 col-lg-2">
+                <h2 class="fs-6 text-white">@Localizer["Explore"]</h2>
+                <ul class="list-unstyled mb-0">
+                    <li class="mt-2"><a asp-controller="Home" asp-action="Index" asp-fragment="capabilities" class="text-white-50">@Localizer["Capabilities"]</a></li>
+                    <li class="mt-2"><a asp-controller="Home" asp-action="Index" asp-fragment="how-it-works" class="text-white-50">@Localizer["Workflow"]</a></li>
+                    <li class="mt-2"><a asp-controller="Home" asp-action="Index" asp-fragment="rollout" class="text-white-50">@Localizer["Rollout"]</a></li>
                 </ul>
             </div>
-            <div class="col-12 col-md-4 col-lg-2 mb-3 mb-md-0">
-                <h4 class="text-light fs-5">@Localizer["Project"]</h4>
-                <ul class="list-unstyled ps-0 mb-0 mt-3">
-                    <li class="mt-2">
-                        <a href="https://github.com/aiursoftweb/template" class="text-white-50">@Localizer["Source Code"]</a>
-                    </li>
-                    <li class="mt-2">
-                        <a href="https://github.com/aiursoftweb/template/issues" class="text-white-50">@Localizer["Report an Issue"]</a>
-                    </li>
-                    <li class="mt-2">
-                        <a href="https://github.com/aiursoftweb/template/pulls" class="text-white-50">@Localizer["Contributions"]</a>
-                    </li>
+            <div class="col-6 col-md-4 col-lg-2">
+                <h2 class="fs-6 text-white">@Localizer["Workspace"]</h2>
+                <ul class="list-unstyled mb-0">
+                    <li class="mt-2"><a asp-controller="Dashboard" asp-action="Index" class="text-white-50">@Localizer["Dashboard"]</a></li>
+                    <li class="mt-2"><a asp-controller="SupplyChain" asp-action="Index" class="text-white-50">@Localizer["Available dependencies"]</a></li>
+                    <li class="mt-2"><a asp-controller="DependencyRequests" asp-action="Index" class="text-white-50">@Localizer["My requests"]</a></li>
                 </ul>
             </div>
-            <div class="col-12 col-md-4 col-lg-2 mb-3 mb-md-0">
-                <h4 class="text-light fs-5">@Localizer["Legal"]</h4>
-                <ul class="list-unstyled ps-0 mb-0 mt-3">
-                    <li class="mt-2">
-                        <a href="https://github.com/aiursoftweb/template/blob/main/LICENSE" class="text-white-50">@Localizer["Licence"]</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-12 col-md-4 col-lg-2 mb-3 mb-md-0">
-                <h4 class="text-light fs-5">@Localizer["Social"]</h4>
-                <ul class="list-unstyled ps-0 mb-0 mt-3">
-                    <li class="mt-2">
-                        <i class="fa-brands fa-github"></i>
-                        <a href="https://github.com/aiursoftweb" class="text-white-50" target="_blank">@Localizer["Github"]</a>
-                    </li>
-                </ul>
+            <div class="col-12 col-md-4 col-lg-3">
+                <h2 class="fs-6 text-white">@Localizer["A project by Aiursoft"]</h2>
+                <p class="text-white-50 small">@Localizer["S360's Web approval center is the first step. Build enforcement and restricted mirrors follow as separate rollout stages."]</p>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <p class="text-white-50 mt-4 text-center mb-0">
-                    © @DateTime.Now.Year <a href="@Model.BrandHomeUrl" target="_blank">@Model.BrandName</a>
-                    @if (!string.IsNullOrWhiteSpace(Model.Icp) && System.Globalization.CultureInfo.CurrentCulture.Name == "zh-CN")
-                    {
-                        <span> | </span>
-                        <a href="https://beian.miit.gov.cn/" target="_blank">@Model.Icp</a>
-                    }
-                </p>
-            </div>
+        <div class="border-top border-secondary mt-4 pt-4 text-white-50 small">
+            © @DateTime.UtcNow.Year <a href="@Model.BrandHomeUrl" class="text-white-50" target="_blank" rel="noopener noreferrer">@Model.BrandName</a>
+            @if (!string.IsNullOrWhiteSpace(Model.Icp) && System.Globalization.CultureInfo.CurrentCulture.Name == "zh-CN")
+            {
+                <span> | </span>
+                <a href="https://beian.miit.gov.cn/" class="text-white-50" target="_blank" rel="noopener noreferrer">@Model.Icp</a>
+            }
         </div>
     </div>
 </footer>

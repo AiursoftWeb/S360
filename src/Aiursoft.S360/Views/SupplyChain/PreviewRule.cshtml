@@ -1,0 +1,54 @@
+@model Aiursoft.S360.Models.SupplyChainViewModels.RulePreviewViewModel
+@using Aiursoft.S360.Models.Shared
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
+
+<div class="s360-workspace">
+    <div class="s360-workspace-head">
+        <a asp-action="Index" asp-route-ecosystem="@Model.Ecosystem" asp-fragment="s360-catalog-manage" class="s360-text-link">
+            <i data-lucide="arrow-left"></i> @Localizer["Back to policy management"]
+        </a>
+        <h1>@Localizer["Preview trust rule"]</h1>
+        <p class="text-muted">@Localizer["This read-only preview shows known package versions matching your proposed rule. No package is approved by viewing this page."]</p>
+    </div>
+    <div class="s360-workspace-layout">
+        <main class="s360-workspace-main">
+            <div class="card mb-4"><div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-3">@Localizer["Ecosystem"]</dt><dd class="col-sm-9">@Model.Ecosystem</dd>
+                    <dt class="col-sm-3">@Localizer["Package pattern"]</dt><dd class="col-sm-9"><code>@Model.PackagePattern</code></dd>
+                    <dt class="col-sm-3">@Localizer["Version pattern"]</dt><dd class="col-sm-9"><code>@Model.Version</code></dd>
+                    <dt class="col-sm-3">@Localizer["Source"]</dt><dd class="col-sm-9"><code>@Model.Source</code></dd>
+                    <dt class="col-sm-3">@Localizer["Prerelease versions"]</dt><dd class="col-sm-9">@(Model.IncludePrerelease ? Localizer["Included"] : Localizer["Excluded"])</dd>
+                </dl>
+            </div></div>
+            @if (Model.CandidateLimitReached || Model.ResultLimitReached)
+            {
+                <p class="alert alert-warning">@Localizer["This is a limited sample, not every matching package. Narrow the pattern to inspect a smaller set."]</p>
+            }
+            <div class="card"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Known matching package versions"]</h2></div>
+                @if (Model.Matches.Count == 0)
+                {
+                    <div class="card-body text-muted">@Localizer["No matching recorded package version appears in this preview. A wildcard may still match future or unrecorded packages."]</div>
+                }
+                else
+                {
+                    <div class="table-responsive"><table class="table mb-0"><thead><tr><th>@Localizer["Package"]</th><th>@Localizer["Version"]</th></tr></thead><tbody>
+                        @foreach (var match in Model.Matches)
+                        {
+                            <tr><td><code>@match.Name</code></td><td><code>@match.Version</code></td></tr>
+                        }
+                    </tbody></table></div>
+                }
+            </div>
+        </main>
+        @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+            Localizer["Read this preview carefully"].Value,
+            "scan-search",
+            [
+                new ConceptTerm(Localizer["Known package"].Value, Localizer["A package version already recorded by S360; this list does not enumerate the registry or predict future releases."].Value),
+                new ConceptTerm(Localizer["Pattern match"].Value, Localizer["A name and version satisfying the proposed rule at this source. It is not proof of a clean vulnerability audit or approved dependency graph."].Value)
+            ],
+            Localizer["Review the source and expiry before creating a rule. Absolute blocks still take priority."].Value))
+    </div>
+</div>

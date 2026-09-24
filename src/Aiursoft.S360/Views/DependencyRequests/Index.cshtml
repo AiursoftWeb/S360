@@ -1,0 +1,91 @@
+@model Aiursoft.S360.Models.SupplyChainViewModels.MyRequestsViewModel
+@using Aiursoft.S360.Models.Shared
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
+
+<div class="s360-workspace">
+<div class="s360-workspace-head">
+<h1>@Localizer["My dependency requests"]</h1>
+<p class="text-muted">@Localizer["Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment."]</p>
+</div>
+
+<div class="s360-workspace-layout">
+<div class="s360-workspace-main">
+<div class="card mb-4"><div class="card-header"><h2 class="h5 mb-0">@Localizer["New request"]</h2></div><div class="card-body">
+    <form asp-action="Submit" method="post" class="row g-3">
+        <div class="col-md-3"><label class="form-label">@Localizer["Ecosystem"] <span class="s360-field-help" title="@Localizer["NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs."]" aria-label="@Localizer["NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs."]" tabindex="0">?</span></label>
+            <select id="request-ecosystem" name="ecosystem" class="form-select"><option value="nuget">NuGet</option><option value="npm">npm</option></select></div>
+        <div class="col-md-9"><label class="form-label">@Localizer["Source"] <span class="s360-field-help" title="@Localizer["The registry that supplies the package archive. A package from another registry needs its own review."]" aria-label="@Localizer["The registry that supplies the package archive. A package from another registry needs its own review."]" tabindex="0">?</span></label>
+            <select id="request-source" name="source" class="form-select" required>
+                @foreach (var source in Model.NuGetSources) { <option value="@source" data-ecosystem="nuget">NuGet — @source</option> }
+                @foreach (var source in Model.NpmSources) { <option value="@source" data-ecosystem="npm">npm — @source</option> }
+            </select><div class="form-text">@Localizer["Choose a registry for the selected ecosystem. The source is part of the review evidence."]</div></div>
+        <div class="col-md-7"><label class="form-label">@Localizer["Direct dependencies, one name@version per line"] <span class="s360-field-help" title="@Localizer["For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in."]" aria-label="@Localizer["For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in."]" tabindex="0">?</span></label>
+            <textarea name="directPackages" class="form-control" rows="5" maxlength="2000" required placeholder="Microsoft.EntityFrameworkCore@10.0.12"></textarea>
+            <div class="form-text">@Localizer["Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard."]</div></div>
+        <div class="col-md-5"><label class="form-label">@Localizer["Project (optional)"]</label>
+            <input name="project" class="form-control mb-3" maxlength="200" />
+            <label class="form-label">@Localizer["Why is this dependency needed?"]</label>
+            <textarea name="justification" class="form-control" rows="3" maxlength="2000" required></textarea></div>
+        <div class="col-12"><button class="btn btn-primary">@Localizer["Submit for resolution"]</button></div>
+    </form>
+</div></div>
+
+<div class="card"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recent requests"]</h2></div>
+    <div class="table-responsive"><table class="table mb-0"><thead><tr><th>@Localizer["Created"]</th><th>@Localizer["Ecosystem"]</th>
+        <th>@Localizer["Project"]</th><th>@Localizer["Status"]</th><th></th></tr></thead><tbody>
+        @foreach (var application in Model.Applications)
+        {
+            <tr><td>@application.CreatedAtUtc.ToString("u")</td><td>@application.Ecosystem</td><td>@application.Project</td>
+                <td>@application.Status
+                    @if (Model.ApplicationsWithRemovedSources.Contains(application.Id))
+                    {
+                        <div class="text-danger small">@Localizer["Package source is no longer permitted for S360 checks."]</div>
+                    }
+                    @if (Model.CurrentBlockReasons.TryGetValue(application.Id, out var blockReason))
+                    {
+                        <div class="text-danger small"><strong>@Localizer["Currently blocked"]:</strong> @blockReason</div>
+                    }
+                </td><td><a asp-action="Details" asp-route-id="@application.Id">@Localizer["Details"]</a></td></tr>
+        }
+    </tbody></table></div>
+</div>
+</div>
+@await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+    Localizer["Understand your request"].Value,
+    "package-search",
+    [
+        new ConceptTerm(Localizer["Direct dependency"].Value, Localizer["The package and exact version you enter yourself. Add one name@version per line."].Value),
+        new ConceptTerm(Localizer["Transitive dependency"].Value, Localizer["A package brought in by another package. S360 discovers it during resolution; you do not enter it separately."].Value),
+        new ConceptTerm(Localizer["Package source"].Value, Localizer["The registry selected for this request. An identical name and version from a different source is a different review input."].Value),
+        new ConceptTerm(Localizer["Resolution context"].Value, Localizer["The framework, platform, and source can change which versions are selected. This request records its own resolution, not every future build."].Value),
+        new ConceptTerm(Localizer["Ready for review"].Value, Localizer["The dependency report is complete enough to inspect. It does not mean the request is approved."].Value),
+        new ConceptTerm(Localizer["Exact version"].Value, Localizer["A single published version such as 10.0.12. Do not request 10.*, latest, or a version range; the resolved graph must be reproducible."].Value)
+    ],
+    Localizer["Start with the exact packages your project needs. Check the resulting report before relying on an approval."].Value))
+</div>
+</div>
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section scripts {
+    <script>
+        (() => {
+            const ecosystem = document.getElementById('request-ecosystem');
+            const source = document.getElementById('request-source');
+            if (!ecosystem || !source) return;
+            const syncSource = () => {
+                const options = Array.from(source.options);
+                for (const option of options) {
+                    const available = option.dataset.ecosystem === ecosystem.value;
+                    option.hidden = !available;
+                    option.disabled = !available;
+                }
+                if (source.selectedOptions[0]?.disabled) {
+                    const firstAvailable = options.find(option => !option.disabled);
+                    source.value = firstAvailable?.value ?? '';
+                }
+            };
+            ecosystem.addEventListener('change', syncSource);
+            syncSource();
+        })();
+    </script>
+}

@@ -8,7 +8,7 @@ ARG CSPROJ_PATH
 WORKDIR /src
 # Only copy package files to take advantage of Docker cache
 COPY ${CSPROJ_PATH}wwwroot/package.json ${CSPROJ_PATH}wwwroot/package-lock.json* ${CSPROJ_PATH}wwwroot/.npmrc* /src/${CSPROJ_PATH}wwwroot/
-RUN npm install --prefix "${CSPROJ_PATH}wwwroot" --loglevel verbose
+RUN npm ci --prefix "${CSPROJ_PATH}wwwroot" --loglevel verbose
 
 # Build frontend (slims node_modules to only "keep" declared packages)
 COPY ${CSPROJ_PATH}wwwroot/build.mjs /src/${CSPROJ_PATH}wwwroot/build.mjs
@@ -41,7 +41,9 @@ RUN cp -r ${CSPROJ_PATH}/wwwroot/* /app/wwwroot
 
 # ============================
 # Prepare Runtime Environment
-FROM hub.aiursoft.com/aiursoft/internalimages/dotnetonlyruntime
+# Employee dependency resolution runs synthetic restore/install jobs in-process.
+# This image includes the .NET SDK and Node/npm; package scripts are disabled by the resolver.
+FROM hub.aiursoft.com/aiursoft/internalimages/dotnet
 ARG PROJ_NAME
 WORKDIR /app
 COPY --from=build-env /app .

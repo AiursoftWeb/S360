@@ -1,0 +1,85 @@
+@using Aiursoft.S360.Models.Shared
+@model Aiursoft.S360.Models.SupplyChainViewModels.CatalogArtifactDetailsViewModel
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
+
+<div class="s360-workspace">
+    <div class="s360-workspace-head">
+        <h1>@Model.Artifact.Name <small>@Model.Artifact.Version</small></h1>
+        <p>@Localizer["This concrete package file currently passes S360's authorization and stored vulnerability checks. A future build must still check its own complete dependency graph."]</p>
+        <a asp-action="Index" asp-route-ecosystem="@Model.Artifact.Ecosystem">← @Localizer["Back to available dependencies"]</a>
+    </div>
+    <div class="s360-workspace-layout">
+        <div class="s360-workspace-main">
+            <section class="card mb-4">
+                <div class="card-header"><h2 class="h5 mb-0">@Localizer["Package file and current authorization"]</h2></div>
+                <div class="card-body">
+                    <dl class="row mb-0">
+                        <dt class="col-sm-3">@Localizer["Ecosystem"]</dt><dd class="col-sm-9">@Model.Artifact.Ecosystem</dd>
+                        <dt class="col-sm-3">@Localizer["Package"]</dt><dd class="col-sm-9"><code>@Model.Artifact.Name</code></dd>
+                        <dt class="col-sm-3">@Localizer["Exact version"]</dt><dd class="col-sm-9"><code>@Model.Artifact.Version</code></dd>
+                        <dt class="col-sm-3">@Localizer["Source"]</dt><dd class="col-sm-9"><code>@Model.Artifact.Source</code></dd>
+                        <dt class="col-sm-3">@Localizer["Archive SHA-256"]</dt><dd class="col-sm-9"><code class="text-break">@Model.Artifact.Sha256</code></dd>
+                        <dt class="col-sm-3">@Localizer["Last vulnerability check"]</dt><dd class="col-sm-9">@Model.Artifact.LastCheckedAtUtc?.ToString("u")</dd>
+                        <dt class="col-sm-3">@Localizer["Supplier label"]</dt><dd class="col-sm-9">@Model.Rule.Supplier?.Name</dd>
+                        <dt class="col-sm-3">@Localizer["Matching authorization"]</dt><dd class="col-sm-9"><code>@Model.Rule.PackagePattern @Model.Rule.Version</code></dd>
+                        <dt class="col-sm-3">@Localizer["Authorization expires"]</dt><dd class="col-sm-9">@(Model.Rule.ExpiresAtUtc?.ToString("u") ?? Localizer["No expiry recorded"].Value)</dd>
+                        @if (Model.LatestApproval != null)
+                        {
+                            <dt class="col-sm-3">@Localizer["Latest approval recorded"]</dt><dd class="col-sm-9">@Model.LatestApproval.ReviewedAtUtc.ToString("u")</dd>
+                        }
+                    </dl>
+                </div>
+            </section>
+
+            <div class="alert alert-info">@Localizer["The relationships below come from previously approved request reports. They describe observed resolution paths, not every possible future build or a blanket authorization for related packages."]</div>
+            <section class="card mb-4">
+                <div class="card-header"><h2 class="h5 mb-0">@Localizer["Packages this artifact brought in"]</h2></div>
+                <div class="card-body">
+                    @if (Model.RecordedChildren.Count == 0)
+                    {
+                        <p class="text-muted mb-0">@Localizer["No direct child relationship is recorded in approved request reports."]</p>
+                    }
+                    else
+                    {
+                        <ul class="mb-0">
+                            @foreach (var child in Model.RecordedChildren)
+                            {
+                                <li><code>@child.Name</code> @child.Version <small class="text-muted">(@child.Source)</small></li>
+                            }
+                        </ul>
+                    }
+                    @if (Model.ChildrenLimited) { <p class="small text-warning mt-2 mb-0">@Localizer["Only the first 100 relationships are shown."]</p> }
+                </div>
+            </section>
+            <section class="card">
+                <div class="card-header"><h2 class="h5 mb-0">@Localizer["Packages that brought this artifact in"]</h2></div>
+                <div class="card-body">
+                    @if (Model.RecordedParents.Count == 0)
+                    {
+                        <p class="text-muted mb-0">@Localizer["No parent relationship is recorded in approved request reports. This package may have been requested directly."]</p>
+                    }
+                    else
+                    {
+                        <ul class="mb-0">
+                            @foreach (var parent in Model.RecordedParents)
+                            {
+                                <li><code>@parent.Name</code> @parent.Version <small class="text-muted">(@parent.Source)</small></li>
+                            }
+                        </ul>
+                    }
+                    @if (Model.ParentsLimited) { <p class="small text-warning mt-2 mb-0">@Localizer["Only the first 100 relationships are shown."]</p> }
+                </div>
+            </section>
+        </div>
+        @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+            Localizer["Read this package record"].Value,
+            "package-check",
+            [
+                new ConceptTerm(Localizer["Package artifact"].Value, Localizer["One exact archive, version, and source. Its SHA-256 identifies the bytes S360 recorded."].Value),
+                new ConceptTerm(Localizer["Current authorization"].Value, Localizer["An active rule, no applicable block, and a completed recent vulnerability check allow this file now. Expiry or new findings can change that answer."].Value),
+                new ConceptTerm(Localizer["Recorded relationship"].Value, Localizer["A direct edge from an approved request's resolved graph. It does not prove all future installations use the same graph."].Value)
+            ],
+            Localizer["Check the complete resolved graph for every actual build, even when this package appears in the catalog."].Value))
+    </div>
+</div>

@@ -5,6 +5,12 @@ namespace Aiursoft.S360.Authorization;
 /// </summary>
 public static class AppPermissionNames
 {
+    public const string CanSubmitDependencyRequests = nameof(CanSubmitDependencyRequests);
+    public const string CanReadSupplyChain = nameof(CanReadSupplyChain);
+    public const string CanReviewDependencyRequests = nameof(CanReviewDependencyRequests);
+    public const string CanManageTrustRules = nameof(CanManageTrustRules);
+    public const string CanManageBlocklist = nameof(CanManageBlocklist);
+    public const string CanCheckDependencies = nameof(CanCheckDependencies);
     // User Management
     public const string CanReadUsers = nameof(CanReadUsers);
     public const string CanDeleteUsers = nameof(CanDeleteUsers);

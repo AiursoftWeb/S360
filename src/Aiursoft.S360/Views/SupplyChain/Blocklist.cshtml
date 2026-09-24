@@ -1,0 +1,97 @@
+@model Aiursoft.S360.Models.SupplyChainViewModels.BlocklistViewModel
+@using Aiursoft.S360.Models.Shared
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
+
+<div class="s360-workspace">
+    <div class="s360-workspace-head">
+        <h1>@Localizer["Absolute blocklist"]</h1>
+        <p class="text-muted">@Localizer["A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence."]</p>
+    </div>
+    <div class="s360-workspace-layout">
+        <main class="s360-workspace-main">
+            <form method="get" class="mb-4 d-flex gap-2">
+                <select name="ecosystem" class="form-select w-auto" aria-label="@Localizer["Ecosystem"]">
+                    <option value="nuget" selected="@(Model.Ecosystem == "nuget")">NuGet</option>
+                    <option value="npm" selected="@(Model.Ecosystem == "npm")">npm</option>
+                </select>
+                <button class="btn btn-outline-primary">@Localizer["Show"]</button>
+                <a asp-action="Index" asp-route-ecosystem="@Model.Ecosystem" class="btn btn-outline-secondary">@Localizer["Available dependencies"]</a>
+            </form>
+            <div class="card mb-4"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Add absolute block"]</h2></div><div class="card-body">
+                <form asp-action="AddBlock" method="post" class="row g-2">
+                    <input type="hidden" name="ecosystem" value="@Model.Ecosystem" />
+                    <div class="col-md-4"><label class="form-label">@Localizer["Package name or trailing-* pattern"] <span class="s360-field-help" title="@Localizer["Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*."]" aria-label="@Localizer["Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*."]" tabindex="0">?</span></label><input name="packagePattern" required maxlength="214" class="form-control" placeholder="ant-design / @("@ant-design/*")" /></div>
+                    <div class="col-md-2"><label class="form-label">@Localizer["Version pattern"] <span class="s360-field-help" title="@Localizer["Use * to block every version, or an exact version or trailing-* prefix to narrow the block."]" aria-label="@Localizer["Use * to block every version, or an exact version or trailing-* prefix to narrow the block."]" tabindex="0">?</span></label><input name="version" required maxlength="128" value="*" class="form-control" /></div>
+                    <div class="col-md-6"><label class="form-label">@Localizer["Reason"]</label><input name="reason" required minlength="10" maxlength="2000" class="form-control" /></div>
+                    <div class="col-12"><button class="btn btn-danger"><i data-lucide="shield-ban"></i> @Localizer["Block package"]</button></div>
+                </form>
+            </div></div>
+            @if (Model.PreviewLimited || Model.RulesLimited)
+            {
+                <p class="alert alert-warning">@Localizer["Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures."]</p>
+            }
+            @foreach (var rule in Model.Rules)
+            {
+                <section class="card mb-3"><div class="card-header d-flex justify-content-between align-items-center">
+                    <h2 class="h6 mb-0"><code>@rule.PackagePattern</code> <span class="text-muted">@@</span> <code>@rule.Version</code></h2>
+                    <span class="badge @(rule.Active ? "bg-danger" : "bg-secondary")">@(rule.Active ? Localizer["Active block"] : Localizer["Disabled"])</span>
+                </div><div class="card-body">
+                    <p class="mb-2">@rule.Reason</p>
+                    <p class="text-muted small">@Localizer["Created"] @rule.CreatedAtUtc.ToString("u") · @Localizer["By"] @rule.CreatedByUserId</p>
+                    @if (rule.Active && Model.Impacts.TryGetValue(rule.Id, out var impact))
+                    {
+                        <p class="small mb-1">@Localizer["Recorded impact sample"]: @impact.ArtifactCount @Localizer["artifacts"], @impact.ApplicationCount @Localizer["applications"], @impact.CheckRunCount @Localizer["CI check runs"].</p>
+                        @if (impact.ExamplePackages.Count > 0)
+                        {
+                            <p class="small text-muted mb-3">@Localizer["Examples"]: @string.Join(", ", impact.ExamplePackages)</p>
+                        }
+                        <details><summary>@Localizer["Edit rule and view history"]</summary>
+                            <form asp-action="EditBlock" method="post" class="row g-2 mt-2">
+                                <input type="hidden" name="id" value="@rule.Id" />
+                                <div class="col-md-4"><input name="packagePattern" value="@rule.PackagePattern" required maxlength="214" class="form-control" aria-label="@Localizer["Package pattern"]" /></div>
+                                <div class="col-md-2"><input name="version" value="@rule.Version" required maxlength="128" class="form-control" aria-label="@Localizer["Version pattern"]" /></div>
+                                <div class="col-md-6"><input name="reason" value="@rule.Reason" required maxlength="2000" class="form-control" aria-label="@Localizer["Block reason"]" /></div>
+                                <div class="col-md-9"><input name="changeReason" required maxlength="1000" class="form-control" placeholder="@Localizer["Why change this block?"]" /></div>
+                                <div class="col-md-3"><button class="btn btn-outline-primary w-100">@Localizer["Save change"]</button></div>
+                            </form>
+                            <form asp-action="DisableBlock" method="post" class="row g-2 mt-2">
+                                <input type="hidden" name="id" value="@rule.Id" />
+                                <div class="col-md-9"><input name="reason" required maxlength="2000" class="form-control" placeholder="@Localizer["Why disable this block?"]" /></div>
+                                <div class="col-md-3"><button class="btn btn-outline-danger w-100">@Localizer["Disable block"]</button></div>
+                            </form>
+                            <ul class="small mt-3 mb-0">
+                                @foreach (var change in rule.Changes.OrderByDescending(c => c.ChangedAtUtc))
+                                {
+                                    <li>@change.ChangedAtUtc.ToString("u") — @change.ChangedByUserId: @change.Description</li>
+                                }
+                            </ul>
+                        </details>
+                    }
+                    else
+                    {
+                        <details><summary>@Localizer["View history"]</summary><ul class="small mt-2 mb-0">
+                            @foreach (var change in rule.Changes.OrderByDescending(c => c.ChangedAtUtc))
+                            {
+                                <li>@change.ChangedAtUtc.ToString("u") — @change.ChangedByUserId: @change.Description</li>
+                            }
+                        </ul></details>
+                    }
+                </div></section>
+            }
+            @if (Model.Rules.Count == 0)
+            {
+                <p class="alert alert-info">@Localizer["No block rules have been recorded for this ecosystem."]</p>
+            }
+        </main>
+        @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+            Localizer["How absolute blocking works"].Value,
+            "shield-ban",
+            [
+                new ConceptTerm(Localizer["Actual package name"].Value, Localizer["ant-design, antd, and @ant-design/* are different identities. Block each intended name or prefix explicitly."].Value),
+                new ConceptTerm(Localizer["Highest priority"].Value, Localizer["A block takes precedence over exact approvals and wildcard trust rules, across every package source."].Value),
+                new ConceptTerm(Localizer["Recorded impact"].Value, Localizer["Existing applications and CI records remain historical facts. New checks use the current blocklist and refuse matching packages."].Value)
+            ],
+            Localizer["Changing or disabling a block requires a reason and keeps its history."].Value))
+    </div>
+</div>

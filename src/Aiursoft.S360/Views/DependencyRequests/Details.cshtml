@@ -1,0 +1,91 @@
+@using Aiursoft.S360.Entities
+@using Aiursoft.S360.Models.Shared
+@model Aiursoft.S360.Models.SupplyChainViewModels.RequestDetailsViewModel
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
+
+<div class="s360-workspace">
+<div class="s360-workspace-head">
+<h1>@Localizer["Dependency request"] #@Model.Application.Id</h1>
+<p>@Localizer["Status"]: <strong>@Model.Application.Status</strong> · @Localizer["Requested"] @Model.Application.CreatedAtUtc.ToString("u")</p>
+<p>@Localizer["Purpose"]: @Model.Application.Justification</p>
+<p>@Localizer["Source"]: <code>@Model.Application.Source</code> · @Localizer["Resolution context"]: @Model.Application.ResolutionContext</p>
+</div>
+<div class="s360-workspace-layout">
+<div class="s360-workspace-main">
+@if (Model.Application.Status == ApplicationStatus.Resolving)
+{
+    <div class="alert alert-info">@Localizer["Resolution is queued or running. Refresh this page for the result."]</div>
+}
+@if (Model.Application.Status == ApplicationStatus.Failed)
+{
+    <div class="alert alert-danger">@Localizer["Resolution failed; this request cannot be approved."] @Model.Application.Failure</div>
+    @if (Model.RetryDirectPackages != null)
+    {
+        <form asp-action="Submit" method="post" class="mb-3">
+            <input type="hidden" name="ecosystem" value="@Model.Application.Ecosystem" />
+            <input type="hidden" name="source" value="@Model.Application.Source" />
+            <input type="hidden" name="directPackages" value="@Model.RetryDirectPackages" />
+            <input type="hidden" name="justification" value="@Model.Application.Justification" />
+            <input type="hidden" name="project" value="@Model.Application.Project" />
+            <button class="btn btn-outline-primary">@Localizer["Retry as a new request"]</button>
+            <div class="form-text">@Localizer["The failed request stays in your history. The new request is checked against today's source and blocklist rules."]</div>
+        </form>
+    }
+}
+@if (Model.Application.Status == ApplicationStatus.ReadyForReview)
+{
+    <div class="alert alert-warning">@Localizer["This report is ready for administrator review. It is not an approval."]</div>
+}
+@if (!string.IsNullOrEmpty(Model.Application.Failure) && Model.Application.Status != ApplicationStatus.Failed)
+{
+    <div class="alert alert-secondary">@Model.Application.Failure</div>
+}
+
+@if (Model.Application.ReportHash != null)
+{
+    <p><strong>@Localizer["Report SHA-256"]:</strong> <code>@Model.Application.ReportHash</code></p>
+    <p>@Localizer["Total packages"]: @Model.Packages.Count ·
+        @Localizer["Already authorized"]: @Model.Packages.Count(p => p.AlreadyAuthorized) ·
+        @Localizer["New review items"]: @Model.Packages.Count(p => p.SourcePermitted && !p.AlreadyAuthorized) ·
+        @Localizer["Source not permitted"]: @Model.Packages.Count(p => !p.SourcePermitted) ·
+        @Localizer["Authorized but not check-ready"]: @Model.Packages.Count(p => p.AlreadyAuthorized && !p.CheckReady)</p>
+    <div class="table-responsive"><table class="table table-hover"><thead><tr>
+        <th>@Localizer["Package"]</th><th>@Localizer["Version"]</th><th>@Localizer["SHA-256"]</th>
+        <th>@Localizer["Introduction path"]</th><th>@Localizer["Current authorization"]</th>
+    </tr></thead><tbody>
+    @foreach (var line in Model.Packages)
+    {
+        <tr><td><code>@line.Artifact.Name</code>@if (line.IsDirect) { <span class="badge bg-info ms-1">@Localizer["Direct"]</span> }</td>
+            <td>@line.Artifact.Version</td><td><code title="@line.Artifact.Sha256">@line.Artifact.Sha256[..Math.Min(16, line.Artifact.Sha256.Length)]…</code></td>
+            <td>@line.Path</td><td>@(!line.SourcePermitted ? Localizer["Source not permitted"] :
+                line.AlreadyAuthorized ? Localizer["Authorized"] : Localizer["Needs review"]) — @line.AuthorizationReason
+                @if (line.AlreadyAuthorized && !line.CheckReady)
+                {
+                    <div class="text-warning-emphasis">@Localizer["Current check blocked"] — @line.CheckReason</div>
+                }
+            </td></tr>
+    }
+    </tbody></table></div>
+}
+
+@if (Model.Application.Status is ApplicationStatus.Resolving or ApplicationStatus.ReadyForReview)
+{
+    <form asp-action="Withdraw" method="post"><input type="hidden" name="id" value="@Model.Application.Id" />
+        <button class="btn btn-outline-danger">@Localizer["Withdraw request"]</button></form>
+}
+</div>
+@await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+    Localizer["Reading this report"].Value,
+    "git-branch",
+    [
+        new ConceptTerm(Localizer["Report SHA-256"].Value, Localizer["A fingerprint of this resolved report. Review decisions bind to this snapshot so a changed dependency graph needs a new decision."].Value),
+        new ConceptTerm(Localizer["Artifact SHA-256"].Value, Localizer["The fingerprint of the original NuGet .nupkg or npm tarball, not the extracted folder or compiled output."].Value),
+        new ConceptTerm(Localizer["Introduction path"].Value, Localizer["The chain from your direct request to this package. It explains why a transitive dependency appears."].Value),
+        new ConceptTerm(Localizer["Needs review"].Value, Localizer["No current authorization was found for this concrete dependency. A root package approval does not automatically approve it."].Value),
+        new ConceptTerm(Localizer["Authorized but not check-ready"].Value, Localizer["The package has an approval, but a vulnerability audit or another current check condition still prevents CI from passing. Reapproval alone does not clear that hold."].Value),
+        new ConceptTerm(Localizer["Approved versus checked"].Value, Localizer["Approval records a decision about this report. A future build still needs its own check of the packages it actually restored or installed."].Value)
+    ],
+    Localizer["A completed resolution report is evidence for a decision, not proof that a later build used the same graph."].Value))
+</div>
+</div>

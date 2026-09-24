@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <Version>1.0.1</Version>
+    <TargetFramework>net10.0</TargetFramework>
+    <AssemblyName>s360</AssemblyName>
+    <RootNamespace>Aiursoft.S360.Client</RootNamespace>
+    <IsTestProject>false</IsTestProject>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+    <PackAsTool>true</PackAsTool>
+    <ToolCommandName>s360</ToolCommandName>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Company>Aiursoft</Company>
+    <Product>S360 dependency checker</Product>
+    <Description>Fail-closed supply-chain check for NuGet and npm build dependencies.</Description>
+    <PackageId>Aiursoft.S360.Client</PackageId>
+    <PackageTags>s360 supply-chain nuget npm cli</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://gitlab.aiursoft.com/aiursoft/s360</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://gitlab.aiursoft.com/aiursoft/s360.git</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Aiursoft.CommandFramework" Version="10.0.15" />
+    <ProjectReference Include="../Aiursoft.S360.SDK/Aiursoft.S360.SDK.csproj" />
+    <None Include="../../README.md" Pack="true" PackagePath="." />
+  </ItemGroup>
+</Project>

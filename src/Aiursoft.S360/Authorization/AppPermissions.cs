@@ -25,6 +25,12 @@ public class AppPermissions
         var localizer = new FakeLocalizer();
         List<PermissionDescriptor> allPermission =
         [
+            new(AppPermissionNames.CanSubmitDependencyRequests, localizer["Submit dependency requests"], localizer["Submit and view personal dependency requests."]),
+            new(AppPermissionNames.CanReadSupplyChain, localizer["Read supply chain"], localizer["Read all requests, build checks and vulnerability audit records."]),
+            new(AppPermissionNames.CanReviewDependencyRequests, localizer["Review dependency requests"], localizer["Approve, reject, renew and revoke exact dependency approvals."]),
+            new(AppPermissionNames.CanManageTrustRules, localizer["Manage trust rules"], localizer["Manage suppliers and wildcard dependency trust rules."]),
+            new(AppPermissionNames.CanManageBlocklist, localizer["Manage blocklist"], localizer["Manage absolute package blocks."]),
+            new(AppPermissionNames.CanCheckDependencies, localizer["Check dependencies"], localizer["Machine identity may execute dependency checks from CI; browser login alone cannot use the check API."]),
             new(AppPermissionNames.CanReadUsers,
                 localizer["Read Users"],
                 localizer["Allows viewing the list of all users."]),

@@ -1,288 +1,134 @@
-<div class="text-center mt-5">
-    <h1 class="display-4">@Localizer["Hello World!"]</h1>
-    <p>@Localizer["This is a template project, where we start the voyager..."]</p>
-</div>
+@model Aiursoft.S360.Models.DashboardViewModels.IndexViewModel
 
-<div class="container-fluid p-5">
-    <div class="row mb-2 mb-xl-3">
-        <div class="col-auto d-none d-sm-block">
-            <h3>@Localizer["Welcome"]</h3>
-        </div>
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section styles {
+    <link rel="stylesheet" href="~/styles/s360.css" />
+}
 
-        <div class="col-auto ms-auto text-end mt-n1">
-            <a href="https://template-docs.aiursoft.com/en/Tutorial/before.html" class="btn btn-primary me-2 shadow-sm" target="_blank">
-                <i class="align-middle" data-lucide="rocket"></i> @Localizer["Start a new project"]
-            </a>
-            <a href="https://template-docs.aiursoft.com/" class="btn btn-outline-primary shadow-sm" target="_blank">
-                <i class="align-middle" data-lucide="book"></i> @Localizer["Read the document"]
-            </a>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-header">
-                    <h5 class="card-title mb-0">@Localizer["Why use the Aiursoft Template?"]</h5>
-                    <p class="mb-0 text-muted mt-2">@Localizer["A modern, feature-rich, and highly extensible foundation for your next web application."]</p>
-                </div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="database"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Multiple Database Provider Support"]</h5>
-                                    <p>@Localizer["Easily switch between database providers, including SQLite, MySQL, SQL Server, and an in-memory database for testing."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="key-round"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["OpenID Connect Integration"]</h5>
-                                    <p>@Localizer["Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="shield-check"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["RBAC Authorization"]</h5>
-                                    <p>@Localizer["A built-in Role-Based Access Control (RBAC) system for fine-grained permission management."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="navigation"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Dynamic Navigation Bar"]</h5>
-                                    <p>@Localizer["The navigation bar automatically adjusts based on user roles and permissions."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="check-circle-2"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Consistency Validation"]</h5>
-                                    <p>@Localizer["Models are validated on both client and server sides based on data annotations."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="languages"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["AI-Powered Translations"]</h5>
-                                    <p>@Localizer["Automatic, AI-driven translation into 28 languages."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="book-open-text"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Comprehensive Documentation"]</h5>
-                                    <p>@Localizer["Includes extensive documentation and practical examples to get you started quickly."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="user-cog"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Built-in User Management"]</h5>
-                                    <p>@Localizer["A complete solution for user authentication and profile management."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="zap"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Automatic Dependency Injection"]</h5>
-                                    <p>@Localizer["All dependencies are automatically registered and always available via constructor injection."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="folder-archive"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Integrated File Management"]</h5>
-                                    <p>@Localizer["Features a built-in file management system with automatic avatar compression and privacy protection."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="airplay"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Responsive Design"]</h5>
-                                    <p>@Localizer["A fully responsive layout that looks great on both desktop and mobile devices."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="moon"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Automatic Dark Mode"]</h5>
-                                    <p>@Localizer["Smart dark mode that adapts to the user's system settings."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="ship"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Dockerized for Easy Deployment"]</h5>
-                                    <p>@Localizer["Comes with Docker support for simplified and consistent deployments."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="test-tube-2"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Robust Integration Testing"]</h5>
-                                    <p>@Localizer["Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="globe"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Automatic Time Zone Handling"]</h5>
-                                    <p>@Localizer["Develop exclusively in UTC while the system automatically converts and displays dates in the user's local time zone."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="cpu"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Background Job Processing"]</h5>
-                                    <p>@Localizer["\"Fire-and-forget\" support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="calendar-clock"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Scheduled Task Management"]</h5>
-                                    <p>@Localizer["Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs."]</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-md-6 col-lg-4 d-flex">
-                            <div class="d-flex align-items-start py-3">
-                                <div class="d-inline-block me-3">
-                                    <div class="stat">
-                                        <i class="align-middle" data-lucide="settings-2"></i>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1">
-                                    <h5 class="mt-0">@Localizer["Smart Configuration Overrides"]</h5>
-                                    <p>@Localizer["Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides."]</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<div class="s360-dashboard">
+    <section class="s360-dashboard-hero">
+        <div class="s360-dashboard-hero-copy">
+            <span class="s360-eyebrow"><span class="s360-pulse"></span> @Localizer["Your supply-chain workspace"]</span>
+            <h1>@Localizer["Welcome to S360."]</h1>
+            <p>@Localizer["Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view."]</p>
+            <div class="s360-dashboard-actions">
+                <a asp-controller="SupplyChain" asp-action="Index" class="btn btn-light"><i data-lucide="library-big"></i> @Localizer["Browse allowed packages"]</a>
+                @if (Model.CanSubmitRequests)
+                {
+                    <a asp-controller="DependencyRequests" asp-action="Index" class="btn btn-outline-light"><i data-lucide="package-plus"></i> @Localizer["New request"]</a>
+                }
             </div>
         </div>
+        <div class="s360-dashboard-hero-art" aria-hidden="true">
+            <div class="s360-orbit s360-orbit-outer"></div>
+            <div class="s360-orbit s360-orbit-inner"></div>
+            <div class="s360-orbit-core"><i data-lucide="shield-check"></i></div>
+            <span class="s360-orbit-token one"><i data-lucide="package"></i></span>
+            <span class="s360-orbit-token two"><i data-lucide="fingerprint"></i></span>
+            <span class="s360-orbit-token three"><i data-lucide="scan-search"></i></span>
+        </div>
+    </section>
+
+    <div class="s360-dashboard-intro">
+        <div><span class="s360-kicker">@Localizer["At a glance"]</span><h2>@Localizer["Your work, without the guesswork."]</h2></div>
+        <p>@Localizer["These counts describe your own requests. Organization-wide review figures appear only for authorized readers."]</p>
     </div>
 
+    <section class="s360-stat-grid" aria-label="@Localizer["Request overview"]">
+        <article class="s360-stat-card"><span class="s360-stat-icon blue"><i data-lucide="files"></i></span><div><strong>@Model.MyRequests</strong><span>@Localizer["My requests"]</span><small>@Localizer["All requests you submitted"]</small></div></article>
+        <article class="s360-stat-card"><span class="s360-stat-icon amber"><i data-lucide="hourglass"></i></span><div><strong>@Model.MyInProgress</strong><span>@Localizer["In progress"]</span><small>@Localizer["Resolving or awaiting review"]</small></div></article>
+        <article class="s360-stat-card"><span class="s360-stat-icon green"><i data-lucide="badge-check"></i></span><div><strong>@Model.MyApproved</strong><span>@Localizer["Approved requests"]</span><small>@Localizer["Decisions recorded for your work"]</small></div></article>
+        @if (Model.CanReadSupplyChain)
+        {
+            <article class="s360-stat-card"><span class="s360-stat-icon violet"><i data-lucide="clipboard-list"></i></span><div><strong>@Model.PendingReviews</strong><span>@Localizer["Awaiting review"]</span><small>@Localizer["Across the organization"]</small></div></article>
+        }
+        else
+        {
+            <article class="s360-stat-card s360-stat-card-message"><span class="s360-stat-icon violet"><i data-lucide="shield"></i></span><div><strong>@Localizer["Policy"]</strong><span>@Localizer["Built into every decision"]</span><small>@Localizer["Blacklists, sources, versions, and hashes"]</small></div></article>
+        }
+    </section>
+
+    <div class="s360-dashboard-columns">
+        <section class="s360-panel">
+            <div class="s360-panel-header"><div><span class="s360-kicker">@Localizer["Recent activity"]</span><h2>@Localizer["Your latest requests"]</h2></div>
+                @if (Model.CanSubmitRequests)
+                {
+                    <a asp-controller="DependencyRequests" asp-action="Index" class="s360-text-link">@Localizer["View all"] <i data-lucide="arrow-right"></i></a>
+                }
+            </div>
+            @if (Model.RecentRequests.Count == 0)
+            {
+                <div class="s360-empty-state"><i data-lucide="package-search"></i><h3>@Localizer["No requests yet"]</h3><p>@Localizer["Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here."]</p></div>
+            }
+            else
+            {
+                <div class="s360-request-list">
+                    @foreach (var request in Model.RecentRequests)
+                    {
+                        <a asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@request.Id" class="s360-request-row">
+                            <span class="s360-request-icon"><i data-lucide="package"></i></span>
+                            <span class="s360-request-main"><strong>@(string.IsNullOrWhiteSpace(request.Project) ? Localizer["Request #{0}", request.Id] : request.Project)</strong><small>@request.Ecosystem.ToUpperInvariant() · @Localizer["Request #{0}", request.Id]</small></span>
+                            <span class="s360-status s360-status-@request.Status.ToString().ToLowerInvariant()">@request.Status</span>
+                            <i data-lucide="chevron-right" class="s360-request-chevron"></i>
+                        </a>
+                    }
+                </div>
+            }
+        </section>
+        <aside class="s360-panel s360-guide-panel">
+            <div class="s360-panel-header"><div><span class="s360-kicker">@Localizer["A good first step"]</span><h2>@Localizer["How S360 helps"]</h2></div></div>
+            <div class="s360-guide-row"><span>01</span><div><strong>@Localizer["Find an existing approval"]</strong><p>@Localizer["Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog."]</p></div></div>
+            <div class="s360-guide-row"><span>02</span><div><strong>@Localizer["Request what is missing"]</strong><p>@Localizer["Enter direct dependencies. S360 resolves the complete graph and records the package artifacts."]</p></div></div>
+            <div class="s360-guide-row"><span>03</span><div><strong>@Localizer["Follow the decision"]</strong><p>@Localizer["Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve."]</p></div></div>
+            <div class="s360-guide-glossary">
+                <h3>@Localizer["Words you will see"]</h3>
+                <dl>
+                    <div><dt>@Localizer["Direct dependency"]</dt><dd>@Localizer["A package your project asks for explicitly."]</dd></div>
+                    <div><dt>@Localizer["Transitive dependency"]</dt><dd>@Localizer["A package pulled in by another package. It needs authorization too."]</dd></div>
+                    <div><dt>@Localizer["Artifact SHA-256"]</dt><dd>@Localizer["A fingerprint of the downloaded package archive, not just its name and version."]</dd></div>
+                    <div><dt>@Localizer["Trust rule"]</dt><dd>@Localizer["A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them."]</dd></div>
+                </dl>
+            </div>
+            <a asp-controller="Home" asp-action="Index" asp-fragment="how-it-works" class="s360-guide-link">@Localizer["Learn about the workflow"] <i data-lucide="arrow-up-right"></i></a>
+        </aside>
+    </div>
+
+    <section class="s360-decision-section" aria-labelledby="s360-decision-title">
+        <div class="s360-dashboard-intro"><div><span class="s360-kicker">@Localizer["A decision you can explain"]</span><h2 id="s360-decision-title">@Localizer["What S360 checks before a dependency is trusted."]</h2></div><p>@Localizer["A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence."]</p></div>
+        <div class="s360-decision-grid">
+            <article><span class="s360-decision-number">01</span><span class="s360-decision-icon"><i data-lucide="shield-ban"></i></span><h3>@Localizer["Blocklist comes first"]</h3><p>@Localizer["Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule."]</p></article>
+            <article><span class="s360-decision-number">02</span><span class="s360-decision-icon"><i data-lucide="package-check"></i></span><h3>@Localizer["Match the actual artifact"]</h3><p>@Localizer["The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs."]</p></article>
+            <article><span class="s360-decision-number">03</span><span class="s360-decision-icon"><i data-lucide="git-fork"></i></span><h3>@Localizer["Include the whole graph"]</h3><p>@Localizer["Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children."]</p></article>
+            <article><span class="s360-decision-number">04</span><span class="s360-decision-icon"><i data-lucide="radar"></i></span><h3>@Localizer["Revisit the risk"]</h3><p>@Localizer["Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision."]</p></article>
+        </div>
+    </section>
+
+    @if (Model.CanReadSupplyChain)
+    {
+        <section class="s360-operations">
+            <div class="s360-dashboard-intro"><div><span class="s360-kicker">@Localizer["For authorized reviewers"]</span><h2>@Localizer["Keep the wider picture in view."]</h2></div><p>@Localizer["These organization-wide indicators are not a substitute for opening the underlying report."]</p></div>
+            <div class="s360-operations-grid">
+                <article><span><i data-lucide="boxes"></i></span><strong>@Model.TrackedArtifacts</strong><h3>@Localizer["Tracked artifacts"]</h3><p>@Localizer["Package files recorded across both ecosystems, including items not currently authorized."]</p></article>
+                <article><span><i data-lucide="shield-ban"></i></span><strong>@Model.ActiveBlockRules</strong><h3>@Localizer["Active block rules"]</h3><p>@Localizer["Absolute exclusions that take priority over trust rules and approvals."]</p></article>
+                <article><span><i data-lucide="radar"></i></span><strong>@(Model.LastVulnerabilitySyncUtc == null ? "—" : Model.LastVulnerabilitySyncUtc.Value.ToString("yyyy-MM-dd"))</strong><h3>@Localizer["Last successful OSV sync"]</h3><p>@Localizer["A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC."]</p></article>
+            </div>
+            <div class="s360-tool-links">
+                @if (Model.CanReviewRequests)
+                {
+                    <a asp-controller="DependencyReviews" asp-action="Index"><i data-lucide="clipboard-check"></i><span><strong>@Localizer["Approval center"]</strong><small>@Localizer["Review pending and expiring decisions"]</small></span><i data-lucide="arrow-up-right"></i></a>
+                }
+                <a asp-controller="VulnerabilityAudit" asp-action="Index"><i data-lucide="scan-search"></i><span><strong>@Localizer["Known vulnerabilities"]</strong><small>@Localizer["Quick and detailed risk views"]</small></span><i data-lucide="arrow-up-right"></i></a>
+                <a asp-controller="BuildChecks" asp-action="Index"><i data-lucide="list-checks"></i><span><strong>@Localizer["Build check records"]</strong><small>@Localizer["See reported dependency decisions"]</small></span><i data-lucide="arrow-up-right"></i></a>
+                @if (Model.CanManageTrustRules || Model.CanManageBlocklist)
+                {
+                    <a asp-controller="SupplyChain" asp-action="Index"><i data-lucide="sliders-horizontal"></i><span><strong>@Localizer["Policy management"]</strong><small>@Localizer["Suppliers, trust rules, and absolute blocks"]</small></span><i data-lucide="arrow-up-right"></i></a>
+                }
+            </div>
+        </section>
+    }
+
+    <section class="s360-dashboard-note">
+        <i data-lucide="info"></i>
+        <p><strong>@Localizer["Rollout note:"]</strong> @Localizer["This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment."]</p>
+    </section>
 </div>

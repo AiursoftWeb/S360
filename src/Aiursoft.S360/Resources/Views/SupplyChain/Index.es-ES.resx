@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="10.0.* can cover future releases. Prefer an exact version when the scope should be narrow." xml:space="preserve">
+    <value>10.0.* puede abarcar versiones futuras. Si quieres limitar el alcance, es preferible indicar una versión exacta.</value>
+  </data>
+  <data name="A label for grouping trust rules, not verified proof of a package publisher." xml:space="preserve">
+    <value>Una etiqueta para agrupar reglas de confianza, no una prueba verificada de quién publica un paquete.</value>
+  </data>
+  <data name="A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency." xml:space="preserve">
+    <value>Una regla coincidente no equivale a una comprobación completa de artefactos o vulnerabilidades. La futura integración con CI verificará todas las dependencias resueltas.</value>
+  </data>
+  <data name="A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft." xml:space="preserve">
+    <value>Un * al final cubre un prefijo del nombre. Microsoft.* no incluye el paquete exacto Microsoft.</value>
+  </data>
+  <data name="A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry." xml:space="preserve">
+    <value>Un * al final coincide con un prefijo de nombre o de versión. Por ejemplo, System.* no coincide con el paquete exacto System. Una regla con comodín puede admitir versiones futuras, así que limita su origen y su fecha de caducidad.</value>
+  </data>
+  <data name="Active trust rules" xml:space="preserve">
+    <value>Reglas de confianza activas</value>
+  </data>
+  <data name="Add supplier" xml:space="preserve">
+    <value>Añadir proveedor</value>
+  </data>
+  <data name="All suppliers" xml:space="preserve">
+    <value>Todos los proveedores</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>Motivo de la aprobación</value>
+  </data>
+  <data name="Approve rule" xml:space="preserve">
+    <value>Aprobar regla</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Dependencias disponibles</value>
+  </data>
+  <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
+    <value>¿No encuentras un paquete? Envía una solicitud</value>
+  </data>
+  <data name="Check a concrete package against rules" xml:space="preserve">
+    <value>Comprobar un paquete concreto según las reglas</value>
+  </data>
+  <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
+    <value>Introduce la hora UTC; este campo no convierte la hora local de tu dispositivo.</value>
+  </data>
+  <data name="Exact package name" xml:space="preserve">
+    <value>Nombre exacto del paquete</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>Versión exacta</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Caduca</value>
+  </data>
+  <data name="Expires (UTC)" xml:space="preserve">
+    <value>Caduca (UTC)</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Caduca el (UTC)</value>
+  </data>
+  <data name="Find packages" xml:space="preserve">
+    <value>Buscar paquetes</value>
+  </data>
+  <data name="HTTPS package source" xml:space="preserve">
+    <value>Fuente del paquete HTTPS</value>
+  </data>
+  <data name="Include prerelease" xml:space="preserve">
+    <value>Incluir versiones preliminares</value>
+  </data>
+  <data name="Last checked (UTC)" xml:space="preserve">
+    <value>Última comprobación (UTC)</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Gestionar la lista de bloqueo</value>
+  </data>
+  <data name="Manage policy" xml:space="preserve">
+    <value>Gestionar la política</value>
+  </data>
+  <data name="Manage suppliers and trust rules" xml:space="preserve">
+    <value>Gestionar proveedores y reglas de confianza</value>
+  </data>
+  <data name="Match rules" xml:space="preserve">
+    <value>Aplicar reglas</value>
+  </data>
+  <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
+    <value>Aquí solo aparecen los artefactos que superan actualmente las comprobaciones de S360. Encima se muestra una regla coincidente para un paquete que aún no se ha visto, pero todavía no es un artefacto comprobado; cada compilación futura seguirá comprobando todo su grafo de dependencias.</value>
+  </data>
+  <data name="Only the first 500 results are shown. Narrow the package search to inspect more results." xml:space="preserve">
+    <value>Solo se muestran los 500 primeros resultados. Afina la búsqueda de paquetes para ver más resultados.</value>
+  </data>
+  <data name="Open the separate absolute blocklist management page" xml:space="preserve">
+    <value>Abrir la página independiente de gestión de la lista de bloqueo absoluto</value>
+  </data>
+  <data name="Overridden by blocklist" xml:space="preserve">
+    <value>Anulada por la lista de bloqueo</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Paquete</value>
+  </data>
+  <data name="Package name" xml:space="preserve">
+    <value>Nombre del paquete</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Patrón de paquete</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Origen del paquete</value>
+  </data>
+  <data name="Page sections" xml:space="preserve">
+    <value>Secciones de la página</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Versión preliminar</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Vista previa</value>
+  </data>
+  <data name="Preview a rule before approval" xml:space="preserve">
+    <value>Vista previa de una regla antes de aprobarla</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Motivo</value>
+  </data>
+  <data name="Recorded artifacts" xml:space="preserve">
+    <value>Artefactos registrados</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>Revocar</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
+    <value>Mostrar las versiones de paquetes conocidas que coincidirían con esta regla propuesta. Esto es una vista previa del alcance, no una decisión de confianza.</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Origen</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Proveedor</value>
+  </data>
+  <data name="Supplier name" xml:space="preserve">
+    <value>Nombre del proveedor</value>
+  </data>
+  <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
+    <value>La URL del registro aprobada forma parte de la regla. No se incluye el mismo paquete si procede de una fuente distinta.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
+    <value>Se ha producido un error en la última sincronización de vulnerabilidades. Los artefactos registrados permanecerán ocultos hasta que se complete correctamente una auditoría.</value>
+  </data>
+  <data name="Trust rules" xml:space="preserve">
+    <value>Reglas de confianza</value>
+  </data>
+  <data name="Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies." xml:space="preserve">
+    <value>Las reglas de confianza son solo una de las condiciones para que un paquete esté disponible. La lista de bloqueo absoluta prevalece sobre ellas, también en el caso de las dependencias indirectas.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versión</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Patrón de versión</value>
+  </data>
+  <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
+    <value>La auditoría de vulnerabilidades aún no ha finalizado. Los artefactos registrados no se pueden mostrar como disponibles.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
+    <value>La auditoría de vulnerabilidades está desactualizada. Los artefactos registrados permanecerán ocultos hasta que se complete una nueva auditoría.</value>
+  </data>
+  <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
+    <value>Las reglas con comodines admiten automáticamente versiones futuras; los hashes detectados por primera vez se siguen registrando.</value>
+  </data>
+
+</root>

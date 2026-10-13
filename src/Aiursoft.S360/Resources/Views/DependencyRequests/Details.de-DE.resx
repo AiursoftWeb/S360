@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Already authorized" xml:space="preserve">
+    <value>Bereits autorisiert</value>
+  </data>
+  <data name="Authorized but not check-ready" xml:space="preserve">
+    <value>Autorisiert, aber nicht prüfbereit</value>
+  </data>
+  <data name="Current authorization" xml:space="preserve">
+    <value>Aktuelle Autorisierung</value>
+  </data>
+  <data name="Current check blocked" xml:space="preserve">
+    <value>Aktuelle Prüfung blockiert</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Anfrage zu Abhängigkeiten</value>
+  </data>
+  <data name="Direct" xml:space="preserve">
+    <value>Direkt</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>Einführungspfad</value>
+  </data>
+  <data name="New review items" xml:space="preserve">
+    <value>Neue Prüfpunkte</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Paket</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Zweck</value>
+  </data>
+  <data name="Report SHA-256" xml:space="preserve">
+    <value>Bericht-SHA-256</value>
+  </data>
+  <data name="Requested" xml:space="preserve">
+    <value>Angefordert</value>
+  </data>
+  <data name="Resolution context" xml:space="preserve">
+    <value>Auflösungskontext</value>
+  </data>
+  <data name="Resolution failed; this request cannot be approved." xml:space="preserve">
+    <value>Die Auflösung ist fehlgeschlagen; dieser Antrag kann nicht genehmigt werden.</value>
+  </data>
+  <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
+    <value>Die Auflösung ist in der Warteschlange oder wird gerade ausgeführt. Aktualisieren Sie diese Seite, um das Ergebnis zu sehen.</value>
+  </data>
+  <data name="Retry as a new request" xml:space="preserve">
+    <value>Als neue Anfrage erneut versuchen</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Quelle</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>Quelle nicht zulässig</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
+    <value>Die fehlgeschlagene Anfrage bleibt in deinem Verlauf. Die neue Anfrage wird anhand der heutigen Quell- und Sperrlistenregeln geprüft.</value>
+  </data>
+  <data name="This report is ready for administrator review. It is not an approval." xml:space="preserve">
+    <value>Dieser Bericht ist zur Prüfung durch einen Administrator bereit. Dies ist keine Genehmigung.</value>
+  </data>
+  <data name="Total packages" xml:space="preserve">
+    <value>Pakete insgesamt</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Withdraw request" xml:space="preserve">
+    <value>Antrag zurückziehen</value>
+  </data>
+
+</root>

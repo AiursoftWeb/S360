@@ -21,6 +21,9 @@
       <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft テンプレート</value>
   </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>機能</value>
+  </data>
   <data name="Community" xml:space="preserve">
     <value>コミュニティ</value>
   </data>
@@ -30,11 +33,20 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Open workspace" xml:space="preserve">
+    <value>ワークスペースを開く</value>
+  </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>導入</value>
+  </data>
   <data name="Source Code" xml:space="preserve">
     <value>ソースコード</value>
   </data>
   <data name="Try the dashboard" xml:space="preserve">
     <value>ダッシュボードを試す</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>ワークフロー</value>
   </data>
 
 </root>

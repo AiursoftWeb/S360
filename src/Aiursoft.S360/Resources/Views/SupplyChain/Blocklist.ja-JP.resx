@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>一致するパッケージは、提供元、取得元、承認の有無、または直接依存か推移的依存として到達したかにかかわらず、拒否されます。過去の承認と確認の記録は、監査証跡として保持されます。</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>完全ブロックリスト</value>
+  </data>
+  <data name="Add absolute block" xml:space="preserve">
+    <value>絶対ブロックを追加</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>アプリケーション</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>成果物</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>利用可能な依存関係</value>
+  </data>
+  <data name="Block package" xml:space="preserve">
+    <value>パッケージをブロック</value>
+  </data>
+  <data name="Block reason" xml:space="preserve">
+    <value>ブロックの理由</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>による</value>
+  </data>
+  <data name="CI check runs" xml:space="preserve">
+    <value>CIチェック実行回数</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>作成日時</value>
+  </data>
+  <data name="Disable block" xml:space="preserve">
+    <value>ブロックを無効化</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>エコシステム</value>
+  </data>
+  <data name="Edit rule and view history" xml:space="preserve">
+    <value>ルールを編集して履歴を表示</value>
+  </data>
+  <data name="Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*." xml:space="preserve">
+    <value>完全一致する名前とプレフィックスは異なります。ant-designに、antdや@ant-design/*が自動的に含まれるわけではありません。</value>
+  </data>
+  <data name="Examples" xml:space="preserve">
+    <value>例</value>
+  </data>
+  <data name="Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures." xml:space="preserve">
+    <value>以下の影響数は、最近記録された対象のサンプルであり、網羅的な件数ではありません。これらの数値を判断材料として利用する前に、ルールの対象を絞るか、内容を確認してください。</value>
+  </data>
+  <data name="No block rules have been recorded for this ecosystem." xml:space="preserve">
+    <value>このエコシステムにはブロックルールが記録されていません。</value>
+  </data>
+  <data name="Package name or trailing-* pattern" xml:space="preserve">
+    <value>パッケージ名または末尾に * を付けたパターン</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>パッケージパターン</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>理由</value>
+  </data>
+  <data name="Recorded impact sample" xml:space="preserve">
+    <value>記録された影響のサンプル</value>
+  </data>
+  <data name="Save change" xml:space="preserve">
+    <value>変更を保存</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>表示</value>
+  </data>
+  <data name="Use * to block every version, or an exact version or trailing-* prefix to narrow the block." xml:space="preserve">
+    <value>* を指定するとすべてのバージョンがブロックされます。ブロック対象を絞り込むには、特定のバージョンまたは末尾に * を付けたプレフィックスを指定してください。</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>バージョンパターン</value>
+  </data>
+  <data name="View history" xml:space="preserve">
+    <value>履歴を表示</value>
+  </data>
+  <data name="Why change this block?" xml:space="preserve">
+    <value>このブロックを変更する理由</value>
+  </data>
+  <data name="Why disable this block?" xml:space="preserve">
+    <value>このブロックを無効にする理由</value>
+  </data>
+
+</root>

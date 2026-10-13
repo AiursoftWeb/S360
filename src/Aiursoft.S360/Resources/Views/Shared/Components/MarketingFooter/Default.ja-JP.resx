@@ -18,11 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Aiursoft" xml:space="preserve">
+      <data name="A clearer way to request, approve, and keep watch over the software your teams depend on." xml:space="preserve">
+    <value>チームが業務で利用するソフトウェアの申請、承認、管理を、よりわかりやすく。</value>
+  </data>
+  <data name="A project by Aiursoft" xml:space="preserve">
+    <value>Aiursoftによるプロジェクト</value>
+  </data>
+  <data name="Aiursoft" xml:space="preserve">
     <value>Aiursoft</value>
   </data>
   <data name="Aiursoft Template - A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Aiursoft Template - モダンで機能豊富、そして高い拡張性を備えた、次世代のWebアプリケーションの基盤。</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>利用可能な依存関係</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>機能</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>コミュニティ</value>
@@ -30,8 +42,14 @@
   <data name="Contributions" xml:space="preserve">
     <value>貢献</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>ダッシュボード</value>
+  </data>
   <data name="Documentation" xml:space="preserve">
     <value>ドキュメント</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>探索</value>
   </data>
   <data name="Get Started" xml:space="preserve">
     <value>はじめに</value>
@@ -39,11 +57,17 @@
   <data name="Github" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>言語</value>
+  </data>
   <data name="Legal" xml:space="preserve">
     <value>法的情報</value>
   </data>
   <data name="Licence" xml:space="preserve">
     <value>ライセンス</value>
+  </data>
+  <data name="My requests" xml:space="preserve">
+    <value>自分の申請</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>プロジェクト</value>
@@ -54,11 +78,23 @@
   <data name="Resources" xml:space="preserve">
     <value>リソース</value>
   </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>展開</value>
+  </data>
+  <data name="S360&apos;s Web approval center is the first step. Build enforcement and restricted mirrors follow as separate rollout stages." xml:space="preserve">
+    <value>S360のWeb承認センターが最初のステップです。ビルドの強制適用と制限付きミラーは、別々の展開段階として続きます。</value>
+  </data>
   <data name="Social" xml:space="preserve">
     <value>ソーシャル</value>
   </data>
   <data name="Source Code" xml:space="preserve">
     <value>ソースコード</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>ワークフロー</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>ワークスペース</value>
   </data>
 
 </root>

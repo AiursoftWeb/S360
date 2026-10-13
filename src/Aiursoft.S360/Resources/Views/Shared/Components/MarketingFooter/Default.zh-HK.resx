@@ -18,11 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Aiursoft" xml:space="preserve">
+      <data name="A clearer way to request, approve, and keep watch over the software your teams depend on." xml:space="preserve">
+    <value>以更清晰的方式申請、審批及監察團隊所依賴的軟件。</value>
+  </data>
+  <data name="A project by Aiursoft" xml:space="preserve">
+    <value>Aiursoft 專案</value>
+  </data>
+  <data name="Aiursoft" xml:space="preserve">
     <value>Aiursoft</value>
   </data>
   <data name="Aiursoft Template - A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Aiursoft Template - 一個現代化、功能豐富且高度可擴展嘅基礎，為您嘅下一個網頁應用程式奠定根基。</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>可用相依項目</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>功能</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>社群</value>
@@ -30,8 +42,14 @@
   <data name="Contributions" xml:space="preserve">
     <value>貢獻</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>儀表板</value>
+  </data>
   <data name="Documentation" xml:space="preserve">
     <value>文件</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>探索</value>
   </data>
   <data name="Get Started" xml:space="preserve">
     <value>開始使用</value>
@@ -39,11 +57,17 @@
   <data name="Github" xml:space="preserve">
     <value>Github</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>語言</value>
+  </data>
   <data name="Legal" xml:space="preserve">
     <value>法律</value>
   </data>
   <data name="Licence" xml:space="preserve">
     <value>許可證</value>
+  </data>
+  <data name="My requests" xml:space="preserve">
+    <value>我的申請</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>專案</value>
@@ -54,11 +78,23 @@
   <data name="Resources" xml:space="preserve">
     <value>資源</value>
   </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>推出</value>
+  </data>
+  <data name="S360&apos;s Web approval center is the first step. Build enforcement and restricted mirrors follow as separate rollout stages." xml:space="preserve">
+    <value>S360 的網頁審批中心是第一步。其後會分階段推出強制執行措施及受限制的鏡像站。</value>
+  </data>
   <data name="Social" xml:space="preserve">
     <value>社交</value>
   </data>
   <data name="Source Code" xml:space="preserve">
     <value>源代碼</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>工作流程</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>工作區</value>
   </data>
 
 </root>

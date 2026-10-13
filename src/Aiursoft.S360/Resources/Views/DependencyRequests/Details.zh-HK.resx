@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Already authorized" xml:space="preserve">
+    <value>已獲授權</value>
+  </data>
+  <data name="Authorized but not check-ready" xml:space="preserve">
+    <value>已授權但未準備好進行檢查</value>
+  </data>
+  <data name="Current authorization" xml:space="preserve">
+    <value>目前授權狀態</value>
+  </data>
+  <data name="Current check blocked" xml:space="preserve">
+    <value>目前檢查受阻</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>依賴項申請</value>
+  </data>
+  <data name="Direct" xml:space="preserve">
+    <value>直接</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>引入路徑</value>
+  </data>
+  <data name="New review items" xml:space="preserve">
+    <value>需要審核的新項目</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>套件</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>用途</value>
+  </data>
+  <data name="Report SHA-256" xml:space="preserve">
+    <value>報告 SHA-256</value>
+  </data>
+  <data name="Requested" xml:space="preserve">
+    <value>申請時間</value>
+  </data>
+  <data name="Resolution context" xml:space="preserve">
+    <value>解決內容</value>
+  </data>
+  <data name="Resolution failed; this request cannot be approved." xml:space="preserve">
+    <value>解析失敗；此申請不能獲批。</value>
+  </data>
+  <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
+    <value>解析作業正在排隊或執行中。請重新整理此頁面以查看結果。</value>
+  </data>
+  <data name="Retry as a new request" xml:space="preserve">
+    <value>以新要求重試</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>來源</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>不允許來源</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
+    <value>失敗的請求會保留在你的記錄中。新的請求會根據今日的來源及封鎖清單規則進行檢查。</value>
+  </data>
+  <data name="This report is ready for administrator review. It is not an approval." xml:space="preserve">
+    <value>這份報告已準備就緒，供管理員審核。這並不代表已獲批准。</value>
+  </data>
+  <data name="Total packages" xml:space="preserve">
+    <value>套件總數</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="Withdraw request" xml:space="preserve">
+    <value>撤回申請</value>
+  </data>
+
+</root>

@@ -18,8 +18,14 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
+      <data name=".NET packages" xml:space="preserve">
+    <value>.NET パッケージ</value>
+  </data>
+  <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>長時間実行タスク（メールやAIなど）に対する「Fire-and-forget」サポート。キュー管理、並列処理、キャンセルを備えたGUIを備えています。</value>
+  </data>
+  <data name="A blocked package stays blocked even when it appears only as a transitive dependency or matches a broader trust rule." xml:space="preserve">
+    <value>ブロックされたパッケージは、推移的依存関係としてのみ含まれている場合や、より広範な信頼ルールに該当する場合でも、ブロックされたままです。</value>
   </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>きめ細かい権限管理のための組み込みのロールベースアクセス制御（RBAC）システム。</value>
@@ -30,11 +36,20 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>ユーザー認証およびプロファイル管理の完全なソリューション。</value>
   </data>
+  <data name="A decision covers the complete resolved graph, not only the package you typed." xml:space="preserve">
+    <value>判定は、入力したパッケージだけでなく、解決された依存関係グラフ全体を対象とします。</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>デスクトップとモバイルの両方のデバイスで美しく表示される、完全なレスポンシブレイアウト。</value>
   </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>モダンで機能豊富、かつ高度に拡張可能な基盤を、あなたの次のWebアプリケーションに提供します。</value>
+  </data>
+  <data name="A practical workflow" xml:space="preserve">
+    <value>実践的なワークフロー</value>
+  </data>
+  <data name="A searchable allowed catalog" xml:space="preserve">
+    <value>検索可能な承認済みカタログ</value>
   </data>
   <data name="Achieve more with Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Templateでさらに多くのことを実現</value>
@@ -63,17 +78,29 @@
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>すべての依存関係は自動的に登録され、コンストラクタインジェクションを通じて常に利用可能です。</value>
   </data>
+  <data name="An absolute blocklist" xml:space="preserve">
+    <value>絶対ブロックリスト</value>
+  </data>
   <data name="Anduin" xml:space="preserve">
     <value>Anduin</value>
   </data>
   <data name="Anduin Xue" xml:space="preserve">
     <value>Anduin Xue</value>
   </data>
+  <data name="Approve a report-backed batch while retaining the individual package decisions and their review history." xml:space="preserve">
+    <value>レポートに基づいて一括承認しつつ、個々のパッケージの判断とそのレビュー履歴を保持します。</value>
+  </data>
   <data name="Artificial Intelligence Translation" xml:space="preserve">
     <value>人工知能翻訳</value>
   </data>
+  <data name="Audit" xml:space="preserve">
+    <value>監査</value>
+  </data>
   <data name="Authentik &amp; Okta" xml:space="preserve">
     <value>Authentik &amp; Okta</value>
+  </data>
+  <data name="Authorized mirrors" xml:space="preserve">
+    <value>承認済みミラー</value>
   </data>
   <data name="Auto compression and privacy" xml:space="preserve">
     <value>自動圧縮とプライバシー保護</value>
@@ -120,14 +147,26 @@
   <data name="Bilingual Tutorials" xml:space="preserve">
     <value>二か国語チュートリアル</value>
   </data>
+  <data name="Blocklist first" xml:space="preserve">
+    <value>ブロックリストを最優先</value>
+  </data>
+  <data name="Build inputs prepared before the network is closed." xml:space="preserve">
+    <value>ネットワークを遮断する前にビルド入力を準備します。</value>
+  </data>
   <data name="Build once, run anywhere. Fully containerized architecture." xml:space="preserve">
     <value>一度構築すれば、どこでも実行可能。完全にコンテナ化されたアーキテクチャ。</value>
   </data>
   <data name="Build your next big thing," xml:space="preserve">
     <value>次の大きなプロジェクトを構築しよう、</value>
   </data>
+  <data name="Built for clear decisions" xml:space="preserve">
+    <value>明確な意思決定のために設計</value>
+  </data>
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>品質を気にするエンジニアのために設計されています。</value>
+  </data>
+  <data name="Built to grow safely" xml:space="preserve">
+    <value>安全に拡張できるよう設計</value>
   </data>
   <data name="Built with Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Template で構築</value>
@@ -174,6 +213,9 @@
   <data name="Checkstyle or similar needed" xml:space="preserve">
     <value>Checkstyleまたは同等のツールが必要</value>
   </data>
+  <data name="Choose NuGet or npm, list the direct packages, and explain the intended use. No separate request command is needed." xml:space="preserve">
+    <value>NuGetまたはnpmを選択し、直接依存パッケージを一覧にして、用途を説明してください。別途リクエストコマンドを実行する必要はありません。</value>
+  </data>
   <data name="Comes with Docker support for simplified and consistent deployments." xml:space="preserve">
     <value>Dockerサポートを備えており、簡単で一貫性のあるデプロイが可能になります。</value>
   </data>
@@ -207,6 +249,9 @@
   <data name="Cross Platform" xml:space="preserve">
     <value>クロスプラットフォーム</value>
   </data>
+  <data name="Current mirrors" xml:space="preserve">
+    <value>現在のミラー</value>
+  </data>
   <data name="Custom dev required" xml:space="preserve">
     <value>カスタム開発が必要です</value>
   </data>
@@ -237,6 +282,9 @@
   <data name="Default SQLite database, no configuration needed." xml:space="preserve">
     <value>デフォルトのSQLiteデータベース、設定は不要です。</value>
   </data>
+  <data name="Dependency review" xml:space="preserve">
+    <value>依存関係のレビュー</value>
+  </data>
   <data name="Designed for everyone, from beginners to experts." xml:space="preserve">
     <value>初心者から専門家まで、誰もが使えるように設計されています。</value>
   </data>
@@ -254,6 +302,9 @@
   </data>
   <data name="DevOps Native" xml:space="preserve">
     <value>DevOpsネイティブ</value>
+  </data>
+  <data name="Direct request" xml:space="preserve">
+    <value>直接リクエスト</value>
   </data>
   <data name="Discussions page" xml:space="preserve">
     <value>ディスカッションページ</value>
@@ -279,6 +330,9 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>インメモリデータベース、一時ファイルシステム、組み込みモック、そして現実のHTTPリクエストシミュレーションを使用して、簡単に統合テストを書くことができます。</value>
   </data>
+  <data name="Employees can discover current approvals, suppliers, and matching rules before starting another request." xml:space="preserve">
+    <value>従業員は、次の申請を開始する前に、現在承認されているパッケージ、サプライヤー、および適用されるルールを確認できます。</value>
+  </data>
   <data name="Enforced" xml:space="preserve">
     <value>強制された</value>
   </data>
@@ -300,6 +354,21 @@
   <data name="Entity Framework Core included" xml:space="preserve">
     <value>Entity Framework Core 搭載</value>
   </data>
+  <data name="Exact artifact evidence" xml:space="preserve">
+    <value>正確な成果物の証拠</value>
+  </data>
+  <data name="Exact SHA-256 evidence" xml:space="preserve">
+    <value>正確なSHA-256証拠</value>
+  </data>
+  <data name="Existing package access continues." xml:space="preserve">
+    <value>既存のパッケージへのアクセスは引き続き利用できます。</value>
+  </data>
+  <data name="Expiry, revocation, and newly published advisories remain visible after the original approval." xml:space="preserve">
+    <value>当初の承認後も、有効期限切れ、取り消し、新たに公開されたセキュリティ勧告を確認できます。</value>
+  </data>
+  <data name="Explore available dependencies" xml:space="preserve">
+    <value>利用可能な依存関係を確認する</value>
+  </data>
   <data name="FAQ" xml:space="preserve">
     <value>よくある質問</value>
   </data>
@@ -320,6 +389,9 @@
   </data>
   <data name="File Mgmt &amp; Optimization" xml:space="preserve">
     <value>ファイル管理と最適化</value>
+  </data>
+  <data name="Find what is already allowed, request what is missing, and follow every decision back to its evidence." xml:space="preserve">
+    <value>すでに許可されているものを確認し、不足しているものを申請して、すべての判断を根拠までたどれるようにします。</value>
   </data>
   <data name="Fine-grained RBAC" xml:space="preserve">
     <value>細粒度 RBAC</value>
@@ -350,6 +422,9 @@
   </data>
   <data name="Frequently asked questions" xml:space="preserve">
     <value>よくある質問</value>
+  </data>
+  <data name="From package request to policy evidence." xml:space="preserve">
+    <value>パッケージの申請から、ポリシーの根拠提示まで。</value>
   </data>
   <data name="From the Architect" xml:space="preserve">
     <value>アーキテクトから</value>
@@ -429,11 +504,17 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>アプリケーションをデプロイするにはどうすればよいですか？</value>
   </data>
+  <data name="Human review at the right scale" xml:space="preserve">
+    <value>適切な規模での人によるレビュー</value>
+  </data>
   <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
     <value>私は、毎回新しいエンタープライズプロジェクトで同じAuth、Log、およびCI/CDパイプラインを設定するのにうんざりしていたため、Aiursoft Templateを作成しました。これは単なるテンプレートではなく、高並行性の本番環境で数年間積み重ねてきたベストプラクティスの結晶です。これにより、私のチームは退屈な設定作業をスキップして、いきなりビジネスロジックに集中できます。</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>IDEサポート</value>
+  </data>
+  <data name="Illustration of a dependency review" xml:space="preserve">
+    <value>依存関係レビューのイメージ</value>
   </data>
   <data name="In-memory DB, temp FS, and HTTP simulation" xml:space="preserve">
     <value>インメモリDB、一時ファイルシステム、HTTPシミュレーション</value>
@@ -468,6 +549,9 @@
   <data name="java.time API available" xml:space="preserve">
     <value>java.time API 利用可能</value>
   </data>
+  <data name="JavaScript packages" xml:space="preserve">
+    <value>JavaScript パッケージ</value>
+  </data>
   <data name="Job Queue &amp; Scheduling GUI" xml:space="preserve">
     <value>ジョブキュー＆スケジューリングGUI</value>
   </data>
@@ -483,11 +567,26 @@
   <data name="K8s / Swarm Ready" xml:space="preserve">
     <value>K8s / Swarm 対応済み</value>
   </data>
+  <data name="Keep watch" xml:space="preserve">
+    <value>継続的に監視</value>
+  </data>
+  <data name="Know every dependency." xml:space="preserve">
+    <value>すべての依存関係を把握。</value>
+  </data>
+  <data name="Less guesswork for employees. More context for reviewers." xml:space="preserve">
+    <value>従業員の迷いを減らし、レビュー担当者にはより多くの判断材料を。</value>
+  </data>
   <data name="Lint Check" xml:space="preserve">
     <value>Lintチェック</value>
   </data>
+  <data name="Made for the dependencies your teams actually use." xml:space="preserve">
+    <value>チームで実際に使っている依存パッケージに対応。</value>
+  </data>
   <data name="Maintain High Code Quality" xml:space="preserve">
     <value>高品質なコードを維持する</value>
+  </data>
+  <data name="Make the next package decision an informed one." xml:space="preserve">
+    <value>次のパッケージ選定を、十分な情報に基づいて行いましょう。</value>
   </data>
   <data name="Management Dashboard" xml:space="preserve">
     <value>管理ダッシュボード</value>
@@ -552,6 +651,9 @@
   <data name="Needs Passport or similar" xml:space="preserve">
     <value>Passport または同等のものが必要</value>
   </data>
+  <data name="Needs review" xml:space="preserve">
+    <value>要確認</value>
+  </data>
   <data name="Needs Spatie or similar" xml:space="preserve">
     <value>Spatie などの必要なし</value>
   </data>
@@ -567,6 +669,15 @@
   <data name="No dependency on any cloud vendor. Run anywhere, any time." xml:space="preserve">
     <value>クラウドベンダーへの依存なし。どこでも、いつでも実行可能。</value>
   </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet と npm</value>
+  </data>
+  <data name="NuGet and npm have different version and installation rules. S360 keeps their package identities distinct while presenting one consistent approval experience." xml:space="preserve">
+    <value>NuGetとnpmでは、バージョンやインストールのルールが異なります。S360では、パッケージの識別情報をそれぞれ区別しながら、一貫した承認プロセスを提供します。</value>
+  </data>
+  <data name="Offline builds" xml:space="preserve">
+    <value>オフラインビルド</value>
+  </data>
   <data name="Offline Capable" xml:space="preserve">
     <value>オフライン対応</value>
   </data>
@@ -576,8 +687,23 @@
   <data name="One Click Start" xml:space="preserve">
     <value>ワンクリックスタート</value>
   </data>
+  <data name="One coherent workflow" xml:space="preserve">
+    <value>一貫したワークフロー</value>
+  </data>
+  <data name="One request, the whole graph" xml:space="preserve">
+    <value>1回のリクエストで、依存関係の全体像を把握</value>
+  </data>
+  <data name="Ongoing vulnerability visibility" xml:space="preserve">
+    <value>継続的な脆弱性の可視化</value>
+  </data>
+  <data name="Only approved package versions are served." xml:space="preserve">
+    <value>承認されたパッケージバージョンのみが提供されます。</value>
+  </data>
   <data name="Open Source" xml:space="preserve">
     <value>オープンソース</value>
+  </data>
+  <data name="Open your workspace" xml:space="preserve">
+    <value>ワークスペースを開く</value>
   </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect 連携</value>
@@ -624,14 +750,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>ドキュメントを読む</value>
   </data>
+  <data name="Record the package source and SHA-256 of each NuGet archive or npm tarball, not just a familiar package name." xml:space="preserve">
+    <value>使い慣れたパッケージ名だけでなく、各NuGetアーカイブまたはnpm tarballのパッケージソースとSHA-256を記録します。</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>申請</value>
+  </data>
+  <data name="Request in the browser" xml:space="preserve">
+    <value>ブラウザーで申請</value>
+  </data>
+  <data name="Requests, policy, audit, and approval." xml:space="preserve">
+    <value>申請、ポリシー、監査、承認。</value>
+  </data>
   <data name="Requires Laravel Socialite config" xml:space="preserve">
     <value>Laravel Socialite の設定が必要です</value>
   </data>
   <data name="Requires Spring Security configuration" xml:space="preserve">
     <value>Spring Security の設定が必要です</value>
   </data>
+  <data name="Resolve" xml:space="preserve">
+    <value>解決する</value>
+  </data>
+  <data name="Resolve and inspect" xml:space="preserve">
+    <value>依存関係を解決して確認</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>レスポンシブデザイン</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>審査</value>
+  </data>
+  <data name="Review restored versions and the original .nupkg files behind your applications." xml:space="preserve">
+    <value>アプリケーションで復元されたバージョンと、その元となる .nupkg ファイルを確認できます。</value>
+  </data>
+  <data name="Review with guardrails" xml:space="preserve">
+    <value>安全策を備えたレビュー</value>
+  </data>
+  <data name="Reviewed artifact" xml:space="preserve">
+    <value>レビュー済みアーティファクト</value>
+  </data>
+  <data name="Reviewers see what is already trusted and what is new. Blacklist and vulnerability checks cannot be hidden by a root approval." xml:space="preserve">
+    <value>レビュー担当者は、すでに信頼されているものと新しいものを確認できます。ルート承認によって、ブラックリストや脆弱性のチェックが省略されることはありません。</value>
   </data>
   <data name="Reviews" xml:space="preserve">
     <value>レビュー</value>
@@ -642,11 +801,32 @@
   <data name="Runs without any internet connection required." xml:space="preserve">
     <value>インターネット接続は必要ありません。</value>
   </data>
+  <data name="S360 connects the people approving dependencies with the exact packages, versions, sources, and risks behind each decision." xml:space="preserve">
+    <value>S360は、依存関係の承認者と、各判断の根拠となる正確なパッケージ、バージョン、取得元、リスクを結び付けます。</value>
+  </data>
+  <data name="S360 gives your team one place to request NuGet and npm packages, review their complete dependency trees, and track which exact package files are allowed." xml:space="preserve">
+    <value>S360を使えば、NuGetやnpmパッケージの申請、依存関係ツリー全体の確認、許可するパッケージファイルの正確な特定を、チームで一元管理できます。</value>
+  </data>
+  <data name="S360 is being prepared as the Web approval center. Runner enforcement, authorization-only package mirrors, and fully offline builds are later rollout stages—not guarantees of this deployment." xml:space="preserve">
+    <value>S360はWeb承認センターとして準備が進められています。Runnerによる強制、承認済みパッケージのみを提供するミラー、完全オフラインでのビルドは、今後の展開段階であり、今回の導入で保証されるものではありません。</value>
+  </data>
+  <data name="S360 Web and review" xml:space="preserve">
+    <value>S360 Webと審査</value>
+  </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>スケジュールされたタスク管理</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>あらゆるOpenID Connectプロバイダーとシームレスに統合し、自動的なロール同期を実現します。</value>
+  </data>
+  <data name="See how it works" xml:space="preserve">
+    <value>使い方を見る</value>
+  </data>
+  <data name="See installed transitive packages and the tarball integrity evidence in one report." xml:space="preserve">
+    <value>インストール済みの推移的パッケージと、tarball の整合性を示す証拠を1つのレポートで確認できます。</value>
+  </data>
+  <data name="See known advisories for used versions and for vulnerable versions still permitted by a wildcard rule." xml:space="preserve">
+    <value>使用中のバージョンと、ワイルドカードルールによって引き続き許可されている脆弱なバージョンに関する既知のアドバイザリを確認できます。</value>
   </data>
   <data name="Shift with confidence" xml:space="preserve">
     <value>自信を持ってシフト</value>
@@ -666,6 +846,9 @@
   <data name="Smart dark mode that automatically adapts to the user&apos;s system settings." xml:space="preserve">
     <value>ユーザーのシステム設定に自動的に適応するスマートダークモード。</value>
   </data>
+  <data name="Software supply chain, in focus" xml:space="preserve">
+    <value>ソフトウェアサプライチェーンに注目</value>
+  </data>
   <data name="Standard implementation. Switch providers without compilation." xml:space="preserve">
     <value>標準実装。コンパイルなしでプロバイダを切り替えられます。</value>
   </data>
@@ -680,6 +863,9 @@
   </data>
   <data name="Start with a single &apos;docker run&apos; command." xml:space="preserve">
     <value>1つの &apos;docker run&apos; コマンドで開始します。</value>
+  </data>
+  <data name="Start with visibility and review. Tighten the boundary in stages." xml:space="preserve">
+    <value>まずは可視化とレビューから始め、段階的に境界を厳格化します。</value>
   </data>
   <data name="Starts without any configuration" xml:space="preserve">
     <value>設定不要で起動します</value>
@@ -701,6 +887,9 @@
   </data>
   <data name="Strongly Consistent Linting" xml:space="preserve">
     <value>強力で一貫したLintチェック</value>
+  </data>
+  <data name="Submit direct dependencies once. S360 resolves transitive packages and records how each one enters the request." xml:space="preserve">
+    <value>直接依存関係を一度登録するだけで、S360が推移的なパッケージを解決し、それぞれがどのようにリクエストに含まれたかを記録します。</value>
   </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>環境変数とデータベースベースの設定の両方をサポートしており、環境変数に自動的に優先順位が与えられ、スムーズな上書きが可能になります。</value>
@@ -726,8 +915,14 @@
   <data name="Testing module available" xml:space="preserve">
     <value>テストモジュール利用可能</value>
   </data>
+  <data name="The background resolver records exact versions, package archives, hashes, source, and introduction paths." xml:space="preserve">
+    <value>バックグラウンドの依存関係解決処理では、正確なバージョン、パッケージアーカイブ、ハッシュ、ソース、導入経路が記録されます。</value>
+  </data>
   <data name="The definitive, battle-tested .NET enterprise foundation. From Auth to AI, we&apos;ve solved the hard parts so you don&apos;t have to." xml:space="preserve">
     <value>決定的な、実戦で検証された .NET エンタープライズ基盤。認証から AI まで、難しい部分はすべて解決済みなので、あなたはそれらを心配する必要がありません。</value>
+  </data>
+  <data name="The entire dependency graph" xml:space="preserve">
+    <value>依存関係の全体像</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>ナビゲーションバーは、ユーザーの役割と権限に基づいて自動的に調整されます。</value>
@@ -750,8 +945,17 @@
   <data name="TimeZoneInfo API available" xml:space="preserve">
     <value>TimeZoneInfo API 利用可能</value>
   </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>推移的依存関係</value>
+  </data>
+  <data name="Trust every decision." xml:space="preserve">
+    <value>すべての判断を信頼する。</value>
+  </data>
   <data name="Trusted by production-grade applications including AnduinOS, StatHub, and Warp. We don&apos;t just share this code; we run our entire business on it." xml:space="preserve">
     <value>AnduinOS、StatHub、Warpを含むプロダクショングレードのアプリケーションに信頼されています。このコードを単に共有するだけでなく、私たちのビジネス全体をこのコードで運用しています。</value>
+  </data>
+  <data name="Two ecosystems, one policy language" xml:space="preserve">
+    <value>2つのエコシステムを、1つのポリシー言語で</value>
   </data>
   <data name="Unified Env" xml:space="preserve">
     <value>統合環境</value>
@@ -797,6 +1001,9 @@
   </data>
   <data name="You&apos;ll need the .NET 10 SDK, npm and your favorite IDE, like Visual Studio or JetBrains Rider. You can find the full setup guide in our documentation." xml:space="preserve">
     <value>.NET 10 SDK、npm、そしてVisual StudioやJetBrains Riderのようなお好みのIDEが必要です。完全なセットアップガイドはドキュメントでご覧いただけます。</value>
+  </data>
+  <data name="Your dependency workspace" xml:space="preserve">
+    <value>あなたの依存関係ワークスペース</value>
   </data>
   <data name="Your enterprise users don&apos;t need to register repeatedly." xml:space="preserve">
     <value>企業ユーザーは繰り返し登録する必要がありません。</value>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+    <value>請為所選的生態系選擇套件登錄檔。來源是審查佐證的一部分。</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>建立時間</value>
+  </data>
+  <data name="Currently blocked" xml:space="preserve">
+    <value>目前遭封鎖</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>詳細資料</value>
+  </data>
+  <data name="Direct dependencies, one name@version per line" xml:space="preserve">
+    <value>直接相依套件，每行一個名稱@版本</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>套件生態系</value>
+  </data>
+  <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
+    <value>請輸入精確的直接相依套件版本。S360 會解析並審查整個相依性圖；未來整合 CI 後，將在部署後檢查實際的建置相依性圖。</value>
+  </data>
+  <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
+    <value>請只輸入您直接選擇的套件；S360 會找出它們的間接相依套件。請使用明確的版本號，不要使用萬用字元。</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
+    <value>例如：Microsoft.EntityFrameworkCore@10.0.12。請輸入您自行選擇的套件；S360 會找出這些套件所帶入的其他套件。</value>
+  </data>
+  <data name="My dependency requests" xml:space="preserve">
+    <value>我的相依性套件請求</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>新增請求</value>
+  </data>
+  <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
+    <value>NuGet 適用於 .NET 套件；npm 適用於 JavaScript 套件。請選擇專案實際安裝套件時使用的那一個。</value>
+  </data>
+  <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
+    <value>套件來源已不再允許用於 S360 檢查。</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>專案</value>
+  </data>
+  <data name="Project (optional)" xml:space="preserve">
+    <value>專案（選填）</value>
+  </data>
+  <data name="Recent requests" xml:space="preserve">
+    <value>最近的申請</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>套件來源</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Submit for resolution" xml:space="preserve">
+    <value>送出並解析</value>
+  </data>
+  <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
+    <value>提供套件封存檔的套件登錄站。來自其他套件登錄站的套件需要另外審查。</value>
+  </data>
+  <data name="Why is this dependency needed?" xml:space="preserve">
+    <value>為什麼需要這項相依性？</value>
+  </data>
+
+</root>

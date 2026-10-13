@@ -21,6 +21,9 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>「即發即忘」支援長時間執行的工作（如電子郵件或人工智慧），具備圖形使用者介面以管理佇列、平行處理及取消作業。</value>
   </data>
+  <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
+    <value>日期空白表示尚未成功完成任何弱點同步作業。時間皆為 UTC。</value>
+  </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>內建基於角色的存取控制（RBAC）系統，用於細粒度的權限管理。</value>
   </data>
@@ -30,17 +33,62 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>使用者驗證與個人檔案管理的完整解決方案。</value>
   </data>
+  <data name="A decision you can explain" xml:space="preserve">
+    <value>一項能清楚說明的決策</value>
+  </data>
+  <data name="A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence." xml:space="preserve">
+    <value>熟悉的名稱或已核准的根套件並不足夠。判斷適用於每個解析出的套件及其佐證資料。</value>
+  </data>
+  <data name="A fingerprint of the downloaded package archive, not just its name and version." xml:space="preserve">
+    <value>下載的套件封存檔的指紋，而不只是其名稱和版本。</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>完全響應式佈局，在桌面和行動裝置上都能呈現絕佳外觀。</value>
   </data>
+  <data name="A good first step" xml:space="preserve">
+    <value>良好的第一步</value>
+  </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>一個現代化、功能豐富且高度可擴展的基礎架構，為您的下一個網路應用程式奠定根基。</value>
+  </data>
+  <data name="A package pulled in by another package. It needs authorization too." xml:space="preserve">
+    <value>由其他套件引入的套件，也需要經過授權。</value>
+  </data>
+  <data name="A package your project asks for explicitly." xml:space="preserve">
+    <value>專案明確要求的套件。</value>
+  </data>
+  <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
+    <value>可允許符合條件套件的政策；若有絕對封鎖規則或缺少套件檔案佐證，仍會拒絕這些套件。</value>
+  </data>
+  <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
+    <value>優先於信任規則與核准的絕對排除項目。</value>
+  </data>
+  <data name="Across the organization" xml:space="preserve">
+    <value>全組織</value>
+  </data>
+  <data name="Active block rules" xml:space="preserve">
+    <value>啟用中的封鎖規則</value>
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>AI 驅動翻譯</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>所有相依元件都會自動註冊，並始終可透過建構函式注入使用。</value>
+  </data>
+  <data name="All requests you submitted" xml:space="preserve">
+    <value>您提交的所有申請</value>
+  </data>
+  <data name="Approval center" xml:space="preserve">
+    <value>核准中心</value>
+  </data>
+  <data name="Approved requests" xml:space="preserve">
+    <value>已核准的申請</value>
+  </data>
+  <data name="Artifact SHA-256" xml:space="preserve">
+    <value>成品 SHA-256</value>
+  </data>
+  <data name="At a glance" xml:space="preserve">
+    <value>一覽</value>
   </data>
   <data name="Automatic Dark Mode" xml:space="preserve">
     <value>自動深色模式</value>
@@ -57,8 +105,26 @@
   <data name="Automatic, AI-driven translation into 28 languages." xml:space="preserve">
     <value>自動化、由 AI 驅動的 28 種語言翻譯。</value>
   </data>
+  <data name="Awaiting review" xml:space="preserve">
+    <value>等待審核</value>
+  </data>
   <data name="Background Job Processing" xml:space="preserve">
     <value>背景工作處理</value>
+  </data>
+  <data name="Blacklists, sources, versions, and hashes" xml:space="preserve">
+    <value>黑名單、來源、版本與雜湊值</value>
+  </data>
+  <data name="Blocklist comes first" xml:space="preserve">
+    <value>封鎖清單優先</value>
+  </data>
+  <data name="Browse allowed packages" xml:space="preserve">
+    <value>瀏覽允許使用的套件</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>建置檢查紀錄</value>
+  </data>
+  <data name="Built into every decision" xml:space="preserve">
+    <value>落實於每一項決策中</value>
   </data>
   <data name="Built-in User Management" xml:space="preserve">
     <value>內建使用者管理</value>
@@ -75,8 +141,14 @@
   <data name="Consistency Validation" xml:space="preserve">
     <value>一致性驗證</value>
   </data>
+  <data name="Decisions recorded for your work" xml:space="preserve">
+    <value>為您的工作記錄的決策</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>以 UTC 為唯一開發時區，系統會自動將日期轉換並顯示為使用者的本地時間。</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>直接相依套件</value>
   </data>
   <data name="Dockerized for Deployment" xml:space="preserve">
     <value>容器化部署</value>
@@ -96,11 +168,35 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>輕鬆撰寫整合測試，使用記憶體資料庫、暫時性檔案系統、內建模擬功能，以及真實世界的 HTTP 請求模擬。</value>
   </data>
+  <data name="Enter direct dependencies. S360 resolves the complete graph and records the package artifacts." xml:space="preserve">
+    <value>輸入直接相依套件。S360 會解析完整的相依關係圖，並記錄套件成品。</value>
+  </data>
+  <data name="Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children." xml:space="preserve">
+    <value>每個間接相依套件都需要各自有效的授權；受信任的上層套件不會自動讓其相依套件也受到信任。</value>
+  </data>
+  <data name="Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision." xml:space="preserve">
+    <value>到期、撤銷及新的安全公告可能會改變目前的判定，但不會抹去先前的決策。</value>
+  </data>
+  <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
+    <value>明確列入封鎖清單的套件，即使是間接引入，或符合範圍廣泛的供應商規則，也一律拒絕。</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>具備內建的檔案管理系統，支援自動頭像壓縮與隱私保護。</value>
   </data>
   <data name="Features a built-in file management system with automatic avatar compression." xml:space="preserve">
     <value>具備內建檔案管理系統，並支援自動頭像壓縮功能。</value>
+  </data>
+  <data name="Find an existing approval" xml:space="preserve">
+    <value>尋找現有的核准項目</value>
+  </data>
+  <data name="Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view." xml:space="preserve">
+    <value>從提交第一個套件到做出最終決定，全程追蹤申請、查看組織目前允許的項目，並留意新浮現的風險。</value>
+  </data>
+  <data name="Follow the decision" xml:space="preserve">
+    <value>追蹤決策進度</value>
+  </data>
+  <data name="For authorized reviewers" xml:space="preserve">
+    <value>供已獲授權的審查者</value>
   </data>
   <data name="Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs." xml:space="preserve">
     <value>處理如清理與同步等重複性工作，並透過功能齊全的圖形介面監控執行歷程與記錄。</value>
@@ -108,11 +204,35 @@
   <data name="Hello World!" xml:space="preserve">
     <value>世界，你好！</value>
   </data>
+  <data name="How S360 helps" xml:space="preserve">
+    <value>S360 如何提供協助</value>
+  </data>
+  <data name="In progress" xml:space="preserve">
+    <value>處理中</value>
+  </data>
+  <data name="Include the whole graph" xml:space="preserve">
+    <value>納入完整的相依關係圖</value>
+  </data>
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>包含豐富的文件與實用範例，助您快速上手。</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>整合式檔案管理</value>
+  </data>
+  <data name="Keep the wider picture in view." xml:space="preserve">
+    <value>掌握全局概況。</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>已知弱點</value>
+  </data>
+  <data name="Last successful OSV sync" xml:space="preserve">
+    <value>上次成功同步 OSV</value>
+  </data>
+  <data name="Learn about the workflow" xml:space="preserve">
+    <value>了解工作流程</value>
+  </data>
+  <data name="Match the actual artifact" xml:space="preserve">
+    <value>比對實際套件檔案</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>模型會根據資料註解，在客戶端與伺服器端同時進行驗證。</value>
@@ -123,8 +243,29 @@
   <data name="Multiple Database Support" xml:space="preserve">
     <value>多種資料庫支援</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>我的請求</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>新增請求</value>
+  </data>
+  <data name="No requests yet" xml:space="preserve">
+    <value>目前還沒有任何請求</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect 整合</value>
+  </data>
+  <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
+    <value>記錄於兩種生態系統中的套件檔案，包含目前尚未獲授權的項目。</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>政策</value>
+  </data>
+  <data name="Policy management" xml:space="preserve">
+    <value>政策管理</value>
+  </data>
+  <data name="Quick and detailed risk views" xml:space="preserve">
+    <value>快速與詳細的風險檢視</value>
   </data>
   <data name="RBAC Authorization" xml:space="preserve">
     <value>RBAC 授權</value>
@@ -132,17 +273,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>閱讀文件</value>
   </data>
+  <data name="Recent activity" xml:space="preserve">
+    <value>最近動態</value>
+  </data>
+  <data name="Request overview" xml:space="preserve">
+    <value>請求概覽</value>
+  </data>
+  <data name="Request what is missing" xml:space="preserve">
+    <value>申請缺少的套件</value>
+  </data>
+  <data name="Resolving or awaiting review" xml:space="preserve">
+    <value>處理中或等待審核</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>響應式設計</value>
   </data>
+  <data name="Review pending and expiring decisions" xml:space="preserve">
+    <value>檢視待處理及即將到期的決策</value>
+  </data>
+  <data name="Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve." xml:space="preserve">
+    <value>審核者可以查看新增的相依套件、遭封鎖的項目、弱點掃描結果，以及他們核准的確切報告。</value>
+  </data>
+  <data name="Revisit the risk" xml:space="preserve">
+    <value>重新評估風險</value>
+  </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>穩健的整合測試</value>
+  </data>
+  <data name="Rollout note:" xml:space="preserve">
+    <value>推出說明：</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>排程工作管理</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>無縫整合任何 OpenID Connect 提供者，並自動同步角色權限。</value>
+  </data>
+  <data name="Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog." xml:space="preserve">
+    <value>在可用的目錄中搜尋 NuGet 和 npm 套件、供應商、特定版本及萬用字元規則。</value>
+  </data>
+  <data name="See reported dependency decisions" xml:space="preserve">
+    <value>查看已回報的相依性判定</value>
   </data>
   <data name="Smart Configuration Overrides" xml:space="preserve">
     <value>智慧型設定覆寫</value>
@@ -156,20 +327,68 @@
   <data name="Start a new project" xml:space="preserve">
     <value>開始新專案</value>
   </data>
+  <data name="Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here." xml:space="preserve">
+    <value>請先瀏覽目錄。當您需要新的套件時，您的申請及完整的相依性報告就會顯示在這裡。</value>
+  </data>
+  <data name="Suppliers, trust rules, and absolute blocks" xml:space="preserve">
+    <value>供應商、信任規則與絕對封鎖</value>
+  </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>支援環境變數與資料庫儲存的設定，並自動優先使用環境變數以達成無縫覆蓋。</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>導覽列會根據使用者角色和權限自動調整。</value>
   </data>
+  <data name="The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs." xml:space="preserve">
+    <value>套件名稱、確切版本、核准來源及封存檔的 SHA-256，讓審查結果能對應到具體的輸入資料。</value>
+  </data>
+  <data name="These counts describe your own requests. Organization-wide review figures appear only for authorized readers." xml:space="preserve">
+    <value>這些統計數字僅顯示您自己的申請。全組織的審查統計資料僅限獲授權的讀者查看。</value>
+  </data>
+  <data name="These organization-wide indicators are not a substitute for opening the underlying report." xml:space="preserve">
+    <value>這些組織整體指標不能取代查看相關報告。</value>
+  </data>
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>這是一個模板專案，我們將在此開啟探索之旅...</value>
+  </data>
+  <data name="This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment." xml:space="preserve">
+    <value>此工作區正在 Runner 強制執行前進行準備。Web 核准請求不代表每個建置都已完成檢查；CI 整合將於服務部署後進行。</value>
+  </data>
+  <data name="Tracked artifacts" xml:space="preserve">
+    <value>已追蹤的套件檔案</value>
+  </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>間接相依套件</value>
+  </data>
+  <data name="Trust rule" xml:space="preserve">
+    <value>信任規則</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>查看全部</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>歡迎</value>
   </data>
+  <data name="Welcome to S360." xml:space="preserve">
+    <value>歡迎使用 S360。</value>
+  </data>
+  <data name="What S360 checks before a dependency is trusted." xml:space="preserve">
+    <value>S360 在信任相依套件前會檢查哪些事項。</value>
+  </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>為什麼要使用 Aiursoft 模板？</value>
+  </data>
+  <data name="Words you will see" xml:space="preserve">
+    <value>常見詞彙</value>
+  </data>
+  <data name="Your latest requests" xml:space="preserve">
+    <value>您最新的申請</value>
+  </data>
+  <data name="Your supply-chain workspace" xml:space="preserve">
+    <value>您的供應鏈工作空間</value>
+  </data>
+  <data name="Your work, without the guesswork." xml:space="preserve">
+    <value>工作一目瞭然，無須猜測。</value>
   </data>
 
 </root>

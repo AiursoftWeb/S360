@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="10.0.* can cover future releases. Prefer an exact version when the scope should be narrow." xml:space="preserve">
+    <value>10.0.* は今後のリリースも対象にできます。対象範囲を狭くする場合は、正確なバージョンを指定してください。</value>
+  </data>
+  <data name="A label for grouping trust rules, not verified proof of a package publisher." xml:space="preserve">
+    <value>信頼ルールをグループ化するためのラベルであり、パッケージの発行元を検証した証拠ではありません。</value>
+  </data>
+  <data name="A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency." xml:space="preserve">
+    <value>ルールに一致していても、成果物や脆弱性のチェックが完了したことにはなりません。今後CIと連携し、解決された依存関係をすべて検証する予定です。</value>
+  </data>
+  <data name="A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft." xml:space="preserve">
+    <value>末尾の * は名前のプレフィックスに一致します。Microsoft.* は、パッケージ名が Microsoft の完全一致には含まれません。</value>
+  </data>
+  <data name="A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry." xml:space="preserve">
+    <value>末尾の * は、名前またはバージョンのプレフィックスに一致します。たとえば、System.* はパッケージ名が正確に System のパッケージには一致しません。ワイルドカードルールは将来のリリースも許可する可能性があるため、ソースと有効期限を制限してください。</value>
+  </data>
+  <data name="Active trust rules" xml:space="preserve">
+    <value>有効な信頼ルール</value>
+  </data>
+  <data name="Add supplier" xml:space="preserve">
+    <value>仕入先を追加</value>
+  </data>
+  <data name="All suppliers" xml:space="preserve">
+    <value>すべてのサプライヤー</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>承認理由</value>
+  </data>
+  <data name="Approve rule" xml:space="preserve">
+    <value>ルールを承認</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>利用可能な依存関係</value>
+  </data>
+  <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
+    <value>パッケージが見つかりませんか？リクエストを送信</value>
+  </data>
+  <data name="Check a concrete package against rules" xml:space="preserve">
+    <value>具体的なパッケージがルールに適合するか確認</value>
+  </data>
+  <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
+    <value>UTC時刻を入力してください。このフィールドでは、デバイスのローカル時刻は変換されません。</value>
+  </data>
+  <data name="Exact package name" xml:space="preserve">
+    <value>正確なパッケージ名</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>正確なバージョン</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>有効期限</value>
+  </data>
+  <data name="Expires (UTC)" xml:space="preserve">
+    <value>有効期限（UTC）</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>有効期限（UTC）</value>
+  </data>
+  <data name="Find packages" xml:space="preserve">
+    <value>パッケージを探す</value>
+  </data>
+  <data name="HTTPS package source" xml:space="preserve">
+    <value>HTTPS パッケージソース</value>
+  </data>
+  <data name="Include prerelease" xml:space="preserve">
+    <value>プレリリース版を含める</value>
+  </data>
+  <data name="Last checked (UTC)" xml:space="preserve">
+    <value>最終確認日時（UTC）</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>ブロックリストを管理</value>
+  </data>
+  <data name="Manage policy" xml:space="preserve">
+    <value>ポリシーを管理</value>
+  </data>
+  <data name="Manage suppliers and trust rules" xml:space="preserve">
+    <value>サプライヤーと信頼ルールの管理</value>
+  </data>
+  <data name="Match rules" xml:space="preserve">
+    <value>ルールを照合</value>
+  </data>
+  <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
+    <value>現在 S360 のチェックに合格しているアーティファクトのみがここに表示されます。まだ確認されていないパッケージに一致するルールは上に表示されていますが、チェック済みのアーティファクトではありません。今後の各ビルドでも、依存関係グラフ全体のチェックが行われます。</value>
+  </data>
+  <data name="Only the first 500 results are shown. Narrow the package search to inspect more results." xml:space="preserve">
+    <value>最初の500件のみ表示されています。さらに結果を確認するには、パッケージ検索の条件を絞り込んでください。</value>
+  </data>
+  <data name="Open the separate absolute blocklist management page" xml:space="preserve">
+    <value>別ページの絶対ブロックリスト管理画面を開く</value>
+  </data>
+  <data name="Overridden by blocklist" xml:space="preserve">
+    <value>ブロックリストにより無効化</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>パッケージ</value>
+  </data>
+  <data name="Package name" xml:space="preserve">
+    <value>パッケージ名</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>パッケージのパターン</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>パッケージソース</value>
+  </data>
+  <data name="Page sections" xml:space="preserve">
+    <value>ページ内セクション</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>プレリリース</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>プレビュー</value>
+  </data>
+  <data name="Preview a rule before approval" xml:space="preserve">
+    <value>承認前にルールをプレビュー</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>理由</value>
+  </data>
+  <data name="Recorded artifacts" xml:space="preserve">
+    <value>記録済みの成果物</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>無効化</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
+    <value>このルール案に一致する既知のパッケージバージョンを表示します。これは対象範囲のプレビューであり、信頼性を判断するものではありません。</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>ソース</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>供給元</value>
+  </data>
+  <data name="Supplier name" xml:space="preserve">
+    <value>サプライヤー名</value>
+  </data>
+  <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
+    <value>承認済みのレジストリ URL はルールの一部です。同じパッケージでも、別のソースから取得したものは対象外です。</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
+    <value>最新の脆弱性同期に失敗しました。監査が正常に完了するまで、記録済みの成果物は非表示になります。</value>
+  </data>
+  <data name="Trust rules" xml:space="preserve">
+    <value>信頼ルール</value>
+  </data>
+  <data name="Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies." xml:space="preserve">
+    <value>信頼ルールは、利用可能性を決める条件の一つにすぎません。絶対的なブロックリストは、間接依存関係も含め、信頼ルールより優先されます。</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>バージョンパターン</value>
+  </data>
+  <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
+    <value>脆弱性監査はまだ完了していません。記録されたアーティファクトは、利用可能として一覧表示できません。</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
+    <value>脆弱性監査の情報は古くなっています。新たな監査が完了するまで、記録済みの成果物は非表示になります。</value>
+  </data>
+  <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
+    <value>ワイルドカードルールでは将来のバージョンも自動的に許可されますが、初回確認時のハッシュは引き続き記録されます。</value>
+  </data>
+
+</root>

@@ -21,6 +21,9 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>長期実行タスク（メールやAIなど）に対する「ファイア・アンド・フォーゲット」サポート。キュー管理、並列処理、キャンセルに対応するGUIを備えています。</value>
   </data>
+  <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
+    <value>日付が空欄の場合、脆弱性情報の同期がまだ一度も完全に成功していないことを意味します。時刻はUTCです。</value>
+  </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>きめ細かい権限管理のための組み込みロールベースアクセス制御(RBAC)システム。</value>
   </data>
@@ -30,17 +33,62 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>ユーザー認証およびプロフィール管理の完全なソリューション</value>
   </data>
+  <data name="A decision you can explain" xml:space="preserve">
+    <value>説明できる判断</value>
+  </data>
+  <data name="A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence." xml:space="preserve">
+    <value>よく知られた名前や承認済みのルートパッケージだけでは不十分です。判定は、解決された各パッケージとその証拠に適用されます。</value>
+  </data>
+  <data name="A fingerprint of the downloaded package archive, not just its name and version." xml:space="preserve">
+    <value>ダウンロードしたパッケージアーカイブのフィンガープリントです。名前やバージョンだけではありません。</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>デスクトップとモバイルデバイスの両方で美しく表示される、完全なレスポンシブレイアウト。</value>
   </data>
+  <data name="A good first step" xml:space="preserve">
+    <value>最初の一歩</value>
+  </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>モダンで機能豊富、そして高い拡張性を備えた、次世代のWebアプリケーションの基盤。</value>
+  </data>
+  <data name="A package pulled in by another package. It needs authorization too." xml:space="preserve">
+    <value>別のパッケージによって取り込まれるパッケージです。これにも承認が必要です。</value>
+  </data>
+  <data name="A package your project asks for explicitly." xml:space="preserve">
+    <value>プロジェクトが明示的に指定するパッケージ。</value>
+  </data>
+  <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
+    <value>一致するパッケージを許可する場合があるポリシーです。ただし、絶対的なブロックが設定されている場合や、アーティファクトの証拠が不足している場合は、引き続き拒否されます。</value>
+  </data>
+  <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
+    <value>信頼ルールや承認よりも優先される、例外のない除外ルール。</value>
+  </data>
+  <data name="Across the organization" xml:space="preserve">
+    <value>組織全体で</value>
+  </data>
+  <data name="Active block rules" xml:space="preserve">
+    <value>有効なブロックルール</value>
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>AIによる翻訳</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>すべての依存関係は自動的に登録され、コンストラクタインジェクションを通じて常に利用可能です。</value>
+  </data>
+  <data name="All requests you submitted" xml:space="preserve">
+    <value>送信したすべてのリクエスト</value>
+  </data>
+  <data name="Approval center" xml:space="preserve">
+    <value>承認センター</value>
+  </data>
+  <data name="Approved requests" xml:space="preserve">
+    <value>承認済みのリクエスト</value>
+  </data>
+  <data name="Artifact SHA-256" xml:space="preserve">
+    <value>アーティファクトのSHA-256</value>
+  </data>
+  <data name="At a glance" xml:space="preserve">
+    <value>一目でわかる概要</value>
   </data>
   <data name="Automatic Dark Mode" xml:space="preserve">
     <value>自動ダークモード</value>
@@ -57,8 +105,26 @@
   <data name="Automatic, AI-driven translation into 28 languages." xml:space="preserve">
     <value>自動、AI駆動の28言語への翻訳</value>
   </data>
+  <data name="Awaiting review" xml:space="preserve">
+    <value>レビュー待ち</value>
+  </data>
   <data name="Background Job Processing" xml:space="preserve">
     <value>バックグラウンドジョブ処理</value>
+  </data>
+  <data name="Blacklists, sources, versions, and hashes" xml:space="preserve">
+    <value>ブラックリスト、ソース、バージョン、ハッシュ</value>
+  </data>
+  <data name="Blocklist comes first" xml:space="preserve">
+    <value>ブロックリストが最優先</value>
+  </data>
+  <data name="Browse allowed packages" xml:space="preserve">
+    <value>許可済みパッケージを閲覧</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>ビルドチェック記録</value>
+  </data>
+  <data name="Built into every decision" xml:space="preserve">
+    <value>あらゆる判断に組み込まれた</value>
   </data>
   <data name="Built-in User Management" xml:space="preserve">
     <value>組み込みユーザー管理</value>
@@ -75,8 +141,14 @@
   <data name="Consistency Validation" xml:space="preserve">
     <value>整合性検証</value>
   </data>
+  <data name="Decisions recorded for your work" xml:space="preserve">
+    <value>あなたの申請に対する決定</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>UTCで専用に開発し、システムが自動的に日付をユーザーのローカルタイムゾーンに変換して表示します。</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>直接依存関係</value>
   </data>
   <data name="Dockerized for Deployment" xml:space="preserve">
     <value>Docker化によるデプロイ</value>
@@ -96,11 +168,35 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>メモリ内データベース、一時ファイルシステム、組み込みモック、そして現実世界のHTTPリクエストシミュレーションを使用して、ストレスフリーで統合テストを記述できます。</value>
   </data>
+  <data name="Enter direct dependencies. S360 resolves the complete graph and records the package artifacts." xml:space="preserve">
+    <value>直接依存関係を入力します。S360が依存関係の全体を解決し、パッケージのアーティファクトを記録します。</value>
+  </data>
+  <data name="Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children." xml:space="preserve">
+    <value>すべての推移的パッケージには、それぞれ有効な承認が必要です。信頼された親パッケージが、その子パッケージに自動的に信頼を与えることはありません。</value>
+  </data>
+  <data name="Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision." xml:space="preserve">
+    <value>有効期限切れ、取り消し、新たなセキュリティ勧告により、以前の判断を消去することなく、現在の判定が変わる場合があります。</value>
+  </data>
+  <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
+    <value>明示的にブロックされたパッケージは、間接的に依存関係に含まれている場合や、広範なサプライヤールールに該当する場合でも拒否されます。</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>自動アバターの圧縮とプライバシー保護機能を備えた内蔵ファイル管理システムを搭載しています。</value>
   </data>
   <data name="Features a built-in file management system with automatic avatar compression." xml:space="preserve">
     <value>アバターの自動圧縮機能を備えた組み込みファイル管理システムを搭載しています。</value>
+  </data>
+  <data name="Find an existing approval" xml:space="preserve">
+    <value>既存の承認を探す</value>
+  </data>
+  <data name="Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view." xml:space="preserve">
+    <value>最初のパッケージ申請から最終決定までの進捗を確認し、組織ですでに許可されているものを把握するとともに、新たに生じるリスクにも目を配りましょう。</value>
+  </data>
+  <data name="Follow the decision" xml:space="preserve">
+    <value>決定の進捗を確認する</value>
+  </data>
+  <data name="For authorized reviewers" xml:space="preserve">
+    <value>権限を持つレビュー担当者向け</value>
   </data>
   <data name="Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs." xml:space="preserve">
     <value>定期実行されるジョブ（クリーンアップや同期など）を、実行履歴およびログの監視が可能な包括的なGUIで管理します。</value>
@@ -108,11 +204,35 @@
   <data name="Hello World!" xml:space="preserve">
     <value>こんにちは、世界！</value>
   </data>
+  <data name="How S360 helps" xml:space="preserve">
+    <value>S360の活用方法</value>
+  </data>
+  <data name="In progress" xml:space="preserve">
+    <value>進行中</value>
+  </data>
+  <data name="Include the whole graph" xml:space="preserve">
+    <value>依存関係グラフ全体を含める</value>
+  </data>
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>豊富なドキュメントと実用的なサンプルが含まれており、素早く使い始めることができます。</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>統合ファイル管理</value>
+  </data>
+  <data name="Keep the wider picture in view." xml:space="preserve">
+    <value>全体像を常に把握しましょう。</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>既知の脆弱性</value>
+  </data>
+  <data name="Last successful OSV sync" xml:space="preserve">
+    <value>OSVの最終同期成功日時</value>
+  </data>
+  <data name="Learn about the workflow" xml:space="preserve">
+    <value>ワークフローについて学ぶ</value>
+  </data>
+  <data name="Match the actual artifact" xml:space="preserve">
+    <value>実際のアーティファクトと照合する</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>モデルはデータ注釈に基づいて、クライアントおよびサーバーの両方で検証されます。</value>
@@ -123,8 +243,29 @@
   <data name="Multiple Database Support" xml:space="preserve">
     <value>複数データベースサポート</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>自分のリクエスト</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>新規リクエスト</value>
+  </data>
+  <data name="No requests yet" xml:space="preserve">
+    <value>リクエストはまだありません</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect連携</value>
+  </data>
+  <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
+    <value>両方のエコシステムで記録されたパッケージファイル（現在承認されていないものを含む）。</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>ポリシー</value>
+  </data>
+  <data name="Policy management" xml:space="preserve">
+    <value>ポリシー管理</value>
+  </data>
+  <data name="Quick and detailed risk views" xml:space="preserve">
+    <value>リスクの概要と詳細をすばやく確認</value>
   </data>
   <data name="RBAC Authorization" xml:space="preserve">
     <value>RBAC認可</value>
@@ -132,17 +273,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>ドキュメントを読む</value>
   </data>
+  <data name="Recent activity" xml:space="preserve">
+    <value>最近のアクティビティ</value>
+  </data>
+  <data name="Request overview" xml:space="preserve">
+    <value>リクエストの概要</value>
+  </data>
+  <data name="Request what is missing" xml:space="preserve">
+    <value>不足しているものをリクエストする</value>
+  </data>
+  <data name="Resolving or awaiting review" xml:space="preserve">
+    <value>対応中またはレビュー待ち</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>レスポンシブデザイン</value>
   </data>
+  <data name="Review pending and expiring decisions" xml:space="preserve">
+    <value>保留中および期限切れ間近の決定を確認</value>
+  </data>
+  <data name="Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve." xml:space="preserve">
+    <value>レビュー担当者は、新たな依存関係、ブロックされた項目、脆弱性の検出結果、および承認する対象そのもののレポートを確認できます。</value>
+  </data>
+  <data name="Revisit the risk" xml:space="preserve">
+    <value>リスクを再評価する</value>
+  </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>堅牢な統合テスト</value>
+  </data>
+  <data name="Rollout note:" xml:space="preserve">
+    <value>展開に関する注意：</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>スケジュールタスク管理</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>あらゆるOpenID Connectプロバイダーとシームレスに統合し、ロールの自動同期を実現します。</value>
+  </data>
+  <data name="Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog." xml:space="preserve">
+    <value>利用可能なカタログで、NuGet および npm のパッケージ、サプライヤー、特定のバージョン、ワイルドカードルールを検索できます。</value>
+  </data>
+  <data name="See reported dependency decisions" xml:space="preserve">
+    <value>報告された依存関係の判定を確認</value>
   </data>
   <data name="Smart Configuration Overrides" xml:space="preserve">
     <value>スマート設定オーバーライド</value>
@@ -156,20 +327,68 @@
   <data name="Start a new project" xml:space="preserve">
     <value>新規プロジェクトを開始</value>
   </data>
+  <data name="Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here." xml:space="preserve">
+    <value>まずはカタログを確認してください。新しいパッケージが必要になった場合は、リクエストと依存関係の詳細レポートがここに表示されます。</value>
+  </data>
+  <data name="Suppliers, trust rules, and absolute blocks" xml:space="preserve">
+    <value>供給元、信頼ルール、および絶対的なブロック</value>
+  </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>環境変数とデータベースバックエンド設定の両方をサポートしており、環境変数に自動的に優先順位が与えられ、スムーズな上書きが可能になります。</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>ナビゲーションバーはユーザーの役割と権限に基づいて自動的に調整されます。</value>
   </data>
+  <data name="The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs." xml:space="preserve">
+    <value>パッケージ名、正確なバージョン、承認済みのソース、アーカイブのSHA-256を明示することで、審査の対象を具体的な入力に結び付けます。</value>
+  </data>
+  <data name="These counts describe your own requests. Organization-wide review figures appear only for authorized readers." xml:space="preserve">
+    <value>これらの件数は、ご自身が送信したリクエストを示しています。組織全体のレビュー件数は、閲覧権限を持つユーザーにのみ表示されます。</value>
+  </data>
+  <data name="These organization-wide indicators are not a substitute for opening the underlying report." xml:space="preserve">
+    <value>組織全体のこれらの指標は、詳細なレポートを開いて確認する代わりにはなりません。</value>
+  </data>
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>これはテンプレートプロジェクトです。ここから航海が始まります...</value>
+  </data>
+  <data name="This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment." xml:space="preserve">
+    <value>Runnerによる強制適用に先立ち、このワークスペースの準備を進めています。Webでの申請が承認されても、すべてのビルドがすでにチェック済みという意味ではありません。CIとの連携はサービスのデプロイ後に行われます。</value>
+  </data>
+  <data name="Tracked artifacts" xml:space="preserve">
+    <value>追跡対象のアーティファクト</value>
+  </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>推移的依存関係</value>
+  </data>
+  <data name="Trust rule" xml:space="preserve">
+    <value>信頼ルール</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>すべて表示</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>ようこそ</value>
   </data>
+  <data name="Welcome to S360." xml:space="preserve">
+    <value>S360へようこそ。</value>
+  </data>
+  <data name="What S360 checks before a dependency is trusted." xml:space="preserve">
+    <value>依存関係を信頼する前に S360 が確認すること。</value>
+  </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Aiursoftテンプレートを使用する理由</value>
+  </data>
+  <data name="Words you will see" xml:space="preserve">
+    <value>画面に表示される用語</value>
+  </data>
+  <data name="Your latest requests" xml:space="preserve">
+    <value>最近の申請</value>
+  </data>
+  <data name="Your supply-chain workspace" xml:space="preserve">
+    <value>あなたのサプライチェーン業務の拠点</value>
+  </data>
+  <data name="Your work, without the guesswork." xml:space="preserve">
+    <value>勘に頼らず、業務を進められます。</value>
   </data>
 
 </root>

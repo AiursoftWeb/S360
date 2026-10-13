@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="All review records" xml:space="preserve">
+    <value>所有審核記錄</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>完整報告中還有更多內容</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>核准原因</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>核准範圍</value>
+  </data>
+  <data name="Authorized items on hold" xml:space="preserve">
+    <value>已授權但暫緩處理的項目</value>
+  </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>相依項目核准</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>已過期</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>到期時間（UTC）</value>
+  </data>
+  <data name="Expiring within 30 days" xml:space="preserve">
+    <value>30 天內到期</value>
+  </data>
+  <data name="Items needing authorization" xml:space="preserve">
+    <value>需要授權的項目</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>下一頁</value>
+  </data>
+  <data name="No complete dependency report is available for this request." xml:space="preserve">
+    <value>此請求目前沒有完整的相依性報告。</value>
+  </data>
+  <data name="Open complete dependency report" xml:space="preserve">
+    <value>開啟完整相依性報告</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>待處理</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>上一頁</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>專案</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>此檢視中的筆數</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>駁回</value>
+  </data>
+  <data name="Rejection reason" xml:space="preserve">
+    <value>退回原因</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>申請</value>
+  </data>
+  <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
+    <value>請先檢視完整報告，再做出批次決策。此操作會綁定至報告雜湊值。</value>
+  </data>
+  <data name="Revocation reason" xml:space="preserve">
+    <value>撤銷原因</value>
+  </data>
+  <data name="Revoke batch" xml:space="preserve">
+    <value>撤銷批次</value>
+  </data>
+  <data name="Select supplier" xml:space="preserve">
+    <value>選擇供應商</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>來源</value>
+  </data>
+  <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
+    <value>此套件來源已不再允許。必須改由允許的來源重新解析此請求後，才能核准。</value>
+  </data>
+
+</root>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+    <value>선택한 생태계에 사용할 레지스트리를 선택하세요. 소스는 검토 증거의 일부입니다.</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>생성일</value>
+  </data>
+  <data name="Currently blocked" xml:space="preserve">
+    <value>현재 차단됨</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>세부 정보</value>
+  </data>
+  <data name="Direct dependencies, one name@version per line" xml:space="preserve">
+    <value>직접 의존성은 한 줄에 하나씩 name@version 형식으로 입력하세요</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>에코시스템</value>
+  </data>
+  <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
+    <value>정확한 직접 의존성 버전을 입력하세요. S360은 전체 의존성 그래프를 확인하고 검토합니다. 향후 CI 통합을 통해 배포 후 실제 빌드 그래프를 검사할 예정입니다.</value>
+  </data>
+  <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
+    <value>직접 선택한 패키지만 입력하세요. S360이 해당 패키지의 전이적 종속성을 찾아냅니다. 와일드카드가 아닌 정확한 버전을 입력하세요.</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
+    <value>예: Microsoft.EntityFrameworkCore@10.0.12. 직접 선택한 패키지를 입력하세요. 해당 패키지가 가져오는 패키지는 S360에서 검색합니다.</value>
+  </data>
+  <data name="My dependency requests" xml:space="preserve">
+    <value>내 의존성 요청</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>새 요청</value>
+  </data>
+  <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
+    <value>NuGet은 .NET 패키지용이고 npm은 JavaScript 패키지용입니다. 프로젝트에서 실제로 설치하는 패키지에 맞는 것을 선택하세요.</value>
+  </data>
+  <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
+    <value>S360 검사에는 더 이상 패키지 소스를 사용할 수 없습니다.</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>프로젝트</value>
+  </data>
+  <data name="Project (optional)" xml:space="preserve">
+    <value>프로젝트(선택 사항)</value>
+  </data>
+  <data name="Recent requests" xml:space="preserve">
+    <value>최근 요청</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>소스</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>상태</value>
+  </data>
+  <data name="Submit for resolution" xml:space="preserve">
+    <value>해결 요청</value>
+  </data>
+  <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
+    <value>패키지 아카이브를 제공하는 레지스트리입니다. 다른 레지스트리의 패키지는 별도의 검토가 필요합니다.</value>
+  </data>
+  <data name="Why is this dependency needed?" xml:space="preserve">
+    <value>이 종속성이 필요한 이유는 무엇인가요?</value>
+  </data>
+
+</root>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="All review records" xml:space="preserve">
+    <value>Tất cả hồ sơ đánh giá</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>và nhiều mục khác trong báo cáo đầy đủ</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>Lý do phê duyệt</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Phạm vi phê duyệt</value>
+  </data>
+  <data name="Authorized items on hold" xml:space="preserve">
+    <value>Các mục đã được cấp phép nhưng đang bị tạm giữ</value>
+  </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Phê duyệt các phụ thuộc</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Đã hết hạn</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Hết hạn vào (UTC)</value>
+  </data>
+  <data name="Expiring within 30 days" xml:space="preserve">
+    <value>Sắp hết hạn trong 30 ngày</value>
+  </data>
+  <data name="Items needing authorization" xml:space="preserve">
+    <value>Các mục cần được cấp quyền</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Tiếp theo</value>
+  </data>
+  <data name="No complete dependency report is available for this request." xml:space="preserve">
+    <value>Không có báo cáo phụ thuộc đầy đủ cho yêu cầu này.</value>
+  </data>
+  <data name="Open complete dependency report" xml:space="preserve">
+    <value>Mở báo cáo phụ thuộc đầy đủ</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Đang chờ</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Trước</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Dự án</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>bản ghi trong chế độ xem này</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
+  <data name="Rejection reason" xml:space="preserve">
+    <value>Lý do từ chối</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Yêu cầu</value>
+  </data>
+  <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
+    <value>Hãy xem xét toàn bộ báo cáo trước khi đưa ra quyết định hàng loạt. Thao tác này được ràng buộc với mã băm của báo cáo.</value>
+  </data>
+  <data name="Revocation reason" xml:space="preserve">
+    <value>Lý do thu hồi</value>
+  </data>
+  <data name="Revoke batch" xml:space="preserve">
+    <value>Thu hồi lô</value>
+  </data>
+  <data name="Select supplier" xml:space="preserve">
+    <value>Chọn nhà cung cấp</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Nguồn</value>
+  </data>
+  <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
+    <value>Nguồn gói này không còn được phép sử dụng. Không thể phê duyệt yêu cầu cho đến khi giải quyết lại yêu cầu này bằng một nguồn được phép.</value>
+  </data>
+
+</root>

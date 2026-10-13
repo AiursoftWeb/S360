@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Archive SHA-256" xml:space="preserve">
+    <value>ค่า SHA-256 ของไฟล์เก็บถาวร</value>
+  </data>
+  <data name="Authorization expires" xml:space="preserve">
+    <value>การอนุมัติหมดอายุ</value>
+  </data>
+  <data name="Back to available dependencies" xml:space="preserve">
+    <value>กลับไปยังรายการแพ็กเกจที่พร้อมใช้งาน</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>ระบบนิเวศ</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>เวอร์ชันที่แน่นอน</value>
+  </data>
+  <data name="Last vulnerability check" xml:space="preserve">
+    <value>ตรวจสอบช่องโหว่ล่าสุด</value>
+  </data>
+  <data name="Latest approval recorded" xml:space="preserve">
+    <value>บันทึกการอนุมัติล่าสุด</value>
+  </data>
+  <data name="Matching authorization" xml:space="preserve">
+    <value>การอนุมัติที่ตรงกัน</value>
+  </data>
+  <data name="No direct child relationship is recorded in approved request reports." xml:space="preserve">
+    <value>ไม่มีการบันทึกความสัมพันธ์กับแพ็กเกจลูกโดยตรงไว้ในรายงานคำขอที่ได้รับอนุมัติ</value>
+  </data>
+  <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
+    <value>ไม่มีการบันทึกความสัมพันธ์กับแพ็กเกจต้นทางในรายงานคำขอที่ได้รับอนุมัติ แพ็กเกจนี้อาจถูกร้องขอโดยตรง</value>
+  </data>
+  <data name="Only the first 100 relationships are shown." xml:space="preserve">
+    <value>แสดงความสัมพันธ์ 100 รายการแรกเท่านั้น</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>แพ็กเกจ</value>
+  </data>
+  <data name="Package file and current authorization" xml:space="preserve">
+    <value>ไฟล์แพ็กเกจและการอนุมัติที่ใช้อยู่</value>
+  </data>
+  <data name="Packages that brought this artifact in" xml:space="preserve">
+    <value>แพ็กเกจที่นำอาร์ติแฟกต์นี้เข้ามา</value>
+  </data>
+  <data name="Packages this artifact brought in" xml:space="preserve">
+    <value>แพ็กเกจที่อาร์ติแฟกต์นี้ดึงเข้ามา</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>แหล่งที่มา</value>
+  </data>
+  <data name="Supplier label" xml:space="preserve">
+    <value>ป้ายกำกับผู้จัดจำหน่าย</value>
+  </data>
+  <data name="The relationships below come from previously approved request reports. They describe observed resolution paths, not every possible future build or a blanket authorization for related packages." xml:space="preserve">
+    <value>ความสัมพันธ์ด้านล่างมาจากรายงานคำขอที่ได้รับอนุมัติก่อนหน้านี้ โดยแสดงเส้นทางการแก้ไขการพึ่งพาที่พบจริง ไม่ใช่เส้นทางที่อาจเกิดขึ้นได้ทั้งหมดในการสร้างครั้งต่อไป หรือการอนุมัติแบบครอบคลุมสำหรับแพ็กเกจที่เกี่ยวข้อง</value>
+  </data>
+  <data name="This concrete package file currently passes S360&apos;s authorization and stored vulnerability checks. A future build must still check its own complete dependency graph." xml:space="preserve">
+    <value>ไฟล์แพ็กเกจนี้ผ่านการตรวจสอบการอนุมัติและช่องโหว่ที่บันทึกไว้ของ S360 ในขณะนี้ แต่การบิลด์ในอนาคตยังต้องตรวจสอบกราฟการพึ่งพาทั้งหมดของตัวเอง</value>
+  </data>
+
+</root>

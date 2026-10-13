@@ -21,6 +21,9 @@
       <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft 템플릿</value>
   </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>기능</value>
+  </data>
   <data name="Community" xml:space="preserve">
     <value>커뮤니티</value>
   </data>
@@ -30,11 +33,20 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Open workspace" xml:space="preserve">
+    <value>워크스페이스 열기</value>
+  </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>도입</value>
+  </data>
   <data name="Source Code" xml:space="preserve">
     <value>소스 코드</value>
   </data>
   <data name="Try the dashboard" xml:space="preserve">
     <value>대시보드 사용해보기</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>이용 방법</value>
   </data>
 
 </root>

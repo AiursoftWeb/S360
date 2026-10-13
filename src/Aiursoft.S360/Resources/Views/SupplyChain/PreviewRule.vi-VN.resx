@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Back to policy management" xml:space="preserve">
+    <value>Quay lại quản lý chính sách</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Hệ sinh thái</value>
+  </data>
+  <data name="Known matching package versions" xml:space="preserve">
+    <value>Các phiên bản gói khớp đã biết</value>
+  </data>
+  <data name="No matching recorded package version appears in this preview. A wildcard may still match future or unrecorded packages." xml:space="preserve">
+    <value>Không có phiên bản gói nào đã được ghi nhận khớp với quy tắc trong bản xem trước này. Ký tự đại diện vẫn có thể khớp với các gói trong tương lai hoặc chưa được ghi nhận.</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Gói</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Mẫu gói</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>Các phiên bản tiền phát hành</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Xem trước quy tắc tin cậy</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Nguồn</value>
+  </data>
+  <data name="This is a limited sample, not every matching package. Narrow the pattern to inspect a smaller set." xml:space="preserve">
+    <value>Đây chỉ là một mẫu giới hạn, không bao gồm tất cả các gói khớp. Thu hẹp mẫu để xem xét một tập hợp nhỏ hơn.</value>
+  </data>
+  <data name="This read-only preview shows known package versions matching your proposed rule. No package is approved by viewing this page." xml:space="preserve">
+    <value>Bản xem trước chỉ đọc này hiển thị các phiên bản gói đã biết khớp với quy tắc bạn đề xuất. Việc xem trang này không phê duyệt bất kỳ gói nào.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Phiên bản</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Mẫu phiên bản</value>
+  </data>
+
+</root>

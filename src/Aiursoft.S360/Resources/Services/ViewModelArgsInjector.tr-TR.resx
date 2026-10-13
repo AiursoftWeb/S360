@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Kesin engelleme listesi</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Erişim Reddedildi</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -33,11 +36,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anonim</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Mevcut bağımlılıklar</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Kullanılabilir bağımlılık ayrıntıları</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Arka Plan Görevleri</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Geçersiz İstek</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Derleme denetimi kayıtları</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Profil Resmini Değiştir</value>
@@ -69,6 +81,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Kullanıcıyı Sil</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Bağımlılık Onayları</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Dizin</value>
   </data>
@@ -80,6 +95,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Hata</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>Mevcut paketteki CVE&apos;ler</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Özellikler</value>
@@ -111,8 +129,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Yönet</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>İsteklerim</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Bulunamadı</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Genel Bakış</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>İzin Detayları</value>
@@ -122,6 +146,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Kişisel</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Güven kuralını önizle</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profil</value>
@@ -138,11 +165,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Roller</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>S360 genel bakış</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Ayarlar</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Çıkış Yap</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Tedarik zinciri</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>Sistem</value>

@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>ロールの一覧とそれに割り当てられた権限を表示できます。</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>依存関係の承認を個別に承認、却下、更新、取り消しできます。</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>ユーザーへのロール割り当て</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>依存関係を確認</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>ロールの削除</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>アプリケーションインスタンスの再起動を許可します。可用性の中断を引き起こす可能性がありますが、すべての設定とキャッシュは再読み込みされます。</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>CIからマシンのIDを使用して依存関係チェックを実行できますが、ブラウザーでログインしただけではチェックAPIを使用できません。</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>絶対的なパッケージブロックを管理します。</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>ブロックリストを管理</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>グローバル設定の管理</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>サプライヤーおよびワイルドカードによる依存関係の信頼ルールを管理します。</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>信頼ルールを管理</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>すべてのリクエスト、ビルドチェック、および脆弱性監査記録を閲覧する。</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>権限の閲覧</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>ロールの閲覧</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>サプライチェーンを閲覧</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>ユーザーの閲覧</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>このアプリを再起動</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>依存関係のリクエストを審査</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>個人の依存関係リクエストの送信と閲覧を行います。</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>依存関係リクエストを送信</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>バックグラウンドジョブの表示</value>

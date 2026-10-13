@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>पूर्ण अवरोध सूची</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>प्रवेश अस्वीकृत</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -33,11 +36,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>अनाम</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>उपलब्ध निर्भरताएँ</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>उपलब्ध निर्भरता का विवरण</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>बैकग्राउंड जॉब्स</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>खराब अनुरोध</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>बिल्ड जाँच रिकॉर्ड</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>अवतार बदलें</value>
@@ -69,6 +81,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>उपयोगकर्ता हटाएं</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>निर्भरता अनुमोदन</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>निर्देशिका</value>
   </data>
@@ -80,6 +95,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>त्रुटि</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>मौजूदा पैकेज की CVE</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>विशेषताएँ</value>
@@ -111,8 +129,14 @@
   <data name="Manage" xml:space="preserve">
     <value>प्रबंधित करें</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>मेरे अनुरोध</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>नहीं मिला</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>अवलोकन</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>अनुमति विवरण</value>
@@ -122,6 +146,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>व्यक्तिगत</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>विश्वास नियम का पूर्वावलोकन</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>प्रोफ़ाइल</value>
@@ -138,11 +165,17 @@
   <data name="Roles" xml:space="preserve">
     <value>भूमिकाएँ</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>S360 का अवलोकन</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>सेटिंग्स</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>साइन आउट</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>आपूर्ति शृंखला</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>सिस्टम</value>

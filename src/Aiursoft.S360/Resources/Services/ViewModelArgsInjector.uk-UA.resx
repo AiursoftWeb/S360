@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Абсолютний список блокування</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Доступ заборонено</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -33,11 +36,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Анонімний</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Доступні залежності</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Відомості про доступні залежності</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Фонові завдання</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Помилковий запит</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Записи перевірок збірки</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Змінити аватар</value>
@@ -69,6 +81,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Видалити користувача</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Погодження залежностей</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Каталог</value>
   </data>
@@ -80,6 +95,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Помилка</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>Відомі CVE пакетів</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Функції</value>
@@ -111,8 +129,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Керування</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Мої запити</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Не знайдено</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Огляд</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Деталі дозволів</value>
@@ -122,6 +146,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Особисті</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Попередній перегляд правила довіри</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Профіль</value>
@@ -138,11 +165,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Ролі</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>Огляд S360</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Налаштування</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Вийти</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Ланцюг постачання</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>Система</value>

@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>絕對封鎖清單</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>存取被拒</value>
   </data>
   <data name="Account Settings" xml:space="preserve">
@@ -36,11 +39,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>匿名</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>可用相依項目</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>可用相依套件詳細資訊</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>背景工作</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>錯誤的請求</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>建置檢查紀錄</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>變更大頭貼</value>
@@ -72,6 +84,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>刪除使用者</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>相依性核准</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>目錄</value>
   </data>
@@ -83,6 +98,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>錯誤</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>現有套件 CVE</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>功能</value>
@@ -114,8 +132,14 @@
   <data name="Manage" xml:space="preserve">
     <value>管理</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>我的請求</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>找不到</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>總覽</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>權限詳細資訊</value>
@@ -125,6 +149,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>個人</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>預覽信任規則</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>個人檔案</value>
@@ -141,11 +168,17 @@
   <data name="Roles" xml:space="preserve">
     <value>角色</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>S360 概覽</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>設定</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>登出</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>供應鏈</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>系統</value>

@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>يسمح بعرض قائمة الأدوار والصلاحيات المخصصة لها.</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>اعتماد الموافقات المحددة للتبعيات أو رفضها أو تجديدها أو إلغاؤها.</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>تعيين الأدوار للمستخدمين</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>التحقق من التبعيات</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>حذف الأدوار</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>يمنح الإذن بإعادة تشغيل نسخة التطبيق. قد يتسبب ذلك في انقطاعات في التوفر ولكن سيتم إعادة تحميل جميع الإعدادات والذاكرة المؤقتة.</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>يمكن لهوية الجهاز إجراء عمليات التحقق من التبعيات عبر التكامل المستمر (CI)؛ ولا يكفي تسجيل الدخول عبر المتصفح وحده لاستخدام واجهة برمجة التطبيقات الخاصة بالتحقق.</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>إدارة حظر الحزم بشكل مطلق.</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>إدارة قائمة الحظر</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>إدارة الإعدادات العالمية</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>إدارة الموردين وقواعد الثقة للتبعيات ذات الأنماط العامة.</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>إدارة قواعد الثقة</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>الاطلاع على جميع الطلبات وعمليات التحقق من البناء وسجلات تدقيق الثغرات الأمنية.</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>قراءة الصلاحيات</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>قراءة الأدوار</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>قراءة سلسلة الإمداد</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>قراءة المستخدمين</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>إعادة تشغيل هذا التطبيق</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>مراجعة طلبات الاعتماديات</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>إرسال طلبات التبعيات الشخصية وعرضها.</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>إرسال طلبات التبعيات</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>عرض المهام الخلفية</value>

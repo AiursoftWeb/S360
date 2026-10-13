@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>Позволяет просматривать список ролей и назначенные им разрешения.</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>Утверждать, отклонять, продлевать и отзывать разрешения на использование конкретных зависимостей.</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>Назначение ролей пользователям</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>Проверка зависимостей</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Удаление ролей</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>Предоставляет разрешение на перезапуск экземпляра приложения. Может привести к перерывам в доступности, но все настройки и кэш будут перезагружены.</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>Идентификатор машины может выполнять проверки зависимостей в CI; одной авторизации через браузер недостаточно для использования API проверки.</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Управление безусловной блокировкой пакетов.</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Управление списком блокировки</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>Управление глобальными настройками</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>Управление поставщиками и правилами доверия к зависимостям с подстановочными знаками.</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Управление правилами доверия</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Просматривать все запросы, результаты проверок сборок и записи аудита уязвимостей.</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Чтение разрешений</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>Просмотр ролей</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Чтение цепочки поставок</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Просмотр пользователей</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Перезапустить это приложение</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>Проверка запросов на добавление зависимостей</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>Отправка и просмотр личных запросов на добавление зависимостей.</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>Отправлять запросы на добавление зависимостей</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>Просмотр фоновых заданий</value>

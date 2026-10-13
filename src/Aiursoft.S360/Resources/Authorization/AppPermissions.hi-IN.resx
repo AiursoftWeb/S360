@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>भूमिकाओं की सूची और उनके सौंपे गए अनुमतियों को देखने की अनुमति देता है।</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>सटीक निर्भरता अनुमोदनों को स्वीकृत करें, अस्वीकार करें, नवीनीकृत करें और रद्द करें।</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>उपयोगकर्ताओं को भूमिकाएँ नियत करें</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>निर्भरताओं की जाँच करें</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>भूमिकाएँ हटाएँ</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>एप्लिकेशन इंस्टेंस को पुनरारंभ करने की अनुमति प्रदान करता है। इससे उपलब्धता में व्यवधान हो सकता है, लेकिन सभी सेटिंग्स और कैश पुनः लोड हो जाएंगे।</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>CI से मशीन पहचान द्वारा निर्भरता जाँचें की जा सकती हैं; केवल ब्राउज़र से लॉगिन करके जाँच API का उपयोग नहीं किया जा सकता।</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>पूर्ण पैकेज ब्लॉक प्रबंधित करें।</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>ब्लॉकलिस्ट प्रबंधित करें</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>ग्लोबल सेटिंग्स प्रबंधित करें</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>आपूर्तिकर्ताओं और वाइल्डकार्ड निर्भरता विश्वास नियमों का प्रबंधन करें।</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>विश्वास नियम प्रबंधित करें</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>सभी अनुरोधों, बिल्ड जाँचों और भेद्यता ऑडिट रिकॉर्ड को देखें।</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>अनुमतियाँ पढ़ें</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>भूमिकाएँ पढ़ें</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>आपूर्ति श्रृंखला पढ़ें</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>उपयोगकर्ताओं को पढ़ें</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>इस ऐप को पुनरारंभ करें</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>निर्भरता अनुरोधों की समीक्षा करें</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>व्यक्तिगत निर्भरता अनुरोध सबमिट करें और देखें।</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>निर्भरता अनुरोध सबमिट करें</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>बैकग्राउंड जॉब्स देखें</value>

@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>Επιτρέπει την προβολή της λίστας των ρόλων και των ανατεθέντων σε αυτούς δικαιωμάτων.</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>Έγκριση, απόρριψη, ανανέωση και ανάκληση συγκεκριμένων εγκρίσεων εξαρτήσεων.</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>Ανάθεση Ρόλων σε Χρήστες</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>Έλεγχος εξαρτήσεων</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Διαγραφή Ρόλων</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>Παρέχει άδεια για επανεκκίνηση της εφαρμογής. Μπορεί να προκαλέσει διακοπές στη διαθεσιμότητα, αλλά όλες οι ρυθμίσεις και η προσωρινή μνήμη θα φορτωθούν εκ νέου.</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>Η ταυτότητα μηχανήματος μπορεί να εκτελεί ελέγχους εξαρτήσεων από το CI· η σύνδεση μέσω προγράμματος περιήγησης από μόνη της δεν μπορεί να χρησιμοποιήσει το API ελέγχου.</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Διαχείριση απόλυτων αποκλεισμών πακέτων.</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Διαχείριση λίστας αποκλεισμού</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>Διαχείριση Γενικών Ρυθμίσεων</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>Διαχείριση προμηθευτών και κανόνων εμπιστοσύνης για εξαρτήσεις με χαρακτήρες μπαλαντέρ.</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Διαχείριση κανόνων εμπιστοσύνης</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Διαβάστε όλα τα αιτήματα, τους ελέγχους κατασκευής και τα αρχεία ελέγχου ευπαθειών.</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Διαβάστε Δικαιώματα</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>Ανάγνωση Ρόλων</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Ανάγνωση της εφοδιαστικής αλυσίδας</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Ανάγνωση Χρηστών</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Επανεκκίνηση αυτής της εφαρμογής</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>Εξέταση αιτημάτων εξαρτήσεων</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>Υποβολή και προβολή προσωπικών αιτημάτων εξάρτησης.</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>Υποβολή αιτημάτων εξαρτήσεων</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>Προβολή Εργασιών Παρασκηνίου</value>

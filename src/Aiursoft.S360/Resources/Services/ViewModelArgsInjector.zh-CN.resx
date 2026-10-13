@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>绝对黑名单</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>访问被拒绝</value>
   </data>
   <data name="Account Settings" xml:space="preserve">
@@ -36,11 +39,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>匿名</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>可用依赖项</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>可用依赖项详情</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>后台任务</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>错误的请求</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>构建检查记录</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>更换头像</value>
@@ -72,6 +84,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>删除用户</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>依赖项审批</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>目录</value>
   </data>
@@ -83,6 +98,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>错误</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>现有软件包漏洞（CVE）</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>功能</value>
@@ -114,8 +132,14 @@
   <data name="Manage" xml:space="preserve">
     <value>管理</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>我的请求</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>未找到</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>概览</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>权限详情</value>
@@ -125,6 +149,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>个人</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>预览信任规则</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>个人资料</value>
@@ -141,11 +168,17 @@
   <data name="Roles" xml:space="preserve">
     <value>角色</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>S360 概览</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>设置</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>退出登录</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>供应链</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>系统</value>

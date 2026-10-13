@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>Allows viewing the list of roles and their assigned permissions.</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>Approve, reject, renew and revoke exact dependency approvals.</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>Assign Roles to Users</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>Check dependencies</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Delete Roles</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>Grants permission to restart the application instance. May cause service interruptions, but all settings and cache will be reloaded.</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>A machine identity can run dependency checks from CI; browser login alone cannot use the check API.</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Manage absolute package blocks.</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Manage blocklist</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>Manage Global Settings</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>Manage suppliers and wildcard dependency trust rules.</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Manage trust rules</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Read all requests, build checks and vulnerability audit records.</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Read Permissions</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>View Roles</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>View supply chain</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>View Users</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Restart This Application</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>Review dependency requests</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>Submit and view personal dependency requests.</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>Submit dependency requests</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>View Background Jobs</value>

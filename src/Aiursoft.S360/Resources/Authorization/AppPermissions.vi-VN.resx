@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>Cho phép xem danh sách các vai trò và quyền đã được gán cho chúng.</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>Phê duyệt, từ chối, gia hạn và thu hồi các phê duyệt phụ thuộc cụ thể.</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>Gán Vai trò cho Người dùng</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>Kiểm tra các phần phụ thuộc</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Xóa Vai trò</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>Cấp quyền khởi động lại phiên bản ứng dụng. Có thể gây ra gián đoạn về tính khả dụng nhưng tất cả cài đặt và bộ nhớ đệm sẽ được tải lại.</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>Danh tính máy có thể thực hiện kiểm tra phần phụ thuộc từ CI; chỉ đăng nhập bằng trình duyệt thì không thể sử dụng API kiểm tra.</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Quản lý các gói bị chặn tuyệt đối.</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Quản lý danh sách chặn</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>Quản lý Cài đặt Toàn cầu</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>Quản lý nhà cung cấp và các quy tắc tin cậy cho phần phụ thuộc có ký tự đại diện.</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Quản lý các quy tắc tin cậy</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Đọc tất cả yêu cầu, các lần kiểm tra bản dựng và hồ sơ kiểm tra lỗ hổng bảo mật.</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Đọc Quyền</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>Xem Vai trò</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Đọc chuỗi cung ứng</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Đọc Người Dùng</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Khởi Động Lại Ứng Dụng Này</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>Duyệt yêu cầu phụ thuộc</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>Gửi và xem các yêu cầu phụ thuộc của cá nhân.</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>Gửi yêu cầu về các gói phụ thuộc</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>Xem các nhiệm vụ nền</value>

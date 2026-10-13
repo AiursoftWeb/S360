@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>รายการบล็อกที่ห้ามโดยเด็ดขาด</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>การเข้าถึงถูกปฏิเสธ</value>
   </data>
   <data name="Account Settings" xml:space="preserve">
@@ -36,11 +39,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>ไม่ระบุชื่อ</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>รายการการพึ่งพาที่พร้อมใช้งาน</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>รายละเอียดการพึ่งพาที่พร้อมใช้งาน</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>งานพื้นหลัง</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>คำขอไม่ถูกต้อง</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>บันทึกการตรวจสอบบิลด์</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>เปลี่ยนรูปโปรไฟล์</value>
@@ -72,6 +84,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>ลบผู้ใช้</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>การอนุมัติการพึ่งพา</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>ไดเรกทอรี</value>
   </data>
@@ -83,6 +98,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>ข้อผิดพลาด</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>CVE ของแพ็กเกจที่มีอยู่</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>คุณสมบัติ</value>
@@ -114,8 +132,14 @@
   <data name="Manage" xml:space="preserve">
     <value>จัดการ</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>คำขอของฉัน</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>ไม่พบ</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>ภาพรวม</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>รายละเอียดสิทธิ์การใช้งาน</value>
@@ -125,6 +149,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>ส่วนตัว</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>ดูตัวอย่างกฎความน่าเชื่อถือ</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>โปรไฟล์</value>
@@ -141,11 +168,17 @@
   <data name="Roles" xml:space="preserve">
     <value>บทบาท</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>ภาพรวม S360</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>การตั้งค่า</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>ออกจากระบบ</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>ห่วงโซ่อุปทาน</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>ระบบ</value>

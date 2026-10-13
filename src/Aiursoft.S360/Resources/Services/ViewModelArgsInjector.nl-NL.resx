@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Absolute blokkeerlijst</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Toegang geweigerd</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -33,11 +36,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anoniem</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Beschikbare afhankelijkheden</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Details van beschikbare afhankelijkheden</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Achtergrondtaken</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Ongeldige aanvraag</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Buildcontroles bijhouden</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Avatar wijzigen</value>
@@ -69,6 +81,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Gebruiker verwijderen</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Goedkeuringen van afhankelijkheden</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Map</value>
   </data>
@@ -80,6 +95,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Fout</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>Bestaande CVE&apos;s in pakketten</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Functionaliteiten</value>
@@ -111,8 +129,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Beheren</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Mijn aanvragen</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Niet gevonden</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overzicht</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Toegangsdetails</value>
@@ -122,6 +146,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Persoonlijk</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Voorbeeld van vertrouwensregel</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profiel</value>
@@ -138,11 +165,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Rollen</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>S360-overzicht</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Instellingen</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Uitloggen</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Toeleveringsketen</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>Systeem</value>

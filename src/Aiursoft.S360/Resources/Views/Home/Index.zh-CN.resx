@@ -18,8 +18,14 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
+      <data name=".NET packages" xml:space="preserve">
+    <value>.NET 软件包</value>
+  </data>
+  <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>支持“即发即弃”的长运行任务（如邮件发送或 AI 推理），内置队列管理、并行处理及任务取消的可视化面板。</value>
+  </data>
+  <data name="A blocked package stays blocked even when it appears only as a transitive dependency or matches a broader trust rule." xml:space="preserve">
+    <value>被拉黑的软件包即使仅作为传递依赖出现，或匹配更宽泛的信任规则，也仍会被拉黑。</value>
   </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>内置基于角色的访问控制（RBAC）系统，用于细粒度权限管理。</value>
@@ -30,11 +36,20 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>用户身份验证和资料管理的完整解决方案。</value>
   </data>
+  <data name="A decision covers the complete resolved graph, not only the package you typed." xml:space="preserve">
+    <value>决策涵盖完整解析后的依赖关系图，而不仅仅是你输入的那个包。</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>完全响应式布局，在桌面和移动设备上均呈现出色视觉效果。</value>
   </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>一个现代化、功能丰富且高度可扩展的基础框架，为您的下一个Web应用程序提供强大支持。</value>
+  </data>
+  <data name="A practical workflow" xml:space="preserve">
+    <value>实用的工作流程</value>
+  </data>
+  <data name="A searchable allowed catalog" xml:space="preserve">
+    <value>可搜索的已批准目录</value>
   </data>
   <data name="Achieve more with Aiursoft Template" xml:space="preserve">
     <value>借助 Aiursoft Template 成就更多可能</value>
@@ -63,17 +78,29 @@
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>所有依赖项均自动注册，并始终可通过构造函数注入方式使用。</value>
   </data>
+  <data name="An absolute blocklist" xml:space="preserve">
+    <value>绝对禁止清单</value>
+  </data>
   <data name="Anduin" xml:space="preserve">
     <value>Anduin</value>
   </data>
   <data name="Anduin Xue" xml:space="preserve">
     <value>Anduin Xue</value>
   </data>
+  <data name="Approve a report-backed batch while retaining the individual package decisions and their review history." xml:space="preserve">
+    <value>批准整批报告所涵盖的内容，同时保留每个软件包的单独审批决定及其审核记录。</value>
+  </data>
   <data name="Artificial Intelligence Translation" xml:space="preserve">
     <value>人工智能翻译</value>
   </data>
+  <data name="Audit" xml:space="preserve">
+    <value>审计</value>
+  </data>
   <data name="Authentik &amp; Okta" xml:space="preserve">
     <value>Authentik &amp; Okta</value>
+  </data>
+  <data name="Authorized mirrors" xml:space="preserve">
+    <value>经授权的镜像源</value>
   </data>
   <data name="Auto compression and privacy" xml:space="preserve">
     <value>自动压缩与隐私保护</value>
@@ -123,14 +150,26 @@
   <data name="Bilingual Tutorials" xml:space="preserve">
     <value>双语教程</value>
   </data>
+  <data name="Blocklist first" xml:space="preserve">
+    <value>优先拦截名单</value>
+  </data>
+  <data name="Build inputs prepared before the network is closed." xml:space="preserve">
+    <value>在网络关闭前准备好构建所需输入。</value>
+  </data>
   <data name="Build once, run anywhere. Fully containerized architecture." xml:space="preserve">
     <value>一次构建，随处运行。完全容器化架构。</value>
   </data>
   <data name="Build your next big thing," xml:space="preserve">
     <value>构建你的下一个伟大项目，</value>
   </data>
+  <data name="Built for clear decisions" xml:space="preserve">
+    <value>为清晰决策而打造</value>
+  </data>
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>专为追求卓越的工程师打造。</value>
+  </data>
+  <data name="Built to grow safely" xml:space="preserve">
+    <value>为安全扩展而打造</value>
   </data>
   <data name="Built with Aiursoft Template" xml:space="preserve">
     <value>基于 Aiursoft 模板构建</value>
@@ -177,6 +216,9 @@
   <data name="Checkstyle or similar needed" xml:space="preserve">
     <value>需要 Checkstyle 或类似工具</value>
   </data>
+  <data name="Choose NuGet or npm, list the direct packages, and explain the intended use. No separate request command is needed." xml:space="preserve">
+    <value>选择 NuGet 或 npm，列出直接依赖包，并说明预期用途。无需单独执行请求命令。</value>
+  </data>
   <data name="Comes with Docker support for simplified and consistent deployments." xml:space="preserve">
     <value>自带 Docker 支持，可简化并统一部署流程。</value>
   </data>
@@ -210,6 +252,9 @@
   <data name="Cross Platform" xml:space="preserve">
     <value>跨平台</value>
   </data>
+  <data name="Current mirrors" xml:space="preserve">
+    <value>当前镜像源</value>
+  </data>
   <data name="Custom dev required" xml:space="preserve">
     <value>需要定制开发</value>
   </data>
@@ -240,6 +285,9 @@
   <data name="Default SQLite database, no configuration needed." xml:space="preserve">
     <value>默认 SQLite 数据库，无需配置</value>
   </data>
+  <data name="Dependency review" xml:space="preserve">
+    <value>依赖项审查</value>
+  </data>
   <data name="Designed for everyone, from beginners to experts." xml:space="preserve">
     <value>专为每个人设计，从新手到专家皆宜。</value>
   </data>
@@ -257,6 +305,9 @@
   </data>
   <data name="DevOps Native" xml:space="preserve">
     <value>DevOps 原生</value>
+  </data>
+  <data name="Direct request" xml:space="preserve">
+    <value>直接请求</value>
   </data>
   <data name="Discussions page" xml:space="preserve">
     <value>讨论页面</value>
@@ -282,6 +333,9 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>轻松编写集成测试，使用内存数据库、临时文件系统、内置模拟和真实 HTTP 请求模拟。</value>
   </data>
+  <data name="Employees can discover current approvals, suppliers, and matching rules before starting another request." xml:space="preserve">
+    <value>员工可以在提交新请求前，查询当前的审批结果、供应商和匹配规则。</value>
+  </data>
   <data name="Enforced" xml:space="preserve">
     <value>强制执行</value>
   </data>
@@ -303,6 +357,21 @@
   <data name="Entity Framework Core included" xml:space="preserve">
     <value>包含 Entity Framework Core</value>
   </data>
+  <data name="Exact artifact evidence" xml:space="preserve">
+    <value>精确的软件包文件证据</value>
+  </data>
+  <data name="Exact SHA-256 evidence" xml:space="preserve">
+    <value>精确的 SHA-256 证据</value>
+  </data>
+  <data name="Existing package access continues." xml:space="preserve">
+    <value>现有软件包访问仍将继续。</value>
+  </data>
+  <data name="Expiry, revocation, and newly published advisories remain visible after the original approval." xml:space="preserve">
+    <value>原有审批通过后，审批到期、撤销以及新发布的安全公告仍会显示。</value>
+  </data>
+  <data name="Explore available dependencies" xml:space="preserve">
+    <value>探索可用的依赖项</value>
+  </data>
   <data name="FAQ" xml:space="preserve">
     <value>常见问题解答</value>
   </data>
@@ -323,6 +392,9 @@
   </data>
   <data name="File Mgmt &amp; Optimization" xml:space="preserve">
     <value>文件管理与优化</value>
+  </data>
+  <data name="Find what is already allowed, request what is missing, and follow every decision back to its evidence." xml:space="preserve">
+    <value>查找已获准的内容，申请尚缺少的内容，并追溯每项决策的依据。</value>
   </data>
   <data name="Fine-grained RBAC" xml:space="preserve">
     <value>细粒度 RBAC</value>
@@ -353,6 +425,9 @@
   </data>
   <data name="Frequently asked questions" xml:space="preserve">
     <value>常见问题</value>
+  </data>
+  <data name="From package request to policy evidence." xml:space="preserve">
+    <value>从软件包申请到策略依据。</value>
   </data>
   <data name="From the Architect" xml:space="preserve">
     <value>来自架构师</value>
@@ -432,11 +507,17 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>如何部署我的应用程序？</value>
   </data>
+  <data name="Human review at the right scale" xml:space="preserve">
+    <value>适度规模的人工审核</value>
+  </data>
   <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
     <value>&quot;我构建 Aiursoft Template 的初衷，是厌倦了为每个企业级项目重复搭建认证、日志和 CI/CD 流水线。这不仅仅是一个模板，它是多年高并发生产环境最佳实践的结晶。它让我的团队能够跳过繁琐的基础设施搭建，直击业务逻辑核心。&quot;</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>IDE 支持</value>
+  </data>
+  <data name="Illustration of a dependency review" xml:space="preserve">
+    <value>依赖项审核示意图</value>
   </data>
   <data name="In-memory DB, temp FS, and HTTP simulation" xml:space="preserve">
     <value>内存数据库、临时文件和 HTTP 模拟</value>
@@ -471,6 +552,9 @@
   <data name="java.time API available" xml:space="preserve">
     <value>提供 java.time API</value>
   </data>
+  <data name="JavaScript packages" xml:space="preserve">
+    <value>JavaScript 包</value>
+  </data>
   <data name="Job Queue &amp; Scheduling GUI" xml:space="preserve">
     <value>作业队列与调度 GUI</value>
   </data>
@@ -486,11 +570,26 @@
   <data name="K8s / Swarm Ready" xml:space="preserve">
     <value>K8s / Swarm 就绪</value>
   </data>
+  <data name="Keep watch" xml:space="preserve">
+    <value>持续关注</value>
+  </data>
+  <data name="Know every dependency." xml:space="preserve">
+    <value>了解每一项依赖。</value>
+  </data>
+  <data name="Less guesswork for employees. More context for reviewers." xml:space="preserve">
+    <value>员工少些猜测，评审者多些背景信息。</value>
+  </data>
   <data name="Lint Check" xml:space="preserve">
     <value>Lint 检查</value>
   </data>
+  <data name="Made for the dependencies your teams actually use." xml:space="preserve">
+    <value>专为团队实际使用的依赖项打造。</value>
+  </data>
   <data name="Maintain High Code Quality" xml:space="preserve">
     <value>保持高代码质量</value>
+  </data>
+  <data name="Make the next package decision an informed one." xml:space="preserve">
+    <value>让下一次软件包决策有据可依。</value>
   </data>
   <data name="Management Dashboard" xml:space="preserve">
     <value>管理仪表盘</value>
@@ -555,6 +654,9 @@
   <data name="Needs Passport or similar" xml:space="preserve">
     <value>需要 Passport 或类似工具</value>
   </data>
+  <data name="Needs review" xml:space="preserve">
+    <value>需要审核</value>
+  </data>
   <data name="Needs Spatie or similar" xml:space="preserve">
     <value>需要 Spatie 或类似库</value>
   </data>
@@ -570,6 +672,15 @@
   <data name="No dependency on any cloud vendor. Run anywhere, any time." xml:space="preserve">
     <value>无需依赖任何云服务提供商。随时随地运行。</value>
   </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet 和 npm</value>
+  </data>
+  <data name="NuGet and npm have different version and installation rules. S360 keeps their package identities distinct while presenting one consistent approval experience." xml:space="preserve">
+    <value>NuGet 和 npm 的版本和安装规则各不相同。S360 在保持两者的软件包标识彼此独立的同时，提供一致的审批体验。</value>
+  </data>
+  <data name="Offline builds" xml:space="preserve">
+    <value>离线构建</value>
+  </data>
   <data name="Offline Capable" xml:space="preserve">
     <value>离线可用</value>
   </data>
@@ -579,8 +690,23 @@
   <data name="One Click Start" xml:space="preserve">
     <value>一键启动</value>
   </data>
+  <data name="One coherent workflow" xml:space="preserve">
+    <value>统一连贯的工作流</value>
+  </data>
+  <data name="One request, the whole graph" xml:space="preserve">
+    <value>一次请求，完整依赖关系图</value>
+  </data>
+  <data name="Ongoing vulnerability visibility" xml:space="preserve">
+    <value>持续关注漏洞情况</value>
+  </data>
+  <data name="Only approved package versions are served." xml:space="preserve">
+    <value>仅提供经过批准的程序包版本。</value>
+  </data>
   <data name="Open Source" xml:space="preserve">
     <value>开源</value>
+  </data>
+  <data name="Open your workspace" xml:space="preserve">
+    <value>打开你的工作区</value>
   </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect 集成</value>
@@ -627,14 +753,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>阅读文档</value>
   </data>
+  <data name="Record the package source and SHA-256 of each NuGet archive or npm tarball, not just a familiar package name." xml:space="preserve">
+    <value>记录每个 NuGet 压缩包或 npm tarball 的包源和 SHA-256，而不仅仅是一个熟悉的包名。</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>请求</value>
+  </data>
+  <data name="Request in the browser" xml:space="preserve">
+    <value>在浏览器中提交申请</value>
+  </data>
+  <data name="Requests, policy, audit, and approval." xml:space="preserve">
+    <value>申请、策略、审计与审批。</value>
+  </data>
   <data name="Requires Laravel Socialite config" xml:space="preserve">
     <value>需要配置 Laravel Socialite</value>
   </data>
   <data name="Requires Spring Security configuration" xml:space="preserve">
     <value>需要配置 Spring Security</value>
   </data>
+  <data name="Resolve" xml:space="preserve">
+    <value>解析</value>
+  </data>
+  <data name="Resolve and inspect" xml:space="preserve">
+    <value>解析并检查</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>响应式设计</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>审核</value>
+  </data>
+  <data name="Review restored versions and the original .nupkg files behind your applications." xml:space="preserve">
+    <value>查看应用中还原的版本及其对应的原始 .nupkg 文件。</value>
+  </data>
+  <data name="Review with guardrails" xml:space="preserve">
+    <value>在防护措施下进行审核</value>
+  </data>
+  <data name="Reviewed artifact" xml:space="preserve">
+    <value>已审核的制品</value>
+  </data>
+  <data name="Reviewers see what is already trusted and what is new. Blacklist and vulnerability checks cannot be hidden by a root approval." xml:space="preserve">
+    <value>审核人员可以看到哪些内容已获信任，哪些是新的。根依赖项的批准无法绕过黑名单和漏洞检查。</value>
   </data>
   <data name="Reviews" xml:space="preserve">
     <value>用户评价</value>
@@ -645,11 +804,32 @@
   <data name="Runs without any internet connection required." xml:space="preserve">
     <value>无需互联网连接即可运行。</value>
   </data>
+  <data name="S360 connects the people approving dependencies with the exact packages, versions, sources, and risks behind each decision." xml:space="preserve">
+    <value>S360 将负责审批依赖项的人员与每项决策所涉及的具体软件包、版本、来源和风险关联起来。</value>
+  </data>
+  <data name="S360 gives your team one place to request NuGet and npm packages, review their complete dependency trees, and track which exact package files are allowed." xml:space="preserve">
+    <value>S360 为您的团队提供统一平台，用于申请 NuGet 和 npm 包、审查其完整依赖树，并跟踪哪些确切的包文件已获准使用。</value>
+  </data>
+  <data name="S360 is being prepared as the Web approval center. Runner enforcement, authorization-only package mirrors, and fully offline builds are later rollout stages—not guarantees of this deployment." xml:space="preserve">
+    <value>S360 正在建设成为 Web 审批中心。Runner 强制执行、仅提供已授权软件包的镜像，以及完全离线构建，都是后续推广阶段的计划，并非本次部署的保证。</value>
+  </data>
+  <data name="S360 Web and review" xml:space="preserve">
+    <value>S360 网页端与审核</value>
+  </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>定时任务管理</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>无缝集成任何 OpenID Connect 提供商，并支持自动角色同步。</value>
+  </data>
+  <data name="See how it works" xml:space="preserve">
+    <value>查看其工作原理</value>
+  </data>
+  <data name="See installed transitive packages and the tarball integrity evidence in one report." xml:space="preserve">
+    <value>在一份报告中查看已安装的传递依赖包及其 tarball 完整性证据。</value>
+  </data>
+  <data name="See known advisories for used versions and for vulnerable versions still permitted by a wildcard rule." xml:space="preserve">
+    <value>查看已使用版本以及仍受通配符规则允许的易受攻击版本所涉及的已知安全公告。</value>
   </data>
   <data name="Shift with confidence" xml:space="preserve">
     <value>无忧迁移 - 发布即交付</value>
@@ -669,6 +849,9 @@
   <data name="Smart dark mode that automatically adapts to the user&apos;s system settings." xml:space="preserve">
     <value>智能深色模式，可自动适应用户的系统设置。</value>
   </data>
+  <data name="Software supply chain, in focus" xml:space="preserve">
+    <value>聚焦软件供应链</value>
+  </data>
   <data name="Standard implementation. Switch providers without compilation." xml:space="preserve">
     <value>标准实现。无需重新编译即可切换提供者。</value>
   </data>
@@ -683,6 +866,9 @@
   </data>
   <data name="Start with a single &apos;docker run&apos; command." xml:space="preserve">
     <value>从一个单一的 &apos;docker run&apos; 命令开始。</value>
+  </data>
+  <data name="Start with visibility and review. Tighten the boundary in stages." xml:space="preserve">
+    <value>从可见性和审查开始，再分阶段逐步收紧管控范围。</value>
   </data>
   <data name="Starts without any configuration" xml:space="preserve">
     <value>无需任何配置即可启动</value>
@@ -704,6 +890,9 @@
   </data>
   <data name="Strongly Consistent Linting" xml:space="preserve">
     <value>零容忍代码检查</value>
+  </data>
+  <data name="Submit direct dependencies once. S360 resolves transitive packages and records how each one enters the request." xml:space="preserve">
+    <value>只需提交一次直接依赖项。S360 会解析传递依赖包，并记录每个包是如何引入该请求的。</value>
   </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>支持环境变量与数据库配置双重驱动，环境变量自动拥有更高优先级，实现无缝覆盖。</value>
@@ -729,8 +918,14 @@
   <data name="Testing module available" xml:space="preserve">
     <value>测试模块可用</value>
   </data>
+  <data name="The background resolver records exact versions, package archives, hashes, source, and introduction paths." xml:space="preserve">
+    <value>后台解析器会记录精确版本、软件包归档文件、哈希值、来源和引入路径。</value>
+  </data>
   <data name="The definitive, battle-tested .NET enterprise foundation. From Auth to AI, we&apos;ve solved the hard parts so you don&apos;t have to." xml:space="preserve">
     <value>权威的、经过实战检验的 .NET 企业级开发基座。从身份认证到 AI 集成，我们已为您扫清基础设施障碍，助您开箱即用。</value>
+  </data>
+  <data name="The entire dependency graph" xml:space="preserve">
+    <value>完整依赖关系图</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>导航栏会根据用户角色和权限自动调整显示内容。</value>
@@ -753,8 +948,17 @@
   <data name="TimeZoneInfo API available" xml:space="preserve">
     <value>提供 TimeZoneInfo API</value>
   </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>传递依赖</value>
+  </data>
+  <data name="Trust every decision." xml:space="preserve">
+    <value>信任每一个决策。</value>
+  </data>
   <data name="Trusted by production-grade applications including AnduinOS, StatHub, and Warp. We don&apos;t just share this code; we run our entire business on it." xml:space="preserve">
     <value>深受生产级应用信赖，包括 AnduinOS、StatHub 和 Warp。我们不仅分享代码，我们的核心业务也完全构建于此。</value>
+  </data>
+  <data name="Two ecosystems, one policy language" xml:space="preserve">
+    <value>两个生态系统，一种策略语言</value>
   </data>
   <data name="Unified Env" xml:space="preserve">
     <value>统一环境</value>
@@ -800,6 +1004,9 @@
   </data>
   <data name="You&apos;ll need the .NET 10 SDK, npm and your favorite IDE, like Visual Studio or JetBrains Rider. You can find the full setup guide in our documentation." xml:space="preserve">
     <value>您需要安装 .NET 10 SDK、npm 以及您喜欢的 IDE（如 Visual Studio 或 JetBrains Rider）。完整的设置指南可在我们的文档中找到。</value>
+  </data>
+  <data name="Your dependency workspace" xml:space="preserve">
+    <value>您的依赖项工作区</value>
   </data>
   <data name="Your enterprise users don&apos;t need to register repeatedly." xml:space="preserve">
     <value>您的企业用户无需重复注册。</value>

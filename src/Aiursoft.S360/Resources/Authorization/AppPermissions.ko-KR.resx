@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>역할 목록과 할당된 권한을 볼 수 있습니다.</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>정확한 종속성 승인 항목을 승인, 거부, 갱신 및 취소합니다.</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>사용자에게 역할 할당</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>의존성 확인</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>역할 삭제</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>애플리케이션 인스턴스를 재시작할 수 있는 권한을 부여합니다. 가용성 중단을 초래할 수 있으나 모든 설정과 캐시가 다시 로드됩니다.</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>머신 ID는 CI에서 종속성 검사를 실행할 수 있지만, 브라우저 로그인만으로는 검사 API를 사용할 수 없습니다.</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>패키지 차단 목록을 관리합니다.</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>차단 목록 관리</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>전역 설정 관리</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>공급업체와 와일드카드 종속성 신뢰 규칙을 관리합니다.</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>신뢰 규칙 관리</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>모든 요청, 빌드 검사 및 취약점 감사 기록을 조회합니다.</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>권한 읽기</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>역할 읽기</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>공급망 조회</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>사용자 읽기</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>이 앱 재시작</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>의존성 요청 검토</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>개인 종속성 요청을 제출하고 확인합니다.</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>의존성 요청 제출</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>백그라운드 작업 보기</value>

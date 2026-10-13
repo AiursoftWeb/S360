@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+    <value>Chọn kho đăng ký phù hợp với hệ sinh thái đã chọn. Nguồn này là một phần của bằng chứng đánh giá.</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Ngày tạo</value>
+  </data>
+  <data name="Currently blocked" xml:space="preserve">
+    <value>Hiện đang bị chặn</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Chi tiết</value>
+  </data>
+  <data name="Direct dependencies, one name@version per line" xml:space="preserve">
+    <value>Các phụ thuộc trực tiếp, mỗi dòng một tên@phiên bản</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Hệ sinh thái</value>
+  </data>
+  <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
+    <value>Nhập chính xác phiên bản của các gói phụ thuộc trực tiếp. S360 sẽ phân giải và rà soát toàn bộ đồ thị phụ thuộc; trong tương lai, tích hợp CI sẽ kiểm tra đồ thị bản dựng thực tế sau khi triển khai.</value>
+  </data>
+  <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
+    <value>Chỉ nhập các gói bạn trực tiếp lựa chọn; S360 sẽ tự tìm các gói phụ thuộc bắc cầu của chúng. Hãy dùng phiên bản chính xác, không dùng ký tự đại diện.</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
+    <value>Ví dụ: Microsoft.EntityFrameworkCore@10.0.12. Nhập các gói bạn tự chọn; S360 sẽ tìm các gói phụ thuộc mà chúng kéo theo.</value>
+  </data>
+  <data name="My dependency requests" xml:space="preserve">
+    <value>Yêu cầu về các phụ thuộc của tôi</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>Yêu cầu mới</value>
+  </data>
+  <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
+    <value>NuGet dành cho các gói .NET; npm dành cho các gói JavaScript. Hãy chọn hệ sinh thái mà dự án của bạn thực sự cài đặt.</value>
+  </data>
+  <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
+    <value>Nguồn gói không còn được phép sử dụng cho các lần kiểm tra S360.</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Dự án</value>
+  </data>
+  <data name="Project (optional)" xml:space="preserve">
+    <value>Dự án (không bắt buộc)</value>
+  </data>
+  <data name="Recent requests" xml:space="preserve">
+    <value>Các yêu cầu gần đây</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Nguồn</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="Submit for resolution" xml:space="preserve">
+    <value>Gửi yêu cầu phân giải</value>
+  </data>
+  <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
+    <value>Kho lưu trữ cung cấp gói phần mềm. Gói từ một kho lưu trữ khác cần được đánh giá riêng.</value>
+  </data>
+  <data name="Why is this dependency needed?" xml:space="preserve">
+    <value>Vì sao cần đến phần phụ thuộc này?</value>
+  </data>
+
+</root>

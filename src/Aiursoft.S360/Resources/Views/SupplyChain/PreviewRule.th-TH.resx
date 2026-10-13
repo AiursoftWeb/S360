@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Back to policy management" xml:space="preserve">
+    <value>กลับไปยังการจัดการนโยบาย</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>ระบบนิเวศ</value>
+  </data>
+  <data name="Known matching package versions" xml:space="preserve">
+    <value>เวอร์ชันแพ็กเกจที่ตรงกันและทราบแล้ว</value>
+  </data>
+  <data name="No matching recorded package version appears in this preview. A wildcard may still match future or unrecorded packages." xml:space="preserve">
+    <value>ไม่พบเวอร์ชันแพ็กเกจที่บันทึกไว้ซึ่งตรงกันในการแสดงตัวอย่างนี้ แต่อักขระแทนค่าอาจยังตรงกับแพ็กเกจในอนาคตหรือแพ็กเกจที่ยังไม่ได้บันทึก</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>แพ็กเกจ</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>รูปแบบแพ็กเกจ</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>เวอร์ชันก่อนเผยแพร่</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>แสดงตัวอย่างกฎความน่าเชื่อถือ</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>แหล่งที่มา</value>
+  </data>
+  <data name="This is a limited sample, not every matching package. Narrow the pattern to inspect a smaller set." xml:space="preserve">
+    <value>นี่เป็นเพียงตัวอย่างบางส่วน ไม่ใช่แพ็กเกจที่ตรงกันทั้งหมด โปรดปรับรูปแบบให้แคบลงเพื่อดูชุดผลลัพธ์ที่มีขนาดเล็กลง</value>
+  </data>
+  <data name="This read-only preview shows known package versions matching your proposed rule. No package is approved by viewing this page." xml:space="preserve">
+    <value>ตัวอย่างการแสดงตัวอย่างแบบอ่านอย่างเดียวนี้จะแสดงเวอร์ชันแพ็กเกจที่ทราบและตรงกับกฎที่คุณเสนอ การดูหน้านี้ไม่ได้เป็นการอนุมัติแพ็กเกจใดๆ</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>เวอร์ชัน</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>รูปแบบเวอร์ชัน</value>
+  </data>
+
+</root>

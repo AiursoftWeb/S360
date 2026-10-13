@@ -21,6 +21,9 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Hỗ trợ &quot;Fire-and-forget&quot; cho các tác vụ dài hạn (như email hoặc AI), đi kèm giao diện người dùng (GUI) để quản lý hàng đợi, xử lý song song và hủy bỏ.</value>
   </data>
+  <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
+    <value>Ngày để trống có nghĩa là chưa có lần đồng bộ lỗ hổng bảo mật đầy đủ nào thành công. Thời gian được tính theo UTC.</value>
+  </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Hệ thống Kiểm soát Truy cập Dựa trên Vai trò (RBAC) được tích hợp sẵn để quản lý quyền chi tiết.</value>
   </data>
@@ -30,17 +33,62 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>Một giải pháp toàn diện cho xác thực người dùng và quản lý hồ sơ.</value>
   </data>
+  <data name="A decision you can explain" xml:space="preserve">
+    <value>Một quyết định có thể giải thích được</value>
+  </data>
+  <data name="A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence." xml:space="preserve">
+    <value>Tên gọi quen thuộc hay một gói gốc đã được phê duyệt vẫn chưa đủ. Quyết định áp dụng cho từng gói được phân giải và bằng chứng của gói đó.</value>
+  </data>
+  <data name="A fingerprint of the downloaded package archive, not just its name and version." xml:space="preserve">
+    <value>Dấu vân tay của tệp lưu trữ gói đã tải xuống, không chỉ là tên và phiên bản của gói.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>Bố cục hoàn toàn thích ứng hiển thị đẹp mắt trên cả máy tính để bàn và thiết bị di động.</value>
   </data>
+  <data name="A good first step" xml:space="preserve">
+    <value>Một bước khởi đầu tốt</value>
+  </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Một nền tảng hiện đại, đầy đủ tính năng và có khả năng mở rộng cao cho ứng dụng web tiếp theo của bạn.</value>
+  </data>
+  <data name="A package pulled in by another package. It needs authorization too." xml:space="preserve">
+    <value>Một gói được một gói khác đưa vào. Gói này cũng cần được cấp quyền.</value>
+  </data>
+  <data name="A package your project asks for explicitly." xml:space="preserve">
+    <value>Một gói mà dự án của bạn yêu cầu trực tiếp.</value>
+  </data>
+  <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
+    <value>Một chính sách có thể cho phép các gói khớp với tiêu chí; lệnh chặn tuyệt đối hoặc thiếu bằng chứng về hiện vật vẫn khiến chúng bị từ chối.</value>
+  </data>
+  <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
+    <value>Các trường hợp loại trừ tuyệt đối được ưu tiên hơn các quy tắc tin cậy và phê duyệt.</value>
+  </data>
+  <data name="Across the organization" xml:space="preserve">
+    <value>Toàn tổ chức</value>
+  </data>
+  <data name="Active block rules" xml:space="preserve">
+    <value>Các quy tắc chặn đang hoạt động</value>
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>Bản dịch hỗ trợ bởi AI</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Tất cả các dependency đều được tự động đăng ký và luôn sẵn sàng để sử dụng thông qua constructor injection.</value>
+  </data>
+  <data name="All requests you submitted" xml:space="preserve">
+    <value>Tất cả yêu cầu bạn đã gửi</value>
+  </data>
+  <data name="Approval center" xml:space="preserve">
+    <value>Trung tâm phê duyệt</value>
+  </data>
+  <data name="Approved requests" xml:space="preserve">
+    <value>Yêu cầu đã được phê duyệt</value>
+  </data>
+  <data name="Artifact SHA-256" xml:space="preserve">
+    <value>SHA-256 của gói phần mềm</value>
+  </data>
+  <data name="At a glance" xml:space="preserve">
+    <value>Tổng quan</value>
   </data>
   <data name="Automatic Dark Mode" xml:space="preserve">
     <value>Chế độ Tối Tự động</value>
@@ -57,8 +105,26 @@
   <data name="Automatic, AI-driven translation into 28 languages." xml:space="preserve">
     <value>Dịch tự động, được hỗ trợ bởi AI sang 28 ngôn ngữ.</value>
   </data>
+  <data name="Awaiting review" xml:space="preserve">
+    <value>Đang chờ xét duyệt</value>
+  </data>
   <data name="Background Job Processing" xml:space="preserve">
     <value>Xử lý công việc nền</value>
+  </data>
+  <data name="Blacklists, sources, versions, and hashes" xml:space="preserve">
+    <value>Danh sách chặn, nguồn, phiên bản và mã băm</value>
+  </data>
+  <data name="Blocklist comes first" xml:space="preserve">
+    <value>Danh sách chặn được ưu tiên trước</value>
+  </data>
+  <data name="Browse allowed packages" xml:space="preserve">
+    <value>Duyệt các gói được phép</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Bản ghi kiểm tra bản dựng</value>
+  </data>
+  <data name="Built into every decision" xml:space="preserve">
+    <value>Được tích hợp trong mọi quyết định</value>
   </data>
   <data name="Built-in User Management" xml:space="preserve">
     <value>Quản lý Người dùng Tích hợp sẵn</value>
@@ -75,8 +141,14 @@
   <data name="Consistency Validation" xml:space="preserve">
     <value>Xác thực tính nhất quán</value>
   </data>
+  <data name="Decisions recorded for your work" xml:space="preserve">
+    <value>Các quyết định đã được ghi nhận cho công việc của bạn</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Phát triển riêng biệt bằng múi giờ UTC, trong khi hệ thống tự động chuyển đổi và hiển thị ngày tháng theo múi giờ địa phương của người dùng.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Phụ thuộc trực tiếp</value>
   </data>
   <data name="Dockerized for Deployment" xml:space="preserve">
     <value>Đã được Docker hóa để Triển khai</value>
@@ -96,11 +168,35 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Viết thử nghiệm tích hợp một cách dễ dàng bằng cách sử dụng cơ sở dữ liệu trong bộ nhớ, hệ thống tệp tạm thời, mô phỏng tích hợp sẵn và mô phỏng yêu cầu HTTP thực tế.</value>
   </data>
+  <data name="Enter direct dependencies. S360 resolves the complete graph and records the package artifacts." xml:space="preserve">
+    <value>Nhập các gói phụ thuộc trực tiếp. S360 phân giải toàn bộ đồ thị phụ thuộc và ghi lại các tạo phẩm của gói.</value>
+  </data>
+  <data name="Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children." xml:space="preserve">
+    <value>Mỗi gói phụ thuộc bắc cầu cần có giấy phép hợp lệ riêng; gói cha đáng tin cậy không tự động khiến các gói con của nó cũng được tin cậy.</value>
+  </data>
+  <data name="Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision." xml:space="preserve">
+    <value>Việc hết hạn, thu hồi và các khuyến cáo bảo mật mới có thể làm thay đổi kết quả hiện tại mà không xóa bỏ quyết định trước đó.</value>
+  </data>
+  <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
+    <value>Các gói bị chặn rõ ràng sẽ bị từ chối, kể cả khi được đưa vào gián tiếp hoặc khớp với quy tắc nhà cung cấp áp dụng trên diện rộng.</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Tích hợp hệ thống quản lý tập tin tích hợp sẵn với nén ảnh đại diện tự động và bảo vệ quyền riêng tư.</value>
   </data>
   <data name="Features a built-in file management system with automatic avatar compression." xml:space="preserve">
     <value>Tích hợp hệ thống quản lý tập tin với tính năng nén avatar tự động.</value>
+  </data>
+  <data name="Find an existing approval" xml:space="preserve">
+    <value>Tìm phê duyệt hiện có</value>
+  </data>
+  <data name="Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view." xml:space="preserve">
+    <value>Theo dõi các yêu cầu từ gói đầu tiên đến khi có quyết định cuối cùng, tìm hiểu những gì tổ chức của bạn đã cho phép và luôn lưu ý đến các rủi ro mới phát sinh.</value>
+  </data>
+  <data name="Follow the decision" xml:space="preserve">
+    <value>Theo dõi quyết định</value>
+  </data>
+  <data name="For authorized reviewers" xml:space="preserve">
+    <value>Dành cho người đánh giá được ủy quyền</value>
   </data>
   <data name="Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs." xml:space="preserve">
     <value>Xử lý các công việc lặp lại như dọn dẹp và đồng bộ hóa với giao diện người dùng toàn diện để theo dõi lịch sử thực thi và nhật ký.</value>
@@ -108,11 +204,35 @@
   <data name="Hello World!" xml:space="preserve">
     <value>Xin chào Thế giới!</value>
   </data>
+  <data name="How S360 helps" xml:space="preserve">
+    <value>S360 hỗ trợ như thế nào</value>
+  </data>
+  <data name="In progress" xml:space="preserve">
+    <value>Đang xử lý</value>
+  </data>
+  <data name="Include the whole graph" xml:space="preserve">
+    <value>Bao gồm toàn bộ đồ thị phụ thuộc</value>
+  </data>
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Bao gồm tài liệu phong phú và các ví dụ thực tế để giúp bạn bắt đầu nhanh chóng.</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Quản lý Tập tin Tích hợp</value>
+  </data>
+  <data name="Keep the wider picture in view." xml:space="preserve">
+    <value>Hãy luôn lưu ý đến bức tranh tổng thể.</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Các lỗ hổng đã biết</value>
+  </data>
+  <data name="Last successful OSV sync" xml:space="preserve">
+    <value>Lần đồng bộ OSV thành công gần nhất</value>
+  </data>
+  <data name="Learn about the workflow" xml:space="preserve">
+    <value>Tìm hiểu về quy trình</value>
+  </data>
+  <data name="Match the actual artifact" xml:space="preserve">
+    <value>Đối chiếu với hiện vật thực tế</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Các mô hình được xác thực ở cả phía client và phía server dựa trên các chú thích dữ liệu.</value>
@@ -123,8 +243,29 @@
   <data name="Multiple Database Support" xml:space="preserve">
     <value>Hỗ trợ Đa Cơ sở Dữ liệu</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Yêu cầu của tôi</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>Yêu cầu mới</value>
+  </data>
+  <data name="No requests yet" xml:space="preserve">
+    <value>Chưa có yêu cầu nào</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Tích hợp OpenID Connect</value>
+  </data>
+  <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
+    <value>Các tệp gói được ghi nhận trên cả hai hệ sinh thái, bao gồm cả những mục hiện chưa được cấp phép.</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>Chính sách</value>
+  </data>
+  <data name="Policy management" xml:space="preserve">
+    <value>Quản lý chính sách</value>
+  </data>
+  <data name="Quick and detailed risk views" xml:space="preserve">
+    <value>Xem nhanh và chi tiết các rủi ro</value>
   </data>
   <data name="RBAC Authorization" xml:space="preserve">
     <value>Ủy quyền RBAC</value>
@@ -132,17 +273,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Đọc tài liệu</value>
   </data>
+  <data name="Recent activity" xml:space="preserve">
+    <value>Hoạt động gần đây</value>
+  </data>
+  <data name="Request overview" xml:space="preserve">
+    <value>Tổng quan yêu cầu</value>
+  </data>
+  <data name="Request what is missing" xml:space="preserve">
+    <value>Yêu cầu những gì còn thiếu</value>
+  </data>
+  <data name="Resolving or awaiting review" xml:space="preserve">
+    <value>Đang xử lý hoặc chờ xét duyệt</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Thiết kế đáp ứng</value>
   </data>
+  <data name="Review pending and expiring decisions" xml:space="preserve">
+    <value>Xem xét các quyết định đang chờ xử lý và sắp hết hạn</value>
+  </data>
+  <data name="Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve." xml:space="preserve">
+    <value>Người xét duyệt có thể xem các phụ thuộc mới, những mục bị chặn, các phát hiện về lỗ hổng bảo mật và báo cáo chính xác mà họ phê duyệt.</value>
+  </data>
+  <data name="Revisit the risk" xml:space="preserve">
+    <value>Đánh giá lại rủi ro</value>
+  </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Kiểm thử tích hợp mạnh mẽ</value>
+  </data>
+  <data name="Rollout note:" xml:space="preserve">
+    <value>Ghi chú triển khai:</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Quản lý tác vụ định kỳ</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Tích hợp liền mạch với mọi nhà cung cấp OpenID Connect, kèm theo đồng bộ hóa vai trò tự động.</value>
+  </data>
+  <data name="Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog." xml:space="preserve">
+    <value>Tìm kiếm các gói NuGet và npm, nhà cung cấp, phiên bản chính xác và quy tắc ký tự đại diện trong danh mục hiện có.</value>
+  </data>
+  <data name="See reported dependency decisions" xml:space="preserve">
+    <value>Xem các quyết định về dependency đã được ghi nhận</value>
   </data>
   <data name="Smart Configuration Overrides" xml:space="preserve">
     <value>Ghi đè cấu hình thông minh</value>
@@ -156,20 +327,68 @@
   <data name="Start a new project" xml:space="preserve">
     <value>Bắt đầu một dự án mới</value>
   </data>
+  <data name="Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here." xml:space="preserve">
+    <value>Hãy bắt đầu bằng cách duyệt danh mục. Khi cần một gói mới, yêu cầu của bạn cùng báo cáo đầy đủ về các gói phụ thuộc sẽ xuất hiện tại đây.</value>
+  </data>
+  <data name="Suppliers, trust rules, and absolute blocks" xml:space="preserve">
+    <value>Nhà cung cấp, quy tắc tin cậy và các lệnh chặn tuyệt đối</value>
+  </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Hỗ trợ cả biến môi trường và cài đặt dựa trên cơ sở dữ liệu, với ưu tiên tự động dành cho biến môi trường để ghi đè một cách liền mạch.</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Thanh điều hướng sẽ tự động điều chỉnh dựa trên vai trò và quyền của người dùng.</value>
   </data>
+  <data name="The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs." xml:space="preserve">
+    <value>Tên gói, phiên bản chính xác, nguồn đã được phê duyệt và mã SHA-256 của tệp lưu trữ giúp việc đánh giá luôn gắn liền với các dữ liệu đầu vào cụ thể.</value>
+  </data>
+  <data name="These counts describe your own requests. Organization-wide review figures appear only for authorized readers." xml:space="preserve">
+    <value>Các số liệu này chỉ phản ánh những yêu cầu của riêng bạn. Số liệu rà soát trên toàn tổ chức chỉ hiển thị với người dùng được cấp quyền.</value>
+  </data>
+  <data name="These organization-wide indicators are not a substitute for opening the underlying report." xml:space="preserve">
+    <value>Các chỉ số tổng thể này không thay thế cho việc mở báo cáo chi tiết.</value>
+  </data>
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>Đây là một dự án mẫu, nơi chúng ta bắt đầu hành trình khám phá...</value>
+  </data>
+  <data name="This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment." xml:space="preserve">
+    <value>Không gian làm việc này đang được chuẩn bị trước khi Runner bắt đầu thực thi. Yêu cầu Web được phê duyệt không có nghĩa là mọi bản dựng đã được kiểm tra; việc tích hợp CI sẽ được triển khai sau khi dịch vụ được đưa vào hoạt động.</value>
+  </data>
+  <data name="Tracked artifacts" xml:space="preserve">
+    <value>Các tạo phẩm được theo dõi</value>
+  </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Phụ thuộc bắc cầu</value>
+  </data>
+  <data name="Trust rule" xml:space="preserve">
+    <value>Quy tắc tin cậy</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>Xem tất cả</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Chào mừng</value>
   </data>
+  <data name="Welcome to S360." xml:space="preserve">
+    <value>Chào mừng bạn đến với S360.</value>
+  </data>
+  <data name="What S360 checks before a dependency is trusted." xml:space="preserve">
+    <value>S360 kiểm tra những gì trước khi một phần phụ thuộc được tin cậy.</value>
+  </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Tại sao nên sử dụng Mẫu Aiursoft?</value>
+  </data>
+  <data name="Words you will see" xml:space="preserve">
+    <value>Các thuật ngữ bạn sẽ gặp</value>
+  </data>
+  <data name="Your latest requests" xml:space="preserve">
+    <value>Các yêu cầu gần đây nhất của bạn</value>
+  </data>
+  <data name="Your supply-chain workspace" xml:space="preserve">
+    <value>Không gian làm việc về chuỗi cung ứng của bạn</value>
+  </data>
+  <data name="Your work, without the guesswork." xml:space="preserve">
+    <value>Công việc của bạn, không cần phỏng đoán.</value>
   </data>
 
 </root>

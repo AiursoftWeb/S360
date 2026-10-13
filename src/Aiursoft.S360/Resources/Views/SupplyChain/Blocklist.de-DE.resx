@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Ein passendes Paket wird unabhängig von Anbieter, Quelle, Genehmigung oder davon, ob es als direkte oder transitive Abhängigkeit eingebunden wurde, abgelehnt. Frühere Genehmigungen und Prüfungen bleiben als Prüfbelege erhalten.</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>Absolute Sperrliste</value>
+  </data>
+  <data name="Add absolute block" xml:space="preserve">
+    <value>Absolute Sperre hinzufügen</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>Anwendungen</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>Artefakte</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Verfügbare Abhängigkeiten</value>
+  </data>
+  <data name="Block package" xml:space="preserve">
+    <value>Paket sperren</value>
+  </data>
+  <data name="Block reason" xml:space="preserve">
+    <value>Sperrgrund</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>Von</value>
+  </data>
+  <data name="CI check runs" xml:space="preserve">
+    <value>CI-Prüfläufe</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Erstellt</value>
+  </data>
+  <data name="Disable block" xml:space="preserve">
+    <value>Sperrung deaktivieren</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ökosystem</value>
+  </data>
+  <data name="Edit rule and view history" xml:space="preserve">
+    <value>Regel bearbeiten und Verlauf anzeigen</value>
+  </data>
+  <data name="Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*." xml:space="preserve">
+    <value>Exakte Namen und Präfixe unterscheiden sich. ant-design umfasst nicht automatisch antd oder @ant-design/*.</value>
+  </data>
+  <data name="Examples" xml:space="preserve">
+    <value>Beispiele</value>
+  </data>
+  <data name="Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures." xml:space="preserve">
+    <value>Die nachfolgenden Angaben zur Auswirkung sind Stichproben kürzlich erfasster Objekte und keine vollständigen Zählungen. Schränken Sie eine Regel ein oder überprüfen Sie sie, bevor Sie sich auf diese Angaben verlassen.</value>
+  </data>
+  <data name="No block rules have been recorded for this ecosystem." xml:space="preserve">
+    <value>Für dieses Ökosystem wurden keine Sperrregeln erfasst.</value>
+  </data>
+  <data name="Package name or trailing-* pattern" xml:space="preserve">
+    <value>Paketname oder Muster mit abschließendem *</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Paketmuster</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Begründung</value>
+  </data>
+  <data name="Recorded impact sample" xml:space="preserve">
+    <value>Aufgezeichnete Beispielauswirkungen</value>
+  </data>
+  <data name="Save change" xml:space="preserve">
+    <value>Änderung speichern</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Anzeigen</value>
+  </data>
+  <data name="Use * to block every version, or an exact version or trailing-* prefix to narrow the block." xml:space="preserve">
+    <value>Verwenden Sie *, um alle Versionen zu sperren, oder grenzen Sie die Sperre mit einer exakten Version oder einem Präfix mit abschließendem * ein.</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Versionsmuster</value>
+  </data>
+  <data name="View history" xml:space="preserve">
+    <value>Verlauf anzeigen</value>
+  </data>
+  <data name="Why change this block?" xml:space="preserve">
+    <value>Warum diesen Block ändern?</value>
+  </data>
+  <data name="Why disable this block?" xml:space="preserve">
+    <value>Warum soll dieser Block deaktiviert werden?</value>
+  </data>
+
+</root>

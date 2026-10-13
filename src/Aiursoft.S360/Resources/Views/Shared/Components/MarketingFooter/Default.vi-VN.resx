@@ -18,11 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Aiursoft" xml:space="preserve">
+      <data name="A clearer way to request, approve, and keep watch over the software your teams depend on." xml:space="preserve">
+    <value>Một cách rõ ràng hơn để yêu cầu, phê duyệt và theo dõi phần mềm mà các nhóm của bạn phụ thuộc vào.</value>
+  </data>
+  <data name="A project by Aiursoft" xml:space="preserve">
+    <value>Một dự án của Aiursoft</value>
+  </data>
+  <data name="Aiursoft" xml:space="preserve">
     <value>Aiursoft</value>
   </data>
   <data name="Aiursoft Template - A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Aiursoft Template - Nền tảng hiện đại, đầy đủ tính năng và có khả năng mở rộng cao cho ứng dụng web tiếp theo của bạn.</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Các gói phụ thuộc hiện có</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Tính năng</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>Cộng đồng</value>
@@ -30,8 +42,14 @@
   <data name="Contributions" xml:space="preserve">
     <value>Đóng góp</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Bảng điều khiển</value>
+  </data>
   <data name="Documentation" xml:space="preserve">
     <value>Tài liệu</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Khám phá</value>
   </data>
   <data name="Get Started" xml:space="preserve">
     <value>Bắt Đầu</value>
@@ -39,11 +57,17 @@
   <data name="Github" xml:space="preserve">
     <value>Github</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
   <data name="Legal" xml:space="preserve">
     <value>Pháp lý</value>
   </data>
   <data name="Licence" xml:space="preserve">
     <value>Giấy phép</value>
+  </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Yêu cầu của tôi</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Dự án</value>
@@ -54,11 +78,23 @@
   <data name="Resources" xml:space="preserve">
     <value>Tài nguyên</value>
   </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>Triển khai</value>
+  </data>
+  <data name="S360&apos;s Web approval center is the first step. Build enforcement and restricted mirrors follow as separate rollout stages." xml:space="preserve">
+    <value>Trung tâm phê duyệt trực tuyến của S360 là bước đầu tiên. Việc thực thi các quy định và triển khai các bản sao phản chiếu bị giới hạn sẽ được thực hiện ở những giai đoạn triển khai riêng biệt.</value>
+  </data>
   <data name="Social" xml:space="preserve">
     <value>Mạng xã hội</value>
   </data>
   <data name="Source Code" xml:space="preserve">
     <value>Mã Nguồn</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>Quy trình làm việc</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>Không gian làm việc</value>
   </data>
 
 </root>

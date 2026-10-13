@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="10.0.* can cover future releases. Prefer an exact version when the scope should be narrow." xml:space="preserve">
+    <value>10.0.*은 향후 릴리스에도 적용될 수 있습니다. 적용 범위를 좁히려면 정확한 버전을 사용하세요.</value>
+  </data>
+  <data name="A label for grouping trust rules, not verified proof of a package publisher." xml:space="preserve">
+    <value>신뢰 규칙을 그룹화하기 위한 레이블이며, 패키지 게시자가 확인되었다는 증거는 아닙니다.</value>
+  </data>
+  <data name="A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency." xml:space="preserve">
+    <value>일치하는 규칙은 아티팩트 검증이나 취약점 검사를 완료했다는 의미가 아닙니다. 향후 CI 연동을 통해 확인된 모든 종속성을 검증할 예정입니다.</value>
+  </data>
+  <data name="A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft." xml:space="preserve">
+    <value>뒤에 붙는 *는 이름의 접두사와 일치합니다. Microsoft.*는 정확한 패키지 이름인 Microsoft와 일치하지 않습니다.</value>
+  </data>
+  <data name="A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry." xml:space="preserve">
+    <value>뒤에 붙은 *는 이름 또는 버전 접두사와 일치합니다. 예를 들어, System.*는 정확히 System이라는 패키지와 일치하지 않습니다. 와일드카드 규칙은 향후 릴리스까지 허용할 수 있으므로, 소스와 만료 시점을 제한하세요.</value>
+  </data>
+  <data name="Active trust rules" xml:space="preserve">
+    <value>활성 신뢰 규칙</value>
+  </data>
+  <data name="Add supplier" xml:space="preserve">
+    <value>공급업체 추가</value>
+  </data>
+  <data name="All suppliers" xml:space="preserve">
+    <value>모든 공급업체</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>승인 사유</value>
+  </data>
+  <data name="Approve rule" xml:space="preserve">
+    <value>규칙 승인</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>사용 가능한 종속성</value>
+  </data>
+  <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
+    <value>패키지를 찾을 수 없나요? 요청을 제출하세요</value>
+  </data>
+  <data name="Check a concrete package against rules" xml:space="preserve">
+    <value>구체적인 패키지가 규칙에 부합하는지 확인하세요</value>
+  </data>
+  <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
+    <value>UTC 시간을 입력하세요. 이 필드에서는 기기의 현지 시간이 변환되지 않습니다.</value>
+  </data>
+  <data name="Exact package name" xml:space="preserve">
+    <value>정확한 패키지 이름</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>정확한 버전</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>만료일</value>
+  </data>
+  <data name="Expires (UTC)" xml:space="preserve">
+    <value>만료일(UTC)</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>(UTC) 만료 시각</value>
+  </data>
+  <data name="Find packages" xml:space="preserve">
+    <value>패키지 찾기</value>
+  </data>
+  <data name="HTTPS package source" xml:space="preserve">
+    <value>HTTPS 패키지 소스</value>
+  </data>
+  <data name="Include prerelease" xml:space="preserve">
+    <value>프리릴리스 포함</value>
+  </data>
+  <data name="Last checked (UTC)" xml:space="preserve">
+    <value>마지막 확인 시각(UTC)</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>차단 목록 관리</value>
+  </data>
+  <data name="Manage policy" xml:space="preserve">
+    <value>정책 관리</value>
+  </data>
+  <data name="Manage suppliers and trust rules" xml:space="preserve">
+    <value>공급업체 및 신뢰 규칙 관리</value>
+  </data>
+  <data name="Match rules" xml:space="preserve">
+    <value>규칙 적용</value>
+  </data>
+  <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
+    <value>현재 S360 검사를 통과한 아티팩트만 여기에 표시됩니다. 아직 확인되지 않은 패키지에 적용되는 규칙은 위에 표시되지만, 해당 패키지는 아직 검사된 아티팩트가 아닙니다. 이후 모든 빌드에서도 전체 종속성 그래프를 검사합니다.</value>
+  </data>
+  <data name="Only the first 500 results are shown. Narrow the package search to inspect more results." xml:space="preserve">
+    <value>처음 500개의 결과만 표시됩니다. 더 많은 결과를 확인하려면 패키지 검색 범위를 좁히세요.</value>
+  </data>
+  <data name="Open the separate absolute blocklist management page" xml:space="preserve">
+    <value>별도의 절대 차단 목록 관리 페이지 열기</value>
+  </data>
+  <data name="Overridden by blocklist" xml:space="preserve">
+    <value>차단 목록에 의해 적용이 무효화됨</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>패키지</value>
+  </data>
+  <data name="Package name" xml:space="preserve">
+    <value>패키지 이름</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>패키지 패턴</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>패키지 소스</value>
+  </data>
+  <data name="Page sections" xml:space="preserve">
+    <value>페이지 섹션</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>시험판</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>미리 보기</value>
+  </data>
+  <data name="Preview a rule before approval" xml:space="preserve">
+    <value>승인 전에 규칙 미리 보기</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>사유</value>
+  </data>
+  <data name="Recorded artifacts" xml:space="preserve">
+    <value>기록된 아티팩트</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>검색</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
+    <value>이 규칙을 적용했을 때 일치하는 것으로 확인된 패키지 버전을 표시합니다. 이는 적용 범위를 미리 보는 것이며, 신뢰 여부를 결정하는 것은 아닙니다.</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>출처</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>공급자</value>
+  </data>
+  <data name="Supplier name" xml:space="preserve">
+    <value>공급업체 이름</value>
+  </data>
+  <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
+    <value>승인된 레지스트리 URL은 규칙의 일부입니다. 동일한 패키지라도 출처가 다르면 이 규칙이 적용되지 않습니다.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
+    <value>최신 취약점 동기화에 실패했습니다. 감사가 성공적으로 완료될 때까지 기록된 아티팩트가 숨겨집니다.</value>
+  </data>
+  <data name="Trust rules" xml:space="preserve">
+    <value>신뢰 규칙</value>
+  </data>
+  <data name="Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies." xml:space="preserve">
+    <value>신뢰 규칙은 사용 가능 여부를 결정하는 여러 조건 중 하나일 뿐입니다. 절대 차단 목록은 간접 종속성에도 적용되며 신뢰 규칙보다 우선합니다.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>버전</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>버전 패턴</value>
+  </data>
+  <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
+    <value>취약점 감사가 아직 완료되지 않았습니다. 기록된 아티팩트는 사용 가능한 항목으로 표시할 수 없습니다.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
+    <value>취약점 감사 결과가 오래되었습니다. 새 감사가 완료될 때까지 기록된 아티팩트가 숨겨집니다.</value>
+  </data>
+  <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
+    <value>와일드카드 규칙은 향후 버전을 자동으로 허용하며, 처음 확인된 해시도 기록됩니다.</value>
+  </data>
+
+</root>

@@ -21,6 +21,9 @@
       <data name="Aiursoft Template" xml:space="preserve">
     <value>เทมเพลต Aiursoft</value>
   </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>ความสามารถ</value>
+  </data>
   <data name="Community" xml:space="preserve">
     <value>ชุมชน</value>
   </data>
@@ -30,11 +33,20 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Open workspace" xml:space="preserve">
+    <value>เปิดพื้นที่ทำงาน</value>
+  </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>การเปิดตัว</value>
+  </data>
   <data name="Source Code" xml:space="preserve">
     <value>ซอร์สโค้ด</value>
   </data>
   <data name="Try the dashboard" xml:space="preserve">
     <value>ลองใช้แดชบอร์ด</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>ขั้นตอนการทำงาน</value>
   </data>
 
 </root>

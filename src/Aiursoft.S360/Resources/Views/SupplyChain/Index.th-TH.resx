@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="10.0.* can cover future releases. Prefer an exact version when the scope should be narrow." xml:space="preserve">
+    <value>10.0.* อาจครอบคลุมรุ่นที่ออกในอนาคต หากต้องการกำหนดขอบเขตให้แคบ ควรระบุรุ่นที่แน่นอน</value>
+  </data>
+  <data name="A label for grouping trust rules, not verified proof of a package publisher." xml:space="preserve">
+    <value>ป้ายกำกับสำหรับจัดกลุ่มกฎความน่าเชื่อถือ ไม่ใช่หลักฐานยืนยันผู้เผยแพร่แพ็กเกจ</value>
+  </data>
+  <data name="A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency." xml:space="preserve">
+    <value>กฎที่ตรงกันไม่ได้หมายความว่ามีการตรวจสอบอาร์ติแฟกต์หรือช่องโหว่เสร็จสมบูรณ์แล้ว การผสานรวม CI ในอนาคตจะตรวจสอบการพึ่งพาทุกรายการที่แก้ไขได้แล้ว</value>
+  </data>
+  <data name="A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft." xml:space="preserve">
+    <value>เครื่องหมาย * ที่อยู่ท้ายครอบคลุมชื่อที่ขึ้นต้นด้วยคำนั้น Microsoft.* ไม่รวมแพ็กเกจชื่อ Microsoft โดยตรง</value>
+  </data>
+  <data name="A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry." xml:space="preserve">
+    <value>เครื่องหมาย * ที่อยู่ท้ายสุดจะจับคู่กับคำนำหน้าของชื่อหรือเวอร์ชัน ตัวอย่างเช่น System.* จะไม่จับคู่กับแพ็กเกจชื่อ System แบบตรงตัว กฎที่ใช้เครื่องหมายตัวแทนอาจครอบคลุมเวอร์ชันที่จะเผยแพร่ในอนาคต ดังนั้นควรจำกัดแหล่งที่มาและกำหนดวันหมดอายุ</value>
+  </data>
+  <data name="Active trust rules" xml:space="preserve">
+    <value>กฎความน่าเชื่อถือที่ใช้งานอยู่</value>
+  </data>
+  <data name="Add supplier" xml:space="preserve">
+    <value>เพิ่มซัพพลายเออร์</value>
+  </data>
+  <data name="All suppliers" xml:space="preserve">
+    <value>ซัพพลายเออร์ทั้งหมด</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>เหตุผลในการอนุมัติ</value>
+  </data>
+  <data name="Approve rule" xml:space="preserve">
+    <value>อนุมัติกฎ</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>ไลบรารีที่พร้อมใช้งาน</value>
+  </data>
+  <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
+    <value>หากไม่พบแพ็กเกจ ส่งคำขอ</value>
+  </data>
+  <data name="Check a concrete package against rules" xml:space="preserve">
+    <value>ตรวจสอบแพ็กเกจที่ระบุว่าตรงตามกฎหรือไม่</value>
+  </data>
+  <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
+    <value>ป้อนเวลา UTC โดยช่องนี้จะไม่แปลงเวลาท้องถิ่นของอุปกรณ์ของคุณ</value>
+  </data>
+  <data name="Exact package name" xml:space="preserve">
+    <value>ชื่อแพ็กเกจที่ตรงกันทุกประการ</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>เวอร์ชันที่ตรงกันทุกประการ</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>วันหมดอายุ</value>
+  </data>
+  <data name="Expires (UTC)" xml:space="preserve">
+    <value>หมดอายุ (UTC)</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>หมดอายุเวลา (UTC)</value>
+  </data>
+  <data name="Find packages" xml:space="preserve">
+    <value>ค้นหาแพ็กเกจ</value>
+  </data>
+  <data name="HTTPS package source" xml:space="preserve">
+    <value>แหล่งแพ็กเกจ HTTPS</value>
+  </data>
+  <data name="Include prerelease" xml:space="preserve">
+    <value>รวมรุ่นพรีรีลีส</value>
+  </data>
+  <data name="Last checked (UTC)" xml:space="preserve">
+    <value>ตรวจสอบล่าสุด (UTC)</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>จัดการรายการบล็อก</value>
+  </data>
+  <data name="Manage policy" xml:space="preserve">
+    <value>จัดการนโยบาย</value>
+  </data>
+  <data name="Manage suppliers and trust rules" xml:space="preserve">
+    <value>จัดการซัพพลายเออร์และกฎความน่าเชื่อถือ</value>
+  </data>
+  <data name="Match rules" xml:space="preserve">
+    <value>จับคู่กับกฎ</value>
+  </data>
+  <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
+    <value>ที่นี่จะแสดงเฉพาะอาร์ติแฟกต์ที่ผ่านการตรวจสอบ S360 ในขณะนี้เท่านั้น กฎที่ตรงกับแพ็กเกจที่ยังไม่ปรากฏจะแสดงอยู่ด้านบน แต่แพ็กเกจนั้นยังไม่ใช่อาร์ติแฟกต์ที่ผ่านการตรวจสอบ และการบิลด์ทุกครั้งในอนาคตจะยังคงตรวจสอบกราฟการพึ่งพาทั้งหมด</value>
+  </data>
+  <data name="Only the first 500 results are shown. Narrow the package search to inspect more results." xml:space="preserve">
+    <value>แสดงผลลัพธ์เพียง 500 รายการแรกเท่านั้น ปรับการค้นหาแพ็กเกจให้แคบลงเพื่อดูผลลัพธ์เพิ่มเติม</value>
+  </data>
+  <data name="Open the separate absolute blocklist management page" xml:space="preserve">
+    <value>เปิดหน้าจัดการรายการบล็อกแบบเด็ดขาดแยกต่างหาก</value>
+  </data>
+  <data name="Overridden by blocklist" xml:space="preserve">
+    <value>ถูกบัญชีรายการบล็อกมีผลแทนที่</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>แพ็กเกจ</value>
+  </data>
+  <data name="Package name" xml:space="preserve">
+    <value>ชื่อแพ็กเกจ</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>รูปแบบแพ็กเกจ</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>แหล่งที่มาของแพ็กเกจ</value>
+  </data>
+  <data name="Page sections" xml:space="preserve">
+    <value>ส่วนต่าง ๆ ของหน้า</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>รุ่นก่อนเผยแพร่</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>แสดงตัวอย่าง</value>
+  </data>
+  <data name="Preview a rule before approval" xml:space="preserve">
+    <value>ดูตัวอย่างกฎก่อนอนุมัติ</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>เหตุผล</value>
+  </data>
+  <data name="Recorded artifacts" xml:space="preserve">
+    <value>รายการอาร์ติแฟกต์ที่บันทึกไว้</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>เพิกถอน</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>ค้นหา</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
+    <value>แสดงเวอร์ชันแพ็กเกจที่ทราบ ซึ่งกฎที่เสนอไว้นี้จะตรงกัน นี่เป็นเพียงตัวอย่างขอบเขต ไม่ใช่การตัดสินความน่าเชื่อถือ</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>แหล่งที่มา</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>ผู้จัดจำหน่าย</value>
+  </data>
+  <data name="Supplier name" xml:space="preserve">
+    <value>ชื่อซัพพลายเออร์</value>
+  </data>
+  <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
+    <value>URL ของรีจิสทรีที่ได้รับอนุมัติเป็นส่วนหนึ่งของกฎนี้ แพ็กเกจเดียวกันจากแหล่งอื่นจะไม่อยู่ภายใต้กฎนี้</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
+    <value>การซิงโครไนซ์ข้อมูลช่องโหว่ล่าสุดล้มเหลว รายการสิ่งที่บันทึกไว้จะถูกซ่อนไว้จนกว่าการตรวจสอบจะสำเร็จ</value>
+  </data>
+  <data name="Trust rules" xml:space="preserve">
+    <value>กฎความน่าเชื่อถือ</value>
+  </data>
+  <data name="Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies." xml:space="preserve">
+    <value>กฎความน่าเชื่อถือเป็นเพียงเงื่อนไขหนึ่งในการพิจารณาความพร้อมใช้งาน รายการบล็อกแบบเด็ดขาดมีผลเหนือกฎเหล่านี้ รวมถึงกรณีของสิ่งที่ต้องพึ่งพาโดยอ้อม</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>เวอร์ชัน</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>รูปแบบเวอร์ชัน</value>
+  </data>
+  <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
+    <value>การตรวจสอบช่องโหว่ยังไม่เสร็จสิ้น จึงยังไม่สามารถแสดงรายการอาร์ติแฟกต์ที่บันทึกไว้เป็นรายการที่พร้อมใช้งานได้</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
+    <value>การตรวจสอบช่องโหว่ล้าสมัยแล้ว รายการอาร์ติแฟกต์ที่บันทึกไว้จะถูกซ่อนไว้จนกว่าการตรวจสอบครั้งใหม่จะเสร็จสิ้น</value>
+  </data>
+  <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
+    <value>กฎไวลด์การ์ดอนุมัติเวอร์ชันในอนาคตโดยอัตโนมัติ และยังคงบันทึกแฮชที่พบเป็นครั้งแรก</value>
+  </data>
+
+</root>

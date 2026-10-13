@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Absolute Sperrliste</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Zugriff verweigert</value>
   </data>
   <data name="Account Settings" xml:space="preserve">
@@ -36,11 +39,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anonym</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Verfügbare Abhängigkeiten</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Details zu verfügbaren Abhängigkeiten</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Hintergrundaufgaben</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Ungültige Anforderung</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Build-Prüfprotokolle</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Avatar ändern</value>
@@ -72,6 +84,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Benutzer löschen</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Abhängigkeitsfreigaben</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Verzeichnis</value>
   </data>
@@ -83,6 +98,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Fehler</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>Bestehende CVEs in Paketen</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Funktionen</value>
@@ -114,8 +132,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Verwalten</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Meine Anfragen</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Nicht gefunden</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Übersicht</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Berechtigungsdetails</value>
@@ -125,6 +149,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Persönlich</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Vertrauensregel anzeigen</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profil</value>
@@ -141,11 +168,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Rollen</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>S360-Übersicht</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Abmelden</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Lieferkette</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>System</value>

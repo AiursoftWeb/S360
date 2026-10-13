@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>允许查看角色列表及其分配的权限。</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>批准、拒绝、续期和撤销对特定依赖项的审批。</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>为用户分配角色</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>检查依赖项</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>删除角色</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>授予重启应用程序实例的权限。可能导致服务中断，但所有设置和缓存都将重新加载。</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>机器身份可通过 CI 执行依赖项检查；仅通过浏览器登录无法使用检查 API。</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>管理绝对阻止的程序包。</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>管理黑名单</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>管理全局设置</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>管理供应商和通配符依赖项信任规则。</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>管理信任规则</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>查看所有请求、构建检查和漏洞审计记录。</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>读取权限</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>查看角色</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>读取供应链</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>查看用户</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>重启此应用</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>审核依赖请求</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>提交并查看个人依赖项申请。</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>提交依赖请求</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>查看后台任务</value>

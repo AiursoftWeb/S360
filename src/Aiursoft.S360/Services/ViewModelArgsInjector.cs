@@ -81,6 +81,18 @@ public class ViewModelArgsInjector(
         _ = localizer["Register"];
     
         _ = localizer["Delete Account"];
+    
+        _ = localizer["Absolute blocklist"];
+        _ = localizer["Available dependencies"];
+        _ = localizer["Available dependency details"];
+        _ = localizer["Build check records"];
+        _ = localizer["Dependency approvals"];
+        _ = localizer["Existing package CVEs"];
+        _ = localizer["My requests"];
+        _ = localizer["Overview"];
+        _ = localizer["Preview trust rule"];
+        _ = localizer["S360 overview"];
+        _ = localizer["Supply chain"];
     }
 
     public void InjectSimple(

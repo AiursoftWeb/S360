@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>Rollerin listesini ve atanmış izinlerini görüntülemeye izin verir.</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>Kesin bağımlılık onaylarını onaylayın, reddedin, yenileyin ve iptal edin.</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>Kullanıcılara Rol Atama</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>Bağımlılıkları denetle</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Rolleri Sil</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>Uygulama örneğini yeniden başlatma iznini verir. Kullanılabilirlik kesintilerine neden olabilir ancak tüm ayarlar ve önbellek yeniden yüklenecektir.</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>Makine kimliği, CI üzerinden bağımlılık denetimleri gerçekleştirebilir; yalnızca tarayıcıda oturum açmak, denetim API’sini kullanmaya yetmez.</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Mutlak paket engellemelerini yönetin.</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Engelleme listesini yönet</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>Genel Ayarları Yönet</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>Tedarikçileri ve joker karakterli bağımlılık güven kurallarını yönetin.</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Güven kurallarını yönet</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Tüm istekleri, derleme kontrollerini ve güvenlik açığı denetim kayıtlarını görüntüler.</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>İzinleri Oku</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>Rolleri Oku</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Tedarik zincirini görüntüle</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Kullanıcıları Oku</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Bu Uygulamayı Yeniden Başlat</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>Bağımlılık isteklerini incele</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>Kişisel bağımlılık taleplerini gönderme ve görüntüleme.</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>Bağımlılık talebi gönder</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>Arka Plan İşlerini Görüntüle</value>

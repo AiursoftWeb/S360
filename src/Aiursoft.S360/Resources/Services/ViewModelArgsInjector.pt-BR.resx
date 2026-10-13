@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Lista de bloqueio absoluta</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Acesso Negado</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -33,11 +36,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anônimo</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Dependências disponíveis</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Detalhes das dependências disponíveis</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Trabalhos em Segundo Plano</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Requisição Inválida</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Registros de verificações de compilação</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Alterar Avatar</value>
@@ -69,6 +81,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Excluir Usuário</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Aprovações de dependências</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Diretório</value>
   </data>
@@ -80,6 +95,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Erro</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>CVEs existentes em pacotes</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Recursos</value>
@@ -111,8 +129,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Gerenciar</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Minhas solicitações</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Não Encontrado</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Visão geral</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Detalhes da Permissão</value>
@@ -122,6 +146,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Pessoal</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Prévia da regra de confiança</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Perfil</value>
@@ -138,11 +165,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Funções</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>Visão geral do S360</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Configurações</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Sair</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Cadeia de suprimentos</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>Sistema</value>

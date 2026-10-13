@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>Permet de visualiser la liste des rôles et leurs permissions attribuées.</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>Approuver, rejeter, renouveler et révoquer les approbations de dépendances précises.</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>Attribuer des rôles aux utilisateurs</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>Vérifier les dépendances</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Supprimer les rôles</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>Accorde l&apos;autorisation de redémarrer l&apos;instance de l&apos;application. Peut entraîner des interruptions de disponibilité, mais tous les paramètres et le cache seront rechargés.</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>L’identité de la machine peut effectuer des vérifications des dépendances depuis la CI ; une connexion via un navigateur ne permet pas, à elle seule, d’utiliser l’API de vérification.</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Gérer les blocages définitifs de paquets.</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Gérer la liste de blocage</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>Gérer les paramètres globaux</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>Gérer les fournisseurs et les règles de confiance des dépendances avec caractères génériques.</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Gérer les règles de confiance</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Lire toutes les demandes, les vérifications de compilation et les rapports d’audit des vulnérabilités.</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Lire les permissions</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>Lire les rôles</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Consulter la chaîne d’approvisionnement</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Lire les utilisateurs</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Redémarrer cette application</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>Examiner les demandes de dépendances</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>Soumettre et consulter ses propres demandes de dépendances.</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>Soumettre des demandes de dépendances</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>Visualiser les tâches en arrière-plan</value>

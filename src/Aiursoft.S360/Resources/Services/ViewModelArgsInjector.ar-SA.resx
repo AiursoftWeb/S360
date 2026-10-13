@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>قائمة الحظر المطلقة</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>الوصول ممنوع</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -33,11 +36,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>مجهول</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>التبعيات المتاحة</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>تفاصيل التبعيات المتاحة</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>المهام الخلفية</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>طلب خاطئ</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>سجلات التحقق من البناء</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>تغيير الصورة الشخصية</value>
@@ -69,6 +81,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>حذف المستخدم</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>الموافقات على التبعيات</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>دليل</value>
   </data>
@@ -80,6 +95,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>خطأ</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>ثغرات CVE في الحزم الموجودة</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>الميزات</value>
@@ -111,8 +129,14 @@
   <data name="Manage" xml:space="preserve">
     <value>إدارة</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>طلباتي</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>غير موجود</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>نظرة عامة</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>تفاصيل الصلاحيات</value>
@@ -122,6 +146,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>شخصي</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>معاينة قاعدة الثقة</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>الملف الشخصي</value>
@@ -138,11 +165,17 @@
   <data name="Roles" xml:space="preserve">
     <value>الأدوار</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>نظرة عامة على S360</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>الإعدادات</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>تسجيل الخروج</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>سلسلة الإمداد</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>النظام</value>

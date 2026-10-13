@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Täydellinen estolista</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Pääsy estetty</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -33,11 +36,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anonyymi</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Saatavilla olevat riippuvuudet</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Saatavilla olevien riippuvuuksien tiedot</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Taustatehtävät</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Väärä pyyntö</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Koontitarkistustietueet</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Vaihda avataria</value>
@@ -69,6 +81,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Poista käyttäjä</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Riippuvuuksien hyväksynnät</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Hakemisto</value>
   </data>
@@ -80,6 +95,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Virhe</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>Olemassa olevien pakettien CVE-haavoittuvuudet</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Ominaisuudet</value>
@@ -111,8 +129,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Hallinnoi</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Omat pyyntöni</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Ei löytynyt</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Yleiskatsaus</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Oikeuksien tiedot</value>
@@ -122,6 +146,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Henkilökohtainen</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Luottamussäännön esikatselu</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profiili</value>
@@ -138,11 +165,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Roolit</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>S360-yleiskatsaus</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Asetukset</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Kirjaudu ulos</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Toimitusketju</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>Järjestelmä</value>

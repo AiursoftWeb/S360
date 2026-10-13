@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="10.0.* can cover future releases. Prefer an exact version when the scope should be narrow." xml:space="preserve">
+    <value>10.0.* 可以涵盖未来发布的版本。若要缩小适用范围，请优先使用精确版本。</value>
+  </data>
+  <data name="A label for grouping trust rules, not verified proof of a package publisher." xml:space="preserve">
+    <value>用于归类信任规则的标签，并非经过验证的软件包发布者证明。</value>
+  </data>
+  <data name="A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency." xml:space="preserve">
+    <value>匹配规则并不代表工件检查或漏洞检查已完成。未来的 CI 集成将验证每个已解析的依赖项。</value>
+  </data>
+  <data name="A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft." xml:space="preserve">
+    <value>末尾的 * 可匹配名称前缀。Microsoft.* 不包含名称完全为 Microsoft 的包。</value>
+  </data>
+  <data name="A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry." xml:space="preserve">
+    <value>末尾的 * 可匹配名称或版本前缀。例如，System.* 不会匹配名称恰好为 System 的包。通配符规则可能会允许未来发布的版本，因此请限制其来源并设置到期时间。</value>
+  </data>
+  <data name="Active trust rules" xml:space="preserve">
+    <value>有效信任规则</value>
+  </data>
+  <data name="Add supplier" xml:space="preserve">
+    <value>添加供应商</value>
+  </data>
+  <data name="All suppliers" xml:space="preserve">
+    <value>所有供应商</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>审批原因</value>
+  </data>
+  <data name="Approve rule" xml:space="preserve">
+    <value>批准规则</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>可用依赖项</value>
+  </data>
+  <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
+    <value>找不到所需的软件包？提交申请</value>
+  </data>
+  <data name="Check a concrete package against rules" xml:space="preserve">
+    <value>检查具体软件包是否符合规则</value>
+  </data>
+  <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
+    <value>请输入 UTC 时间；此字段不会将设备的本地时间转换为 UTC。</value>
+  </data>
+  <data name="Exact package name" xml:space="preserve">
+    <value>准确的包名</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>精确版本</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>到期时间</value>
+  </data>
+  <data name="Expires (UTC)" xml:space="preserve">
+    <value>到期时间（UTC）</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>到期时间（UTC）</value>
+  </data>
+  <data name="Find packages" xml:space="preserve">
+    <value>查找软件包</value>
+  </data>
+  <data name="HTTPS package source" xml:space="preserve">
+    <value>HTTPS 软件包源</value>
+  </data>
+  <data name="Include prerelease" xml:space="preserve">
+    <value>包含预发布版本</value>
+  </data>
+  <data name="Last checked (UTC)" xml:space="preserve">
+    <value>上次检查时间（UTC）</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>管理屏蔽列表</value>
+  </data>
+  <data name="Manage policy" xml:space="preserve">
+    <value>管理策略</value>
+  </data>
+  <data name="Manage suppliers and trust rules" xml:space="preserve">
+    <value>管理供应商和信任规则</value>
+  </data>
+  <data name="Match rules" xml:space="preserve">
+    <value>匹配规则</value>
+  </data>
+  <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
+    <value>此处仅显示当前通过 S360 检查的构件。上方显示了与某个尚未出现的软件包匹配的规则，但该软件包尚未成为经过检查的构件；未来的每次构建仍会检查完整的依赖关系图。</value>
+  </data>
+  <data name="Only the first 500 results are shown. Narrow the package search to inspect more results." xml:space="preserve">
+    <value>仅显示前 500 条结果。缩小软件包搜索范围以查看更多结果。</value>
+  </data>
+  <data name="Open the separate absolute blocklist management page" xml:space="preserve">
+    <value>打开单独的绝对拦截名单管理页面</value>
+  </data>
+  <data name="Overridden by blocklist" xml:space="preserve">
+    <value>已被屏蔽列表覆盖</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>软件包</value>
+  </data>
+  <data name="Package name" xml:space="preserve">
+    <value>软件包名称</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>软件包匹配模式</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>软件包来源</value>
+  </data>
+  <data name="Page sections" xml:space="preserve">
+    <value>页面分区</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>预发布版</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>预览</value>
+  </data>
+  <data name="Preview a rule before approval" xml:space="preserve">
+    <value>批准前预览规则</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="Recorded artifacts" xml:space="preserve">
+    <value>已记录的制品</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>撤销</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
+    <value>显示此规则拟匹配的已知软件包版本。这只是范围预览，并不代表信任判定。</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>来源</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>供应商</value>
+  </data>
+  <data name="Supplier name" xml:space="preserve">
+    <value>供应商名称</value>
+  </data>
+  <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
+    <value>获批的注册表 URL 是规则的一部分。来自其他来源的同一软件包不在此规则的适用范围内。</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
+    <value>最新一次漏洞同步失败。成功完成审计前，已记录的构件将被隐藏。</value>
+  </data>
+  <data name="Trust rules" xml:space="preserve">
+    <value>信任规则</value>
+  </data>
+  <data name="Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies." xml:space="preserve">
+    <value>信任规则只是决定可用性的条件之一。绝对禁止清单优先于这些规则，包括对间接依赖项也是如此。</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>版本模式</value>
+  </data>
+  <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
+    <value>漏洞审计尚未完成。无法将已记录的制品列为可用。</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
+    <value>漏洞审计结果已过期。在新一轮审计完成之前，已记录的制品将被隐藏。</value>
+  </data>
+  <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
+    <value>通配符规则会自动允许未来版本；仍会记录首次发现的哈希值。</value>
+  </data>
+
+</root>

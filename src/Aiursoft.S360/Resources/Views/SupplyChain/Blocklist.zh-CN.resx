@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>无论供应商、来源、审批情况如何，也无论该软件包是作为直接依赖还是传递依赖引入，只要匹配规则，就会被拒绝。历史审批和检查记录仍会保留，作为审计证据。</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>绝对阻止列表</value>
+  </data>
+  <data name="Add absolute block" xml:space="preserve">
+    <value>添加绝对屏蔽</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>应用程序</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>制品</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>可用依赖项</value>
+  </data>
+  <data name="Block package" xml:space="preserve">
+    <value>阻止软件包</value>
+  </data>
+  <data name="Block reason" xml:space="preserve">
+    <value>屏蔽原因</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>由</value>
+  </data>
+  <data name="CI check runs" xml:space="preserve">
+    <value>CI 检查运行次数</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>创建于</value>
+  </data>
+  <data name="Disable block" xml:space="preserve">
+    <value>禁用拦截</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>生态系统</value>
+  </data>
+  <data name="Edit rule and view history" xml:space="preserve">
+    <value>编辑规则并查看历史记录</value>
+  </data>
+  <data name="Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*." xml:space="preserve">
+    <value>精确名称和前缀并不相同。ant-design 不会自动涵盖 antd 或 @ant-design/*。</value>
+  </data>
+  <data name="Examples" xml:space="preserve">
+    <value>示例</value>
+  </data>
+  <data name="Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures." xml:space="preserve">
+    <value>以下影响数据仅为近期记录对象的样本，并非完整统计。请先缩小规则范围或检查规则，再依据这些数据作出判断。</value>
+  </data>
+  <data name="No block rules have been recorded for this ecosystem." xml:space="preserve">
+    <value>此生态系统尚未记录任何拦截规则。</value>
+  </data>
+  <data name="Package name or trailing-* pattern" xml:space="preserve">
+    <value>软件包名称或以 * 结尾的模式</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>软件包匹配模式</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="Recorded impact sample" xml:space="preserve">
+    <value>已记录的影响样本</value>
+  </data>
+  <data name="Save change" xml:space="preserve">
+    <value>保存更改</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>显示</value>
+  </data>
+  <data name="Use * to block every version, or an exact version or trailing-* prefix to narrow the block." xml:space="preserve">
+    <value>使用 * 屏蔽所有版本，或使用精确版本号或以 * 结尾的前缀来缩小屏蔽范围。</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>版本模式</value>
+  </data>
+  <data name="View history" xml:space="preserve">
+    <value>查看历史记录</value>
+  </data>
+  <data name="Why change this block?" xml:space="preserve">
+    <value>为什么要更改此屏蔽规则？</value>
+  </data>
+  <data name="Why disable this block?" xml:space="preserve">
+    <value>为什么要禁用此屏蔽规则？</value>
+  </data>
+
+</root>

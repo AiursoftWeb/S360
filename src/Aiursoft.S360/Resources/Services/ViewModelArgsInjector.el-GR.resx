@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Καθολική λίστα αποκλεισμού</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Πρόσβαση απαγορευμένη</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -33,11 +36,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Ανώνυμος</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Διαθέσιμες εξαρτήσεις</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Λεπτομέρειες διαθέσιμων εξαρτήσεων</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Ημικυκλικές Εργασίες</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Λάθος Αίτημα</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Καταγραφές ελέγχου δημιουργίας</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Αλλαγή Avatar</value>
@@ -69,6 +81,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Διαγραφή Χρήστη</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Εγκρίσεις εξαρτήσεων</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Κατάλογος</value>
   </data>
@@ -80,6 +95,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Σφάλμα</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>Υπάρχουσες ευπάθειες CVE πακέτων</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Λειτουργίες</value>
@@ -111,8 +129,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Διαχείριση</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Τα αιτήματά μου</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Δεν βρέθηκε</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Επισκόπηση</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Λεπτομέρειες Εξουσιοδότησης</value>
@@ -122,6 +146,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Προσωπικά</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Προεπισκόπηση κανόνα εμπιστοσύνης</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Προφίλ</value>
@@ -138,11 +165,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Ρόλοι</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>Επισκόπηση S360</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Ρυθμίσεις</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Αποσύνδεση</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Εφοδιαστική αλυσίδα</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>Σύστημα</value>

@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Danh sách chặn tuyệt đối</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Truy cập bị từ chối</value>
   </data>
   <data name="Account Settings" xml:space="preserve">
@@ -36,11 +39,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Ẩn danh</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Các phụ thuộc hiện có</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Chi tiết về các dependency hiện có</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Các nhiệm vụ nền</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Yêu cầu sai</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Bản ghi kiểm tra bản dựng</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Thay đổi Ảnh đại diện</value>
@@ -72,6 +84,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Xóa Người Dùng</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Phê duyệt các gói phụ thuộc</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Thư mục</value>
   </data>
@@ -83,6 +98,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Lỗi</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>Các lỗ hổng CVE trong gói hiện có</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Tính năng</value>
@@ -114,8 +132,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Quản lý</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Yêu cầu của tôi</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Không tìm thấy</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Tổng quan</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Chi tiết quyền hạn</value>
@@ -125,6 +149,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Cá nhân</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Xem trước quy tắc tin cậy</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Hồ sơ</value>
@@ -141,11 +168,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Vai trò</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>Tổng quan S360</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Cài đặt</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Đăng xuất</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Chuỗi cung ứng</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>Hệ thống</value>

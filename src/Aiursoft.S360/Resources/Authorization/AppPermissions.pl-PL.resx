@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>Pozwala na przeglądanie listy ról i przypisanych im uprawnień.</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>Zatwierdzaj, odrzucaj, odnawiaj i cofaj dokładne zatwierdzenia zależności.</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>Przypisywanie ról użytkownikom</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>Sprawdzanie zależności</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Usuń role</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>Przyznaje uprawnienie do ponownego uruchomienia instancji aplikacji. Może powodować przerwy w dostępności, ale wszystkie ustawienia i pamięć podręczna zostaną przeładowane.</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>Tożsamość maszyny może wykonywać kontrole zależności z poziomu CI; samo logowanie w przeglądarce nie umożliwia korzystania z API kontroli.</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Zarządzanie bezwzględnymi blokadami pakietów.</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Zarządzanie listą blokowanych pakietów</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>Zarządzaj ustawieniami globalnymi</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>Zarządzaj dostawcami i regułami zaufania dla zależności z symbolami wieloznacznymi.</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Zarządzanie regułami zaufania</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Wyświetlanie wszystkich zgłoszeń, wyników kontroli kompilacji i rejestrów audytów podatności.</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Odczytaj Uprawnienia</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>Wyświetlanie ról</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Czytaj łańcuch dostaw</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Czytaj użytkowników</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Uruchom ponownie tę aplikację</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>Weryfikowanie wniosków o zależności</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>Składać i przeglądać własne wnioski dotyczące zależności.</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>Przesyłanie wniosków o zależności</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>Wyświetl zadania w tle</value>

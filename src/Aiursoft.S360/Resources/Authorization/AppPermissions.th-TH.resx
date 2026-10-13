@@ -57,8 +57,14 @@
   <data name="Allows viewing the list of roles and their assigned permissions." xml:space="preserve">
     <value>อนุญาตให้ดูรายการบทบาทและสิทธิ์ที่กำหนดให้</value>
   </data>
+  <data name="Approve, reject, renew and revoke exact dependency approvals." xml:space="preserve">
+    <value>อนุมัติ ปฏิเสธ ต่ออายุ และเพิกถอนการอนุมัติการพึ่งพาเฉพาะรายการ</value>
+  </data>
   <data name="Assign Roles to Users" xml:space="preserve">
     <value>กำหนดบทบาทให้ผู้ใช้</value>
+  </data>
+  <data name="Check dependencies" xml:space="preserve">
+    <value>ตรวจสอบ dependencies</value>
   </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>ลบบทบาท</value>
@@ -81,8 +87,26 @@
   <data name="Grants permission to restart the application instance. May cause availability interruptions but all settings and cache will be reloaded." xml:space="preserve">
     <value>ให้สิทธิ์ในการรีสตาร์ทอินสแตนซ์แอปพลิเคชัน อาจทำให้เกิดการขัดจังหวะในการให้บริการ แต่การตั้งค่าและแคชทั้งหมดจะถูกโหลดใหม่</value>
   </data>
+  <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
+    <value>ตัวตนของเครื่องอาจดำเนินการตรวจสอบการพึ่งพาจาก CI ได้ แต่การเข้าสู่ระบบผ่านเบราว์เซอร์เพียงอย่างเดียวไม่สามารถใช้ API สำหรับตรวจสอบได้</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>จัดการการบล็อกแพ็กเกจแบบเด็ดขาด</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>จัดการรายการบล็อก</value>
+  </data>
   <data name="Manage Global Settings" xml:space="preserve">
     <value>จัดการการตั้งค่าทั่วโลก</value>
+  </data>
+  <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
+    <value>จัดการผู้จัดหาและกฎความเชื่อถือสำหรับ dependency แบบ wildcard</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>จัดการกฎความน่าเชื่อถือ</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>อ่านคำขอทั้งหมด การตรวจสอบบิลด์ และบันทึกการตรวจสอบช่องโหว่</value>
   </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>อ่านสิทธิ์</value>
@@ -90,11 +114,23 @@
   <data name="Read Roles" xml:space="preserve">
     <value>อ่านบทบาท</value>
   </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>อ่านข้อมูลห่วงโซ่อุปทาน</value>
+  </data>
   <data name="Read Users" xml:space="preserve">
     <value>อ่านข้อมูลผู้ใช้</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>รีบูตแอปนี้</value>
+  </data>
+  <data name="Review dependency requests" xml:space="preserve">
+    <value>ตรวจสอบคำขอเกี่ยวกับการพึ่งพา</value>
+  </data>
+  <data name="Submit and view personal dependency requests." xml:space="preserve">
+    <value>ส่งและดูคำขอเกี่ยวกับไลบรารีที่ต้องพึ่งพาของตนเอง</value>
+  </data>
+  <data name="Submit dependency requests" xml:space="preserve">
+    <value>ส่งคำขอเกี่ยวกับการพึ่งพา</value>
   </data>
   <data name="View Background Jobs" xml:space="preserve">
     <value>ดูงานเบื้องหลัง</value>

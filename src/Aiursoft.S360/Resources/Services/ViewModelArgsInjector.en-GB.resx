@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Absolute blocklist</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Access Denied</value>
   </data>
   <data name="Account Settings" xml:space="preserve">
@@ -36,11 +39,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anonymous</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Available dependencies</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Available dependency details</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Background Jobs</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Bad Request</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Build Check Records</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Change Profile Picture</value>
@@ -72,6 +84,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Delete User</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Dependency approvals</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Directory</value>
   </data>
@@ -83,6 +98,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>Existing package CVEs</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Features</value>
@@ -114,8 +132,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Manage</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>My requests</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Not Found</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Overview</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Permission Details</value>
@@ -125,6 +149,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Personal</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Preview trust rule</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
@@ -141,11 +168,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Roles</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>S360 overview</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Sign out</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Supply chain</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>System</value>

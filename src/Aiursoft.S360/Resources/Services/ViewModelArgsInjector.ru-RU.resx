@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Access Denied" xml:space="preserve">
+      <data name="Absolute blocklist" xml:space="preserve">
+    <value>Безусловный список блокировки</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
     <value>Доступ запрещён</value>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -33,11 +36,20 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Аноним</value>
   </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Доступные зависимости</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Сведения о доступных зависимостях</value>
+  </data>
   <data name="Background Jobs" xml:space="preserve">
     <value>Фоновые задания</value>
   </data>
   <data name="Bad Request" xml:space="preserve">
     <value>Неверный запрос</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Записи проверок сборки</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Сменить аватар</value>
@@ -69,6 +81,9 @@
   <data name="Delete User" xml:space="preserve">
     <value>Удалить пользователя</value>
   </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Согласования зависимостей</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Каталог</value>
   </data>
@@ -80,6 +95,9 @@
   </data>
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
+  </data>
+  <data name="Existing package CVEs" xml:space="preserve">
+    <value>Существующие уязвимости CVE в пакетах</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Возможности</value>
@@ -111,8 +129,14 @@
   <data name="Manage" xml:space="preserve">
     <value>Управление</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Мои запросы</value>
+  </data>
   <data name="Not Found" xml:space="preserve">
     <value>Не найдено</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Обзор</value>
   </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Сведения о разрешениях</value>
@@ -122,6 +146,9 @@
   </data>
   <data name="Personal" xml:space="preserve">
     <value>Личное</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Предварительный просмотр правила доверия</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Профиль</value>
@@ -138,11 +165,17 @@
   <data name="Roles" xml:space="preserve">
     <value>Роли</value>
   </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>Обзор S360</value>
+  </data>
   <data name="Settings" xml:space="preserve">
     <value>Настройки</value>
   </data>
   <data name="Sign out" xml:space="preserve">
     <value>Выйти</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Цепочка поставок</value>
   </data>
   <data name="System" xml:space="preserve">
     <value>Система</value>

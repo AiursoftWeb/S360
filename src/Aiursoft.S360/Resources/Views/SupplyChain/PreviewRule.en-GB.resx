@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Back to policy management" xml:space="preserve">
+    <value>Back to policy management</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ecosystem</value>
+  </data>
+  <data name="Known matching package versions" xml:space="preserve">
+    <value>Known matching package versions</value>
+  </data>
+  <data name="No matching recorded package version appears in this preview. A wildcard may still match future or unrecorded packages." xml:space="preserve">
+    <value>No matching recorded package version appears in this preview. A wildcard may still match future or unrecorded packages.</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Package</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Package pattern</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>Pre-release versions</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Preview trust rule</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Source</value>
+  </data>
+  <data name="This is a limited sample, not every matching package. Narrow the pattern to inspect a smaller set." xml:space="preserve">
+    <value>This is a limited sample, not every matching package. Narrow the pattern to inspect a smaller set.</value>
+  </data>
+  <data name="This read-only preview shows known package versions matching your proposed rule. No package is approved by viewing this page." xml:space="preserve">
+    <value>This read-only preview shows known package versions matching your proposed rule. No package is approved by viewing this page.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Version pattern</value>
+  </data>
+
+</root>

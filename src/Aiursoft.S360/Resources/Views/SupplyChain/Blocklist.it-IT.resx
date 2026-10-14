@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Un pacchetto corrispondente viene rifiutato indipendentemente dal fornitore, dalla provenienza, dall’approvazione o dal fatto che sia arrivato come dipendenza diretta o transitiva. Le approvazioni e i controlli storici restano come evidenza di audit.</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>Elenco di blocco assoluto</value>
+  </data>
+  <data name="Add absolute block" xml:space="preserve">
+    <value>Aggiungi blocco assoluto</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>applicazioni</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>artefatti</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Dipendenze disponibili</value>
+  </data>
+  <data name="Block package" xml:space="preserve">
+    <value>Blocca il pacchetto</value>
+  </data>
+  <data name="Block reason" xml:space="preserve">
+    <value>Motivo del blocco</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>Da</value>
+  </data>
+  <data name="CI check runs" xml:space="preserve">
+    <value>esecuzioni dei controlli CI</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Creato</value>
+  </data>
+  <data name="Disable block" xml:space="preserve">
+    <value>Disattiva il blocco</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ecosistema</value>
+  </data>
+  <data name="Edit rule and view history" xml:space="preserve">
+    <value>Modifica la regola e visualizza la cronologia</value>
+  </data>
+  <data name="Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*." xml:space="preserve">
+    <value>I nomi esatti e i prefissi sono diversi. ant-design non include automaticamente antd o @ant-design/*.</value>
+  </data>
+  <data name="Examples" xml:space="preserve">
+    <value>Esempi</value>
+  </data>
+  <data name="Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures." xml:space="preserve">
+    <value>I dati sull&apos;impatto riportati di seguito sono esempi basati su oggetti registrati di recente, non conteggi esaustivi. Restringi l&apos;ambito o verifica una regola prima di basarti su questi dati.</value>
+  </data>
+  <data name="No block rules have been recorded for this ecosystem." xml:space="preserve">
+    <value>Non sono state registrate regole di blocco per questo ecosistema.</value>
+  </data>
+  <data name="Package name or trailing-* pattern" xml:space="preserve">
+    <value>Nome del pacchetto o pattern con * finale</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Pattern del pacchetto</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Motivo</value>
+  </data>
+  <data name="Recorded impact sample" xml:space="preserve">
+    <value>Campione di impatto registrato</value>
+  </data>
+  <data name="Save change" xml:space="preserve">
+    <value>Salva modifica</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Mostra</value>
+  </data>
+  <data name="Use * to block every version, or an exact version or trailing-* prefix to narrow the block." xml:space="preserve">
+    <value>Usa * per bloccare tutte le versioni oppure una versione esatta o un prefisso che termina con * per restringere il blocco.</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Schema della versione</value>
+  </data>
+  <data name="View history" xml:space="preserve">
+    <value>Visualizza cronologia</value>
+  </data>
+  <data name="Why change this block?" xml:space="preserve">
+    <value>Perché modificare questo blocco?</value>
+  </data>
+  <data name="Why disable this block?" xml:space="preserve">
+    <value>Perché disabilitare questo blocco?</value>
+  </data>
+
+</root>

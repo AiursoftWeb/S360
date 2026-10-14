@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Archive SHA-256" xml:space="preserve">
+    <value>SHA-256 dell&apos;archivio</value>
+  </data>
+  <data name="Authorization expires" xml:space="preserve">
+    <value>La scadenza dell’autorizzazione</value>
+  </data>
+  <data name="Back to available dependencies" xml:space="preserve">
+    <value>Torna alle dipendenze disponibili</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ecosistema</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>Versione esatta</value>
+  </data>
+  <data name="Last vulnerability check" xml:space="preserve">
+    <value>Ultimo controllo delle vulnerabilità</value>
+  </data>
+  <data name="Latest approval recorded" xml:space="preserve">
+    <value>Ultima approvazione registrata</value>
+  </data>
+  <data name="Matching authorization" xml:space="preserve">
+    <value>Autorizzazione corrispondente</value>
+  </data>
+  <data name="No direct child relationship is recorded in approved request reports." xml:space="preserve">
+    <value>Nei report delle richieste approvate non è registrata alcuna relazione diretta con pacchetti dipendenti.</value>
+  </data>
+  <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
+    <value>Nei report delle richieste approvate non è registrata alcuna relazione con un pacchetto genitore. È possibile che questo pacchetto sia stato richiesto direttamente.</value>
+  </data>
+  <data name="Only the first 100 relationships are shown." xml:space="preserve">
+    <value>Sono mostrate solo le prime 100 relazioni.</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Pacchetto</value>
+  </data>
+  <data name="Package file and current authorization" xml:space="preserve">
+    <value>File del pacchetto e autorizzazione attuale</value>
+  </data>
+  <data name="Packages that brought this artifact in" xml:space="preserve">
+    <value>Pacchetti che hanno introdotto questo artefatto</value>
+  </data>
+  <data name="Packages this artifact brought in" xml:space="preserve">
+    <value>Pacchetti introdotti da questo artefatto</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Fonte</value>
+  </data>
+  <data name="Supplier label" xml:space="preserve">
+    <value>Etichetta del fornitore</value>
+  </data>
+  <data name="The relationships below come from previously approved request reports. They describe observed resolution paths, not every possible future build or a blanket authorization for related packages." xml:space="preserve">
+    <value>Le relazioni riportate di seguito provengono da report di richieste approvate in precedenza. Descrivono percorsi di risoluzione osservati, non tutti i possibili sviluppi futuri né un’autorizzazione generale per i pacchetti correlati.</value>
+  </data>
+  <data name="This concrete package file currently passes S360&apos;s authorization and stored vulnerability checks. A future build must still check its own complete dependency graph." xml:space="preserve">
+    <value>Questo specifico file del pacchetto supera attualmente i controlli di autorizzazione e di vulnerabilità registrate di S360. Una build futura dovrà comunque verificare il proprio grafo completo delle dipendenze.</value>
+  </data>
+
+</root>

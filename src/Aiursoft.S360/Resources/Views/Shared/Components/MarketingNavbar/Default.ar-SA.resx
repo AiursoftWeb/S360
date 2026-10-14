@@ -21,6 +21,9 @@
       <data name="Aiursoft Template" xml:space="preserve">
     <value>قالب Aiursoft</value>
   </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>الإمكانات</value>
+  </data>
   <data name="Community" xml:space="preserve">
     <value>المجتمع</value>
   </data>
@@ -30,11 +33,20 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Open workspace" xml:space="preserve">
+    <value>افتح مساحة العمل</value>
+  </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>الإطلاق</value>
+  </data>
   <data name="Source Code" xml:space="preserve">
     <value>الكود المصدري</value>
   </data>
   <data name="Try the dashboard" xml:space="preserve">
     <value>جرب لوحة التحكم</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>سير العمل</value>
   </data>
 
 </root>

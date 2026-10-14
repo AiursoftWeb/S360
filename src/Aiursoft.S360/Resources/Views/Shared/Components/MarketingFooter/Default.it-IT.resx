@@ -18,11 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Aiursoft" xml:space="preserve">
+      <data name="A clearer way to request, approve, and keep watch over the software your teams depend on." xml:space="preserve">
+    <value>Un modo più semplice per richiedere, approvare e monitorare i software da cui dipendono i vostri team.</value>
+  </data>
+  <data name="A project by Aiursoft" xml:space="preserve">
+    <value>Un progetto di Aiursoft</value>
+  </data>
+  <data name="Aiursoft" xml:space="preserve">
     <value>Aiursoft</value>
   </data>
   <data name="Aiursoft Template - A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Aiursoft Template - Una base moderna, ricca di funzionalità e altamente estensibile per la tua prossima applicazione web.</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Dipendenze disponibili</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Funzionalità</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>Community</value>
@@ -30,8 +42,14 @@
   <data name="Contributions" xml:space="preserve">
     <value>Contributi</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Pannello di controllo</value>
+  </data>
   <data name="Documentation" xml:space="preserve">
     <value>Documentazione</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Esplora</value>
   </data>
   <data name="Get Started" xml:space="preserve">
     <value>Inizia</value>
@@ -39,11 +57,17 @@
   <data name="Github" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
   <data name="Legal" xml:space="preserve">
     <value>Legale</value>
   </data>
   <data name="Licence" xml:space="preserve">
     <value>Licenza</value>
+  </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Le mie richieste</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Progetto</value>
@@ -54,11 +78,23 @@
   <data name="Resources" xml:space="preserve">
     <value>Risorse</value>
   </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>Distribuzione</value>
+  </data>
+  <data name="S360&apos;s Web approval center is the first step. Build enforcement and restricted mirrors follow as separate rollout stages." xml:space="preserve">
+    <value>Il centro di approvazione web di S360 è il primo passo. L’applicazione dei vincoli e i mirror con accesso limitato seguiranno in fasi di implementazione separate.</value>
+  </data>
   <data name="Social" xml:space="preserve">
     <value>Social</value>
   </data>
   <data name="Source Code" xml:space="preserve">
     <value>Codice Sorgente</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>Flusso di lavoro</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>Area di lavoro</value>
   </data>
 
 </root>

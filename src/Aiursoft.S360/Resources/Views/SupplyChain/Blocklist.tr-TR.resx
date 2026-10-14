@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Eşleşen bir paket; tedarikçisinden, kaynağından, onay durumundan veya doğrudan ya da geçişli bağımlılık olarak gelmiş olmasından bağımsız olarak reddedilir. Geçmiş onaylar ve kontroller denetim kanıtı olarak saklanır.</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>Mutlak engelleme listesi</value>
+  </data>
+  <data name="Add absolute block" xml:space="preserve">
+    <value>Mutlak engelleme ekle</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>uygulamalar</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>yazılım bileşeni</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Kullanılabilir bağımlılıklar</value>
+  </data>
+  <data name="Block package" xml:space="preserve">
+    <value>Paketi engelle</value>
+  </data>
+  <data name="Block reason" xml:space="preserve">
+    <value>Engelleme nedeni</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>Tarafından</value>
+  </data>
+  <data name="CI check runs" xml:space="preserve">
+    <value>CI denetim çalıştırması</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Oluşturulma tarihi</value>
+  </data>
+  <data name="Disable block" xml:space="preserve">
+    <value>Engellemeyi devre dışı bırak</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ekosistem</value>
+  </data>
+  <data name="Edit rule and view history" xml:space="preserve">
+    <value>Kuralı düzenle ve geçmişi görüntüle</value>
+  </data>
+  <data name="Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*." xml:space="preserve">
+    <value>Tam adlar ve önekler farklıdır. ant-design, antd&apos;yi veya @ant-design/* kapsamını otomatik olarak kapsamaz.</value>
+  </data>
+  <data name="Examples" xml:space="preserve">
+    <value>Örnekler</value>
+  </data>
+  <data name="Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures." xml:space="preserve">
+    <value>Aşağıdaki etki verileri, yakın zamanda kaydedilen nesnelerden alınmış örneklerdir; tüm kayıtları kapsamaz. Bu verilere güvenmeden önce bir kuralı daraltın veya gözden geçirin.</value>
+  </data>
+  <data name="No block rules have been recorded for this ecosystem." xml:space="preserve">
+    <value>Bu ekosistem için herhangi bir engelleme kuralı kaydedilmemiş.</value>
+  </data>
+  <data name="Package name or trailing-* pattern" xml:space="preserve">
+    <value>Paket adı veya * ile biten desen</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Paket kalıbı</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Gerekçe</value>
+  </data>
+  <data name="Recorded impact sample" xml:space="preserve">
+    <value>Kaydedilen etki örneği</value>
+  </data>
+  <data name="Save change" xml:space="preserve">
+    <value>Değişikliği kaydet</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Göster</value>
+  </data>
+  <data name="Use * to block every version, or an exact version or trailing-* prefix to narrow the block." xml:space="preserve">
+    <value>Tüm sürümleri engellemek için * kullanın; engellemeyi daraltmak için tam bir sürüm ya da sonunda * bulunan bir önek kullanın.</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Sürüm kalıbı</value>
+  </data>
+  <data name="View history" xml:space="preserve">
+    <value>Geçmişi görüntüle</value>
+  </data>
+  <data name="Why change this block?" xml:space="preserve">
+    <value>Bu engeli neden değiştiriyorsunuz?</value>
+  </data>
+  <data name="Why disable this block?" xml:space="preserve">
+    <value>Bu engeli neden devre dışı bırakmak istiyorsunuz?</value>
+  </data>
+
+</root>

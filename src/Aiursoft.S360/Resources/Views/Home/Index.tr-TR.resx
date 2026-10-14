@@ -18,8 +18,14 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
+      <data name=".NET packages" xml:space="preserve">
+    <value>.NET paketleri</value>
+  </data>
+  <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Uzun süreli görevler (örneğin e-postalar veya AI) için &quot;Fire-and-forget&quot; desteği, kuyruk yönetimi, paralel işlem ve iptal için bir GUI ile birlikte.</value>
+  </data>
+  <data name="A blocked package stays blocked even when it appears only as a transitive dependency or matches a broader trust rule." xml:space="preserve">
+    <value>Engellenen bir paket, yalnızca geçişli bağımlılık olarak görünse veya daha kapsamlı bir güven kuralıyla eşleşse bile engelli kalır.</value>
   </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>İnce taneli izin yönetimi için yerleşik bir Rol Tabanlı Erişim Kontrolü (RBAC) sistemi.</value>
@@ -30,11 +36,20 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>Kullanıcı kimlik doğrulama ve profil yönetimi için tam bir çözüm.</value>
   </data>
+  <data name="A decision covers the complete resolved graph, not only the package you typed." xml:space="preserve">
+    <value>Bir karar, yalnızca yazdığınız paketi değil, çözümlenen bağımlılık grafiğinin tamamını kapsar.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>Hem masaüstü hem de mobil cihazlarda harika görünen tamamen duyarlı bir düzen.</value>
   </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Modern, zengin özelliklere sahip ve bir sonraki web uygulamanız için oldukça genişletilebilir bir temel.</value>
+  </data>
+  <data name="A practical workflow" xml:space="preserve">
+    <value>Uygulanabilir bir iş akışı</value>
+  </data>
+  <data name="A searchable allowed catalog" xml:space="preserve">
+    <value>Aranabilir izinli bir katalog</value>
   </data>
   <data name="Achieve more with Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Template ile daha fazlasını başarın</value>
@@ -63,17 +78,29 @@
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Tüm bağımlılıklar otomatik olere kaydedilir ve constructor injection yoluyla her zaman kullanılabilir.</value>
   </data>
+  <data name="An absolute blocklist" xml:space="preserve">
+    <value>Kesin bir engelleme listesi</value>
+  </data>
   <data name="Anduin" xml:space="preserve">
     <value>Anduin</value>
   </data>
   <data name="Anduin Xue" xml:space="preserve">
     <value>Anduin Xue</value>
   </data>
+  <data name="Approve a report-backed batch while retaining the individual package decisions and their review history." xml:space="preserve">
+    <value>Raporla desteklenen bir toplu işlemi onaylarken her pakete ilişkin kararları ve inceleme geçmişini koruyun.</value>
+  </data>
   <data name="Artificial Intelligence Translation" xml:space="preserve">
     <value>Yapay Zeka Çevirisi</value>
   </data>
+  <data name="Audit" xml:space="preserve">
+    <value>Denetim</value>
+  </data>
   <data name="Authentik &amp; Okta" xml:space="preserve">
     <value>Authentik &amp; Okta</value>
+  </data>
+  <data name="Authorized mirrors" xml:space="preserve">
+    <value>Yetkilendirilmiş yansılar</value>
   </data>
   <data name="Auto compression and privacy" xml:space="preserve">
     <value>Otomatik sıkıştırma ve gizlilik</value>
@@ -120,14 +147,26 @@
   <data name="Bilingual Tutorials" xml:space="preserve">
     <value>Çift Dilli Eğitimler</value>
   </data>
+  <data name="Blocklist first" xml:space="preserve">
+    <value>Önce engelleme listesi</value>
+  </data>
+  <data name="Build inputs prepared before the network is closed." xml:space="preserve">
+    <value>Ağ kapatılmadan önce derleme girdileri hazırlanır.</value>
+  </data>
   <data name="Build once, run anywhere. Fully containerized architecture." xml:space="preserve">
     <value>Bir kez derle, her yerde çalıştır. Tamamen konteynerli mimari.</value>
   </data>
   <data name="Build your next big thing," xml:space="preserve">
     <value>Bir sonraki büyük projenizi oluşturun,</value>
   </data>
+  <data name="Built for clear decisions" xml:space="preserve">
+    <value>Net kararlar için tasarlandı</value>
+  </data>
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>Kaliteye önem veren mühendisler için yapılmıştır.</value>
+  </data>
+  <data name="Built to grow safely" xml:space="preserve">
+    <value>Güvenle büyümek için tasarlandı</value>
   </data>
   <data name="Built with Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Şablonu ile oluşturuldu</value>
@@ -174,6 +213,9 @@
   <data name="Checkstyle or similar needed" xml:space="preserve">
     <value>Checkstyle veya benzeri araçlar gerekli</value>
   </data>
+  <data name="Choose NuGet or npm, list the direct packages, and explain the intended use. No separate request command is needed." xml:space="preserve">
+    <value>NuGet veya npm&apos;i seçin, doğrudan bağımlılıkları listeleyin ve kullanım amaçlarını açıklayın. Ayrı bir istek komutu gerekmez.</value>
+  </data>
   <data name="Comes with Docker support for simplified and consistent deployments." xml:space="preserve">
     <value>Kolay ve tutarlı dağıtımlar için Docker desteğiyle birlikte gelir.</value>
   </data>
@@ -207,6 +249,9 @@
   <data name="Cross Platform" xml:space="preserve">
     <value>Çapraz Platform</value>
   </data>
+  <data name="Current mirrors" xml:space="preserve">
+    <value>Mevcut aynalar</value>
+  </data>
   <data name="Custom dev required" xml:space="preserve">
     <value>Özel geliştirme gerekli</value>
   </data>
@@ -237,6 +282,9 @@
   <data name="Default SQLite database, no configuration needed." xml:space="preserve">
     <value>Varsayılan SQLite veritabanı, yapılandırma gerekmez.</value>
   </data>
+  <data name="Dependency review" xml:space="preserve">
+    <value>Bağımlılık incelemesi</value>
+  </data>
   <data name="Designed for everyone, from beginners to experts." xml:space="preserve">
     <value>Herkes için tasarlandı, başlangıç seviyesinden uzmanlara kadar.</value>
   </data>
@@ -254,6 +302,9 @@
   </data>
   <data name="DevOps Native" xml:space="preserve">
     <value>DevOps Uyumlu</value>
+  </data>
+  <data name="Direct request" xml:space="preserve">
+    <value>Doğrudan istek</value>
   </data>
   <data name="Discussions page" xml:space="preserve">
     <value>Tartışmalar sayfası</value>
@@ -279,6 +330,9 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Anımsatmadan entegrasyon testleri yazın, bellek içi veritabanları, geçici dosya sistemleri, yerleşik mocklama ve gerçek dünya HTTP isteği simülasyonu kullanarak.</value>
   </data>
+  <data name="Employees can discover current approvals, suppliers, and matching rules before starting another request." xml:space="preserve">
+    <value>Çalışanlar, yeni bir talep oluşturmadan önce mevcut onayları, tedarikçileri ve eşleşen kuralları görüntüleyebilir.</value>
+  </data>
   <data name="Enforced" xml:space="preserve">
     <value>Zorunlu</value>
   </data>
@@ -300,6 +354,21 @@
   <data name="Entity Framework Core included" xml:space="preserve">
     <value>Entity Framework Core dahil</value>
   </data>
+  <data name="Exact artifact evidence" xml:space="preserve">
+    <value>Kesin yapıt kanıtı</value>
+  </data>
+  <data name="Exact SHA-256 evidence" xml:space="preserve">
+    <value>Kesin SHA-256 kanıtı</value>
+  </data>
+  <data name="Existing package access continues." xml:space="preserve">
+    <value>Mevcut paketlere erişim devam ediyor.</value>
+  </data>
+  <data name="Expiry, revocation, and newly published advisories remain visible after the original approval." xml:space="preserve">
+    <value>İlk onaydan sonra da sürenin dolması, iptal ve yeni yayımlanan güvenlik duyuruları görünür kalır.</value>
+  </data>
+  <data name="Explore available dependencies" xml:space="preserve">
+    <value>Mevcut bağımlılıkları keşfedin</value>
+  </data>
   <data name="FAQ" xml:space="preserve">
     <value>SSS</value>
   </data>
@@ -320,6 +389,9 @@
   </data>
   <data name="File Mgmt &amp; Optimization" xml:space="preserve">
     <value>Dosya Yönetimi ve Optimizasyon</value>
+  </data>
+  <data name="Find what is already allowed, request what is missing, and follow every decision back to its evidence." xml:space="preserve">
+    <value>Zaten izin verilenleri bulun, eksik olanlar için talepte bulunun ve her kararın dayanağı olan kanıtlara ulaşın.</value>
   </data>
   <data name="Fine-grained RBAC" xml:space="preserve">
     <value>İnce taneli RBAC</value>
@@ -350,6 +422,9 @@
   </data>
   <data name="Frequently asked questions" xml:space="preserve">
     <value>Sıkça Sorulan Sorular</value>
+  </data>
+  <data name="From package request to policy evidence." xml:space="preserve">
+    <value>Paket talebinden politika kanıtına.</value>
   </data>
   <data name="From the Architect" xml:space="preserve">
     <value>Mimarın Söyledikleri</value>
@@ -429,11 +504,17 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>Uygulamamı nasıl dağıtırım?</value>
   </data>
+  <data name="Human review at the right scale" xml:space="preserve">
+    <value>Doğru ölçekte insan incelemesi</value>
+  </data>
   <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
     <value>Aiursoft Template&apos;ı her yeni girişim projesi için aynı Auth, Log ve CI/CD borularını ayarlamaktan bıktığımdan oluşturdum. Bu sadece bir şablon değil; yüksek yoğunluklu üretim ortamlarında yıllar boyu birikmiş en iyi uygulamaların kristalleşmiş hâli. Takımımın sıkıcı kurulum aşamasını atlayıp doğrudan iş mantığına geçmesini sağlıyor.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>IDE Desteği</value>
+  </data>
+  <data name="Illustration of a dependency review" xml:space="preserve">
+    <value>Bağımlılık incelemesi görseli</value>
   </data>
   <data name="In-memory DB, temp FS, and HTTP simulation" xml:space="preserve">
     <value>İn-memori veritabanı, geçici dosya sistemi ve HTTP simülasyonu</value>
@@ -468,6 +549,9 @@
   <data name="java.time API available" xml:space="preserve">
     <value>java.time API mevcut</value>
   </data>
+  <data name="JavaScript packages" xml:space="preserve">
+    <value>JavaScript paketleri</value>
+  </data>
   <data name="Job Queue &amp; Scheduling GUI" xml:space="preserve">
     <value>İş Kuyruğu ve Zamanlama Arayüzü</value>
   </data>
@@ -483,11 +567,26 @@
   <data name="K8s / Swarm Ready" xml:space="preserve">
     <value>K8s / Swarm Hazır</value>
   </data>
+  <data name="Keep watch" xml:space="preserve">
+    <value>Gözünüz üzerlerinde olsun</value>
+  </data>
+  <data name="Know every dependency." xml:space="preserve">
+    <value>Tüm bağımlılıkları tanıyın.</value>
+  </data>
+  <data name="Less guesswork for employees. More context for reviewers." xml:space="preserve">
+    <value>Çalışanlar için daha az tahmin yürütme. İnceleyenler için daha fazla bağlam.</value>
+  </data>
   <data name="Lint Check" xml:space="preserve">
     <value>Lint Kontrolü</value>
   </data>
+  <data name="Made for the dependencies your teams actually use." xml:space="preserve">
+    <value>Ekiplerinizin gerçekten kullandığı bağımlılıklar için tasarlandı.</value>
+  </data>
   <data name="Maintain High Code Quality" xml:space="preserve">
     <value>Yüksek Kod Kalitesini Koruyun</value>
+  </data>
+  <data name="Make the next package decision an informed one." xml:space="preserve">
+    <value>Bir sonraki paket kararınızı bilinçli bir şekilde verin.</value>
   </data>
   <data name="Management Dashboard" xml:space="preserve">
     <value>Yönetim Paneli</value>
@@ -552,6 +651,9 @@
   <data name="Needs Passport or similar" xml:space="preserve">
     <value>Passport veya benzeri gerektirir</value>
   </data>
+  <data name="Needs review" xml:space="preserve">
+    <value>İncelenmesi gerekiyor</value>
+  </data>
   <data name="Needs Spatie or similar" xml:space="preserve">
     <value>Spatie veya benzeri gerektirir</value>
   </data>
@@ -567,6 +669,15 @@
   <data name="No dependency on any cloud vendor. Run anywhere, any time." xml:space="preserve">
     <value>Herhangi bir bulut sağlayıcısına bağımlılık yok. Her yerde, her zaman çalıştırılabilir.</value>
   </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet ve npm</value>
+  </data>
+  <data name="NuGet and npm have different version and installation rules. S360 keeps their package identities distinct while presenting one consistent approval experience." xml:space="preserve">
+    <value>NuGet ve npm&apos;in sürüm ve kurulum kuralları farklıdır. S360, tek ve tutarlı bir onay deneyimi sunarken paket kimliklerini birbirinden ayrı tutar.</value>
+  </data>
+  <data name="Offline builds" xml:space="preserve">
+    <value>Çevrimdışı derlemeler</value>
+  </data>
   <data name="Offline Capable" xml:space="preserve">
     <value>Çevrimdışı Kullanım Destekli</value>
   </data>
@@ -576,8 +687,23 @@
   <data name="One Click Start" xml:space="preserve">
     <value>Bir Tıkla Başlat</value>
   </data>
+  <data name="One coherent workflow" xml:space="preserve">
+    <value>Tek ve tutarlı bir iş akışı</value>
+  </data>
+  <data name="One request, the whole graph" xml:space="preserve">
+    <value>Tek bir istek, tüm bağımlılık grafiği</value>
+  </data>
+  <data name="Ongoing vulnerability visibility" xml:space="preserve">
+    <value>Sürekli güvenlik açığı görünürlüğü</value>
+  </data>
+  <data name="Only approved package versions are served." xml:space="preserve">
+    <value>Yalnızca onaylı paket sürümleri sunulur.</value>
+  </data>
   <data name="Open Source" xml:space="preserve">
     <value>Açık Kaynak</value>
+  </data>
+  <data name="Open your workspace" xml:space="preserve">
+    <value>Çalışma alanınızı açın</value>
   </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect Entegrasyonu</value>
@@ -624,14 +750,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Belgeyi okuyun</value>
   </data>
+  <data name="Record the package source and SHA-256 of each NuGet archive or npm tarball, not just a familiar package name." xml:space="preserve">
+    <value>Her paketin kaynağını ve NuGet arşivinin ya da npm tarball&apos;ının SHA-256 değerini kaydedin; yalnızca tanıdık bir paket adını kaydetmekle yetinmeyin.</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Talep</value>
+  </data>
+  <data name="Request in the browser" xml:space="preserve">
+    <value>Tarayıcıdan istek gönderin</value>
+  </data>
+  <data name="Requests, policy, audit, and approval." xml:space="preserve">
+    <value>Talep, politika, denetim ve onay.</value>
+  </data>
   <data name="Requires Laravel Socialite config" xml:space="preserve">
     <value>Laravel Socialite yapılandırması gerektirir</value>
   </data>
   <data name="Requires Spring Security configuration" xml:space="preserve">
     <value>Spring Security yapılandırması gerektirir</value>
   </data>
+  <data name="Resolve" xml:space="preserve">
+    <value>Çöz</value>
+  </data>
+  <data name="Resolve and inspect" xml:space="preserve">
+    <value>Çözümleyin ve inceleyin</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Duyarlı Tasarım</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>İnceleme</value>
+  </data>
+  <data name="Review restored versions and the original .nupkg files behind your applications." xml:space="preserve">
+    <value>Uygulamalarınızın dayandığı geri yüklenmiş sürümleri ve orijinal .nupkg dosyalarını inceleyin.</value>
+  </data>
+  <data name="Review with guardrails" xml:space="preserve">
+    <value>Güvenlik önlemleriyle inceleyin</value>
+  </data>
+  <data name="Reviewed artifact" xml:space="preserve">
+    <value>İncelenmiş yapıt</value>
+  </data>
+  <data name="Reviewers see what is already trusted and what is new. Blacklist and vulnerability checks cannot be hidden by a root approval." xml:space="preserve">
+    <value>İnceleyenler, nelerin zaten güvenilir olduğunu ve nelerin yeni olduğunu görür. Kara liste ve güvenlik açığı kontrolleri, kök düzeyindeki bir onayla gizlenemez.</value>
   </data>
   <data name="Reviews" xml:space="preserve">
     <value>İncelemeler</value>
@@ -642,11 +801,32 @@
   <data name="Runs without any internet connection required." xml:space="preserve">
     <value>Herhangi bir internet bağlantısına gerek kalmadan çalışır.</value>
   </data>
+  <data name="S360 connects the people approving dependencies with the exact packages, versions, sources, and risks behind each decision." xml:space="preserve">
+    <value>S360, bağımlılıkları onaylayan kişileri her kararın dayanağını oluşturan paketler, sürümler, kaynaklar ve risklerle buluşturur.</value>
+  </data>
+  <data name="S360 gives your team one place to request NuGet and npm packages, review their complete dependency trees, and track which exact package files are allowed." xml:space="preserve">
+    <value>S360, ekibinize NuGet ve npm paketleri için istek gönderebileceği, tüm bağımlılık ağaçlarını inceleyebileceği ve tam olarak hangi paket dosyalarına izin verildiğini takip edebileceği tek bir yer sunar.</value>
+  </data>
+  <data name="S360 is being prepared as the Web approval center. Runner enforcement, authorization-only package mirrors, and fully offline builds are later rollout stages—not guarantees of this deployment." xml:space="preserve">
+    <value>S360, Web onay merkezi olarak hazırlanmaktadır. Runner uygulamasının zorunlu kılınması, yalnızca yetkilendirilmiş paket yansılarının kullanılması ve tamamen çevrimdışı derlemeler daha sonraki aşamalarda devreye alınacaktır; bu dağıtımın garantileri değildir.</value>
+  </data>
+  <data name="S360 Web and review" xml:space="preserve">
+    <value>S360 Web ve inceleme</value>
+  </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Zamanlanmış Görev Yönetimi</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Herhangi bir OpenID Connect sağlayıcısıyla sorunsuz bir şekilde entegre olun, otomatik rol senkronizasyonu ile.</value>
+  </data>
+  <data name="See how it works" xml:space="preserve">
+    <value>Nasıl çalıştığını görün</value>
+  </data>
+  <data name="See installed transitive packages and the tarball integrity evidence in one report." xml:space="preserve">
+    <value>Kurulu geçişli paketleri ve tar arşivinin bütünlük kanıtlarını tek bir raporda görün.</value>
+  </data>
+  <data name="See known advisories for used versions and for vulnerable versions still permitted by a wildcard rule." xml:space="preserve">
+    <value>Kullanılan sürümler ve joker karakter kuralının hâlâ izin verdiği güvenlik açığı bulunan sürümler için bilinen güvenlik duyurularını görüntüleyin.</value>
   </data>
   <data name="Shift with confidence" xml:space="preserve">
     <value>Güvenle geçiş yapın</value>
@@ -666,6 +846,9 @@
   <data name="Smart dark mode that automatically adapts to the user&apos;s system settings." xml:space="preserve">
     <value>Kullanıcının sistem ayarlarına otomatik olarak uyum sağlayan akıllı karanlık mod.</value>
   </data>
+  <data name="Software supply chain, in focus" xml:space="preserve">
+    <value>Yazılım tedarik zincemi, odağımızda</value>
+  </data>
   <data name="Standard implementation. Switch providers without compilation." xml:space="preserve">
     <value>Standart uygulama. Derleme yapmadan sağlayıcıları değiştirin.</value>
   </data>
@@ -680,6 +863,9 @@
   </data>
   <data name="Start with a single &apos;docker run&apos; command." xml:space="preserve">
     <value>Tek bir &apos;docker run&apos; komutuyla başlayın.</value>
+  </data>
+  <data name="Start with visibility and review. Tighten the boundary in stages." xml:space="preserve">
+    <value>Önce görünürlük ve incelemeyle başlayın. Sınırları aşamalı olarak sıkılaştırın.</value>
   </data>
   <data name="Starts without any configuration" xml:space="preserve">
     <value>Hiç yapılandırma gerektirmeden başlar</value>
@@ -701,6 +887,9 @@
   </data>
   <data name="Strongly Consistent Linting" xml:space="preserve">
     <value>Kesin ve Tutulu Linting</value>
+  </data>
+  <data name="Submit direct dependencies once. S360 resolves transitive packages and records how each one enters the request." xml:space="preserve">
+    <value>Doğrudan bağımlılıkları bir kez gönderin. S360, geçişli paketleri çözümler ve her birinin isteğe nasıl dahil olduğunu kaydeder.</value>
   </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Ortam değişkenleri ve veritabanı tabanlı ayarlar destekler, sorunsuz geçişler için ortam değişkenlerine otomatik öncelik verilir.</value>
@@ -726,8 +915,14 @@
   <data name="Testing module available" xml:space="preserve">
     <value>Test modülü mevcut</value>
   </data>
+  <data name="The background resolver records exact versions, package archives, hashes, source, and introduction paths." xml:space="preserve">
+    <value>Arka plandaki çözümleyici; tam sürümleri, paket arşivlerini, özet değerlerini, kaynağı ve paketin projeye hangi yollarla eklendiğini kaydeder.</value>
+  </data>
   <data name="The definitive, battle-tested .NET enterprise foundation. From Auth to AI, we&apos;ve solved the hard parts so you don&apos;t have to." xml:space="preserve">
     <value>Kesin, savaştan sıyrılmış .NET enterprise temeli. Kimlik doğrulamadan yapay zekâya kadar, zor kısımları çözdük, sizin için yapmanıza gerek kalmadı.</value>
+  </data>
+  <data name="The entire dependency graph" xml:space="preserve">
+    <value>Tüm bağımlılık grafiği</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Gezinme çubuğu, kullanıcı rollerine ve izinlerine göre otomatik olarak ayarlanır.</value>
@@ -750,8 +945,17 @@
   <data name="TimeZoneInfo API available" xml:space="preserve">
     <value>TimeZoneInfo API mevcut</value>
   </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Dolaylı bağımlılık</value>
+  </data>
+  <data name="Trust every decision." xml:space="preserve">
+    <value>Her karara güvenin.</value>
+  </data>
   <data name="Trusted by production-grade applications including AnduinOS, StatHub, and Warp. We don&apos;t just share this code; we run our entire business on it." xml:space="preserve">
     <value>AnduinOS, StatHub ve Warp gibi üretim düzeyindeki uygulamalar tarafından güvenilir. Sadece bu kodu paylaşmakla kalmıyoruz; tamamen bu kodla işimizi yürütüyoruz.</value>
+  </data>
+  <data name="Two ecosystems, one policy language" xml:space="preserve">
+    <value>İki ekosistem, tek bir politika dili</value>
   </data>
   <data name="Unified Env" xml:space="preserve">
     <value>Birleşik Ortam</value>
@@ -797,6 +1001,9 @@
   </data>
   <data name="You&apos;ll need the .NET 10 SDK, npm and your favorite IDE, like Visual Studio or JetBrains Rider. You can find the full setup guide in our documentation." xml:space="preserve">
     <value>.NET 10 SDK&apos;ye, npm&apos;ye ve Visual Studio veya JetBrains Rider gibi favori IDE&apos;nize ihtiyacınız olacak. Tüm kurulum kılavuzunu belgelerimizde bulabilirsiniz.</value>
+  </data>
+  <data name="Your dependency workspace" xml:space="preserve">
+    <value>Bağımlılık çalışma alanınız</value>
   </data>
   <data name="Your enterprise users don&apos;t need to register repeatedly." xml:space="preserve">
     <value>Şirketinizin kullanıcıları tekrar tekrar kayıt olmak zorunda kalmaz.</value>

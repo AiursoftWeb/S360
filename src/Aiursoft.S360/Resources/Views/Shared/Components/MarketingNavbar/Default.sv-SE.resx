@@ -21,6 +21,9 @@
       <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Mall</value>
   </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Funktioner</value>
+  </data>
   <data name="Community" xml:space="preserve">
     <value>Gemenskap</value>
   </data>
@@ -30,11 +33,20 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Open workspace" xml:space="preserve">
+    <value>Öppna arbetsytan</value>
+  </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>Lansering</value>
+  </data>
   <data name="Source Code" xml:space="preserve">
     <value>Källkod</value>
   </data>
   <data name="Try the dashboard" xml:space="preserve">
     <value>Testa instrumentpanelen</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>Arbetsflöde</value>
   </data>
 
 </root>

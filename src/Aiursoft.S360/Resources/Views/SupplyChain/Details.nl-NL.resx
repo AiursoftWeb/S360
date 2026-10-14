@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Archive SHA-256" xml:space="preserve">
+    <value>Archief-SHA-256</value>
+  </data>
+  <data name="Authorization expires" xml:space="preserve">
+    <value>Autorisatie verloopt</value>
+  </data>
+  <data name="Back to available dependencies" xml:space="preserve">
+    <value>Terug naar beschikbare afhankelijkheden</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ecosysteem</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>Exacte versie</value>
+  </data>
+  <data name="Last vulnerability check" xml:space="preserve">
+    <value>Laatste controle op kwetsbaarheden</value>
+  </data>
+  <data name="Latest approval recorded" xml:space="preserve">
+    <value>Laatste goedkeuring geregistreerd</value>
+  </data>
+  <data name="Matching authorization" xml:space="preserve">
+    <value>Bijbehorende autorisatie</value>
+  </data>
+  <data name="No direct child relationship is recorded in approved request reports." xml:space="preserve">
+    <value>In goedgekeurde aanvraagrapporten is geen directe relatie met een onderliggend pakket vastgelegd.</value>
+  </data>
+  <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
+    <value>Er is geen bovenliggende relatie vastgelegd in rapporten van goedgekeurde aanvragen. Dit pakket is mogelijk rechtstreeks aangevraagd.</value>
+  </data>
+  <data name="Only the first 100 relationships are shown." xml:space="preserve">
+    <value>Alleen de eerste 100 relaties worden weergegeven.</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Pakket</value>
+  </data>
+  <data name="Package file and current authorization" xml:space="preserve">
+    <value>Pakketbestand en huidige autorisatie</value>
+  </data>
+  <data name="Packages that brought this artifact in" xml:space="preserve">
+    <value>Pakketten die dit artefact hebben meegebracht</value>
+  </data>
+  <data name="Packages this artifact brought in" xml:space="preserve">
+    <value>Pakketten die dit artefact heeft meegebracht</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Bron</value>
+  </data>
+  <data name="Supplier label" xml:space="preserve">
+    <value>Naam leverancier</value>
+  </data>
+  <data name="The relationships below come from previously approved request reports. They describe observed resolution paths, not every possible future build or a blanket authorization for related packages." xml:space="preserve">
+    <value>De onderstaande relaties zijn afkomstig uit eerder goedgekeurde aanvraagramporten. Ze beschrijven waargenomen oplossingspaden, niet elke mogelijke toekomstige build of een algemene autorisatie voor gerelateerde pakketten.</value>
+  </data>
+  <data name="This concrete package file currently passes S360&apos;s authorization and stored vulnerability checks. A future build must still check its own complete dependency graph." xml:space="preserve">
+    <value>Dit concrete pakketbestand doorstaat momenteel de autorisatie- en opgeslagen kwetsbaarheidscontroles van S360. Bij een toekomstige build moet de volledige afhankelijkheidsgrafiek nog steeds worden gecontroleerd.</value>
+  </data>
+
+</root>

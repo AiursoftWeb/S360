@@ -21,6 +21,9 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Obsługa „wystrzel i zapomnij” dla długotrwałych zadań (np. e-maile lub AI), z interfejsem graficznym do zarządzania kolejką, przetwarzania równoległego i anulowania.</value>
   </data>
+  <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
+    <value>Pusta data oznacza, że nie przeprowadzono jeszcze pomyślnie pełnej synchronizacji danych o podatnościach. Czasy podano w UTC.</value>
+  </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Wbudowany system kontroli dostępu opartej na rolach (RBAC) do zarządzania uprawnieniami na szczegółowym poziomie.</value>
   </data>
@@ -30,17 +33,62 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>Pełne rozwiązanie do uwierzytelniania użytkowników i zarządzania profilami.</value>
   </data>
+  <data name="A decision you can explain" xml:space="preserve">
+    <value>Decyzja, którą potrafisz wyjaśnić</value>
+  </data>
+  <data name="A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence." xml:space="preserve">
+    <value>Znana nazwa lub zatwierdzony pakiet główny to za mało. Decyzja dotyczy każdego rozwiązanego pakietu i dowodów potwierdzających jego wiarygodność.</value>
+  </data>
+  <data name="A fingerprint of the downloaded package archive, not just its name and version." xml:space="preserve">
+    <value>Odcisk cyfrowy pobranego archiwum pakietu, a nie tylko jego nazwa i wersja.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>W pełni responsywny układ, który doskonale wygląda zarówno na komputerach, jak i urządzeniach mobilnych.</value>
   </data>
+  <data name="A good first step" xml:space="preserve">
+    <value>Dobry pierwszy krok</value>
+  </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Nowoczesna, bogata w funkcjonalności i wysoce rozszerzalna podstawa dla Twojej kolejnej aplikacji internetowej.</value>
+  </data>
+  <data name="A package pulled in by another package. It needs authorization too." xml:space="preserve">
+    <value>Pakiet dołączony przez inny pakiet. On również wymaga autoryzacji.</value>
+  </data>
+  <data name="A package your project asks for explicitly." xml:space="preserve">
+    <value>Pakiet, którego Twój projekt jawnie wymaga.</value>
+  </data>
+  <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
+    <value>Reguła, która może zezwalać na pasujące pakiety; bezwzględna blokada lub brak dowodów dotyczących artefaktu nadal powodują ich odrzucenie.</value>
+  </data>
+  <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
+    <value>Bezwzględne wykluczenia, które mają pierwszeństwo przed regułami zaufania i zatwierdzeniami.</value>
+  </data>
+  <data name="Across the organization" xml:space="preserve">
+    <value>W całej organizacji</value>
+  </data>
+  <data name="Active block rules" xml:space="preserve">
+    <value>Aktywne reguły blokowania</value>
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>Tłumaczenia wspomagane przez sztuczną inteligencję</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Wszystkie zależności są automatycznie rejestrowane i zawsze dostępne poprzez wstrzykiwanie konstruktora.</value>
+  </data>
+  <data name="All requests you submitted" xml:space="preserve">
+    <value>Wszystkie przesłane przez Ciebie zgłoszenia</value>
+  </data>
+  <data name="Approval center" xml:space="preserve">
+    <value>Centrum zatwierdzania</value>
+  </data>
+  <data name="Approved requests" xml:space="preserve">
+    <value>Zatwierdzone wnioski</value>
+  </data>
+  <data name="Artifact SHA-256" xml:space="preserve">
+    <value>Skrót SHA-256 artefaktu</value>
+  </data>
+  <data name="At a glance" xml:space="preserve">
+    <value>W skrócie</value>
   </data>
   <data name="Automatic Dark Mode" xml:space="preserve">
     <value>Automatyczny Tryb Ciemny</value>
@@ -57,8 +105,26 @@
   <data name="Automatic, AI-driven translation into 28 languages." xml:space="preserve">
     <value>Automatyczna, oparta na AI tłumaczenie na 28 języków.</value>
   </data>
+  <data name="Awaiting review" xml:space="preserve">
+    <value>Oczekujące na weryfikację</value>
+  </data>
   <data name="Background Job Processing" xml:space="preserve">
     <value>Przetwarzanie zadań w tle</value>
+  </data>
+  <data name="Blacklists, sources, versions, and hashes" xml:space="preserve">
+    <value>Czarne listy, źródła, wersje i sumy kontrolne</value>
+  </data>
+  <data name="Blocklist comes first" xml:space="preserve">
+    <value>Lista blokowanych ma pierwszeństwo</value>
+  </data>
+  <data name="Browse allowed packages" xml:space="preserve">
+    <value>Przeglądaj dozwolone pakiety</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Rejestry kontroli kompilacji</value>
+  </data>
+  <data name="Built into every decision" xml:space="preserve">
+    <value>Wbudowane w każdą decyzję</value>
   </data>
   <data name="Built-in User Management" xml:space="preserve">
     <value>Wbudowane zarządzanie użytkownikami</value>
@@ -75,8 +141,14 @@
   <data name="Consistency Validation" xml:space="preserve">
     <value>Weryfikacja spójności</value>
   </data>
+  <data name="Decisions recorded for your work" xml:space="preserve">
+    <value>Decyzje dotyczące Twojej pracy</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Twórz wyłączni w strefie czasowej UTC, podczas gdy system automatycznie konwertuje i wyświetla daty w strefie czasowej użytkownika.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Bezpośrednia zależność</value>
   </data>
   <data name="Dockerized for Deployment" xml:space="preserve">
     <value>Przygotowane do wdrożenia z Dockerem</value>
@@ -96,11 +168,35 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Bezproblemowo twórz testy integracyjne wykorzystując bazy danych w pamięci, tymczasowe systemy plików, wbudowane mockowanie oraz symulację rzeczywistych żądań HTTP.</value>
   </data>
+  <data name="Enter direct dependencies. S360 resolves the complete graph and records the package artifacts." xml:space="preserve">
+    <value>Wprowadź bezpośrednie zależności. S360 rozwiązuje cały graf zależności i rejestruje artefakty pakietów.</value>
+  </data>
+  <data name="Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children." xml:space="preserve">
+    <value>Każdy pakiet zależny pośrednio wymaga własnego ważnego upoważnienia; zaufanie do pakietu nadrzędnego nie oznacza automatycznego zaufania do jego pakietów podrzędnych.</value>
+  </data>
+  <data name="Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision." xml:space="preserve">
+    <value>Wygaśnięcie ważności, cofnięcie zatwierdzenia i nowe ostrzeżenia dotyczące bezpieczeństwa mogą zmienić aktualną ocenę, nie zacierając wcześniejszej decyzji.</value>
+  </data>
+  <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
+    <value>Pakiety objęte bezwzględną blokadą są odrzucane, nawet jeśli zostaną włączone pośrednio lub pasują do szerokiej reguły dostawcy.</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Posiada wbudowany system zarządzania plikami z automatycznym kompresowaniem awatarów i ochroną prywatności.</value>
   </data>
   <data name="Features a built-in file management system with automatic avatar compression." xml:space="preserve">
     <value>Oferuje wbudowany system zarządzania plikami z automatyczną kompresją awatarów.</value>
+  </data>
+  <data name="Find an existing approval" xml:space="preserve">
+    <value>Znajdź istniejącą zgodę</value>
+  </data>
+  <data name="Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view." xml:space="preserve">
+    <value>Śledź wnioski od zgłoszenia pierwszego pakietu aż po ostateczną decyzję, sprawdź, na co Twoja organizacja już zezwala, i miej na uwadze pojawiające się zagrożenia.</value>
+  </data>
+  <data name="Follow the decision" xml:space="preserve">
+    <value>Śledź decyzję</value>
+  </data>
+  <data name="For authorized reviewers" xml:space="preserve">
+    <value>Dla upoważnionych recenzentów</value>
   </data>
   <data name="Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs." xml:space="preserve">
     <value>Kieruj powtarzalnymi zadaniami, takimi jak oczyszczanie i synchronizacja, za pomocą kompleksowego interfejsu graficznego do monitorowania historii wykonywania i dzienników.</value>
@@ -108,11 +204,35 @@
   <data name="Hello World!" xml:space="preserve">
     <value>Witaj Świecie!</value>
   </data>
+  <data name="How S360 helps" xml:space="preserve">
+    <value>Jak pomaga S360</value>
+  </data>
+  <data name="In progress" xml:space="preserve">
+    <value>W trakcie</value>
+  </data>
+  <data name="Include the whole graph" xml:space="preserve">
+    <value>Uwzględnij cały graf</value>
+  </data>
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Zawiera obszerną dokumentację i praktyczne przykłady, które pozwolą Ci szybko rozpocząć pracę.</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Zintegrowany System Zarządzania Plikami</value>
+  </data>
+  <data name="Keep the wider picture in view." xml:space="preserve">
+    <value>Miej szerszy obraz sytuacji.</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Znane podatności</value>
+  </data>
+  <data name="Last successful OSV sync" xml:space="preserve">
+    <value>Ostatnia udana synchronizacja OSV</value>
+  </data>
+  <data name="Learn about the workflow" xml:space="preserve">
+    <value>Poznaj przebieg pracy</value>
+  </data>
+  <data name="Match the actual artifact" xml:space="preserve">
+    <value>Dopasuj do rzeczywistego artefaktu</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Modele są weryfikowane po stronie klienta i serwera na podstawie adnotacji danych.</value>
@@ -123,8 +243,29 @@
   <data name="Multiple Database Support" xml:space="preserve">
     <value>Obsługa wielu baz danych</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Moje zgłoszenia</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>Nowe zgłoszenie</value>
+  </data>
+  <data name="No requests yet" xml:space="preserve">
+    <value>Nie ma jeszcze żadnych zgłoszeń</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Integracja OpenID Connect</value>
+  </data>
+  <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
+    <value>Pliki pakietów zarejestrowane w obu ekosystemach, w tym elementy, które nie są obecnie autoryzowane.</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>Polityka</value>
+  </data>
+  <data name="Policy management" xml:space="preserve">
+    <value>Zarządzanie zasadami</value>
+  </data>
+  <data name="Quick and detailed risk views" xml:space="preserve">
+    <value>Szybki i szczegółowy przegląd ryzyka</value>
   </data>
   <data name="RBAC Authorization" xml:space="preserve">
     <value>Autoryzacja RBAC</value>
@@ -132,17 +273,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Przeczytaj dokumentację</value>
   </data>
+  <data name="Recent activity" xml:space="preserve">
+    <value>Ostatnia aktywność</value>
+  </data>
+  <data name="Request overview" xml:space="preserve">
+    <value>Przegląd zgłoszeń</value>
+  </data>
+  <data name="Request what is missing" xml:space="preserve">
+    <value>Zgłoś brakujący element</value>
+  </data>
+  <data name="Resolving or awaiting review" xml:space="preserve">
+    <value>W trakcie realizacji lub oczekiwania na weryfikację</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Responsywny Design</value>
   </data>
+  <data name="Review pending and expiring decisions" xml:space="preserve">
+    <value>Przeglądaj oczekujące i wygasające decyzje</value>
+  </data>
+  <data name="Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve." xml:space="preserve">
+    <value>Recenzenci widzą nowe zależności, zablokowane elementy, wykryte podatności oraz dokładny raport, który zatwierdzają.</value>
+  </data>
+  <data name="Revisit the risk" xml:space="preserve">
+    <value>Ponownie oceń ryzyko</value>
+  </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Solidne testy integracyjne</value>
+  </data>
+  <data name="Rollout note:" xml:space="preserve">
+    <value>Informacja o wdrożeniu:</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Zarządzanie zaplanowanymi zadaniami</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Bezproblemowo integruj się z dowolnym dostawcą OpenID Connect, z automatyczną synchronizacją ról.</value>
+  </data>
+  <data name="Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog." xml:space="preserve">
+    <value>Wyszukuj pakiety NuGet i npm, dostawców, dokładne wersje oraz reguły z symbolami wieloznacznymi w dostępnym katalogu.</value>
+  </data>
+  <data name="See reported dependency decisions" xml:space="preserve">
+    <value>Zobacz zgłoszone decyzje dotyczące zależności</value>
   </data>
   <data name="Smart Configuration Overrides" xml:space="preserve">
     <value>Inteligentne Zastępowanie Konfiguracji</value>
@@ -156,20 +327,68 @@
   <data name="Start a new project" xml:space="preserve">
     <value>Rozpocznij nowy projekt</value>
   </data>
+  <data name="Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here." xml:space="preserve">
+    <value>Zacznij od przejrzenia katalogu. Gdy będziesz potrzebować nowego pakietu, pojawi się tu Twoje zgłoszenie wraz z pełnym raportem zależności.</value>
+  </data>
+  <data name="Suppliers, trust rules, and absolute blocks" xml:space="preserve">
+    <value>Dostawcy, zasady zaufania i bezwzględne blokady</value>
+  </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Obsługuje zarówno zmienne środowiskowe, jak i ustawienia oparte na bazie danych, przy automatycznym priorytetowaniu zmiennych środowiskowych w celu bezproblemowego przesłaniania.</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Pasek nawigacji automatycznie dostosowuje się na podstawie ról i uprawnień użytkownika.</value>
   </data>
+  <data name="The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs." xml:space="preserve">
+    <value>Nazwa pakietu, dokładna wersja, zatwierdzone źródło i suma SHA-256 archiwum wiążą weryfikację z konkretnymi danymi wejściowymi.</value>
+  </data>
+  <data name="These counts describe your own requests. Organization-wide review figures appear only for authorized readers." xml:space="preserve">
+    <value>Te liczby dotyczą Twoich zgłoszeń. Dane o zgłoszeniach oczekujących na weryfikację w całej organizacji są widoczne tylko dla uprawnionych osób.</value>
+  </data>
+  <data name="These organization-wide indicators are not a substitute for opening the underlying report." xml:space="preserve">
+    <value>Te wskaźniki dotyczące całej organizacji nie zastępują otwarcia szczegółowego raportu.</value>
+  </data>
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>To jest projekt szablonu, od którego rozpoczynamy naszą podróż...</value>
+  </data>
+  <data name="This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment." xml:space="preserve">
+    <value>To środowisko jest przygotowywane przed wdrożeniem egzekwowania zasad przez Runnera. Zatwierdzenie zgłoszenia w aplikacji Web nie oznacza, że każda kompilacja jest już sprawdzana; integracja z CI nastąpi po wdrożeniu usługi.</value>
+  </data>
+  <data name="Tracked artifacts" xml:space="preserve">
+    <value>Śledzone artefakty</value>
+  </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Zależność pośrednia</value>
+  </data>
+  <data name="Trust rule" xml:space="preserve">
+    <value>Reguła zaufania</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>Zobacz wszystkie</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Witamy</value>
   </data>
+  <data name="Welcome to S360." xml:space="preserve">
+    <value>Witamy w S360.</value>
+  </data>
+  <data name="What S360 checks before a dependency is trusted." xml:space="preserve">
+    <value>Co S360 sprawdza, zanim zaufa zależności.</value>
+  </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Dlaczego warto używać szablonu Aiursoft?</value>
+  </data>
+  <data name="Words you will see" xml:space="preserve">
+    <value>Słowa, które zobaczysz</value>
+  </data>
+  <data name="Your latest requests" xml:space="preserve">
+    <value>Twoje najnowsze zgłoszenia</value>
+  </data>
+  <data name="Your supply-chain workspace" xml:space="preserve">
+    <value>Twoje centrum zarządzania łańcuchem dostaw</value>
+  </data>
+  <data name="Your work, without the guesswork." xml:space="preserve">
+    <value>Twoja praca, bez zgadywania.</value>
   </data>
 
 </root>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Already authorized" xml:space="preserve">
+    <value>Önceden yetkilendirilmiş</value>
+  </data>
+  <data name="Authorized but not check-ready" xml:space="preserve">
+    <value>Yetkilendirilmiş ancak denetime hazır değil</value>
+  </data>
+  <data name="Current authorization" xml:space="preserve">
+    <value>Mevcut yetkilendirme</value>
+  </data>
+  <data name="Current check blocked" xml:space="preserve">
+    <value>Mevcut denetim engellendi</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Bağımlılık isteği</value>
+  </data>
+  <data name="Direct" xml:space="preserve">
+    <value>Doğrudan</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>Tanıtım yolu</value>
+  </data>
+  <data name="New review items" xml:space="preserve">
+    <value>İnceleme için yeni öğeler</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Paket</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Amaç</value>
+  </data>
+  <data name="Report SHA-256" xml:space="preserve">
+    <value>Raporun SHA-256 özeti</value>
+  </data>
+  <data name="Requested" xml:space="preserve">
+    <value>Talep edildi</value>
+  </data>
+  <data name="Resolution context" xml:space="preserve">
+    <value>Çözüm bağlamı</value>
+  </data>
+  <data name="Resolution failed; this request cannot be approved." xml:space="preserve">
+    <value>Çözümleme başarısız oldu; bu istek onaylanamaz.</value>
+  </data>
+  <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
+    <value>Çözümleme sıraya alınmış veya devam ediyor. Sonucu görmek için bu sayfayı yenileyin.</value>
+  </data>
+  <data name="Retry as a new request" xml:space="preserve">
+    <value>Yeni bir istek olarak yeniden dene</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Kaynak</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>Kaynağa izin verilmiyor</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Durum</value>
+  </data>
+  <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
+    <value>Başarısız istek geçmişinizde kalır. Yeni istek, bugünün kaynak ve engelleme listesi kurallarına göre kontrol edilir.</value>
+  </data>
+  <data name="This report is ready for administrator review. It is not an approval." xml:space="preserve">
+    <value>Bu rapor yönetici incelemesine hazırdır. Bu bir onay değildir.</value>
+  </data>
+  <data name="Total packages" xml:space="preserve">
+    <value>Toplam paket sayısı</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Sürüm</value>
+  </data>
+  <data name="Withdraw request" xml:space="preserve">
+    <value>Talebi geri çek</value>
+  </data>
+
+</root>

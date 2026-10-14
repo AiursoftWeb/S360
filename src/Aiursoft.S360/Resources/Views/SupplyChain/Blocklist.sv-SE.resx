@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Ett paket som matchar nekas oavsett leverantör, källa, godkännande eller om det anlände som ett direkt eller transitivt beroende. Tidigare godkännanden och kontroller finns kvar som revisionsunderlag.</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>Absolut blocklista</value>
+  </data>
+  <data name="Add absolute block" xml:space="preserve">
+    <value>Lägg till absolut blockering</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>applikationer</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>artefakter</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Tillgängliga beroenden</value>
+  </data>
+  <data name="Block package" xml:space="preserve">
+    <value>Blockera paket</value>
+  </data>
+  <data name="Block reason" xml:space="preserve">
+    <value>Blockeringsorsak</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>Av</value>
+  </data>
+  <data name="CI check runs" xml:space="preserve">
+    <value>CI-körningar</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Skapad</value>
+  </data>
+  <data name="Disable block" xml:space="preserve">
+    <value>Inaktivera blockering</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ekosystem</value>
+  </data>
+  <data name="Edit rule and view history" xml:space="preserve">
+    <value>Redigera regeln och visa historik</value>
+  </data>
+  <data name="Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*." xml:space="preserve">
+    <value>Exakta namn och prefix är olika. ant-design omfattar inte automatiskt antd eller @ant-design/*.</value>
+  </data>
+  <data name="Examples" xml:space="preserve">
+    <value>Exempel</value>
+  </data>
+  <data name="Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures." xml:space="preserve">
+    <value>Effektsiffrorna nedan är exempel baserade på nyligen registrerade objekt, inte fullständiga sammanräkningar. Begränsa eller granska en regel innan du förlitar dig på dessa siffror.</value>
+  </data>
+  <data name="No block rules have been recorded for this ecosystem." xml:space="preserve">
+    <value>Inga blockeringsregler har registrerats för det här ekosystemet.</value>
+  </data>
+  <data name="Package name or trailing-* pattern" xml:space="preserve">
+    <value>Paketnamn eller mönster som slutar med *</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Paketmönster</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Orsak</value>
+  </data>
+  <data name="Recorded impact sample" xml:space="preserve">
+    <value>Registrerat exempel på påverkan</value>
+  </data>
+  <data name="Save change" xml:space="preserve">
+    <value>Spara ändringen</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Visa</value>
+  </data>
+  <data name="Use * to block every version, or an exact version or trailing-* prefix to narrow the block." xml:space="preserve">
+    <value>Använd * för att blockera alla versioner, eller ange en exakt version eller ett prefix som slutar med * för att begränsa blockeringen.</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Versionsmönster</value>
+  </data>
+  <data name="View history" xml:space="preserve">
+    <value>Visa historik</value>
+  </data>
+  <data name="Why change this block?" xml:space="preserve">
+    <value>Varför ändra det här blockeringsregeln?</value>
+  </data>
+  <data name="Why disable this block?" xml:space="preserve">
+    <value>Varför inaktivera det här blocket?</value>
+  </data>
+
+</root>

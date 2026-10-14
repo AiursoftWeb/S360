@@ -18,8 +18,14 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
+      <data name=".NET packages" xml:space="preserve">
+    <value>.NET-pakker</value>
+  </data>
+  <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>&quot;Fire-and-forget&quot;-støtte til langvarige opgaver (som emails eller AI), med en brugergrænseflade til køstyring, parallell behandling og annullering.</value>
+  </data>
+  <data name="A blocked package stays blocked even when it appears only as a transitive dependency or matches a broader trust rule." xml:space="preserve">
+    <value>En blokeret pakke forbliver blokeret, selv hvis den kun optræder som en transitiv afhængighed eller er omfattet af en bredere tillidsregel.</value>
   </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Et indbygget Role-Based Access Control (RBAC)-system til finjusteret rettighedshåndtering.</value>
@@ -30,11 +36,20 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>En komplet løsning til brugerautentificering og profilhåndtering.</value>
   </data>
+  <data name="A decision covers the complete resolved graph, not only the package you typed." xml:space="preserve">
+    <value>En beslutning omfatter hele den løste afhængighedsgraf, ikke kun den pakke, du indtastede.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>En fuldt responsiv layout, der ser fantastisk ud på både stationære og mobile enheder.</value>
   </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>En moderne, funktionsrig og meget udvidelsesparat fundament til din næste webapplikation.</value>
+  </data>
+  <data name="A practical workflow" xml:space="preserve">
+    <value>En praktisk arbejdsgang</value>
+  </data>
+  <data name="A searchable allowed catalog" xml:space="preserve">
+    <value>Et søgbart katalog over godkendte pakker</value>
   </data>
   <data name="Achieve more with Aiursoft Template" xml:space="preserve">
     <value>Opnå mere med Aiursoft Template</value>
@@ -63,17 +78,29 @@
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Alle afhængigheder registreres automatisk og er altid tilgængelige via konstruktor-injektion.</value>
   </data>
+  <data name="An absolute blocklist" xml:space="preserve">
+    <value>En absolut blokliste</value>
+  </data>
   <data name="Anduin" xml:space="preserve">
     <value>Anduin</value>
   </data>
   <data name="Anduin Xue" xml:space="preserve">
     <value>Anduin Xue</value>
   </data>
+  <data name="Approve a report-backed batch while retaining the individual package decisions and their review history." xml:space="preserve">
+    <value>Godkend en rapportbaseret batch, samtidig med at de individuelle pakkebeslutninger og deres gennemgangshistorik bevares.</value>
+  </data>
   <data name="Artificial Intelligence Translation" xml:space="preserve">
     <value>Kunstig intelligens-oversættelse</value>
   </data>
+  <data name="Audit" xml:space="preserve">
+    <value>Kontrollér</value>
+  </data>
   <data name="Authentik &amp; Okta" xml:space="preserve">
     <value>Authentik &amp; Okta</value>
+  </data>
+  <data name="Authorized mirrors" xml:space="preserve">
+    <value>Autoriserede spejle</value>
   </data>
   <data name="Auto compression and privacy" xml:space="preserve">
     <value>Automatisk komprimering og privatliv</value>
@@ -120,14 +147,26 @@
   <data name="Bilingual Tutorials" xml:space="preserve">
     <value>To-sprogede vejledninger</value>
   </data>
+  <data name="Blocklist first" xml:space="preserve">
+    <value>Blokeringsliste først</value>
+  </data>
+  <data name="Build inputs prepared before the network is closed." xml:space="preserve">
+    <value>Byggeinput klargøres, før netværket lukkes.</value>
+  </data>
   <data name="Build once, run anywhere. Fully containerized architecture." xml:space="preserve">
     <value>Byg én gang, kørs overalt. Fuld containeriseret arkitektur.</value>
   </data>
   <data name="Build your next big thing," xml:space="preserve">
     <value>Byg din næste store ting,</value>
   </data>
+  <data name="Built for clear decisions" xml:space="preserve">
+    <value>Skabt til klare beslutninger</value>
+  </data>
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>Udviklet til ingeniører, der tager kvalitet alvorligt.</value>
+  </data>
+  <data name="Built to grow safely" xml:space="preserve">
+    <value>Bygget til at vokse sikkert</value>
   </data>
   <data name="Built with Aiursoft Template" xml:space="preserve">
     <value>Udviklet med Aiursoft Template</value>
@@ -174,6 +213,9 @@
   <data name="Checkstyle or similar needed" xml:space="preserve">
     <value>Checkstyle eller lignende kræves</value>
   </data>
+  <data name="Choose NuGet or npm, list the direct packages, and explain the intended use. No separate request command is needed." xml:space="preserve">
+    <value>Vælg NuGet eller npm, angiv de direkte pakker, og forklar, hvad de skal bruges til. Der er ikke behov for en separat anmodningskommando.</value>
+  </data>
   <data name="Comes with Docker support for simplified and consistent deployments." xml:space="preserve">
     <value>Kommer med Docker-understøttelse for forenklet og konsistent implementering.</value>
   </data>
@@ -207,6 +249,9 @@
   <data name="Cross Platform" xml:space="preserve">
     <value>Krydssystem</value>
   </data>
+  <data name="Current mirrors" xml:space="preserve">
+    <value>Aktuelle spejle</value>
+  </data>
   <data name="Custom dev required" xml:space="preserve">
     <value>Kræver tilpasset udvikling</value>
   </data>
@@ -237,6 +282,9 @@
   <data name="Default SQLite database, no configuration needed." xml:space="preserve">
     <value>Standard SQLite-database, ingen konfiguration nødvendig.</value>
   </data>
+  <data name="Dependency review" xml:space="preserve">
+    <value>Gennemgang af afhængigheder</value>
+  </data>
   <data name="Designed for everyone, from beginners to experts." xml:space="preserve">
     <value>Udviklet til alle, fra begyndere til eksperter.</value>
   </data>
@@ -254,6 +302,9 @@
   </data>
   <data name="DevOps Native" xml:space="preserve">
     <value>DevOps-native</value>
+  </data>
+  <data name="Direct request" xml:space="preserve">
+    <value>Direkte anmodning</value>
   </data>
   <data name="Discussions page" xml:space="preserve">
     <value>Diskussionsside</value>
@@ -279,6 +330,9 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Skriv integreringstests let og nemt ved hjælp af i-hukommelsesdatabaser, midlertidige filsystemer, indbygget mockning og simulering af virkelige HTTP-anmodninger.</value>
   </data>
+  <data name="Employees can discover current approvals, suppliers, and matching rules before starting another request." xml:space="preserve">
+    <value>Medarbejdere kan se gældende godkendelser, leverandører og matchende regler, før de sender en ny anmodning.</value>
+  </data>
   <data name="Enforced" xml:space="preserve">
     <value>Tvungen</value>
   </data>
@@ -300,6 +354,21 @@
   <data name="Entity Framework Core included" xml:space="preserve">
     <value>Entity Framework Core inkluderet</value>
   </data>
+  <data name="Exact artifact evidence" xml:space="preserve">
+    <value>Præcis dokumentation for artefaktet</value>
+  </data>
+  <data name="Exact SHA-256 evidence" xml:space="preserve">
+    <value>Præcis SHA-256-dokumentation</value>
+  </data>
+  <data name="Existing package access continues." xml:space="preserve">
+    <value>Adgangen til eksisterende pakker fortsætter.</value>
+  </data>
+  <data name="Expiry, revocation, and newly published advisories remain visible after the original approval." xml:space="preserve">
+    <value>Udløb, tilbagekaldelse og nyligt offentliggjorte sikkerhedsadvarsler forbliver synlige efter den oprindelige godkendelse.</value>
+  </data>
+  <data name="Explore available dependencies" xml:space="preserve">
+    <value>Udforsk tilgængelige afhængigheder</value>
+  </data>
   <data name="FAQ" xml:space="preserve">
     <value>OFTE STILLEDE SPØRGSMÅL</value>
   </data>
@@ -320,6 +389,9 @@
   </data>
   <data name="File Mgmt &amp; Optimization" xml:space="preserve">
     <value>Filstyring &amp; optimering</value>
+  </data>
+  <data name="Find what is already allowed, request what is missing, and follow every decision back to its evidence." xml:space="preserve">
+    <value>Find det, der allerede er godkendt, anmod om det, der mangler, og følg hver beslutning tilbage til dens dokumentation.</value>
   </data>
   <data name="Fine-grained RBAC" xml:space="preserve">
     <value>Finjusteret RBAC</value>
@@ -350,6 +422,9 @@
   </data>
   <data name="Frequently asked questions" xml:space="preserve">
     <value>Ofte stillede spørgsmål</value>
+  </data>
+  <data name="From package request to policy evidence." xml:space="preserve">
+    <value>Fra pakkeanmodning til dokumentation af politikker.</value>
   </data>
   <data name="From the Architect" xml:space="preserve">
     <value>Fra Arkitekten</value>
@@ -429,11 +504,17 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>Hvordan deployer jeg min applikation?</value>
   </data>
+  <data name="Human review at the right scale" xml:space="preserve">
+    <value>Menneskelig gennemgang i passende omfang</value>
+  </data>
   <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
     <value>Jeg har bygget Aiursoft Template, fordi jeg var træt af at indstille de samme Auth, Log og CI/CD-pipelines for hvert nye enterprise-projekt. Dette er ikke blot en skabelon; det er de kristalliserede bedste praksisser fra år med højkonkurrenceproduktionsmiljøer. Det giver mit team mulighed for at springe over den kedelige opsætning og direkte begynde med business logik.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>IDE-støtte</value>
+  </data>
+  <data name="Illustration of a dependency review" xml:space="preserve">
+    <value>Illustration af en afhængighedsgennemgang</value>
   </data>
   <data name="In-memory DB, temp FS, and HTTP simulation" xml:space="preserve">
     <value>In-memory DB, midlertidigt FS og HTTP-simulering</value>
@@ -468,6 +549,9 @@
   <data name="java.time API available" xml:space="preserve">
     <value>java.time API tilgængelig</value>
   </data>
+  <data name="JavaScript packages" xml:space="preserve">
+    <value>JavaScript-pakker</value>
+  </data>
   <data name="Job Queue &amp; Scheduling GUI" xml:space="preserve">
     <value>Job Queue &amp; Scheduling GUI</value>
   </data>
@@ -483,11 +567,26 @@
   <data name="K8s / Swarm Ready" xml:space="preserve">
     <value>K8s / Swarm Klar</value>
   </data>
+  <data name="Keep watch" xml:space="preserve">
+    <value>Hold øje</value>
+  </data>
+  <data name="Know every dependency." xml:space="preserve">
+    <value>Kend hver eneste afhængighed.</value>
+  </data>
+  <data name="Less guesswork for employees. More context for reviewers." xml:space="preserve">
+    <value>Mindre gætværk for medarbejderne. Mere kontekst for dem, der gennemgår anmodningerne.</value>
+  </data>
   <data name="Lint Check" xml:space="preserve">
     <value>Lint-check</value>
   </data>
+  <data name="Made for the dependencies your teams actually use." xml:space="preserve">
+    <value>Skabt til de afhængigheder, jeres teams faktisk bruger.</value>
+  </data>
   <data name="Maintain High Code Quality" xml:space="preserve">
     <value>Vedligehold høj kodekvalitet</value>
+  </data>
+  <data name="Make the next package decision an informed one." xml:space="preserve">
+    <value>Træf den næste beslutning om pakker på et oplyst grundlag.</value>
   </data>
   <data name="Management Dashboard" xml:space="preserve">
     <value>Administrationsdashboard</value>
@@ -552,6 +651,9 @@
   <data name="Needs Passport or similar" xml:space="preserve">
     <value>Kræver Passport eller lignende</value>
   </data>
+  <data name="Needs review" xml:space="preserve">
+    <value>Skal gennemgås</value>
+  </data>
   <data name="Needs Spatie or similar" xml:space="preserve">
     <value>Kræver Spatie eller lignende</value>
   </data>
@@ -567,6 +669,15 @@
   <data name="No dependency on any cloud vendor. Run anywhere, any time." xml:space="preserve">
     <value>Ingen afhængighed af nogen cloud-leverandør. Kør overalt, når som helst.</value>
   </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet og npm</value>
+  </data>
+  <data name="NuGet and npm have different version and installation rules. S360 keeps their package identities distinct while presenting one consistent approval experience." xml:space="preserve">
+    <value>NuGet og npm har forskellige regler for versioner og installation. S360 holder deres pakkeidentiteter adskilt, samtidig med at godkendelsesoplevelsen er ensartet.</value>
+  </data>
+  <data name="Offline builds" xml:space="preserve">
+    <value>Offline-builds</value>
+  </data>
   <data name="Offline Capable" xml:space="preserve">
     <value>Offline-funktion</value>
   </data>
@@ -576,8 +687,23 @@
   <data name="One Click Start" xml:space="preserve">
     <value>Én-klik-start</value>
   </data>
+  <data name="One coherent workflow" xml:space="preserve">
+    <value>Én sammenhængende arbejdsgang</value>
+  </data>
+  <data name="One request, the whole graph" xml:space="preserve">
+    <value>Én anmodning, hele grafen</value>
+  </data>
+  <data name="Ongoing vulnerability visibility" xml:space="preserve">
+    <value>Løbende indsigt i sårbarheder</value>
+  </data>
+  <data name="Only approved package versions are served." xml:space="preserve">
+    <value>Kun godkendte pakkeversioner distribueres.</value>
+  </data>
   <data name="Open Source" xml:space="preserve">
     <value>Open Source</value>
+  </data>
+  <data name="Open your workspace" xml:space="preserve">
+    <value>Åbn dit arbejdsområde</value>
   </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect-integration</value>
@@ -624,14 +750,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Læs dokumentationen</value>
   </data>
+  <data name="Record the package source and SHA-256 of each NuGet archive or npm tarball, not just a familiar package name." xml:space="preserve">
+    <value>Registrér pakkekilden og SHA-256-værdien for hvert NuGet-arkiv eller npm-tarball – ikke kun et velkendt pakkenavn.</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Anmodning</value>
+  </data>
+  <data name="Request in the browser" xml:space="preserve">
+    <value>Anmod i browseren</value>
+  </data>
+  <data name="Requests, policy, audit, and approval." xml:space="preserve">
+    <value>Anmodninger, politik, revision og godkendelse.</value>
+  </data>
   <data name="Requires Laravel Socialite config" xml:space="preserve">
     <value>Kræver Laravel Socialite-konfiguration</value>
   </data>
   <data name="Requires Spring Security configuration" xml:space="preserve">
     <value>Kræver Spring Security-konfiguration</value>
   </data>
+  <data name="Resolve" xml:space="preserve">
+    <value>Løs</value>
+  </data>
+  <data name="Resolve and inspect" xml:space="preserve">
+    <value>Find og undersøg</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Responsivt Design</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Gennemgå</value>
+  </data>
+  <data name="Review restored versions and the original .nupkg files behind your applications." xml:space="preserve">
+    <value>Gennemgå gendannede versioner og de originale .nupkg-filer bag jeres applikationer.</value>
+  </data>
+  <data name="Review with guardrails" xml:space="preserve">
+    <value>Gennemgå med sikkerhedsforanstaltninger</value>
+  </data>
+  <data name="Reviewed artifact" xml:space="preserve">
+    <value>Gennemgået artefakt</value>
+  </data>
+  <data name="Reviewers see what is already trusted and what is new. Blacklist and vulnerability checks cannot be hidden by a root approval." xml:space="preserve">
+    <value>Godkendere kan se, hvad der allerede er godkendt, og hvad der er nyt. Tjek af blokeringslisten og sårbarheder kan ikke skjules af en godkendelse af en rodafhængighed.</value>
   </data>
   <data name="Reviews" xml:space="preserve">
     <value>Anmeldelser</value>
@@ -642,11 +801,32 @@
   <data name="Runs without any internet connection required." xml:space="preserve">
     <value>Kører uden krav om internettet.</value>
   </data>
+  <data name="S360 connects the people approving dependencies with the exact packages, versions, sources, and risks behind each decision." xml:space="preserve">
+    <value>S360 forbinder dem, der godkender afhængigheder, med de præcise pakker, versioner, kilder og risici, der ligger bag hver beslutning.</value>
+  </data>
+  <data name="S360 gives your team one place to request NuGet and npm packages, review their complete dependency trees, and track which exact package files are allowed." xml:space="preserve">
+    <value>S360 giver dit team ét sted, hvor I kan anmode om NuGet- og npm-pakker, gennemgå deres komplette afhængighedstræer og holde styr på, præcis hvilke pakkefiler der er tilladt.</value>
+  </data>
+  <data name="S360 is being prepared as the Web approval center. Runner enforcement, authorization-only package mirrors, and fully offline builds are later rollout stages—not guarantees of this deployment." xml:space="preserve">
+    <value>S360 er ved at blive klargjort som webbaseret godkendelsescenter. Håndhævelse i runners, pakkespejle, der kun giver adgang til godkendte pakker, og fuldstændig offline-builds er senere trin i udrulningen – ikke noget, der garanteres i denne udrulning.</value>
+  </data>
+  <data name="S360 Web and review" xml:space="preserve">
+    <value>S360 Web og gennemgang</value>
+  </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Planlagt opgavestyring</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Integrer problemfrit med enhver OpenID Connect-udbyder med automatisk rolle-synkronisering.</value>
+  </data>
+  <data name="See how it works" xml:space="preserve">
+    <value>Se, hvordan det fungerer</value>
+  </data>
+  <data name="See installed transitive packages and the tarball integrity evidence in one report." xml:space="preserve">
+    <value>Se installerede transitive pakker og integritetsdokumentationen for tarball-arkiverne i én rapport.</value>
+  </data>
+  <data name="See known advisories for used versions and for vulnerable versions still permitted by a wildcard rule." xml:space="preserve">
+    <value>Se kendte sikkerhedsadvarsler for anvendte versioner og for sårbare versioner, der stadig er tilladt af en jokertegnsregel.</value>
   </data>
   <data name="Shift with confidence" xml:space="preserve">
     <value>Skift med tillid</value>
@@ -666,6 +846,9 @@
   <data name="Smart dark mode that automatically adapts to the user&apos;s system settings." xml:space="preserve">
     <value>Smart mørktilstand, der automatisk tilpasser sig brugerens systemindstillinger.</value>
   </data>
+  <data name="Software supply chain, in focus" xml:space="preserve">
+    <value>Fokus på softwares sårbarheder i leverandørkæden</value>
+  </data>
   <data name="Standard implementation. Switch providers without compilation." xml:space="preserve">
     <value>Standardimplementering. Skift leverandører uden kompilering.</value>
   </data>
@@ -680,6 +863,9 @@
   </data>
   <data name="Start with a single &apos;docker run&apos; command." xml:space="preserve">
     <value>Start med en enkelt &apos;docker run&apos; kommando.</value>
+  </data>
+  <data name="Start with visibility and review. Tighten the boundary in stages." xml:space="preserve">
+    <value>Begynd med synlighed og gennemgang. Stram grænserne gradvist.</value>
   </data>
   <data name="Starts without any configuration" xml:space="preserve">
     <value>Starts uden nogen konfiguration</value>
@@ -701,6 +887,9 @@
   </data>
   <data name="Strongly Consistent Linting" xml:space="preserve">
     <value>Stærk Konsistent Linting</value>
+  </data>
+  <data name="Submit direct dependencies once. S360 resolves transitive packages and records how each one enters the request." xml:space="preserve">
+    <value>Indsend direkte afhængigheder én gang. S360 løser transitive pakker og registrerer, hvordan hver enkelt indgår i anmodningen.</value>
   </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Støtter både miljøvariabler og databasebaserede indstillinger, med automatisk prioritet til miljøvariabler for smertefri overtagelser.</value>
@@ -726,8 +915,14 @@
   <data name="Testing module available" xml:space="preserve">
     <value>Testmodul tilgængelig</value>
   </data>
+  <data name="The background resolver records exact versions, package archives, hashes, source, and introduction paths." xml:space="preserve">
+    <value>Baggrundsresolveren registrerer præcise versioner, pakkearkiver, hashes, kilde og introduktionsstier.</value>
+  </data>
   <data name="The definitive, battle-tested .NET enterprise foundation. From Auth to AI, we&apos;ve solved the hard parts so you don&apos;t have to." xml:space="preserve">
     <value>Den definitive, prøvet og testet .NET enterprise-grundlag. Fra Auth til AI, har vi løst de svære dele, så du ikke behøver at gøre det.</value>
+  </data>
+  <data name="The entire dependency graph" xml:space="preserve">
+    <value>Hele afhængighedsgrafen</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Navigationslinjen tilpasser sig automatisk baseret på brugerroller og tilladelser.</value>
@@ -750,8 +945,17 @@
   <data name="TimeZoneInfo API available" xml:space="preserve">
     <value>TimeZoneInfo API tilgængelig</value>
   </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Transitiv afhængighed</value>
+  </data>
+  <data name="Trust every decision." xml:space="preserve">
+    <value>Stol på hver beslutning.</value>
+  </data>
   <data name="Trusted by production-grade applications including AnduinOS, StatHub, and Warp. We don&apos;t just share this code; we run our entire business on it." xml:space="preserve">
     <value>Anvendt af produktionsskalerede applikationer, herunder AnduinOS, StatHub og Warp. Vi deler ikke kun denne kode; vi driver vores hele business med den.</value>
+  </data>
+  <data name="Two ecosystems, one policy language" xml:space="preserve">
+    <value>To økosystemer, ét politikssprog</value>
   </data>
   <data name="Unified Env" xml:space="preserve">
     <value>Fælles miljø</value>
@@ -797,6 +1001,9 @@
   </data>
   <data name="You&apos;ll need the .NET 10 SDK, npm and your favorite IDE, like Visual Studio or JetBrains Rider. You can find the full setup guide in our documentation." xml:space="preserve">
     <value>Du skal bruge .NET 10 SDK, npm og din foretrukne IDE, som f.eks. Visual Studio eller JetBrains Rider. Du kan finde den fulde opsætningsvejledning i vores dokumentation.</value>
+  </data>
+  <data name="Your dependency workspace" xml:space="preserve">
+    <value>Dit arbejdsområde for afhængigheder</value>
   </data>
   <data name="Your enterprise users don&apos;t need to register repeatedly." xml:space="preserve">
     <value>Dine enterprise-brugere behøver ikke at registrere sig gentagende.</value>

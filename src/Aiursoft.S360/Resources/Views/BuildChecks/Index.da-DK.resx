@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted" xml:space="preserve">
+    <value>Accepteret</value>
+  </data>
+  <data name="Batch" xml:space="preserve">
+    <value>Batch</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>batchregistreringer</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Byggekontrolregistreringer</value>
+  </data>
+  <data name="Commit" xml:space="preserve">
+    <value>Commit</value>
+  </data>
+  <data name="Complete run accepted" xml:space="preserve">
+    <value>Komplet kørsel accepteret</value>
+  </data>
+  <data name="Complete run rejected" xml:space="preserve">
+    <value>Komplet kørsel afvist</value>
+  </data>
+  <data name="Currently blocked" xml:space="preserve">
+    <value>Blokeret i øjeblikket</value>
+  </data>
+  <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
+    <value>Hver række svarer til én API-batch. Kun en fuldført kørsel, hvor alle batches er godkendt, kan bestå CLI-kontrollen. Det registrerede resultat er historisk; en aktuel advarsel om blokeringslisten vises separat.</value>
+  </data>
+  <data name="Incomplete run" xml:space="preserve">
+    <value>Ufuldstændig kørsel</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Næste</value>
+  </data>
+  <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
+    <value>Der blev ikke fundet eksterne afhængigheder i de angivne understøttede projekter.</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Pakke</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>Pipeline</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Forrige</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Begrundelse</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Afvist</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>Kørsel</value>
+  </data>
+  <data name="Scanned projects" xml:space="preserve">
+    <value>Scannede projekter</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Kilde</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>Sårbarhedsdata</value>
+  </data>
+
+</root>

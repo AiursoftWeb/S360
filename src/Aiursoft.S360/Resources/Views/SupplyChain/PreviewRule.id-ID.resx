@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Back to policy management" xml:space="preserve">
+    <value>Kembali ke pengelolaan kebijakan</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ekosistem</value>
+  </data>
+  <data name="Known matching package versions" xml:space="preserve">
+    <value>Versi paket yang diketahui cocok</value>
+  </data>
+  <data name="No matching recorded package version appears in this preview. A wildcard may still match future or unrecorded packages." xml:space="preserve">
+    <value>Tidak ada versi paket yang tercatat dan cocok dalam pratinjau ini. Karakter pengganti mungkin tetap cocok dengan paket yang akan datang atau belum tercatat.</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Paket</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Pola paket</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>Versi prarilis</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Pratinjau aturan kepercayaan</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Sumber</value>
+  </data>
+  <data name="This is a limited sample, not every matching package. Narrow the pattern to inspect a smaller set." xml:space="preserve">
+    <value>Ini hanya sampel terbatas, bukan semua paket yang cocok. Persempit polanya untuk memeriksa kumpulan yang lebih kecil.</value>
+  </data>
+  <data name="This read-only preview shows known package versions matching your proposed rule. No package is approved by viewing this page." xml:space="preserve">
+    <value>Pratinjau hanya-baca ini menampilkan versi paket yang diketahui dan cocok dengan aturan yang Anda usulkan. Tidak ada paket yang disetujui dengan melihat halaman ini.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versi</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Pola versi</value>
+  </data>
+
+</root>

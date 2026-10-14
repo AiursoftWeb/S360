@@ -21,6 +21,9 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>&quot;Fire-and-forget&quot;-støtte til langvarende opgaver (som emails eller AI), med en brugergrænseflade til køstyring, parallell behandling og annullering.</value>
   </data>
+  <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
+    <value>En tom dato betyder, at ingen fuldstændig synkronisering af sårbarheder endnu er gennemført. Tidspunkterne er i UTC.</value>
+  </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Et indbygget Role-Based Access Control (RBAC)-system til finjusteret tilladelseshåndtering.</value>
   </data>
@@ -30,17 +33,62 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>En komplet løsning til brugerautentificering og profilhåndtering.</value>
   </data>
+  <data name="A decision you can explain" xml:space="preserve">
+    <value>En beslutning, du kan forklare</value>
+  </data>
+  <data name="A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence." xml:space="preserve">
+    <value>Et velkendt navn eller en godkendt rodpakke er ikke nok. Afgørelsen gælder for hver enkelt løst pakke og dens dokumentation.</value>
+  </data>
+  <data name="A fingerprint of the downloaded package archive, not just its name and version." xml:space="preserve">
+    <value>Et fingeraftryk af det downloadede pakkearkiv, ikke blot dets navn og version.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>En fuldt responsiv layout, der ser fantastisk ud på både stationære og mobile enheder.</value>
   </data>
+  <data name="A good first step" xml:space="preserve">
+    <value>Et godt første skridt</value>
+  </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Et moderne, funktionsrigt og højgradigt udvideligt fundament til din næste webapplikation.</value>
+  </data>
+  <data name="A package pulled in by another package. It needs authorization too." xml:space="preserve">
+    <value>En pakke, der trækkes ind af en anden pakke. Den kræver også godkendelse.</value>
+  </data>
+  <data name="A package your project asks for explicitly." xml:space="preserve">
+    <value>En pakke, som dit projekt anmoder om direkte.</value>
+  </data>
+  <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
+    <value>En politik, der kan tillade matchende pakker; et absolut blokeringstilsagn eller manglende artefaktdokumentation afviser dem stadig.</value>
+  </data>
+  <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
+    <value>Absolutte udelukkelser, der har forrang for tillidsregler og godkendelser.</value>
+  </data>
+  <data name="Across the organization" xml:space="preserve">
+    <value>På tværs af organisationen</value>
+  </data>
+  <data name="Active block rules" xml:space="preserve">
+    <value>Aktive blokeringsregler</value>
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>AI-drevne oversættelser</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Alle afhængigheder registreres automatisk og er altid tilgængelige via konstruktor-injektion.</value>
+  </data>
+  <data name="All requests you submitted" xml:space="preserve">
+    <value>Alle anmodninger, du har indsendt</value>
+  </data>
+  <data name="Approval center" xml:space="preserve">
+    <value>Godkendelsescenter</value>
+  </data>
+  <data name="Approved requests" xml:space="preserve">
+    <value>Godkendte anmodninger</value>
+  </data>
+  <data name="Artifact SHA-256" xml:space="preserve">
+    <value>Artefakt-SHA-256</value>
+  </data>
+  <data name="At a glance" xml:space="preserve">
+    <value>Kort fortalt</value>
   </data>
   <data name="Automatic Dark Mode" xml:space="preserve">
     <value>Automatisk Mørk Tilstand</value>
@@ -57,8 +105,26 @@
   <data name="Automatic, AI-driven translation into 28 languages." xml:space="preserve">
     <value>Automatisk, AI-drevet oversættelse til 28 sprog.</value>
   </data>
+  <data name="Awaiting review" xml:space="preserve">
+    <value>Afventer gennemgang</value>
+  </data>
   <data name="Background Job Processing" xml:space="preserve">
     <value>Baggrundsjobbebehandling</value>
+  </data>
+  <data name="Blacklists, sources, versions, and hashes" xml:space="preserve">
+    <value>Blokeringslister, kilder, versioner og hashværdier</value>
+  </data>
+  <data name="Blocklist comes first" xml:space="preserve">
+    <value>Blokeringslisten kommer først</value>
+  </data>
+  <data name="Browse allowed packages" xml:space="preserve">
+    <value>Gennemse tilladte pakker</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Buildkontrolhistorik</value>
+  </data>
+  <data name="Built into every decision" xml:space="preserve">
+    <value>Indbygget i alle beslutninger</value>
   </data>
   <data name="Built-in User Management" xml:space="preserve">
     <value>Indbygget brugeradministration</value>
@@ -75,8 +141,14 @@
   <data name="Consistency Validation" xml:space="preserve">
     <value>Konsistensvalidering</value>
   </data>
+  <data name="Decisions recorded for your work" xml:space="preserve">
+    <value>Afgørelser registreret for dine anmodninger</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Udvikl udelukkende i UTC, mens systemet automatisk konverterer og viser datoer i brugeren&apos;s lokale tidszone.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Direkte afhængighed</value>
   </data>
   <data name="Dockerized for Deployment" xml:space="preserve">
     <value>Dockeriseret til implementering</value>
@@ -96,11 +168,35 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Skriv integreringstests uden problemer ved hjælp af hukommelsesbaserede databaser, midlertidige filsystemer, indbygget mockning og simulering af virkelige HTTP-anmodninger.</value>
   </data>
+  <data name="Enter direct dependencies. S360 resolves the complete graph and records the package artifacts." xml:space="preserve">
+    <value>Indtast direkte afhængigheder. S360 løser hele afhængighedsgrafen og registrerer pakkeartifakterne.</value>
+  </data>
+  <data name="Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children." xml:space="preserve">
+    <value>Hver transitiv pakke skal have sin egen gyldige godkendelse; en betroet overordnet pakke giver ikke automatisk tillid til sine afhængigheder.</value>
+  </data>
+  <data name="Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision." xml:space="preserve">
+    <value>Udløb, tilbagekaldelse og nye sikkerhedsadvarsler kan ændre den aktuelle vurdering uden at slette den tidligere beslutning.</value>
+  </data>
+  <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
+    <value>Pakker, der er eksplicit blokeret, afvises, selvom de kommer ind indirekte eller er omfattet af en bred leverandørregel.</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Funktioner et indbygget filhåndteringsystem med automatisk avatarkomprimering og privatlivsbeskyttelse.</value>
   </data>
   <data name="Features a built-in file management system with automatic avatar compression." xml:space="preserve">
     <value>Har et indbygget filstyringssystem med automatisk avatar-komprimering.</value>
+  </data>
+  <data name="Find an existing approval" xml:space="preserve">
+    <value>Find en eksisterende godkendelse</value>
+  </data>
+  <data name="Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view." xml:space="preserve">
+    <value>Følg anmodninger fra den første pakke til den endelige beslutning, undersøg, hvad jeres organisation allerede tillader, og hold øje med nye risici.</value>
+  </data>
+  <data name="Follow the decision" xml:space="preserve">
+    <value>Følg beslutningen</value>
+  </data>
+  <data name="For authorized reviewers" xml:space="preserve">
+    <value>For autoriserede kontrollanter</value>
   </data>
   <data name="Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs." xml:space="preserve">
     <value>Håndtér gentagende opgaver som rydning og synkronisering med en omfattende brugergrænseflade til overvågning af udførelseshistorik og logfiler.</value>
@@ -108,11 +204,35 @@
   <data name="Hello World!" xml:space="preserve">
     <value>Hej Verden!</value>
   </data>
+  <data name="How S360 helps" xml:space="preserve">
+    <value>Sådan hjælper S360</value>
+  </data>
+  <data name="In progress" xml:space="preserve">
+    <value>I gang</value>
+  </data>
+  <data name="Include the whole graph" xml:space="preserve">
+    <value>Medtag hele afhængighedsgrafen</value>
+  </data>
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Inkluderer omfattende dokumentation og praktiske eksempler, så du kan komme i gang hurtigt.</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Integreret Filhåndtering</value>
+  </data>
+  <data name="Keep the wider picture in view." xml:space="preserve">
+    <value>Bevar overblikket.</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Kendte sårbarheder</value>
+  </data>
+  <data name="Last successful OSV sync" xml:space="preserve">
+    <value>Seneste vellykkede OSV-synkronisering</value>
+  </data>
+  <data name="Learn about the workflow" xml:space="preserve">
+    <value>Få mere at vide om arbejdsgangen</value>
+  </data>
+  <data name="Match the actual artifact" xml:space="preserve">
+    <value>Match det faktiske artefakt</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Modeller valideres på både klient- og serversiden baseret på dataanmærkninger.</value>
@@ -123,8 +243,29 @@
   <data name="Multiple Database Support" xml:space="preserve">
     <value>Understøttelse af flere databaser</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Mine anmodninger</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>Ny anmodning</value>
+  </data>
+  <data name="No requests yet" xml:space="preserve">
+    <value>Ingen forespørgsler endnu</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect-integration</value>
+  </data>
+  <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
+    <value>Pakkefiler registreret på tværs af begge økosystemer, herunder elementer, der ikke er godkendt i øjeblikket.</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>Politik</value>
+  </data>
+  <data name="Policy management" xml:space="preserve">
+    <value>Administration af politikker</value>
+  </data>
+  <data name="Quick and detailed risk views" xml:space="preserve">
+    <value>Hurtigt overblik og detaljeret risikovurdering</value>
   </data>
   <data name="RBAC Authorization" xml:space="preserve">
     <value>RBAC-godkendelse</value>
@@ -132,17 +273,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Læs dokumentationen</value>
   </data>
+  <data name="Recent activity" xml:space="preserve">
+    <value>Seneste aktivitet</value>
+  </data>
+  <data name="Request overview" xml:space="preserve">
+    <value>Oversigt over anmodninger</value>
+  </data>
+  <data name="Request what is missing" xml:space="preserve">
+    <value>Anmod om det, der mangler</value>
+  </data>
+  <data name="Resolving or awaiting review" xml:space="preserve">
+    <value>Under behandling eller afventer gennemgang</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Responsivt Design</value>
   </data>
+  <data name="Review pending and expiring decisions" xml:space="preserve">
+    <value>Gennemgå afventende beslutninger og beslutninger, der snart udløber</value>
+  </data>
+  <data name="Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve." xml:space="preserve">
+    <value>Bedømmerne kan se nye afhængigheder, blokerede elementer, sårbarhedsfund og den præcise rapport, de godkender.</value>
+  </data>
+  <data name="Revisit the risk" xml:space="preserve">
+    <value>Revurdér risikoen</value>
+  </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Robust integrationstest</value>
+  </data>
+  <data name="Rollout note:" xml:space="preserve">
+    <value>Udrulningsbemærkning:</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Planlagt opgavestyring</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Integrer problemfrit med enhver OpenID Connect-udbyder, med automatisk rolle-synkronisering.</value>
+  </data>
+  <data name="Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog." xml:space="preserve">
+    <value>Søg efter NuGet- og npm-pakker, leverandører, præcise versioner og jokertegnsregler i det tilgængelige katalog.</value>
+  </data>
+  <data name="See reported dependency decisions" xml:space="preserve">
+    <value>Se rapporterede afhængighedsbeslutninger</value>
   </data>
   <data name="Smart Configuration Overrides" xml:space="preserve">
     <value>Smarte konfigurations-overskrivninger</value>
@@ -156,20 +327,68 @@
   <data name="Start a new project" xml:space="preserve">
     <value>Start et nyt projekt</value>
   </data>
+  <data name="Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here." xml:space="preserve">
+    <value>Start med at gennemse kataloget. Når du har brug for en ny pakke, vises din anmodning og den fulde afhængighedsrapport her.</value>
+  </data>
+  <data name="Suppliers, trust rules, and absolute blocks" xml:space="preserve">
+    <value>Leverandører, tillidsregler og absolutte blokeringer</value>
+  </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Støtter både miljøvariable og databasebaserede indstillinger, med automatisk prioritet til miljøvariable for smidige genoverwriter.</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Navigationslinjen tilpasser sig automatisk baseret på brugerroller og tilladelser.</value>
   </data>
+  <data name="The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs." xml:space="preserve">
+    <value>Pakkenavnet, den præcise version, den godkendte kilde og arkivets SHA-256-hash sikrer, at gennemgangen er knyttet til konkrete input.</value>
+  </data>
+  <data name="These counts describe your own requests. Organization-wide review figures appear only for authorized readers." xml:space="preserve">
+    <value>Disse tal beskriver dine egne anmodninger. Tal for gennemgange på tværs af organisationen vises kun for læsere med de nødvendige rettigheder.</value>
+  </data>
+  <data name="These organization-wide indicators are not a substitute for opening the underlying report." xml:space="preserve">
+    <value>Disse indikatorer på tværs af organisationen kan ikke erstatte en gennemgang af den underliggende rapport.</value>
+  </data>
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>Dette er et skabelonprojekt, hvor vi begynder rejsen...</value>
+  </data>
+  <data name="This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment." xml:space="preserve">
+    <value>Dette arbejdsområde klargøres, inden håndhævelsen i Runner træder i kraft. En godkendt Web-anmodning betyder ikke, at alle builds allerede kontrolleres; CI-integrationen følger efter udrulningen af tjenesten.</value>
+  </data>
+  <data name="Tracked artifacts" xml:space="preserve">
+    <value>Registrerede artefakter</value>
+  </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Transitiv afhængighed</value>
+  </data>
+  <data name="Trust rule" xml:space="preserve">
+    <value>Tillidsregel</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>Vis alle</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Velkommen</value>
   </data>
+  <data name="Welcome to S360." xml:space="preserve">
+    <value>Velkommen til S360.</value>
+  </data>
+  <data name="What S360 checks before a dependency is trusted." xml:space="preserve">
+    <value>Hvad S360 kontrollerer, før en afhængighed anses for at være betroet.</value>
+  </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Hvorfor bruge Aiursoft Template?</value>
+  </data>
+  <data name="Words you will see" xml:space="preserve">
+    <value>Ord, du vil møde</value>
+  </data>
+  <data name="Your latest requests" xml:space="preserve">
+    <value>Dine seneste anmodninger</value>
+  </data>
+  <data name="Your supply-chain workspace" xml:space="preserve">
+    <value>Dit arbejdsområde for forsyningskæden</value>
+  </data>
+  <data name="Your work, without the guesswork." xml:space="preserve">
+    <value>Dit arbejde, uden gætværk.</value>
   </data>
 
 </root>

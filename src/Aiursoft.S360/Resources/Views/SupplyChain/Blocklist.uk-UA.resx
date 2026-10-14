@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Пакет, що відповідає правилу, відхиляється незалежно від постачальника, джерела, схвалення та того, чи надійшов він як пряма або транзитивна залежність. Історичні схвалення та перевірки зберігаються як аудиторські свідчення.</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>Абсолютний список блокування</value>
+  </data>
+  <data name="Add absolute block" xml:space="preserve">
+    <value>Додати абсолютне блокування</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>застосунків</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>артефактів</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Доступні залежності</value>
+  </data>
+  <data name="Block package" xml:space="preserve">
+    <value>Заблокувати пакет</value>
+  </data>
+  <data name="Block reason" xml:space="preserve">
+    <value>Причина блокування</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>Автор</value>
+  </data>
+  <data name="CI check runs" xml:space="preserve">
+    <value>запуски перевірок CI</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Створено</value>
+  </data>
+  <data name="Disable block" xml:space="preserve">
+    <value>Вимкнути блокування</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Екосистема</value>
+  </data>
+  <data name="Edit rule and view history" xml:space="preserve">
+    <value>Редагувати правило та переглянути історію</value>
+  </data>
+  <data name="Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*." xml:space="preserve">
+    <value>Точні назви та префікси — це різні речі. ant-design автоматично не охоплює antd або @ant-design/*.</value>
+  </data>
+  <data name="Examples" xml:space="preserve">
+    <value>Приклади</value>
+  </data>
+  <data name="Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures." xml:space="preserve">
+    <value>Наведені нижче показники впливу — це вибірка нещодавно зафіксованих об’єктів, а не повний підрахунок. Перш ніж покладатися на ці показники, звузьте дію правила або перевірте його.</value>
+  </data>
+  <data name="No block rules have been recorded for this ecosystem." xml:space="preserve">
+    <value>Для цієї екосистеми не зареєстровано правил блокування.</value>
+  </data>
+  <data name="Package name or trailing-* pattern" xml:space="preserve">
+    <value>Назва пакета або шаблон із * наприкінці</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Шаблон пакета</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Причина</value>
+  </data>
+  <data name="Recorded impact sample" xml:space="preserve">
+    <value>Зразок зафіксованого впливу</value>
+  </data>
+  <data name="Save change" xml:space="preserve">
+    <value>Зберегти зміни</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Показати</value>
+  </data>
+  <data name="Use * to block every version, or an exact version or trailing-* prefix to narrow the block." xml:space="preserve">
+    <value>Використовуйте *, щоб заблокувати всі версії, або вкажіть точну версію чи префікс із * наприкінці, щоб звузити блокування.</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Шаблон версії</value>
+  </data>
+  <data name="View history" xml:space="preserve">
+    <value>Переглянути історію</value>
+  </data>
+  <data name="Why change this block?" xml:space="preserve">
+    <value>Чому змінити це блокування?</value>
+  </data>
+  <data name="Why disable this block?" xml:space="preserve">
+    <value>Чому вимкнути це блокування?</value>
+  </data>
+
+</root>

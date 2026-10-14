@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Back to policy management" xml:space="preserve">
+    <value>Înapoi la gestionarea politicilor</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ecosistem</value>
+  </data>
+  <data name="Known matching package versions" xml:space="preserve">
+    <value>Versiuni cunoscute ale pachetelor care corespund</value>
+  </data>
+  <data name="No matching recorded package version appears in this preview. A wildcard may still match future or unrecorded packages." xml:space="preserve">
+    <value>În această previzualizare nu apare nicio versiune de pachet înregistrată care să corespundă. Un metacaracter de tip wildcard poate totuși să corespundă unor pachete viitoare sau neînregistrate.</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Pachet</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Model de pachet</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>Versiuni preliminare</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Previzualizarea regulii de încredere</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Sursă</value>
+  </data>
+  <data name="This is a limited sample, not every matching package. Narrow the pattern to inspect a smaller set." xml:space="preserve">
+    <value>Acesta este doar un eșantion limitat, nu include toate pachetele care corespund. Restrângeți modelul pentru a examina un set mai mic.</value>
+  </data>
+  <data name="This read-only preview shows known package versions matching your proposed rule. No package is approved by viewing this page." xml:space="preserve">
+    <value>Această previzualizare, disponibilă doar pentru citire, afișează versiunile cunoscute ale pachetelor care corespund regulii propuse de dvs. Vizualizarea acestei pagini nu aprobă niciun pachet.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versiune</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Modelul versiunii</value>
+  </data>
+
+</root>

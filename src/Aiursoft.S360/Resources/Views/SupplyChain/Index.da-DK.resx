@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="10.0.* can cover future releases. Prefer an exact version when the scope should be narrow." xml:space="preserve">
+    <value>10.0.* kan omfatte fremtidige versioner. Foretræk en præcis version, når omfanget skal være begrænset.</value>
+  </data>
+  <data name="A label for grouping trust rules, not verified proof of a package publisher." xml:space="preserve">
+    <value>En betegnelse til at gruppere tillidsregler, ikke et verificeret bevis på, hvem der har udgivet en pakke.</value>
+  </data>
+  <data name="A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency." xml:space="preserve">
+    <value>En matchende regel er ikke det samme som en gennemført kontrol af artefakter eller sårbarheder. Fremtidig CI-integration vil kontrollere alle opløste afhængigheder.</value>
+  </data>
+  <data name="A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft." xml:space="preserve">
+    <value>En afsluttende * dækker et navnepræfiks. Microsoft.* omfatter ikke den præcise pakke Microsoft.</value>
+  </data>
+  <data name="A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry." xml:space="preserve">
+    <value>En afsluttende * matcher et præfiks af et navn eller en version. For eksempel matcher System.* ikke den præcise pakke System. En jokerregel kan give adgang til fremtidige udgivelser, så begræns dens kilde og udløbstidspunkt.</value>
+  </data>
+  <data name="Active trust rules" xml:space="preserve">
+    <value>Aktive tillidsregler</value>
+  </data>
+  <data name="Add supplier" xml:space="preserve">
+    <value>Tilføj leverandør</value>
+  </data>
+  <data name="All suppliers" xml:space="preserve">
+    <value>Alle leverandører</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>Begrundelse for godkendelse</value>
+  </data>
+  <data name="Approve rule" xml:space="preserve">
+    <value>Godkend regel</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Autorisation</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Tilgængelige afhængigheder</value>
+  </data>
+  <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
+    <value>Kan du ikke finde en pakke? Send en anmodning</value>
+  </data>
+  <data name="Check a concrete package against rules" xml:space="preserve">
+    <value>Kontrollér en bestemt pakke i forhold til reglerne</value>
+  </data>
+  <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
+    <value>Indtast UTC-tidspunktet; dette felt konverterer ikke din enheds lokale tid.</value>
+  </data>
+  <data name="Exact package name" xml:space="preserve">
+    <value>Præcist pakkenavn</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>Præcis version</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Udløber</value>
+  </data>
+  <data name="Expires (UTC)" xml:space="preserve">
+    <value>Udløber (UTC)</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Udløber (UTC)</value>
+  </data>
+  <data name="Find packages" xml:space="preserve">
+    <value>Find pakker</value>
+  </data>
+  <data name="HTTPS package source" xml:space="preserve">
+    <value>HTTPS-pakkekilde</value>
+  </data>
+  <data name="Include prerelease" xml:space="preserve">
+    <value>Medtag forhåndsudgivelser</value>
+  </data>
+  <data name="Last checked (UTC)" xml:space="preserve">
+    <value>Senest kontrolleret (UTC)</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Administrer blokeringslisten</value>
+  </data>
+  <data name="Manage policy" xml:space="preserve">
+    <value>Administrer politik</value>
+  </data>
+  <data name="Manage suppliers and trust rules" xml:space="preserve">
+    <value>Administrer leverandører og tillidsregler</value>
+  </data>
+  <data name="Match rules" xml:space="preserve">
+    <value>Anvend regler</value>
+  </data>
+  <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
+    <value>Kun artefakter, der på nuværende tidspunkt består S360-kontrollerne, vises her. En matchende regel for en pakke, der ikke er set, vises ovenfor, men den er endnu ikke et kontrolleret artefakt; hvert fremtidigt build kontrollerer stadig hele afhængighedsgrafen.</value>
+  </data>
+  <data name="Only the first 500 results are shown. Narrow the package search to inspect more results." xml:space="preserve">
+    <value>Kun de første 500 resultater vises. Afgræns pakkesøgningen for at se flere resultater.</value>
+  </data>
+  <data name="Open the separate absolute blocklist management page" xml:space="preserve">
+    <value>Åbn den separate administrationsside for den absolutte blokeringsliste</value>
+  </data>
+  <data name="Overridden by blocklist" xml:space="preserve">
+    <value>Tilsidesat af blokeringslisten</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Pakke</value>
+  </data>
+  <data name="Package name" xml:space="preserve">
+    <value>Pakkenavn</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Pakkemønster</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Pakkekilde</value>
+  </data>
+  <data name="Page sections" xml:space="preserve">
+    <value>Sideafsnit</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Forhåndsudgivelse</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Forhåndsvisning</value>
+  </data>
+  <data name="Preview a rule before approval" xml:space="preserve">
+    <value>Se et eksempel på en regel før godkendelse</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Begrundelse</value>
+  </data>
+  <data name="Recorded artifacts" xml:space="preserve">
+    <value>Registrerede artefakter</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>Tilbagekald</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
+    <value>Vis kendte pakkeversioner, som denne foreslåede regel ville matche. Dette er en forhåndsvisning af omfanget, ikke en tillidsbeslutning.</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Kilde</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Leverandør</value>
+  </data>
+  <data name="Supplier name" xml:space="preserve">
+    <value>Leverandørnavn</value>
+  </data>
+  <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
+    <value>Den godkendte URL til pakkeregistret er en del af reglen. Den samme pakke fra en anden kilde er ikke dækket.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
+    <value>Den seneste synkronisering af sårbarheder mislykkedes. Registrerede artefakter er skjult, indtil en kontrol er gennemført.</value>
+  </data>
+  <data name="Trust rules" xml:space="preserve">
+    <value>Tillidsregler</value>
+  </data>
+  <data name="Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies." xml:space="preserve">
+    <value>Tillidsregler er kun én af betingelserne for tilgængelighed. Den absolutte blokeringsliste tilsidesætter dem, også for indirekte afhængigheder.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Versionsmønster</value>
+  </data>
+  <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
+    <value>Sårbarhedsrevisionen er endnu ikke afsluttet. Registrerede artefakter kan ikke vises som tilgængelige.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
+    <value>Sårbarhedskontrollen er forældet. Registrerede artefakter er skjult, indtil en ny kontrol er gennemført.</value>
+  </data>
+  <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
+    <value>Wildcardregler tillader automatisk fremtidige versioner; hashes, der ses for første gang, registreres stadig.</value>
+  </data>
+
+</root>

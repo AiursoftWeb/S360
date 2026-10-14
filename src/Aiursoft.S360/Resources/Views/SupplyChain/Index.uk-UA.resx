@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="10.0.* can cover future releases. Prefer an exact version when the scope should be narrow." xml:space="preserve">
+    <value>10.0.* може охоплювати майбутні випуски. Якщо потрібна вузька область дії, надавайте перевагу точній версії.</value>
+  </data>
+  <data name="A label for grouping trust rules, not verified proof of a package publisher." xml:space="preserve">
+    <value>Позначка для групування правил довіри, а не підтверджене свідчення видавця пакета.</value>
+  </data>
+  <data name="A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency." xml:space="preserve">
+    <value>Правило відповідності не є завершеною перевіркою артефакту чи вразливостей. У майбутньому інтеграція з CI перевірятиме кожну визначену залежність.</value>
+  </data>
+  <data name="A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft." xml:space="preserve">
+    <value>Кінцевий символ * охоплює префікс назви. Microsoft.* не включає пакет із точною назвою Microsoft.</value>
+  </data>
+  <data name="A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry." xml:space="preserve">
+    <value>Символ * наприкінці відповідає префіксу назви або версії. Наприклад, System.* не відповідає точному пакету System. Правило з підстановним символом може охоплювати майбутні випуски, тож обмежте джерело та строк дії.</value>
+  </data>
+  <data name="Active trust rules" xml:space="preserve">
+    <value>Чинні правила довіри</value>
+  </data>
+  <data name="Add supplier" xml:space="preserve">
+    <value>Додати постачальника</value>
+  </data>
+  <data name="All suppliers" xml:space="preserve">
+    <value>Усі постачальники</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>Причина погодження</value>
+  </data>
+  <data name="Approve rule" xml:space="preserve">
+    <value>Затвердити правило</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Доступні залежності</value>
+  </data>
+  <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
+    <value>Не знаходите потрібний пакет? Надішліть запит</value>
+  </data>
+  <data name="Check a concrete package against rules" xml:space="preserve">
+    <value>Перевірити конкретний пакет за правилами</value>
+  </data>
+  <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
+    <value>Введіть час у форматі UTC; це поле не перетворює місцевий час вашого пристрою.</value>
+  </data>
+  <data name="Exact package name" xml:space="preserve">
+    <value>Точна назва пакета</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>Точна версія</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Закінчується</value>
+  </data>
+  <data name="Expires (UTC)" xml:space="preserve">
+    <value>Термін дії (UTC)</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Термін дії (UTC)</value>
+  </data>
+  <data name="Find packages" xml:space="preserve">
+    <value>Знайти пакунки</value>
+  </data>
+  <data name="HTTPS package source" xml:space="preserve">
+    <value>Джерело пакунків HTTPS</value>
+  </data>
+  <data name="Include prerelease" xml:space="preserve">
+    <value>Враховувати попередні версії</value>
+  </data>
+  <data name="Last checked (UTC)" xml:space="preserve">
+    <value>Востаннє перевірено (UTC)</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Керування списком блокування</value>
+  </data>
+  <data name="Manage policy" xml:space="preserve">
+    <value>Керування політикою</value>
+  </data>
+  <data name="Manage suppliers and trust rules" xml:space="preserve">
+    <value>Керування постачальниками та правилами довіри</value>
+  </data>
+  <data name="Match rules" xml:space="preserve">
+    <value>Застосувати правила</value>
+  </data>
+  <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
+    <value>Тут відображаються лише артефакти, які наразі проходять перевірки S360. Відповідне правило для пакета, який ще не відображався, показано вище, але він ще не є перевіреним артефактом; під час кожної наступної збірки все одно перевіряється весь граф залежностей.</value>
+  </data>
+  <data name="Only the first 500 results are shown. Narrow the package search to inspect more results." xml:space="preserve">
+    <value>Показано лише перші 500 результатів. Звузьте пошук пакетів, щоб переглянути більше результатів.</value>
+  </data>
+  <data name="Open the separate absolute blocklist management page" xml:space="preserve">
+    <value>Відкрити окрему сторінку керування абсолютним списком блокування</value>
+  </data>
+  <data name="Overridden by blocklist" xml:space="preserve">
+    <value>Перевизначено списком блокування</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Пакет</value>
+  </data>
+  <data name="Package name" xml:space="preserve">
+    <value>Назва пакета</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Шаблон пакета</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Джерело пакета</value>
+  </data>
+  <data name="Page sections" xml:space="preserve">
+    <value>Розділи сторінки</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Попередній випуск</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Попередній перегляд</value>
+  </data>
+  <data name="Preview a rule before approval" xml:space="preserve">
+    <value>Попередній перегляд правила перед затвердженням</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Причина</value>
+  </data>
+  <data name="Recorded artifacts" xml:space="preserve">
+    <value>Зафіксовані артефакти</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>Скасувати</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
+    <value>Показати відомі версії пакетів, які відповідатимуть цьому запропонованому правилу. Це попередній перегляд області дії, а не рішення щодо довіри.</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Джерело</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Постачальник</value>
+  </data>
+  <data name="Supplier name" xml:space="preserve">
+    <value>Назва постачальника</value>
+  </data>
+  <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
+    <value>Схвалена URL-адреса реєстру є частиною правила. Те саме пакування з іншого джерела не охоплюється цим правилом.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
+    <value>Не вдалося виконати останню синхронізацію даних про вразливості. Записані артефакти приховано до успішного аудиту.</value>
+  </data>
+  <data name="Trust rules" xml:space="preserve">
+    <value>Правила довіри</value>
+  </data>
+  <data name="Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies." xml:space="preserve">
+    <value>Правила довіри — лише одна з умов доступності. Абсолютний список блокування має над ними перевагу, зокрема й для транзитивних залежностей.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Версія</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Шаблон версії</value>
+  </data>
+  <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
+    <value>Перевірку на вразливості ще не завершено. Зареєстровані артефакти не можна позначити як доступні.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
+    <value>Перевірка на вразливості застаріла. Записані артефакти приховано до завершення нової перевірки.</value>
+  </data>
+  <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
+    <value>Правила з шаблонами підстановки автоматично дозволяють майбутні версії; хеші фіксуються під час першої появи.</value>
+  </data>
+
+</root>

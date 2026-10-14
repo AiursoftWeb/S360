@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Archive SHA-256" xml:space="preserve">
+    <value>Arşiv SHA-256</value>
+  </data>
+  <data name="Authorization expires" xml:space="preserve">
+    <value>Yetkilendirme süresi doluyor</value>
+  </data>
+  <data name="Back to available dependencies" xml:space="preserve">
+    <value>Kullanılabilir bağımlılıklara geri dön</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ekosistem</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>Tam sürüm</value>
+  </data>
+  <data name="Last vulnerability check" xml:space="preserve">
+    <value>Son güvenlik açığı kontrolü</value>
+  </data>
+  <data name="Latest approval recorded" xml:space="preserve">
+    <value>Kaydedilen en son onay</value>
+  </data>
+  <data name="Matching authorization" xml:space="preserve">
+    <value>Eşleşen yetkilendirme</value>
+  </data>
+  <data name="No direct child relationship is recorded in approved request reports." xml:space="preserve">
+    <value>Onaylanmış talep raporlarında doğrudan alt paket ilişkisi kaydedilmemiş.</value>
+  </data>
+  <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
+    <value>Onaylanmış istek raporlarında herhangi bir üst paket ilişkisi kaydedilmemiş. Bu paket doğrudan istenmiş olabilir.</value>
+  </data>
+  <data name="Only the first 100 relationships are shown." xml:space="preserve">
+    <value>Yalnızca ilk 100 ilişki gösteriliyor.</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Paket</value>
+  </data>
+  <data name="Package file and current authorization" xml:space="preserve">
+    <value>Paket dosyası ve mevcut yetkilendirme</value>
+  </data>
+  <data name="Packages that brought this artifact in" xml:space="preserve">
+    <value>Bu bileşeni getiren paketler</value>
+  </data>
+  <data name="Packages this artifact brought in" xml:space="preserve">
+    <value>Bu yapının eklediği paketler</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Kaynak</value>
+  </data>
+  <data name="Supplier label" xml:space="preserve">
+    <value>Tedarikçi etiketi</value>
+  </data>
+  <data name="The relationships below come from previously approved request reports. They describe observed resolution paths, not every possible future build or a blanket authorization for related packages." xml:space="preserve">
+    <value>Aşağıdaki ilişkiler, daha önce onaylanmış talep raporlarından alınmıştır. Gözlemlenen çözümleme yollarını gösterir; gelecekte oluşturulabilecek her derlemeyi kapsamaz ve ilişkili paketler için genel bir yetkilendirme anlamına gelmez.</value>
+  </data>
+  <data name="This concrete package file currently passes S360&apos;s authorization and stored vulnerability checks. A future build must still check its own complete dependency graph." xml:space="preserve">
+    <value>Bu belirli paket dosyası şu anda S360&apos;ın yetkilendirme ve kayıtlı güvenlik açığı kontrollerinden geçmektedir. Gelecekteki bir derlemenin yine de kendi bağımlılık grafiğinin tamamını kontrol etmesi gerekir.</value>
+  </data>
+
+</root>

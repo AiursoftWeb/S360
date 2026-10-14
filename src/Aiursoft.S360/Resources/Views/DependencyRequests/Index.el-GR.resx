@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+    <value>Επιλέξτε ένα αποθετήριο πακέτων για το επιλεγμένο οικοσύστημα. Η πηγή αποτελεί μέρος των τεκμηρίων αξιολόγησης.</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Δημιουργήθηκε</value>
+  </data>
+  <data name="Currently blocked" xml:space="preserve">
+    <value>Αυτήν τη στιγμή αποκλεισμένο</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Λεπτομέρειες</value>
+  </data>
+  <data name="Direct dependencies, one name@version per line" xml:space="preserve">
+    <value>Άμεσες εξαρτήσεις, ένα όνομα@έκδοση ανά γραμμή</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Οικοσύστημα</value>
+  </data>
+  <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
+    <value>Καταχωρίστε τις ακριβείς άμεσες εκδόσεις. Το S360 επιλύει και ελέγχει ολόκληρο το γράφημα· η μελλοντική ενσωμάτωση με CI θα ελέγχει το πραγματικό γράφημα δόμησης μετά την ανάπτυξη.</value>
+  </data>
+  <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
+    <value>Καταχωρίστε μόνο τα πακέτα που επιλέγετε απευθείας· το S360 θα εντοπίσει τις μεταβατικές εξαρτήσεις τους. Χρησιμοποιήστε ακριβή έκδοση, όχι χαρακτήρα μπαλαντέρ.</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
+    <value>Για παράδειγμα: Microsoft.EntityFrameworkCore@10.0.12. Καταχωρίστε τα πακέτα που επιλέξατε εσείς· το S360 εντοπίζει τα πακέτα που εξαρτώνται από αυτά.</value>
+  </data>
+  <data name="My dependency requests" xml:space="preserve">
+    <value>Τα αιτήματά μου για εξαρτήσεις</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>Νέο αίτημα</value>
+  </data>
+  <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
+    <value>Το NuGet είναι για πακέτα .NET· το npm είναι για πακέτα JavaScript. Επιλέξτε αυτό που εγκαθιστά πράγματι το έργο σας.</value>
+  </data>
+  <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
+    <value>Η πηγή του πακέτου δεν επιτρέπεται πλέον για ελέγχους S360.</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Έργο</value>
+  </data>
+  <data name="Project (optional)" xml:space="preserve">
+    <value>Έργο (προαιρετικό)</value>
+  </data>
+  <data name="Recent requests" xml:space="preserve">
+    <value>Πρόσφατα αιτήματα</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Πηγή</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Κατάσταση</value>
+  </data>
+  <data name="Submit for resolution" xml:space="preserve">
+    <value>Υποβολή για επίλυση</value>
+  </data>
+  <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
+    <value>Το μητρώο που παρέχει το αρχείο πακέτου. Ένα πακέτο από άλλο μητρώο χρειάζεται ξεχωριστό έλεγχο.</value>
+  </data>
+  <data name="Why is this dependency needed?" xml:space="preserve">
+    <value>Γιατί χρειάζεται αυτή η εξάρτηση;</value>
+  </data>
+
+</root>

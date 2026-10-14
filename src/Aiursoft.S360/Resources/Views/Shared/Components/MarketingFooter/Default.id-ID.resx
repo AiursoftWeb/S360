@@ -18,11 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Aiursoft" xml:space="preserve">
+      <data name="A clearer way to request, approve, and keep watch over the software your teams depend on." xml:space="preserve">
+    <value>Cara yang lebih jelas untuk mengajukan permintaan, menyetujui, dan memantau perangkat lunak yang diandalkan oleh tim Anda.</value>
+  </data>
+  <data name="A project by Aiursoft" xml:space="preserve">
+    <value>Proyek oleh Aiursoft</value>
+  </data>
+  <data name="Aiursoft" xml:space="preserve">
     <value>Aiursoft</value>
   </data>
   <data name="Aiursoft Template - A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Aiursoft Template - Fondasi modern, kaya fitur, dan sangat dapat diperluas untuk aplikasi web Anda berikutnya.</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Dependensi yang Tersedia</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Fitur</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>Komunitas</value>
@@ -30,8 +42,14 @@
   <data name="Contributions" xml:space="preserve">
     <value>Kontribusi</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Dasbor</value>
+  </data>
   <data name="Documentation" xml:space="preserve">
     <value>Dokumentasi</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Jelajahi</value>
   </data>
   <data name="Get Started" xml:space="preserve">
     <value>Mulai</value>
@@ -39,11 +57,17 @@
   <data name="Github" xml:space="preserve">
     <value>Github</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Bahasa</value>
+  </data>
   <data name="Legal" xml:space="preserve">
     <value>Hukum</value>
   </data>
   <data name="Licence" xml:space="preserve">
     <value>Lisensi</value>
+  </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Permintaan saya</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Proyek</value>
@@ -54,11 +78,23 @@
   <data name="Resources" xml:space="preserve">
     <value>Sumber Daya</value>
   </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>Peluncuran</value>
+  </data>
+  <data name="S360&apos;s Web approval center is the first step. Build enforcement and restricted mirrors follow as separate rollout stages." xml:space="preserve">
+    <value>Pusat persetujuan web S360 adalah langkah pertama. Penegakan kebijakan dan mirror terbatas akan menyusul dalam tahapan peluncuran terpisah.</value>
+  </data>
   <data name="Social" xml:space="preserve">
     <value>Sosial</value>
   </data>
   <data name="Source Code" xml:space="preserve">
     <value>Kode Sumber</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>Alur kerja</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>Ruang kerja</value>
   </data>
 
 </root>

@@ -18,8 +18,14 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
+      <data name=".NET packages" xml:space="preserve">
+    <value>Paket .NET</value>
+  </data>
+  <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Dukungan &quot;Fire-and-forget&quot; untuk tugas berjalan panjang (seperti email atau AI), dilengkapi antarmuka GUI untuk manajemen antrian, pemrosesan paralel, dan pembatalan.</value>
+  </data>
+  <data name="A blocked package stays blocked even when it appears only as a transitive dependency or matches a broader trust rule." xml:space="preserve">
+    <value>Paket yang diblokir tetap diblokir meskipun hanya muncul sebagai dependensi transitif atau cocok dengan aturan kepercayaan yang lebih luas.</value>
   </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Sistem Role-Based Access Control (RBAC) bawaan untuk manajemen izin yang terperinci.</value>
@@ -30,11 +36,20 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>Solusi lengkap untuk otentikasi pengguna dan manajemen profil.</value>
   </data>
+  <data name="A decision covers the complete resolved graph, not only the package you typed." xml:space="preserve">
+    <value>Satu keputusan mencakup seluruh graf dependensi yang telah diselesaikan, bukan hanya paket yang Anda ketik.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>Tata letak yang sepenuhnya responsif dan terlihat bagus di perangkat desktop maupun seluler.</value>
   </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Sebuah fondasi yang modern, kaya fitur, dan sangat dapat diperluas untuk aplikasi web Anda berikutnya.</value>
+  </data>
+  <data name="A practical workflow" xml:space="preserve">
+    <value>Alur kerja praktis</value>
+  </data>
+  <data name="A searchable allowed catalog" xml:space="preserve">
+    <value>Katalog izin yang dapat ditelusuri</value>
   </data>
   <data name="Achieve more with Aiursoft Template" xml:space="preserve">
     <value>Raih lebih banyak dengan Aiursoft Template</value>
@@ -63,17 +78,29 @@
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Semua dependensi terdaftar secara otomatis dan selalu tersedia melalui constructor injection.</value>
   </data>
+  <data name="An absolute blocklist" xml:space="preserve">
+    <value>Daftar blokir mutlak</value>
+  </data>
   <data name="Anduin" xml:space="preserve">
     <value>Anduin</value>
   </data>
   <data name="Anduin Xue" xml:space="preserve">
     <value>Anduin Xue</value>
   </data>
+  <data name="Approve a report-backed batch while retaining the individual package decisions and their review history." xml:space="preserve">
+    <value>Setujui sekumpulan yang disertai laporan sambil tetap mencatat keputusan untuk setiap paket dan riwayat peninjauannya.</value>
+  </data>
   <data name="Artificial Intelligence Translation" xml:space="preserve">
     <value>Terjemahan Kecerdasan Buatan</value>
   </data>
+  <data name="Audit" xml:space="preserve">
+    <value>Audit</value>
+  </data>
   <data name="Authentik &amp; Okta" xml:space="preserve">
     <value>Authentik &amp; Okta</value>
+  </data>
+  <data name="Authorized mirrors" xml:space="preserve">
+    <value>Cermin yang Diotorisasi</value>
   </data>
   <data name="Auto compression and privacy" xml:space="preserve">
     <value>Kompresi otomatis dan privasi</value>
@@ -120,14 +147,26 @@
   <data name="Bilingual Tutorials" xml:space="preserve">
     <value>Tutorial Berbahasa Ganda</value>
   </data>
+  <data name="Blocklist first" xml:space="preserve">
+    <value>Utamakan daftar blokir</value>
+  </data>
+  <data name="Build inputs prepared before the network is closed." xml:space="preserve">
+    <value>Input build disiapkan sebelum jaringan ditutup.</value>
+  </data>
   <data name="Build once, run anywhere. Fully containerized architecture." xml:space="preserve">
     <value>Bangun sekali, jalankan di mana saja. Arsitektur yang sepenuhnya terkontainerisasi.</value>
   </data>
   <data name="Build your next big thing," xml:space="preserve">
     <value>Bangun hal besar berikutnya Anda,</value>
   </data>
+  <data name="Built for clear decisions" xml:space="preserve">
+    <value>Dirancang untuk keputusan yang jelas</value>
+  </data>
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>Dibuat untuk insinyur yang peduli pada kualitas.</value>
+  </data>
+  <data name="Built to grow safely" xml:space="preserve">
+    <value>Dirancang untuk tumbuh dengan aman</value>
   </data>
   <data name="Built with Aiursoft Template" xml:space="preserve">
     <value>Dibangun dengan Template Aiursoft</value>
@@ -174,6 +213,9 @@
   <data name="Checkstyle or similar needed" xml:space="preserve">
     <value>Checkstyle atau yang serupa diperlukan</value>
   </data>
+  <data name="Choose NuGet or npm, list the direct packages, and explain the intended use. No separate request command is needed." xml:space="preserve">
+    <value>Pilih NuGet atau npm, cantumkan paket langsung, dan jelaskan tujuan penggunaannya. Tidak perlu perintah permintaan terpisah.</value>
+  </data>
   <data name="Comes with Docker support for simplified and consistent deployments." xml:space="preserve">
     <value>Datang dengan dukungan Docker untuk penyebaran yang disederhanakan dan konsisten.</value>
   </data>
@@ -207,6 +249,9 @@
   <data name="Cross Platform" xml:space="preserve">
     <value>Multi-Platform</value>
   </data>
+  <data name="Current mirrors" xml:space="preserve">
+    <value>Mirror saat ini</value>
+  </data>
   <data name="Custom dev required" xml:space="preserve">
     <value>Pengembangan kustom diperlukan</value>
   </data>
@@ -237,6 +282,9 @@
   <data name="Default SQLite database, no configuration needed." xml:space="preserve">
     <value>Database SQLite bawaan, tidak perlu konfigurasi</value>
   </data>
+  <data name="Dependency review" xml:space="preserve">
+    <value>Peninjauan dependensi</value>
+  </data>
   <data name="Designed for everyone, from beginners to experts." xml:space="preserve">
     <value>Dirancang untuk semua orang, dari pemula hingga ahli.</value>
   </data>
@@ -254,6 +302,9 @@
   </data>
   <data name="DevOps Native" xml:space="preserve">
     <value>Native DevOps</value>
+  </data>
+  <data name="Direct request" xml:space="preserve">
+    <value>Permintaan langsung</value>
   </data>
   <data name="Discussions page" xml:space="preserve">
     <value>Halaman Diskusi</value>
@@ -279,6 +330,9 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Tulis tes integrasi dengan mudah menggunakan basis data di memori, sistem file sementara, mocking bawaan, dan simulasi permintaan HTTP dunia nyata.</value>
   </data>
+  <data name="Employees can discover current approvals, suppliers, and matching rules before starting another request." xml:space="preserve">
+    <value>Karyawan dapat melihat persetujuan yang berlaku, pemasok, dan aturan pencocokan sebelum mengajukan permintaan baru.</value>
+  </data>
   <data name="Enforced" xml:space="preserve">
     <value>Diterapkan</value>
   </data>
@@ -300,6 +354,21 @@
   <data name="Entity Framework Core included" xml:space="preserve">
     <value>Entity Framework Core disertakan</value>
   </data>
+  <data name="Exact artifact evidence" xml:space="preserve">
+    <value>Bukti artefak yang tepat</value>
+  </data>
+  <data name="Exact SHA-256 evidence" xml:space="preserve">
+    <value>Bukti SHA-256 yang akurat</value>
+  </data>
+  <data name="Existing package access continues." xml:space="preserve">
+    <value>Akses paket yang sudah ada tetap berlanjut.</value>
+  </data>
+  <data name="Expiry, revocation, and newly published advisories remain visible after the original approval." xml:space="preserve">
+    <value>Masa berlaku habis, pencabutan, dan pemberitahuan keamanan yang baru diterbitkan tetap terlihat setelah persetujuan awal.</value>
+  </data>
+  <data name="Explore available dependencies" xml:space="preserve">
+    <value>Jelajahi dependensi yang tersedia</value>
+  </data>
   <data name="FAQ" xml:space="preserve">
     <value>FAQ</value>
   </data>
@@ -320,6 +389,9 @@
   </data>
   <data name="File Mgmt &amp; Optimization" xml:space="preserve">
     <value>Pengelolaan &amp; Optimasi File</value>
+  </data>
+  <data name="Find what is already allowed, request what is missing, and follow every decision back to its evidence." xml:space="preserve">
+    <value>Temukan apa yang sudah diizinkan, ajukan permintaan untuk yang belum tersedia, dan telusuri bukti yang mendasari setiap keputusan.</value>
   </data>
   <data name="Fine-grained RBAC" xml:space="preserve">
     <value>RBAC Berbutir Halus</value>
@@ -350,6 +422,9 @@
   </data>
   <data name="Frequently asked questions" xml:space="preserve">
     <value>Pertanyaan yang Sering Diajukan</value>
+  </data>
+  <data name="From package request to policy evidence." xml:space="preserve">
+    <value>Dari pengajuan paket hingga bukti kebijakan.</value>
   </data>
   <data name="From the Architect" xml:space="preserve">
     <value>Dari Arsitek</value>
@@ -429,11 +504,17 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>Bagaimana cara saya menerapkan aplikasi saya?</value>
   </data>
+  <data name="Human review at the right scale" xml:space="preserve">
+    <value>Tinjauan manusia dengan skala yang tepat</value>
+  </data>
   <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
     <value>Saya membuat Aiursoft Template karena saya lelah mengatur pipeline Auth, Log, dan CI/CD yang sama untuk setiap proyek perusahaan baru. Ini bukan sekadar template; ini adalah praktik terbaik yang telah terkristalisasi dari bertahun-tahun lingkungan produksi dengan koneksi tinggi. Ini memungkinkan tim saya melewati pengaturan yang membosankan dan langsung fokus pada logika bisnis.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>Dukungan IDE</value>
+  </data>
+  <data name="Illustration of a dependency review" xml:space="preserve">
+    <value>Ilustrasi peninjauan dependensi</value>
   </data>
   <data name="In-memory DB, temp FS, and HTTP simulation" xml:space="preserve">
     <value>DB in-memori, FS sementara, dan simulasi HTTP</value>
@@ -468,6 +549,9 @@
   <data name="java.time API available" xml:space="preserve">
     <value>API java.time tersedia</value>
   </data>
+  <data name="JavaScript packages" xml:space="preserve">
+    <value>Paket JavaScript</value>
+  </data>
   <data name="Job Queue &amp; Scheduling GUI" xml:space="preserve">
     <value>Antarmuka GUI Antrian &amp; Penjadwalan Pekerjaan</value>
   </data>
@@ -483,11 +567,26 @@
   <data name="K8s / Swarm Ready" xml:space="preserve">
     <value>Siap untuk K8s / Swarm</value>
   </data>
+  <data name="Keep watch" xml:space="preserve">
+    <value>Terus pantau</value>
+  </data>
+  <data name="Know every dependency." xml:space="preserve">
+    <value>Kenali setiap dependensi.</value>
+  </data>
+  <data name="Less guesswork for employees. More context for reviewers." xml:space="preserve">
+    <value>Lebih sedikit menebak-nebak bagi karyawan. Lebih banyak konteks bagi peninjau.</value>
+  </data>
   <data name="Lint Check" xml:space="preserve">
     <value>Cek Lint</value>
   </data>
+  <data name="Made for the dependencies your teams actually use." xml:space="preserve">
+    <value>Dirancang untuk dependensi yang benar-benar digunakan oleh tim Anda.</value>
+  </data>
   <data name="Maintain High Code Quality" xml:space="preserve">
     <value>Jaga Kualitas Kode yang Tinggi</value>
+  </data>
+  <data name="Make the next package decision an informed one." xml:space="preserve">
+    <value>Ambil keputusan paket berikutnya dengan informasi yang lengkap.</value>
   </data>
   <data name="Management Dashboard" xml:space="preserve">
     <value>Dasbor Manajemen</value>
@@ -552,6 +651,9 @@
   <data name="Needs Passport or similar" xml:space="preserve">
     <value>Membutuhkan Passport atau sejenisnya</value>
   </data>
+  <data name="Needs review" xml:space="preserve">
+    <value>Perlu ditinjau</value>
+  </data>
   <data name="Needs Spatie or similar" xml:space="preserve">
     <value>Membutuhkan Spatie atau sejenisnya</value>
   </data>
@@ -567,6 +669,15 @@
   <data name="No dependency on any cloud vendor. Run anywhere, any time." xml:space="preserve">
     <value>Tidak ada ketergantungan pada penyedia cloud apa pun. Jalankan di mana saja, kapan saja.</value>
   </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet dan npm</value>
+  </data>
+  <data name="NuGet and npm have different version and installation rules. S360 keeps their package identities distinct while presenting one consistent approval experience." xml:space="preserve">
+    <value>NuGet dan npm memiliki aturan versi dan instalasi yang berbeda. S360 membedakan identitas paket keduanya, sekaligus menghadirkan proses persetujuan yang konsisten.</value>
+  </data>
+  <data name="Offline builds" xml:space="preserve">
+    <value>Build offline</value>
+  </data>
   <data name="Offline Capable" xml:space="preserve">
     <value>Dapat Berjalan Secara Offline</value>
   </data>
@@ -576,8 +687,23 @@
   <data name="One Click Start" xml:space="preserve">
     <value>Satu Klik Mulai</value>
   </data>
+  <data name="One coherent workflow" xml:space="preserve">
+    <value>Satu alur kerja yang terpadu</value>
+  </data>
+  <data name="One request, the whole graph" xml:space="preserve">
+    <value>Satu permintaan, seluruh grafik</value>
+  </data>
+  <data name="Ongoing vulnerability visibility" xml:space="preserve">
+    <value>Visibilitas kerentanan secara berkelanjutan</value>
+  </data>
+  <data name="Only approved package versions are served." xml:space="preserve">
+    <value>Hanya versi paket yang disetujui yang disediakan.</value>
+  </data>
   <data name="Open Source" xml:space="preserve">
     <value>Sumber Terbuka</value>
+  </data>
+  <data name="Open your workspace" xml:space="preserve">
+    <value>Buka ruang kerja Anda</value>
   </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Integrasi OpenID Connect</value>
@@ -624,14 +750,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Baca dokumen</value>
   </data>
+  <data name="Record the package source and SHA-256 of each NuGet archive or npm tarball, not just a familiar package name." xml:space="preserve">
+    <value>Catat sumber paket dan SHA-256 setiap arsip NuGet atau tarball npm, bukan hanya nama paket yang sudah dikenal.</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Permintaan</value>
+  </data>
+  <data name="Request in the browser" xml:space="preserve">
+    <value>Ajukan permintaan melalui browser</value>
+  </data>
+  <data name="Requests, policy, audit, and approval." xml:space="preserve">
+    <value>Permintaan, kebijakan, audit, dan persetujuan.</value>
+  </data>
   <data name="Requires Laravel Socialite config" xml:space="preserve">
     <value>Memerlukan konfigurasi Laravel Socialite</value>
   </data>
   <data name="Requires Spring Security configuration" xml:space="preserve">
     <value>Memerlukan konfigurasi Spring Security</value>
   </data>
+  <data name="Resolve" xml:space="preserve">
+    <value>Selesaikan</value>
+  </data>
+  <data name="Resolve and inspect" xml:space="preserve">
+    <value>Selesaikan dan periksa</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Desain Responsif</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Tinjau</value>
+  </data>
+  <data name="Review restored versions and the original .nupkg files behind your applications." xml:space="preserve">
+    <value>Tinjau versi yang dipulihkan dan file .nupkg asli yang digunakan oleh aplikasi Anda.</value>
+  </data>
+  <data name="Review with guardrails" xml:space="preserve">
+    <value>Tinjau dengan pengamanan</value>
+  </data>
+  <data name="Reviewed artifact" xml:space="preserve">
+    <value>Artefak yang ditinjau</value>
+  </data>
+  <data name="Reviewers see what is already trusted and what is new. Blacklist and vulnerability checks cannot be hidden by a root approval." xml:space="preserve">
+    <value>Peninjau dapat melihat apa yang sudah tepercaya dan apa yang baru. Pemeriksaan daftar blokir dan kerentanan tidak dapat disembunyikan dengan persetujuan paket induk.</value>
   </data>
   <data name="Reviews" xml:space="preserve">
     <value>Ulasan</value>
@@ -642,11 +801,32 @@
   <data name="Runs without any internet connection required." xml:space="preserve">
     <value>Berjalan tanpa koneksi internet yang dibutuhkan.</value>
   </data>
+  <data name="S360 connects the people approving dependencies with the exact packages, versions, sources, and risks behind each decision." xml:space="preserve">
+    <value>S360 menghubungkan pihak yang menyetujui dependensi dengan paket, versi, sumber, dan risiko spesifik di balik setiap keputusan.</value>
+  </data>
+  <data name="S360 gives your team one place to request NuGet and npm packages, review their complete dependency trees, and track which exact package files are allowed." xml:space="preserve">
+    <value>S360 menyediakan satu tempat bagi tim Anda untuk mengajukan permintaan paket NuGet dan npm, meninjau seluruh pohon dependensinya, serta melacak file paket spesifik mana saja yang diizinkan.</value>
+  </data>
+  <data name="S360 is being prepared as the Web approval center. Runner enforcement, authorization-only package mirrors, and fully offline builds are later rollout stages—not guarantees of this deployment." xml:space="preserve">
+    <value>S360 sedang disiapkan sebagai pusat persetujuan Web. Penerapan penegakan kebijakan pada runner, mirror paket yang hanya melayani paket yang diotorisasi, dan build yang sepenuhnya luring merupakan tahap peluncuran selanjutnya—bukan jaminan dalam penerapan ini.</value>
+  </data>
+  <data name="S360 Web and review" xml:space="preserve">
+    <value>S360 Web dan peninjauan</value>
+  </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Manajemen Tugas Terjadwal</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Terintegrasi dengan mulus bersama penyedia OpenID Connect apa pun, dengan sinkronisasi peran otomatis.</value>
+  </data>
+  <data name="See how it works" xml:space="preserve">
+    <value>Lihat cara kerjanya</value>
+  </data>
+  <data name="See installed transitive packages and the tarball integrity evidence in one report." xml:space="preserve">
+    <value>Lihat paket transitif yang terpasang dan bukti integritas tarball dalam satu laporan.</value>
+  </data>
+  <data name="See known advisories for used versions and for vulnerable versions still permitted by a wildcard rule." xml:space="preserve">
+    <value>Lihat advisori keamanan yang diketahui untuk versi yang digunakan dan versi rentan yang masih diizinkan oleh aturan wildcard.</value>
   </data>
   <data name="Shift with confidence" xml:space="preserve">
     <value>Berpindah dengan percaya diri</value>
@@ -666,6 +846,9 @@
   <data name="Smart dark mode that automatically adapts to the user&apos;s system settings." xml:space="preserve">
     <value>Mode gelap cerdas yang secara otomatis menyesuaikan dengan pengaturan sistem pengguna.</value>
   </data>
+  <data name="Software supply chain, in focus" xml:space="preserve">
+    <value>Rantai pasok perangkat lunak, menjadi sorotan</value>
+  </data>
   <data name="Standard implementation. Switch providers without compilation." xml:space="preserve">
     <value>Implementasi standar. Ganti penyedia tanpa kompilasi.</value>
   </data>
@@ -680,6 +863,9 @@
   </data>
   <data name="Start with a single &apos;docker run&apos; command." xml:space="preserve">
     <value>Mulai dengan satu perintah &apos;docker run&apos; saja.</value>
+  </data>
+  <data name="Start with visibility and review. Tighten the boundary in stages." xml:space="preserve">
+    <value>Mulailah dengan visibilitas dan peninjauan. Perketat batasan secara bertahap.</value>
   </data>
   <data name="Starts without any configuration" xml:space="preserve">
     <value>Dimulai tanpa konfigurasi apa pun</value>
@@ -701,6 +887,9 @@
   </data>
   <data name="Strongly Consistent Linting" xml:space="preserve">
     <value>Pemeriksaan Kode yang Konsisten Secara Kuat</value>
+  </data>
+  <data name="Submit direct dependencies once. S360 resolves transitive packages and records how each one enters the request." xml:space="preserve">
+    <value>Kirimkan dependensi langsung sekali saja. S360 menyelesaikan dependensi transitif dan mencatat bagaimana masing-masing masuk ke dalam permintaan.</value>
   </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Mendukung kedua variabel lingkungan dan pengaturan berbasis database, dengan prioritas otomatis diberikan kepada variabel lingkungan untuk pembaruan yang mulus.</value>
@@ -726,8 +915,14 @@
   <data name="Testing module available" xml:space="preserve">
     <value>Modul pengujian tersedia</value>
   </data>
+  <data name="The background resolver records exact versions, package archives, hashes, source, and introduction paths." xml:space="preserve">
+    <value>Resolver latar belakang mencatat versi persis, arsip paket, hash, sumber, dan jalur masuk.</value>
+  </data>
   <data name="The definitive, battle-tested .NET enterprise foundation. From Auth to AI, we&apos;ve solved the hard parts so you don&apos;t have to." xml:space="preserve">
     <value>Dasar perusahaan .NET yang pasti dan telah teruji dalam pertempuran. Dari Otentikasi hingga Kecerdasan Buatan, kami telah menyelesaikan bagian-bagian sulit sehingga Anda tidak perlu melakukannya.</value>
+  </data>
+  <data name="The entire dependency graph" xml:space="preserve">
+    <value>Seluruh graf dependensi</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Bilah navigasi secara otomatis menyesuaikan berdasarkan peran dan izin pengguna.</value>
@@ -750,8 +945,17 @@
   <data name="TimeZoneInfo API available" xml:space="preserve">
     <value>API TimeZoneInfo tersedia</value>
   </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Dependensi transitif</value>
+  </data>
+  <data name="Trust every decision." xml:space="preserve">
+    <value>Percayai setiap keputusan.</value>
+  </data>
   <data name="Trusted by production-grade applications including AnduinOS, StatHub, and Warp. We don&apos;t just share this code; we run our entire business on it." xml:space="preserve">
     <value>Dipercaya oleh aplikasi produksi berkualitas tinggi termasuk AnduinOS, StatHub, dan Warp. Kami tidak hanya berbagi kode ini; kami menjalankan seluruh bisnis kami berdasarkan kode ini.</value>
+  </data>
+  <data name="Two ecosystems, one policy language" xml:space="preserve">
+    <value>Dua ekosistem, satu bahasa kebijakan</value>
   </data>
   <data name="Unified Env" xml:space="preserve">
     <value>Lingkungan Seragam</value>
@@ -797,6 +1001,9 @@
   </data>
   <data name="You&apos;ll need the .NET 10 SDK, npm and your favorite IDE, like Visual Studio or JetBrains Rider. You can find the full setup guide in our documentation." xml:space="preserve">
     <value>Anda akan memerlukan .NET 10 SDK, npm, dan IDE favorit Anda, seperti Visual Studio atau JetBrains Rider. Anda dapat menemukan panduan penyiapan lengkap di dokumentasi kami.</value>
+  </data>
+  <data name="Your dependency workspace" xml:space="preserve">
+    <value>Ruang kerja dependensi Anda</value>
   </data>
   <data name="Your enterprise users don&apos;t need to register repeatedly." xml:space="preserve">
     <value>Pengguna perusahaan Anda tidak perlu mendaftar berulang kali.</value>

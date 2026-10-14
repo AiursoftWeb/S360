@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+    <value>चयनित इकोसिस्टम के लिए एक रजिस्ट्री चुनें। स्रोत समीक्षा के साक्ष्य का हिस्सा है।</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>निर्मित</value>
+  </data>
+  <data name="Currently blocked" xml:space="preserve">
+    <value>अभी अवरुद्ध</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>विवरण</value>
+  </data>
+  <data name="Direct dependencies, one name@version per line" xml:space="preserve">
+    <value>प्रत्यक्ष निर्भरताएँ, प्रत्येक पंक्ति में एक नाम@संस्करण</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>पारिस्थितिकी तंत्र</value>
+  </data>
+  <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
+    <value>सटीक प्रत्यक्ष संस्करण दर्ज करें। S360 पूरे निर्भरता ग्राफ़ का समाधान करके उसकी समीक्षा करता है; भविष्य में CI एकीकरण, परिनियोजन के बाद वास्तविक बिल्ड ग्राफ़ की जाँच करेगा।</value>
+  </data>
+  <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
+    <value>केवल उन्हीं पैकेजों के नाम दर्ज करें जिन्हें आपने सीधे चुना है; S360 उनकी पारगमनशील निर्भरताओं का पता लगा लेगा। वाइल्डकार्ड के बजाय सटीक संस्करण दर्ज करें।</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
+    <value>उदाहरण के लिए: Microsoft.EntityFrameworkCore@10.0.12। वे पैकेज दर्ज करें जिन्हें आपने स्वयं चुना है; S360 उनके द्वारा शामिल किए गए पैकेजों का पता लगाता है।</value>
+  </data>
+  <data name="My dependency requests" xml:space="preserve">
+    <value>मेरे निर्भरता अनुरोध</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>नया अनुरोध</value>
+  </data>
+  <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
+    <value>NuGet .NET पैकेजों के लिए है; npm JavaScript पैकेजों के लिए है। वही चुनें जिसे आपका प्रोजेक्ट वास्तव में इंस्टॉल करता है।</value>
+  </data>
+  <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
+    <value>S360 जाँचों के लिए पैकेज स्रोत की अब अनुमति नहीं है।</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>प्रोजेक्ट</value>
+  </data>
+  <data name="Project (optional)" xml:space="preserve">
+    <value>प्रोजेक्ट (वैकल्पिक)</value>
+  </data>
+  <data name="Recent requests" xml:space="preserve">
+    <value>हाल के अनुरोध</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>स्रोत</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>स्थिति</value>
+  </data>
+  <data name="Submit for resolution" xml:space="preserve">
+    <value>समाधान के लिए सबमिट करें</value>
+  </data>
+  <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
+    <value>पैकेज संग्रह प्रदान करने वाली रजिस्ट्री। किसी अन्य रजिस्ट्री के पैकेज की अलग से समीक्षा आवश्यक है।</value>
+  </data>
+  <data name="Why is this dependency needed?" xml:space="preserve">
+    <value>यह निर्भरता क्यों आवश्यक है?</value>
+  </data>
+
+</root>

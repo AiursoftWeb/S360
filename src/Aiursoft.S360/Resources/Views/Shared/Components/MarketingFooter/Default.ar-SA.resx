@@ -18,11 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Aiursoft" xml:space="preserve">
+      <data name="A clearer way to request, approve, and keep watch over the software your teams depend on." xml:space="preserve">
+    <value>طريقة أوضح لطلب البرامج التي تعتمد عليها فرقكم والموافقة عليها ومتابعتها.</value>
+  </data>
+  <data name="A project by Aiursoft" xml:space="preserve">
+    <value>مشروع من Aiursoft</value>
+  </data>
+  <data name="Aiursoft" xml:space="preserve">
     <value>Aiursoft</value>
   </data>
   <data name="Aiursoft Template - A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>قالب Aiursoft - أساس حديث، غني بالميزات، وقابل للتوسعة بشكل كبير لتطبيق الويب القادم الخاص بك.</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>التبعيات المتاحة</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>الإمكانات</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>المجتمع</value>
@@ -30,8 +42,14 @@
   <data name="Contributions" xml:space="preserve">
     <value>المساهمات</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>لوحة المعلومات</value>
+  </data>
   <data name="Documentation" xml:space="preserve">
     <value>التوثيق</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>استكشف</value>
   </data>
   <data name="Get Started" xml:space="preserve">
     <value>ابدأ</value>
@@ -39,11 +57,17 @@
   <data name="Github" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>اللغة</value>
+  </data>
   <data name="Legal" xml:space="preserve">
     <value>القانونية</value>
   </data>
   <data name="Licence" xml:space="preserve">
     <value>الترخيص</value>
+  </data>
+  <data name="My requests" xml:space="preserve">
+    <value>طلباتي</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>المشروع</value>
@@ -54,11 +78,23 @@
   <data name="Resources" xml:space="preserve">
     <value>الموارد</value>
   </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>الإطلاق</value>
+  </data>
+  <data name="S360&apos;s Web approval center is the first step. Build enforcement and restricted mirrors follow as separate rollout stages." xml:space="preserve">
+    <value>مركز الموافقات عبر الويب الخاص بـ S360 هو الخطوة الأولى. ويأتي بعد ذلك تطبيق سياسات البناء والمرايا المقيّدة على شكل مراحل طرح منفصلة.</value>
+  </data>
   <data name="Social" xml:space="preserve">
     <value>اجتماعي</value>
   </data>
   <data name="Source Code" xml:space="preserve">
     <value>الكود المصدري</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>سير العمل</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>مساحة العمل</value>
   </data>
 
 </root>

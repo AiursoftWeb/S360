@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+    <value>اختر مستودع الحزم للبيئة المحددة. يُعد المصدر جزءًا من أدلة المراجعة.</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>تاريخ الإنشاء</value>
+  </data>
+  <data name="Currently blocked" xml:space="preserve">
+    <value>محظور حاليًا</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>التفاصيل</value>
+  </data>
+  <data name="Direct dependencies, one name@version per line" xml:space="preserve">
+    <value>التبعيات المباشرة، اسم واحد وإصدار واحد في كل سطر</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>النظام البيئي</value>
+  </data>
+  <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
+    <value>أدخل الإصدارات المباشرة الدقيقة. يحلّل S360 الرسم البياني بأكمله ويراجعه؛ وسيتحقق تكامل CI مستقبلًا من رسم البناء الفعلي بعد النشر.</value>
+  </data>
+  <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
+    <value>أدخل الحزم التي تختارها مباشرةً فقط؛ وسيكتشف S360 تبعياتها غير المباشرة. استخدم إصدارًا محددًا، وليس حرفًا بدلًا من أي إصدار.</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
+    <value>على سبيل المثال: Microsoft.EntityFrameworkCore@10.0.12. أدخل الحزم التي اخترتها بنفسك؛ يكتشف S360 الحزم التي تعتمد عليها هذه الحزم.</value>
+  </data>
+  <data name="My dependency requests" xml:space="preserve">
+    <value>طلبات التبعيات الخاصة بي</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>طلب جديد</value>
+  </data>
+  <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
+    <value>NuGet مخصص لحزم ‎.NET‎، وnpm مخصص لحزم JavaScript. اختر النظام الذي يثبّته مشروعك فعليًا.</value>
+  </data>
+  <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
+    <value>لم يعد مسموحًا باستخدام مصدر الحزمة لإجراء فحوصات S360.</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>المشروع</value>
+  </data>
+  <data name="Project (optional)" xml:space="preserve">
+    <value>المشروع (اختياري)</value>
+  </data>
+  <data name="Recent requests" xml:space="preserve">
+    <value>الطلبات الأخيرة</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>المصدر</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="Submit for resolution" xml:space="preserve">
+    <value>إرسال لحلّ التبعيات</value>
+  </data>
+  <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
+    <value>مستودع الحزم الذي يوفّر أرشيف الحزمة. تتطلب الحزمة القادمة من مستودع آخر مراجعة مستقلة.</value>
+  </data>
+  <data name="Why is this dependency needed?" xml:space="preserve">
+    <value>لماذا هناك حاجة إلى هذه التبعية؟</value>
+  </data>
+
+</root>

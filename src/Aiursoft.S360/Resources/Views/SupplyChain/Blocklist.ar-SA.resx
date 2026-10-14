@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>يُرفض أي حزمة مطابقة بغض النظر عن المورّد أو المصدر أو الموافقة، أو عمّا إذا كانت قد وصلت كتبعية مباشرة أو غير مباشرة. وتظل الموافقات والفحوصات السابقة محفوظة كأدلة تدقيقية.</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>قائمة الحظر المطلقة</value>
+  </data>
+  <data name="Add absolute block" xml:space="preserve">
+    <value>إضافة حظر شامل</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>تطبيقات</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>العناصر</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>التبعيات المتاحة</value>
+  </data>
+  <data name="Block package" xml:space="preserve">
+    <value>حظر الحزمة</value>
+  </data>
+  <data name="Block reason" xml:space="preserve">
+    <value>سبب الحظر</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>بواسطة</value>
+  </data>
+  <data name="CI check runs" xml:space="preserve">
+    <value>مرات تشغيل فحوصات التكامل المستمر</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>تاريخ الإنشاء</value>
+  </data>
+  <data name="Disable block" xml:space="preserve">
+    <value>تعطيل الحظر</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>النظام البيئي</value>
+  </data>
+  <data name="Edit rule and view history" xml:space="preserve">
+    <value>تعديل القاعدة وعرض السجل</value>
+  </data>
+  <data name="Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*." xml:space="preserve">
+    <value>الأسماء الدقيقة والبادئات مختلفة. لا يشمل ant-design تلقائيًا antd أو @ant-design/*.</value>
+  </data>
+  <data name="Examples" xml:space="preserve">
+    <value>أمثلة</value>
+  </data>
+  <data name="Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures." xml:space="preserve">
+    <value>الأرقام الواردة أدناه عن الأثر هي عينات من عناصر سُجّلت مؤخرًا، وليست إحصاءات شاملة. ضيّق نطاق القاعدة أو راجعها قبل الاعتماد على هذه الأرقام.</value>
+  </data>
+  <data name="No block rules have been recorded for this ecosystem." xml:space="preserve">
+    <value>لم يتم تسجيل أي قواعد حظر لهذا النظام البيئي.</value>
+  </data>
+  <data name="Package name or trailing-* pattern" xml:space="preserve">
+    <value>اسم الحزمة أو النمط المنتهي بـ *</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>نمط الحزمة</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="Recorded impact sample" xml:space="preserve">
+    <value>عينة الأثر المسجّل</value>
+  </data>
+  <data name="Save change" xml:space="preserve">
+    <value>حفظ التغييرات</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>عرض</value>
+  </data>
+  <data name="Use * to block every version, or an exact version or trailing-* prefix to narrow the block." xml:space="preserve">
+    <value>استخدم * لحظر جميع الإصدارات، أو حدّد إصدارًا بعينه أو بادئة تنتهي بـ * لتضييق نطاق الحظر.</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>نمط الإصدار</value>
+  </data>
+  <data name="View history" xml:space="preserve">
+    <value>عرض السجل</value>
+  </data>
+  <data name="Why change this block?" xml:space="preserve">
+    <value>لماذا تريد تغيير هذا الحظر؟</value>
+  </data>
+  <data name="Why disable this block?" xml:space="preserve">
+    <value>لماذا تريد تعطيل هذه القاعدة؟</value>
+  </data>
+
+</root>

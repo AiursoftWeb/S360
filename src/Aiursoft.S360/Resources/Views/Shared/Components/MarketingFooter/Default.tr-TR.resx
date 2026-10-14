@@ -18,11 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Aiursoft" xml:space="preserve">
+      <data name="A clearer way to request, approve, and keep watch over the software your teams depend on." xml:space="preserve">
+    <value>Ekiplerinizin güvendiği yazılımları talep etmenin, onaylamanın ve takip etmenin daha net bir yolu.</value>
+  </data>
+  <data name="A project by Aiursoft" xml:space="preserve">
+    <value>Aiursoft tarafından geliştirilen bir proje</value>
+  </data>
+  <data name="Aiursoft" xml:space="preserve">
     <value>Aiursoft</value>
   </data>
   <data name="Aiursoft Template - A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Aiursoft Template - Bir sonraki web uygulamanız için modern, özellik zengini ve oldukça genişletilebilir bir temel.</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Mevcut bağımlılıklar</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Özellikler</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>Topluluk</value>
@@ -30,8 +42,14 @@
   <data name="Contributions" xml:space="preserve">
     <value>Katkılar</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Kontrol paneli</value>
+  </data>
   <data name="Documentation" xml:space="preserve">
     <value>Belgeler</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Keşfet</value>
   </data>
   <data name="Get Started" xml:space="preserve">
     <value>Başlayın</value>
@@ -39,11 +57,17 @@
   <data name="Github" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Dil</value>
+  </data>
   <data name="Legal" xml:space="preserve">
     <value>Yasal</value>
   </data>
   <data name="Licence" xml:space="preserve">
     <value>Lisans</value>
+  </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Taleplerim</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Proje</value>
@@ -54,11 +78,23 @@
   <data name="Resources" xml:space="preserve">
     <value>Kaynaklar</value>
   </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>Yayına Alma</value>
+  </data>
+  <data name="S360&apos;s Web approval center is the first step. Build enforcement and restricted mirrors follow as separate rollout stages." xml:space="preserve">
+    <value>S360&apos;ın web onay merkezi ilk adımdır. Derleme zorunluluğu ve kısıtlı aynalar, uygulamaya alma sürecinin ayrı aşamaları olarak bunu izler.</value>
+  </data>
   <data name="Social" xml:space="preserve">
     <value>Sosyal</value>
   </data>
   <data name="Source Code" xml:space="preserve">
     <value>Kaynak Kodu</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>İş akışı</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>Çalışma Alanı</value>
   </data>
 
 </root>

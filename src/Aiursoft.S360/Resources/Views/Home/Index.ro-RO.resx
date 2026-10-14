@@ -18,8 +18,14 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
+      <data name=".NET packages" xml:space="preserve">
+    <value>pachete .NET</value>
+  </data>
+  <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Sprijin pentru sarcini de lungă durată (cum ar fi e-mailurile sau AI), în stil &quot;Fire-and-forget&quot;, cu interfață grafică pentru gestionarea cozilor, prelucrare paralelă și anulare.</value>
+  </data>
+  <data name="A blocked package stays blocked even when it appears only as a transitive dependency or matches a broader trust rule." xml:space="preserve">
+    <value>Un pachet blocat rămâne blocat chiar și atunci când apare doar ca dependență tranzitivă sau se încadrează într-o regulă de încredere mai largă.</value>
   </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Un sistem integrat de control al accesului bazat pe roluri (RBAC) pentru gestionarea granulară a permisiunilor.</value>
@@ -30,11 +36,20 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>O soluție completă pentru autentificarea utilizatorilor și gestionarea profilurilor.</value>
   </data>
+  <data name="A decision covers the complete resolved graph, not only the package you typed." xml:space="preserve">
+    <value>O decizie acoperă întregul graf de dependențe rezolvat, nu doar pachetul pe care l-ai introdus.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>Un layout complet responsive care arată excelent atât pe dispozitive desktop, cât și pe mobile.</value>
   </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>O fundație modernă, bogată în funcționalități și extrem de extensibilă pentru următoarea ta aplicație web.</value>
+  </data>
+  <data name="A practical workflow" xml:space="preserve">
+    <value>Un flux de lucru practic</value>
+  </data>
+  <data name="A searchable allowed catalog" xml:space="preserve">
+    <value>Un catalog de aprobări care poate fi căutat</value>
   </data>
   <data name="Achieve more with Aiursoft Template" xml:space="preserve">
     <value>Realizați mai multe cu Aiursoft Template</value>
@@ -63,17 +78,29 @@
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Toate dependențele sunt înregistrate automat și sunt întotdeauna disponibile prin injectare în constructor.</value>
   </data>
+  <data name="An absolute blocklist" xml:space="preserve">
+    <value>O listă de blocare absolută</value>
+  </data>
   <data name="Anduin" xml:space="preserve">
     <value>Anduin</value>
   </data>
   <data name="Anduin Xue" xml:space="preserve">
     <value>Anduin Xue</value>
   </data>
+  <data name="Approve a report-backed batch while retaining the individual package decisions and their review history." xml:space="preserve">
+    <value>Aprobați un lot susținut de un raport, păstrând în același timp deciziile individuale privind pachetele și istoricul revizuirii acestora.</value>
+  </data>
   <data name="Artificial Intelligence Translation" xml:space="preserve">
     <value>Traducere prin Inteligență Artificială</value>
   </data>
+  <data name="Audit" xml:space="preserve">
+    <value>Audit</value>
+  </data>
   <data name="Authentik &amp; Okta" xml:space="preserve">
     <value>Authentik &amp; Okta</value>
+  </data>
+  <data name="Authorized mirrors" xml:space="preserve">
+    <value>Oglinzi autorizate</value>
   </data>
   <data name="Auto compression and privacy" xml:space="preserve">
     <value>Compresie automată și confidențialitate</value>
@@ -120,14 +147,26 @@
   <data name="Bilingual Tutorials" xml:space="preserve">
     <value>Tutoriale bilingve</value>
   </data>
+  <data name="Blocklist first" xml:space="preserve">
+    <value>Lista de blocare, înainte de toate</value>
+  </data>
+  <data name="Build inputs prepared before the network is closed." xml:space="preserve">
+    <value>Intrările pentru compilare sunt pregătite înainte de închiderea rețelei.</value>
+  </data>
   <data name="Build once, run anywhere. Fully containerized architecture." xml:space="preserve">
     <value>Construiți o dată, rulați oriunde. Arhitectură complet containerizată.</value>
   </data>
   <data name="Build your next big thing," xml:space="preserve">
     <value>Construiește-ți următorul proiect important,</value>
   </data>
+  <data name="Built for clear decisions" xml:space="preserve">
+    <value>Conceput pentru decizii clare</value>
+  </data>
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>Construit pentru ingineri care se îngrijorează de calitate.</value>
+  </data>
+  <data name="Built to grow safely" xml:space="preserve">
+    <value>Creat pentru a crește în siguranță</value>
   </data>
   <data name="Built with Aiursoft Template" xml:space="preserve">
     <value>Creat cu șablonul Aiursoft</value>
@@ -174,6 +213,9 @@
   <data name="Checkstyle or similar needed" xml:space="preserve">
     <value>Se necesită Checkstyle sau similar</value>
   </data>
+  <data name="Choose NuGet or npm, list the direct packages, and explain the intended use. No separate request command is needed." xml:space="preserve">
+    <value>Alegeți NuGet sau npm, enumerați pachetele directe și explicați utilizarea prevăzută. Nu este necesară o comandă separată pentru solicitare.</value>
+  </data>
   <data name="Comes with Docker support for simplified and consistent deployments." xml:space="preserve">
     <value>Include suport pentru Docker pentru implementări simplificate și consistente.</value>
   </data>
@@ -207,6 +249,9 @@
   <data name="Cross Platform" xml:space="preserve">
     <value>Platform Cruce</value>
   </data>
+  <data name="Current mirrors" xml:space="preserve">
+    <value>Oglinzi de pachete actuale</value>
+  </data>
   <data name="Custom dev required" xml:space="preserve">
     <value>Se cere dezvoltare personalizată</value>
   </data>
@@ -237,6 +282,9 @@
   <data name="Default SQLite database, no configuration needed." xml:space="preserve">
     <value>Bază de date SQLite implicită, fără necesitate de configurare.</value>
   </data>
+  <data name="Dependency review" xml:space="preserve">
+    <value>Revizuirea dependențelor</value>
+  </data>
   <data name="Designed for everyone, from beginners to experts." xml:space="preserve">
     <value>Creat pentru toți, de la începători până la experți.</value>
   </data>
@@ -254,6 +302,9 @@
   </data>
   <data name="DevOps Native" xml:space="preserve">
     <value>Native DevOps</value>
+  </data>
+  <data name="Direct request" xml:space="preserve">
+    <value>Solicitare directă</value>
   </data>
   <data name="Discussions page" xml:space="preserve">
     <value>Pagina de discuții</value>
@@ -279,6 +330,9 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Scrieți testele de integrare fără efort folosind baze de date în memorie, sisteme de fișiere temporare, mocking integrat și simularea cererilor HTTP din lumea reală.</value>
   </data>
+  <data name="Employees can discover current approvals, suppliers, and matching rules before starting another request." xml:space="preserve">
+    <value>Angajații pot consulta aprobările actuale, furnizorii și regulile de potrivire înainte de a trimite o nouă solicitare.</value>
+  </data>
   <data name="Enforced" xml:space="preserve">
     <value>Aplicat</value>
   </data>
@@ -300,6 +354,21 @@
   <data name="Entity Framework Core included" xml:space="preserve">
     <value>Entity Framework Core inclus</value>
   </data>
+  <data name="Exact artifact evidence" xml:space="preserve">
+    <value>Dovezi exacte despre artefact</value>
+  </data>
+  <data name="Exact SHA-256 evidence" xml:space="preserve">
+    <value>Dovezi SHA-256 exacte</value>
+  </data>
+  <data name="Existing package access continues." xml:space="preserve">
+    <value>Accesul la pachetele existente continuă.</value>
+  </data>
+  <data name="Expiry, revocation, and newly published advisories remain visible after the original approval." xml:space="preserve">
+    <value>Expirarea, revocarea și alertele de securitate publicate recent rămân vizibile după aprobarea inițială.</value>
+  </data>
+  <data name="Explore available dependencies" xml:space="preserve">
+    <value>Explorează dependențele disponibile</value>
+  </data>
   <data name="FAQ" xml:space="preserve">
     <value>Întrebări frecvente</value>
   </data>
@@ -320,6 +389,9 @@
   </data>
   <data name="File Mgmt &amp; Optimization" xml:space="preserve">
     <value>Gestiune și optimizare fișiere</value>
+  </data>
+  <data name="Find what is already allowed, request what is missing, and follow every decision back to its evidence." xml:space="preserve">
+    <value>Află ce este deja permis, solicită ce lipsește și verifică dovezile care stau la baza fiecărei decizii.</value>
   </data>
   <data name="Fine-grained RBAC" xml:space="preserve">
     <value>RBAC cu granulație fină</value>
@@ -350,6 +422,9 @@
   </data>
   <data name="Frequently asked questions" xml:space="preserve">
     <value>Întrebări frecvente</value>
+  </data>
+  <data name="From package request to policy evidence." xml:space="preserve">
+    <value>De la solicitarea pachetelor la dovezi privind respectarea politicilor.</value>
   </data>
   <data name="From the Architect" xml:space="preserve">
     <value>De la Arhitect</value>
@@ -429,11 +504,17 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>Cum îmi implementez aplicația?</value>
   </data>
+  <data name="Human review at the right scale" xml:space="preserve">
+    <value>Revizuire umană la scara potrivită</value>
+  </data>
   <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
     <value>Am construit Aiursoft Template pentru că eram obosit să setez aceleași pipeline de Auth, Log și CI/CD pentru fiecare proiect enterprise nou. Acesta nu este doar un template; este practica optimă cristalizată din ani de medii de producție cu concurență ridicată. Îmi permite echipei să sară peste configurarea plictisitoare și să treacă direct la logică de afaceri.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>Suport pentru IDE</value>
+  </data>
+  <data name="Illustration of a dependency review" xml:space="preserve">
+    <value>Ilustrație a unei evaluări a dependențelor</value>
   </data>
   <data name="In-memory DB, temp FS, and HTTP simulation" xml:space="preserve">
     <value>Bază de date în memorie, sistem de fișiere temporar și simulare HTTP</value>
@@ -468,6 +549,9 @@
   <data name="java.time API available" xml:space="preserve">
     <value>API java.time disponibil</value>
   </data>
+  <data name="JavaScript packages" xml:space="preserve">
+    <value>Pachete JavaScript</value>
+  </data>
   <data name="Job Queue &amp; Scheduling GUI" xml:space="preserve">
     <value>Interfața grafică pentru coada de job-uri și planificare</value>
   </data>
@@ -483,11 +567,26 @@
   <data name="K8s / Swarm Ready" xml:space="preserve">
     <value>Gata pentru K8s / Swarm</value>
   </data>
+  <data name="Keep watch" xml:space="preserve">
+    <value>Supravegheați</value>
+  </data>
+  <data name="Know every dependency." xml:space="preserve">
+    <value>Cunoașteți fiecare dependență.</value>
+  </data>
+  <data name="Less guesswork for employees. More context for reviewers." xml:space="preserve">
+    <value>Mai puține presupuneri pentru angajați. Mai mult context pentru cei care evaluează.</value>
+  </data>
   <data name="Lint Check" xml:space="preserve">
     <value>Verificare Lint</value>
   </data>
+  <data name="Made for the dependencies your teams actually use." xml:space="preserve">
+    <value>Conceput pentru dependențele pe care echipele voastre le folosesc cu adevărat.</value>
+  </data>
   <data name="Maintain High Code Quality" xml:space="preserve">
     <value>Menține o Calitate Ridicată a Codului</value>
+  </data>
+  <data name="Make the next package decision an informed one." xml:space="preserve">
+    <value>Asigurați-vă că următoarea decizie privind pachetele este una bine fundamentată.</value>
   </data>
   <data name="Management Dashboard" xml:space="preserve">
     <value>Panou de administrare</value>
@@ -552,6 +651,9 @@
   <data name="Needs Passport or similar" xml:space="preserve">
     <value>Necesită Passport sau similar</value>
   </data>
+  <data name="Needs review" xml:space="preserve">
+    <value>Necesită revizuire</value>
+  </data>
   <data name="Needs Spatie or similar" xml:space="preserve">
     <value>Necesită Spatie sau similar</value>
   </data>
@@ -567,6 +669,15 @@
   <data name="No dependency on any cloud vendor. Run anywhere, any time." xml:space="preserve">
     <value>Fără dependență de niciun furnizor de cloud. Rulează oriunde, oricând.</value>
   </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet și npm</value>
+  </data>
+  <data name="NuGet and npm have different version and installation rules. S360 keeps their package identities distinct while presenting one consistent approval experience." xml:space="preserve">
+    <value>NuGet și npm au reguli diferite privind versiunile și instalarea. S360 păstrează distincte identitățile pachetelor, oferind în același timp un proces de aprobare unitar.</value>
+  </data>
+  <data name="Offline builds" xml:space="preserve">
+    <value>Compilări offline</value>
+  </data>
   <data name="Offline Capable" xml:space="preserve">
     <value>Capabil offline</value>
   </data>
@@ -576,8 +687,23 @@
   <data name="One Click Start" xml:space="preserve">
     <value>Un Click Start</value>
   </data>
+  <data name="One coherent workflow" xml:space="preserve">
+    <value>Un flux de lucru coerent</value>
+  </data>
+  <data name="One request, the whole graph" xml:space="preserve">
+    <value>O singură solicitare, întregul graf</value>
+  </data>
+  <data name="Ongoing vulnerability visibility" xml:space="preserve">
+    <value>Vizibilitate continuă asupra vulnerabilităților</value>
+  </data>
+  <data name="Only approved package versions are served." xml:space="preserve">
+    <value>Sunt servite doar versiunile aprobate ale pachetelor.</value>
+  </data>
   <data name="Open Source" xml:space="preserve">
     <value>Open Source</value>
+  </data>
+  <data name="Open your workspace" xml:space="preserve">
+    <value>Deschide spațiul tău de lucru</value>
   </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Integrare OpenID Connect</value>
@@ -624,14 +750,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Citește documentația</value>
   </data>
+  <data name="Record the package source and SHA-256 of each NuGet archive or npm tarball, not just a familiar package name." xml:space="preserve">
+    <value>Înregistrați sursa pachetului și hashul SHA-256 al fiecărei arhive NuGet sau al fiecărui fișier tarball npm, nu doar un nume de pachet cunoscut.</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Solicitare</value>
+  </data>
+  <data name="Request in the browser" xml:space="preserve">
+    <value>Solicitare în browser</value>
+  </data>
+  <data name="Requests, policy, audit, and approval." xml:space="preserve">
+    <value>Solicitări, politici, audit și aprobare.</value>
+  </data>
   <data name="Requires Laravel Socialite config" xml:space="preserve">
     <value>Necesită configurarea Laravel Socialite</value>
   </data>
   <data name="Requires Spring Security configuration" xml:space="preserve">
     <value>Necesită configurarea Spring Security</value>
   </data>
+  <data name="Resolve" xml:space="preserve">
+    <value>Rezolvă</value>
+  </data>
+  <data name="Resolve and inspect" xml:space="preserve">
+    <value>Rezolvați și inspectați</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Design Responsiv</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Revizuire</value>
+  </data>
+  <data name="Review restored versions and the original .nupkg files behind your applications." xml:space="preserve">
+    <value>Examinați versiunile restaurate și fișierele .nupkg originale care stau la baza aplicațiilor dumneavoastră.</value>
+  </data>
+  <data name="Review with guardrails" xml:space="preserve">
+    <value>Revizuire cu măsuri de protecție</value>
+  </data>
+  <data name="Reviewed artifact" xml:space="preserve">
+    <value>Artefact verificat</value>
+  </data>
+  <data name="Reviewers see what is already trusted and what is new. Blacklist and vulnerability checks cannot be hidden by a root approval." xml:space="preserve">
+    <value>Evaluatorii văd ce este deja de încredere și ce este nou. Verificările privind lista de blocare și vulnerabilitățile nu pot fi eludate prin aprobarea unui pachet-rădăcină.</value>
   </data>
   <data name="Reviews" xml:space="preserve">
     <value>Recenzii</value>
@@ -642,11 +801,32 @@
   <data name="Runs without any internet connection required." xml:space="preserve">
     <value>Rulează fără a fi necesară o conexiune la internet.</value>
   </data>
+  <data name="S360 connects the people approving dependencies with the exact packages, versions, sources, and risks behind each decision." xml:space="preserve">
+    <value>S360 îi pune în legătură pe cei care aprobă dependențele cu pachetele, versiunile, sursele și riscurile exacte care stau la baza fiecărei decizii.</value>
+  </data>
+  <data name="S360 gives your team one place to request NuGet and npm packages, review their complete dependency trees, and track which exact package files are allowed." xml:space="preserve">
+    <value>S360 oferă echipei tale un singur loc în care să solicite pachete NuGet și npm, să le analizeze arborii compleți de dependențe și să urmărească exact ce fișiere de pachet sunt permise.</value>
+  </data>
+  <data name="S360 is being prepared as the Web approval center. Runner enforcement, authorization-only package mirrors, and fully offline builds are later rollout stages—not guarantees of this deployment." xml:space="preserve">
+    <value>S360 este pregătit să devină centrul de aprobare web. Aplicarea regulilor pe runner, oglinzile de pachete care permit doar versiuni autorizate și compilările complet offline sunt etape ulterioare ale implementării, nu garanții pentru această lansare.</value>
+  </data>
+  <data name="S360 Web and review" xml:space="preserve">
+    <value>S360 Web și analiză</value>
+  </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Gestionarea sarcinilor programate</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Integrați fără probleme cu orice furnizor OpenID Connect, cu sincronizare automată a rolurilor.</value>
+  </data>
+  <data name="See how it works" xml:space="preserve">
+    <value>Vezi cum funcționează</value>
+  </data>
+  <data name="See installed transitive packages and the tarball integrity evidence in one report." xml:space="preserve">
+    <value>Consultați într-un singur raport pachetele tranzitive instalate și dovezile privind integritatea arhivei tar.gz.</value>
+  </data>
+  <data name="See known advisories for used versions and for vulnerable versions still permitted by a wildcard rule." xml:space="preserve">
+    <value>Consultați alertele de securitate cunoscute pentru versiunile utilizate și pentru versiunile vulnerabile încă permise de o regulă cu metacaractere.</value>
   </data>
   <data name="Shift with confidence" xml:space="preserve">
     <value>Mutați cu încredere</value>
@@ -666,6 +846,9 @@
   <data name="Smart dark mode that automatically adapts to the user&apos;s system settings." xml:space="preserve">
     <value>Mod întunecat inteligent care se adaptează automat la setările de sistem ale utilizatorului.</value>
   </data>
+  <data name="Software supply chain, in focus" xml:space="preserve">
+    <value>Lanțul de aprovizionare software, în prim-plan</value>
+  </data>
   <data name="Standard implementation. Switch providers without compilation." xml:space="preserve">
     <value>Implementare standard. Schimbă furnizorii fără compilare.</value>
   </data>
@@ -680,6 +863,9 @@
   </data>
   <data name="Start with a single &apos;docker run&apos; command." xml:space="preserve">
     <value>Începe cu o singură comandă &apos;docker run&apos;.</value>
+  </data>
+  <data name="Start with visibility and review. Tighten the boundary in stages." xml:space="preserve">
+    <value>Începeți prin a obține vizibilitate și a revizui. Înăspriți treptat limitele.</value>
   </data>
   <data name="Starts without any configuration" xml:space="preserve">
     <value>Pornește fără nicio configurare</value>
@@ -701,6 +887,9 @@
   </data>
   <data name="Strongly Consistent Linting" xml:space="preserve">
     <value>Linting Strâns Consistent</value>
+  </data>
+  <data name="Submit direct dependencies once. S360 resolves transitive packages and records how each one enters the request." xml:space="preserve">
+    <value>Trimiteți o singură dată dependențele directe. S360 rezolvă pachetele tranzitive și înregistrează modul în care fiecare ajunge în cerere.</value>
   </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Suportă atât variabilele de mediu, cât și setările stocate în baza de date, cu prioritate automată acordată variabilelor de mediu pentru actualizări fără probleme.</value>
@@ -726,8 +915,14 @@
   <data name="Testing module available" xml:space="preserve">
     <value>Modul de testare disponibil</value>
   </data>
+  <data name="The background resolver records exact versions, package archives, hashes, source, and introduction paths." xml:space="preserve">
+    <value>Resolverul din fundal înregistrează versiunile exacte, arhivele pachetelor, hash-urile, sursa și căile de introducere.</value>
+  </data>
   <data name="The definitive, battle-tested .NET enterprise foundation. From Auth to AI, we&apos;ve solved the hard parts so you don&apos;t have to." xml:space="preserve">
     <value>Fundamentul definitiv, testat în practică pentru întreprinderi în .NET. De la Autentificare până la Inteligență Artificială, am rezolvat părțile dificile, astfel încât să nu aibă nevoie să le rezolvi tu.</value>
+  </data>
+  <data name="The entire dependency graph" xml:space="preserve">
+    <value>Întregul graf al dependențelor</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Bara de navigare se ajustează automat în funcție de rolurile și permisiunile utilizatorului.</value>
@@ -750,8 +945,17 @@
   <data name="TimeZoneInfo API available" xml:space="preserve">
     <value>API TimeZoneInfo disponibilă</value>
   </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Dependență tranzitivă</value>
+  </data>
+  <data name="Trust every decision." xml:space="preserve">
+    <value>Aveți încredere în fiecare decizie.</value>
+  </data>
   <data name="Trusted by production-grade applications including AnduinOS, StatHub, and Warp. We don&apos;t just share this code; we run our entire business on it." xml:space="preserve">
     <value>Încrederea aplicațiilor de tip producție, inclusiv AnduinOS, StatHub și Warp. Nu doar împărtășim acest cod; îi folosim pentru întreaga noastră afacere.</value>
+  </data>
+  <data name="Two ecosystems, one policy language" xml:space="preserve">
+    <value>Două ecosisteme, un singur limbaj de politici</value>
   </data>
   <data name="Unified Env" xml:space="preserve">
     <value>Mediu unitar</value>
@@ -797,6 +1001,9 @@
   </data>
   <data name="You&apos;ll need the .NET 10 SDK, npm and your favorite IDE, like Visual Studio or JetBrains Rider. You can find the full setup guide in our documentation." xml:space="preserve">
     <value>Vei avea nevoie de .NET 10 SDK, npm și IDE-ul tău preferat, cum ar fi Visual Studio sau JetBrains Rider. Poți găsi ghidul complet de configurare în documentația noastră.</value>
+  </data>
+  <data name="Your dependency workspace" xml:space="preserve">
+    <value>Spațiul de lucru pentru dependențele dvs.</value>
   </data>
   <data name="Your enterprise users don&apos;t need to register repeatedly." xml:space="preserve">
     <value>Utilizatorii dvs. de enterprise nu trebuie să se înregistreze din nou.</value>

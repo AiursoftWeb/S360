@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Already authorized" xml:space="preserve">
+    <value>Deja autorizate</value>
+  </data>
+  <data name="Authorized but not check-ready" xml:space="preserve">
+    <value>Autorizate, dar nu sunt pregătite pentru verificare</value>
+  </data>
+  <data name="Current authorization" xml:space="preserve">
+    <value>Autorizare curentă</value>
+  </data>
+  <data name="Current check blocked" xml:space="preserve">
+    <value>Verificarea curentă este blocată</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Solicitare de dependență</value>
+  </data>
+  <data name="Direct" xml:space="preserve">
+    <value>Direct</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>Calea de introducere</value>
+  </data>
+  <data name="New review items" xml:space="preserve">
+    <value>Elemente noi de revizuit</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Pachet</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Scop</value>
+  </data>
+  <data name="Report SHA-256" xml:space="preserve">
+    <value>Raport SHA-256</value>
+  </data>
+  <data name="Requested" xml:space="preserve">
+    <value>Solicitat</value>
+  </data>
+  <data name="Resolution context" xml:space="preserve">
+    <value>Contextul rezolvării</value>
+  </data>
+  <data name="Resolution failed; this request cannot be approved." xml:space="preserve">
+    <value>Rezolvarea a eșuat; această cerere nu poate fi aprobată.</value>
+  </data>
+  <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
+    <value>Rezolvarea este în așteptare sau în curs de desfășurare. Reîmprospătați această pagină pentru a vedea rezultatul.</value>
+  </data>
+  <data name="Retry as a new request" xml:space="preserve">
+    <value>Reîncearcă sub forma unei solicitări noi</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Sursă</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>Sursa nu este permisă</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Stare</value>
+  </data>
+  <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
+    <value>Solicitarea eșuată rămâne în istoricul tău. Noua solicitare este verificată conform regulilor de astăzi privind sursele și lista de blocare.</value>
+  </data>
+  <data name="This report is ready for administrator review. It is not an approval." xml:space="preserve">
+    <value>Acest raport este pregătit pentru a fi analizat de un administrator. Nu reprezintă o aprobare.</value>
+  </data>
+  <data name="Total packages" xml:space="preserve">
+    <value>Număr total de pachete</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versiune</value>
+  </data>
+  <data name="Withdraw request" xml:space="preserve">
+    <value>Retrageți cererea</value>
+  </data>
+
+</root>

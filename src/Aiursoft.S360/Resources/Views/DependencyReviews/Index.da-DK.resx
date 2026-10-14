@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="All review records" xml:space="preserve">
+    <value>Alle gennemgangsregistreringer</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>og mere i den fuldstændige rapport</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>Begrundelse for godkendelse</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Godkendelsesomfang</value>
+  </data>
+  <data name="Authorized items on hold" xml:space="preserve">
+    <value>Godkendte elementer på hold</value>
+  </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Godkendelse af afhængigheder</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Udløbet</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Udløber (UTC)</value>
+  </data>
+  <data name="Expiring within 30 days" xml:space="preserve">
+    <value>Udløber inden for 30 dage</value>
+  </data>
+  <data name="Items needing authorization" xml:space="preserve">
+    <value>Elementer, der kræver godkendelse</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Næste</value>
+  </data>
+  <data name="No complete dependency report is available for this request." xml:space="preserve">
+    <value>Der er ingen fuldstændig afhængighedsrapport tilgængelig for denne anmodning.</value>
+  </data>
+  <data name="Open complete dependency report" xml:space="preserve">
+    <value>Åbn den fuldstændige afhængighedsrapport</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Afventer</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Forrige</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>poster i denne visning</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Afvis</value>
+  </data>
+  <data name="Rejection reason" xml:space="preserve">
+    <value>Afvisningsårsag</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Anmodning</value>
+  </data>
+  <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
+    <value>Gennemgå den fulde rapport, før du træffer en samlet beslutning. Handlingen er knyttet til rapportens hash.</value>
+  </data>
+  <data name="Revocation reason" xml:space="preserve">
+    <value>Tilbagekaldelsesgrund</value>
+  </data>
+  <data name="Revoke batch" xml:space="preserve">
+    <value>Tilbagekald batch</value>
+  </data>
+  <data name="Select supplier" xml:space="preserve">
+    <value>Vælg leverandør</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Kilde</value>
+  </data>
+  <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
+    <value>Denne pakkekilde er ikke længere tilladt. Anmodningen kan ikke godkendes, før den igen er løst fra en tilladt kilde.</value>
+  </data>
+
+</root>

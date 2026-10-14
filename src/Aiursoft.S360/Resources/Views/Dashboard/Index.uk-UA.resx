@@ -21,6 +21,9 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Підтримка «відстрілюй і забудь» для довготривалих завдань (наприклад, електронних листів або штучного інтелекту), із графічним інтерфейсом для управління чергою, паралельною обробкою та скасуванням.</value>
   </data>
+  <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
+    <value>Порожня дата означає, що повну синхронізацію даних про вразливості ще не виконано. Час указано за UTC.</value>
+  </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Вбудована система контролю доступу на основі ролей (RBAC) для деталізованого управління дозволами.</value>
   </data>
@@ -30,17 +33,62 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>Повний рішення для автентифікації користувачів та управління профілями.</value>
   </data>
+  <data name="A decision you can explain" xml:space="preserve">
+    <value>Рішення, яке можна пояснити</value>
+  </data>
+  <data name="A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence." xml:space="preserve">
+    <value>Знайомої назви або схваленого кореневого пакета недостатньо. Рішення ухвалюється щодо кожного визначеного пакета та доказів щодо нього.</value>
+  </data>
+  <data name="A fingerprint of the downloaded package archive, not just its name and version." xml:space="preserve">
+    <value>Відбиток завантаженого архіву пакета, а не лише його назви та версії.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>Адаптивна верстка, яка чудово виглядає як на настільних комп’ютерах, так і на мобільних пристроях.</value>
   </data>
+  <data name="A good first step" xml:space="preserve">
+    <value>Вдалий перший крок</value>
+  </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Сучасна, багатофункціональна та високо розширювана основа для вашої наступної веб-програми.</value>
+  </data>
+  <data name="A package pulled in by another package. It needs authorization too." xml:space="preserve">
+    <value>Пакет, доданий іншим пакетом. Для нього також потрібен дозвіл.</value>
+  </data>
+  <data name="A package your project asks for explicitly." xml:space="preserve">
+    <value>Пакет, який ваш проєкт запитує явно.</value>
+  </data>
+  <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
+    <value>Політика, що може дозволяти відповідні пакети; абсолютна заборона або відсутність підтвердження артефакту все одно призводить до їх відхилення.</value>
+  </data>
+  <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
+    <value>Абсолютні блокування, що мають пріоритет над правилами довіри та схваленнями.</value>
+  </data>
+  <data name="Across the organization" xml:space="preserve">
+    <value>В усій організації</value>
+  </data>
+  <data name="Active block rules" xml:space="preserve">
+    <value>Активні правила блокування</value>
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>Переклади на основі ШІ</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Усі залежності автоматично реєструються та завжди доступні через ін&apos;єкцію в конструктор.</value>
+  </data>
+  <data name="All requests you submitted" xml:space="preserve">
+    <value>Усі подані вами запити</value>
+  </data>
+  <data name="Approval center" xml:space="preserve">
+    <value>Центр погодження</value>
+  </data>
+  <data name="Approved requests" xml:space="preserve">
+    <value>Схвалені запити</value>
+  </data>
+  <data name="Artifact SHA-256" xml:space="preserve">
+    <value>Артефакт SHA-256</value>
+  </data>
+  <data name="At a glance" xml:space="preserve">
+    <value>Коротко</value>
   </data>
   <data name="Automatic Dark Mode" xml:space="preserve">
     <value>Автоматичний темний режим</value>
@@ -57,8 +105,26 @@
   <data name="Automatic, AI-driven translation into 28 languages." xml:space="preserve">
     <value>Автоматична, заснована на штучному інтелекті переклад у 28 мовах.</value>
   </data>
+  <data name="Awaiting review" xml:space="preserve">
+    <value>Очікує на розгляд</value>
+  </data>
   <data name="Background Job Processing" xml:space="preserve">
     <value>Обробка фонових завдань</value>
+  </data>
+  <data name="Blacklists, sources, versions, and hashes" xml:space="preserve">
+    <value>Чорні списки, джерела, версії та хеші</value>
+  </data>
+  <data name="Blocklist comes first" xml:space="preserve">
+    <value>Спершу перевіряється список блокування</value>
+  </data>
+  <data name="Browse allowed packages" xml:space="preserve">
+    <value>Переглянути дозволені пакети</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Записи про перевірки збірок</value>
+  </data>
+  <data name="Built into every decision" xml:space="preserve">
+    <value>Закладено в кожне рішення</value>
   </data>
   <data name="Built-in User Management" xml:space="preserve">
     <value>Вбудоване управління користувачами</value>
@@ -75,8 +141,14 @@
   <data name="Consistency Validation" xml:space="preserve">
     <value>Перевірка сумісності</value>
   </data>
+  <data name="Decisions recorded for your work" xml:space="preserve">
+    <value>Рішення щодо ваших запитів</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Розробляйте виключно в UTC, тоді як система автоматично перетворює та відображає дати у часовому поясі користувача.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Пряма залежність</value>
   </data>
   <data name="Dockerized for Deployment" xml:space="preserve">
     <value>Підготовлено для розгортання в Docker</value>
@@ -96,11 +168,35 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Легко створюйте інтеграційні тести за допомогою ін-меморі баз даних, тимчасових файлових систем, вбудованого мокування та симуляції реальних HTTP-запитів.</value>
   </data>
+  <data name="Enter direct dependencies. S360 resolves the complete graph and records the package artifacts." xml:space="preserve">
+    <value>Вкажіть прямі залежності. S360 визначить повний граф залежностей і збереже артефакти пакетів.</value>
+  </data>
+  <data name="Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children." xml:space="preserve">
+    <value>Кожен транзитивний пакет потребує власного чинного дозволу; довіра до батьківського пакета не означає автоматичної довіри до його дочірніх пакетів.</value>
+  </data>
+  <data name="Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision." xml:space="preserve">
+    <value>Строк дії, відкликання та нові сповіщення про безпеку можуть змінити поточний висновок, не скасовуючи попереднього рішення.</value>
+  </data>
+  <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
+    <value>Пакети, явно внесені до списку блокування, відхиляються, навіть якщо вони потрапляють до системи опосередковано або підпадають під широке правило постачальника.</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Містить вбудовану систему управління файлами з автоматичною компресією аватарів та захистом приватності.</value>
   </data>
   <data name="Features a built-in file management system with automatic avatar compression." xml:space="preserve">
     <value>Містить вбудовану систему керування файлами з автоматичним стисненням аватарів.</value>
+  </data>
+  <data name="Find an existing approval" xml:space="preserve">
+    <value>Знайдіть наявне схвалення</value>
+  </data>
+  <data name="Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view." xml:space="preserve">
+    <value>Відстежуйте запити від першого пакета до остаточного рішення, дізнавайтеся, що вже дозволено у вашій організації, і стежте за новими ризиками.</value>
+  </data>
+  <data name="Follow the decision" xml:space="preserve">
+    <value>Стежте за рішенням</value>
+  </data>
+  <data name="For authorized reviewers" xml:space="preserve">
+    <value>Для авторизованих рецензентів</value>
   </data>
   <data name="Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs." xml:space="preserve">
     <value>Керуйте періодичними завданнями, такими як очищення та синхронізація, за допомогою комплексного графічного інтерфейсу для моніторингу історії виконання та журналів.</value>
@@ -108,11 +204,35 @@
   <data name="Hello World!" xml:space="preserve">
     <value>Привіт, Світе!</value>
   </data>
+  <data name="How S360 helps" xml:space="preserve">
+    <value>Як допомагає S360</value>
+  </data>
+  <data name="In progress" xml:space="preserve">
+    <value>У процесі</value>
+  </data>
+  <data name="Include the whole graph" xml:space="preserve">
+    <value>Охоплюйте весь граф</value>
+  </data>
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Містить обширну документацію та практичні приклади, щоб ви могли швидко розпочати роботу.</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Інтегроване управління файлами</value>
+  </data>
+  <data name="Keep the wider picture in view." xml:space="preserve">
+    <value>Не втрачайте загальної картини з поля зору.</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Відомі вразливості</value>
+  </data>
+  <data name="Last successful OSV sync" xml:space="preserve">
+    <value>Остання успішна синхронізація OSV</value>
+  </data>
+  <data name="Learn about the workflow" xml:space="preserve">
+    <value>Дізнайтеся про процес роботи</value>
+  </data>
+  <data name="Match the actual artifact" xml:space="preserve">
+    <value>Зіставте з фактичним артефактом</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Моделі перевіряються на клієнтській та серверній сторонах на основі анотацій даних.</value>
@@ -123,8 +243,29 @@
   <data name="Multiple Database Support" xml:space="preserve">
     <value>Підтримка кількох баз даних</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Мої запити</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>Новий запит</value>
+  </data>
+  <data name="No requests yet" xml:space="preserve">
+    <value>Запитів поки немає</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Інтеграція OpenID Connect</value>
+  </data>
+  <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
+    <value>Файли пакетів, зафіксовані в обох екосистемах, зокрема ті, які наразі не мають дозволу.</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>Політика</value>
+  </data>
+  <data name="Policy management" xml:space="preserve">
+    <value>Керування політиками</value>
+  </data>
+  <data name="Quick and detailed risk views" xml:space="preserve">
+    <value>Швидкий і детальний огляд ризиків</value>
   </data>
   <data name="RBAC Authorization" xml:space="preserve">
     <value>Авторизація на основі ролей (RBAC)</value>
@@ -132,17 +273,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Прочитати документацію</value>
   </data>
+  <data name="Recent activity" xml:space="preserve">
+    <value>Нещодавня активність</value>
+  </data>
+  <data name="Request overview" xml:space="preserve">
+    <value>Огляд запитів</value>
+  </data>
+  <data name="Request what is missing" xml:space="preserve">
+    <value>Запросіть те, чого бракує</value>
+  </data>
+  <data name="Resolving or awaiting review" xml:space="preserve">
+    <value>Опрацьовуються або очікують на розгляд</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Адаптивний дизайн</value>
   </data>
+  <data name="Review pending and expiring decisions" xml:space="preserve">
+    <value>Переглянути рішення, що очікують на розгляд або строк дії яких спливає</value>
+  </data>
+  <data name="Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve." xml:space="preserve">
+    <value>Рецензенти бачать нові залежності, заблоковані елементи, виявлені вразливості та точний звіт, який вони затверджують.</value>
+  </data>
+  <data name="Revisit the risk" xml:space="preserve">
+    <value>Переоцінюйте ризик</value>
+  </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Надійне тестування інтеграції</value>
+  </data>
+  <data name="Rollout note:" xml:space="preserve">
+    <value>Примітка щодо впровадження:</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Планування завдань</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Безперешкодна інтеграція з будь-яким постачальником OpenID Connect із автоматичною синхронізацією ролей.</value>
+  </data>
+  <data name="Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog." xml:space="preserve">
+    <value>Шукайте в доступному каталозі пакети NuGet і npm, постачальників, точні версії та правила з шаблонами підстановки.</value>
+  </data>
+  <data name="See reported dependency decisions" xml:space="preserve">
+    <value>Перегляньте зареєстровані рішення щодо залежностей</value>
   </data>
   <data name="Smart Configuration Overrides" xml:space="preserve">
     <value>Розумні перевизначення конфігурації</value>
@@ -156,20 +327,68 @@
   <data name="Start a new project" xml:space="preserve">
     <value>Розпочати новий проєкт</value>
   </data>
+  <data name="Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here." xml:space="preserve">
+    <value>Почніть із перегляду каталогу. Коли вам знадобиться новий пакет, тут з’явиться ваш запит і повний звіт про його залежності.</value>
+  </data>
+  <data name="Suppliers, trust rules, and absolute blocks" xml:space="preserve">
+    <value>Постачальники, правила довіри та безумовні блокування</value>
+  </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Підтримує як змінні середовища, так і налаштування, зберігаються в базі даних, з автоматичним пріоритетом для змінних середовища для безперервного перекриття.</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Панель навігації автоматично адаптується відповідно до ролей та дозволів користувача.</value>
   </data>
+  <data name="The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs." xml:space="preserve">
+    <value>Назва пакета, точна версія, схвалене джерело та SHA-256 архіву дають змогу пов’язати перевірку з конкретними вхідними даними.</value>
+  </data>
+  <data name="These counts describe your own requests. Organization-wide review figures appear only for authorized readers." xml:space="preserve">
+    <value>Ці показники стосуються ваших запитів. Дані про перевірки в усій організації відображаються лише користувачам із відповідними правами.</value>
+  </data>
+  <data name="These organization-wide indicators are not a substitute for opening the underlying report." xml:space="preserve">
+    <value>Ці загальноорганізаційні показники не замінюють перегляду повного звіту.</value>
+  </data>
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>Це шаблонний проект, з якого ми розпочинаємо нашу подорож...</value>
+  </data>
+  <data name="This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment." xml:space="preserve">
+    <value>Цей робочий простір готують до впровадження контролю Runner. Схвалення запиту через Web не означає, що вже перевірено кожну збірку; інтеграцію з CI буде виконано після розгортання сервісу.</value>
+  </data>
+  <data name="Tracked artifacts" xml:space="preserve">
+    <value>Відстежувані артефакти</value>
+  </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Транзитивна залежність</value>
+  </data>
+  <data name="Trust rule" xml:space="preserve">
+    <value>Правило довіри</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>Переглянути всі</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Ласкаво просимо</value>
   </data>
+  <data name="Welcome to S360." xml:space="preserve">
+    <value>Ласкаво просимо до S360.</value>
+  </data>
+  <data name="What S360 checks before a dependency is trusted." xml:space="preserve">
+    <value>Що перевіряє S360, перш ніж довіряти залежності.</value>
+  </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Чому варто використовувати шаблон Aiursoft?</value>
+  </data>
+  <data name="Words you will see" xml:space="preserve">
+    <value>Слова, які ви побачите</value>
+  </data>
+  <data name="Your latest requests" xml:space="preserve">
+    <value>Ваші останні запити</value>
+  </data>
+  <data name="Your supply-chain workspace" xml:space="preserve">
+    <value>Ваш робочий простір для ланцюга постачання</value>
+  </data>
+  <data name="Your work, without the guesswork." xml:space="preserve">
+    <value>Ваша робота — без здогадок.</value>
   </data>
 
 </root>

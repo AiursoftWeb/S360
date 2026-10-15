@@ -54,12 +54,11 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
             var pathsByApplication = reportPackages.GroupBy(p => p.ApplicationId).ToDictionary(
                 group => group.Key,
                 group => ApplicationPaths.Build(reportEdges.Where(e => e.ApplicationId == group.Key),
-                    group.Where(p => p.PackageArtifact != null)
-                        .ToDictionary(p => p.PackageArtifactId, p => p.PackageArtifact!)));
+                    group.ToDictionary(p => p.PackageArtifactId, p => p.PackageArtifact)));
             var blocks = await db.BlockRules.AsNoTracking().Where(b => b.Active).ToListAsync();
-            foreach (var package in reportPackages.Where(p => p.PackageArtifact != null))
+            foreach (var package in reportPackages)
             {
-                var artifact = package.PackageArtifact!;
+                var artifact = package.PackageArtifact;
                 var block = BlockRulePolicy.Match(blocks, artifact.Ecosystem, artifact.Name, artifact.Version);
                 if (block != null && !model.CurrentBlockReasons.ContainsKey(package.ApplicationId))
                     model.CurrentBlockReasons[package.ApplicationId] =
@@ -116,8 +115,8 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
         var isOwner = application.RequestedByUserId == users.GetUserId(User);
         var canReadAll = (await authorization.AuthorizeAsync(User, AppPermissionNames.CanReadSupplyChain)).Succeeded;
         if (!isOwner && !canReadAll) return Forbid();
-        var artifacts = application.Packages.Where(p => p.PackageArtifact != null)
-            .Select(p => p.PackageArtifact!).ToDictionary(a => a.Id);
+        var artifacts = application.Packages
+            .Select(p => p.PackageArtifact).ToDictionary(a => a.Id);
         var paths = ApplicationPaths.Build(application.Edges, artifacts);
         var model = new RequestDetailsViewModel { Application = application };
         if (isOwner && application.Status == ApplicationStatus.Failed &&
@@ -134,10 +133,10 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
                 // Older or incomplete failed requests remain readable without offering an invalid retry.
             }
         }
-        var packages = application.Packages.Where(p => p.PackageArtifact != null).ToList();
+        var packages = application.Packages.ToList();
         var dependencies = packages.Select(package => new Dependency
         {
-            Ecosystem = package.PackageArtifact!.Ecosystem, Name = package.PackageArtifact.Name,
+            Ecosystem = package.PackageArtifact.Ecosystem, Name = package.PackageArtifact.Name,
             Version = package.PackageArtifact.Version, Source = package.PackageArtifact.Source,
             Sha256 = package.PackageArtifact.Sha256
         }).ToList();
@@ -150,7 +149,7 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
         for (var i = 0; i < packages.Count; i++)
         {
             var package = packages[i];
-            var artifact = package.PackageArtifact!;
+            var artifact = package.PackageArtifact;
             var authorizationDecision = TrustService.Evaluate(dependencies[i], rules, blocks, now, exclusions);
             var sourcePermitted = AllowedPackageSources.Contains(configuration, artifact.Ecosystem, artifact.Source);
             var sourceReason = "Package source is no longer permitted for S360 checks.";

@@ -66,8 +66,8 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
                 .Include(p => p.PackageArtifact)
                 .Where(p => visibleIds.Contains(p.ApplicationId))
                 .ToListAsync();
-            var artifacts = reportPackages.Where(p => p.PackageArtifact != null)
-                .Select(p => p.PackageArtifact!).DistinctBy(a => a.Id).ToList();
+            var artifacts = reportPackages
+                .Select(p => p.PackageArtifact).DistinctBy(a => a.Id).ToList();
             var decisions = await trust.AssessAsync(artifacts.Select(a => new Dependency
             {
                 Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version,
@@ -91,15 +91,15 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
                 pair => sourcePermitted[pair.First.Id] && pair.Second.Trusted);
             foreach (var group in reportPackages.GroupBy(p => p.ApplicationId))
             {
-                var entries = group.Where(p => p.PackageArtifact != null).ToList();
+                var entries = group.ToList();
                 var sourceRemoved = entries.Count(p => !sourcePermitted.GetValueOrDefault(p.PackageArtifactId));
                 var needingReview = entries.Where(p => sourcePermitted.GetValueOrDefault(p.PackageArtifactId) &&
                         !authorized.GetValueOrDefault(p.PackageArtifactId))
-                    .Select(p => $"{p.PackageArtifact!.Name}@{p.PackageArtifact.Version}")
+                    .Select(p => $"{p.PackageArtifact.Name}@{p.PackageArtifact.Version}")
                     .OrderBy(name => name, StringComparer.Ordinal).ToList();
                 var onHold = entries.Where(p => authorized.GetValueOrDefault(p.PackageArtifactId) &&
                         !cleared.GetValueOrDefault(p.PackageArtifactId))
-                    .Select(p => $"{p.PackageArtifact!.Name}@{p.PackageArtifact.Version}")
+                    .Select(p => $"{p.PackageArtifact.Name}@{p.PackageArtifact.Version}")
                     .OrderBy(name => name, StringComparer.Ordinal).ToList();
                 model.ScopeByApplicationId[group.Key] = new ReviewApplicationScope(entries.Count,
                     entries.Count - needingReview.Count - sourceRemoved,
@@ -123,7 +123,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
         if (application == null) return NotFound();
         if (application.Status is not (ApplicationStatus.ReadyForReview or ApplicationStatus.Approved or ApplicationStatus.Revoked) ||
             application.ReportHash == null || application.ReportHash != reportHash ||
-            application.Packages.Count == 0) return BadRequest("The review report is unavailable or has changed.");
+            application.Packages.Count() == 0) return BadRequest("The review report is unavailable or has changed.");
         if (!AllowedPackageSources.Contains(configuration, application.Ecosystem, application.Source))
             return BadRequest("The package source is no longer permitted for approval.");
         try
@@ -151,17 +151,16 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
         var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
         var affectedIds = (await db.VulnerabilityMatches.AsNoTracking()
-            .Where(m => m.Active && m.Vulnerability != null && !m.Vulnerability.Withdrawn)
+            .Where(m => m.Active && !m.Vulnerability.Withdrawn)
             .Select(m => m.PackageArtifactId).ToListAsync()).ToHashSet();
         var sameIdentity = await db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == application.Ecosystem)
             .ToListAsync();
-        var artifacts = application.Packages.ToDictionary(p => p.PackageArtifactId, p => p.PackageArtifact!);
+        var artifacts = application.Packages.ToDictionary(p => p.PackageArtifactId, p => p.PackageArtifact);
         var paths = ApplicationPaths.Build(application.Edges, artifacts);
 
         foreach (var entry in application.Packages)
         {
             var artifact = entry.PackageArtifact;
-            if (artifact == null) return BadRequest("The report is incomplete.");
             var block = BlockRulePolicy.Match(blocks, artifact.Ecosystem, artifact.Name, artifact.Version);
             if (block != null)
                 return BadRequest(BlockRulePolicy.Explain(block, artifact.Name, artifact.Version,
@@ -181,7 +180,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
                 .FirstOrDefault(e => e != null);
             if (excluded != null)
                 return BadRequest($"Excluded version: {artifact.Name}@{artifact.Version} " +
-                    $"({excluded.Vulnerability!.SourceId}). {excluded.Reason} " +
+                    $"({excluded.Vulnerability.SourceId}). {excluded.Reason} " +
                     $"Introduction path: {paths.GetValueOrDefault(artifact.Id, artifact.Name)}");
             if (artifact.SourceVerifiedAtUtc == null)
                 return BadRequest($"Package archive has not been independently verified from its source: {artifact.Name}@{artifact.Version}.");
@@ -214,7 +213,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
         var decisionBatchId = Guid.NewGuid().ToString("N");
         foreach (var entry in application.Packages)
         {
-            var artifact = entry.PackageArtifact!;
+            var artifact = entry.PackageArtifact;
             var existing = rules.FirstOrDefault(r => r.ApplicationId == application.Id &&
                 r.PackagePattern.Equals(artifact.Name, artifact.Ecosystem == "nuget" ?
                     StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
@@ -237,8 +236,9 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
                 existing.ExpiresAtUtc = expiresAtUtc;
                 existing.SupplierId = supplierId;
             }
-            existing.Reviews.Add(new TrustRuleReview
+            db.TrustRuleReviews.Add(new TrustRuleReview
             {
+                TrustRuleId = existing.Id, TrustRule = existing,
                 Decision = TrustRuleStatus.Approved, ReviewerId = userId,
                 Reason = reason, ExpiresAtUtc = expiresAtUtc,
                 ReportHash = application.ReportHash, DecisionBatchId = decisionBatchId,

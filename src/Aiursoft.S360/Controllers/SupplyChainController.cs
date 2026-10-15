@@ -65,7 +65,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             a.FirstTrustedAtUtc != null && a.SourceVerifiedAtUtc != null && a.LastCheckedAtUtc != null &&
             a.LastCheckedAtUtc >= auditStartedAtUtc && a.LastCheckedAtUtc <= completedAuditAtUtc &&
             !db.VulnerabilityMatches.Any(m => m.PackageArtifactId == a.Id && m.Active &&
-                m.Vulnerability != null && !m.Vulnerability.Withdrawn));
+                !m.Vulnerability.Withdrawn));
         if (auditStatus != CatalogAuditStatus.Current) artifactQuery = artifactQuery.Where(_ => false);
         if (!string.IsNullOrEmpty(query)) artifactQuery = artifactQuery.Where(a => a.Name.Contains(query));
         var blocks = await db.BlockRules.AsNoTracking()
@@ -170,7 +170,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 else if (excluded != null)
                 {
                     model.LookupStatus = "Excluded version";
-                    model.LookupReason = $"An active rule excludes this version because of {excluded.Vulnerability!.SourceId}. Other overlapping approvals cannot override the exclusion.";
+                    model.LookupReason = $"An active rule excludes this version because of {excluded.Vulnerability.SourceId}. Other overlapping approvals cannot override the exclusion.";
                 }
                 else if (activeApproved.Count > 0)
                 {
@@ -238,13 +238,12 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         // These edges are evidence from approved request reports, not a guarantee that
         // a future restore will resolve the same graph or that every child is currently allowed.
         var children = await db.ApplicationEdges.AsNoTracking()
-            .Where(e => e.ParentPackageId == id && e.Application != null &&
-                e.Application.Status == ApplicationStatus.Approved)
-            .Select(e => new { e.ChildPackage!.Name, e.ChildPackage.Version, e.ChildPackage.Source })
+            .Where(e => e.ParentPackageId == id && e.Application.Status == ApplicationStatus.Approved)
+            .Select(e => new { e.ChildPackage.Name, e.ChildPackage.Version, e.ChildPackage.Source })
             .Distinct().OrderBy(e => e.Name).ThenBy(e => e.Version).Take(101).ToListAsync();
         var parents = await db.ApplicationEdges.AsNoTracking()
             .Where(e => e.ChildPackageId == id && e.ParentPackageId != null &&
-                e.Application != null && e.Application.Status == ApplicationStatus.Approved)
+                e.Application.Status == ApplicationStatus.Approved)
             .Select(e => new { e.ParentPackage!.Name, e.ParentPackage.Version, e.ParentPackage.Source })
             .Distinct().OrderBy(e => e.Name).ThenBy(e => e.Version).Take(101).ToListAsync();
         return this.StackView(new CatalogArtifactDetailsViewModel
@@ -273,12 +272,12 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             .OrderByDescending(a => a.Id).Select(a => new { a.Id, a.Name, a.Version })
             .Take(5001).ToListAsync();
         var applicationPackages = await db.ApplicationPackages.AsNoTracking()
-            .Where(p => p.PackageArtifact != null && p.PackageArtifact.Ecosystem == ecosystem)
+            .Where(p => p.PackageArtifact.Ecosystem == ecosystem)
             .OrderByDescending(p => p.Id)
             .Select(p => new { p.ApplicationId, p.PackageArtifactId }).Take(5001).ToListAsync();
         var checkDependencies = await db.BuildCheckDependencies.AsNoTracking()
             .Where(d => d.Ecosystem == ecosystem).OrderByDescending(d => d.Id)
-            .Select(d => new { d.Name, d.Version, d.BuildCheck!.RunId })
+            .Select(d => new { d.Name, d.Version, d.BuildCheck.RunId })
             .Take(5001).ToListAsync();
         var model = new BlocklistViewModel
         {
@@ -381,13 +380,14 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         if (user == null) return Unauthorized();
         var rule = new TrustRule
         {
-            SupplierId = supplierId, Ecosystem = ecosystem, PackagePattern = packagePattern,
+            ApplicationId = null, SupplierId = supplierId, Ecosystem = ecosystem, PackagePattern = packagePattern,
             Version = version, Source = normalized, IncludePrerelease = includePrerelease,
             Justification = justification, RequestedByUserId = user, ExpiresAtUtc = expiresAtUtc,
             Status = TrustRuleStatus.Approved
         };
-        rule.Reviews.Add(new TrustRuleReview
+        db.TrustRuleReviews.Add(new TrustRuleReview
         {
+            TrustRuleId = rule.Id, TrustRule = rule,
             Decision = TrustRuleStatus.Approved, ReviewerId = user, Reason = justification,
             ExpiresAtUtc = expiresAtUtc
         });
@@ -427,7 +427,11 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             Ecosystem = ecosystem, PackagePattern = packagePattern, Version = version,
             Reason = reason, CreatedByUserId = user
         };
-        block.Changes.Add(new BlockRuleChange { ChangedByUserId = user, Description = "Created: " + reason });
+        db.BlockRuleChanges.Add(new BlockRuleChange
+        {
+            BlockRuleId = block.Id, BlockRule = block, ChangedByUserId = user,
+            Description = "Created: " + reason
+        });
         db.BlockRules.Add(block);
         await db.SaveChangesAsync();
         return RedirectToAction(nameof(Blocklist), new { ecosystem });

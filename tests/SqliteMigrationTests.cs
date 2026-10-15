@@ -24,10 +24,12 @@ public class SqliteMigrationTests
                 db.Suppliers.Add(supplier);
                 db.TrustRules.Add(new TrustRule
                 {
+                    ApplicationId = null, SupplierId = supplier.Id,
                     Supplier = supplier, Ecosystem = "nuget", PackagePattern = "Example.*", Version = "1.*",
                     Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
                     Reviews = [new TrustRuleReview
                     {
+                        TrustRuleId = 0,
                         Decision = TrustRuleStatus.Approved, ReportHash = new string('b', 64),
                         DecisionBatchId = new string('c', 32)
                     }]

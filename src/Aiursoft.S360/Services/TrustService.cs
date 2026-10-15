@@ -65,7 +65,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         {
             var affected = await db.VulnerabilityMatches.AsNoTracking()
                 .Where(m => ids.Contains(m.PackageArtifactId) && m.Active &&
-                    m.Vulnerability != null && !m.Vulnerability.Withdrawn)
+                    !m.Vulnerability.Withdrawn)
                 .Select(m => m.PackageArtifactId).ToListAsync();
             affectedIds.UnionWith(affected);
         }
@@ -175,7 +175,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
             .Select(r => MatchingExclusion(r, dependency, exclusions))
             .FirstOrDefault(e => e != null);
         if (excluded != null)
-            return Decision(false, $"Excluded vulnerable or uncertain version: {excluded.Vulnerability!.SourceId}.", null);
+            return Decision(false, $"Excluded vulnerable or uncertain version: {excluded.Vulnerability.SourceId}.", null);
         // A pinned approval cannot be bypassed by a wider wildcard rule.
         var pinned = approved.Where(r => r.Sha256 != null && r.Version == dependency.Version &&
             r.PackagePattern.Equals(dependency.Name, dependency.Ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal)).ToList();

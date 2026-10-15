@@ -1,10 +1,14 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json;
 
 namespace Aiursoft.S360.Entities;
 
 public class BuildCheck
 {
-    public int Id { get; set; }
+    [Key]
+    public int Id { get; init; }
     [MaxLength(200)] public string? Project { get; set; }
     [MaxLength(80)] public string? Commit { get; set; }
     [MaxLength(200)] public string? Pipeline { get; set; }
@@ -12,18 +16,26 @@ public class BuildCheck
     public int BatchIndex { get; set; }
     public int BatchCount { get; set; } = 1;
     public int ScannedProjectCount { get; set; }
-    public DateTime CreatedAtUtc { get; set; } = DateTime.UtcNow;
+    public DateTime CreatedAtUtc { get; init; } = DateTime.UtcNow;
     public bool Trusted { get; set; }
     public DateTime? VulnerabilityDataCheckedAtUtc { get; set; }
-    public List<BuildCheckDependency> Dependencies { get; set; } = [];
+    [InverseProperty(nameof(BuildCheckDependency.BuildCheck))]
+    public IEnumerable<BuildCheckDependency> Dependencies { get; init; } = new List<BuildCheckDependency>();
 }
 
 public class BuildCheckDependency
 {
-    public int Id { get; set; }
-    public int BuildCheckId { get; set; }
+    [Key]
+    public int Id { get; init; }
+    public required int BuildCheckId { get; set; }
+    [JsonIgnore]
+    [ForeignKey(nameof(BuildCheckId))]
+    [NotNull]
     public BuildCheck? BuildCheck { get; set; }
-    public int? PackageArtifactId { get; set; }
+    /// <summary>Null when the package source was not permitted and no artifact was fetched.</summary>
+    public required int? PackageArtifactId { get; set; }
+    [JsonIgnore]
+    [ForeignKey(nameof(PackageArtifactId))]
     public PackageArtifact? PackageArtifact { get; set; }
     [MaxLength(10)] public string Ecosystem { get; set; } = string.Empty;
     [MaxLength(214)] public string Name { get; set; } = string.Empty;

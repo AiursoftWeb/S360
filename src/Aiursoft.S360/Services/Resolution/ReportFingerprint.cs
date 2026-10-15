@@ -17,13 +17,15 @@ public static class ReportFingerprint
 
     public static string ComputePersisted(DependencyApplication application)
     {
-        if (application.Packages.Count == 0 || application.Edges.Count == 0 ||
+        if (application.Packages.Count() == 0 || application.Edges.Count() == 0 ||
+            // Validate even detached/incomplete graphs before trusting their fingerprint.
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
             application.Packages.Any(p => p.PackageArtifact == null || p.PackageArtifact.Id != p.PackageArtifactId) ||
-            application.Packages.Select(p => p.PackageArtifactId).Distinct().Count() != application.Packages.Count)
+            application.Packages.Select(p => p.PackageArtifactId).Distinct().Count() != application.Packages.Count())
             throw new InvalidOperationException("The saved dependency report is incomplete.");
 
         var artifacts = application.Packages.ToDictionary(p => p.PackageArtifactId,
-            p => p.PackageArtifact!);
+            p => p.PackageArtifact);
         var dependencies = artifacts.ToDictionary(pair => pair.Key, pair => new Dependency
         {
             Ecosystem = pair.Value.Ecosystem, Name = pair.Value.Name, Version = pair.Value.Version,

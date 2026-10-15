@@ -17,9 +17,10 @@ public class SupplyChainPolicyTests
         Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
     };
 
-    private static TrustRule Rule(string pattern = "Microsoft.*", string version = "10.0.*") => new()
+    private static TrustRule Rule(string pattern = "Microsoft.*", string version = "10.0.*", int id = 1) => new()
     {
-        Id = 1, Ecosystem = "nuget", PackagePattern = pattern, Version = version,
+        ApplicationId = null, SupplierId = 0,
+        Id = id, Ecosystem = "nuget", PackagePattern = pattern, Version = version,
         Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
         ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
     };
@@ -334,8 +335,7 @@ public class SupplyChainPolicyTests
     public void VersionExclusionCannotBeBypassedByOverlappingApproval()
     {
         var excludedRule = Rule();
-        var alternateRule = Rule();
-        alternateRule.Id = 2;
+        var alternateRule = Rule(id: 2);
         var vulnerability = new Vulnerability
         {
             SourceId = "GHSA-overlap", Ecosystem = "nuget", PackageName = "Microsoft.Extensions.Logging",
@@ -345,7 +345,7 @@ public class SupplyChainPolicyTests
         };
         var exclusions = new[]
         {
-            new TrustRuleVulnerabilityExclusion { TrustRuleId = excludedRule.Id, Vulnerability = vulnerability }
+            new TrustRuleVulnerabilityExclusion { VulnerabilityId = 0, TrustRuleId = excludedRule.Id, Vulnerability = vulnerability }
         };
         var vulnerable = Package(version: "10.0.2");
         var firstOrder = TrustService.Evaluate(vulnerable, [excludedRule, alternateRule], [],

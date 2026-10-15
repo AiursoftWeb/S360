@@ -296,6 +296,7 @@ public class SupplyChainPagesTests : TestBase
             };
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Audit pending supplier" },
                 Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
                 Source = source, Sha256 = artifact.Sha256, Status = TrustRuleStatus.Approved,
@@ -307,8 +308,8 @@ public class SupplyChainPagesTests : TestBase
                 Ecosystem = "nuget", Source = source, ResolutionContext = "net10.0",
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage(name, "1.0.0") }),
                 Justification = "Review while audit is pending", Status = ApplicationStatus.ReadyForReview,
-                Packages = [new ApplicationPackage { PackageArtifact = artifact, IsDirect = true }],
-                Edges = [new ApplicationEdge { ChildPackage = artifact }]
+                Packages = [new ApplicationPackage { ApplicationId = 0, PackageArtifactId = artifact.Id, PackageArtifact = artifact, IsDirect = true }],
+                Edges = [new ApplicationEdge { ApplicationId = 0, ChildPackageId = 0, ParentPackageId = null, ChildPackage = artifact }]
             };
             db.DependencyApplications.Add(application);
             await db.SaveChangesAsync();
@@ -424,13 +425,13 @@ public class SupplyChainPagesTests : TestBase
                 ResolutionContext = "net10.0", Status = ApplicationStatus.Approved,
                 Packages =
                 [
-                    new ApplicationPackage { IsDirect = true, PackageArtifact = rootArtifact },
-                    new ApplicationPackage { IsDirect = false, PackageArtifact = childArtifact }
+                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, IsDirect = true, PackageArtifact = rootArtifact },
+                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, IsDirect = false, PackageArtifact = childArtifact }
                 ],
                 Edges =
                 [
-                    new ApplicationEdge { ChildPackage = rootArtifact },
-                    new ApplicationEdge { ParentPackage = rootArtifact, ChildPackage = childArtifact }
+                    new ApplicationEdge { ApplicationId = 0, ChildPackageId = 0, ParentPackageId = null, ChildPackage = rootArtifact },
+                    new ApplicationEdge { ApplicationId = 0, ChildPackageId = 0, ParentPackageId = rootArtifact.Id, ParentPackage = rootArtifact, ChildPackage = childArtifact }
                 ]
             };
             db.DependencyApplications.Add(application);
@@ -508,8 +509,8 @@ public class SupplyChainPagesTests : TestBase
                 Aliases = JsonSerializer.Serialize(new[] { sharedAlias }),
                 Revisions =
                 [
-                    new VulnerabilityRevision { Summary = "Original advisory", RawAffectedJson = "[]" },
-                    new VulnerabilityRevision { Summary = "Updated advisory", RawAffectedJson = "[]" }
+                    new VulnerabilityRevision { VulnerabilityId = 0, Summary = "Original advisory", RawAffectedJson = "[]" },
+                    new VulnerabilityRevision { VulnerabilityId = 0, Summary = "Updated advisory", RawAffectedJson = "[]" }
                 ]
             }, new Vulnerability
             {
@@ -548,6 +549,7 @@ public class SupplyChainPagesTests : TestBase
                 Name = "Correlated supplier " + Guid.NewGuid().ToString("N"),
                 Rules = [new TrustRule
                 {
+                    ApplicationId = null, SupplierId = 0,
                     Ecosystem = "nuget", PackagePattern = package, Version = "10.0.*",
                     Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved
                 }]
@@ -646,12 +648,14 @@ public class SupplyChainPagesTests : TestBase
                 [
                     new TrustRule
                     {
+                        ApplicationId = null, SupplierId = 0,
                         Ecosystem = "nuget", PackagePattern = permittedPackage, Version = "1.*",
                         Source = "https://nuget.aiursoft.com/v3/index.json",
                         Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
                     },
                     new TrustRule
                     {
+                        ApplicationId = null, SupplierId = 0,
                         Ecosystem = "nuget", PackagePattern = removedPackage, Version = "1.*",
                         Source = "https://packages.example.invalid/v3/index.json",
                         Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -781,13 +785,14 @@ public class SupplyChainPagesTests : TestBase
             db.DependencyApplications.Add(new DependencyApplication
             {
                 RequestedByUserId = userId, Ecosystem = "nuget", Source = artifact.Source,
-                Packages = [new ApplicationPackage { PackageArtifact = artifact }]
+                Packages = [new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, PackageArtifact = artifact }]
             });
             db.BuildChecks.Add(new BuildCheck
             {
                 RunId = Guid.NewGuid().ToString("N"), Project = "impact-test",
                 Dependencies = [new BuildCheckDependency
                 {
+                    BuildCheckId = 0, PackageArtifactId = null,
                     Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
                     Source = artifact.Source, Sha256 = artifact.Sha256
                 }]
@@ -889,7 +894,7 @@ public class SupplyChainPagesTests : TestBase
         var check = db.BuildChecks.Include(c => c.Dependencies).Single(c => c.RunId == runId);
         Assert.IsTrue(check.Trusted);
         Assert.AreEqual(2, check.ScannedProjectCount);
-        Assert.AreEqual(0, check.Dependencies.Count);
+        Assert.AreEqual(0, check.Dependencies.Count());
         Assert.IsTrue(BuildCheckRun.IsComplete([check]));
         await LoginAsAdmin();
         using var page = await Http.GetAsync("/BuildChecks/Index?project=dependency-free-project");
@@ -1023,6 +1028,7 @@ public class SupplyChainPagesTests : TestBase
             {
                 db.TrustRules.Add(new TrustRule
                 {
+                    ApplicationId = null, SupplierId = supplier.Id,
                     Supplier = supplier, Ecosystem = dependency.Ecosystem, PackagePattern = dependency.Name,
                     Version = dependency.Version, Source = dependency.Source, Sha256 = dependency.Sha256,
                     Status = TrustRuleStatus.Approved, ExpiresAtUtc = checkedAtUtc.AddDays(1)
@@ -1115,6 +1121,7 @@ public class SupplyChainPagesTests : TestBase
             {
                 db.TrustRules.Add(new TrustRule
                 {
+                    ApplicationId = null, SupplierId = supplier.Id,
                     Supplier = supplier, Ecosystem = dependency.Ecosystem,
                     PackagePattern = dependency.Name, Version = dependency.Version,
                     Source = dependency.Source, Sha256 = dependency.Sha256,
@@ -1248,7 +1255,7 @@ public class SupplyChainPagesTests : TestBase
                 Ecosystem = "nuget", PackageName = packageName,
                 SourceId = "GHSA-" + Guid.NewGuid().ToString("N"),
                 Summary = "Observed vulnerable dependency",
-                Matches = [new VulnerabilityMatch { PackageArtifactId = artifacts[0].Id }]
+                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = artifacts[0].Id }]
             });
             await db.SaveChangesAsync();
         }
@@ -1278,6 +1285,7 @@ public class SupplyChainPagesTests : TestBase
             db.Suppliers.Add(supplier);
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName, Version = "1.0.0",
                 Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64),
                 Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -1339,7 +1347,7 @@ public class SupplyChainPagesTests : TestBase
             var rejectedCheck = await db.BuildChecks.Include(c => c.Dependencies)
                 .SingleAsync(c => c.RunId == unconfiguredRunId);
             Assert.IsFalse(rejectedCheck.Trusted);
-            Assert.AreEqual(2, rejectedCheck.Dependencies.Count);
+            Assert.AreEqual(2, rejectedCheck.Dependencies.Count());
             Assert.IsNull(rejectedCheck.Dependencies.Single(d => d.Source == "https://127.0.0.1").PackageArtifactId);
             Assert.IsNotNull(rejectedCheck.Dependencies.Single(d => d.Source == dependency.Source).PackageArtifactId);
             Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name == packageName &&
@@ -1422,6 +1430,7 @@ public class SupplyChainPagesTests : TestBase
             db.Suppliers.AddRange(supplier, unrelated);
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = rulePattern, Version = "1.*",
                 Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -1487,6 +1496,7 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null,
                 SupplierId = supplierId, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json",
                 Status = TrustRuleStatus.Revoked
@@ -1557,6 +1567,7 @@ public class SupplyChainPagesTests : TestBase
             db.PackageArtifacts.Add(artifact);
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Audit test vendor" }, Ecosystem = "nuget",
                 PackagePattern = packageName, Version = "1.0.0",
                 Source = artifact.Source, Sha256 = sha256, Status = TrustRuleStatus.Approved,
@@ -1666,6 +1677,7 @@ public class SupplyChainPagesTests : TestBase
             };
             var allowed = new TrustRule
             {
+                ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Allowed supplier " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = packageName, Version = "1.0.0",
                 Source = source, Sha256 = artifact.Sha256, Status = TrustRuleStatus.Approved,
@@ -1673,6 +1685,7 @@ public class SupplyChainPagesTests : TestBase
             };
             var excluded = new TrustRule
             {
+                ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Excluded supplier " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = packageName, Version = "*",
                 Source = source, Status = TrustRuleStatus.Approved,
@@ -1748,18 +1761,19 @@ public class SupplyChainPagesTests : TestBase
             };
             var rule = new TrustRule
             {
+                ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Detail supplier " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = packageName, Version = "1.0.0",
                 Source = artifact.Source, Sha256 = artifact.Sha256, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1),
-                Reviews = [new TrustRuleReview { Decision = TrustRuleStatus.Approved }]
+                Reviews = [new TrustRuleReview { TrustRuleId = 0, Decision = TrustRuleStatus.Approved }]
             };
             db.TrustRules.Add(rule);
             db.DependencyApplications.Add(new DependencyApplication
             {
                 Ecosystem = "nuget", Source = artifact.Source, Status = ApplicationStatus.Approved,
                 Project = privateProject, RequestedByUserId = db.Users.First().Id,
-                Edges = [new ApplicationEdge { ParentPackage = artifact, ChildPackage = child }]
+                Edges = [new ApplicationEdge { ApplicationId = 0, ChildPackageId = 0, ParentPackageId = artifact.Id, ParentPackage = artifact, ChildPackage = child }]
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null)
@@ -1857,6 +1871,7 @@ public class SupplyChainPagesTests : TestBase
             });
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Catalog vendor " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = approvedName, Version = "1.0.0",
                 Source = source, Sha256 = approvedHash, Status = TrustRuleStatus.Approved,
@@ -1899,6 +1914,7 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Partial audit vendor " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0", Source = source,
                 Sha256 = hash, Status = TrustRuleStatus.Approved,
@@ -1953,6 +1969,7 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Conflict vendor " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
                 Source = source, Status = TrustRuleStatus.Approved, ExpiresAtUtc = now.AddDays(1)
@@ -1992,11 +2009,13 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Exclusion vendor " + Guid.NewGuid().ToString("N") };
             var excludedRule = new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name, Version = "1.*",
                 Source = source, Status = TrustRuleStatus.Approved, ExpiresAtUtc = now.AddDays(1)
             };
             var alternateRule = new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
                 Source = source, Sha256 = hash, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = now.AddDays(1)
@@ -2078,6 +2097,7 @@ public class SupplyChainPagesTests : TestBase
             };
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Review scope supplier " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = approvedName, Version = "1.0.0",
                 Source = source, Sha256 = approved.Sha256, Status = TrustRuleStatus.Approved,
@@ -2089,8 +2109,8 @@ public class SupplyChainPagesTests : TestBase
                 Status = ApplicationStatus.ReadyForReview, Justification = "Check the review scope",
                 Packages =
                 [
-                    new ApplicationPackage { PackageArtifact = approved, IsDirect = true },
-                    new ApplicationPackage { PackageArtifact = newArtifact }
+                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = approved.Id, PackageArtifact = approved, IsDirect = true },
+                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, PackageArtifact = newArtifact }
                 ]
             });
             await db.SaveChangesAsync();
@@ -2147,7 +2167,7 @@ public class SupplyChainPagesTests : TestBase
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage(name, "1.0.0") }),
                 Justification = "Review independently verified package bytes",
                 ResolutionContext = "net10.0; any runtime", Status = ApplicationStatus.ReadyForReview,
-                Packages = [new ApplicationPackage { PackageArtifact = artifact, IsDirect = true }]
+                Packages = [new ApplicationPackage { ApplicationId = 0, PackageArtifactId = artifact.Id, PackageArtifact = artifact, IsDirect = true }]
             };
             db.Suppliers.Add(supplier);
             db.DependencyApplications.Add(application);
@@ -2168,7 +2188,7 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
             applicationId = application.Id;
             supplierId = supplier.Id;
-            application.Edges.Add(new ApplicationEdge { ChildPackageId = artifact.Id });
+            db.ApplicationEdges.Add(new ApplicationEdge { ApplicationId = application.Id, ParentPackageId = null, ChildPackageId = artifact.Id });
             await db.SaveChangesAsync();
             reportHash = application.ReportHash = ReportFingerprint.ComputePersisted(application);
             await db.SaveChangesAsync();
@@ -2215,14 +2235,14 @@ public class SupplyChainPagesTests : TestBase
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage(name, "1.0.0") }),
                 Justification = "Test current review policy", ResolutionContext = "net10.0; any runtime",
                 Status = ApplicationStatus.ReadyForReview,
-                Packages = [new ApplicationPackage { PackageArtifact = artifact, IsDirect = true }]
+                Packages = [new ApplicationPackage { ApplicationId = 0, PackageArtifactId = artifact.Id, PackageArtifact = artifact, IsDirect = true }]
             };
             db.Suppliers.Add(supplier);
             db.DependencyApplications.Add(application);
             await db.SaveChangesAsync();
             applicationId = application.Id;
             supplierId = supplier.Id;
-            application.Edges.Add(new ApplicationEdge { ChildPackageId = artifact.Id });
+            db.ApplicationEdges.Add(new ApplicationEdge { ApplicationId = application.Id, ParentPackageId = null, ChildPackageId = artifact.Id });
             await db.SaveChangesAsync();
             reportHash = application.ReportHash = ReportFingerprint.ComputePersisted(application);
             await db.SaveChangesAsync();
@@ -2282,6 +2302,7 @@ public class SupplyChainPagesTests : TestBase
                 },
                 new TrustRule
                 {
+                    ApplicationId = null,
                     SupplierId = supplierId, Ecosystem = "nuget", PackagePattern = name,
                     Version = "1.0.0", Source = source, Status = TrustRuleStatus.Revoked
                 });
@@ -2308,6 +2329,7 @@ public class SupplyChainPagesTests : TestBase
             external.Sha256 = null;
             db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
             {
+                TrustRuleId = external.Id, VulnerabilityId = 0,
                 TrustRule = external,
                 Vulnerability = new Vulnerability
                 {
@@ -2365,13 +2387,13 @@ public class SupplyChainPagesTests : TestBase
                 Justification = "Review two resolved packages", ResolutionContext = "net10.0; any runtime",
                 Status = ApplicationStatus.ReadyForReview,
                 Packages = [
-                    new ApplicationPackage { IsDirect = true, PackageArtifact = new PackageArtifact
+                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, IsDirect = true, PackageArtifact = new PackageArtifact
                     {
                         Ecosystem = "nuget", Name = "Example.Batch.Root." + suffix,
                         Version = "1.0.0", Source = source, Sha256 = new string('a', 64),
                         SourceVerifiedAtUtc = DateTime.UtcNow, LastCheckedAtUtc = DateTime.UtcNow
                     } },
-                    new ApplicationPackage { PackageArtifact = new PackageArtifact
+                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, PackageArtifact = new PackageArtifact
                     {
                         Ecosystem = "nuget", Name = "Example.Batch.Child." + suffix,
                         Version = "2.0.0", Source = source, Sha256 = new string('b', 64),
@@ -2386,9 +2408,9 @@ public class SupplyChainPagesTests : TestBase
             supplierId = supplier.Id;
             var rootId = application.Packages.Single(p => p.IsDirect).PackageArtifactId;
             var childId = application.Packages.Single(p => !p.IsDirect).PackageArtifactId;
-            application.Edges.AddRange([
-                new ApplicationEdge { ChildPackageId = rootId },
-                new ApplicationEdge { ParentPackageId = rootId, ChildPackageId = childId }
+            db.ApplicationEdges.AddRange([
+                new ApplicationEdge { ApplicationId = application.Id, ParentPackageId = null, ChildPackageId = rootId },
+                new ApplicationEdge { ApplicationId = application.Id, ParentPackageId = rootId, ChildPackageId = childId }
             ]);
             await db.SaveChangesAsync();
             reportHash = application.ReportHash = ReportFingerprint.ComputePersisted(application);
@@ -2441,8 +2463,8 @@ public class SupplyChainPagesTests : TestBase
             var application = await db.DependencyApplications.Include(a => a.Packages)
                 .ThenInclude(p => p.PackageArtifact).SingleAsync(a => a.Id == applicationId);
             foreach (var package in application.Packages)
-                package.PackageArtifact!.LastCheckedAtUtc = audit.LastAttemptAtUtc.Value.AddTicks(1);
-            application.Packages.Single(p => !p.IsDirect).PackageArtifact!.SourceVerifiedAtUtc = null;
+                package.PackageArtifact.LastCheckedAtUtc = audit.LastAttemptAtUtc.Value.AddTicks(1);
+            application.Packages.Single(p => !p.IsDirect).PackageArtifact.SourceVerifiedAtUtc = null;
             await db.SaveChangesAsync();
         }
         using (var unverified = await Approve(reportHash))
@@ -2475,8 +2497,8 @@ public class SupplyChainPagesTests : TestBase
                 Version = "1.0.0", Source = source, Sha256 = new string('c', 64),
                 SourceVerifiedAtUtc = DateTime.UtcNow, LastCheckedAtUtc = DateTime.UtcNow
             };
-            application.Packages.Add(new ApplicationPackage { PackageArtifact = added });
-            application.Edges.Add(new ApplicationEdge { ParentPackageId = rootId, ChildPackage = added });
+            db.ApplicationPackages.Add(new ApplicationPackage { ApplicationId = application.Id, PackageArtifactId = 0, PackageArtifact = added });
+            db.ApplicationEdges.Add(new ApplicationEdge { ApplicationId = application.Id, ChildPackageId = 0, ParentPackageId = rootId, ChildPackage = added });
             await db.SaveChangesAsync();
         }
         using (var changedGraph = await Approve(reportHash))
@@ -2485,7 +2507,7 @@ public class SupplyChainPagesTests : TestBase
         using var verifyScope = Server!.Services.CreateScope();
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
         var reviews = verifyDb.TrustRuleReviews.Include(r => r.TrustRule)
-            .Where(r => r.TrustRule!.ApplicationId == applicationId).ToList();
+            .Where(r => r.TrustRule.ApplicationId == applicationId).ToList();
         Assert.AreEqual(4, reviews.Count);
         Assert.IsTrue(reviews.All(r => r.ReportHash == reportHash));
         Assert.AreEqual(2, reviews.Select(r => r.DecisionBatchId).Distinct().Count());
@@ -2506,6 +2528,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Vendor " + Guid.NewGuid().ToString("N") };
             var rule = new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName, Version = "10.0.*",
                 Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -2564,17 +2587,20 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Overlap vendor " + Guid.NewGuid().ToString("N") };
             var broad = new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.*", Source = source, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             };
             db.TrustRules.AddRange(broad, new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.0.*", Source = source, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             }, new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.0.2", Source = source, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -2617,12 +2643,14 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Narrow exclusion vendor " + Guid.NewGuid().ToString("N") };
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.*", Source = source, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
             var narrow = new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.0.*", Source = source, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -2680,7 +2708,7 @@ public class SupplyChainPagesTests : TestBase
                 Ecosystem = "nuget", PackageName = name,
                 SourceId = "GHSA-identity-" + Guid.NewGuid().ToString("N"),
                 RawAffectedJson = "[]",
-                Matches = [new VulnerabilityMatch { PackageArtifact = affected }]
+                Matches = [new VulnerabilityMatch { PackageArtifactId = 0, VulnerabilityId = 0, PackageArtifact = affected }]
             });
             db.PackageArtifacts.Add(otherSource);
             await db.SaveChangesAsync();
@@ -2691,6 +2719,7 @@ public class SupplyChainPagesTests : TestBase
                 ScannedProjectCount = 1, CreatedAtUtc = now,
                 Dependencies = [new BuildCheckDependency
                 {
+                    BuildCheckId = 0,
                     PackageArtifactId = otherSource.Id, Ecosystem = "nuget", Name = name,
                     Version = "1.0.0", Source = otherSource.Source, Sha256 = otherSource.Sha256
                 }]
@@ -2718,6 +2747,7 @@ public class SupplyChainPagesTests : TestBase
                 ScannedProjectCount = 1, CreatedAtUtc = now.AddSeconds(1),
                 Dependencies = [new BuildCheckDependency
                 {
+                    BuildCheckId = 0,
                     PackageArtifactId = affectedId, Ecosystem = "nuget", Name = name,
                     Version = "1.0.0", Source = "https://nuget.aiursoft.com/v3/index.json",
                     Sha256 = new string('a', 64)
@@ -2744,6 +2774,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Range block vendor " + Guid.NewGuid().ToString("N") };
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "10.0.*", Source = "https://api.nuget.org/v3/index.json",
                 Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -2799,6 +2830,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Revoked range vendor " + Guid.NewGuid().ToString("N") };
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "10.0.*", Source = source, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -2815,6 +2847,7 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null,
                 SupplierId = supplier.Id, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "10.0.*", Source = "https://nuget.aiursoft.com/v3/index.json",
                 Status = TrustRuleStatus.Revoked
@@ -2833,6 +2866,7 @@ public class SupplyChainPagesTests : TestBase
                 .Select(r => r.SupplierId).FirstAsync();
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null,
                 SupplierId = supplierId, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "10.0.*", Source = source, Status = TrustRuleStatus.Revoked
             });
@@ -2857,6 +2891,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Historical vendor " + Guid.NewGuid().ToString("N") };
             db.TrustRules.Add(new TrustRule
             {
+                ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName, Version = "10.0.*",
                 Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -2900,6 +2935,7 @@ public class SupplyChainPagesTests : TestBase
             db.TrustRules.AddRange(
                 new TrustRule
                 {
+                    ApplicationId = null, SupplierId = supplier.Id,
                     Supplier = supplier,
                     Application = new DependencyApplication
                     {
@@ -2912,6 +2948,7 @@ public class SupplyChainPagesTests : TestBase
                 },
                 new TrustRule
                 {
+                    ApplicationId = null, SupplierId = supplier.Id,
                     Supplier = supplier,
                     Application = new DependencyApplication
                     {

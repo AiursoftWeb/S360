@@ -38,7 +38,7 @@
             <div>@Localizer["Run"]: <code>@check.RunId</code> · @Localizer["Batch"] @(check.BatchIndex + 1)/@check.BatchCount ·
                 @Localizer["Scanned projects"]: @check.ScannedProjectCount ·
                 @Localizer["Vulnerability data"]: @check.VulnerabilityDataCheckedAtUtc?.ToString("u")</div>
-            @if (check.Dependencies.Count == 0)
+            @if (check.Dependencies.Count() == 0)
             {
                 <p class="text-muted mt-2 mb-0">@Localizer["No external dependencies were found in the reported supported projects."]</p>
             }

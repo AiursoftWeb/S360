@@ -21,6 +21,9 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Υποστήριξη &quot;Fire-and-forget&quot; για μακροχρόνιες εργασίες (όπως email ή ΤΝ), με GUI για διαχείριση ουράς, παράλληλη επεξεργασία και ακύρωση.</value>
   </data>
+  <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
+    <value>Μια κενή ημερομηνία σημαίνει ότι δεν έχει ολοκληρωθεί ακόμη επιτυχώς κανένας συγχρονισμός ευπαθειών. Οι ώρες είναι σε UTC.</value>
+  </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Ένα ενσωματωμένο σύστημα Έλεγχου Πρόσβασης Βάσει Ρόλων (RBAC) για λεπτομερή διαχείριση δικαιωμάτων.</value>
   </data>
@@ -30,17 +33,62 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>Μια πλήρης λύση για την πιστοποίηση χρηστών και τη διαχείριση προφίλ.</value>
   </data>
+  <data name="A decision you can explain" xml:space="preserve">
+    <value>Μια απόφαση που μπορείτε να εξηγήσετε</value>
+  </data>
+  <data name="A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence." xml:space="preserve">
+    <value>Ένα οικείο όνομα ή ένα εγκεκριμένο βασικό πακέτο δεν αρκεί. Η απόφαση αφορά κάθε πακέτο που επιλύεται και τα σχετικά τεκμήριά του.</value>
+  </data>
+  <data name="A fingerprint of the downloaded package archive, not just its name and version." xml:space="preserve">
+    <value>Ένα αποτύπωμα του ληφθέντος αρχείου πακέτου, όχι μόνο του ονόματος και της έκδοσής του.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>Μια πλήρως ανταποκρινόμενη διάταξη που φαίνεται εξαιρετική τόσο σε επιτραπέζιους όσο και σε κινητές συσκευές.</value>
   </data>
+  <data name="A good first step" xml:space="preserve">
+    <value>Ένα καλό πρώτο βήμα</value>
+  </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Μια σύγχρονη, πλούσια σε λειτουργίες και εξαιρετικά επεκτάσιμη βάση για την επόμενη εφαρμογή σας στον ιστό.</value>
+  </data>
+  <data name="A package pulled in by another package. It needs authorization too." xml:space="preserve">
+    <value>Ένα πακέτο που προστίθεται ως εξάρτηση από ένα άλλο πακέτο. Χρειάζεται επίσης έγκριση.</value>
+  </data>
+  <data name="A package your project asks for explicitly." xml:space="preserve">
+    <value>Ένα πακέτο που το έργο σας ζητά ρητά.</value>
+  </data>
+  <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
+    <value>Μια πολιτική που μπορεί να επιτρέπει πακέτα που πληρούν τα κριτήρια· ένας απόλυτος αποκλεισμός ή η απουσία στοιχείων για το τεχνούργημα εξακολουθεί να τα απορρίπτει.</value>
+  </data>
+  <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
+    <value>Απόλυτοι αποκλεισμοί που υπερισχύουν των κανόνων εμπιστοσύνης και των εγκρίσεων.</value>
+  </data>
+  <data name="Across the organization" xml:space="preserve">
+    <value>Σε όλο τον οργανισμό</value>
+  </data>
+  <data name="Active block rules" xml:space="preserve">
+    <value>Ενεργοί κανόνες αποκλεισμού</value>
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>Μεταφράσεις με Τεχνητή Νοημοσύνη</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Όλες οι εξαρτήσεις καταχωρούνται αυτόματα και είναι πάντα διαθέσιμες μέσω της εισαγωγής στον κατασκευαστή.</value>
+  </data>
+  <data name="All requests you submitted" xml:space="preserve">
+    <value>Όλα τα αιτήματα που υποβάλατε</value>
+  </data>
+  <data name="Approval center" xml:space="preserve">
+    <value>Κέντρο εγκρίσεων</value>
+  </data>
+  <data name="Approved requests" xml:space="preserve">
+    <value>Εγκεκριμένα αιτήματα</value>
+  </data>
+  <data name="Artifact SHA-256" xml:space="preserve">
+    <value>Τεχνούργημα SHA-256</value>
+  </data>
+  <data name="At a glance" xml:space="preserve">
+    <value>Με μια ματιά</value>
   </data>
   <data name="Automatic Dark Mode" xml:space="preserve">
     <value>Αυτόματη Λειτουργία Σκούρου Θέματος</value>
@@ -57,8 +105,26 @@
   <data name="Automatic, AI-driven translation into 28 languages." xml:space="preserve">
     <value>Αυτόματη, προωθούμενη από ΤΝ μετάφραση σε 28 γλώσσες.</value>
   </data>
+  <data name="Awaiting review" xml:space="preserve">
+    <value>Σε αναμονή για έλεγχο</value>
+  </data>
   <data name="Background Job Processing" xml:space="preserve">
     <value>Επεξεργασία εργασιών στο παρασκήνιο</value>
+  </data>
+  <data name="Blacklists, sources, versions, and hashes" xml:space="preserve">
+    <value>Λίστες αποκλεισμού, πηγές, εκδόσεις και κατακερματισμοί</value>
+  </data>
+  <data name="Blocklist comes first" xml:space="preserve">
+    <value>Η λίστα αποκλεισμού έχει προτεραιότητα</value>
+  </data>
+  <data name="Browse allowed packages" xml:space="preserve">
+    <value>Περιήγηση στα εγκεκριμένα πακέτα</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Καταγραφές ελέγχων κατασκευής</value>
+  </data>
+  <data name="Built into every decision" xml:space="preserve">
+    <value>Ενσωματωμένη σε κάθε απόφαση</value>
   </data>
   <data name="Built-in User Management" xml:space="preserve">
     <value>Ενσωματωμένη Διαχείριση Χρηστών</value>
@@ -75,8 +141,14 @@
   <data name="Consistency Validation" xml:space="preserve">
     <value>Έλεγχος Συνοχής</value>
   </data>
+  <data name="Decisions recorded for your work" xml:space="preserve">
+    <value>Αποφάσεις που έχουν καταγραφεί για τα αιτήματά σας</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Αναπτύξτε αποκλειστικά στο UTC, ενώ το σύστημα μετατρέπει και εμφανίζει αυτόματα τις ημερομηνίες στην τοπική ώρα του χρήστη.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Άμεση εξάρτηση</value>
   </data>
   <data name="Dockerized for Deployment" xml:space="preserve">
     <value>Σε Docker για Ανάπτυξη</value>
@@ -96,11 +168,35 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Εύκολα γράψτε δοκιμές ενσωμάτωσης χρησιμοποιώντας βάσεις δεδομένων στη μνήμη, προσωρινά συστήματα αρχείων, ενσωματωμένη μοκινγκ και πραγματική προσομοίωση αιτήσεων HTTP.</value>
   </data>
+  <data name="Enter direct dependencies. S360 resolves the complete graph and records the package artifacts." xml:space="preserve">
+    <value>Καταχωρίστε τις άμεσες εξαρτήσεις. Το S360 επιλύει ολόκληρο το γράφημα εξαρτήσεων και καταγράφει τα πακέτα.</value>
+  </data>
+  <data name="Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children." xml:space="preserve">
+    <value>Κάθε μεταβατικό πακέτο χρειάζεται τη δική του έγκυρη εξουσιοδότηση· ένα έμπιστο γονικό πακέτο δεν μεταβιβάζει αυτόματα την εμπιστοσύνη στα εξαρτώμενα πακέτα του.</value>
+  </data>
+  <data name="Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision." xml:space="preserve">
+    <value>Η λήξη, η ανάκληση και οι νέες ειδοποιήσεις ασφαλείας μπορούν να αλλάξουν την τρέχουσα απάντηση χωρίς να διαγράψουν την προηγούμενη απόφαση.</value>
+  </data>
+  <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
+    <value>Τα πακέτα που έχουν αποκλειστεί ρητά απορρίπτονται ακόμη κι αν εισαχθούν έμμεσα ή εμπίπτουν σε έναν ευρύ κανόνα προμηθευτή.</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Διαθέτει ένα ενσωματωμένο σύστημα διαχείρισης αρχείων με αυτόματη συμπίεση αβατάρ και προστασία της ιδιωτικότητας.</value>
   </data>
   <data name="Features a built-in file management system with automatic avatar compression." xml:space="preserve">
     <value>Διαθέτει ένα ενσωματωμένο σύστημα διαχείρισης αρχείων με αυτόματη συμπίεση avatar.</value>
+  </data>
+  <data name="Find an existing approval" xml:space="preserve">
+    <value>Βρείτε μια υπάρχουσα έγκριση</value>
+  </data>
+  <data name="Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view." xml:space="preserve">
+    <value>Παρακολουθήστε τα αιτήματα από την υποβολή του πρώτου πακέτου έως την τελική απόφαση, δείτε τι επιτρέπει ήδη ο οργανισμός σας και έχετε κατά νου τους αναδυόμενους κινδύνους.</value>
+  </data>
+  <data name="Follow the decision" xml:space="preserve">
+    <value>Παρακολουθήστε την απόφαση</value>
+  </data>
+  <data name="For authorized reviewers" xml:space="preserve">
+    <value>Για εξουσιοδοτημένους αξιολογητές</value>
   </data>
   <data name="Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs." xml:space="preserve">
     <value>Διαχείριση επαναλαμβανόμενων εργασιών όπως καθαρισμός και συγχρονισμός με ένα εκτεταμένο GUI για την παρακολούθηση της ιστορίας εκτέλεσης και των καταγραφών.</value>
@@ -108,11 +204,35 @@
   <data name="Hello World!" xml:space="preserve">
     <value>Γεια σου Κόσμε!</value>
   </data>
+  <data name="How S360 helps" xml:space="preserve">
+    <value>Πώς βοηθά το S360</value>
+  </data>
+  <data name="In progress" xml:space="preserve">
+    <value>Σε εξέλιξη</value>
+  </data>
+  <data name="Include the whole graph" xml:space="preserve">
+    <value>Συμπεριλάβετε ολόκληρο το γράφημα</value>
+  </data>
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Περιλαμβάνει εκτενή τεκμηρίωση και πρακτικά παραδείγματα για να ξεκινήσετε γρήγορα.</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Ενσωματωμένη Διαχείριση Αρχείων</value>
+  </data>
+  <data name="Keep the wider picture in view." xml:space="preserve">
+    <value>Να έχετε συνολική εικόνα.</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Γνωστές ευπάθειες</value>
+  </data>
+  <data name="Last successful OSV sync" xml:space="preserve">
+    <value>Τελευταίος επιτυχής συγχρονισμός OSV</value>
+  </data>
+  <data name="Learn about the workflow" xml:space="preserve">
+    <value>Μάθετε πώς λειτουργεί η διαδικασία</value>
+  </data>
+  <data name="Match the actual artifact" xml:space="preserve">
+    <value>Ταύτιση με το πραγματικό τεχνούργημα</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Τα μοντέλα ελέγχονται σε επίπεδο πελάτη και εξυπηρετητή βάσει σημειώσεων δεδομένων.</value>
@@ -123,8 +243,29 @@
   <data name="Multiple Database Support" xml:space="preserve">
     <value>Υποστήριξη Πολλαπλών Βάσεων Δεδομένων</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Τα αιτήματά μου</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>Νέο αίτημα</value>
+  </data>
+  <data name="No requests yet" xml:space="preserve">
+    <value>Δεν υπάρχουν ακόμη αιτήματα</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Ενσωμάτωση OpenID Connect</value>
+  </data>
+  <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
+    <value>Αρχεία πακέτων που έχουν καταγραφεί και στα δύο οικοσυστήματα, συμπεριλαμβανομένων όσων δεν είναι επί του παρόντος εγκεκριμένα.</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>Πολιτική</value>
+  </data>
+  <data name="Policy management" xml:space="preserve">
+    <value>Διαχείριση πολιτικών</value>
+  </data>
+  <data name="Quick and detailed risk views" xml:space="preserve">
+    <value>Σύντομες και αναλυτικές προβολές κινδύνου</value>
   </data>
   <data name="RBAC Authorization" xml:space="preserve">
     <value>Εξουσιοδότηση RBAC</value>
@@ -132,17 +273,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Διαβάστε την τεκμηρίωση</value>
   </data>
+  <data name="Recent activity" xml:space="preserve">
+    <value>Πρόσφατη δραστηριότητα</value>
+  </data>
+  <data name="Request overview" xml:space="preserve">
+    <value>Επισκόπηση αιτημάτων</value>
+  </data>
+  <data name="Request what is missing" xml:space="preserve">
+    <value>Υποβάλετε αίτημα για ό,τι λείπει</value>
+  </data>
+  <data name="Resolving or awaiting review" xml:space="preserve">
+    <value>Υπό διεκπεραίωση ή σε αναμονή αξιολόγησης</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Αποκρισιμό Σχεδιασμό</value>
   </data>
+  <data name="Review pending and expiring decisions" xml:space="preserve">
+    <value>Εξετάστε τις εκκρεμείς αποφάσεις και όσες πρόκειται να λήξουν</value>
+  </data>
+  <data name="Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve." xml:space="preserve">
+    <value>Οι αξιολογητές βλέπουν τις νέες εξαρτήσεις, τα αποκλεισμένα στοιχεία, τα ευρήματα ευπαθειών και την ακριβή αναφορά που εγκρίνουν.</value>
+  </data>
+  <data name="Revisit the risk" xml:space="preserve">
+    <value>Επανεξετάστε τον κίνδυνο</value>
+  </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Ανθεκτικός Έλεγχος Ενοποίησης</value>
+  </data>
+  <data name="Rollout note:" xml:space="preserve">
+    <value>Σημείωση διάθεσης:</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Διαχείριση Προγραμματισμένων Εργασιών</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Απρόσκοπτη ενσωμάτωση με οποιονδήποτε πάροχο OpenID Connect, με αυτόματο συγχρονισμό ρόλων.</value>
+  </data>
+  <data name="Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog." xml:space="preserve">
+    <value>Αναζητήστε πακέτα NuGet και npm, προμηθευτές, συγκεκριμένες εκδόσεις και κανόνες με χαρακτήρες μπαλαντέρ στον διαθέσιμο κατάλογο.</value>
+  </data>
+  <data name="See reported dependency decisions" xml:space="preserve">
+    <value>Δείτε τις καταγεγραμμένες αποφάσεις για εξαρτήσεις</value>
   </data>
   <data name="Smart Configuration Overrides" xml:space="preserve">
     <value>Έξυπνες Αντικαταστάσεις Ρυθμίσεων</value>
@@ -156,20 +327,68 @@
   <data name="Start a new project" xml:space="preserve">
     <value>Ξεκινήστε ένα νέο έργο</value>
   </data>
+  <data name="Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here." xml:space="preserve">
+    <value>Ξεκινήστε περιηγούμενοι στον κατάλογο. Όταν χρειαστείτε ένα νέο πακέτο, το αίτημά σας και η πλήρης αναφορά εξαρτήσεών του θα εμφανιστούν εδώ.</value>
+  </data>
+  <data name="Suppliers, trust rules, and absolute blocks" xml:space="preserve">
+    <value>Προμηθευτές, κανόνες εμπιστοσύνης και απόλυτοι αποκλεισμοί</value>
+  </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Υποστηρίζει και τις δύο μεταβλητές περιβάλλοντος και ρυθμίσεις που βασίζονται σε βάση δεδομένων, με αυτόματη προτεραιότητα προς τις μεταβλητές περιβάλλοντος για ομαλή αντικατάσταση.</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Η γραμμή πλοήγησης προσαρμόζεται αυτόματα με βάση τους ρόλους και τα δικαιώματα των χρηστών.</value>
   </data>
+  <data name="The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs." xml:space="preserve">
+    <value>Το όνομα του πακέτου, η ακριβής έκδοση, η εγκεκριμένη πηγή και το SHA-256 του αρχείου αρχειοθέτησης διασφαλίζουν ότι η αξιολόγηση βασίζεται σε συγκεκριμένα δεδομένα.</value>
+  </data>
+  <data name="These counts describe your own requests. Organization-wide review figures appear only for authorized readers." xml:space="preserve">
+    <value>Αυτά τα στοιχεία αφορούν τα δικά σας αιτήματα. Τα στοιχεία ελέγχου σε επίπεδο οργανισμού εμφανίζονται μόνο σε εξουσιοδοτημένους χρήστες.</value>
+  </data>
+  <data name="These organization-wide indicators are not a substitute for opening the underlying report." xml:space="preserve">
+    <value>Αυτοί οι δείκτες σε επίπεδο οργανισμού δεν υποκαθιστούν το άνοιγμα της πλήρους αναφοράς.</value>
+  </data>
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>Αυτό είναι ένα πρότυπο έργο, από όπου ξεκινάμε το ταξίδι...</value>
+  </data>
+  <data name="This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment." xml:space="preserve">
+    <value>Αυτός ο χώρος εργασίας προετοιμάζεται πριν από την εφαρμογή των ελέγχων του Runner. Η έγκριση ενός αιτήματος μέσω Web δεν σημαίνει ότι έχουν ήδη ελεγχθεί όλες οι εκδόσεις· η ενσωμάτωση με το CI ακολουθεί την ανάπτυξη της υπηρεσίας.</value>
+  </data>
+  <data name="Tracked artifacts" xml:space="preserve">
+    <value>Παρακολουθούμενα τεχνουργήματα</value>
+  </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Μεταβατική εξάρτηση</value>
+  </data>
+  <data name="Trust rule" xml:space="preserve">
+    <value>Κανόνας εμπιστοσύνης</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>Προβολή όλων</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Καλώς ορίσατε</value>
   </data>
+  <data name="Welcome to S360." xml:space="preserve">
+    <value>Καλώς ήρθατε στο S360.</value>
+  </data>
+  <data name="What S360 checks before a dependency is trusted." xml:space="preserve">
+    <value>Τι ελέγχει το S360 πριν εγκριθεί μια εξάρτηση.</value>
+  </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Γιατί να χρησιμοποιήσετε το Πρότυπο Aiursoft;</value>
+  </data>
+  <data name="Words you will see" xml:space="preserve">
+    <value>Όροι που θα συναντήσετε</value>
+  </data>
+  <data name="Your latest requests" xml:space="preserve">
+    <value>Τα τελευταία σας αιτήματα</value>
+  </data>
+  <data name="Your supply-chain workspace" xml:space="preserve">
+    <value>Ο χώρος εργασίας σας για την εφοδιαστική αλυσίδα</value>
+  </data>
+  <data name="Your work, without the guesswork." xml:space="preserve">
+    <value>Η δουλειά σας, χωρίς αμφιβολίες.</value>
   </data>
 
 </root>

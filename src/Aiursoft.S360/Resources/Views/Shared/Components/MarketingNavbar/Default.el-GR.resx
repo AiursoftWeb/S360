@@ -21,6 +21,9 @@
       <data name="Aiursoft Template" xml:space="preserve">
     <value>Πρότυπο Aiursoft</value>
   </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Δυνατότητες</value>
+  </data>
   <data name="Community" xml:space="preserve">
     <value>Κοινότητα</value>
   </data>
@@ -30,11 +33,20 @@
   <data name="GitHub" xml:space="preserve">
     <value>GitHub</value>
   </data>
+  <data name="Open workspace" xml:space="preserve">
+    <value>Άνοιγμα χώρου εργασίας</value>
+  </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>Διάθεση</value>
+  </data>
   <data name="Source Code" xml:space="preserve">
     <value>Πηγαίος Κώδικας</value>
   </data>
   <data name="Try the dashboard" xml:space="preserve">
     <value>Δοκιμάστε τον πίνακα ελέγχου</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>Πώς λειτουργεί</value>
   </data>
 
 </root>

@@ -85,7 +85,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
     </tr></thead><tbody>
     @foreach (var rule in Model.Rules)
     {
-        <tr><td>@rule.Supplier?.Name</td><td><code>@rule.PackagePattern</code>
+        <tr><td>@rule.Supplier.Name</td><td><code>@rule.PackagePattern</code>
                 @if (Model.BlockedRuleReasons.TryGetValue(rule.Id, out var blockedReason))
                 {
                     <span class="badge bg-danger" title="@blockedReason">@Localizer["Overridden by blocklist"]</span>
@@ -115,7 +115,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
         var method = rule.Sha256 != null ? Localizer["Pinned SHA-256"] :
             rule.PackagePattern.Contains('*') || rule.Version.Contains('*') ? Localizer["Wildcard rule"] : Localizer["Unpinned exact rule"];
         <tr><td><a asp-action="Details" asp-route-id="@artifact.Id"><code>@artifact.Name</code></a></td>
-            <td>@artifact.Version</td><td>@rule.Supplier?.Name</td>
+            <td>@artifact.Version</td><td>@rule.Supplier.Name</td>
             <td><small>@method · #@rule.Id</small></td><td><small>@rule.ExpiresAtUtc?.ToString("u")</small></td>
             <td><code title="@artifact.Sha256">@artifact.Sha256[..Math.Min(16, artifact.Sha256.Length)]…</code></td>
             <td><small>@artifact.Source</small></td><td><small>@artifact.LastCheckedAtUtc?.ToString("u")</small></td></tr>

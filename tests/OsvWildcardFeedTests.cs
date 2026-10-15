@@ -15,7 +15,7 @@ public class OsvWildcardFeedTests
         var feed = new OsvWildcardFeed(http);
         var rules = new[]
         {
-            new TrustRule { Ecosystem = "npm", PackagePattern = "@example/*", Version = "*" }
+            new TrustRule { ApplicationId = null, SupplierId = 0, Ecosystem = "npm", PackagePattern = "@example/*", Version = "*" }
         };
         var known = new[]
         {

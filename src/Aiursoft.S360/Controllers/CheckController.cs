@@ -103,8 +103,9 @@ public class CheckController(TrustService trust, TemplateDbContext db,
                         artifactLookup.Add(key, artifact);
                     }
                 }
-                check.Dependencies.Add(new BuildCheckDependency
+                db.BuildCheckDependencies.Add(new BuildCheckDependency
                 {
+                    BuildCheckId = check.Id, BuildCheck = check, PackageArtifactId = artifact?.Id,
                     PackageArtifact = artifact, Ecosystem = dependency.Ecosystem,
                     Name = dependency.Name, Version = dependency.Version, Source = source,
                     Sha256 = dependency.Sha256.ToLowerInvariant(), Trusted = decision.Trusted,

@@ -91,16 +91,18 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
             await db.SaveChangesAsync();
             var directKeys = report.Edges.Where(e => e.Parent == null)
                 .Select(e => Key(e.Child)).ToHashSet(StringComparer.Ordinal);
-            application.Packages = report.Dependencies.Select(d => new ApplicationPackage
+            db.ApplicationPackages.AddRange(report.Dependencies.Select(d => new ApplicationPackage
             {
+                ApplicationId = application.Id,
                 PackageArtifactId = map[Key(d)].Id,
                 IsDirect = directKeys.Contains(Key(d))
-            }).DistinctBy(p => p.PackageArtifactId).ToList();
-            application.Edges = report.Edges.Select(e => new ApplicationEdge
+            }).DistinctBy(p => p.PackageArtifactId));
+            db.ApplicationEdges.AddRange(report.Edges.Select(e => new ApplicationEdge
             {
+                ApplicationId = application.Id,
                 ParentPackageId = e.Parent == null ? null : map[Key(e.Parent)].Id,
                 ChildPackageId = map[Key(e.Child)].Id
-            }).DistinctBy(e => $"{e.ParentPackageId}/{e.ChildPackageId}").ToList();
+            }).DistinctBy(e => $"{e.ParentPackageId}/{e.ChildPackageId}"));
             application.ResolutionContext = report.Context;
             application.ReportHash = ReportFingerprint.Compute(application, report);
             application.ResolvedAtUtc = DateTime.UtcNow;

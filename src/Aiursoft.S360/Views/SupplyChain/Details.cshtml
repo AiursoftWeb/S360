@@ -21,7 +21,7 @@
                         <dt class="col-sm-3">@Localizer["Source"]</dt><dd class="col-sm-9"><code>@Model.Artifact.Source</code></dd>
                         <dt class="col-sm-3">@Localizer["Archive SHA-256"]</dt><dd class="col-sm-9"><code class="text-break">@Model.Artifact.Sha256</code></dd>
                         <dt class="col-sm-3">@Localizer["Last vulnerability check"]</dt><dd class="col-sm-9">@Model.Artifact.LastCheckedAtUtc?.ToString("u")</dd>
-                        <dt class="col-sm-3">@Localizer["Supplier label"]</dt><dd class="col-sm-9">@Model.Rule.Supplier?.Name</dd>
+                        <dt class="col-sm-3">@Localizer["Supplier label"]</dt><dd class="col-sm-9">@Model.Rule.Supplier.Name</dd>
                         <dt class="col-sm-3">@Localizer["Matching authorization"]</dt><dd class="col-sm-9"><code>@Model.Rule.PackagePattern @Model.Rule.Version</code></dd>
                         <dt class="col-sm-3">@Localizer["Authorization expires"]</dt><dd class="col-sm-9">@(Model.Rule.ExpiresAtUtc?.ToString("u") ?? Localizer["No expiry recorded"].Value)</dd>
                         @if (Model.LatestApproval != null)

@@ -14,14 +14,15 @@ public class PackageArtifact
         return Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes(identity)));
     }
 
-    public int Id { get; set; }
+    [Key]
+    public int Id { get; init; }
     [MaxLength(10)] public string Ecosystem { get; set; } = string.Empty;
     [MaxLength(214)] public string Name { get; set; } = string.Empty;
     [MaxLength(128)] public string Version { get; set; } = string.Empty;
     [MaxLength(500)] public string Source { get; set; } = string.Empty;
     [MaxLength(64)] public string IdentityKey { get; set; } = string.Empty;
     [MaxLength(64)] public string Sha256 { get; set; } = string.Empty;
-    public DateTime FirstSeenAtUtc { get; set; } = DateTime.UtcNow;
+    public DateTime FirstSeenAtUtc { get; init; } = DateTime.UtcNow;
     public DateTime? SourceVerifiedAtUtc { get; set; }
     public DateTime? FirstTrustedAtUtc { get; set; }
     public DateTime? LastCheckedAtUtc { get; set; }

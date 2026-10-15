@@ -18,11 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Aiursoft" xml:space="preserve">
+      <data name="A clearer way to request, approve, and keep watch over the software your teams depend on." xml:space="preserve">
+    <value>Ένας πιο ξεκάθαρος τρόπος να ζητάτε, να εγκρίνετε και να παρακολουθείτε το λογισμικό από το οποίο εξαρτώνται οι ομάδες σας.</value>
+  </data>
+  <data name="A project by Aiursoft" xml:space="preserve">
+    <value>Ένα έργο της Aiursoft</value>
+  </data>
+  <data name="Aiursoft" xml:space="preserve">
     <value>Aiursoft</value>
   </data>
   <data name="Aiursoft Template - A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Aiursoft Template - Ένα σύγχρονο, πλούσιο σε λειτουργίες και ιδιαίτερα επεκτάσιμο θεμέλιο για την επόμενη εφαρμογή σας web.</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Διαθέσιμες εξαρτήσεις</value>
+  </data>
+  <data name="Capabilities" xml:space="preserve">
+    <value>Δυνατότητες</value>
   </data>
   <data name="Community" xml:space="preserve">
     <value>Κοινότητα</value>
@@ -30,8 +42,14 @@
   <data name="Contributions" xml:space="preserve">
     <value>Συνεισφορές</value>
   </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Πίνακας ελέγχου</value>
+  </data>
   <data name="Documentation" xml:space="preserve">
     <value>Τεκμηρίωση</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Εξερεύνηση</value>
   </data>
   <data name="Get Started" xml:space="preserve">
     <value>Ξεκινήστε</value>
@@ -39,11 +57,17 @@
   <data name="Github" xml:space="preserve">
     <value>Github</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Γλώσσα</value>
+  </data>
   <data name="Legal" xml:space="preserve">
     <value>Νομικά</value>
   </data>
   <data name="Licence" xml:space="preserve">
     <value>Άδεια</value>
+  </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Τα αιτήματά μου</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Έργο</value>
@@ -54,11 +78,23 @@
   <data name="Resources" xml:space="preserve">
     <value>Πόροι</value>
   </data>
+  <data name="Rollout" xml:space="preserve">
+    <value>Διάθεση</value>
+  </data>
+  <data name="S360&apos;s Web approval center is the first step. Build enforcement and restricted mirrors follow as separate rollout stages." xml:space="preserve">
+    <value>Το διαδικτυακό κέντρο εγκρίσεων του S360 είναι το πρώτο βήμα. Η επιβολή κανόνων κατά τη δημιουργία και οι περιορισμένοι καθρέφτες θα ακολουθήσουν ως ξεχωριστά στάδια διάθεσης.</value>
+  </data>
   <data name="Social" xml:space="preserve">
     <value>Κοινωνικά</value>
   </data>
   <data name="Source Code" xml:space="preserve">
     <value>Πηγαίος Κώδικας</value>
+  </data>
+  <data name="Workflow" xml:space="preserve">
+    <value>Ροή εργασιών</value>
+  </data>
+  <data name="Workspace" xml:space="preserve">
+    <value>Χώρος εργασίας</value>
   </data>
 
 </root>

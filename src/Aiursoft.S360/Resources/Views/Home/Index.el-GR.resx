@@ -18,8 +18,14 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
+      <data name=".NET packages" xml:space="preserve">
+    <value>Πακέτα .NET</value>
+  </data>
+  <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Υποστήριξη &quot;Fire-and-forget&quot; για μακροχρόνιες εργασίες (όπως email ή AI), με GUI για διαχείριση ουράς, παράλληλη επεξεργασία και ακύρωση.</value>
+  </data>
+  <data name="A blocked package stays blocked even when it appears only as a transitive dependency or matches a broader trust rule." xml:space="preserve">
+    <value>Ένα αποκλεισμένο πακέτο παραμένει αποκλεισμένο, ακόμη κι αν εμφανίζεται μόνο ως έμμεση εξάρτηση ή καλύπτεται από έναν ευρύτερο κανόνα εμπιστοσύνης.</value>
   </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Ένα ενσωματωμένο σύστημα Ελέγχου Πρόσβασης Βάσει Ρόλων (RBAC) για λεπτομερή διαχείριση δικαιωμάτων.</value>
@@ -30,11 +36,20 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>Μια πλήρης λύση για την πιστοποίηση χρηστών και τη διαχείριση προφίλ.</value>
   </data>
+  <data name="A decision covers the complete resolved graph, not only the package you typed." xml:space="preserve">
+    <value>Μια απόφαση καλύπτει ολόκληρο το γράφημα εξαρτήσεων που επιλύθηκε, όχι μόνο το πακέτο που πληκτρολογήσατε.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>Μια πλήρως ανταποκρινόμενη διάταξη που φαίνεται εξαιρετική τόσο σε επιτραπέζιους υπολογιστές όσο και σε κινητές συσκευές.</value>
   </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Μια σύγχρονη, πλούσια σε λειτουργίες και εξαιρετικά επεκτάσιμη βάση για την επόμενη εφαρμογή σας web.</value>
+  </data>
+  <data name="A practical workflow" xml:space="preserve">
+    <value>Μια πρακτική ροή εργασίας</value>
+  </data>
+  <data name="A searchable allowed catalog" xml:space="preserve">
+    <value>Ένας κατάλογος εγκεκριμένων πακέτων με δυνατότητα αναζήτησης</value>
   </data>
   <data name="Achieve more with Aiursoft Template" xml:space="preserve">
     <value>Κερδίστε περισσότερα με το Aiursoft Template</value>
@@ -63,17 +78,29 @@
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Όλες οι εξαρτήσεις εγγράφονται αυτόματα και είναι πάντα διαθέσιμες μέσω της εισαγωγής από κατασκευαστή.</value>
   </data>
+  <data name="An absolute blocklist" xml:space="preserve">
+    <value>Μια απόλυτη λίστα αποκλεισμού</value>
+  </data>
   <data name="Anduin" xml:space="preserve">
     <value>Anduin</value>
   </data>
   <data name="Anduin Xue" xml:space="preserve">
     <value>Anduin Xue</value>
   </data>
+  <data name="Approve a report-backed batch while retaining the individual package decisions and their review history." xml:space="preserve">
+    <value>Εγκρίνετε μια ομάδα που συνοδεύεται από αναφορά, διατηρώντας παράλληλα τις επιμέρους αποφάσεις για κάθε πακέτο και το ιστορικό αξιολόγησής τους.</value>
+  </data>
   <data name="Artificial Intelligence Translation" xml:space="preserve">
     <value>Μετάφραση της Τεχνητής Νοημοσύνης</value>
   </data>
+  <data name="Audit" xml:space="preserve">
+    <value>Έλεγχος</value>
+  </data>
   <data name="Authentik &amp; Okta" xml:space="preserve">
     <value>Authentik &amp; Okta</value>
+  </data>
+  <data name="Authorized mirrors" xml:space="preserve">
+    <value>Εξουσιοδοτημένοι καθρέφτες</value>
   </data>
   <data name="Auto compression and privacy" xml:space="preserve">
     <value>Αυτόματη συμπίεση και ιδιωτικότητα</value>
@@ -120,14 +147,26 @@
   <data name="Bilingual Tutorials" xml:space="preserve">
     <value>Διγλωσσικά Μαθήματα</value>
   </data>
+  <data name="Blocklist first" xml:space="preserve">
+    <value>Πρώτα η λίστα αποκλεισμού</value>
+  </data>
+  <data name="Build inputs prepared before the network is closed." xml:space="preserve">
+    <value>Τα αρχεία εισόδου της δημιουργίας προετοιμάζονται πριν από το κλείσιμο της πρόσβασης στο δίκτυο.</value>
+  </data>
   <data name="Build once, run anywhere. Fully containerized architecture." xml:space="preserve">
     <value>Κατασκευάστε μία φορά, εκτελέστε παντού. Πλήρως ενσωματωμένη αρχιτεκτονική με δοχεία.</value>
   </data>
   <data name="Build your next big thing," xml:space="preserve">
     <value>Δημιουργήστε το επόμενό σας μεγάλο πράγμα,</value>
   </data>
+  <data name="Built for clear decisions" xml:space="preserve">
+    <value>Κατασκευασμένο για σαφείς αποφάσεις</value>
+  </data>
   <data name="Built for engineers who care about quality." xml:space="preserve">
     <value>Κατασκευασμένο για μηχανικούς που ενδιαφέρονται για ποιότητα.</value>
+  </data>
+  <data name="Built to grow safely" xml:space="preserve">
+    <value>Σχεδιασμένο για ασφαλή ανάπτυξη</value>
   </data>
   <data name="Built with Aiursoft Template" xml:space="preserve">
     <value>Φτιαγμένο με το Aiursoft Template</value>
@@ -174,6 +213,9 @@
   <data name="Checkstyle or similar needed" xml:space="preserve">
     <value>Απαιτείται Checkstyle ή παρόμοιο</value>
   </data>
+  <data name="Choose NuGet or npm, list the direct packages, and explain the intended use. No separate request command is needed." xml:space="preserve">
+    <value>Επιλέξτε NuGet ή npm, παραθέστε τα άμεσα πακέτα και εξηγήστε την προβλεπόμενη χρήση τους. Δεν χρειάζεται ξεχωριστή εντολή υποβολής αιτήματος.</value>
+  </data>
   <data name="Comes with Docker support for simplified and consistent deployments." xml:space="preserve">
     <value>Διαθέτει υποστήριξη για Docker για απλούς και συνεκτικούς τρόπους μεταφοράς.</value>
   </data>
@@ -207,6 +249,9 @@
   <data name="Cross Platform" xml:space="preserve">
     <value>Διαπλατφορμικό</value>
   </data>
+  <data name="Current mirrors" xml:space="preserve">
+    <value>Τρέχοντες καθρέφτες</value>
+  </data>
   <data name="Custom dev required" xml:space="preserve">
     <value>Απαιτείται προσαρμοσμένη ανάπτυξη</value>
   </data>
@@ -237,6 +282,9 @@
   <data name="Default SQLite database, no configuration needed." xml:space="preserve">
     <value>Προεπιλεγμένη βάση δεδομένων SQLite, χωρίς ανάγκη ρύθμισης.</value>
   </data>
+  <data name="Dependency review" xml:space="preserve">
+    <value>Έλεγχος εξαρτήσεων</value>
+  </data>
   <data name="Designed for everyone, from beginners to experts." xml:space="preserve">
     <value>Φτιαγμένο για όλους, από αρχάριους μέχρι ειδικούς.</value>
   </data>
@@ -254,6 +302,9 @@
   </data>
   <data name="DevOps Native" xml:space="preserve">
     <value>DevOps Φυσικός</value>
+  </data>
+  <data name="Direct request" xml:space="preserve">
+    <value>Άμεσο αίτημα</value>
   </data>
   <data name="Discussions page" xml:space="preserve">
     <value>Σελίδα Συζητήσεων</value>
@@ -279,6 +330,9 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Εύκολα γράψτε δοκιμές ενοποίησης χρησιμοποιώντας βάσεις δεδομένων στη μνήμη, προσωρινά συστήματα αρχείων, ενσωματωμένη μοκινγκ και πραγματικές εξελίξεις HTTP αιτήσεων.</value>
   </data>
+  <data name="Employees can discover current approvals, suppliers, and matching rules before starting another request." xml:space="preserve">
+    <value>Οι εργαζόμενοι μπορούν να ενημερωθούν για τις τρέχουσες εγκρίσεις, τους προμηθευτές και τους κανόνες αντιστοίχισης πριν υποβάλουν νέο αίτημα.</value>
+  </data>
   <data name="Enforced" xml:space="preserve">
     <value>Επιβεβαιωμένο</value>
   </data>
@@ -300,6 +354,21 @@
   <data name="Entity Framework Core included" xml:space="preserve">
     <value>Περιλαμβάνεται το Entity Framework Core</value>
   </data>
+  <data name="Exact artifact evidence" xml:space="preserve">
+    <value>Ακριβή τεκμήρια για το πακέτο</value>
+  </data>
+  <data name="Exact SHA-256 evidence" xml:space="preserve">
+    <value>Ακριβή αποδεικτικά στοιχεία SHA-256</value>
+  </data>
+  <data name="Existing package access continues." xml:space="preserve">
+    <value>Η πρόσβαση στα υπάρχοντα πακέτα συνεχίζεται.</value>
+  </data>
+  <data name="Expiry, revocation, and newly published advisories remain visible after the original approval." xml:space="preserve">
+    <value>Η λήξη ισχύος, η ανάκληση και οι νεοδημοσιευμένες ειδοποιήσεις παραμένουν ορατές μετά την αρχική έγκριση.</value>
+  </data>
+  <data name="Explore available dependencies" xml:space="preserve">
+    <value>Εξερευνήστε τις διαθέσιμες εξαρτήσεις</value>
+  </data>
   <data name="FAQ" xml:space="preserve">
     <value>Συχνές Ερωτήσεις</value>
   </data>
@@ -320,6 +389,9 @@
   </data>
   <data name="File Mgmt &amp; Optimization" xml:space="preserve">
     <value>Διαχείριση Αρχείων &amp; Βελτιστοποίηση</value>
+  </data>
+  <data name="Find what is already allowed, request what is missing, and follow every decision back to its evidence." xml:space="preserve">
+    <value>Βρείτε τι επιτρέπεται ήδη, ζητήστε ό,τι λείπει και ανατρέξτε στα τεκμήριά του για κάθε απόφαση.</value>
   </data>
   <data name="Fine-grained RBAC" xml:space="preserve">
     <value>Λεπτομερής RBAC</value>
@@ -350,6 +422,9 @@
   </data>
   <data name="Frequently asked questions" xml:space="preserve">
     <value>Συχνές ερωτήσεις</value>
+  </data>
+  <data name="From package request to policy evidence." xml:space="preserve">
+    <value>Από το αίτημα πακέτου στα τεκμήρια συμμόρφωσης με την πολιτική.</value>
   </data>
   <data name="From the Architect" xml:space="preserve">
     <value>Από τον Αρχιτέκτονα</value>
@@ -429,11 +504,17 @@
   <data name="How do I deploy my application?" xml:space="preserve">
     <value>Πώς μπορώ να αναπτύξω την εφαρμογή μου;</value>
   </data>
+  <data name="Human review at the right scale" xml:space="preserve">
+    <value>Ανθρώπινος έλεγχος στην κατάλληλη κλίμακα</value>
+  </data>
   <data name="I built Aiursoft Template because I was tired of setting up the same Auth, Log, and CI/CD pipelines for every new enterprise project. This isn&apos;t just a template; it&apos;s the crystallized best practices from years of high-concurrency production environments. It allows my team to skip the boring setup and jump straight to business logic." xml:space="preserve">
     <value>Δημιούργησα το Aiursoft Template επειδή ήμουν κουρασμένος από τη διαδικασία δημιουργίας των ίδιων πύλων Auth, Log και CI/CD για κάθε νέο επιχειρηματικό έργο. Δεν είναι απλώς ένα πρότυπο· είναι η συγκεντρωμένη καλύτερη πρακτική από χρόνια λειτουργίας σε περιβάλλοντα υψηλής συγχρονισμού. Επιτρέπει στην ομάδα μου να παραλείψει την ένοικτη διαδικασία ρύθμισης και να προχωρήσει αμέσως στη λογική της επιχείρησης.</value>
   </data>
   <data name="IDE Support" xml:space="preserve">
     <value>Υποστήριξη IDE</value>
+  </data>
+  <data name="Illustration of a dependency review" xml:space="preserve">
+    <value>Απεικόνιση ελέγχου εξαρτήσεων</value>
   </data>
   <data name="In-memory DB, temp FS, and HTTP simulation" xml:space="preserve">
     <value>Μνήμη DB, προσωρινό FS και προσομοίωση HTTP</value>
@@ -468,6 +549,9 @@
   <data name="java.time API available" xml:space="preserve">
     <value>Διαθέσιμο API java.time</value>
   </data>
+  <data name="JavaScript packages" xml:space="preserve">
+    <value>Πακέτα JavaScript</value>
+  </data>
   <data name="Job Queue &amp; Scheduling GUI" xml:space="preserve">
     <value>Διεπαφή Χρήστη Γραφείου Ουράς Εργασιών &amp; Προγραμματισμού</value>
   </data>
@@ -483,11 +567,26 @@
   <data name="K8s / Swarm Ready" xml:space="preserve">
     <value>Έτοιμο για K8s / Swarm</value>
   </data>
+  <data name="Keep watch" xml:space="preserve">
+    <value>Παρακολουθείτε</value>
+  </data>
+  <data name="Know every dependency." xml:space="preserve">
+    <value>Γνώρισε κάθε εξάρτηση.</value>
+  </data>
+  <data name="Less guesswork for employees. More context for reviewers." xml:space="preserve">
+    <value>Λιγότερες εικασίες για τους εργαζομένους. Περισσότερο πλαίσιο για τους αξιολογητές.</value>
+  </data>
   <data name="Lint Check" xml:space="preserve">
     <value>Ελέγχους Lint</value>
   </data>
+  <data name="Made for the dependencies your teams actually use." xml:space="preserve">
+    <value>Σχεδιασμένο για τις εξαρτήσεις που χρησιμοποιούν πραγματικά οι ομάδες σας.</value>
+  </data>
   <data name="Maintain High Code Quality" xml:space="preserve">
     <value>Διατηρήστε Υψηλή Ποιότητα Κώδικα</value>
+  </data>
+  <data name="Make the next package decision an informed one." xml:space="preserve">
+    <value>Κάντε την επόμενη απόφαση για πακέτο έχοντας πλήρη ενημέρωση.</value>
   </data>
   <data name="Management Dashboard" xml:space="preserve">
     <value>Πίνακας Ελέγχου Διαχείρισης</value>
@@ -552,6 +651,9 @@
   <data name="Needs Passport or similar" xml:space="preserve">
     <value>Απαιτείται το Passport ή παρόμοιο</value>
   </data>
+  <data name="Needs review" xml:space="preserve">
+    <value>Χρειάζεται έλεγχος</value>
+  </data>
   <data name="Needs Spatie or similar" xml:space="preserve">
     <value>Απαιτείται το Spatie ή παρόμοιο</value>
   </data>
@@ -567,6 +669,15 @@
   <data name="No dependency on any cloud vendor. Run anywhere, any time." xml:space="preserve">
     <value>Χωρίς εξάρτηση από κάποιον πάροχο cloud. Εκτελέστε παντού, παντότε.</value>
   </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet και npm</value>
+  </data>
+  <data name="NuGet and npm have different version and installation rules. S360 keeps their package identities distinct while presenting one consistent approval experience." xml:space="preserve">
+    <value>Τα NuGet και npm έχουν διαφορετικούς κανόνες για τις εκδόσεις και την εγκατάσταση. Το S360 διατηρεί ξεχωριστή την ταυτότητα των πακέτων τους, προσφέροντας παράλληλα μια ενιαία και συνεπή διαδικασία έγκρισης.</value>
+  </data>
+  <data name="Offline builds" xml:space="preserve">
+    <value>Κατασκευές εκτός σύνδεσης</value>
+  </data>
   <data name="Offline Capable" xml:space="preserve">
     <value>Εκτός Σύνδεσης Εφοδιασμένο</value>
   </data>
@@ -576,8 +687,23 @@
   <data name="One Click Start" xml:space="preserve">
     <value>Μία κλικ για έναρξη</value>
   </data>
+  <data name="One coherent workflow" xml:space="preserve">
+    <value>Μία ενιαία ροή εργασιών</value>
+  </data>
+  <data name="One request, the whole graph" xml:space="preserve">
+    <value>Ένα αίτημα, ολόκληρο το γράφημα</value>
+  </data>
+  <data name="Ongoing vulnerability visibility" xml:space="preserve">
+    <value>Συνεχής ενημέρωση για ευπάθειες</value>
+  </data>
+  <data name="Only approved package versions are served." xml:space="preserve">
+    <value>Παρέχονται μόνο εγκεκριμένες εκδόσεις πακέτων.</value>
+  </data>
   <data name="Open Source" xml:space="preserve">
     <value>Ανοιχτού Κώδικα</value>
+  </data>
+  <data name="Open your workspace" xml:space="preserve">
+    <value>Ανοίξτε τον χώρο εργασίας σας</value>
   </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Ενσωμάτωση OpenID Connect</value>
@@ -624,14 +750,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Διαβάστε το έγγραφο</value>
   </data>
+  <data name="Record the package source and SHA-256 of each NuGet archive or npm tarball, not just a familiar package name." xml:space="preserve">
+    <value>Καταγράψτε την πηγή του πακέτου και το SHA-256 κάθε αρχείου NuGet ή tarball npm, όχι μόνο ένα οικείο όνομα πακέτου.</value>
+  </data>
+  <data name="Request" xml:space="preserve">
+    <value>Αίτημα</value>
+  </data>
+  <data name="Request in the browser" xml:space="preserve">
+    <value>Υποβολή αιτήματος μέσω του προγράμματος περιήγησης</value>
+  </data>
+  <data name="Requests, policy, audit, and approval." xml:space="preserve">
+    <value>Αιτήματα, πολιτική, έλεγχος και έγκριση.</value>
+  </data>
   <data name="Requires Laravel Socialite config" xml:space="preserve">
     <value>Απαιτεί ρύθμιση Laravel Socialite</value>
   </data>
   <data name="Requires Spring Security configuration" xml:space="preserve">
     <value>Απαιτεί διαμόρφωση Spring Security</value>
   </data>
+  <data name="Resolve" xml:space="preserve">
+    <value>Επίλυση</value>
+  </data>
+  <data name="Resolve and inspect" xml:space="preserve">
+    <value>Επίλυση και έλεγχος</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Αποκρισιμό Σχεδιασμό</value>
+  </data>
+  <data name="Review" xml:space="preserve">
+    <value>Αξιολόγηση</value>
+  </data>
+  <data name="Review restored versions and the original .nupkg files behind your applications." xml:space="preserve">
+    <value>Εξετάστε τις επαναφερθείσες εκδόσεις και τα αρχικά αρχεία .nupkg που βρίσκονται πίσω από τις εφαρμογές σας.</value>
+  </data>
+  <data name="Review with guardrails" xml:space="preserve">
+    <value>Έλεγχος με δικλίδες ασφαλείας</value>
+  </data>
+  <data name="Reviewed artifact" xml:space="preserve">
+    <value>Ελεγμένο πακέτο</value>
+  </data>
+  <data name="Reviewers see what is already trusted and what is new. Blacklist and vulnerability checks cannot be hidden by a root approval." xml:space="preserve">
+    <value>Οι αξιολογητές βλέπουν τι είναι ήδη εγκεκριμένο και τι είναι νέο. Οι έλεγχοι αποκλεισμού και ευπαθειών δεν μπορούν να παρακαμφθούν με μια έγκριση ανώτερου επιπέδου.</value>
   </data>
   <data name="Reviews" xml:space="preserve">
     <value>Κριτικές</value>
@@ -642,11 +801,32 @@
   <data name="Runs without any internet connection required." xml:space="preserve">
     <value>Λειτουργεί χωρίς να απαιτείται σύνδεση στο διαδίκτυο.</value>
   </data>
+  <data name="S360 connects the people approving dependencies with the exact packages, versions, sources, and risks behind each decision." xml:space="preserve">
+    <value>Το S360 συνδέει όσους εγκρίνουν εξαρτήσεις με τα ακριβή πακέτα, τις εκδόσεις, τις πηγές και τους κινδύνους που σχετίζονται με κάθε απόφαση.</value>
+  </data>
+  <data name="S360 gives your team one place to request NuGet and npm packages, review their complete dependency trees, and track which exact package files are allowed." xml:space="preserve">
+    <value>Το S360 προσφέρει στην ομάδα σας ένα ενιαίο σημείο για να ζητά πακέτα NuGet και npm, να εξετάζει ολόκληρα τα δέντρα εξαρτήσεών τους και να παρακολουθεί ποια ακριβώς αρχεία πακέτων επιτρέπονται.</value>
+  </data>
+  <data name="S360 is being prepared as the Web approval center. Runner enforcement, authorization-only package mirrors, and fully offline builds are later rollout stages—not guarantees of this deployment." xml:space="preserve">
+    <value>Το S360 προετοιμάζεται ως το διαδικτυακό κέντρο εγκρίσεων. Η επιβολή κανόνων στους runners, οι καθρεφτισμοί πακέτων που παρέχουν πρόσβαση μόνο σε εξουσιοδοτημένα πακέτα και οι πλήρως offline μεταγλωττίσεις αποτελούν μεταγενέστερα στάδια διάθεσης — δεν είναι εγγυημένα σε αυτήν την εγκατάσταση.</value>
+  </data>
+  <data name="S360 Web and review" xml:space="preserve">
+    <value>S360 Web και αναθεώρηση</value>
+  </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Διαχείριση Προγραμματισμένων Εργασιών</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Απολαύστε απρόσκοπτη ενσωμάτωση με οποιονδήποτε πάροχο OpenID Connect, με αυτόματο συγχρονισμό ρόλων.</value>
+  </data>
+  <data name="See how it works" xml:space="preserve">
+    <value>Δείτε πώς λειτουργεί</value>
+  </data>
+  <data name="See installed transitive packages and the tarball integrity evidence in one report." xml:space="preserve">
+    <value>Δείτε τα εγκατεστημένα έμμεσα πακέτα και τα στοιχεία ακεραιότητας του αρχείου tarball σε μία αναφορά.</value>
+  </data>
+  <data name="See known advisories for used versions and for vulnerable versions still permitted by a wildcard rule." xml:space="preserve">
+    <value>Δείτε τις γνωστές ειδοποιήσεις ασφαλείας για τις χρησιμοποιούμενες εκδόσεις και για ευάλωτες εκδόσεις που εξακολουθούν να επιτρέπονται από έναν κανόνα με χαρακτήρα wildcard.</value>
   </data>
   <data name="Shift with confidence" xml:space="preserve">
     <value>Μετακινηθείτε με αυτοπεποίθηση</value>
@@ -666,6 +846,9 @@
   <data name="Smart dark mode that automatically adapts to the user&apos;s system settings." xml:space="preserve">
     <value>Έξυπνη λειτουργία σκούρου θέματος που προσαρμόζεται αυτόματα στις ρυθμίσεις συστήματος του χρήστη.</value>
   </data>
+  <data name="Software supply chain, in focus" xml:space="preserve">
+    <value>Η εφοδιαστική αλυσίδα λογισμικού στο επίκεντρο</value>
+  </data>
   <data name="Standard implementation. Switch providers without compilation." xml:space="preserve">
     <value>Πρότυπη υλοποίηση. Αλλάξτε προμηθευτές χωρίς μεταγλώττιση.</value>
   </data>
@@ -680,6 +863,9 @@
   </data>
   <data name="Start with a single &apos;docker run&apos; command." xml:space="preserve">
     <value>Ξεκινήστε με μία μόνο εντολή &apos;docker run&apos;.</value>
+  </data>
+  <data name="Start with visibility and review. Tighten the boundary in stages." xml:space="preserve">
+    <value>Ξεκινήστε με ορατότητα και έλεγχο. Αυστηροποιήστε τα όρια σταδιακά.</value>
   </data>
   <data name="Starts without any configuration" xml:space="preserve">
     <value>Ξεκινά χωρίς καμία ρύθμιση</value>
@@ -701,6 +887,9 @@
   </data>
   <data name="Strongly Consistent Linting" xml:space="preserve">
     <value>Ισχυρή και Συνεπής Έλεγχος Κώδικα</value>
+  </data>
+  <data name="Submit direct dependencies once. S360 resolves transitive packages and records how each one enters the request." xml:space="preserve">
+    <value>Υποβάλετε μία φορά τις άμεσες εξαρτήσεις. Το S360 επιλύει τις μεταβατικές εξαρτήσεις και καταγράφει πώς καθεμία εντάσσεται στο αίτημα.</value>
   </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Υποστηρίζει και τις δύο μεταβλητές περιβάλλοντος και ρυθμίσεις που βασίζονται σε βάση δεδομένων, με αυτόματη προτεραιότητα προς τις μεταβλητές περιβάλλοντος για ομαλή αντικατάσταση.</value>
@@ -726,8 +915,14 @@
   <data name="Testing module available" xml:space="preserve">
     <value>Διαθέσιμο module δοκιμών</value>
   </data>
+  <data name="The background resolver records exact versions, package archives, hashes, source, and introduction paths." xml:space="preserve">
+    <value>Ο μηχανισμός επίλυσης στο παρασκήνιο καταγράφει τις ακριβείς εκδόσεις, τα αρχεία πακέτων, τα αποτυπώματα κατακερματισμού, την πηγή και τις διαδρομές εισαγωγής.</value>
+  </data>
   <data name="The definitive, battle-tested .NET enterprise foundation. From Auth to AI, we&apos;ve solved the hard parts so you don&apos;t have to." xml:space="preserve">
     <value>Η αποφασιστική, δοκιμασμένη στην πράξη βάση επιχειρηματικών εφαρμογών .NET. Από την Αυθεντικοποίηση μέχρι την Τεχνητή Νοημοσύνη, έχουμε λύσει τα δύσκολα μέρη, ώστε να μην χρειαστεί να τα κάνετε εσείς.</value>
+  </data>
+  <data name="The entire dependency graph" xml:space="preserve">
+    <value>Ολόκληρο το γράφημα εξαρτήσεων</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Η γραμμή πλοήγησης προσαρμόζεται αυτόματα με βάση τους ρόλους και τα δικαιώματα των χρηστών.</value>
@@ -750,8 +945,17 @@
   <data name="TimeZoneInfo API available" xml:space="preserve">
     <value>Διαθέσιμο API TimeZoneInfo</value>
   </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Έμμεση εξάρτηση</value>
+  </data>
+  <data name="Trust every decision." xml:space="preserve">
+    <value>Εμπιστευτείτε κάθε απόφαση.</value>
+  </data>
   <data name="Trusted by production-grade applications including AnduinOS, StatHub, and Warp. We don&apos;t just share this code; we run our entire business on it." xml:space="preserve">
     <value>Εμπιστεύεται εφαρμογές προσαρμοσμένες για παραγωγή, συμπεριλαμβανομένων AnduinOS, StatHub και Warp. Δεν μοιραζόμαστε απλώς αυτόν τον κώδικα· τρέχουμε την επιχείρησή μας εντελώς με αυτόν.</value>
+  </data>
+  <data name="Two ecosystems, one policy language" xml:space="preserve">
+    <value>Δύο οικοσυστήματα, μία γλώσσα πολιτικής</value>
   </data>
   <data name="Unified Env" xml:space="preserve">
     <value>Ομοστατικό Περιβάλλον</value>
@@ -797,6 +1001,9 @@
   </data>
   <data name="You&apos;ll need the .NET 10 SDK, npm and your favorite IDE, like Visual Studio or JetBrains Rider. You can find the full setup guide in our documentation." xml:space="preserve">
     <value>Θα χρειαστείτε το .NET 10 SDK, το npm και το αγαπημένο σας περιβάλλον ανάπτυξης (IDE), όπως το Visual Studio ή το JetBrains Rider. Μπορείτε να βρείτε τον πλήρη οδηγό ρύθμισης στην τεκμηρίωσή μας.</value>
+  </data>
+  <data name="Your dependency workspace" xml:space="preserve">
+    <value>Ο χώρος εργασίας σας για τις εξαρτήσεις</value>
   </data>
   <data name="Your enterprise users don&apos;t need to register repeatedly." xml:space="preserve">
     <value>Οι χρήστες της επιχείρησής σας δεν χρειάζεται να εγγραφούν εκ νέου.</value>

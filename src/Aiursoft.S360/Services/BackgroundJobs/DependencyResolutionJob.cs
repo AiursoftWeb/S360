@@ -44,62 +44,8 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
                             dependency.Version, FindPath(report, dependency)));
                 }
 
-                await db.Entry(application).ReloadAsync();
-                if (application.Status != ApplicationStatus.Resolving) continue;
-
-                await using var transaction = db.Database.IsRelational()
-                    ? await db.Database.BeginTransactionAsync() : null;
-
-                var map = new Dictionary<string, PackageArtifact>(StringComparer.Ordinal);
-                foreach (var dependency in report.Dependencies)
-                {
-                    var source = TrustPattern.NormalizeSource(dependency.Source);
-                    var key = Key(dependency);
-                    var identityKey = PackageArtifact.CalculateIdentityKey(dependency.Ecosystem,
-                        dependency.Name, dependency.Version, source, dependency.Sha256);
-                    var artifact = await db.PackageArtifacts.FirstOrDefaultAsync(a => a.IdentityKey == identityKey);
-                    if (artifact == null)
-                    {
-                        artifact = new PackageArtifact
-                        {
-                            Ecosystem = dependency.Ecosystem, Name = dependency.Name,
-                            Version = dependency.Version, Source = source, Sha256 = dependency.Sha256,
-                            SourceVerifiedAtUtc = DateTime.UtcNow
-                        };
-                        db.PackageArtifacts.Add(artifact);
-                    }
-                    else artifact.SourceVerifiedAtUtc ??= DateTime.UtcNow;
-                    map[key] = artifact;
-                }
-                await db.SaveChangesAsync();
-                var directKeys = report.Edges.Where(e => e.Parent == null)
-                    .Select(e => Key(e.Child)).ToHashSet(StringComparer.Ordinal);
-                application.Packages = report.Dependencies.Select(d => new ApplicationPackage
-                {
-                    PackageArtifactId = map[Key(d)].Id,
-                    IsDirect = directKeys.Contains(Key(d))
-                }).DistinctBy(p => p.PackageArtifactId).ToList();
-                application.Edges = report.Edges.Select(e => new ApplicationEdge
-                {
-                    ParentPackageId = e.Parent == null ? null : map[Key(e.Parent)].Id,
-                    ChildPackageId = map[Key(e.Child)].Id
-                }).DistinctBy(e => $"{e.ParentPackageId}/{e.ChildPackageId}").ToList();
-                application.ResolutionContext = report.Context;
-                application.ReportHash = ReportFingerprint.Compute(application, report);
-                application.ResolvedAtUtc = DateTime.UtcNow;
-                application.Failure = report.SkippedOptional.Count == 0 ? null :
-                    "Optional packages absent on this platform: " +
-                    string.Join("; ", report.SkippedOptional)[..Math.Min(string.Join("; ", report.SkippedOptional).Length, 1800)];
-                await db.SaveChangesAsync();
-                if (!await MarkReadyIfStillResolvingAsync(db, id))
-                {
-                    if (transaction != null) await transaction.RollbackAsync();
-                    db.ChangeTracker.Clear();
-                    continue;
-                }
-                if (transaction != null) await transaction.CommitAsync();
-                db.ChangeTracker.Clear();
-                jobs.TriggerNow<VulnerabilityAuditJob>();
+                if (await SaveResolutionAsync(id, report))
+                    jobs.TriggerNow<VulnerabilityAuditJob>();
             }
             catch (Exception ex)
             {
@@ -107,6 +53,71 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
                 await MarkFailedIfStillResolvingAsync(db, id, ex.Message);
             }
         }
+    }
+
+    public async Task<bool> SaveResolutionAsync(int id, ResolutionReport report)
+    {
+        var strategy = db.Database.CreateExecutionStrategy();
+        return await strategy.ExecuteAsync(async () =>
+        {
+            db.ChangeTracker.Clear();
+            var application = await db.DependencyApplications.SingleAsync(a => a.Id == id);
+            if (application.Status != ApplicationStatus.Resolving) return false;
+
+            await using var transaction = db.Database.IsRelational()
+                ? await db.Database.BeginTransactionAsync() : null;
+
+            var map = new Dictionary<string, PackageArtifact>(StringComparer.Ordinal);
+            foreach (var dependency in report.Dependencies)
+            {
+                var source = TrustPattern.NormalizeSource(dependency.Source);
+                var key = Key(dependency);
+                var identityKey = PackageArtifact.CalculateIdentityKey(dependency.Ecosystem,
+                    dependency.Name, dependency.Version, source, dependency.Sha256);
+                var artifact = await db.PackageArtifacts.FirstOrDefaultAsync(a => a.IdentityKey == identityKey);
+                if (artifact == null)
+                {
+                    artifact = new PackageArtifact
+                    {
+                        Ecosystem = dependency.Ecosystem, Name = dependency.Name,
+                        Version = dependency.Version, Source = source, Sha256 = dependency.Sha256,
+                        SourceVerifiedAtUtc = DateTime.UtcNow
+                    };
+                    db.PackageArtifacts.Add(artifact);
+                }
+                else artifact.SourceVerifiedAtUtc ??= DateTime.UtcNow;
+                map[key] = artifact;
+            }
+            await db.SaveChangesAsync();
+            var directKeys = report.Edges.Where(e => e.Parent == null)
+                .Select(e => Key(e.Child)).ToHashSet(StringComparer.Ordinal);
+            application.Packages = report.Dependencies.Select(d => new ApplicationPackage
+            {
+                PackageArtifactId = map[Key(d)].Id,
+                IsDirect = directKeys.Contains(Key(d))
+            }).DistinctBy(p => p.PackageArtifactId).ToList();
+            application.Edges = report.Edges.Select(e => new ApplicationEdge
+            {
+                ParentPackageId = e.Parent == null ? null : map[Key(e.Parent)].Id,
+                ChildPackageId = map[Key(e.Child)].Id
+            }).DistinctBy(e => $"{e.ParentPackageId}/{e.ChildPackageId}").ToList();
+            application.ResolutionContext = report.Context;
+            application.ReportHash = ReportFingerprint.Compute(application, report);
+            application.ResolvedAtUtc = DateTime.UtcNow;
+            application.Failure = report.SkippedOptional.Count == 0 ? null :
+                "Optional packages absent on this platform: " +
+                string.Join("; ", report.SkippedOptional)[..Math.Min(string.Join("; ", report.SkippedOptional).Length, 1800)];
+            await db.SaveChangesAsync();
+            if (!await MarkReadyIfStillResolvingAsync(db, id))
+            {
+                if (transaction != null) await transaction.RollbackAsync();
+                db.ChangeTracker.Clear();
+                return false;
+            }
+            if (transaction != null) await transaction.CommitAsync();
+            db.ChangeTracker.Clear();
+            return true;
+        });
     }
 
     public static async Task<bool> MarkReadyIfStillResolvingAsync(TemplateDbContext db, int applicationId)

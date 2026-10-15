@@ -21,6 +21,9 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Dukungan &quot;fire-and-forget&quot; untuk tugas berjalan lama (seperti email atau AI), dilengkapi antarmuka GUI untuk manajemen antrian, pemrosesan paralel, dan pembatalan.</value>
   </data>
+  <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
+    <value>Tanggal yang kosong berarti sinkronisasi kerentanan secara menyeluruh belum berhasil. Waktu menggunakan UTC.</value>
+  </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Sistem Role-Based Access Control (RBAC) bawaan untuk manajemen izin yang terperinci.</value>
   </data>
@@ -30,17 +33,62 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>Solusi lengkap untuk otentikasi pengguna dan manajemen profil.</value>
   </data>
+  <data name="A decision you can explain" xml:space="preserve">
+    <value>Keputusan yang dapat Anda jelaskan</value>
+  </data>
+  <data name="A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence." xml:space="preserve">
+    <value>Nama yang sudah dikenal atau paket root yang disetujui saja tidak cukup. Keputusan berlaku untuk setiap paket yang berhasil di-resolve beserta bukti pendukungnya.</value>
+  </data>
+  <data name="A fingerprint of the downloaded package archive, not just its name and version." xml:space="preserve">
+    <value>Sidik jari arsip paket yang diunduh, bukan hanya nama dan versinya.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>Tata letak yang sepenuhnya responsif sehingga tampak bagus di perangkat desktop maupun ponsel.</value>
   </data>
+  <data name="A good first step" xml:space="preserve">
+    <value>Langkah awal yang baik</value>
+  </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Sebuah fondasi yang modern, kaya fitur, dan sangat dapat diperluas untuk aplikasi web Anda berikutnya.</value>
+  </data>
+  <data name="A package pulled in by another package. It needs authorization too." xml:space="preserve">
+    <value>Paket yang disertakan oleh paket lain. Paket ini juga memerlukan otorisasi.</value>
+  </data>
+  <data name="A package your project asks for explicitly." xml:space="preserve">
+    <value>Paket yang diminta secara langsung oleh proyek Anda.</value>
+  </data>
+  <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
+    <value>Kebijakan yang dapat mengizinkan paket yang cocok; pemblokiran mutlak atau tidak adanya bukti artefak tetap membuatnya ditolak.</value>
+  </data>
+  <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
+    <value>Pengecualian mutlak yang didahulukan daripada aturan kepercayaan dan persetujuan.</value>
+  </data>
+  <data name="Across the organization" xml:space="preserve">
+    <value>Di seluruh organisasi</value>
+  </data>
+  <data name="Active block rules" xml:space="preserve">
+    <value>Aturan pemblokiran aktif</value>
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>Terjemahan Berbasis AI</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Semua dependensi terdaftar secara otomatis dan selalu tersedia melalui constructor injection.</value>
+  </data>
+  <data name="All requests you submitted" xml:space="preserve">
+    <value>Semua permintaan yang Anda ajukan</value>
+  </data>
+  <data name="Approval center" xml:space="preserve">
+    <value>Pusat Persetujuan</value>
+  </data>
+  <data name="Approved requests" xml:space="preserve">
+    <value>Permintaan yang disetujui</value>
+  </data>
+  <data name="Artifact SHA-256" xml:space="preserve">
+    <value>Artefak SHA-256</value>
+  </data>
+  <data name="At a glance" xml:space="preserve">
+    <value>Sekilas</value>
   </data>
   <data name="Automatic Dark Mode" xml:space="preserve">
     <value>Mode Gelap Otomatis</value>
@@ -57,8 +105,26 @@
   <data name="Automatic, AI-driven translation into 28 languages." xml:space="preserve">
     <value>Terjemahan otomatis, didorong oleh AI ke dalam 28 bahasa.</value>
   </data>
+  <data name="Awaiting review" xml:space="preserve">
+    <value>Menunggu peninjauan</value>
+  </data>
   <data name="Background Job Processing" xml:space="preserve">
     <value>Pemrosesan Tugas Latar Belakang</value>
+  </data>
+  <data name="Blacklists, sources, versions, and hashes" xml:space="preserve">
+    <value>Daftar blokir, sumber, versi, dan hash</value>
+  </data>
+  <data name="Blocklist comes first" xml:space="preserve">
+    <value>Daftar blokir menjadi prioritas utama</value>
+  </data>
+  <data name="Browse allowed packages" xml:space="preserve">
+    <value>Jelajahi paket yang diizinkan</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Catatan pemeriksaan build</value>
+  </data>
+  <data name="Built into every decision" xml:space="preserve">
+    <value>Terintegrasi dalam setiap keputusan</value>
   </data>
   <data name="Built-in User Management" xml:space="preserve">
     <value>Manajemen Pengguna Bawaan</value>
@@ -75,8 +141,14 @@
   <data name="Consistency Validation" xml:space="preserve">
     <value>Validasi Konsistensi</value>
   </data>
+  <data name="Decisions recorded for your work" xml:space="preserve">
+    <value>Keputusan yang tercatat untuk pekerjaan Anda</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Kembangkan secara eksklusif dalam UTC sementara sistem secara otomatis mengonversi dan menampilkan tanggal dalam zona waktu lokal pengguna.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Dependensi langsung</value>
   </data>
   <data name="Dockerized for Deployment" xml:space="preserve">
     <value>Terdockerisasi untuk Deployment</value>
@@ -96,11 +168,35 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Tulis uji integrasi dengan mudah menggunakan basis data dalam memori, sistem file sementara, mocking bawaan, dan simulasi permintaan HTTP dunia nyata.</value>
   </data>
+  <data name="Enter direct dependencies. S360 resolves the complete graph and records the package artifacts." xml:space="preserve">
+    <value>Masukkan dependensi langsung. S360 menyelesaikan seluruh graf dependensi dan mencatat artefak paket.</value>
+  </data>
+  <data name="Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children." xml:space="preserve">
+    <value>Setiap paket transitif memerlukan otorisasi validnya sendiri; paket induk yang tepercaya tidak otomatis membuat paket turunannya tepercaya.</value>
+  </data>
+  <data name="Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision." xml:space="preserve">
+    <value>Kedaluwarsa, pencabutan, dan imbauan keamanan baru dapat mengubah keputusan saat ini tanpa menghapus keputusan sebelumnya.</value>
+  </data>
+  <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
+    <value>Paket yang secara eksplisit diblokir akan ditolak meskipun masuk secara tidak langsung atau cocok dengan aturan pemasok yang cakupannya luas.</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Memiliki sistem manajemen file bawaan dengan kompresi avatar otomatis dan perlindungan privasi.</value>
   </data>
   <data name="Features a built-in file management system with automatic avatar compression." xml:space="preserve">
     <value>Fitur sistem manajemen file bawaan dengan kompresi avatar otomatis.</value>
+  </data>
+  <data name="Find an existing approval" xml:space="preserve">
+    <value>Temukan persetujuan yang sudah ada</value>
+  </data>
+  <data name="Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view." xml:space="preserve">
+    <value>Pantau permintaan sejak paket pertama hingga keputusan akhir, cari tahu apa saja yang sudah diizinkan oleh organisasi Anda, dan tetap waspadai risiko yang muncul.</value>
+  </data>
+  <data name="Follow the decision" xml:space="preserve">
+    <value>Ikuti keputusan</value>
+  </data>
+  <data name="For authorized reviewers" xml:space="preserve">
+    <value>Untuk peninjau yang berwenang</value>
   </data>
   <data name="Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs." xml:space="preserve">
     <value>Kelola pekerjaan berulang seperti pembersihan dan sinkronisasi dengan antarmuka grafis komprehensif untuk memantau riwayat eksekusi dan log.</value>
@@ -108,11 +204,35 @@
   <data name="Hello World!" xml:space="preserve">
     <value>Halo Dunia!</value>
   </data>
+  <data name="How S360 helps" xml:space="preserve">
+    <value>Cara S360 membantu</value>
+  </data>
+  <data name="In progress" xml:space="preserve">
+    <value>Sedang berlangsung</value>
+  </data>
+  <data name="Include the whole graph" xml:space="preserve">
+    <value>Sertakan seluruh graf</value>
+  </data>
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Mencakup dokumentasi yang luas dan contoh-contoh praktis untuk memudahkan Anda memulai dengan cepat.</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Manajemen File Terintegrasi</value>
+  </data>
+  <data name="Keep the wider picture in view." xml:space="preserve">
+    <value>Tetap perhatikan gambaran yang lebih luas.</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Kerentanan yang diketahui</value>
+  </data>
+  <data name="Last successful OSV sync" xml:space="preserve">
+    <value>Sinkronisasi OSV terakhir yang berhasil</value>
+  </data>
+  <data name="Learn about the workflow" xml:space="preserve">
+    <value>Pelajari alur kerjanya</value>
+  </data>
+  <data name="Match the actual artifact" xml:space="preserve">
+    <value>Cocokkan artefak yang sebenarnya</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Model divalidasi di sisi klien dan server berdasarkan anotasi data.</value>
@@ -123,8 +243,29 @@
   <data name="Multiple Database Support" xml:space="preserve">
     <value>Dukungan Banyak Basis Data</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Permintaan saya</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>Permintaan baru</value>
+  </data>
+  <data name="No requests yet" xml:space="preserve">
+    <value>Belum ada permintaan</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Integrasi OpenID Connect</value>
+  </data>
+  <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
+    <value>Berkas paket yang tercatat di kedua ekosistem, termasuk item yang saat ini belum diotorisasi.</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>Kebijakan</value>
+  </data>
+  <data name="Policy management" xml:space="preserve">
+    <value>Pengelolaan kebijakan</value>
+  </data>
+  <data name="Quick and detailed risk views" xml:space="preserve">
+    <value>Tampilan risiko cepat dan terperinci</value>
   </data>
   <data name="RBAC Authorization" xml:space="preserve">
     <value>Otorisasi RBAC</value>
@@ -132,17 +273,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Baca dokumen</value>
   </data>
+  <data name="Recent activity" xml:space="preserve">
+    <value>Aktivitas terbaru</value>
+  </data>
+  <data name="Request overview" xml:space="preserve">
+    <value>Ikhtisar permintaan</value>
+  </data>
+  <data name="Request what is missing" xml:space="preserve">
+    <value>Ajukan permintaan untuk yang belum tersedia</value>
+  </data>
+  <data name="Resolving or awaiting review" xml:space="preserve">
+    <value>Sedang diproses atau menunggu peninjauan</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Desain Responsif</value>
   </data>
+  <data name="Review pending and expiring decisions" xml:space="preserve">
+    <value>Tinjau keputusan yang tertunda dan akan kedaluwarsa</value>
+  </data>
+  <data name="Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve." xml:space="preserve">
+    <value>Para peninjau dapat melihat dependensi baru, item yang diblokir, temuan kerentanan, dan laporan persis yang mereka setujui.</value>
+  </data>
+  <data name="Revisit the risk" xml:space="preserve">
+    <value>Tinjau kembali risikonya</value>
+  </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Pengujian Integrasi yang Kuat</value>
+  </data>
+  <data name="Rollout note:" xml:space="preserve">
+    <value>Catatan peluncuran:</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Manajemen Tugas yang Dijadwalkan</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Terintegrasi dengan mulus bersama penyedia OpenID Connect apa pun, dengan sinkronisasi peran otomatis.</value>
+  </data>
+  <data name="Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog." xml:space="preserve">
+    <value>Cari paket NuGet dan npm, pemasok, versi tertentu, serta aturan wildcard di katalog yang tersedia.</value>
+  </data>
+  <data name="See reported dependency decisions" xml:space="preserve">
+    <value>Lihat keputusan dependensi yang dilaporkan</value>
   </data>
   <data name="Smart Configuration Overrides" xml:space="preserve">
     <value>Penggantian Konfigurasi Cerdas</value>
@@ -156,20 +327,68 @@
   <data name="Start a new project" xml:space="preserve">
     <value>Mulai proyek baru</value>
   </data>
+  <data name="Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here." xml:space="preserve">
+    <value>Mulailah dengan menelusuri katalog. Saat Anda membutuhkan paket baru, permintaan Anda beserta laporan lengkap dependensinya akan muncul di sini.</value>
+  </data>
+  <data name="Suppliers, trust rules, and absolute blocks" xml:space="preserve">
+    <value>Pemasok, aturan kepercayaan, dan pemblokiran mutlak</value>
+  </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Mendukung variabel lingkungan dan pengaturan berbasis basis data, dengan prioritas otomatis diberikan kepada variabel lingkungan untuk override yang mulus.</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Bilah navigasi secara otomatis menyesuaikan berdasarkan peran dan izin pengguna.</value>
   </data>
+  <data name="The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs." xml:space="preserve">
+    <value>Nama paket, versi yang tepat, sumber yang disetujui, dan SHA-256 arsip memastikan peninjauan tetap mengacu pada masukan yang konkret.</value>
+  </data>
+  <data name="These counts describe your own requests. Organization-wide review figures appear only for authorized readers." xml:space="preserve">
+    <value>Jumlah ini menggambarkan permintaan Anda sendiri. Angka peninjauan di seluruh organisasi hanya ditampilkan kepada pembaca yang berwenang.</value>
+  </data>
+  <data name="These organization-wide indicators are not a substitute for opening the underlying report." xml:space="preserve">
+    <value>Indikator tingkat organisasi ini bukan pengganti untuk membuka laporan lengkapnya.</value>
+  </data>
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>Ini adalah proyek templat, di mana kita memulai perjalanan...</value>
+  </data>
+  <data name="This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment." xml:space="preserve">
+    <value>Ruang kerja ini sedang disiapkan sebelum Runner diberlakukan. Permintaan Web yang disetujui bukan berarti setiap build sudah diperiksa; integrasi CI akan dilakukan setelah layanan diterapkan.</value>
+  </data>
+  <data name="Tracked artifacts" xml:space="preserve">
+    <value>Artefak yang Dilacak</value>
+  </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Dependensi transitif</value>
+  </data>
+  <data name="Trust rule" xml:space="preserve">
+    <value>Aturan kepercayaan</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>Lihat semua</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Selamat datang</value>
   </data>
+  <data name="Welcome to S360." xml:space="preserve">
+    <value>Selamat datang di S360.</value>
+  </data>
+  <data name="What S360 checks before a dependency is trusted." xml:space="preserve">
+    <value>Yang diperiksa S360 sebelum suatu dependensi dipercaya.</value>
+  </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Menggunakan Template Aiursoft?</value>
+  </data>
+  <data name="Words you will see" xml:space="preserve">
+    <value>Istilah yang akan Anda temui</value>
+  </data>
+  <data name="Your latest requests" xml:space="preserve">
+    <value>Permintaan terbaru Anda</value>
+  </data>
+  <data name="Your supply-chain workspace" xml:space="preserve">
+    <value>Ruang kerja rantai pasok Anda</value>
+  </data>
+  <data name="Your work, without the guesswork." xml:space="preserve">
+    <value>Pekerjaan Anda, tanpa perlu menebak-nebak.</value>
   </data>
 
 </root>

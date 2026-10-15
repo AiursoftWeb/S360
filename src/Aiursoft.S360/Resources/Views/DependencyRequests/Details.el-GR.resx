@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Already authorized" xml:space="preserve">
+    <value>Έχουν ήδη εγκριθεί</value>
+  </data>
+  <data name="Authorized but not check-ready" xml:space="preserve">
+    <value>Εγκεκριμένα αλλά μη έτοιμα για έλεγχο</value>
+  </data>
+  <data name="Current authorization" xml:space="preserve">
+    <value>Τρέχουσα εξουσιοδότηση</value>
+  </data>
+  <data name="Current check blocked" xml:space="preserve">
+    <value>Ο τρέχων έλεγχος έχει αποκλειστεί</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Αίτημα εξάρτησης</value>
+  </data>
+  <data name="Direct" xml:space="preserve">
+    <value>Άμεσο</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>Διαδρομή εισαγωγής</value>
+  </data>
+  <data name="New review items" xml:space="preserve">
+    <value>Νέα στοιχεία προς έλεγχο</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Πακέτο</value>
+  </data>
+  <data name="Purpose" xml:space="preserve">
+    <value>Σκοπός</value>
+  </data>
+  <data name="Report SHA-256" xml:space="preserve">
+    <value>Αναφορά SHA-256</value>
+  </data>
+  <data name="Requested" xml:space="preserve">
+    <value>Υποβλήθηκε στις</value>
+  </data>
+  <data name="Resolution context" xml:space="preserve">
+    <value>Πλαίσιο επίλυσης</value>
+  </data>
+  <data name="Resolution failed; this request cannot be approved." xml:space="preserve">
+    <value>Η επίλυση απέτυχε· αυτό το αίτημα δεν μπορεί να εγκριθεί.</value>
+  </data>
+  <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
+    <value>Η επίλυση βρίσκεται σε αναμονή ή εκτελείται. Ανανεώστε αυτή τη σελίδα για να δείτε το αποτέλεσμα.</value>
+  </data>
+  <data name="Retry as a new request" xml:space="preserve">
+    <value>Υποβολή νέου αιτήματος με νέα προσπάθεια</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Πηγή</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>Η πηγή δεν επιτρέπεται</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Κατάσταση</value>
+  </data>
+  <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
+    <value>Το αποτυχημένο αίτημα παραμένει στο ιστορικό σας. Το νέο αίτημα ελέγχεται με βάση τους σημερινούς κανόνες για τις πηγές και τη λίστα αποκλεισμού.</value>
+  </data>
+  <data name="This report is ready for administrator review. It is not an approval." xml:space="preserve">
+    <value>Αυτή η αναφορά είναι έτοιμη για έλεγχο από τον διαχειριστή. Δεν αποτελεί έγκριση.</value>
+  </data>
+  <data name="Total packages" xml:space="preserve">
+    <value>Σύνολο πακέτων</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Έκδοση</value>
+  </data>
+  <data name="Withdraw request" xml:space="preserve">
+    <value>Ανάκληση αιτήματος</value>
+  </data>
+
+</root>

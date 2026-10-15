@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted" xml:space="preserve">
+    <value>स्वीकृत</value>
+  </data>
+  <data name="Batch" xml:space="preserve">
+    <value>बैच</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>बैच रिकॉर्ड</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>बिल्ड जाँच रिकॉर्ड</value>
+  </data>
+  <data name="Commit" xml:space="preserve">
+    <value>कमिट</value>
+  </data>
+  <data name="Complete run accepted" xml:space="preserve">
+    <value>पूरा रन स्वीकार किया गया</value>
+  </data>
+  <data name="Complete run rejected" xml:space="preserve">
+    <value>पूर्ण रन अस्वीकार किया गया</value>
+  </data>
+  <data name="Currently blocked" xml:space="preserve">
+    <value>वर्तमान में अवरुद्ध</value>
+  </data>
+  <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
+    <value>हर पंक्ति एक API बैच है। CLI जाँच में केवल तभी सफल हुआ जा सकता है, जब पूरा रन हो और हर बैच स्वीकार किया गया हो। दर्ज किया गया परिणाम ऐतिहासिक है; मौजूदा ब्लॉकलिस्ट चेतावनी अलग से दिखाई जाती है।</value>
+  </data>
+  <data name="Incomplete run" xml:space="preserve">
+    <value>अधूरा रन</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>अगला</value>
+  </data>
+  <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
+    <value>रिपोर्ट की गई समर्थित परियोजनाओं में कोई बाहरी निर्भरता नहीं मिली।</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>पैकेज</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>पाइपलाइन</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>पिछला</value>
+  </data>
+  <data name="Project" xml:space="preserve">
+    <value>प्रोजेक्ट</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>कारण</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>अस्वीकृत</value>
+  </data>
+  <data name="Run" xml:space="preserve">
+    <value>रन</value>
+  </data>
+  <data name="Scanned projects" xml:space="preserve">
+    <value>स्कैन किए गए प्रोजेक्ट</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>खोजें</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>स्रोत</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>स्थिति</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>संस्करण</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>कमज़ोरियों से संबंधित डेटा</value>
+  </data>
+
+</root>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Ένα πακέτο που αντιστοιχεί στον κανόνα απορρίπτεται ανεξάρτητα από τον προμηθευτή, την πηγή, την έγκριση ή το αν έφτασε ως άμεση ή μεταβατική εξάρτηση. Οι παλαιότερες εγκρίσεις και οι έλεγχοι παραμένουν ως αποδεικτικά στοιχεία για σκοπούς ελέγχου.</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>Απόλυτη λίστα αποκλεισμού</value>
+  </data>
+  <data name="Add absolute block" xml:space="preserve">
+    <value>Προσθήκη απόλυτου αποκλεισμού</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>εφαρμογές</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>τεχνουργήματα</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Διαθέσιμες εξαρτήσεις</value>
+  </data>
+  <data name="Block package" xml:space="preserve">
+    <value>Αποκλεισμός πακέτου</value>
+  </data>
+  <data name="Block reason" xml:space="preserve">
+    <value>Αιτιολογία αποκλεισμού</value>
+  </data>
+  <data name="By" xml:space="preserve">
+    <value>Από</value>
+  </data>
+  <data name="CI check runs" xml:space="preserve">
+    <value>Εκτελέσεις ελέγχων CI</value>
+  </data>
+  <data name="Created" xml:space="preserve">
+    <value>Δημιουργήθηκε</value>
+  </data>
+  <data name="Disable block" xml:space="preserve">
+    <value>Απενεργοποίηση αποκλεισμού</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Οικοσύστημα</value>
+  </data>
+  <data name="Edit rule and view history" xml:space="preserve">
+    <value>Επεξεργασία κανόνα και προβολή ιστορικού</value>
+  </data>
+  <data name="Exact names and prefixes are different. ant-design does not automatically cover antd or @ant-design/*." xml:space="preserve">
+    <value>Τα ακριβή ονόματα και τα προθέματα διαφέρουν. Το ant-design δεν καλύπτει αυτόματα το antd ή το @ant-design/*.</value>
+  </data>
+  <data name="Examples" xml:space="preserve">
+    <value>Παραδείγματα</value>
+  </data>
+  <data name="Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures." xml:space="preserve">
+    <value>Τα παρακάτω στοιχεία επίδρασης είναι ενδεικτικά, βασίζονται σε αντικείμενα που καταγράφηκαν πρόσφατα και δεν αποτελούν πλήρη καταμέτρηση. Περιορίστε ή ελέγξτε έναν κανόνα προτού βασιστείτε σε αυτά τα στοιχεία.</value>
+  </data>
+  <data name="No block rules have been recorded for this ecosystem." xml:space="preserve">
+    <value>Δεν έχουν καταγραφεί κανόνες αποκλεισμού για αυτό το οικοσύστημα.</value>
+  </data>
+  <data name="Package name or trailing-* pattern" xml:space="preserve">
+    <value>Όνομα πακέτου ή μοτίβο που τελειώνει σε *</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Μοτίβο πακέτου</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Αιτιολογία</value>
+  </data>
+  <data name="Recorded impact sample" xml:space="preserve">
+    <value>Καταγεγραμμένο δείγμα επιπτώσεων</value>
+  </data>
+  <data name="Save change" xml:space="preserve">
+    <value>Αποθήκευση αλλαγής</value>
+  </data>
+  <data name="Show" xml:space="preserve">
+    <value>Εμφάνιση</value>
+  </data>
+  <data name="Use * to block every version, or an exact version or trailing-* prefix to narrow the block." xml:space="preserve">
+    <value>Χρησιμοποιήστε το * για να αποκλείσετε όλες τις εκδόσεις ή μια συγκεκριμένη έκδοση ή ένα πρόθεμα που τελειώνει σε * για να περιορίσετε τον αποκλεισμό.</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Μοτίβο έκδοσης</value>
+  </data>
+  <data name="View history" xml:space="preserve">
+    <value>Προβολή ιστορικού</value>
+  </data>
+  <data name="Why change this block?" xml:space="preserve">
+    <value>Γιατί να αλλάξει αυτός ο αποκλεισμός;</value>
+  </data>
+  <data name="Why disable this block?" xml:space="preserve">
+    <value>Γιατί να απενεργοποιηθεί αυτός ο αποκλεισμός;</value>
+  </data>
+
+</root>

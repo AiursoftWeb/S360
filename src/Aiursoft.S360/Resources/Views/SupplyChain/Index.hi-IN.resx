@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="10.0.* can cover future releases. Prefer an exact version when the scope should be narrow." xml:space="preserve">
+    <value>10.0.* भविष्य के रिलीज़ को भी शामिल कर सकता है। यदि दायरा सीमित रखना हो, तो सटीक संस्करण चुनें।</value>
+  </data>
+  <data name="A label for grouping trust rules, not verified proof of a package publisher." xml:space="preserve">
+    <value>विश्वास नियमों को समूहित करने के लिए एक लेबल, पैकेज प्रकाशक का सत्यापित प्रमाण नहीं।</value>
+  </data>
+  <data name="A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency." xml:space="preserve">
+    <value>मेल खाने वाला नियम, आर्टिफ़ैक्ट या सुरक्षा-कमज़ोरी की जाँच पूरी होने के समान नहीं है। भविष्य में CI एकीकरण हर हल की गई निर्भरता का सत्यापन करेगा।</value>
+  </data>
+  <data name="A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft." xml:space="preserve">
+    <value>अंत में लगा * नाम के उपसर्ग से मेल खाता है। Microsoft.* में सटीक पैकेज Microsoft शामिल नहीं है।</value>
+  </data>
+  <data name="A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry." xml:space="preserve">
+    <value>अंत में लगा * नाम या संस्करण के उपसर्ग से मेल खाता है। उदाहरण के लिए, System.* बिल्कुल System पैकेज से मेल नहीं खाता। वाइल्डकार्ड नियम भविष्य में जारी होने वाले संस्करणों को भी अनुमति दे सकता है, इसलिए इसके स्रोत और समाप्ति समय को सीमित रखें।</value>
+  </data>
+  <data name="Active trust rules" xml:space="preserve">
+    <value>सक्रिय विश्वास नियम</value>
+  </data>
+  <data name="Add supplier" xml:space="preserve">
+    <value>आपूर्तिकर्ता जोड़ें</value>
+  </data>
+  <data name="All suppliers" xml:space="preserve">
+    <value>सभी आपूर्तिकर्ता</value>
+  </data>
+  <data name="Approval reason" xml:space="preserve">
+    <value>अनुमोदन का कारण</value>
+  </data>
+  <data name="Approve rule" xml:space="preserve">
+    <value>नियम स्वीकृत करें</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Authorization</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>उपलब्ध निर्भरताएँ</value>
+  </data>
+  <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
+    <value>पैकेज नहीं मिल रहा? अनुरोध भेजें</value>
+  </data>
+  <data name="Check a concrete package against rules" xml:space="preserve">
+    <value>नियमों के अनुसार किसी विशिष्ट पैकेज की जाँच करें</value>
+  </data>
+  <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
+    <value>UTC समय दर्ज करें; यह फ़ील्ड आपके डिवाइस के स्थानीय समय को परिवर्तित नहीं करता।</value>
+  </data>
+  <data name="Exact package name" xml:space="preserve">
+    <value>सटीक पैकेज का नाम</value>
+  </data>
+  <data name="Exact version" xml:space="preserve">
+    <value>सटीक संस्करण</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>समाप्ति</value>
+  </data>
+  <data name="Expires (UTC)" xml:space="preserve">
+    <value>समाप्ति (UTC)</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>समाप्ति समय (UTC)</value>
+  </data>
+  <data name="Find packages" xml:space="preserve">
+    <value>पैकेज खोजें</value>
+  </data>
+  <data name="HTTPS package source" xml:space="preserve">
+    <value>HTTPS पैकेज स्रोत</value>
+  </data>
+  <data name="Include prerelease" xml:space="preserve">
+    <value>प्री-रिलीज़ संस्करण शामिल करें</value>
+  </data>
+  <data name="Last checked (UTC)" xml:space="preserve">
+    <value>अंतिम जाँच (UTC)</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>ब्लॉकलिस्ट प्रबंधित करें</value>
+  </data>
+  <data name="Manage policy" xml:space="preserve">
+    <value>नीति प्रबंधित करें</value>
+  </data>
+  <data name="Manage suppliers and trust rules" xml:space="preserve">
+    <value>आपूर्तिकर्ताओं और विश्वास नियमों का प्रबंधन करें</value>
+  </data>
+  <data name="Match rules" xml:space="preserve">
+    <value>नियमों से मिलान करें</value>
+  </data>
+  <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
+    <value>यहाँ केवल वही आर्टिफ़ैक्ट दिखाई देते हैं जो वर्तमान में S360 जाँचों में सफल होते हैं। किसी ऐसे पैकेज के लिए मेल खाने वाला नियम ऊपर दिखाया गया है जो अभी तक नहीं देखा गया है, लेकिन वह अभी जाँचा हुआ आर्टिफ़ैक्ट नहीं है; हर आगामी बिल्ड में उसकी पूरी निर्भरता ग्राफ़ की जाँच फिर भी की जाती है।</value>
+  </data>
+  <data name="Only the first 500 results are shown. Narrow the package search to inspect more results." xml:space="preserve">
+    <value>केवल पहले 500 परिणाम दिखाए गए हैं। अधिक परिणाम देखने के लिए पैकेज खोज को सीमित करें।</value>
+  </data>
+  <data name="Open the separate absolute blocklist management page" xml:space="preserve">
+    <value>अलग पूर्ण अवरोध सूची प्रबंधन पृष्ठ खोलें</value>
+  </data>
+  <data name="Overridden by blocklist" xml:space="preserve">
+    <value>ब्लॉकलिस्ट द्वारा निरस्त</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>पैकेज</value>
+  </data>
+  <data name="Package name" xml:space="preserve">
+    <value>पैकेज का नाम</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>पैकेज पैटर्न</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>पैकेज स्रोत</value>
+  </data>
+  <data name="Page sections" xml:space="preserve">
+    <value>पृष्ठ के अनुभाग</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>प्री-रिलीज़</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>पूर्वावलोकन</value>
+  </data>
+  <data name="Preview a rule before approval" xml:space="preserve">
+    <value>स्वीकृति से पहले नियम का पूर्वावलोकन करें</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>कारण</value>
+  </data>
+  <data name="Recorded artifacts" xml:space="preserve">
+    <value>रिकॉर्ड किए गए आर्टिफैक्ट</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>रद्द करें</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>खोजें</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
+    <value>इस प्रस्तावित नियम से मेल खाने वाले ज्ञात पैकेज संस्करण दिखाएँ। यह दायरे का पूर्वावलोकन है, भरोसे का निर्णय नहीं।</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>स्रोत</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>आपूर्तिकर्ता</value>
+  </data>
+  <data name="Supplier name" xml:space="preserve">
+    <value>आपूर्तिकर्ता का नाम</value>
+  </data>
+  <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
+    <value>स्वीकृत रजिस्ट्री URL इस नियम का हिस्सा है। अलग स्रोत से मिला वही पैकेज इस नियम के दायरे में नहीं आता।</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
+    <value>नवीनतम भेद्यता सिंक्रनाइज़ेशन विफल रहा। सफल ऑडिट होने तक दर्ज किए गए आर्टिफ़ैक्ट छिपे रहेंगे।</value>
+  </data>
+  <data name="Trust rules" xml:space="preserve">
+    <value>विश्वास नियम</value>
+  </data>
+  <data name="Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies." xml:space="preserve">
+    <value>विश्वसनीयता के नियम उपलब्धता की केवल एक शर्त हैं। पूर्ण अवरोध सूची इन नियमों को निष्प्रभावी कर देती है, अप्रत्यक्ष निर्भरताओं के मामले में भी।</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>संस्करण</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>संस्करण पैटर्न</value>
+  </data>
+  <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
+    <value>कमज़ोरियों की जाँच अभी पूरी नहीं हुई है। दर्ज किए गए आर्टिफ़ैक्ट उपलब्ध के रूप में सूचीबद्ध नहीं किए जा सकते।</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
+    <value>कमज़ोरियों की जाँच पुरानी हो चुकी है। दर्ज किए गए आर्टिफ़ैक्ट तब तक छिपे रहेंगे, जब तक नई जाँच पूरी नहीं हो जाती।</value>
+  </data>
+  <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
+    <value>वाइल्डकार्ड नियम भविष्य के संस्करणों को अपने-आप अनुमति देते हैं; पहली बार देखे गए हैश फिर भी दर्ज किए जाते हैं।</value>
+  </data>
+
+</root>

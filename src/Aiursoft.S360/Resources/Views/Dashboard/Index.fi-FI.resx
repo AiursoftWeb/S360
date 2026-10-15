@@ -21,6 +21,9 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>&quot;Tule ja unohda&quot; -tuki pitkäkestoisille tehtäville (kuten sähköposteille tai AI:lle), jossa on käyttöliittymä jonon hallintaan, rinnakkaisprosessointiin ja peruutukseen.</value>
   </data>
+  <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
+    <value>Tyhjä päivämäärä tarkoittaa, ettei haavoittuvuustietojen synkronointi ole vielä onnistunut kokonaisuudessaan. Ajat ovat UTC-aikoja.</value>
+  </data>
   <data name="A built-in Role-Based Access Control (RBAC) system for fine-grained permission management." xml:space="preserve">
     <value>Sisäänrakennettu roolipohjainen käyttöoikeudenhallinta (RBAC) -järjestelmä hienojakoista käyttöoikeuksien hallintaa varten.</value>
   </data>
@@ -30,17 +33,62 @@
   <data name="A complete solution for user authentication and profile management." xml:space="preserve">
     <value>Täydellinen ratkaisu käyttäjätunnistukseen ja profiilin hallintaan.</value>
   </data>
+  <data name="A decision you can explain" xml:space="preserve">
+    <value>Perustelu päätökselle</value>
+  </data>
+  <data name="A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence." xml:space="preserve">
+    <value>Pelkkä tuttu nimi tai hyväksytty juuripaketti ei riitä. Päätös tehdään jokaisesta ratkaistusta paketista ja sen todisteista.</value>
+  </data>
+  <data name="A fingerprint of the downloaded package archive, not just its name and version." xml:space="preserve">
+    <value>Ladattu pakettiarkiston yksilöivä tiiviste, ei pelkästään sen nimi ja versio.</value>
+  </data>
   <data name="A fully responsive layout that looks great on both desktop and mobile devices." xml:space="preserve">
     <value>Täysin responsiivinen asettelu, joka näyttää erinomaiselta sekä työpöytä- että mobiililaitteilla.</value>
   </data>
+  <data name="A good first step" xml:space="preserve">
+    <value>Hyvä ensimmäinen askel</value>
+  </data>
   <data name="A modern, feature-rich, and highly extensible foundation for your next web application." xml:space="preserve">
     <value>Nykyaikainen, ominaisuuksiltaan monipuolinen ja erittäin laajennettavissa oleva perusta seuraavalle verkkosovelluksellesi.</value>
+  </data>
+  <data name="A package pulled in by another package. It needs authorization too." xml:space="preserve">
+    <value>Toisen paketin tuoma paketti. Se tarvitsee myös hyväksynnän.</value>
+  </data>
+  <data name="A package your project asks for explicitly." xml:space="preserve">
+    <value>Paketti, jota projektisi pyytää suoraan.</value>
+  </data>
+  <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
+    <value>Käytäntö, joka voi sallia ehdot täyttävät paketit; ehdoton esto tai puuttuvat artefaktin todisteet estävät ne silti.</value>
+  </data>
+  <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
+    <value>Ehdottomat estot, jotka ovat etusijalla luottamussääntöihin ja hyväksyntöihin nähden.</value>
+  </data>
+  <data name="Across the organization" xml:space="preserve">
+    <value>Koko organisaation laajuisesti</value>
+  </data>
+  <data name="Active block rules" xml:space="preserve">
+    <value>Aktiiviset estolistaukset</value>
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>Tekoälyn voimaan perustuvat käännökset</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Kaikki riippuvuudet rekisteröidään automaattisesti ja ne ovat aina saatavilla konstruktorin kautta tapahtuvan injektoinnin avulla.</value>
+  </data>
+  <data name="All requests you submitted" xml:space="preserve">
+    <value>Kaikki lähettämäsi pyynnöt</value>
+  </data>
+  <data name="Approval center" xml:space="preserve">
+    <value>Hyväksyntäkeskus</value>
+  </data>
+  <data name="Approved requests" xml:space="preserve">
+    <value>Hyväksytyt pyynnöt</value>
+  </data>
+  <data name="Artifact SHA-256" xml:space="preserve">
+    <value>Tiedoston SHA-256-tarkistussumma</value>
+  </data>
+  <data name="At a glance" xml:space="preserve">
+    <value>Yhteenveto</value>
   </data>
   <data name="Automatic Dark Mode" xml:space="preserve">
     <value>Automaattinen tumma tila</value>
@@ -57,8 +105,26 @@
   <data name="Automatic, AI-driven translation into 28 languages." xml:space="preserve">
     <value>Automaattinen, AI-pohjainen käännös 28 kielelle.</value>
   </data>
+  <data name="Awaiting review" xml:space="preserve">
+    <value>Odottaa tarkistusta</value>
+  </data>
   <data name="Background Job Processing" xml:space="preserve">
     <value>Taustatehtävien käsittely</value>
+  </data>
+  <data name="Blacklists, sources, versions, and hashes" xml:space="preserve">
+    <value>Estolistat, lähteet, versiot ja tiivisteet</value>
+  </data>
+  <data name="Blocklist comes first" xml:space="preserve">
+    <value>Estolistalla olevat paketit menevät aina etusijalle.</value>
+  </data>
+  <data name="Browse allowed packages" xml:space="preserve">
+    <value>Selaa sallittuja paketteja</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Koontiversioiden tarkistustiedot</value>
+  </data>
+  <data name="Built into every decision" xml:space="preserve">
+    <value>Sisäänrakennettu jokaiseen päätökseen</value>
   </data>
   <data name="Built-in User Management" xml:space="preserve">
     <value>Sisäänrakennettu käyttäjienhallinta</value>
@@ -75,8 +141,14 @@
   <data name="Consistency Validation" xml:space="preserve">
     <value>Konsistenssitarkistus</value>
   </data>
+  <data name="Decisions recorded for your work" xml:space="preserve">
+    <value>Työtäsi koskevat päätökset</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Kehitä vain UTC:ssä, kunnes järjestelmä muuntaa ja näyttää päivämäärät käyttäjän paikalliseen aikavyöhön automaattisesti.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Suora riippuvuus</value>
   </data>
   <data name="Dockerized for Deployment" xml:space="preserve">
     <value>Dockeröity käyttöönottoa varten</value>
@@ -96,11 +168,35 @@
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>Kirjoita integraatiotestejä helposti käyttämällä muistissa olevia tietokantoja, väliaikaisia tiedostojärjestelmiä, sisäänrakennettua mockausta ja todellisia HTTP-pyyntösimulaatioita.</value>
   </data>
+  <data name="Enter direct dependencies. S360 resolves the complete graph and records the package artifacts." xml:space="preserve">
+    <value>Syötä suorat riippuvuudet. S360 selvittää koko riippuvuusgraafin ja tallentaa pakettien artefaktit.</value>
+  </data>
+  <data name="Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children." xml:space="preserve">
+    <value>Jokainen transitiivinen paketti tarvitsee oman voimassa olevan valtuutuksensa; luotettu yläpaketti ei automaattisesti siirrä luottamusta riippuvuuksilleen.</value>
+  </data>
+  <data name="Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision." xml:space="preserve">
+    <value>Vanhentuminen, peruuttaminen ja uudet tietoturvatiedotteet voivat muuttaa tämänhetkistä vastausta poistamatta aiempaa päätöstä.</value>
+  </data>
+  <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
+    <value>Nimenomaisesti estettyjä paketteja ei hyväksytä, vaikka ne tulisivat epäsuorasti tai vastaisivat laaja-alaista toimittajasääntöä.</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Sisältää upotetun tiedostohallintajärjestelmän automaattisen avatarien kompressoinnin ja yksityisyyssuojauksen kanssa.</value>
   </data>
   <data name="Features a built-in file management system with automatic avatar compression." xml:space="preserve">
     <value>Sisältää sisäänrakennetun tiedostonhallintajärjestelmän automaattisella avatar-pakkauksella.</value>
+  </data>
+  <data name="Find an existing approval" xml:space="preserve">
+    <value>Etsi olemassa oleva hyväksyntä</value>
+  </data>
+  <data name="Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view." xml:space="preserve">
+    <value>Seuraa pyyntöjä ensimmäisestä paketista lopulliseen päätökseen asti, selvitä, mitä organisaatiosi jo sallii, ja pidä kehittyvät riskit mielessä.</value>
+  </data>
+  <data name="Follow the decision" xml:space="preserve">
+    <value>Seuraa päätöstä</value>
+  </data>
+  <data name="For authorized reviewers" xml:space="preserve">
+    <value>Valtuutetuille tarkastajille</value>
   </data>
   <data name="Handle recurring jobs like cleanup and synchronization with a comprehensive GUI for monitoring execution history and logs." xml:space="preserve">
     <value>Käsittele toistuvia tehtäviä, kuten tyhjennyksen ja synkronoinnin, laajalla GUI:lla suoritushistorian ja lokien seuraamiseksi.</value>
@@ -108,11 +204,35 @@
   <data name="Hello World!" xml:space="preserve">
     <value>Hei maailma!</value>
   </data>
+  <data name="How S360 helps" xml:space="preserve">
+    <value>Miten S360 auttaa</value>
+  </data>
+  <data name="In progress" xml:space="preserve">
+    <value>Käynnissä</value>
+  </data>
+  <data name="Include the whole graph" xml:space="preserve">
+    <value>Sisällytä koko riippuvuusgraafi</value>
+  </data>
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Sisältää laajan dokumentaation ja käytännön esimerkkejä, joiden avulla pääset nopeasti alkuun.</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Integroitu tiedostonhallinta</value>
+  </data>
+  <data name="Keep the wider picture in view." xml:space="preserve">
+    <value>Pidä kokonaiskuva mielessä.</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Tunnetut haavoittuvuudet</value>
+  </data>
+  <data name="Last successful OSV sync" xml:space="preserve">
+    <value>Viimeisin onnistunut OSV-synkronointi</value>
+  </data>
+  <data name="Learn about the workflow" xml:space="preserve">
+    <value>Tutustu työnkulkuun</value>
+  </data>
+  <data name="Match the actual artifact" xml:space="preserve">
+    <value>Varmista, että vastine vastaa todellista pakettitiedostoa</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Mallit tarkistetaan molemmilla puolilla, asiakas- ja palvelinpuolella, tietojen annotaatioiden perusteella.</value>
@@ -123,8 +243,29 @@
   <data name="Multiple Database Support" xml:space="preserve">
     <value>Usean tietokannan tuki</value>
   </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Omat pyyntöni</value>
+  </data>
+  <data name="New request" xml:space="preserve">
+    <value>Uusi pyyntö</value>
+  </data>
+  <data name="No requests yet" xml:space="preserve">
+    <value>Ei pyyntöjä vielä</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect -integraatio</value>
+  </data>
+  <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
+    <value>Pakettitiedostot, jotka on kirjattu molemmissa ekosysteemeissä, mukaan lukien kohteet, joita ei ole tällä hetkellä hyväksytty.</value>
+  </data>
+  <data name="Policy" xml:space="preserve">
+    <value>Käytäntö</value>
+  </data>
+  <data name="Policy management" xml:space="preserve">
+    <value>Käytäntöjen hallinta</value>
+  </data>
+  <data name="Quick and detailed risk views" xml:space="preserve">
+    <value>Nopeat ja yksityiskohtaiset riskinäkymät</value>
   </data>
   <data name="RBAC Authorization" xml:space="preserve">
     <value>RBAC-valtuutus</value>
@@ -132,17 +273,47 @@
   <data name="Read the document" xml:space="preserve">
     <value>Lue dokumentti</value>
   </data>
+  <data name="Recent activity" xml:space="preserve">
+    <value>Viimeaikainen toiminta</value>
+  </data>
+  <data name="Request overview" xml:space="preserve">
+    <value>Pyyntöjen yleiskatsaus</value>
+  </data>
+  <data name="Request what is missing" xml:space="preserve">
+    <value>Pyydä puuttuvaa</value>
+  </data>
+  <data name="Resolving or awaiting review" xml:space="preserve">
+    <value>Käsittelyssä tai odottaa tarkistusta</value>
+  </data>
   <data name="Responsive Design" xml:space="preserve">
     <value>Responsiivinen suunnittelu</value>
   </data>
+  <data name="Review pending and expiring decisions" xml:space="preserve">
+    <value>Tarkastele odottavia ja vanhentuvia päätöksiä</value>
+  </data>
+  <data name="Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve." xml:space="preserve">
+    <value>Arvioijat näkevät uudet riippuvuudet, estetyt kohteet, haavoittuvuushavainnot ja täsmälleen sen raportin, jonka he hyväksyvät.</value>
+  </data>
+  <data name="Revisit the risk" xml:space="preserve">
+    <value>Arvioi riski uudelleen</value>
+  </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Vahva integraatiotestaus</value>
+  </data>
+  <data name="Rollout note:" xml:space="preserve">
+    <value>Käyttöönoton huomautus:</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>Suunnitellun tehtävän hallinta</value>
   </data>
   <data name="Seamlessly integrate with any OpenID Connect provider, with automatic role synchronization." xml:space="preserve">
     <value>Saatonta integrointi minkä tahansa OpenID Connect -palveluntarjoajan kanssa, automaattisella roolisynkronoinnilla.</value>
+  </data>
+  <data name="Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog." xml:space="preserve">
+    <value>Hae saatavilla olevasta luettelosta NuGet- ja npm-paketteja, toimittajia, tarkkoja versioita ja jokerimerkkisääntöjä.</value>
+  </data>
+  <data name="See reported dependency decisions" xml:space="preserve">
+    <value>Katso ilmoitetut riippuvuuksia koskevat päätökset</value>
   </data>
   <data name="Smart Configuration Overrides" xml:space="preserve">
     <value>Älykäs asetusten ohittaminen</value>
@@ -156,20 +327,68 @@
   <data name="Start a new project" xml:space="preserve">
     <value>Aloita uusi projekti</value>
   </data>
+  <data name="Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here." xml:space="preserve">
+    <value>Aloita selaamalla luetteloa. Kun tarvitset uuden paketin, pyyntösi ja sen täydellinen riippuvuusraportti näkyvät täällä.</value>
+  </data>
+  <data name="Suppliers, trust rules, and absolute blocks" xml:space="preserve">
+    <value>Toimittajat, luottamussäännöt ja ehdottomat estot</value>
+  </data>
   <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
     <value>Tukee sekä ympäristömuuttujia että tietokantaperustaisia asetuksia, ja annetaan ympäristömuuttujille automaattisesti etusija, jotta ylikirjoitukset sujuvat ilman hankaluuksia.</value>
   </data>
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>Navigointipalkki sopeutuu automaattisesti käyttäjän roolien ja käyttöoikeuksien perusteella.</value>
   </data>
+  <data name="The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs." xml:space="preserve">
+    <value>Pakettinimi, tarkka versio, hyväksytty lähde ja arkiston SHA-256-tiiviste sitovat arvioinnin konkreettisiin tietoihin.</value>
+  </data>
+  <data name="These counts describe your own requests. Organization-wide review figures appear only for authorized readers." xml:space="preserve">
+    <value>Nämä luvut koskevat omia pyyntöjäsi. Koko organisaation tarkasteluluvut näkyvät vain niille, joilla on siihen käyttöoikeus.</value>
+  </data>
+  <data name="These organization-wide indicators are not a substitute for opening the underlying report." xml:space="preserve">
+    <value>Nämä koko organisaatiota koskevat tunnusluvut eivät korvaa varsinaisen raportin avaamista.</value>
+  </data>
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>Tämä on malliprojekti, josta aloitamme matkamme...</value>
+  </data>
+  <data name="This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment." xml:space="preserve">
+    <value>Tätä työtilaa valmistellaan ennen Runner-valvonnan käyttöönottoa. Hyväksytty Web-pyyntö ei tarkoita, että jokainen koontiversio olisi jo tarkistettu; CI-integraatio otetaan käyttöön palvelun käyttöönoton jälkeen.</value>
+  </data>
+  <data name="Tracked artifacts" xml:space="preserve">
+    <value>Seuratut artefaktit</value>
+  </data>
+  <data name="Transitive dependency" xml:space="preserve">
+    <value>Epäsuora riippuvuus</value>
+  </data>
+  <data name="Trust rule" xml:space="preserve">
+    <value>Luottamussääntö</value>
+  </data>
+  <data name="View all" xml:space="preserve">
+    <value>Näytä kaikki</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Tervetuloa</value>
   </data>
+  <data name="Welcome to S360." xml:space="preserve">
+    <value>Tervetuloa S360:een.</value>
+  </data>
+  <data name="What S360 checks before a dependency is trusted." xml:space="preserve">
+    <value>Mitä S360 tarkistaa ennen kuin riippuvuuteen luotetaan.</value>
+  </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Miksi käyttää Aiursoft Templatea?</value>
+  </data>
+  <data name="Words you will see" xml:space="preserve">
+    <value>Termejä, joita tulet näkemään</value>
+  </data>
+  <data name="Your latest requests" xml:space="preserve">
+    <value>Viimeisimmät pyyntösi</value>
+  </data>
+  <data name="Your supply-chain workspace" xml:space="preserve">
+    <value>Toimitusketjusi työtila</value>
+  </data>
+  <data name="Your work, without the guesswork." xml:space="preserve">
+    <value>Työsi ilman arvailua.</value>
   </data>
 
 </root>

@@ -10,6 +10,12 @@ namespace Aiursoft.S360.MySql.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            // Keep the BuildCheckId foreign key indexed while replacing its index.
+            migrationBuilder.CreateIndex(
+                name: "IX_BuildCheckDependencies_BuildCheckId",
+                table: "BuildCheckDependencies",
+                column: "BuildCheckId");
+
             migrationBuilder.DropIndex(
                 name: "IX_BuildCheckDependencies_BuildCheckId_PackageArtifactId",
                 table: "BuildCheckDependencies");
@@ -95,11 +101,6 @@ namespace Aiursoft.S360.MySql.Migrations
                 table: "BuildChecks",
                 columns: new[] { "RunId", "BatchIndex" },
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BuildCheckDependencies_BuildCheckId",
-                table: "BuildCheckDependencies",
-                column: "BuildCheckId");
         }
 
         /// <inheritdoc />
@@ -108,10 +109,6 @@ namespace Aiursoft.S360.MySql.Migrations
             migrationBuilder.DropIndex(
                 name: "IX_BuildChecks_RunId_BatchIndex",
                 table: "BuildChecks");
-
-            migrationBuilder.DropIndex(
-                name: "IX_BuildCheckDependencies_BuildCheckId",
-                table: "BuildCheckDependencies");
 
             migrationBuilder.DropColumn(
                 name: "BatchCount",
@@ -160,6 +157,10 @@ namespace Aiursoft.S360.MySql.Migrations
                 table: "BuildCheckDependencies",
                 columns: new[] { "BuildCheckId", "PackageArtifactId" },
                 unique: true);
+
+            migrationBuilder.DropIndex(
+                name: "IX_BuildCheckDependencies_BuildCheckId",
+                table: "BuildCheckDependencies");
         }
     }
 }

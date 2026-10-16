@@ -194,7 +194,7 @@ public class SpecialAccountTests
     [TestMethod]
     public async Task TestSeedCreatesInitialAdminWithAllPermissions()
     {
-        using var scope = _server!.Services.CreateScope();
+        using var scope = _server.Services.CreateScope();
         var users = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
         var roles = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
         var admin = await users.FindByNameAsync("admin");

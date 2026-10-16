@@ -62,21 +62,38 @@ public static class ProgramExtends
         
         var settingsService = services.GetRequiredService<GlobalSettingsService>();
         await settingsService.SeedSettingsAsync();
-        var shouldSeed = await ShouldSeedAsync(db);
 
-        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-        var administrators = await roleManager.FindByNameAsync("Administrators");
-        if (administrators == null)
+        var shouldSeed = await ShouldSeedAsync(db);
+        if (!shouldSeed)
         {
-            administrators = new IdentityRole("Administrators");
-            await roleManager.CreateAsync(administrators);
+            logger.LogInformation("Do not need to seed the database. There are already users or roles present.");
+            return host;
         }
-        var existingAdministratorClaims = (await roleManager.GetClaimsAsync(administrators))
-            .Where(c => c.Type == AppPermissions.Type).Select(c => c.Value).ToHashSet();
+
+        logger.LogInformation("Seeding the database with initial data...");
+        var userManager = services.GetRequiredService<UserManager<User>>();
+        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+
+        var role = await roleManager.FindByNameAsync("Administrators");
+        if (role == null)
+        {
+            role = new IdentityRole("Administrators");
+            await roleManager.CreateAsync(role);
+        }
+
+        var existingClaims = await roleManager.GetClaimsAsync(role);
+        var existingClaimValues = existingClaims
+            .Where(c => c.Type == AppPermissions.Type)
+            .Select(c => c.Value)
+            .ToHashSet();
+
         foreach (var permission in AppPermissions.GetAllPermissions())
         {
-            if (!existingAdministratorClaims.Contains(permission.Key))
-                await roleManager.AddClaimAsync(administrators, new Claim(AppPermissions.Type, permission.Key));
+            if (!existingClaimValues.Contains(permission.Key))
+            {
+                var claim = new Claim(AppPermissions.Type, permission.Key);
+                await roleManager.AddClaimAsync(role, claim);
+            }
         }
 
         var employees = await roleManager.FindByNameAsync("Employees");
@@ -89,21 +106,6 @@ public static class ProgramExtends
         if (!employeeClaims.Any(c => c.Type == AppPermissions.Type && c.Value == AppPermissionNames.CanSubmitDependencyRequests))
             await roleManager.AddClaimAsync(employees,
                 new Claim(AppPermissions.Type, AppPermissionNames.CanSubmitDependencyRequests));
-
-        if (!shouldSeed)
-        {
-            logger.LogInformation("Do not need to seed the database. There are already users or roles present.");
-            return host;
-        }
-
-        logger.LogInformation("Seeding the database with initial data...");
-        var userManager = services.GetRequiredService<UserManager<User>>();
-        var role = await roleManager.FindByNameAsync("Administrators");
-        if (role == null)
-        {
-            role = new IdentityRole("Administrators");
-            await roleManager.CreateAsync(role);
-        }
 
         if (!await db.Users.AnyAsync(u => u.UserName == "admin"))
         {
@@ -119,5 +121,4 @@ public static class ProgramExtends
 
         return host;
     }
-
 }

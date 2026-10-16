@@ -1,6 +1,7 @@
 using System.Net;
 using Aiursoft.DbTools;
 using Aiursoft.S360.Entities;
+using Aiursoft.S360.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Aiursoft.CSTools.Tools;
 using static Aiursoft.WebTools.Extends;
@@ -33,6 +34,11 @@ public class SpecialAccountTests
         Environment.SetEnvironmentVariable("AppSettings__DefaultRole", "Administrators");
         
         _server = await AppAsync<Startup>([], port: _port);
+        using (var scope = _server.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            await db.Database.EnsureDeletedAsync();
+        }
         await _server.UpdateDbAsync<TemplateDbContext>();
         await _server.SeedAsync();
         await _server.StartAsync();
@@ -42,6 +48,11 @@ public class SpecialAccountTests
     public async Task Teardown()
     {
         await _server.StopAsync();
+        using (var scope = _server.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            await db.Database.EnsureDeletedAsync();
+        }
         _server.Dispose();
         Environment.SetEnvironmentVariable("AppSettings__DefaultRole", null);
     }
@@ -70,6 +81,134 @@ public class SpecialAccountTests
             var roles = await userManager.GetRolesAsync(user);
             Assert.IsTrue(roles.Contains("Administrators"));
         }
+    }
+
+    [TestMethod]
+    public async Task TestSeedDoesNotRecreateDeletedAdmin()
+    {
+        using (var scope = _server.Services.CreateScope())
+        {
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+            var admin = await userManager.FindByNameAsync("admin");
+            Assert.IsNotNull(admin);
+            Assert.IsTrue((await userManager.DeleteAsync(admin)).Succeeded);
+        }
+
+        await _server.SeedAsync();
+
+        using var verification = _server.Services.CreateScope();
+        var users = verification.ServiceProvider.GetRequiredService<UserManager<User>>();
+        Assert.IsNull(await users.FindByNameAsync("admin"));
+    }
+
+    [TestMethod]
+    public async Task TestSeedDoesNotRestoreRevokedAdminPermissions()
+    {
+        using (var scope = _server.Services.CreateScope())
+        {
+            var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var admin = await userManager.FindByNameAsync("admin");
+            var role = await roleManager.FindByNameAsync("Administrators");
+            Assert.IsNotNull(admin);
+            Assert.IsNotNull(role);
+            Assert.IsTrue((await userManager.RemoveFromRoleAsync(admin, "Administrators")).Succeeded);
+            foreach (var claim in await roleManager.GetClaimsAsync(role))
+            {
+                Assert.IsTrue((await roleManager.RemoveClaimAsync(role, claim)).Succeeded);
+            }
+        }
+
+        await _server.SeedAsync();
+
+        using var verification = _server.Services.CreateScope();
+        var users = verification.ServiceProvider.GetRequiredService<UserManager<User>>();
+        var roles = verification.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var existingAdmin = await users.FindByNameAsync("admin");
+        var existingRole = await roles.FindByNameAsync("Administrators");
+        Assert.IsNotNull(existingAdmin);
+        Assert.IsNotNull(existingRole);
+        Assert.IsFalse(await users.IsInRoleAsync(existingAdmin, "Administrators"));
+        Assert.AreEqual(0, (await roles.GetClaimsAsync(existingRole)).Count);
+    }
+
+    [TestMethod]
+    public async Task TestSeedDoesNotRecreateDeletedAdministratorRole()
+    {
+        using (var scope = _server.Services.CreateScope())
+        {
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var role = await roleManager.FindByNameAsync("Administrators");
+            Assert.IsNotNull(role);
+            Assert.IsTrue((await roleManager.DeleteAsync(role)).Succeeded);
+        }
+
+        await _server.SeedAsync();
+
+        using var verification = _server.Services.CreateScope();
+        var roles = verification.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        Assert.IsNull(await roles.FindByNameAsync("Administrators"));
+    }
+
+    [TestMethod]
+    public async Task TestSeedDoesNotRecreateDeletedEmployeeRole()
+    {
+        using (var scope = _server.Services.CreateScope())
+        {
+            var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var role = await roleManager.FindByNameAsync("Employees");
+            Assert.IsNotNull(role);
+            Assert.IsTrue((await roleManager.DeleteAsync(role)).Succeeded);
+        }
+
+        await _server.SeedAsync();
+
+        using var verification = _server.Services.CreateScope();
+        var roles = verification.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        Assert.IsNull(await roles.FindByNameAsync("Employees"));
+    }
+
+    [TestMethod]
+    public async Task TestSeedDoesNotRestoreRevokedEmployeePermissions()
+    {
+        using (var scope = _server.Services.CreateScope())
+        {
+            var roles = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var role = await roles.FindByNameAsync("Employees");
+            Assert.IsNotNull(role);
+            foreach (var claim in await roles.GetClaimsAsync(role))
+            {
+                Assert.IsTrue((await roles.RemoveClaimAsync(role, claim)).Succeeded);
+            }
+        }
+
+        await _server.SeedAsync();
+
+        using var verification = _server.Services.CreateScope();
+        var roleManager = verification.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var employees = await roleManager.FindByNameAsync("Employees");
+        Assert.IsNotNull(employees);
+        Assert.AreEqual(0, (await roleManager.GetClaimsAsync(employees)).Count);
+    }
+
+    [TestMethod]
+    public async Task TestSeedCreatesInitialAdminWithAllPermissions()
+    {
+        using var scope = _server.Services.CreateScope();
+        var users = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
+        var roles = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+        var admin = await users.FindByNameAsync("admin");
+        var role = await roles.FindByNameAsync("Administrators");
+        Assert.IsNotNull(admin);
+        Assert.IsNotNull(role);
+        Assert.IsTrue(await users.IsInRoleAsync(admin, "Administrators"));
+        var claims = (await roles.GetClaimsAsync(role))
+            .Where(c => c.Type == AppPermissions.Type).Select(c => c.Value).ToHashSet();
+        CollectionAssert.AreEquivalent(AppPermissions.GetAllPermissions().Select(p => p.Key).ToArray(), claims.ToArray());
+        var employees = await roles.FindByNameAsync("Employees");
+        Assert.IsNotNull(employees);
+        Assert.IsTrue((await roles.GetClaimsAsync(employees)).Any(c =>
+            c.Type == AppPermissions.Type && c.Value == AppPermissionNames.CanSubmitDependencyRequests));
     }
 
     private async Task<string> GetAntiCsrfToken(string url)

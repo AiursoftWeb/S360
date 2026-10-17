@@ -93,6 +93,11 @@ public class ViewModelArgsInjector(
         _ = localizer["Preview trust rule"];
         _ = localizer["S360 overview"];
         _ = localizer["Supply chain"];
+
+        _ = localizer["Dependencies"];
+        _ = localizer["Policies"];
+        _ = localizer["Security audit"];
+        _ = localizer["Vulnerabilities"];
     }
 
     public void InjectSimple(

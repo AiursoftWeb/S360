@@ -19,9 +19,9 @@ namespace Aiursoft.S360.Controllers;
 public class DependencyReviewsController(TemplateDbContext db, UserManager<User> users, TrustService trust,
     IConfiguration configuration) : Controller
 {
-    [RenderInNavBar(NavGroupName = "Administration", NavGroupOrder = 9998,
-        CascadedLinksGroupName = "Supply chain", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 10,
-        LinkText = "Dependency approvals", LinkOrder = 2)]
+    [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
+        CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
+        LinkText = "Dependency approvals", LinkOrder = 1)]
     public async Task<IActionResult> Index(string filter = "pending", int page = 1)
     {
         if (filter is not ("pending" or "expiring" or "expired" or "all") || page is < 1 or > 10000)

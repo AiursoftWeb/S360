@@ -23,8 +23,8 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
     TrustService trust) : Controller
 {
     [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]
-    [RenderInNavBar(NavGroupName = "Features", NavGroupOrder = 2,
-        CascadedLinksGroupName = "Supply chain", CascadedLinksIcon = "package-plus", CascadedLinksOrder = 2,
+    [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
+        CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
         LinkText = "My requests", LinkOrder = 2)]
     public async Task<IActionResult> Index()
     {

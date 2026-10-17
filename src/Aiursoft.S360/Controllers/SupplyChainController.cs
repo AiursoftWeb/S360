@@ -19,9 +19,9 @@ namespace Aiursoft.S360.Controllers;
 public class SupplyChainController(TemplateDbContext db, UserManager<User> users, TrustService trust,
     IConfiguration configuration) : Controller
 {
-    [RenderInNavBar(NavGroupName = "Features", NavGroupOrder = 2,
-        CascadedLinksGroupName = "Supply chain", CascadedLinksIcon = "package-check", CascadedLinksOrder = 2,
-        LinkText = "Available dependencies", LinkOrder = 1)]
+    [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
+        CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
+        LinkText = "Dependency catalog", LinkOrder = 2)]
     public async Task<IActionResult> Index(string ecosystem = "nuget", string? query = null, int? supplierId = null,
         string? lookupName = null, string? lookupVersion = null, string? lookupSource = null)
     {
@@ -258,9 +258,9 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
     }
 
     [Authorize(Policy = AppPermissionNames.CanManageBlocklist)]
-    [RenderInNavBar(NavGroupName = "Administration", NavGroupOrder = 9998,
-        CascadedLinksGroupName = "Supply chain", CascadedLinksIcon = "shield-ban", CascadedLinksOrder = 10,
-        LinkText = "Absolute blocklist", LinkOrder = 3)]
+    [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
+        CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
+        LinkText = "Absolute blocklist", LinkOrder = 2)]
     public async Task<IActionResult> Blocklist(string ecosystem = "nuget")
     {
         if (ecosystem is not ("nuget" or "npm")) return BadRequest();

@@ -15,8 +15,8 @@ namespace Aiursoft.S360.Controllers;
 [LimitPerMin]
 public class BuildChecksController(TemplateDbContext db) : Controller
 {
-    [RenderInNavBar(NavGroupName = "Administration", NavGroupOrder = 9998,
-        CascadedLinksGroupName = "Supply chain", CascadedLinksIcon = "shield-check", CascadedLinksOrder = 10,
+    [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
+        CascadedLinksGroupName = "Security audit", CascadedLinksIcon = "shield-check", CascadedLinksOrder = 3,
         LinkText = "Build check records", LinkOrder = 2)]
     public async Task<IActionResult> Index(string? project = null, int page = 1)
     {

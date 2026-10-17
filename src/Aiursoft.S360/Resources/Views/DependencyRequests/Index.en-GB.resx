@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Package details</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>The package source is no longer permitted for S360 checks.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Recent requests</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Request a new dependency</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Source</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Submit for resolution</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Submit request</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>The registry that provides the package archive. A package from another registry requires a separate review.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Track the review progress and decisions for the dependencies you requested.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Why is this dependency needed?</value>

@@ -60,6 +60,9 @@
   <data name="Check a concrete package against rules" xml:space="preserve">
     <value>检查具体软件包是否符合规则</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>依赖目录</value>
+  </data>
   <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
     <value>请输入 UTC 时间；此字段不会将设备的本地时间转换为 UTC。</value>
   </data>

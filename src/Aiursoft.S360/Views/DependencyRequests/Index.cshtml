@@ -5,13 +5,23 @@
 
 <div class="s360-workspace">
 <div class="s360-workspace-head">
-<h1>@Localizer["My dependency requests"]</h1>
-<p class="text-muted">@Localizer["Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment."]</p>
+<h1>@(Model.ShowHistory ? Localizer["My dependency requests"] : Localizer["Request a new dependency"])</h1>
+@if (Model.ShowCreateForm)
+{
+    <p class="text-muted">@Localizer["Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed."]</p>
+}
+else
+{
+    <p class="text-muted">@Localizer["Track review progress and decisions for the dependencies you requested."]</p>
+    <a asp-action="Create" class="btn btn-primary"><i data-lucide="package-plus"></i> @Localizer["Request a new dependency"]</a>
+}
 </div>
 
 <div class="s360-workspace-layout">
 <div class="s360-workspace-main">
-<div class="card mb-4"><div class="card-header"><h2 class="h5 mb-0">@Localizer["New request"]</h2></div><div class="card-body">
+@if (Model.ShowCreateForm)
+{
+<div id="new-request" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Package details"]</h2></div><div class="card-body">
     <form asp-action="Submit" method="post" class="row g-3">
         <div class="col-md-3"><label class="form-label">@Localizer["Ecosystem"] <span class="s360-field-help" title="@Localizer["NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs."]" aria-label="@Localizer["NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs."]" tabindex="0">?</span></label>
             <select id="request-ecosystem" name="ecosystem" class="form-select"><option value="nuget">NuGet</option><option value="npm">npm</option></select></div>
@@ -27,11 +37,14 @@
             <input name="project" class="form-control mb-3" maxlength="200" />
             <label class="form-label">@Localizer["Why is this dependency needed?"]</label>
             <textarea name="justification" class="form-control" rows="3" maxlength="2000" required></textarea></div>
-        <div class="col-12"><button class="btn btn-primary">@Localizer["Submit for resolution"]</button></div>
+        <div class="col-12"><button class="btn btn-primary">@Localizer["Submit request"]</button></div>
     </form>
 </div></div>
 
-<div class="card"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recent requests"]</h2></div>
+}
+@if (Model.ShowHistory)
+{
+<div id="recent-requests" class="card s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recent requests"]</h2></div>
     <div class="table-responsive"><table class="table mb-0"><thead><tr><th>@Localizer["Created"]</th><th>@Localizer["Ecosystem"]</th>
         <th>@Localizer["Project"]</th><th>@Localizer["Status"]</th><th></th></tr></thead><tbody>
         @foreach (var application in Model.Applications)
@@ -50,6 +63,7 @@
         }
     </tbody></table></div>
 </div>
+}
 </div>
 @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
     Localizer["Understand your request"].Value,

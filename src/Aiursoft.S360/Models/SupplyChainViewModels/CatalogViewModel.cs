@@ -7,7 +7,7 @@ public enum CatalogAuditStatus { Current, Failed, Missing, Stale }
 
 public class CatalogViewModel : UiStackLayoutViewModel
 {
-    public CatalogViewModel() => PageTitle = "Available dependencies";
+    public CatalogViewModel() => PageTitle = "Dependency catalog";
     public string Ecosystem { get; set; } = "nuget";
     public string? Query { get; set; }
     public int? SupplierId { get; set; }

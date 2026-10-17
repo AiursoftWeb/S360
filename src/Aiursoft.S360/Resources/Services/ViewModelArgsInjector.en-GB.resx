@@ -90,6 +90,9 @@
   <data name="Dependency approvals" xml:space="preserve">
     <value>Dependency approvals</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Dependency catalogue</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>Directory</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Request a new dependency</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>Role Details</value>

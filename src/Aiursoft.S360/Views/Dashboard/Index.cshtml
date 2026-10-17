@@ -12,11 +12,11 @@
             <h1>@Localizer["Welcome to S360."]</h1>
             <p>@Localizer["Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view."]</p>
             <div class="s360-dashboard-actions">
-                <a asp-controller="SupplyChain" asp-action="Index" class="btn btn-light"><i data-lucide="library-big"></i> @Localizer["Browse allowed packages"]</a>
                 @if (Model.CanSubmitRequests)
                 {
-                    <a asp-controller="DependencyRequests" asp-action="Index" class="btn btn-outline-light"><i data-lucide="package-plus"></i> @Localizer["New request"]</a>
+                    <a asp-controller="DependencyRequests" asp-action="Create" class="btn btn-light"><i data-lucide="package-plus"></i> @Localizer["Request a new dependency"]</a>
                 }
+                <a asp-controller="SupplyChain" asp-action="Index" class="btn @(Model.CanSubmitRequests ? "btn-outline-light" : "btn-light")"><i data-lucide="library-big"></i> @Localizer["Dependency catalog"]</a>
             </div>
         </div>
         <div class="s360-dashboard-hero-art" aria-hidden="true">
@@ -53,7 +53,7 @@
             <div class="s360-panel-header"><div><span class="s360-kicker">@Localizer["Recent activity"]</span><h2>@Localizer["Your latest requests"]</h2></div>
                 @if (Model.CanSubmitRequests)
                 {
-                    <a asp-controller="DependencyRequests" asp-action="Index" class="s360-text-link">@Localizer["View all"] <i data-lucide="arrow-right"></i></a>
+                    <a asp-controller="DependencyRequests" asp-action="History" class="s360-text-link">@Localizer["View all"] <i data-lucide="arrow-right"></i></a>
                 }
             </div>
             @if (Model.RecentRequests.Count == 0)

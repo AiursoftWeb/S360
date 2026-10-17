@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet 用于 .NET 包；npm 用于 JavaScript 包。请选择项目实际安装包时使用的那个。</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>软件包详情</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>S360 检查不再允许使用此软件包源。</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>近期请求</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>申请新增依赖项</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>向项目中添加新软件包前，请先申请审批。请填写准确的软件包名称和版本，并说明添加原因。</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>软件源</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>提交并解析</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>提交请求</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>提供软件包存档的注册表。来自其他注册表的软件包需要单独审核。</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>跟踪您所申请依赖项的审核进度和决定。</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>为什么需要此依赖项？</value>

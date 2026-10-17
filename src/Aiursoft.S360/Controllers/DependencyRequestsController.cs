@@ -23,18 +23,34 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
     TrustService trust) : Controller
 {
     [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]
+    public Task<IActionResult> Index() => RenderRequests(showForm: true, showHistory: true);
+
+    [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]
+    [HttpGet]
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
         CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
-        LinkText = "My requests", LinkOrder = 2)]
-    public async Task<IActionResult> Index()
+        LinkText = "Request a new dependency", LinkOrder = 1)]
+    public Task<IActionResult> Create() => RenderRequests(showForm: true, showHistory: false);
+
+    [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]
+    [HttpGet]
+    [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
+        CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
+        LinkText = "My requests", LinkOrder = 3)]
+    public Task<IActionResult> History() => RenderRequests(showForm: false, showHistory: true);
+
+    private async Task<IActionResult> RenderRequests(bool showForm, bool showHistory)
     {
         var userId = users.GetUserId(User);
         if (userId == null) return Unauthorized();
         var model = new MyRequestsViewModel
         {
-            Applications = await db.DependencyApplications.AsNoTracking()
+            ShowCreateForm = showForm,
+            ShowHistory = showHistory,
+            PageTitle = showHistory ? "My dependency requests" : "Request a new dependency",
+            Applications = showHistory ? await db.DependencyApplications.AsNoTracking()
                 .Where(a => a.RequestedByUserId == userId)
-                .OrderByDescending(a => a.CreatedAtUtc).Take(100).ToListAsync(),
+                .OrderByDescending(a => a.CreatedAtUtc).Take(100).ToListAsync() : [],
             NuGetSources = configuration.GetSection("SupplyChain:NuGetSources").Get<string[]>()?.ToList() ?? [],
             NpmSources = configuration.GetSection("SupplyChain:NpmSources").Get<string[]>()?.ToList() ?? []
         };
@@ -66,7 +82,7 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
                             pathsByApplication[package.ApplicationId].GetValueOrDefault(artifact.Id, artifact.Name));
             }
         }
-        return this.StackView(model);
+        return this.StackView(model, nameof(Index));
     }
 
     [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]

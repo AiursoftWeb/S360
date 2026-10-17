@@ -60,6 +60,9 @@
   <data name="Check a concrete package against rules" xml:space="preserve">
     <value>Check an individual package against the rules</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Dependency catalogue</value>
+  </data>
   <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
     <value>Enter the UTC time; this field does not convert your device&apos;s local time.</value>
   </data>

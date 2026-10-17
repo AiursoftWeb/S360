@@ -90,6 +90,9 @@
   <data name="Dependency approvals" xml:space="preserve">
     <value>依赖项审批</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>依赖目录</value>
+  </data>
   <data name="Directory" xml:space="preserve">
     <value>目录</value>
   </data>
@@ -167,6 +170,9 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>注册</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>申请新的依赖项</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>角色详情</value>

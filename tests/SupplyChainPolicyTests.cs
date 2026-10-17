@@ -291,7 +291,9 @@ public class SupplyChainPolicyTests
     }
 
     [TestMethod]
-    public async Task ExcludedAdvisoryBlocksOnlyItsAffectedVersions()
+    [DataRow("10.0.2")]
+    [DataRow("10.0.0-preview.1")]
+    public async Task ExcludedAdvisoryBlocksOnlyItsAffectedVersions(string introduced)
     {
         var options = new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase("s360-exclusion-" + Guid.NewGuid()).Options;
@@ -301,8 +303,8 @@ public class SupplyChainPolicyTests
         var advisory = new Vulnerability
         {
             SourceId = "GHSA-test", Ecosystem = "nuget", PackageName = "microsoft.extensions.logging",
-            RawAffectedJson = """
-                [{"package":{"ecosystem":"NuGet","name":"Microsoft.Extensions.Logging"},"ranges":[{"type":"SEMVER","events":[{"introduced":"10.0.2"},{"fixed":"10.0.8"}]}]}]
+            RawAffectedJson = $$"""
+                [{"package":{"ecosystem":"NuGet","name":"Microsoft.Extensions.Logging"},"ranges":[{"type":"SEMVER","events":[{"introduced":"{{introduced}}"},{"fixed":"10.0.8"}]}]}]
                 """
         };
         db.Vulnerabilities.Add(advisory);

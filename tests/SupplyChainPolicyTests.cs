@@ -300,7 +300,7 @@ public class SupplyChainPolicyTests
         db.TrustRules.Add(rule);
         var advisory = new Vulnerability
         {
-            SourceId = "GHSA-test", Ecosystem = "nuget", PackageName = "Microsoft.Extensions.Logging",
+            SourceId = "GHSA-test", Ecosystem = "nuget", PackageName = "microsoft.extensions.logging",
             RawAffectedJson = """
                 [{"package":{"ecosystem":"NuGet","name":"Microsoft.Extensions.Logging"},"ranges":[{"type":"SEMVER","events":[{"introduced":"10.0.2"},{"fixed":"10.0.8"}]}]}]
                 """
@@ -313,12 +313,16 @@ public class SupplyChainPolicyTests
         });
         var vulnerable = Package(version: "10.0.2");
         var fixedPackage = Package(version: "10.0.8");
+        var siblingPackage = Package(name: "Microsoft.Extensions.Configuration", version: "10.0.2");
         db.PackageArtifacts.AddRange(
             new PackageArtifact { Ecosystem = "nuget", Name = vulnerable.Name, Version = vulnerable.Version,
                 Source = vulnerable.Source, Sha256 = vulnerable.Sha256, LastCheckedAtUtc = DateTime.UtcNow,
                 SourceVerifiedAtUtc = DateTime.UtcNow, FirstTrustedAtUtc = DateTime.UtcNow },
             new PackageArtifact { Ecosystem = "nuget", Name = fixedPackage.Name, Version = fixedPackage.Version,
                 Source = fixedPackage.Source, Sha256 = fixedPackage.Sha256, LastCheckedAtUtc = DateTime.UtcNow,
+                SourceVerifiedAtUtc = DateTime.UtcNow, FirstTrustedAtUtc = DateTime.UtcNow },
+            new PackageArtifact { Ecosystem = "nuget", Name = siblingPackage.Name, Version = siblingPackage.Version,
+                Source = siblingPackage.Source, Sha256 = siblingPackage.Sha256, LastCheckedAtUtc = DateTime.UtcNow,
                 SourceVerifiedAtUtc = DateTime.UtcNow, FirstTrustedAtUtc = DateTime.UtcNow });
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
@@ -326,9 +330,10 @@ public class SupplyChainPolicyTests
             LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
         });
         await db.SaveChangesAsync();
-        var decisions = await new TrustService(db).CheckAsync([vulnerable, fixedPackage]);
+        var decisions = await new TrustService(db).CheckAsync([vulnerable, fixedPackage, siblingPackage]);
         Assert.IsFalse(decisions[0].Trusted);
         Assert.IsTrue(decisions[1].Trusted);
+        Assert.IsTrue(decisions[2].Trusted);
     }
 
     [TestMethod]

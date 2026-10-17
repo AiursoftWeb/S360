@@ -199,6 +199,9 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
     internal static TrustRuleVulnerabilityExclusion? MatchingExclusion(TrustRule rule, Dependency dependency,
         IReadOnlyCollection<TrustRuleVulnerabilityExclusion>? exclusions) => exclusions?.FirstOrDefault(e =>
         e.TrustRuleId == rule.Id && e.Vulnerability is { Withdrawn: false } &&
+        e.Vulnerability.Ecosystem == dependency.Ecosystem &&
+        e.Vulnerability.PackageName.Equals(dependency.Name,
+            dependency.Ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
         OsvRangeMatcher.Intersects(e.Vulnerability.RawAffectedJson, dependency.Ecosystem,
             dependency.Name, dependency.Version) != RangeRisk.NotAffected);
 }

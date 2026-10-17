@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Các quyết định đã được ghi nhận cho công việc của bạn</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Danh mục thư viện phụ thuộc</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Phát triển riêng biệt bằng múi giờ UTC, trong khi hệ thống tự động chuyển đổi và hiển thị ngày tháng theo múi giờ địa phương của người dùng.</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>Hoạt động gần đây</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Yêu cầu một thư viện phụ thuộc mới</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>Tổng quan yêu cầu</value>

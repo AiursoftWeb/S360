@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet предназначен для пакетов .NET, а npm — для пакетов JavaScript. Выберите тот, который действительно используется для установки пакетов в вашем проекте.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Сведения о пакете</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>Источник пакета больше не разрешён для проверок S360.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Недавние запросы</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Запросить новую зависимость</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Запросите одобрение, прежде чем добавлять новый пакет в проект. Укажите его точное название и версию, а также объясните, зачем он нужен.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Источник</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Отправить на проверку</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Отправить запрос</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Реестр, из которого загружается архив пакета. Пакет из другого реестра требует отдельной проверки.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Отслеживайте ход проверки и решения по запрошенным вами зависимостям.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Почему нужна эта зависимость?</value>

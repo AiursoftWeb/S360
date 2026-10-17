@@ -66,6 +66,9 @@
   <data name="Retry as a new request" xml:space="preserve">
     <value>Yeni bir istek olarak yeniden dene</value>
   </data>
+  <data name="Review decision" xml:space="preserve">
+    <value>İnceleme kararı</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
   </data>

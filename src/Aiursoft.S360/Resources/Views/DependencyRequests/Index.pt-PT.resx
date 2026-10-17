@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>O NuGet destina-se a pacotes .NET; o npm destina-se a pacotes JavaScript. Escolha aquele que o seu projeto realmente instala.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Detalhes do pacote</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>A origem do pacote já não é permitida nas verificações do S360.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Pedidos recentes</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Pedir uma nova dependência</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Peça aprovação antes de adicionar um novo pacote ao seu projeto. Indique o nome e a versão exatos e explique por que são necessários.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Origem</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Submeter para resolução</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Enviar pedido</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>O registo que fornece o arquivo do pacote. Um pacote proveniente de outro registo precisa de uma análise própria.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Acompanhe o progresso da análise e as decisões relativas às dependências que solicitou.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Porque é necessária esta dependência?</value>

@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Työtäsi koskevat päätökset</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Riippuvuusluettelo</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Kehitä vain UTC:ssä, kunnes järjestelmä muuntaa ja näyttää päivämäärät käyttäjän paikalliseen aikavyöhön automaattisesti.</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>Viimeaikainen toiminta</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Pyydä uutta riippuvuutta</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>Pyyntöjen yleiskatsaus</value>

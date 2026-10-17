@@ -66,6 +66,9 @@
   <data name="Retry as a new request" xml:space="preserve">
     <value>Reintentar como una nueva solicitud</value>
   </data>
+  <data name="Review decision" xml:space="preserve">
+    <value>Decisión de revisión</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
   </data>

@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet 用於 .NET 套件；npm 用於 JavaScript 套件。請選擇你的專案實際安裝套件所用的那一個。</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>套件詳情</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>套件來源已不再獲准用於 S360 檢查。</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>最近的請求</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>申請新增相依套件</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>在將新套件加入你的專案前，請先申請審批。請輸入套件的準確名稱和版本，並說明所需原因。</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>來源</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>提交以進行解析</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>提交申請</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>提供套件封存檔的登錄庫。來自其他登錄庫的套件需要另行審核。</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>追蹤您所申請的相依套件的審核進度及決定。</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>為何需要這項相依項目？</value>

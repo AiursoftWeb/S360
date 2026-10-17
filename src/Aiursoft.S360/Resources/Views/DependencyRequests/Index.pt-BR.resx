@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet é para pacotes .NET; npm é para pacotes JavaScript. Escolha aquele que seu projeto realmente instala.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Detalhes do pacote</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>A origem do pacote não é mais permitida para verificações do S360.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Solicitações recentes</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Solicitar uma nova dependência</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Solicite aprovação antes de adicionar um novo pacote ao seu projeto. Informe o nome e a versão exatos e explique por que ele é necessário.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Origem</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Enviar para análise</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Enviar solicitação</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>O registro que fornece o pacote. Um pacote de outro registro precisa passar por uma análise própria.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Acompanhe o andamento da análise e as decisões sobre as dependências que você solicitou.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Por que essa dependência é necessária?</value>

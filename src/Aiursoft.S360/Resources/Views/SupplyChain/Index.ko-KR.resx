@@ -60,6 +60,9 @@
   <data name="Check a concrete package against rules" xml:space="preserve">
     <value>구체적인 패키지가 규칙에 부합하는지 확인하세요</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>종속성 카탈로그</value>
+  </data>
   <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
     <value>UTC 시간을 입력하세요. 이 필드에서는 기기의 현지 시간이 변환되지 않습니다.</value>
   </data>

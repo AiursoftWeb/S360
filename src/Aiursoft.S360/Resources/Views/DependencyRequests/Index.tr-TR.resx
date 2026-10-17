@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet .NET paketleri, npm ise JavaScript paketleri içindir. Projenizin gerçekten yüklediği ekosistemi seçin.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Paket ayrıntıları</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>S360 kontrollerinde paket kaynağına artık izin verilmiyor.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Son istekler</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Yeni bağımlılık iste</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Projenize yeni bir paket eklemeden önce onay isteyin. Paketin tam adını ve sürümünü girin, ayrıca neden gerekli olduğunu açıklayın.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Kaynak</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Çözümleme için gönder</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Talebi gönder</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Paket arşivini sağlayan kayıt kaynağı. Başka bir kayıt kaynağından alınan bir paketin ayrıca incelenmesi gerekir.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>İstediğiniz bağımlılıkların inceleme sürecini ve kararları takip edin.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Bu bağımlılık neden gerekli?</value>

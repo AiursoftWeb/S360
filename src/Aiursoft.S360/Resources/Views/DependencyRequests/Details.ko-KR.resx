@@ -66,6 +66,9 @@
   <data name="Retry as a new request" xml:space="preserve">
     <value>새 요청으로 다시 시도</value>
   </data>
+  <data name="Review decision" xml:space="preserve">
+    <value>검토 결정</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
   </data>

@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet은 .NET 패키지용이고 npm은 JavaScript 패키지용입니다. 프로젝트에서 실제로 설치하는 패키지에 맞는 것을 선택하세요.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>패키지 세부 정보</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>S360 검사에는 더 이상 패키지 소스를 사용할 수 없습니다.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>최근 요청</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>새 종속성 요청</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>프로젝트에 새 패키지를 추가하기 전에 승인을 요청하세요. 패키지의 정확한 이름과 버전을 입력하고, 필요한 이유를 설명하세요.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>소스</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>해결 요청</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>요청 제출</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>패키지 아카이브를 제공하는 레지스트리입니다. 다른 레지스트리의 패키지는 별도의 검토가 필요합니다.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>요청한 종속 항목의 검토 진행 상황과 결정 사항을 확인하세요.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>이 종속성이 필요한 이유는 무엇인가요?</value>

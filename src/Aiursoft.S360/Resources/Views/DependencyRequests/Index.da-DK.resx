@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet er til .NET-pakker; npm er til JavaScript-pakker. Vælg den, som dit projekt rent faktisk installerer.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Pakkeoplysninger</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>Pakkekilden er ikke længere tilladt til S360-kontroller.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Seneste forespørgsler</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Anmod om en ny afhængighed</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Anmod om godkendelse, før du tilføjer en ny pakke til dit projekt. Angiv dens præcise navn og version, og forklar, hvorfor den er nødvendig.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Kilde</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Indsend til behandling</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Send anmodning</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Det register, der leverer pakkearkivet. En pakke fra et andet register skal gennemgås separat.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Følg behandlingsforløbet og afgørelserne for de afhængigheder, du har anmodet om.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Hvorfor er denne afhængighed nødvendig?</value>

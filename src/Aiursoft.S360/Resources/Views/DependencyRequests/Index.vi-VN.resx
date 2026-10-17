@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet dành cho các gói .NET; npm dành cho các gói JavaScript. Hãy chọn hệ sinh thái mà dự án của bạn thực sự cài đặt.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Thông tin gói</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>Nguồn gói không còn được phép sử dụng cho các lần kiểm tra S360.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Các yêu cầu gần đây</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Yêu cầu thêm một gói phụ thuộc mới</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Hãy yêu cầu phê duyệt trước khi thêm gói mới vào dự án của bạn. Nhập chính xác tên và phiên bản của gói, đồng thời giải thích lý do cần dùng gói đó.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Nguồn</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Gửi yêu cầu phân giải</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Gửi yêu cầu</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Kho lưu trữ cung cấp gói phần mềm. Gói từ một kho lưu trữ khác cần được đánh giá riêng.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Theo dõi tiến độ xét duyệt và các quyết định đối với những gói phụ thuộc bạn đã yêu cầu.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Vì sao cần đến phần phụ thuộc này?</value>

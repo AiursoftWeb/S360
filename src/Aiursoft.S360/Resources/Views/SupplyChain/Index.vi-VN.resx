@@ -60,6 +60,9 @@
   <data name="Check a concrete package against rules" xml:space="preserve">
     <value>Kiểm tra một gói cụ thể theo các quy tắc</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Danh mục thư viện phụ thuộc</value>
+  </data>
   <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
     <value>Nhập thời gian UTC; trường này không chuyển đổi thời gian địa phương trên thiết bị của bạn.</value>
   </data>

@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>あなたの申請に対する決定</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>依存関係カタログ</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>UTCで専用に開発し、システムが自動的に日付をユーザーのローカルタイムゾーンに変換して表示します。</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>最近のアクティビティ</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>新しい依存関係をリクエスト</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>リクエストの概要</value>

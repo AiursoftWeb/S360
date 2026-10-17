@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>Kullanıcıyı Sil</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Bağımlılıklar</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Bağımlılık Onayları</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Bağımlılık kataloğu</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>Dizin</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>Kişisel</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>İlkeler</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>Güven kuralını önizle</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>Kayıt Ol</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Yeni bir bağımlılık talep et</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Rol Detayları</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360 genel bakış</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Güvenlik denetimi</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Ayarlar</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Kullanıcılar</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Güvenlik açıkları</value>
   </data>
 
 </root>

@@ -60,6 +60,9 @@
   <data name="Check a concrete package against rules" xml:space="preserve">
     <value>Somut bir paketi kurallara göre kontrol et</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Bağımlılık kataloğu</value>
+  </data>
   <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
     <value>UTC saatini girin; bu alan cihazınızın yerel saatini dönüştürmez.</value>
   </data>

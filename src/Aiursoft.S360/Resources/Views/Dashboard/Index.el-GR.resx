@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Αποφάσεις που έχουν καταγραφεί για τα αιτήματά σας</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Κατάλογος εξαρτήσεων</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Αναπτύξτε αποκλειστικά στο UTC, ενώ το σύστημα μετατρέπει και εμφανίζει αυτόματα τις ημερομηνίες στην τοπική ώρα του χρήστη.</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>Πρόσφατη δραστηριότητα</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Υποβάλετε αίτημα για νέα εξάρτηση</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>Επισκόπηση αιτημάτων</value>

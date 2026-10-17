@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet är för .NET-paket; npm är för JavaScript-paket. Välj det som ditt projekt faktiskt installerar.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Paketinformation</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>Paketkällan är inte längre tillåten för S360-kontroller.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Senaste förfrågningar</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Begär ett nytt beroende</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Begär godkännande innan du lägger till ett nytt paket i projektet. Ange paketets exakta namn och version och förklara varför det behövs.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Källa</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Skicka för upplösning</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Skicka begäran</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Det register som tillhandahåller paketarkivet. Ett paket från ett annat register behöver granskas separat.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Följ granskningsförloppet och besluten för de beroenden du har begärt.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Varför behövs det här beroendet?</value>

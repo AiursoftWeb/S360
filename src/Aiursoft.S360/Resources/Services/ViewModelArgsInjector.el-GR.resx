@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>Διαγραφή Χρήστη</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Εξαρτήσεις</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Εγκρίσεις εξαρτήσεων</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Κατάλογος εξαρτήσεων</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>Κατάλογος</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>Προσωπικά</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Πολιτικές</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>Προεπισκόπηση κανόνα εμπιστοσύνης</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>Εγγραφή</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Ζητήστε μια νέα εξάρτηση</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Λεπτομέρειες Ρόλου</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>Επισκόπηση S360</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Έλεγχος ασφάλειας</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Ρυθμίσεις</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Χρήστες</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Ευπάθειες</value>
   </data>
 
 </root>

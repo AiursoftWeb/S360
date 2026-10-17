@@ -97,7 +97,7 @@ public class OsvRangeMatcherTests
         Assert.AreEqual(RangeRisk.Unknown, OsvRangeMatcher.Intersects(emptyLists, "npm", "sample", "1.5.0"));
         Assert.AreEqual(RangeRisk.Unknown, OsvRangeMatcher.Intersects(emptyEvents, "npm", "sample", "1.5.0"));
     }
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("8.1.0-beta", "8.1.722-beta", "9.2.1039", RangeRisk.NotAffected)]
     [DataRow("9.1.878-beta", "9.1.893-beta", "9.2.1039", RangeRisk.NotAffected)]
     [DataRow("8.0.0-preview.1.23110.8", "8.0.1", "10.0.13", RangeRisk.NotAffected)]
@@ -122,7 +122,7 @@ public class OsvRangeMatcherTests
         Assert.AreEqual(expected, OsvRangeMatcher.Intersects(affected, "nuget", "Example", version));
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("1.*", false, RangeRisk.NotAffected)]
     [DataRow("1.*", true, RangeRisk.Affected)]
     [DataRow("*", false, RangeRisk.NotAffected)]
@@ -175,7 +175,7 @@ public class OsvRangeMatcherTests
             "npm", "Example", "1.0.0-RC"));
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("1.0.0-beta..1")]
     [DataRow("1.0.0-beta_1")]
     [DataRow("1.0.0-beta.01")]

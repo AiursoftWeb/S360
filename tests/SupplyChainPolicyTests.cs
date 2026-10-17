@@ -290,7 +290,7 @@ public class SupplyChainPolicyTests
         Assert.AreEqual(0, await db.PackageArtifacts.CountAsync());
     }
 
-    [DataTestMethod]
+    [TestMethod]
     [DataRow("10.0.2")]
     [DataRow("10.0.0-preview.1")]
     public async Task ExcludedAdvisoryBlocksOnlyItsAffectedVersions(string introduced)

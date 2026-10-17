@@ -35,36 +35,38 @@
         <p>@Localizer["Project"]: @application.Project · @Localizer["Source"]: <code>@application.Source</code></p>
         @if (Model.ApplicationsWithRemovedSources.Contains(application.Id))
         {
-            <p class="alert alert-danger">@Localizer["This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source."]</p>
+            <div class="alert alert-danger" role="alert"><div class="alert-message">@Localizer["This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source."]</div></div>
         }
         @if (Model.ScopeByApplicationId.TryGetValue(application.Id, out var scope))
         {
-            <div class="alert alert-secondary">
-                <strong>@Localizer["Approval scope"]:</strong>
-                @Localizer["{0} concrete package artifacts", scope.Total] ·
-                @Localizer["{0} match current authorization", scope.AlreadyAuthorized] ·
-                @Localizer["{0} need authorization", scope.NeedsReview] ·
-                @Localizer["{0} have a removed source", scope.SourceNotPermitted] ·
-                @Localizer["{0} have an audit or policy hold", scope.OnHold]
-                @if (scope.NeedsReviewPreview.Count > 0)
-                {
-                    <div class="small mt-2"><strong>@Localizer["Items needing authorization"]:</strong>
-                        @string.Join(", ", scope.NeedsReviewPreview)
-                        @if (scope.PreviewLimited) { <span>@Localizer["and more in the complete report"]</span> }
-                    </div>
-                }
-                @if (scope.OnHoldPreview.Count > 0)
-                {
-                    <div class="small mt-2"><strong>@Localizer["Authorized items on hold"]:</strong>
-                        @string.Join(", ", scope.OnHoldPreview)
-                        @if (scope.OnHoldPreviewLimited) { <span>@Localizer["and more in the complete report"]</span> }
-                    </div>
-                }
+            <div class="alert alert-secondary" role="alert">
+                <div class="alert-message">
+                    <strong>@Localizer["Approval scope"]:</strong>
+                    @Localizer["{0} concrete package artifacts", scope.Total] ·
+                    @Localizer["{0} match current authorization", scope.AlreadyAuthorized] ·
+                    @Localizer["{0} need authorization", scope.NeedsReview] ·
+                    @Localizer["{0} have a removed source", scope.SourceNotPermitted] ·
+                    @Localizer["{0} have an audit or policy hold", scope.OnHold]
+                    @if (scope.NeedsReviewPreview.Count > 0)
+                    {
+                        <div class="small mt-2"><strong>@Localizer["Items needing authorization"]:</strong>
+                            @string.Join(", ", scope.NeedsReviewPreview)
+                            @if (scope.PreviewLimited) { <span>@Localizer["and more in the complete report"]</span> }
+                        </div>
+                    }
+                    @if (scope.OnHoldPreview.Count > 0)
+                    {
+                        <div class="small mt-2"><strong>@Localizer["Authorized items on hold"]:</strong>
+                            @string.Join(", ", scope.OnHoldPreview)
+                            @if (scope.OnHoldPreviewLimited) { <span>@Localizer["and more in the complete report"]</span> }
+                        </div>
+                    }
+                </div>
             </div>
         }
         else if (application.Status == ApplicationStatus.ReadyForReview)
         {
-            <div class="alert alert-warning">@Localizer["No complete dependency report is available for this request."]</div>
+            <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["No complete dependency report is available for this request."]</div></div>
         }
         <p><a asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@application.Id">@Localizer["Open complete dependency report"]</a></p>
         @if (canReview && application.ReportHash != null && application.Status is ApplicationStatus.ReadyForReview or ApplicationStatus.Approved or ApplicationStatus.Revoked)

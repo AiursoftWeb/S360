@@ -22,15 +22,15 @@
 <div class="s360-workspace-main">
 @if (Model.AuditStatus == CatalogAuditStatus.Failed)
 {
-    <div class="alert alert-warning" role="status">@Localizer["The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit."]</div>
+    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit."]</div></div>
 }
 else if (Model.AuditStatus == CatalogAuditStatus.Missing)
 {
-    <div class="alert alert-warning" role="status">@Localizer["Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available."]</div>
+    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available."]</div></div>
 }
 else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 {
-    <div class="alert alert-warning" role="status">@Localizer["Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes."]</div>
+    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes."]</div></div>
 }
 <nav class="s360-workspace-jumps" aria-label="@Localizer["Page sections"]">
     <a href="#s360-catalog-search"><i data-lucide="search"></i>@Localizer["Find packages"]</a>
@@ -67,13 +67,13 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
         </form>
         @if (Model.LookupStatus != null)
         {
-            <div class="alert alert-info mt-3 mb-0"><strong>@Model.LookupStatus</strong><br />@Model.LookupReason</div>
+            <div class="alert alert-info mt-3 mb-0" role="alert"><div class="alert-message"><strong>@Model.LookupStatus</strong><br />@Model.LookupReason</div></div>
         }
     </div>
 </div>
 @if (Model.ResultsTruncated)
 {
-    <p class="alert alert-warning">@Localizer["Only the first 500 results are shown. Narrow the package search to inspect more results."]</p>
+    <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["Only the first 500 results are shown. Narrow the package search to inspect more results."]</div></div>
 }
 </div>
 

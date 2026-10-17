@@ -29,7 +29,7 @@
             </div></div>
             @if (Model.PreviewLimited || Model.RulesLimited)
             {
-                <p class="alert alert-warning">@Localizer["Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures."]</p>
+                <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures."]</div></div>
             }
             @foreach (var rule in Model.Rules)
             {
@@ -81,7 +81,7 @@
             }
             @if (Model.Rules.Count == 0)
             {
-                <p class="alert alert-info">@Localizer["No block rules have been recorded for this ecosystem."]</p>
+                <div class="alert alert-info" role="alert"><div class="alert-message">@Localizer["No block rules have been recorded for this ecosystem."]</div></div>
             }
         </main>
         @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(

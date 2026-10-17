@@ -15,11 +15,11 @@
 <div class="s360-workspace-main">
 @if (Model.Application.Status == ApplicationStatus.Resolving)
 {
-    <div class="alert alert-info">@Localizer["Resolution is queued or running. Refresh this page for the result."]</div>
+    <div class="alert alert-info" role="alert"><div class="alert-message">@Localizer["Resolution is queued or running. Refresh this page for the result."]</div></div>
 }
 @if (Model.Application.Status == ApplicationStatus.Failed)
 {
-    <div class="alert alert-danger">@Localizer["Resolution failed; this request cannot be approved."] @Model.Application.Failure</div>
+    <div class="alert alert-danger" role="alert"><div class="alert-message">@Localizer["Resolution failed; this request cannot be approved."] @Model.Application.Failure</div></div>
     @if (Model.RetryDirectPackages != null)
     {
         <form asp-action="Submit" method="post" class="mb-3">
@@ -35,11 +35,11 @@
 }
 @if (Model.Application.Status == ApplicationStatus.ReadyForReview)
 {
-    <div class="alert alert-warning">@Localizer["This report is ready for administrator review. It is not an approval."]</div>
+    <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["This report is ready for administrator review. It is not an approval."]</div></div>
 }
 @if (!string.IsNullOrEmpty(Model.Application.Failure) && Model.Application.Status != ApplicationStatus.Failed)
 {
-    <div class="alert alert-secondary">@Model.Application.Failure</div>
+    <div class="alert alert-secondary" role="alert"><div class="alert-message">@Model.Application.Failure</div></div>
 }
 
 @if (Model.Application.ReportHash != null)

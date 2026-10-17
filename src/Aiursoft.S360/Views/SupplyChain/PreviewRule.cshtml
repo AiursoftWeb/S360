@@ -24,7 +24,7 @@
             </div></div>
             @if (Model.CandidateLimitReached || Model.ResultLimitReached)
             {
-                <p class="alert alert-warning">@Localizer["This is a limited sample, not every matching package. Narrow the pattern to inspect a smaller set."]</p>
+                <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["This is a limited sample, not every matching package. Narrow the pattern to inspect a smaller set."]</div></div>
             }
             <div class="card"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Known matching package versions"]</h2></div>
                 @if (Model.Matches.Count == 0)

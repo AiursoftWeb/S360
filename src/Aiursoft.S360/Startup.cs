@@ -61,8 +61,12 @@ public class Startup : IWebStartup
         services.AddHttpClient();
         services.AddHttpClient(PackageResolutionService.ArchiveClientName)
             .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
-        services.AddHttpClient<OsvClient>(client => client.Timeout = TimeSpan.FromMinutes(2));
-        services.AddHttpClient<OsvWildcardFeed>(client => client.Timeout = TimeSpan.FromMinutes(15));
+        services.AddSingleton<OsvRequestThrottle>();
+        services.AddTransient<OsvRequestHandler>();
+        services.AddHttpClient<OsvClient>(client => client.Timeout = TimeSpan.FromMinutes(2))
+            .AddHttpMessageHandler<OsvRequestHandler>();
+        services.AddHttpClient<OsvWildcardFeed>(client => client.Timeout = TimeSpan.FromMinutes(15))
+            .AddHttpMessageHandler<OsvRequestHandler>();
         services.AddScoped<PackageResolutionService>();
         services.AddScoped<IArtifactSourceVerifier, ArtifactSourceVerifier>();
         services.AddAssemblyDependencies(typeof(Startup).Assembly);

@@ -1,4 +1,6 @@
 using System.Net;
+using System.Diagnostics;
+using System.Net.Http.Headers;
 using System.Text.Json;
 using Aiursoft.S360.Services.Vulnerability;
 
@@ -7,6 +9,122 @@ namespace Aiursoft.S360.Tests;
 [TestClass]
 public class OsvClientTests
 {
+    [TestMethod]
+    public async Task SeparateOsvClientsShareTheRequestRateLimit()
+    {
+        using var throttle = new OsvRequestThrottle(new ConfigurationBuilder().Build());
+        var starts = new List<long>();
+        Task<HttpResponseMessage> Respond(HttpRequestMessage _)
+        {
+            starts.Add(Stopwatch.GetTimestamp());
+            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+                { Content = new StringContent("""{"vulns":[]}""") });
+        }
+        using var first = new HttpClient(new OsvRequestHandler(throttle) { InnerHandler = new CallbackHandler(Respond) });
+        using var second = new HttpClient(new OsvRequestHandler(throttle) { InnerHandler = new CallbackHandler(Respond) });
+
+        await Task.WhenAll(new OsvClient(first).QueryAsync("nuget", "First"),
+            new OsvClient(second).QueryAsync("nuget", "Second"));
+
+        Assert.HasCount(2, starts);
+        Assert.IsTrue(Stopwatch.GetElapsedTime(starts[0], starts[1]) >= TimeSpan.FromMilliseconds(450));
+    }
+
+    [TestMethod]
+    public async Task RateLimitedQueryRespectsRetryAfterAndPreservesItsBody()
+    {
+        using var throttle = new OsvRequestThrottle(new ConfigurationBuilder().Build());
+        var bodies = new List<string>();
+        var starts = new List<long>();
+        using var http = new HttpClient(new OsvRequestHandler(throttle)
+        {
+            InnerHandler = new CallbackHandler(async request =>
+            {
+                starts.Add(Stopwatch.GetTimestamp());
+                bodies.Add(await request.Content!.ReadAsStringAsync());
+                Assert.AreEqual("application/json", request.Content.Headers.ContentType?.MediaType);
+                var response = new HttpResponseMessage(bodies.Count == 1
+                    ? HttpStatusCode.TooManyRequests : HttpStatusCode.OK)
+                    { Content = new StringContent("""{"vulns":[]}""") };
+                response.Headers.RetryAfter = new RetryConditionHeaderValue(TimeSpan.FromSeconds(1));
+                return response;
+            })
+        });
+
+        var results = await new OsvClient(http).QueryAsync("nuget", "Example", "1.0.0");
+
+        Assert.IsEmpty(results);
+        Assert.HasCount(2, bodies);
+        Assert.AreEqual(bodies[0], bodies[1]);
+        Assert.IsTrue(Stopwatch.GetElapsedTime(starts[0], starts[1]) >= TimeSpan.FromMilliseconds(950));
+    }
+
+    [TestMethod]
+    public async Task PersistentRateLimitFailsClosedAfterTwoRetries()
+    {
+        using var throttle = new OsvRequestThrottle(new ConfigurationBuilder().Build());
+        var attempts = 0;
+        using var http = new HttpClient(new OsvRequestHandler(throttle)
+        {
+            InnerHandler = new CallbackHandler(_ =>
+            {
+                attempts++;
+                var response = new HttpResponseMessage(HttpStatusCode.TooManyRequests);
+                response.Headers.RetryAfter = new RetryConditionHeaderValue(TimeSpan.Zero);
+                return Task.FromResult(response);
+            })
+        });
+
+        var error = await Assert.ThrowsExactlyAsync<HttpRequestException>(() =>
+            new OsvClient(http).QueryAsync("nuget", "Example"));
+
+        Assert.AreEqual(HttpStatusCode.TooManyRequests, error.StatusCode);
+        Assert.AreEqual(3, attempts);
+    }
+
+    [TestMethod]
+    public async Task LongRetryAfterDateDefersOtherRequestsAndCanBeCancelled()
+    {
+        using var throttle = new OsvRequestThrottle(new ConfigurationBuilder().Build());
+        var attempts = 0;
+        using var http = new HttpClient(new OsvRequestHandler(throttle)
+        {
+            InnerHandler = new CallbackHandler(_ =>
+            {
+                attempts++;
+                var response = new HttpResponseMessage(HttpStatusCode.TooManyRequests);
+                response.Headers.RetryAfter = new RetryConditionHeaderValue(DateTimeOffset.UtcNow.AddMinutes(1));
+                return Task.FromResult(response);
+            })
+        });
+        await Assert.ThrowsExactlyAsync<HttpRequestException>(() => new OsvClient(http).QueryAsync("nuget", "First"));
+        using var cancellation = new CancellationTokenSource(TimeSpan.FromMilliseconds(100));
+
+        await Assert.ThrowsAsync<OperationCanceledException>(() =>
+            new OsvClient(http).QueryAsync("nuget", "Second", cancellationToken: cancellation.Token));
+
+        Assert.AreEqual(1, attempts);
+    }
+
+    [TestMethod]
+    public async Task OtherUpstreamErrorsFailWithoutRetries()
+    {
+        using var throttle = new OsvRequestThrottle(new ConfigurationBuilder().Build());
+        var attempts = 0;
+        using var http = new HttpClient(new OsvRequestHandler(throttle)
+        {
+            InnerHandler = new CallbackHandler(_ =>
+            {
+                attempts++;
+                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.ServiceUnavailable));
+            })
+        });
+
+        await Assert.ThrowsExactlyAsync<HttpRequestException>(() => new OsvClient(http).QueryAsync("nuget", "Example"));
+
+        Assert.AreEqual(1, attempts);
+    }
+
     [TestMethod]
     public async Task ReadsAllPagesAndPreservesGhsaAndWithdrawnState()
     {
@@ -103,5 +221,11 @@ public class OsvClientTests
             {
                 Content = new StringContent("""{"id":"GHSA-other-1111-2222","modified":"2026-09-23T00:00:00Z","affected":[]}""")
             });
+    }
+
+    private sealed class CallbackHandler(Func<HttpRequestMessage, Task<HttpResponseMessage>> respond) : HttpMessageHandler
+    {
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) =>
+            respond(request);
     }
 }

@@ -13,6 +13,13 @@
 </div>
 <div class="s360-workspace-layout">
 <div class="s360-workspace-main">
+@if (!string.IsNullOrWhiteSpace(Model.Application.DecisionReason))
+{
+    <div class="card mb-4">
+        <div class="card-header"><h2 class="h5 mb-0">@Localizer["Review decision"]</h2></div>
+        <div class="card-body"><p class="mb-0">@Model.Application.DecisionReason</p></div>
+    </div>
+}
 @if (Model.Application.Status == ApplicationStatus.Resolving)
 {
     <div class="alert alert-info" role="alert"><div class="alert-message">@Localizer["Resolution is queued or running. Refresh this page for the result."]</div></div>

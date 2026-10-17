@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using Aiursoft.S360.Services.Vulnerability;
-using Microsoft.Extensions.Configuration;
 
 namespace Aiursoft.S360.Tests;
 

@@ -111,7 +111,7 @@ public class SupplyChainPagesTests : TestBase
                      {
                          "run", "--no-build", "--no-restore", "--configuration", BuildConfiguration,
                          "--project", clientProject, "--",
-                         "check", "--path", root, "--server", $"http://localhost:{Port}"
+                         "check", "--path", root, "--server", $"http://localhost:{Port}", "--ecosystem", "nuget"
                      }) start.ArgumentList.Add(argument);
             start.Environment["S360_CHECK_KEY"] = checkKey;
             if (purpose != null)
@@ -139,6 +139,7 @@ public class SupplyChainPagesTests : TestBase
                 .Where(c => c.Project == reportedProject).ToListAsync();
             Assert.HasCount(1, checks);
             Assert.AreEqual(purpose ?? "review", BuildCheckRun.Purpose(checks[0].ContextJson));
+            Assert.AreEqual("nuget", BuildCheckRun.ReadContext(checks[0].ContextJson)!.Ecosystem);
             Assert.AreEqual(1, checks[0].ScannedProjectCount);
             Assert.HasCount(0, checks[0].Dependencies);
             Assert.IsTrue(BuildCheckRun.IsComplete(checks));
@@ -948,6 +949,13 @@ public class SupplyChainPagesTests : TestBase
         using (var invalid = await Http.PostAsJsonAsync("/api/check", request))
             Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
         request.Context.Purpose = "baseline";
+        request.Context.Ecosystem = "nuget";
+        request.Dependencies = [new Dependency { Ecosystem = "npm", Name = "example", Version = "1.0.0",
+            Source = "https://npm.aiursoft.com", Sha256 = new string('a', 64) }];
+        using (var mixedScope = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, mixedScope.StatusCode);
+        request.Dependencies.Clear();
+        request.Context.Ecosystem = null;
         configuration["SupplyChain:CheckApiKey"] = "protected-baseline-key";
         using (var reusedKey = await Http.PostAsJsonAsync("/api/check", request))
             Assert.AreEqual(HttpStatusCode.Forbidden, reusedKey.StatusCode);
@@ -2668,6 +2676,17 @@ public class SupplyChainPagesTests : TestBase
             StringAssert.Contains(html, "Production baseline reports an affected version");
             StringAssert.Contains(html, $"checkId={affectedBaseline}");
         }
+        // An npm-only baseline cannot clear NuGet production usage.
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            db.BuildChecks.Add(new BuildCheck { Project = project, RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1, BatchCount = 1, CreatedAtUtc = now.AddSeconds(3),
+                ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = "baseline", Ecosystem = "npm" }) });
+            await db.SaveChangesAsync();
+        }
+        using (var otherScope = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+            StringAssert.Contains(await otherScope.Content.ReadAsStringAsync(), $"checkId={affectedBaseline}");
         // A newer incomplete baseline cannot replace the last complete inventory.
         using (var scope = Server!.Services.CreateScope())
         {

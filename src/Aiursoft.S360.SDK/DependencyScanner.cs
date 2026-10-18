@@ -14,15 +14,19 @@ public static class DependencyScanner
         (await ScanDetailedAsync(root, http, cancellationToken)).Dependencies;
 
     public static async Task<ScanReport> ScanDetailedAsync(string root, HttpClient http,
-        CancellationToken cancellationToken = default, string? expectedNpmSource = null)
+        CancellationToken cancellationToken = default, string? expectedNpmSource = null, string? ecosystem = null)
     {
+        if (ecosystem is not (null or "nuget" or "npm"))
+            throw new ArgumentException("Unsupported dependency ecosystem.", nameof(ecosystem));
         if (!Directory.Exists(root)) throw new DirectoryNotFoundException(root);
         var result = new List<Dependency>();
         var skipped = new List<string>();
         var projectFiles = DiscoverProjectFiles(root).ToList();
-        var manifests = projectFiles.Where(p => Path.GetExtension(p) is ".csproj" or ".fsproj" or ".vbproj").ToList();
+        var manifests = projectFiles.Where(p => (ecosystem is null or "nuget") &&
+            (Path.GetExtension(p) is ".csproj" or ".fsproj" or ".vbproj")).ToList();
         var npmComparison = OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
-        var npmManifests = projectFiles.Where(p => Path.GetFileName(p).Equals("package.json", npmComparison)).ToList();
+        var npmManifests = projectFiles.Where(p => (ecosystem is null or "npm") &&
+            Path.GetFileName(p).Equals("package.json", npmComparison)).ToList();
         if (manifests.Count == 0 && npmManifests.Count == 0)
             throw new InvalidOperationException("No supported NuGet or npm project was found.");
         var introductionPaths = new Dictionary<string, List<string>>(StringComparer.Ordinal);

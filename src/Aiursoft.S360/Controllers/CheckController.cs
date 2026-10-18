@@ -38,6 +38,9 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             if (string.IsNullOrWhiteSpace(request.Project))
                 return BadRequest("A production baseline must identify its project.");
         }
+        if (request.Context?.Ecosystem is { Length: > 0 } ecosystem &&
+            request.Dependencies.Any(dependency => dependency.Ecosystem != ecosystem))
+            return BadRequest("Dependencies must belong to the declared ecosystem.");
         var contextJson = request.Context == null ? null : JsonSerializer.Serialize(request.Context);
         var priorBatches = await db.BuildChecks.AsNoTracking().Where(c => c.RunId == request.RunId)
             .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson }).ToListAsync();

@@ -24,6 +24,7 @@ public class CliCheckTests
         };
         var context = CheckHandler.ReadContext(key => environment.GetValueOrDefault(key));
         Assert.AreEqual("gitlab", context.Provider);
+        Assert.AreEqual("review", context.Purpose);
         Assert.AreEqual("merge_request_event", context.PipelineSource);
         Assert.AreEqual("42", context.MergeRequest);
         Assert.AreEqual("refs/merge-requests/42/head", context.Ref);
@@ -31,6 +32,8 @@ public class CliCheckTests
         environment.Remove("GITLAB_CI");
         var local = CheckHandler.ReadContext(key => environment.GetValueOrDefault(key));
         Assert.AreEqual("local", local.Provider);
+        Assert.AreEqual("review", local.Purpose);
+        Assert.AreEqual("baseline", CheckHandler.ReadContext(key => environment.GetValueOrDefault(key), "baseline").Purpose);
         Assert.IsNull(local.Ref);
         Assert.IsNull(local.MergeRequest);
     }

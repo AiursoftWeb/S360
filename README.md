@@ -53,6 +53,8 @@ For company sign-in, configure `AppSettings__AuthProvider=OIDC` and the `AppSett
 
 The `s360 check --path .` CLI checks restored NuGet and npm inputs against the server policy. It requires `S360_SERVER` and `S360_CHECK_KEY`; run `dotnet restore` and `npm ci` first. The API key needs `CanCheckDependencies` permission and must stay out of source and logs.
 
+By default, `--purpose review` records an audit without changing production usage. Use `--purpose baseline` only to declare dependencies already in production; it requires a separate `SupplyChain__BaselineApiKey` supplied as `S360_CHECK_KEY`. Keep that key restricted to trusted release jobs. Only a complete baseline replaces the project inventory, including when its dependencies are rejected.
+
 Configure permitted registries through `SupplyChain:NuGetSources` and `SupplyChain:NpmSources`. Dependency resolution restores untrusted packages; run it in an isolated environment. The check does not prove installed files were unchanged by package scripts.
 
 ## How to contribute

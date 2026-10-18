@@ -22,10 +22,18 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
     {
         Description = "S360 HTTPS address; defaults to S360_SERVER."
     };
-    protected override IEnumerable<Option> GetCommandOptions() => [PathOption, ServerOption];
+    private static readonly Option<string> PurposeOption = new("--purpose")
+    {
+        Description = "review checks proposed dependencies; baseline declares these dependencies are in production and requires a baseline credential.",
+        DefaultValueFactory = _ => "review"
+    };
+    protected override IEnumerable<Option> GetCommandOptions() => [PathOption, ServerOption, PurposeOption];
 
     protected override async Task Execute(ParseResult context)
     {
+        var purpose = context.GetValue(PurposeOption)!;
+        if (purpose is not ("review" or "baseline"))
+            throw new InvalidOperationException("--purpose must be review or baseline.");
         var server = context.GetValue(ServerOption) ?? Environment.GetEnvironmentVariable("S360_SERVER");
         var key = Environment.GetEnvironmentVariable("S360_CHECK_KEY");
         if (string.IsNullOrWhiteSpace(server) || string.IsNullOrWhiteSpace(key))
@@ -54,7 +62,7 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         // not a safe wire-size target for large npm dependency graphs.
         var batches = dependencies.Count == 0 ? new List<Dependency[]> { Array.Empty<Dependency>() } : dependencies.Chunk(1000).ToList();
         var runId = Guid.NewGuid().ToString("N");
-        var checkContext = ReadContext(Environment.GetEnvironmentVariable);
+        var checkContext = ReadContext(Environment.GetEnvironmentVariable, purpose);
         for (var batchIndex = 0; batchIndex < batches.Count; batchIndex++)
         {
             var batch = batches[batchIndex];
@@ -95,16 +103,16 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         Console.WriteLine($"S360 approved {dependencies.Count} dependency artifacts across {scan.ScannedProjectCount} supported projects.");
     }
 
-    public static CheckContext ReadContext(Func<string, string?> read) =>
+    public static CheckContext ReadContext(Func<string, string?> read, string purpose = "review") =>
         string.Equals(read("GITLAB_CI"), "true", StringComparison.OrdinalIgnoreCase)
             ? new CheckContext
             {
-                Provider = "gitlab", PipelineSource = read("CI_PIPELINE_SOURCE"),
+                Purpose = purpose, Provider = "gitlab", PipelineSource = read("CI_PIPELINE_SOURCE"),
                 Ref = read("CI_COMMIT_BRANCH") ?? read("CI_MERGE_REQUEST_SOURCE_BRANCH_NAME") ??
                     read("CI_EXTERNAL_PULL_REQUEST_SOURCE_BRANCH_NAME") ?? read("CI_COMMIT_REF_NAME"),
                 DefaultBranch = read("CI_DEFAULT_BRANCH"),
                 MergeRequest = read("CI_MERGE_REQUEST_IID") ?? read("CI_EXTERNAL_PULL_REQUEST_IID"),
                 Tag = read("CI_COMMIT_TAG")
             }
-            : new CheckContext { Provider = "local" };
+            : new CheckContext { Purpose = purpose, Provider = "local" };
 }

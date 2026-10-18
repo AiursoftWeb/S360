@@ -48,15 +48,36 @@ public class BuildCheckRunTests
     [DataRow(null, "master", "master", null, null, CheckKind.Unknown)]
     [DataRow("push", null, "master", null, null, CheckKind.Unknown)]
     [DataRow("push", "master", null, null, null, CheckKind.Unknown)]
-    public void OnlyDefaultBranchContextEstablishesBaseline(string? source, string? reference,
+    public void SourceClassificationDoesNotDeclareAuditPurpose(string? source, string? reference,
         string? defaultBranch, string? mergeRequest, string? tag, CheckKind expected)
     {
         var json = JsonSerializer.Serialize(new CheckContext { Provider = "gitlab", PipelineSource = source,
             Ref = reference, DefaultBranch = defaultBranch, MergeRequest = mergeRequest, Tag = tag });
         Assert.AreEqual(expected, BuildCheckRun.Kind(json));
+        Assert.IsNull(BuildCheckRun.Purpose(json));
         Assert.AreEqual(CheckKind.Unknown, BuildCheckRun.Kind(null));
         Assert.AreEqual(CheckKind.Unknown, BuildCheckRun.Kind("{invalid"));
         Assert.AreEqual(CheckKind.Local, BuildCheckRun.Kind(JsonSerializer.Serialize(new CheckContext())));
+    }
+
+    [TestMethod]
+    public void ExplicitPurposeIsIndependentOfBranchAndProvider()
+    {
+        var first = Batch(0, 1);
+        var second = Batch(0, 1);
+        first.ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = "baseline" });
+        second.ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = "baseline", Provider = "gitlab",
+            Ref = "release", DefaultBranch = "master", PipelineSource = "push" });
+        Assert.AreEqual("baseline", BuildCheckRun.Purpose(first.ContextJson));
+        Assert.AreEqual(BuildCheckRun.ContextKey(first), BuildCheckRun.ContextKey(second));
+        second.ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = "review", Provider = "gitlab",
+            Ref = "master", DefaultBranch = "master", PipelineSource = "push" });
+        Assert.AreEqual("review", BuildCheckRun.Purpose(second.ContextJson));
+        Assert.AreNotEqual(BuildCheckRun.ContextKey(first), BuildCheckRun.ContextKey(second));
+        Assert.IsNull(BuildCheckRun.Purpose(null));
+        Assert.IsNull(BuildCheckRun.Purpose("{invalid"));
+        Assert.IsNull(BuildCheckRun.Purpose(JsonSerializer.Serialize(new CheckContext { Provider = "gitlab",
+            Ref = "master", DefaultBranch = "master", PipelineSource = "push" })));
     }
 
     private static BuildCheck Batch(int index, int count, string project = "example") => new()

@@ -5,10 +5,12 @@
   "author": "Anduin Xue",
   "license": "MIT",
   "dependencies": {
-    "dropify": "^0.2.2"
+    "dropify": "^0.2.2",
+    "mermaid": "^10.9.0"
   },
   "keep": {
-    "dropify": "dist"
+    "dropify": "dist",
+    "mermaid": "dist"
   },
   "scripts": {
     "build": "node build.mjs"

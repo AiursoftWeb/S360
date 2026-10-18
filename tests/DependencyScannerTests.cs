@@ -556,7 +556,9 @@ public class DependencyScannerTests
     }
 
     [TestMethod]
-    public async Task NpmLockIntegrityIsVerified()
+    [DataRow("package")]
+    [DataRow("sample")]
+    public async Task NpmLockIntegrityIsVerified(string archiveRoot)
     {
         var root = Path.Combine(Path.GetTempPath(), "s360-npm-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(Path.Combine(root, "node_modules", "sample"));
@@ -564,7 +566,7 @@ public class DependencyScannerTests
         {
             await File.WriteAllTextAsync(Path.Combine(root, "node_modules", "sample", "package.json"),
                 """{"name":"sample","version":"1.0.0"}""");
-            var bytes = CreateNpmArchive("sample", "1.0.0");
+            var bytes = CreateNpmArchive("sample", "1.0.0", archiveRoot + "/package.json");
             var integrity = Convert.ToBase64String(SHA512.HashData(bytes));
             var lockFile = Path.Combine(root, "package-lock.json");
             var lockJson = new
@@ -588,7 +590,7 @@ public class DependencyScannerTests
                 DependencyScanner.ReadNpmAsync(lockFile, root, redirected));
             StringAssert.Contains(error.Message, "different source");
 
-            var wrongIdentity = CreateNpmArchive("different", "1.0.0");
+            var wrongIdentity = CreateNpmArchive("different", "1.0.0", archiveRoot + "/package.json");
             var wrongLockJson = new
             {
                 lockfileVersion = 3,
@@ -611,18 +613,53 @@ public class DependencyScannerTests
         finally { Directory.Delete(root, true); }
     }
 
-    private static byte[] CreateNpmArchive(string name, string version)
+    [TestMethod]
+    [DataRow("../package.json")]
+    [DataRow("nested/package/package.json")]
+    [DataRow("first/package.json|second/package.json")]
+    public async Task NpmAmbiguousOrMisplacedArchiveManifestsAreRejected(string manifestPaths)
+    {
+        var root = Path.Combine(Path.GetTempPath(), "s360-npm-manifest-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "node_modules/sample"));
+        try
+        {
+            await File.WriteAllTextAsync(Path.Combine(root, "node_modules/sample/package.json"),
+                """{"name":"sample","version":"1.0.0"}""");
+            var archive = CreateNpmArchive("sample", "1.0.0", manifestPaths.Split('|'));
+            var lockFile = Path.Combine(root, "package-lock.json");
+            await File.WriteAllTextAsync(lockFile, JsonSerializer.Serialize(new
+            {
+                lockfileVersion = 3, packages = new Dictionary<string, object>
+                {
+                    [""] = new { }, ["node_modules/sample"] = new
+                    {
+                        version = "1.0.0", resolved = "https://registry.npmjs.org/sample/-/sample-1.0.0.tgz",
+                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(archive))
+                    }
+                }
+            }));
+            using var client = new HttpClient(new FixedHandler(archive));
+            await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
+                DependencyScanner.ReadNpmAsync(lockFile, root, client));
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    private static byte[] CreateNpmArchive(string name, string version, params string[] manifestPaths)
     {
         using var output = new MemoryStream();
         using (var gzip = new GZipStream(output, CompressionLevel.Fastest, leaveOpen: true))
         using (var tar = new TarWriter(gzip, leaveOpen: true))
         {
             var manifest = JsonSerializer.Serialize(new { name, version });
-            var entry = new PaxTarEntry(TarEntryType.RegularFile, "package/package.json")
+            foreach (var path in manifestPaths.Length == 0 ? ["package/package.json"] : manifestPaths)
             {
-                DataStream = new MemoryStream(Encoding.UTF8.GetBytes(manifest))
-            };
-            tar.WriteEntry(entry);
+                var entry = new PaxTarEntry(TarEntryType.RegularFile, path)
+                {
+                    DataStream = new MemoryStream(Encoding.UTF8.GetBytes(manifest))
+                };
+                tar.WriteEntry(entry);
+            }
         }
         return output.ToArray();
     }

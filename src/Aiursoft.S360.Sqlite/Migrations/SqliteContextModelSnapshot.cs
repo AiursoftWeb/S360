@@ -209,6 +209,9 @@ namespace Aiursoft.S360.Sqlite.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("GraphJson")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Pipeline")
                         .HasMaxLength(200)
                         .HasColumnType("TEXT");

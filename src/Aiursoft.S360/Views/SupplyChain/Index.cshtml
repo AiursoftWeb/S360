@@ -217,3 +217,11 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 </div>
 
 }
+
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section scripts {
+    @if (Model.Inventory is { Tab: "projects", Project: not null, CanRead: true })
+    {
+        <script type="module" src="~/js/dependency-graph.js" asp-append-version="true"></script>
+    }
+}

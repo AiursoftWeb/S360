@@ -1,4 +1,5 @@
 using System.CommandLine;
+using System.Text.Json;
 using Aiursoft.CommandFramework.Framework;
 using Aiursoft.S360.SDK;
 using Aiursoft.AiurProtocol.Services;
@@ -68,29 +69,57 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         using var provider = services.BuildServiceProvider();
         var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
         var approved = true;
-        // The API limits request bodies to 4 MiB. A valid dependency can carry
-        // long package and source names, so the model's 5000-item maximum is
-        // not a safe wire-size target for large npm dependency graphs.
-        var batches = dependencies.Count == 0 ? new List<Dependency[]> { Array.Empty<Dependency>() } : dependencies.Chunk(1000).ToList();
+        var graphError = DependencyGraphNode.Validate(scan.GraphNodes, dependencies, selectedEcosystem, complete: true);
+        if (graphError != null) throw new InvalidOperationException(graphError);
         var runId = Guid.NewGuid().ToString("N");
         var checkContext = ReadContext(Environment.GetEnvironmentVariable, purpose, selectedEcosystem);
-        for (var batchIndex = 0; batchIndex < batches.Count; batchIndex++)
+        var requests = new List<CheckRequest>();
+        var dependencyQueue = new Queue<Dependency>(dependencies);
+        var graphQueue = new Queue<DependencyGraphNode>(scan.GraphNodes);
+        // Bound serialized size, not just item count: shared transitive graphs can have many edges.
+        do
         {
-            var batch = batches[batchIndex];
-            var response = await client.CheckAsync(server, key, new CheckRequest
+            var request = new CheckRequest
             {
-                Context = checkContext,
-                Dependencies = batch.ToList(), ScannedProjectCount = scan.ScannedProjectCount,
-                RunId = runId, BatchIndex = batchIndex, BatchCount = batches.Count,
+                Context = checkContext, GraphNodes = [], ScannedProjectCount = scan.ScannedProjectCount,
+                RunId = runId,
                 Project = Environment.GetEnvironmentVariable("CI_PROJECT_PATH") ?? Path.GetFileName(path),
                 Commit = Environment.GetEnvironmentVariable("CI_COMMIT_SHA"),
                 Pipeline = Environment.GetEnvironmentVariable("CI_PIPELINE_URL")
-            });
+            };
+            var size = JsonSerializer.SerializeToUtf8Bytes(request).Length;
+            while (dependencyQueue.TryPeek(out var dependency) && request.Dependencies.Count < 1000)
+            {
+                var bytes = JsonSerializer.SerializeToUtf8Bytes(dependency).Length + 1;
+                if (size + bytes > 3 * 1024 * 1024) break;
+                request.Dependencies.Add(dependencyQueue.Dequeue());
+                size += bytes;
+            }
+            while (graphQueue.TryPeek(out var node) && request.GraphNodes.Count < 1000)
+            {
+                var bytes = JsonSerializer.SerializeToUtf8Bytes(node).Length + 1;
+                if (size + bytes > 3 * 1024 * 1024) break;
+                request.GraphNodes.Add(graphQueue.Dequeue());
+                size += bytes;
+            }
+            if (request.Dependencies.Count == 0 && request.GraphNodes.Count == 0 &&
+                (dependencyQueue.Count > 0 || graphQueue.Count > 0))
+                throw new InvalidOperationException("A dependency graph node exceeds the report size limit.");
+            requests.Add(request);
+        } while (dependencyQueue.Count > 0 || graphQueue.Count > 0);
+        if (requests.Count > 10000) throw new InvalidOperationException("The dependency report exceeds the batch limit.");
+        for (var batchIndex = 0; batchIndex < requests.Count; batchIndex++)
+        {
+            var request = requests[batchIndex];
+            request.BatchIndex = batchIndex;
+            request.BatchCount = requests.Count;
+            var batch = request.Dependencies;
+            var response = await client.CheckAsync(server, key, request);
             if (response.Code != Code.ResultShown)
                 throw new InvalidOperationException("S360 did not return a successful dependency-check result.");
-            if (response.Decisions.Count != batch.Length)
+            if (response.Decisions.Count != batch.Count)
                 throw new InvalidOperationException("S360 returned an incomplete dependency decision set.");
-            for (var i = 0; i < batch.Length; i++)
+            for (var i = 0; i < batch.Count; i++)
             {
                 var actual = response.Decisions[i].Dependency;
                 var expected = batch[i];

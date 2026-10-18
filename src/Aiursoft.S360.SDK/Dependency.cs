@@ -23,6 +23,9 @@ public class Dependency
 
 public class CheckRequest
 {
+    /// <summary>Null for older clients. Non-null batches together contain the complete observed graph.</summary>
+    [MaxLength(5000)] public List<DependencyGraphNode>? GraphNodes { get; set; }
+
     [Required, MaxLength(5000)]
     public List<Dependency> Dependencies { get; set; } = [];
 

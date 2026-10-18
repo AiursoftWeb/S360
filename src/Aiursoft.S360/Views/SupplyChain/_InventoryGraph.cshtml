@@ -1,0 +1,38 @@
+@using Aiursoft.S360.Models.SupplyChainViewModels
+@using System.Text.Json
+@model List<InventoryGraph>
+<section class="s360-graph" aria-label="@Localizer["Dependency relationships"]">
+    <div class="s360-graph-heading"><h3>@Localizer["Dependency relationships"]</h3><p>@Localizer["Choose a manifest and target, then focus on a package to see what introduces it and what it needs."]</p></div>
+    <div class="s360-graph-controls">
+        <label>@Localizer["Manifest and target"]<select class="form-select s360-graph-scope">
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                var graph = Model[i];
+                <option value="@i">@(graph.Ecosystem == "nuget" ? "NuGet" : "npm") · @graph.Project @graph.Target · #@graph.CheckId</option>
+            }
+        </select></label>
+        <label>@Localizer["Find a package"]<input type="search" class="form-control s360-graph-search" placeholder="@Localizer["Package name or installed path"]" /></label>
+        <label>@Localizer["Focus"]<select class="form-select s360-graph-focus"></select></label>
+    </div>
+    <div class="s360-graph-legend">
+        @await Html.PartialAsync("_InventoryStatus", InventoryStatus.Compliant)
+        @await Html.PartialAsync("_InventoryStatus", InventoryStatus.NonCompliant)
+        @await Html.PartialAsync("_InventoryStatus", InventoryStatus.Pending)
+        <span>@Localizer["Arrows point from a project or package to its dependencies."]</span>
+    </div>
+    <p class="s360-graph-notice small text-muted" role="status"></p>
+    <div class="s360-graph-canvas" tabindex="0" role="img" aria-label="@Localizer["Dependency graph"]"></div>
+    <p class="s360-graph-detail small" role="status"></p>
+    <noscript><p>@Localizer["Enable JavaScript to view the graph. All package details are listed below."]</p></noscript>
+    <div class="s360-graph-loc" hidden>
+        <span data-key="all">@Localizer["All dependencies"]</span>
+        <span data-key="limited">@Localizer["This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below."]</span>
+        <span data-key="failed">@Localizer["The graph could not be displayed. Package details remain available below."]</span>
+        <span data-key="empty">@Localizer["No matching packages."]</span>
+        <span data-key="compliant">@Localizer["Compliant"]</span>
+        <span data-key="pending">@Localizer["Not verified"]</span>
+        <span data-key="problem">@Localizer["Needs attention"]</span>
+        <span data-key="reference">@Localizer["Project reference"]</span>
+    </div>
+    <script type="application/json" class="s360-graph-data">@Html.Raw(JsonSerializer.Serialize(Model))</script>
+</section>

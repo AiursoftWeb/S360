@@ -45,12 +45,62 @@ public class InventoryTests : TestBase
     };
 
     private async Task<InventoryViewModel> Read(string tab = "dependencies", string scope = "baseline",
-        string? query = null, string filter = "all", int page = 1)
+        string? query = null, string filter = "all", int page = 1, string? project = null)
     {
         using var serviceScope = Server!.Services.CreateScope();
-        var model = new InventoryViewModel { Tab = tab, Scope = scope, Query = query ?? _prefix, Filter = filter, Page = page, CanRead = true };
+        var model = new InventoryViewModel { Tab = tab, Scope = scope, Query = query ?? _prefix, Filter = filter, Page = page, CanRead = true, Project = project };
         await serviceScope.ServiceProvider.GetRequiredService<CatalogInventoryService>().PopulateAsync(model);
         return model;
+    }
+
+    [TestMethod]
+    public async Task OpenProjectShowsCurrentGraphPolicyAndKeepsLegacyReportsFlat()
+    {
+        int ruleId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var artifact = Artifact("Graph.Policy." + Guid.NewGuid().ToString("N"));
+            var rule = Approve(artifact);
+            db.TrustRules.Add(rule);
+            var report = Report("graph", "baseline", "nuget", DateTime.UtcNow, artifact);
+            report.GraphJson = JsonSerializer.Serialize(new[]
+            {
+                new DependencyGraphNode { Project = "src/App.csproj", Ecosystem = "nuget", Id = "$root", Kind = "root", Children = ["package"] },
+                new DependencyGraphNode { Project = "src/App.csproj", Ecosystem = "nuget", Id = "package",
+                    Package = new Dependency { Ecosystem = artifact.Ecosystem, Name = artifact.Name, Version = artifact.Version,
+                        Source = artifact.Source + "/", Sha256 = artifact.Sha256 } }
+            });
+            db.BuildChecks.Add(report);
+            db.BuildChecks.Add(Report("legacy", "baseline", null, DateTime.UtcNow, artifact));
+            var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
+            if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
+            audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+            audit.LastError = null;
+            await db.SaveChangesAsync(); ruleId = rule.Id;
+        }
+        Assert.IsTrue((await Read("projects")).Projects.All(p => p.Graphs.Count == 0));
+        var opened = (await Read("projects", project: _prefix + "graph")).Projects.Single();
+        Assert.IsTrue(opened.Reports.Single().HasGraph);
+        Assert.AreEqual(InventoryStatus.Compliant, opened.Graphs.Single().Nodes.Single(n => n.Package != null).Status,
+            opened.Graphs.Single().Nodes.Single(n => n.Package != null).Reason);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            (await db.TrustRules.SingleAsync(r => r.Id == ruleId)).Status = TrustRuleStatus.Revoked;
+            await db.SaveChangesAsync();
+        }
+        opened = (await Read("projects", project: _prefix + "graph")).Projects.Single();
+        Assert.AreEqual(InventoryStatus.NonCompliant, opened.Graphs.Single().Nodes.Single(n => n.Package != null).Status,
+            opened.Graphs.Single().Nodes.Single(n => n.Package != null).Reason);
+        var legacy = (await Read("projects", project: _prefix + "legacy")).Projects.Single();
+        Assert.IsFalse(legacy.Reports.Single(r => r.Ecosystem == "nuget").HasGraph);
+        Assert.AreEqual(0, legacy.Graphs.Count);
+        await LoginAsAdmin();
+        var html = await Http.GetStringAsync("/SupplyChain/Index?tab=projects&project=" + Uri.EscapeDataString(_prefix + "graph"));
+        StringAssert.Contains(html, "s360-graph-data");
+        StringAssert.Contains(html, "dependency-graph.js");
     }
 
     [TestMethod]
@@ -185,7 +235,7 @@ public class InventoryTests : TestBase
         StringAssert.Contains(html, "s360-inventory-tabs");
         var projects = await Http.GetStringAsync("/SupplyChain/Index?tab=projects&project=" + Uri.EscapeDataString(_prefix + "Project-24"));
         StringAssert.Contains(projects, "Catalog.Package24");
-        StringAssert.Contains(projects, "Dependency paths were not recorded");
+        StringAssert.Contains(projects, "Dependency relationships were not recorded");
         using var invalid = await Http.GetAsync("/SupplyChain/Index?tab=invalid");
         Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
     }

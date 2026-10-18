@@ -1272,6 +1272,58 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
+    public async Task CheckApiStoresCompleteGraphsAcrossBatchesAndRejectsMissingOrInventedPackages()
+    {
+        await AddCheckKeyAsync("integration-check-key");
+        Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
+        var package = new Dependency { Ecosystem = "nuget", Name = "Graph." + Guid.NewGuid().ToString("N"),
+            Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64) };
+        var root = new DependencyGraphNode { Project = "src/App.csproj", Ecosystem = "nuget", Target = "net10.0",
+            Id = "$root", Kind = "root", Children = ["package"] };
+        var node = new DependencyGraphNode { Project = root.Project, Ecosystem = "nuget", Target = root.Target,
+            Id = "package", Package = package };
+        var request = new CheckRequest { Project = "graph-" + Guid.NewGuid().ToString("N"),
+            ScannedProjectCount = 1, Dependencies = [package], GraphNodes = [root], BatchCount = 2 };
+        using (var first = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.OK, first.StatusCode);
+        request.BatchIndex = 1;
+        request.Dependencies = [];
+        request.GraphNodes = null;
+        using (var mixed = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, mixed.StatusCode);
+        request.GraphNodes = [node];
+        node.Children = ["missing"];
+        using (var dangling = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, dangling.StatusCode);
+        node.Children = [];
+        node.Target = null!;
+        using (var invalidNode = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, invalidNode.StatusCode);
+        node.Target = root.Target;
+        using (var last = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.OK, last.StatusCode, await last.Content.ReadAsStringAsync());
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var stored = db.BuildChecks.Where(c => c.RunId == request.RunId).ToList();
+            Assert.AreEqual(2, stored.Count);
+            Assert.IsTrue(BuildCheckRun.IsComplete(stored));
+            Assert.IsTrue(stored.All(c => c.GraphJson != null));
+            Assert.AreEqual(1, db.BuildCheckDependencies.Count(d => stored.Select(c => c.Id).Contains(d.BuildCheckId)));
+        }
+        request.RunId = Guid.NewGuid().ToString("N"); request.BatchIndex = 0; request.BatchCount = 1;
+        request.GraphNodes = [root, node];
+        using (var invented = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, invented.StatusCode);
+        request.Dependencies = [package]; request.GraphNodes = [root]; root.Children = [];
+        using (var missingPackage = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, missingPackage.StatusCode);
+        request.GraphNodes = [root, node]; request.ScannedProjectCount = 2;
+        using (var missingManifest = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, missingManifest.StatusCode);
+    }
+
+    [TestMethod]
     public async Task CheckApiRejectsConflictingBatchMetadataWithinOneRun()
     {
         await AddCheckKeyAsync("integration-check-key");

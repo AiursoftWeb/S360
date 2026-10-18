@@ -10,8 +10,8 @@
 }
 <details class="s360-inventory-package">
     <summary class="s360-inventory-package-summary">
-        <span class="s360-inventory-package-name"><strong>@Model.Name</strong><small>@(Model.Ecosystem == "nuget" ? "NuGet" : "npm") · @string.Join(", ", Model.Versions.Select(v => v.Dependency.Version).Distinct())</small><span class="s360-inventory-purpose-preview">@(purposes.FirstOrDefault()?.Justification ?? reasons.FirstOrDefault() ?? Localizer["No purpose or approval reason recorded"].Value)</span></span>
-        <span class="s360-inventory-project-preview"><span>@string.Format(Localizer["{0} projects"].Value, Model.Projects.Count)</span><small>@string.Join(", ", Model.Projects.Take(2))@(Model.Projects.Count > 2 ? " …" : "")</small></span>
+        <span class="s360-inventory-package-name"><strong>@Model.Name</strong><small>@(Model.Ecosystem == "nuget" ? "NuGet" : "npm") · @string.Join(", ", Model.Versions.Select(v => v.Dependency.Version).Distinct())</small><span class="s360-inventory-purpose-preview">@(purposes.FirstOrDefault()?.Justification ?? reasons.FirstOrDefault() ?? @Localizer["No purpose or approval reason recorded"].Value)</span></span>
+        <span class="s360-inventory-project-preview"><span>@string.Format(@Localizer["{0} projects"].Value, Model.Projects.Count)</span><small>@string.Join(", ", Model.Projects.Take(2))@(Model.Projects.Count > 2 ? " …" : "")</small></span>
         @await Html.PartialAsync("_InventoryStatus", Model.Status)
         <i class="s360-inventory-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
     </summary>
@@ -21,7 +21,7 @@
                 @if (purposes.Count == 0) { <p class="text-muted">@Localizer["No project purpose recorded. An approval reason does not explain every project's use."]</p> }
                 @foreach (var request in purposes)
                 {
-                    <p><a asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@request.Id">@(request.Project ?? Localizer["Dependency request"].Value)</a> — @request.Justification</p>
+                    <p><a asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@request.Id">@(request.Project ?? @Localizer["Dependency request"].Value)</a> — @request.Justification</p>
                 }
             </div>
             <div><h3>@Localizer["Why was it approved?"]</h3>
@@ -58,7 +58,7 @@
                     {
                         <div class="s360-inventory-rule">
                             <div><strong>#@rule.Id · @rule.PackagePattern</strong> <code>@rule.Version</code>
-                                <small>@rule.Status · @Localizer["Expires (UTC)"]: @(rule.ExpiresAtUtc?.ToString("u") ?? Localizer["No expiry recorded"].Value)</small>
+                                <small>@rule.Status · @Localizer["Expires (UTC)"]: @(rule.ExpiresAtUtc?.ToString("u") ?? @Localizer["No expiry recorded"].Value)</small>
                             </div>
                             @if (canManage && rule.Status == Aiursoft.S360.Entities.TrustRuleStatus.Approved)
                             {

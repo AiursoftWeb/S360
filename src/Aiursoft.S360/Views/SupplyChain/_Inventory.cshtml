@@ -54,7 +54,7 @@
             <a asp-action="Index" asp-route-tab="@Model.Tab">@Localizer["Reset filters"]</a>
         </div>
         @if (Model.Project != null) { <h2 class="h4 mb-3">@Model.Project</h2> }
-        <div class="s360-inventory-results" role="status">@string.Format(Localizer["{0} results · Page {1} of {2}"].Value, Model.Total, Model.Page, Model.PageCount)</div>
+        <div class="s360-inventory-results" role="status">@string.Format(@Localizer["{0} results · Page {1} of {2}"].Value, Model.Total, Model.Page, Model.PageCount)</div>
         @if (Model.Total == 0)
         {
             <div class="s360-inventory-empty"><i data-lucide="search" aria-hidden="true"></i><h2>@Localizer["No matching records"]</h2><p>@Localizer["Try a different search or report scope. An approval rule alone is not evidence that a project uses a package."]</p><a asp-action="Index" asp-route-tab="rules">@Localizer["Browse approval rules"]</a></div>
@@ -71,7 +71,7 @@
             @foreach (var project in Model.Projects)
             {
                 <details class="s360-inventory-project" open="@(Model.Project == project.Name)">
-                    <summary><span><strong>@project.Name</strong><small>@string.Format(Localizer["{0} package artifacts · {1} need attention"].Value, project.Versions.Count, project.Versions.Count(v => v.Status == InventoryStatus.NonCompliant))</small></span>@await Html.PartialAsync("_InventoryStatus", project.Status)<i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                    <summary><span><strong>@project.Name</strong><small>@string.Format(@Localizer["{0} package artifacts · {1} need attention"].Value, project.Versions.Count, project.Versions.Count(v => v.Status == InventoryStatus.NonCompliant))</small></span>@await Html.PartialAsync("_InventoryStatus", project.Status)<i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                     <div class="s360-inventory-project-body">
                         @if (project.Incomplete) { <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified."]</div></div> }
                         @if (Model.Project == null)
@@ -115,7 +115,7 @@
         {
             <nav class="s360-inventory-pagination" aria-label="@Localizer["Result pages"]">
                 @if (Model.Page > 1) { <a class="btn btn-outline-primary" asp-action="Index" asp-route-tab="@Model.Tab" asp-route-scope="@Model.Scope" asp-route-query="@Model.Query" asp-route-project="@Model.Project" asp-route-ecosystem="@Model.Ecosystem" asp-route-filter="@Model.Filter" asp-route-page="@(Model.Page - 1)">@Localizer["Previous"]</a> }
-                <span>@string.Format(Localizer["Page {0} of {1}"].Value, Model.Page, Model.PageCount)</span>
+                <span>@string.Format(@Localizer["Page {0} of {1}"].Value, Model.Page, Model.PageCount)</span>
                 @if (Model.Page < Model.PageCount) { <a class="btn btn-outline-primary" asp-action="Index" asp-route-tab="@Model.Tab" asp-route-scope="@Model.Scope" asp-route-query="@Model.Query" asp-route-project="@Model.Project" asp-route-ecosystem="@Model.Ecosystem" asp-route-filter="@Model.Filter" asp-route-page="@(Model.Page + 1)">@Localizer["Next"]</a> }
             </nav>
         }

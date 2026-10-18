@@ -404,3 +404,25 @@
 @media (max-width: 1100px) {
     .s360-vulnerability-page .s360-concept-rail { grid-row: auto; }
 }
+
+/* Catalog columns prioritize package identifiers over repeated metadata and actions. */
+.s360-catalog-page .s360-workspace-layout { grid-template-columns: minmax(0, 1fr); }
+.s360-catalog-page .s360-catalog-guide > summary { font-size: .85rem; }
+.s360-catalog-page .s360-catalog-guide .s360-concept-rail { position: static; margin-top: 1rem; }
+.s360-catalog-page .s360-catalog-guide .s360-concept-card { box-shadow: none; }
+.s360-catalog-page .s360-catalog-guide dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); column-gap: 1.5rem; }
+.s360-catalog-page .s360-catalog-rules { min-width: 960px; }
+.s360-catalog-page .s360-catalog-supplier { width: 17%; min-width: 11rem; overflow-wrap: anywhere; }
+.s360-catalog-page .s360-catalog-package { min-width: 16rem; }
+.s360-catalog-page .s360-catalog-package code { font-size: .95em; overflow-wrap: break-word; word-break: normal; }
+.s360-catalog-page .s360-catalog-rules td:nth-child(3) { white-space: nowrap; }
+.s360-catalog-page .s360-catalog-source { width: 20%; min-width: 13rem; }
+.s360-catalog-page .s360-catalog-date { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.s360-catalog-page .s360-catalog-action { min-width: 8rem; }
+.s360-catalog-page .s360-catalog-source-details,
+.s360-catalog-page .s360-catalog-revoke { padding: 0; border: 0; border-radius: 0; background: transparent; }
+.s360-catalog-page .s360-catalog-source-details summary { font-size: .8rem; font-weight: 400; overflow-wrap: anywhere; }
+.s360-catalog-page .s360-catalog-source-details small { display: block; margin-top: .5rem; overflow-wrap: anywhere; }
+.s360-catalog-page .s360-catalog-revoke summary { color: #b02a37; font-size: .8rem; }
+.s360-catalog-page .s360-catalog-revoke[open] { min-width: 12rem; }
+.s360-catalog-page details > summary:focus-visible { outline: 2px solid #0e907a; outline-offset: 3px; }

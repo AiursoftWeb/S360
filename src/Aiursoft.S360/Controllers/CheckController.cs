@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Aiursoft.AiurProtocol.Models;
 using Aiursoft.S360.SDK;
 using Aiursoft.S360.Services;
@@ -30,12 +31,13 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             request.Dependencies.Cast<Dependency?>().Any(d => d is null ||
                 !TrustPattern.IsValidConcretePackage(d.Ecosystem, d.Name, d.Version)))
             return BadRequest();
+        var contextJson = request.Context == null ? null : JsonSerializer.Serialize(request.Context);
         var priorBatches = await db.BuildChecks.AsNoTracking().Where(c => c.RunId == request.RunId)
-            .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount }).ToListAsync();
+            .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson }).ToListAsync();
         if (priorBatches.Any(prior => prior.BatchCount != request.BatchCount || prior.Project != request.Project ||
             prior.Commit != request.Commit || prior.Pipeline != request.Pipeline ||
-            prior.ScannedProjectCount != request.ScannedProjectCount))
-            return BadRequest("Batches in one run must have identical project, commit, pipeline, scanned project count and batch count.");
+            prior.ScannedProjectCount != request.ScannedProjectCount || prior.ContextJson != contextJson))
+            return BadRequest("Batches in one run must have identical project, commit, pipeline, check context, scanned project count and batch count.");
         if (priorBatches.Any(prior => prior.BatchIndex == request.BatchIndex))
             return Conflict("This batch index has already been reported for the run. Start a new run to recheck current policy.");
         if (priorBatches.Count != request.BatchIndex ||
@@ -71,7 +73,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             }
             var check = new BuildCheck
             {
-                Project = request.Project, Commit = request.Commit, Pipeline = request.Pipeline,
+                Project = request.Project, Commit = request.Commit, Pipeline = request.Pipeline, ContextJson = contextJson,
                 RunId = request.RunId, BatchIndex = request.BatchIndex, BatchCount = request.BatchCount,
                 ScannedProjectCount = request.ScannedProjectCount,
                 Trusted = runTrusted,

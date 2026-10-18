@@ -109,4 +109,33 @@ public class SqliteMigrationTests
             if (File.Exists(file)) File.Delete(file);
         }
     }
+    [TestMethod]
+    public async Task CheckContextMigrationPreservesLegacyChecksAsUnclassified()
+    {
+        var file = Path.Combine(Path.GetTempPath(), "s360-check-context-" + Guid.NewGuid().ToString("N") + ".db");
+        try
+        {
+            await using var db = new SqliteContext(new DbContextOptionsBuilder<SqliteContext>()
+                .UseSqlite($"Data Source={file}").Options);
+            await db.GetService<IMigrator>().MigrateAsync("20260923142925_PreserveAdvisoryRevisions");
+            await db.Database.ExecuteSqlRawAsync("""
+                INSERT INTO BuildChecks (Project, "Commit", Pipeline, RunId, BatchIndex, BatchCount,
+                    ScannedProjectCount, CreatedAtUtc, Trusted)
+                VALUES ('legacy-project', 'legacy-commit', 'legacy-pipeline',
+                    'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 0, 1, 1, '2026-10-17 12:00:00', 0);
+                """);
+            await db.Database.MigrateAsync();
+            var legacy = await db.BuildChecks.SingleAsync();
+            Assert.AreEqual("legacy-project", legacy.Project);
+            Assert.AreEqual("legacy-commit", legacy.Commit);
+            Assert.IsNull(legacy.ContextJson);
+            Assert.AreEqual(Services.CheckKind.Unknown, Services.BuildCheckRun.Kind(legacy.ContextJson));
+            legacy.ContextJson = "{\"Provider\":\"local\"}";
+            await db.SaveChangesAsync();
+            db.ChangeTracker.Clear();
+            Assert.AreEqual(Services.CheckKind.Local,
+                Services.BuildCheckRun.Kind((await db.BuildChecks.SingleAsync()).ContextJson));
+        }
+        finally { if (File.Exists(file)) File.Delete(file); }
+    }
 }

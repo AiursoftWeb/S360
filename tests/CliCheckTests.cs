@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text.Json;
+using Aiursoft.S360.Client;
 
 namespace Aiursoft.S360.Tests;
 
@@ -11,6 +12,28 @@ public class CliCheckTests
 #else
     private const string BuildConfiguration = "Release";
 #endif
+
+    [TestMethod]
+    public void CliReportsGitlabContextWithoutPromotingLocalProjectVariables()
+    {
+        var environment = new Dictionary<string, string?>
+        {
+            ["GITLAB_CI"] = "true", ["CI_PIPELINE_SOURCE"] = "merge_request_event",
+            ["CI_COMMIT_REF_NAME"] = "refs/merge-requests/42/head", ["CI_DEFAULT_BRANCH"] = "master",
+            ["CI_MERGE_REQUEST_IID"] = "42"
+        };
+        var context = CheckHandler.ReadContext(key => environment.GetValueOrDefault(key));
+        Assert.AreEqual("gitlab", context.Provider);
+        Assert.AreEqual("merge_request_event", context.PipelineSource);
+        Assert.AreEqual("42", context.MergeRequest);
+        Assert.AreEqual("refs/merge-requests/42/head", context.Ref);
+        Assert.AreEqual("master", context.DefaultBranch);
+        environment.Remove("GITLAB_CI");
+        var local = CheckHandler.ReadContext(key => environment.GetValueOrDefault(key));
+        Assert.AreEqual("local", local.Provider);
+        Assert.IsNull(local.Ref);
+        Assert.IsNull(local.MergeRequest);
+    }
 
     [TestMethod]
     public async Task DependencyFreeProjectStillFailsWhenS360IsUnavailable()

@@ -18,8 +18,17 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>发送到 API 的依赖项列表中的有限部分。一个已接受的批次并不等同于一次完整且已接受的运行。</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>已接受</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>“已接受”表示 S360 已接受此检查所上报的软件包证据。这并不意味着所有批次均已送达，也不意味着已配置 GitLab Runner 来中止构建。</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>已接受与已强制执行</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>批次</value>
@@ -42,17 +51,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>当前已被拦截</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>决策原因</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>默认分支</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>每一行代表一个 API 批次。只有所有批次均被接受的完整运行才能通过 CLI 检查。记录的结果反映的是历史情况；当前的屏蔽列表警告会单独显示。</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>运行未完成</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>本地检查</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>合并请求</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>下一页</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>在报告的受支持项目中未发现外部依赖项。</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>一次已上报的检查尝试。其各批次共用一个运行标识符，方便您查看完整结果。</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>其他分支</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>软件包</value>
@@ -66,11 +93,17 @@
   <data name="Project" xml:space="preserve">
     <value>项目</value>
   </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>查看检查记录</value>
+  </data>
   <data name="Reason" xml:space="preserve">
     <value>原因</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>已拒绝</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>报告的来源</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>运行</value>
@@ -90,11 +123,32 @@
   <data name="Status" xml:space="preserve">
     <value>状态</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>标签构建</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>CLI 识别到的受支持项目数量。即使检查不包含任何依赖项，仍会联系 S360 并记录此数量。</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>该次检查运行时记录的策略说明。当前的阻止列表警告是独立信息，不会改写这段历史记录。</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>这些是已上报的检查；Runner 强制执行是单独的上线步骤，不能仅凭此处的记录推断已启用。</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>未分类</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>版本</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>漏洞数据</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>漏洞数据时间</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>该决策依据的公告数据上次检查的时间；值为空并不代表安全无虞。</value>
   </data>
 
 </root>

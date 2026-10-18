@@ -192,4 +192,53 @@ public class OsvRangeMatcherTests
         } });
         Assert.AreEqual(RangeRisk.Unknown, OsvRangeMatcher.Intersects(affected, "nuget", "Example", "1.5.0"));
     }
+    [TestMethod]
+    public void ReadableBoundariesUseOnlyTheAdvisedPackageAndPreserveFixMeaning()
+    {
+        const string affected = """
+            [{"package":{"ecosystem":"NuGet","name":"Sibling"},"ranges":[{"type":"ECOSYSTEM","events":[{"introduced":"0"},{"fixed":"99.0.0"}]}]},
+             {"package":{"ecosystem":"NuGet","name":"Example"},"ranges":[{"type":"ECOSYSTEM","events":[{"introduced":"8.0.0"},{"fixed":"8.0.2"},{"introduced":"9.0.0-preview.1"},{"fixed":"9.0.21"}]}]},
+             {"package":{"ecosystem":"NuGet","name":"Example"},"ranges":[{"type":"ECOSYSTEM","events":[{"introduced":"0"},{"last_affected":"7.0.1"}]}]}]
+            """;
+        var summary = OsvAffectedVersions.Read(affected, "nuget", "example");
+        Assert.IsFalse(summary.HasUnparsedData);
+        Assert.AreEqual(3, summary.Intervals.Count);
+        Assert.AreEqual(new OsvVersionInterval("8.0.0", "8.0.2", "fixed"), summary.Intervals[0]);
+        Assert.AreEqual(new OsvVersionInterval("9.0.0-preview.1", "9.0.21", "fixed"), summary.Intervals[1]);
+        Assert.AreEqual(new OsvVersionInterval(null, "7.0.1", "last_affected"), summary.Intervals[2]);
+    }
+
+    [TestMethod]
+    public void ReadableBoundariesDoNotInventFixesForOpenOrLimitedRanges()
+    {
+        const string affected = """
+            [{"package":{"ecosystem":"npm","name":"sample"},"ranges":[{"type":"SEMVER","events":[{"introduced":"1.0.0"},{"limit":"2.0.0"},{"introduced":"3.0.0"}]}]}]
+            """;
+        var summary = OsvAffectedVersions.Read(affected, "npm", "sample");
+        Assert.IsFalse(summary.HasUnparsedData);
+        Assert.AreEqual(new OsvVersionInterval("1.0.0", "2.0.0", "limit"), summary.Intervals[0]);
+        Assert.AreEqual(new OsvVersionInterval("3.0.0", null, null), summary.Intervals[1]);
+    }
+
+    [TestMethod]
+    [DataRow("{not-json")]
+    [DataRow("[]")]
+    [DataRow("[{\"package\":{\"ecosystem\":\"NuGet\",\"name\":\"Example\"},\"ranges\":[{\"type\":\"GIT\",\"events\":[{\"introduced\":\"abc\"}]}]}]")]
+    [DataRow("[{\"package\":{\"ecosystem\":\"NuGet\",\"name\":\"Example\"},\"ranges\":[{\"type\":\"ECOSYSTEM\",\"events\":[{\"introduced\":\"2.0.0\"},{\"fixed\":\"1.0.0\"}]}]}]")]
+    public void UnreadableSourceDataStaysExplicitlyUnknown(string affected)
+    {
+        Assert.IsTrue(OsvAffectedVersions.Read(affected, "nuget", "Example").HasUnparsedData);
+    }
+
+    [TestMethod]
+    public void ExplicitVersionListsRemainVisibleWithoutInventingAnInterval()
+    {
+        const string affected = """
+            [{"package":{"ecosystem":"NuGet","name":"Example"},"versions":["1.0.0","1.0.3"]}]
+            """;
+        var summary = OsvAffectedVersions.Read(affected, "nuget", "Example");
+        Assert.IsFalse(summary.HasUnparsedData);
+        Assert.AreEqual(0, summary.Intervals.Count);
+        CollectionAssert.AreEqual(new[] { "1.0.0", "1.0.3" }, summary.ListedVersions.ToArray());
+    }
 }

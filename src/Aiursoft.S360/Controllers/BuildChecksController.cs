@@ -18,12 +18,13 @@ public class BuildChecksController(TemplateDbContext db) : Controller
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
         CascadedLinksGroupName = "Security audit", CascadedLinksIcon = "shield-check", CascadedLinksOrder = 3,
         LinkText = "Build check records", LinkOrder = 2)]
-    public async Task<IActionResult> Index(string? project = null, int page = 1)
+    public async Task<IActionResult> Index(string? project = null, int page = 1, int? checkId = null)
     {
-        if (page is < 1 or > 10000 || project?.Length > 200) return BadRequest();
+        if (page is < 1 or > 10000 || project?.Length > 200 || checkId is <= 0) return BadRequest();
         project = project?.Trim();
         var query = db.BuildChecks.AsNoTracking().AsQueryable();
         if (!string.IsNullOrEmpty(project)) query = query.Where(c => c.Project != null && c.Project.Contains(project));
+        if (checkId != null) query = query.Where(c => c.Id == checkId);
         var model = new BuildChecksViewModel
         {
             Project = project,

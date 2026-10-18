@@ -961,6 +961,14 @@ public class SupplyChainPagesTests : TestBase
             Project = "first-project", Commit = "first-commit"
         });
         Assert.AreEqual(HttpStatusCode.BadRequest, inconsistentScan.StatusCode);
+        using var inconsistentContext = await Http.PostAsJsonAsync("/api/check", new CheckRequest
+        {
+            Dependencies = [dependency], ScannedProjectCount = 1,
+            RunId = runId, BatchIndex = 1, BatchCount = 2,
+            Project = "first-project", Commit = "first-commit",
+            Context = new CheckContext { Provider = "gitlab", Ref = "master", DefaultBranch = "master", PipelineSource = "push" }
+        });
+        Assert.AreEqual(HttpStatusCode.BadRequest, inconsistentContext.StatusCode);
         await LoginAsAdmin();
         using var page = await Http.GetAsync("/BuildChecks/Index?project=first-project");
         Assert.AreEqual(HttpStatusCode.OK, page.StatusCode);
@@ -1216,7 +1224,7 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task UnapprovedCiDependencyIsRecordedAndShownAsCurrentVulnerability()
+    public async Task UnapprovedLegacyDependencyRemainsVisibleAsUnclassifiedEvidence()
     {
         const string key = "integration-observation-key";
         var packageName = "Unapproved.Observed." + Guid.NewGuid().ToString("N");
@@ -1264,13 +1272,13 @@ public class SupplyChainPagesTests : TestBase
         quick.EnsureSuccessStatusCode();
         var quickHtml = await quick.Content.ReadAsStringAsync();
         StringAssert.Contains(quickHtml, packageName);
-        StringAssert.Contains(quickHtml, "Latest complete CI check reports an affected version");
+        StringAssert.Contains(quickHtml, "Unclassified check evidence");
         using var page = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
         page.EnsureSuccessStatusCode();
         var html = await page.Content.ReadAsStringAsync();
         StringAssert.Contains(html, packageName);
         StringAssert.Contains(html, project);
-        StringAssert.Contains(html, "Latest complete CI check reports an affected version");
+        StringAssert.Contains(html, "Unclassified check evidence");
     }
 
     [TestMethod]
@@ -2516,6 +2524,105 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
+    public async Task VulnerabilityImpactKeepsMainlineBaselineSeparateFromReviewAndLegacyEvidence()
+    {
+        await LoginAsAdmin();
+        var name = "Example.Impact." + Guid.NewGuid().ToString("N");
+        var project = "impact-project-" + Guid.NewGuid().ToString("N");
+        var now = DateTime.UtcNow;
+        int vulnerableId;
+        int fixedId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var vulnerable = new PackageArtifact { Ecosystem = "nuget", Name = name, Version = "8.0.1",
+                Source = "https://nuget.aiursoft.com/v3/index.json", Sha256 = new string('a', 64) };
+            var fixedArtifact = new PackageArtifact { Ecosystem = "nuget", Name = name, Version = "8.0.2",
+                Source = vulnerable.Source, Sha256 = new string('b', 64) };
+            db.Vulnerabilities.Add(new Vulnerability
+            {
+                Ecosystem = "nuget", PackageName = name, SourceId = "GHSA-impact-" + Guid.NewGuid().ToString("N"),
+                Summary = "Denial of service in the affected package",
+                RawAffectedJson = $$"""
+                    [{"package":{"ecosystem":"NuGet","name":"{{name}}"},"ranges":[{"type":"ECOSYSTEM","events":[{"introduced":"8.0.0"},{"fixed":"8.0.2"}]}]},
+                     {"package":{"ecosystem":"NuGet","name":"Unrelated.Package"},"ranges":[{"type":"ECOSYSTEM","events":[{"introduced":"0"},{"fixed":"99.0.0"}]}]}]
+                    """,
+                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = 0, PackageArtifact = vulnerable }]
+            });
+            db.PackageArtifacts.Add(fixedArtifact);
+            await db.SaveChangesAsync();
+            vulnerableId = vulnerable.Id;
+            fixedId = fixedArtifact.Id;
+        }
+        var mainline = new CheckContext { Provider = "gitlab", Ref = "master", DefaultBranch = "master", PipelineSource = "push" };
+        var review = new CheckContext { Provider = "gitlab", Ref = "master", DefaultBranch = "master",
+            PipelineSource = "merge_request_event", MergeRequest = "42" };
+        var baselineId = await Record(vulnerableId, mainline, -5, trusted: false);
+        await Record(fixedId, review, -4, trusted: true);
+        await Record(fixedId, new CheckContext(), -3, trusted: true);
+        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        {
+            response.EnsureSuccessStatusCode();
+            var html = await response.Content.ReadAsStringAsync();
+            StringAssert.Contains(html, name);
+            StringAssert.Contains(html, "A default-branch check reports an affected version");
+            StringAssert.Contains(html, "Affected ranges and fix boundaries");
+            StringAssert.Contains(html, "8.0.2");
+            StringAssert.Contains(html, project);
+            StringAssert.Contains(html, $"checkId={baselineId}");
+            Assert.DoesNotContain("99.0.0", html);
+        }
+        using (var record = await Http.GetAsync($"/BuildChecks/Index?checkId={baselineId}"))
+        {
+            record.EnsureSuccessStatusCode();
+            StringAssert.Contains(await record.Content.ReadAsStringAsync(), $"id=\"check-{baselineId}\"");
+        }
+        mainline.PipelineSource = "schedule";
+        await Record(fixedId, mainline, -2, trusted: true);
+        await Record(vulnerableId, review, -1, trusted: false);
+        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        {
+            response.EnsureSuccessStatusCode();
+            Assert.DoesNotContain(name, await response.Content.ReadAsStringAsync());
+        }
+        using (var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true"))
+        {
+            detailed.EnsureSuccessStatusCode();
+            var html = await detailed.Content.ReadAsStringAsync();
+            StringAssert.Contains(html, name);
+            StringAssert.Contains(html, "Review and local check history");
+            StringAssert.Contains(html, "Merge request");
+        }
+        await Record(vulnerableId, null, 0, trusted: false);
+        using var legacy = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        legacy.EnsureSuccessStatusCode();
+        var legacyHtml = await legacy.Content.ReadAsStringAsync();
+        StringAssert.Contains(legacyHtml, name);
+        StringAssert.Contains(legacyHtml, "Unclassified check evidence");
+        Assert.DoesNotContain("A default-branch check reports an affected version", legacyHtml);
+        await Record(fixedId, mainline, 0, trusted: true);
+        using var confirmed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        confirmed.EnsureSuccessStatusCode();
+        Assert.DoesNotContain(name, await confirmed.Content.ReadAsStringAsync());
+
+        async Task<int> Record(int artifactId, CheckContext? context, int seconds, bool trusted)
+        {
+            using var scope = Server!.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var artifact = await db.PackageArtifacts.SingleAsync(a => a.Id == artifactId);
+            var check = new BuildCheck { Project = project, RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1, BatchCount = 1, CreatedAtUtc = now.AddSeconds(seconds), Trusted = trusted,
+                ContextJson = context == null ? null : JsonSerializer.Serialize(context),
+                Dependencies = [new BuildCheckDependency { BuildCheckId = 0, PackageArtifactId = artifactId,
+                    Ecosystem = artifact.Ecosystem, Name = artifact.Name, Version = artifact.Version,
+                    Source = artifact.Source, Sha256 = artifact.Sha256, Trusted = trusted }] };
+            db.BuildChecks.Add(check);
+            await db.SaveChangesAsync();
+            return check.Id;
+        }
+    }
+
+    [TestMethod]
     public async Task QuickAuditWarnsAboutUndownloadedVulnerableWildcardVersionUntilExcluded()
     {
         var packageName = "Example." + Guid.NewGuid().ToString("N");
@@ -2759,7 +2866,7 @@ public class SupplyChainPagesTests : TestBase
         affectedQuick.EnsureSuccessStatusCode();
         var html = await affectedQuick.Content.ReadAsStringAsync();
         StringAssert.Contains(html, name);
-        StringAssert.Contains(html, "Latest complete CI check reports an affected version");
+        StringAssert.Contains(html, "Unclassified check evidence");
     }
 
     [TestMethod]

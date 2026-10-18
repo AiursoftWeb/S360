@@ -396,3 +396,11 @@
 @media (prefers-reduced-motion: reduce) {
     .s360-feature { transition: none; }
 }
+
+/* Advisory evidence must remain readable for long project identifiers and small viewports. */
+.s360-project-name { min-width: 12rem; max-width: 24rem; overflow-wrap: anywhere; }
+.s360-listed-versions { max-height: 12rem; overflow-y: auto; }
+.s360-vulnerability-page .s360-version-ranges code { white-space: nowrap; }
+@media (max-width: 1100px) {
+    .s360-vulnerability-page .s360-concept-rail { grid-row: auto; }
+}

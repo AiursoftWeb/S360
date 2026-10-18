@@ -8,7 +8,7 @@
     var reasons = Model.Versions.SelectMany(v => v.Rules).Select(r => r.Justification).Where(r => !string.IsNullOrWhiteSpace(r)).Distinct().ToList();
     var purposes = Model.Versions.SelectMany(v => v.Requests).Where(r => !string.IsNullOrWhiteSpace(r.Justification)).DistinctBy(r => r.Id).ToList();
 }
-<details class="s360-inventory-package">
+<details class="s360-inventory-package" open="@(Model.Name.Equals(ViewData["InventoryQuery"] as string, StringComparison.OrdinalIgnoreCase))">
     <summary class="s360-inventory-package-summary">
         <span class="s360-inventory-package-name"><strong>@Model.Name</strong><small>@(Model.Ecosystem == "nuget" ? "NuGet" : "npm") · @string.Join(", ", Model.Versions.Select(v => v.Dependency.Version).Distinct())</small><span class="s360-inventory-purpose-preview">@(purposes.FirstOrDefault()?.Justification ?? reasons.FirstOrDefault() ?? @Localizer["No purpose or approval reason recorded"].Value)</span></span>
         <span class="s360-inventory-project-preview"><span>@string.Format(@Localizer["{0} projects"].Value, Model.Projects.Count)</span><small>@string.Join(", ", Model.Projects.Take(2))@(Model.Projects.Count > 2 ? " …" : "")</small></span>
@@ -42,7 +42,7 @@
                 <ul class="s360-inventory-uses">
                     @foreach (var use in version.Uses)
                     {
-                        <li><a asp-action="Index" asp-route-tab="projects" asp-route-scope="@inventoryScope" asp-route-project="@use.Project">@use.Project</a>
+                        <li><a asp-action="Index" asp-route-tab="projects" asp-route-scope="@inventoryScope" asp-route-project="@use.Project" asp-route-ecosystem="@Model.Ecosystem">@use.Project</a>
                             <small>@use.CheckedAtUtc.ToString("yyyy-MM-dd HH:mm") UTC · <a asp-controller="BuildChecks" asp-action="Index" asp-route-checkId="@use.CheckId">@Localizer["Check record"]</a>
                             @if (!string.IsNullOrEmpty(use.Commit)) { <code>@use.Commit[..Math.Min(12, use.Commit.Length)]</code> }
                             @if (!string.IsNullOrEmpty(use.Pipeline)) { <span> · @Localizer["Pipeline"] @use.Pipeline</span> }

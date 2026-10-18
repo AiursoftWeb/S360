@@ -24,7 +24,7 @@ public class DashboardController(TemplateDbContext db, UserManager<User> users,
         CascadedLinksGroupName = "Home",
         CascadedLinksIcon = "home",
         CascadedLinksOrder = 1,
-        LinkText = "Overview",
+        LinkText = "Company overview",
         LinkOrder = 1)]
     public async Task<IActionResult> Index()
     {
@@ -43,26 +43,23 @@ public class DashboardController(TemplateDbContext db, UserManager<User> users,
             CanReadSupplyChain = (await authorization.AuthorizeAsync(User,
                 AppPermissionNames.CanReadSupplyChain)).Succeeded,
             CanReviewRequests = (await authorization.AuthorizeAsync(User,
-                AppPermissionNames.CanReviewDependencyRequests)).Succeeded,
-            CanManageTrustRules = (await authorization.AuthorizeAsync(User,
-                AppPermissionNames.CanManageTrustRules)).Succeeded,
-            CanManageBlocklist = (await authorization.AuthorizeAsync(User,
-                AppPermissionNames.CanManageBlocklist)).Succeeded
+                AppPermissionNames.CanReviewDependencyRequests)).Succeeded
         };
         if (model.CanReadSupplyChain)
         {
-            model.Inventory = new InventoryViewModel { Tab = "projects", CanRead = true };
             await VulnerabilityAuditSnapshot.ExecuteAsync(db, async () =>
             {
-                await inventory.PopulateAsync(model.Inventory);
+                var inventoryModel = new InventoryViewModel { Tab = "projects", CanRead = true };
+                await inventory.PopulateAsync(inventoryModel);
+                model.Summary = inventoryModel.Summary;
+                model.PendingReviews = await db.DependencyApplications.CountAsync(a =>
+                    a.Status == ApplicationStatus.ReadyForReview);
+                var audit = await db.VulnerabilitySyncStates.AsNoTracking().FirstOrDefaultAsync();
+                model.LastVulnerabilitySyncUtc = audit?.LastSuccessAtUtc;
+                model.VulnerabilityAuditCurrent = audit?.LastSuccessfulAttemptAtUtc != null &&
+                    audit.LastSuccessAtUtc > DateTime.UtcNow.AddHours(-12);
                 return true;
             });
-            model.PendingReviews = await db.DependencyApplications.CountAsync(a =>
-                a.Status == ApplicationStatus.ReadyForReview);
-            model.TrackedArtifacts = await db.PackageArtifacts.CountAsync();
-            model.ActiveBlockRules = await db.BlockRules.CountAsync(b => b.Active);
-            model.LastVulnerabilitySyncUtc = await db.VulnerabilitySyncStates.AsNoTracking()
-                .Select(s => s.LastSuccessAtUtc).FirstOrDefaultAsync();
         }
         return this.StackView(model);
     }

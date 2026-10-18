@@ -21,7 +21,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
 {
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
         CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
-        LinkText = "Dependency catalog", LinkOrder = 2)]
+        LinkText = "Compliance explorer", LinkOrder = 2)]
     public async Task<IActionResult> Index(string ecosystem = "all", string? query = null, int? supplierId = null,
         string? lookupName = null, string? lookupVersion = null, string? lookupSource = null,
         string tab = "projects", string scope = "baseline", string filter = "all", string? project = null, int page = 1)

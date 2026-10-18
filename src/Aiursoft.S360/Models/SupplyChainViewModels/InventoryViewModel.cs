@@ -19,6 +19,7 @@ public class InventoryViewModel
     public int PackageCount { get; set; }
     public int ProjectCount { get; set; }
     public int ProblemCount { get; set; }
+    public InventorySummary Summary { get; set; } = new();
     public bool CanRead { get; set; }
     public List<InventoryPackage> Packages { get; set; } = [];
     public List<InventoryProject> Projects { get; set; } = [];
@@ -32,6 +33,8 @@ public class InventoryPackage
     public required string Source { get; init; }
     public List<InventoryVersion> Versions { get; init; } = [];
     public InventoryStatus Status => Versions.Max(v => v.Status);
+    public int AffectedProjectCount => Versions.Where(v => v.Status != InventoryStatus.Compliant)
+        .SelectMany(v => v.Uses).Select(u => u.Project).Distinct().Count();
     public List<string> Projects => Versions.SelectMany(v => v.Uses).Select(u => u.Project).Distinct().Order().ToList();
 }
 
@@ -80,3 +83,17 @@ public record InventoryGraphNode(string Id, string Kind, Dependency? Package, Li
     List<string> Projects, List<string> Purposes);
 
 // ReSharper restore NotAccessedPositionalProperty.Global
+
+// Aggregated before search and pagination, using the same snapshot and verdicts as the inventory.
+public class InventorySummary
+{
+    public int ProjectCount { get; init; }
+    public int PackageCount { get; init; }
+    public int VulnerablePackageCount { get; init; }
+    public int VulnerableProjectCount { get; init; }
+    public Dictionary<InventoryStatus, int> ProjectStatuses { get; init; } = [];
+    public Dictionary<InventoryStatus, int> PackageStatuses { get; init; } = [];
+    public DateTime? LatestReportUtc { get; init; }
+    public List<InventoryPackage> PriorityPackages { get; init; } = [];
+    public List<InventoryProject> PriorityProjects { get; init; } = [];
+}

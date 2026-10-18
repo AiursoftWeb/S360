@@ -1,6 +1,7 @@
 using System.Net;
 using System.Text.Json;
 using Aiursoft.S360.Entities;
+using Aiursoft.S360.InMemory;
 using Aiursoft.S360.Models.SupplyChainViewModels;
 using Aiursoft.S360.SDK;
 using Aiursoft.S360.Services;
@@ -319,7 +320,12 @@ public class InventoryTests : TestBase
             await db.SaveChangesAsync();
         }
         Assert.AreEqual(20, (await Read()).Packages.Count);
-        Assert.AreEqual(5, (await Read(page: 2)).Packages.Count);
+        var secondPage = await Read(page: 2);
+        Assert.AreEqual(5, secondPage.Packages.Count);
+        Assert.IsTrue(secondPage.Summary.PackageCount >= 25);
+        Assert.IsTrue(secondPage.Summary.ProjectCount >= 25);
+        Assert.AreEqual(secondPage.Summary.PackageCount, (await Read(query: "Project-24")).Summary.PackageCount,
+            "Search and pagination must not shrink company-wide totals.");
         Assert.AreEqual(25, (await Read(query: "Pagination purpose")).Total);
         Assert.AreEqual("Catalog.Package24", (await Read(query: "Project-24")).Packages.Single().Name);
         Assert.AreEqual(0, (await Read(query: "not-present")).Total);
@@ -333,11 +339,72 @@ public class InventoryTests : TestBase
         StringAssert.Contains(html, "Pagination purpose: parse employee-provided documents.");
         StringAssert.Contains(html, "No project purpose recorded");
         StringAssert.Contains(html, "s360-inventory-tabs");
+        var packageDetails = await Http.GetStringAsync("/SupplyChain/Index?tab=dependencies&query=Catalog.Package24");
+        StringAssert.Contains(packageDetails, "Why is it needed?");
+        StringAssert.Contains(packageDetails, "Recorded in these projects");
+        StringAssert.Contains(packageDetails, "open=\"open\"");
         var projects = await Http.GetStringAsync("/SupplyChain/Index?tab=projects&project=" + Uri.EscapeDataString(_prefix + "Project-24"));
         StringAssert.Contains(projects, "Catalog.Package24");
         StringAssert.Contains(projects, "Dependency relationships were not recorded");
         using var invalid = await Http.GetAsync("/SupplyChain/Index?tab=invalid");
         Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
+    }
+
+    [TestMethod]
+    public async Task CompanySummaryUsesCurrentBaselinesAndLinksRisksToProjects()
+    {
+        var options = new DbContextOptionsBuilder<InMemoryContext>()
+            .UseInMemoryDatabase("s360-company-summary-" + Guid.NewGuid()).Options;
+        await using var db = new InMemoryContext(options);
+        var service = new CatalogInventoryService(db, new TrustService(db),
+            Server!.Services.GetRequiredService<IConfiguration>());
+        var empty = new InventoryViewModel();
+        await service.PopulateAsync(empty);
+        Assert.AreEqual(0, empty.Summary.ProjectCount);
+        Assert.AreEqual(0, empty.Summary.PackageCount);
+        Assert.IsNull(empty.Summary.LatestReportUtc);
+        var now = DateTime.UtcNow;
+        var safe = Artifact("Company.Safe");
+        var vulnerable = Artifact("Company.Vulnerable");
+        var unknown = Artifact("Company.Unknown");
+        var reviewOnly = Artifact("Company.ReviewOnly");
+        var removed = Artifact("Company.Removed");
+        db.TrustRules.AddRange(Approve(safe), Approve(vulnerable), Approve(unknown));
+        unknown.SourceVerifiedAtUtc = null;
+        db.BuildChecks.Add(Report("safe", "baseline", "nuget", now, safe));
+        db.BuildChecks.Add(Report("affected", "baseline", "nuget", now, safe, vulnerable));
+        db.BuildChecks.Add(Report("unknown", "baseline", "nuget", now, unknown));
+        db.BuildChecks.Add(Report("review-only", "review", "nuget", now, reviewOnly));
+        db.BuildChecks.Add(Report("safe", "baseline", "nuget", now.AddDays(-1), removed));
+        var incomplete = Report("incomplete", "baseline", "nuget", now);
+        incomplete.BatchCount = 2;
+        db.BuildChecks.Add(incomplete);
+        db.VulnerabilityMatches.Add(new VulnerabilityMatch
+        {
+            PackageArtifactId = 0, PackageArtifact = vulnerable, VulnerabilityId = 0, Active = true,
+            Vulnerability = new Vulnerability { Ecosystem = "nuget", PackageName = vulnerable.Name,
+                SourceId = "GHSA-company-test", Aliases = "[\"CVE-2099-10002\"]" }
+        });
+        var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
+        if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
+        audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
+        audit.LastSuccessAtUtc = now.AddSeconds(1);
+        await db.SaveChangesAsync();
+        var model = new InventoryViewModel();
+        await service.PopulateAsync(model);
+        var summary = model.Summary;
+        Assert.AreEqual(4, summary.ProjectCount);
+        Assert.AreEqual(3, summary.PackageCount, "Shared packages count once; review and superseded versions are excluded.");
+        Assert.AreEqual(1, summary.VulnerablePackageCount);
+        Assert.AreEqual(1, summary.VulnerableProjectCount);
+        Assert.AreEqual(1, summary.ProjectStatuses[InventoryStatus.Compliant]);
+        Assert.AreEqual(1, summary.ProjectStatuses[InventoryStatus.NonCompliant]);
+        Assert.AreEqual(2, summary.ProjectStatuses[InventoryStatus.Pending]);
+        Assert.AreEqual(1, summary.PackageStatuses[InventoryStatus.Compliant]);
+        Assert.AreEqual(1, summary.PackageStatuses[InventoryStatus.NonCompliant]);
+        Assert.AreEqual(1, summary.PackageStatuses[InventoryStatus.Pending]);
+        Assert.AreEqual("Company.Vulnerable", summary.PriorityPackages.First().Name);
+        Assert.AreEqual(_prefix + "affected", summary.PriorityProjects.First().Name);
     }
 
     [TestMethod]

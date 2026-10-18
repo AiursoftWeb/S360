@@ -568,3 +568,32 @@
     .s360-graph-heading { flex-direction: column; } .s360-graph { padding: .75rem; }
     .s360-graph-canvas { height: 450px; } .s360-graph-summary { flex-basis: 100%; margin: 0; }
 }
+
+/* Company overview: compact metrics with drill-through links to the inventory. */
+.s360-overview-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.5rem; }
+.s360-overview-metric { height: 100%; margin-bottom: 0; color: inherit; text-decoration: none; }
+a.s360-overview-metric:hover { box-shadow: 0 0 0 2px var(--bs-primary, #3b7ddd); }
+.s360-overview-metric strong { display: block; font-size: 2.3rem; line-height: 1.25; margin: .4rem 0; }
+.s360-overview-metric small { display: block; color: var(--bs-secondary-color, #6c757d); }
+.s360-overview .card { margin-bottom: 0; }
+.s360-compliance-chart { display: flex; height: 2rem; border-radius: .4rem; overflow: hidden; margin: .5rem 0 1rem; }
+.s360-compliance-chart a { display: block; min-width: 1px; }
+.s360-compliance-chart a:hover { opacity: .8; }
+.s360-compliance-chart .compliant, .s360-chart-legend .compliant { background: #198754; }
+.s360-compliance-chart .issues, .s360-chart-legend .issues { background: #dc3545; }
+.s360-compliance-chart .pending, .s360-chart-legend .pending { background: #b7791f; }
+.s360-chart-legend { list-style: none; margin: 0; padding: 0; }
+.s360-chart-legend a { display: flex; justify-content: space-between; align-items: center; color: inherit; padding: .45rem 0; gap: 1rem; }
+.s360-chart-legend i { display: inline-block; width: .7rem; height: .7rem; margin-right: .6rem; border-radius: 50%; }
+.s360-risk-row { display: block; color: inherit; text-decoration: none; padding: .8rem 0; border-bottom: 1px solid var(--bs-border-color, #dee2e6); overflow-wrap: anywhere; }
+.s360-risk-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.s360-risk-row:hover strong { text-decoration: underline; }
+.s360-risk-row small { color: var(--bs-secondary-color, #6c757d); }
+.s360-risk-title { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .4rem 1rem; margin-bottom: .25rem; }
+.s360-risk-track { display: block; height: .4rem; border-radius: .2rem; overflow: hidden; background: var(--bs-tertiary-bg, #edf0f4); margin-top: .5rem; }
+.s360-risk-track > span { display: block; height: 100%; background: #dc3545; }
+.s360-overview-freshness { display: flex; flex-wrap: wrap; gap: .5rem 2rem; font-size: .8rem; }
+.s360-overview-freshness strong { margin-right: .4rem; }
+
+.s360-risk-track.pending > span { background: #b7791f; }
+.s360-overview-personal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1rem; cursor: pointer; }

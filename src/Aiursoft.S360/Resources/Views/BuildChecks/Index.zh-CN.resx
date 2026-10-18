@@ -33,8 +33,14 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>匿名评审</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API 密钥 ID</value>
+  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>审计目的</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>已认证账户</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>批次</value>

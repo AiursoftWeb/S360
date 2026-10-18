@@ -59,6 +59,10 @@ public class CheckContext
     [RegularExpression("^(review|baseline)$")] public string? Purpose { get; set; }
     /// <summary>Set by the server from authentication, never trusted from the caller.</summary>
     public bool IsAnonymous { get; set; }
+
+    /// <summary>Authenticated account and key identifiers, set by the server.</summary>
+    public string? UserId { get; set; }
+    public string? ApiKeyId { get; set; }
     /// <summary>Null covers both supported ecosystems; a scoped baseline replaces only that ecosystem.</summary>
     [RegularExpression("^(nuget|npm)$")] public string? Ecosystem { get; set; }
     [Required, RegularExpression("^(local|gitlab)$")]

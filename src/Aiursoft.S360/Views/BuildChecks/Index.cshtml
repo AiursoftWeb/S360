@@ -62,6 +62,10 @@
                 @if (context?.Ref != null) { <code class="ms-2">@context.Ref</code> }
                 @if (context?.MergeRequest != null) { <span class="ms-2">MR !@context.MergeRequest</span> }
             </div>
+            @if (BuildCheckRun.ReadContext(check.ContextJson) is { UserId: not null } identity)
+            {
+                <p class="text-muted">@Localizer["Authenticated account"]: <code>@identity.UserId</code> · @Localizer["API Key ID"]: <code>@identity.ApiKeyId</code></p>
+            }
             <div>@Localizer["Commit"]: <code>@check.Commit</code> · @Localizer["Pipeline"]: <code>@check.Pipeline</code></div>
             <div>@Localizer["Run"]: <code>@check.RunId</code> · @Localizer["Batch"] @(check.BatchIndex + 1)/@check.BatchCount ·
                 @Localizer["Scanned projects"]: @check.ScannedProjectCount ·

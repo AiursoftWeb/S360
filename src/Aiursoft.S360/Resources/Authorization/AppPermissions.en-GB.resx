@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Check dependencies</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Create and manage personal API keys and use them for dependency reviews.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>Create API keys and call S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Create baseline-enabled personal API keys and declare production dependency inventories.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Delete Roles</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Manage trust rules</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Publish production baselines</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Read all requests, build checks and vulnerability audit records.</value>

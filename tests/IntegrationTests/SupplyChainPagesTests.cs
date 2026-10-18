@@ -31,6 +31,213 @@ public class SupplyChainPagesTests : TestBase
         configuration["SupplyChain:NpmSources:1"] = "https://registry.npmjs.org";
     }
 
+    private async Task AddCheckKeyAsync(string secret, bool baseline = false)
+    {
+        using var scope = Server!.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+        var user = await db.Users.SingleAsync(u => u.Email == "admin@default.com");
+        var hash = Services.Authentication.ApiKeyPermissions.Hash(secret);
+        var key = await db.ApiKeys.SingleOrDefaultAsync(k => k.SecretHash == hash);
+        if (key == null)
+        {
+            key = new ApiKey { Name = secret, UserId = user.Id, SecretHash = hash };
+            db.ApiKeys.Add(key);
+        }
+        key.CanPublishBaselines = baseline;
+        key.IsEnabled = true;
+        key.ExpirationTime = DateTime.UtcNow.AddYears(1);
+        await db.SaveChangesAsync();
+    }
+
+    [TestMethod]
+    public async Task PersonalKeysRotateWithoutDowntimeAndRespectOwnershipAndRevocation()
+    {
+        await LoginAsAdmin();
+        async Task<string> CreateKey(string name, bool baseline)
+        {
+            using var response = await PostForm("/ApiKeys/Create", new Dictionary<string, string>
+            {
+                ["Name"] = name, ["IsEnabled"] = "true", ["CanPublishBaselines"] = baseline.ToString(),
+                ["ExpirationTime"] = DateTime.UtcNow.AddDays(30).ToString("s")
+            });
+            Assert.AreEqual(HttpStatusCode.Found, response.StatusCode);
+            var page = await Http.GetStringAsync("/ApiKeys");
+            var match = System.Text.RegularExpressions.Regex.Match(page, "value=\"([A-F0-9]{64})\"");
+            Assert.IsTrue(match.Success);
+            var secret = match.Groups[1].Value;
+            Assert.DoesNotContain(secret, await Http.GetStringAsync("/ApiKeys"));
+            return secret;
+        }
+        var oldKey = await CreateKey("CI old", true);
+        var newKey = await CreateKey("CI new", true);
+        Guid oldId;
+        string ownerId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var old = await db.ApiKeys.SingleAsync(k => k.Name == "CI old");
+            oldId = old.Id; ownerId = old.UserId;
+            Assert.AreNotEqual(oldKey, old.SecretHash);
+            Assert.AreEqual(64, old.SecretHash.Length);
+        }
+        async Task<HttpStatusCode> Check(string secret)
+        {
+            Http.DefaultRequestHeaders.Remove("X-S360-Key");
+            Http.DefaultRequestHeaders.Add("X-S360-Key", secret);
+            using var r = await Http.PostAsJsonAsync("/api/check", new CheckRequest
+            {
+                Project = "rotation-test", RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1,
+                Context = new CheckContext { Purpose = "baseline", UserId = "forged", ApiKeyId = "forged" }
+            });
+            return r.StatusCode;
+        }
+        Assert.AreEqual(HttpStatusCode.OK, await Check(oldKey));
+        Assert.AreEqual(HttpStatusCode.OK, await Check(newKey));
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var report = await db.BuildChecks.FirstAsync(c => c.Project == "rotation-test");
+            var context = BuildCheckRun.ReadContext(report.ContextJson)!;
+            Assert.AreEqual(ownerId, context.UserId);
+            Assert.AreNotEqual("forged", context.ApiKeyId);
+        }
+        using (var deleted = await PostForm("/ApiKeys/Delete", new Dictionary<string, string>
+                   { ["id"] = oldId.ToString() }, tokenUrl: "/ApiKeys"))
+            Assert.AreEqual(HttpStatusCode.Found, deleted.StatusCode);
+        Assert.AreEqual(HttpStatusCode.Unauthorized, await Check(oldKey));
+        Assert.AreEqual(HttpStatusCode.OK, await Check(newKey));
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var user = await db.Users.SingleAsync(u => u.Id == ownerId);
+            user.LockoutEnabled = true; user.LockoutEnd = DateTimeOffset.UtcNow.AddHours(1);
+            await db.SaveChangesAsync();
+        }
+        var lockedStatus = await Check(newKey);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var user = await db.Users.SingleAsync(u => u.Id == ownerId);
+            user.LockoutEnd = null;
+            await db.SaveChangesAsync();
+        }
+        Assert.AreEqual(HttpStatusCode.Unauthorized, lockedStatus);
+    }
+
+    [TestMethod]
+    public async Task PersonalKeyExpiryDisableAndBaselinePermissionAreEnforced()
+    {
+        await AddCheckKeyAsync("scoped-key", baseline: true);
+        Http.DefaultRequestHeaders.Add("X-S360-Key", "scoped-key");
+        async Task<HttpStatusCode> Check(string purpose = "review")
+        {
+            using var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
+            {
+                Project = "scope-test", RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1,
+                Context = new CheckContext { Purpose = purpose }
+            });
+            return response.StatusCode;
+        }
+        Assert.AreEqual(HttpStatusCode.OK, await Check("baseline"));
+        List<Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>> grants;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            grants = await db.RoleClaims.Where(c => c.ClaimValue == Authorization.AppPermissionNames.CanPublishBaselines).ToListAsync();
+            db.RoleClaims.RemoveRange(grants);
+            await db.SaveChangesAsync();
+        }
+        HttpStatusCode revokedStatus;
+        try { revokedStatus = await Check("baseline"); }
+        finally
+        {
+            using var scope = Server!.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            db.RoleClaims.AddRange(grants);
+            await db.SaveChangesAsync();
+        }
+        Assert.AreEqual(HttpStatusCode.Forbidden, revokedStatus);
+        Assert.AreEqual(HttpStatusCode.OK, await Check());
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            (await db.ApiKeys.SingleAsync(k => k.Name == "scoped-key")).ExpirationTime = DateTime.UtcNow.AddMinutes(-1);
+            await db.SaveChangesAsync();
+        }
+        Assert.AreEqual(HttpStatusCode.Unauthorized, await Check());
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var key = await db.ApiKeys.SingleAsync(k => k.Name == "scoped-key");
+            key.ExpirationTime = DateTime.UtcNow.AddDays(1); key.IsEnabled = false;
+            await db.SaveChangesAsync();
+        }
+        Assert.AreEqual(HttpStatusCode.Unauthorized, await Check());
+        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "legacy-static-key";
+        GetService<IConfiguration>()["SupplyChain:BaselineApiKey"] = "legacy-static-key";
+        Http.DefaultRequestHeaders.Remove("X-S360-Key");
+        Http.DefaultRequestHeaders.Add("X-S360-Key", "legacy-static-key");
+        Assert.AreEqual(HttpStatusCode.Unauthorized, await Check());
+    }
+
+    [TestMethod]
+    public async Task PersonalKeysRejectOtherUsersAndRequireCurrentGrants()
+    {
+        await LoginAsAdmin();
+        await AddCheckKeyAsync("other-owner-key", baseline: true);
+        Guid foreignId;
+        using (var scope = Server!.Services.CreateScope())
+            foreignId = (await scope.ServiceProvider.GetRequiredService<TemplateDbContext>().ApiKeys.SingleAsync(k => k.Name == "other-owner-key")).Id;
+        await PostForm("/Account/LogOff", new Dictionary<string, string>(), tokenUrl: "/ApiKeys");
+        var account = await RegisterAndLoginAsync();
+        using (var denied = await Http.GetAsync("/ApiKeys"))
+            AssertRedirect(denied, "/Error/Code403", exact: false);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var user = await db.Users.SingleAsync(u => u.Email == account.email);
+            db.UserClaims.Add(new Microsoft.AspNetCore.Identity.IdentityUserClaim<string>
+            {
+                UserId = user.Id, ClaimType = Authorization.AppPermissions.Type,
+                ClaimValue = Authorization.AppPermissionNames.CanManageApiKeys
+            });
+            await db.SaveChangesAsync();
+        }
+        // Refresh the cookie for the newly granted navigation permission.
+        await Http.GetAsync("/Account/LogOff");
+        await PostForm("/Account/Login", new Dictionary<string, string>
+            { ["EmailOrUserName"] = account.email, ["Password"] = account.password });
+        Assert.DoesNotContain("other-owner-key", await Http.GetStringAsync("/ApiKeys"));
+        using (var edit = await Http.GetAsync("/ApiKeys/Edit/" + foreignId)) Assert.AreEqual(HttpStatusCode.NotFound, edit.StatusCode);
+        using (var delete = await PostForm("/ApiKeys/Delete", new Dictionary<string, string>
+                   { ["id"] = foreignId.ToString() }, tokenUrl: "/ApiKeys/Create"))
+            Assert.AreEqual(HttpStatusCode.NotFound, delete.StatusCode);
+        using (var escalate = await PostForm("/ApiKeys/Create", new Dictionary<string, string>
+               { ["Name"] = "escalation", ["CanPublishBaselines"] = "true", ["ExpirationTime"] = DateTime.UtcNow.AddDays(1).ToString("s") }))
+            AssertRedirect(escalate, "/Error/Code403", exact: false);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var user = await db.Users.SingleAsync(u => u.Email == account.email);
+            db.ApiKeys.Add(new ApiKey { UserId = user.Id, Name = "personal", SecretHash = Services.Authentication.ApiKeyPermissions.Hash("personal") });
+            await db.SaveChangesAsync();
+        }
+        Http.DefaultRequestHeaders.Add("X-S360-Key", "personal");
+        var request = new CheckRequest { RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1 };
+        using (var accepted = await Http.PostAsJsonAsync("/api/check", request)) Assert.AreEqual(HttpStatusCode.OK, accepted.StatusCode);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var user = await db.Users.SingleAsync(u => u.Email == account.email);
+            db.UserClaims.RemoveRange(db.UserClaims.Where(c => c.UserId == user.Id));
+            await db.SaveChangesAsync();
+        }
+        request.RunId = Guid.NewGuid().ToString("N");
+        using (var revoked = await Http.PostAsJsonAsync("/api/check", request)) Assert.AreEqual(HttpStatusCode.Unauthorized, revoked.StatusCode);
+        using (var staleCookie = await Http.GetAsync("/ApiKeys"))
+            AssertRedirect(staleCookie, "/Error/Code403", exact: false);
+    }
+
     [TestMethod]
     public async Task QueuedRequestIsRejectedBeforeResolutionWhenSourceOrDirectPackageIsBlocked()
     {
@@ -92,8 +299,8 @@ public class SupplyChainPagesTests : TestBase
                 .UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "True");
         }
         var checkKey = purpose == "baseline" ? "integration-cli-baseline-key" : "integration-cli-check-key";
-        GetService<IConfiguration>()["SupplyChain:BaselineApiKey"] = "integration-cli-baseline-key";
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-cli-check-key";
+        await AddCheckKeyAsync("integration-cli-baseline-key", baseline: true);
+        await AddCheckKeyAsync("integration-cli-check-key");
         var reportedProject = "integration/dependency-free-" + Guid.NewGuid().ToString("N");
         var root = Path.Combine(Path.GetTempPath(), "s360-cli-pass-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(Path.Combine(root, "obj"));
@@ -168,7 +375,7 @@ public class SupplyChainPagesTests : TestBase
     {
         const string checkKey = "integration-cli-source-key";
         const string source = "https://unconfigured.example.test/v3/index.json";
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = checkKey;
+        await AddCheckKeyAsync(checkKey);
         var root = Path.Combine(Path.GetTempPath(), "s360-cli-source-" + Guid.NewGuid().ToString("N"));
         var packageName = "example." + Guid.NewGuid().ToString("N");
         const string version = "1.2.3";
@@ -218,7 +425,7 @@ public class SupplyChainPagesTests : TestBase
             };
             foreach (var argument in new[]
                      {
-                         "run", "--no-build", "--no-restore", "--configuration", "Debug",
+                         "run", "--no-build", "--no-restore", "--configuration", BuildConfiguration,
                          "--project", clientProject, "--", "check", "--path", root,
                          "--server", $"http://localhost:{Port}"
                      }) start.ArgumentList.Add(argument);
@@ -889,7 +1096,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiRecordsVerifiedDependencyFreeProjectWithoutAllowingEmptyScanClaims()
     {
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-check-key";
+        await AddCheckKeyAsync("integration-check-key");
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         using (var missingProject = await Http.PostAsJsonAsync("/api/check", new CheckRequest
                {
@@ -987,9 +1194,8 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task OnlyDistinctBaselineCredentialCanDeclareProductionUse()
     {
-        var configuration = GetService<IConfiguration>();
-        configuration["SupplyChain:CheckApiKey"] = "review-only-key";
-        configuration["SupplyChain:BaselineApiKey"] = "protected-baseline-key";
+        await AddCheckKeyAsync("review-only-key");
+        await AddCheckKeyAsync("protected-baseline-key", baseline: true);
         var runId = Guid.NewGuid().ToString("N");
         var request = new CheckRequest { Project = "baseline-auth-project", RunId = runId,
             ScannedProjectCount = 1, Context = new CheckContext { Purpose = "baseline" } };
@@ -1025,11 +1231,15 @@ public class SupplyChainPagesTests : TestBase
             Assert.AreEqual(HttpStatusCode.BadRequest, mixedScope.StatusCode);
         request.Dependencies.Clear();
         request.Context.Ecosystem = null;
-        configuration["SupplyChain:CheckApiKey"] = "protected-baseline-key";
-        using (var reusedKey = await Http.PostAsJsonAsync("/api/check", request))
-            Assert.AreEqual(HttpStatusCode.Forbidden, reusedKey.StatusCode);
-        configuration["SupplyChain:CheckApiKey"] = "review-only-key";
-        configuration["SupplyChain:BaselineApiKey"] = "";
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var key = await db.ApiKeys.SingleAsync(k => k.Name == "protected-baseline-key");
+            key.CanPublishBaselines = false;
+            await db.SaveChangesAsync();
+        }
+        using (var revokedScope = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.Forbidden, revokedScope.StatusCode);
         Http.DefaultRequestHeaders.Remove("X-S360-Key");
         Http.DefaultRequestHeaders.Add("X-S360-Key", "review-only-key");
         using (var disabled = await Http.PostAsJsonAsync("/api/check", request))
@@ -1039,7 +1249,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiRejectsMalformedConcretePackageIdentity()
     {
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-check-key";
+        await AddCheckKeyAsync("integration-check-key");
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var invalidDependencies = new[]
         {
@@ -1064,7 +1274,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiRejectsConflictingBatchMetadataWithinOneRun()
     {
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-check-key";
+        await AddCheckKeyAsync("integration-check-key");
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var runId = Guid.NewGuid().ToString("N");
         var dependency = new Dependency
@@ -1112,7 +1322,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiRejectsOutOfOrderBatchesWithoutRecordingThem()
     {
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-check-key";
+        await AddCheckKeyAsync("integration-check-key");
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var runId = Guid.NewGuid().ToString("N");
         var dependency = new Dependency
@@ -1192,7 +1402,7 @@ public class SupplyChainPagesTests : TestBase
             audit.LastError = null;
             await db.SaveChangesAsync();
         }
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = key;
+        await AddCheckKeyAsync(key);
         Http.DefaultRequestHeaders.Add("X-S360-Key", key);
         var runId = Guid.NewGuid().ToString("N");
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
@@ -1287,7 +1497,7 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
         }
         var configuration = GetService<IConfiguration>();
-        configuration["SupplyChain:CheckApiKey"] = key;
+        await AddCheckKeyAsync(key);
         Http.DefaultRequestHeaders.Add("X-S360-Key", key);
         var runId = Guid.NewGuid().ToString("N");
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
@@ -1331,7 +1541,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiRejectsDuplicateBatchWithoutAddingAnotherRecord()
     {
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-check-key";
+        await AddCheckKeyAsync("integration-check-key");
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var runId = Guid.NewGuid().ToString("N");
         var request = new CheckRequest
@@ -1361,7 +1571,7 @@ public class SupplyChainPagesTests : TestBase
         const string key = "integration-observation-key";
         var packageName = "Unapproved.Observed." + Guid.NewGuid().ToString("N");
         var project = "observed-project-" + Guid.NewGuid().ToString("N");
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = key;
+        await AddCheckKeyAsync(key);
         Http.DefaultRequestHeaders.Add("X-S360-Key", key);
         var dependency = new Dependency
         {
@@ -1418,7 +1628,7 @@ public class SupplyChainPagesTests : TestBase
     public async Task ReviewChecksApprovedArtifactVulnerabilityAndAbsoluteBlock(bool anonymous)
     {
         var packageName = "Example." + Guid.NewGuid().ToString("N");
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-check-key";
+        await AddCheckKeyAsync("integration-check-key");
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
@@ -1567,7 +1777,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CiKeyAloneCannotUseHumanApprovalPages()
     {
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-check-key";
+        await AddCheckKeyAsync("integration-check-key");
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         using var review = await Http.GetAsync("/DependencyReviews/Index");
         Assert.AreEqual(HttpStatusCode.Redirect, review.StatusCode);

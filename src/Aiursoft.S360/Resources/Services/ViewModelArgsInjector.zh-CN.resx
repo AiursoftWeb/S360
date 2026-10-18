@@ -39,6 +39,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>匿名</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>API 密钥</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>API 密钥</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>可用依赖项</value>
   </data>

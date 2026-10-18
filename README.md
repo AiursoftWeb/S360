@@ -51,11 +51,13 @@ For company sign-in, configure `AppSettings__AuthProvider=OIDC` and the `AppSett
 
 ## Dependency checks
 
-The `s360 check --path .` CLI checks restored NuGet and npm inputs against the server policy. It requires `S360_SERVER` and normally `S360_CHECK_KEY`; run `dotnet restore` and `npm ci` first. The API key needs `CanCheckDependencies` permission and must stay out of source and logs.
+The `s360 check --path .` CLI checks restored NuGet and npm inputs against the server policy. It requires `S360_SERVER` and normally `S360_CHECK_KEY`; run `dotnet restore` and `npm ci` first. Create a personal key under **Personal → API Keys** with `CanManageApiKeys` permission; keep it out of source and logs.
 
-By default, `--purpose review` records an audit without changing production usage. Use `--purpose baseline` only to declare dependencies already in production; it requires a separate `SupplyChain__BaselineApiKey` supplied as `S360_CHECK_KEY`. Keep that key restricted to trusted release jobs. Only a complete baseline replaces the project inventory, including when its dependencies are rejected.
+By default, `--purpose review` records an audit without changing production usage. Use `--purpose baseline` only to declare dependencies already in production; it requires a baseline-enabled personal key and the owner’s current `CanPublishBaselines` permission, supplied as `S360_CHECK_KEY`. Keep that key restricted to trusted release jobs. Only a complete baseline replaces the project inventory, including when its dependencies are rejected.
 
-Administrators can enable **Allow anonymous review** in Global Settings (default: disabled). Then review checks may omit the key; they remain unverified reports. Baseline always requires its protected key. Checks are limited to 120 requests per minute per client IP.
+Administrators can enable **Allow anonymous review** in Global Settings (default: disabled). Then review checks may omit the key; they remain unverified reports. Baseline always requires an authorized key. Checks are limited to 120 requests per minute per client IP.
+
+Rotate keys by creating a second key, switching the caller and verifying it, then deleting the old key. Keys expire and can be disabled independently; removing the owner’s API permission or locking the account revokes access. Legacy configured check/baseline keys are no longer accepted.
 
 Use `--ecosystem nuget` for a NuGet-only gate, or `--ecosystem npm` for npm; the default checks both. A scoped baseline updates only that ecosystem.
 

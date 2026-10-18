@@ -17,6 +17,51 @@ namespace Aiursoft.S360.Sqlite.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "10.0.13");
 
+            modelBuilder.Entity("Aiursoft.S360.Entities.ApiKey", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("CanPublishBaselines")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ExpirationTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsEnabled")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("LastUsed")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SecretHash")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SecretHash")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ApiKeys");
+                });
+
             modelBuilder.Entity("Aiursoft.S360.Entities.ApplicationEdge", b =>
                 {
                     b.Property<int>("Id")
@@ -924,6 +969,17 @@ namespace Aiursoft.S360.Sqlite.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Aiursoft.S360.Entities.ApiKey", b =>
+                {
+                    b.HasOne("Aiursoft.S360.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Aiursoft.S360.Entities.ApplicationEdge", b =>

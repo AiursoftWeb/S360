@@ -30,6 +30,8 @@ public class AppPermissions
             new(AppPermissionNames.CanReviewDependencyRequests, localizer["Review dependency requests"], localizer["Approve, reject, renew and revoke exact dependency approvals."]),
             new(AppPermissionNames.CanManageTrustRules, localizer["Manage trust rules"], localizer["Manage suppliers and wildcard dependency trust rules."]),
             new(AppPermissionNames.CanManageBlocklist, localizer["Manage blocklist"], localizer["Manage absolute package blocks."]),
+            new(AppPermissionNames.CanManageApiKeys, localizer["Create API keys and call S360"], localizer["Create and manage personal API keys and use them for dependency reviews."]),
+            new(AppPermissionNames.CanPublishBaselines, localizer["Publish production baselines"], localizer["Create baseline-enabled personal API keys and declare production dependency inventories."]),
             new(AppPermissionNames.CanCheckDependencies, localizer["Check dependencies"], localizer["Machine identity may execute dependency checks from CI; browser login alone cannot use the check API."]),
             new(AppPermissionNames.CanReadUsers,
                 localizer["Read Users"],

@@ -39,6 +39,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anonymous</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>API Key</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>API keys</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Available dependencies</value>
   </data>

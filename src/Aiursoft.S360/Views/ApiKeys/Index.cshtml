@@ -1,0 +1,31 @@
+@model Aiursoft.S360.Models.ApiKeysViewModels.IndexViewModel
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
+    <h1 class="h3 mb-0">@Localizer["API Keys"]</h1>
+    <a asp-action="Create" class="btn btn-primary">@Localizer["Create API Key"]</a>
+</div>
+@if (Model.NewKey != null)
+{
+    <div class="alert alert-warning" role="alert"><div class="alert-message">
+        <h2 class="h5">@Localizer["API Key created"]</h2>
+        <p>@Localizer["This key is displayed only once. Save it in your private configuration."]</p>
+        <input class="form-control font-monospace" aria-label="@Localizer["New API Key"]" value="@Model.NewKey" readonly autocomplete="off" />
+    </div></div>
+}
+<div class="alert alert-info" role="alert"><div class="alert-message">
+    @Localizer["To rotate a key, create another, update your integration and verify it works, then delete the old key. Existing keys keep working during the transition."]
+</div></div>
+<div class="card"><div class="card-body">
+<p class="text-muted">@Localizer["Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in UTC."]</p>
+<div class="table-responsive"><table class="table"><thead><tr>
+    <th>@Localizer["Name"]</th><th>@Localizer["Enabled"]</th><th>@Localizer["Production baseline"]</th>
+    <th>@Localizer["Expires"]</th><th>@Localizer["Last used"]</th><th>@Localizer["Actions"]</th>
+</tr></thead><tbody>
+@foreach (var key in Model.ApiKeys)
+{
+    <tr><td>@key.Name</td><td>@key.IsEnabled</td><td>@key.CanPublishBaselines</td><td>@key.ExpirationTime.ToString("u")</td><td>@key.LastUsed?.ToString("u")</td>
+    <td><div class="d-flex gap-2 flex-wrap"><a asp-action="Edit" asp-route-id="@key.Id" class="btn btn-outline-primary btn-sm">@Localizer["Edit"]</a>
+    <form asp-action="Delete" method="post"><input type="hidden" name="id" value="@key.Id" /><button type="submit" class="btn btn-outline-danger btn-sm">@Localizer["Delete"]</button></form></div></td></tr>
+}
+</tbody></table></div>
+<p>@Localizer["Send the key using X-S360-Key, or set S360_CHECK_KEY for the CLI. Never include keys in URLs, source control or logs."]</p>
+</div></div>

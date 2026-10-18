@@ -11,6 +11,8 @@ public static class AppPermissionNames
     public const string CanManageTrustRules = nameof(CanManageTrustRules);
     public const string CanManageBlocklist = nameof(CanManageBlocklist);
     public const string CanCheckDependencies = nameof(CanCheckDependencies);
+    public const string CanManageApiKeys = nameof(CanManageApiKeys);
+    public const string CanPublishBaselines = nameof(CanPublishBaselines);
     // User Management
     public const string CanReadUsers = nameof(CanReadUsers);
     public const string CanDeleteUsers = nameof(CanDeleteUsers);

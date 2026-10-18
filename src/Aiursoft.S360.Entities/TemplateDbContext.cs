@@ -9,6 +9,7 @@ namespace Aiursoft.S360.Entities;
 
 public abstract class TemplateDbContext(DbContextOptions options) : IdentityDbContext<User>(options), ICanMigrate
 {
+    public DbSet<ApiKey> ApiKeys => Set<ApiKey>();
     public DbSet<GlobalSetting> GlobalSettings => Set<GlobalSetting>();
     public DbSet<Supplier> Suppliers => Set<Supplier>();
     public DbSet<TrustRule> TrustRules => Set<TrustRule>();
@@ -30,6 +31,10 @@ public abstract class TemplateDbContext(DbContextOptions options) : IdentityDbCo
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        builder.Entity<ApiKey>().HasIndex(k => k.SecretHash).IsUnique();
+        builder.Entity<ApiKey>().HasIndex(k => k.UserId);
+        builder.Entity<ApiKey>().HasOne(k => k.User).WithMany().HasForeignKey(k => k.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
         builder.Entity<Supplier>().HasIndex(s => s.Name).IsUnique();
         builder.Entity<TrustRule>().HasIndex(r => new { r.Ecosystem, r.Status });
         builder.Entity<TrustRule>().HasIndex(r => r.ExpiresAtUtc);

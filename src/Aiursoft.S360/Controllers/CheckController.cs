@@ -1,4 +1,5 @@
 using System.Text.Json;
+using System.Security.Claims;
 using Aiursoft.S360.Configuration;
 using Aiursoft.WebTools.Attributes;
 using Microsoft.AspNetCore.Authentication;
@@ -55,6 +56,8 @@ public class CheckController(TrustService trust, TemplateDbContext db,
         request.Context ??= new CheckContext();
         request.Context.Purpose = purpose;
         request.Context.IsAnonymous = anonymous;
+        request.Context.UserId = anonymous ? null : User.FindFirstValue(ClaimTypes.NameIdentifier);
+        request.Context.ApiKeyId = anonymous ? null : User.FindFirstValue(S360CheckKeyHandler.KeyIdClaim);
         if (purpose == "baseline")
         {
             if (!User.HasClaim(S360CheckKeyHandler.BaselineClaim, "true"))

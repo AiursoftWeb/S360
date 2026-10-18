@@ -17,7 +17,8 @@ public static class BuildCheckRun
             batches.Count != expected) return false;
         if (batches.Any(batch => batch.RunId != first.RunId || batch.BatchCount != expected ||
                 batch.Project != first.Project || batch.Commit != first.Commit || batch.Pipeline != first.Pipeline ||
-                batch.ScannedProjectCount != first.ScannedProjectCount || batch.ContextJson != first.ContextJson))
+                batch.ScannedProjectCount != first.ScannedProjectCount || batch.ContextJson != first.ContextJson ||
+                (batch.GraphJson != null) != (first.GraphJson != null)))
             return false;
         return batches.Select(batch => batch.BatchIndex).Order()
             .SequenceEqual(Enumerable.Range(0, expected));

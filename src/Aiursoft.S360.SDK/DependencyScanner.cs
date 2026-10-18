@@ -29,6 +29,7 @@ public static class DependencyScanner
             Path.GetFileName(p).Equals("package.json", npmComparison)).ToList();
         if (manifests.Count == 0 && npmManifests.Count == 0)
             throw new InvalidOperationException("No supported NuGet or npm project was found.");
+        var graphNodes = new List<DependencyGraphNode>();
         var introductionPaths = new Dictionary<string, List<string>>(StringComparer.Ordinal);
         var discoveredProjects = manifests.Select(Path.GetFullPath).ToHashSet(
             OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
@@ -42,7 +43,7 @@ public static class DependencyScanner
             ValidateNuGetAssetsForProject(manifest, assets);
             ValidateNuGetProjectReferences(manifest, assets, discoveredProjects);
             var restored = await ReadNuGetAsync(assets, cancellationToken);
-            DependencyIntroductionPaths.AddNuGet(assets, restored, Path.GetRelativePath(root, manifest), introductionPaths);
+            DependencyIntroductionPaths.AddNuGet(assets, restored, Path.GetRelativePath(root, manifest), introductionPaths, graphNodes);
             result.AddRange(restored);
         }
         foreach (var manifest in npmManifests)
@@ -54,13 +55,13 @@ public static class DependencyScanner
             if (!File.Exists(lockFile)) throw new InvalidOperationException($"Missing npm lockfile: {lockFile}");
             await ValidateNpmManifestLockAsync(manifest, lockFile, cancellationToken);
             var installed = await ReadNpmAsync(lockFile, folder, http, cancellationToken, skipped, expectedNpmSource);
-            DependencyIntroductionPaths.AddNpm(lockFile, installed, Path.GetRelativePath(root, manifest), introductionPaths);
+            DependencyIntroductionPaths.AddNpm(lockFile, installed, Path.GetRelativePath(root, manifest), introductionPaths, graphNodes);
             if (installed.Any(dependency => !introductionPaths.ContainsKey(DependencyIntroductionPaths.Identity(dependency))))
                 throw new InvalidOperationException($"npm installation graph has an installed package with no introduction path: {manifest}");
             result.AddRange(installed);
         }
         return new ScanReport(result.DistinctBy(DependencyIntroductionPaths.Identity).ToList(),
-            skipped, manifests.Count + npmManifests.Count) { IntroductionPaths = introductionPaths };
+            skipped, manifests.Count + npmManifests.Count) { IntroductionPaths = introductionPaths, GraphNodes = graphNodes };
     }
 
     private static IEnumerable<string> DiscoverProjectFiles(string root)
@@ -429,7 +430,12 @@ public static class DependencyScanner
             TarEntry? entry;
             while ((entry = await tar.GetNextEntryAsync(cancellationToken: cancellationToken)) != null)
             {
-                if (entry.Name != "package/package.json") continue;
+                // npm strips one directory layer; DefinitelyTyped archives use the
+                // package name as that directory instead of the usual "package".
+                var parts = entry.Name.Split('/');
+                if (parts.Length != 2 || parts[1] != "package.json") continue;
+                if (parts[0] is "" or "." or ".." || parts[0].Contains('\\') || parts[0].Contains(':'))
+                    throw new InvalidOperationException($"Invalid npm archive package manifest: {packagePath}");
                 if (found || entry.EntryType != TarEntryType.RegularFile || entry.DataStream == null ||
                     entry.Length > 1024 * 1024)
                     throw new InvalidOperationException($"Invalid npm archive package manifest: {packagePath}");
@@ -561,6 +567,7 @@ public static class DependencyScanner
 
 public record ScanReport(List<Dependency> Dependencies, List<string> SkippedOptional, int ScannedProjectCount)
 {
+    public List<DependencyGraphNode> GraphNodes { get; init; } = [];
     public Dictionary<string, List<string>> IntroductionPaths { get; init; } = new(StringComparer.Ordinal);
 
     public IReadOnlyList<string> PathsFor(Dependency dependency) =>

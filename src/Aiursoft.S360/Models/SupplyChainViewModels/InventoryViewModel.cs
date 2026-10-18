@@ -53,6 +53,7 @@ public class InventoryProject
     public required string Name { get; init; }
     public List<InventoryVersion> Versions { get; init; } = [];
     public List<InventoryReport> Reports { get; init; } = [];
+    public List<InventoryGraph> Graphs { get; set; } = [];
     public bool Incomplete { get; set; }
     public InventoryStatus Status => Versions.Any(v => v.Status == InventoryStatus.NonCompliant)
         ? InventoryStatus.NonCompliant
@@ -61,4 +62,20 @@ public class InventoryProject
             ? InventoryStatus.Pending : InventoryStatus.Compliant;
 }
 
-public record InventoryReport(string Ecosystem, int CheckId, DateTime CheckedAtUtc, string? Commit, string? Pipeline);
+public record InventoryReport(string Ecosystem, int CheckId, DateTime CheckedAtUtc, string? Commit, string? Pipeline, bool HasGraph = false);
+
+public class InventoryGraph
+{
+    public required string Project { get; init; }
+    public required string Ecosystem { get; init; }
+    public required string Target { get; init; }
+    public int CheckId { get; init; }
+    public List<InventoryGraphNode> Nodes { get; init; } = [];
+}
+
+// Serialized for dependency-graph.js.
+// ReSharper disable NotAccessedPositionalProperty.Global
+public record InventoryGraphNode(string Id, string Kind, Dependency? Package, List<string> Children,
+    InventoryStatus Status, string? Reason, List<string> Advisories);
+
+// ReSharper restore NotAccessedPositionalProperty.Global

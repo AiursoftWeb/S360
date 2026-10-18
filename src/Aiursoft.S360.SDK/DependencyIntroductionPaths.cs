@@ -10,10 +10,10 @@ public static class DependencyIntroductionPaths
 {
     public static string Identity(Dependency dependency) =>
         $"{dependency.Ecosystem}\n{(dependency.Ecosystem == "nuget" ? dependency.Name.ToLowerInvariant() : dependency.Name)}\n" +
-        $"{dependency.Version}\n{dependency.Source}\n{dependency.Sha256.ToLowerInvariant()}";
+        $"{dependency.Version}\n{TrustPattern.NormalizeSource(dependency.Source)}\n{dependency.Sha256.ToLowerInvariant()}";
 
     public static void AddNuGet(string assetsPath, IReadOnlyCollection<Dependency> dependencies,
-        string project, Dictionary<string, List<string>> paths)
+        string project, Dictionary<string, List<string>> paths, List<DependencyGraphNode>? graph = null)
     {
         using var document = JsonDocument.Parse(File.ReadAllText(assetsPath));
         var root = document.RootElement;
@@ -22,14 +22,14 @@ public static class DependencyIntroductionPaths
             .ToLookup(dependency => NuGetKey(dependency.Name, dependency.Version), StringComparer.Ordinal);
         foreach (var target in targets.EnumerateObject())
         {
-            var nodes = new Dictionary<string, (string Version, string Type, JsonElement Data)>(
+            var nodes = new Dictionary<string, (string Name, string Version, string Type, JsonElement Data)>(
                 StringComparer.OrdinalIgnoreCase);
             foreach (var item in target.Value.EnumerateObject())
             {
                 var slash = item.Name.LastIndexOf('/');
                 if (slash < 1 || !item.Value.TryGetProperty("type", out var type)) continue;
                 if (type.GetString() is not ("package" or "project")) continue;
-                if (!nodes.TryAdd(item.Name[..slash], (item.Name[(slash + 1)..], type.GetString()!, item.Value)))
+                if (!nodes.TryAdd(item.Name[..slash], (item.Name[..slash], item.Name[(slash + 1)..], type.GetString()!, item.Value)))
                     throw new InvalidOperationException($"NuGet target has ambiguous package names: {target.Name}");
             }
             var framework = target.Name.Split('/')[0];
@@ -40,6 +40,49 @@ public static class DependencyIntroductionPaths
                 frameworkData.TryGetProperty("dependencies", out var directDependencies))
                 foreach (var dependency in directDependencies.EnumerateObject()) direct.Add(dependency.Name);
 
+            if (graph != null)
+            {
+                var scopeNodes = new List<DependencyGraphNode>();
+                DependencyGraphNode Node(string id, string kind, Dependency? package = null) => new()
+                {
+                    Project = project.Replace('\\', '/'), Ecosystem = "nuget", Target = target.Name,
+                    Id = id, Kind = kind, Package = package
+                };
+                var rootNode = Node("$root", "root");
+                rootNode.Children.AddRange(direct.Where(nodes.ContainsKey).Select(name => nodes[name].Name));
+                if (root.TryGetProperty("project", out var projectData) &&
+                    projectData.TryGetProperty("restore", out var restore) &&
+                    restore.TryGetProperty("frameworks", out var restoreFrameworks) &&
+                    restoreFrameworks.TryGetProperty(framework, out var restoreFramework) &&
+                    restoreFramework.TryGetProperty("projectReferences", out var references) &&
+                    root.TryGetProperty("libraries", out var libraries))
+                {
+                    var referencePaths = references.EnumerateObject().Select(r => Path.GetFullPath(r.Name)).ToHashSet();
+                    var projectDirectory = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetFullPath(assetsPath)))!;
+                    foreach (var library in libraries.EnumerateObject())
+                    {
+                        if (!library.Value.TryGetProperty("msbuildProject", out var relative)) continue;
+                        var absolute = Path.GetFullPath(relative.GetString()!, projectDirectory);
+                        if (!referencePaths.Contains(absolute)) continue;
+                        var name = library.Name[..library.Name.LastIndexOf('/')];
+                        if (nodes.TryGetValue(name, out var referenceNode)) rootNode.Children.Add(referenceNode.Name);
+                    }
+                }
+                rootNode.Children = rootNode.Children.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+                scopeNodes.Add(rootNode);
+                foreach (var (name, node) in nodes)
+                {
+                    var package = node.Type == "package" ? byNameAndVersion[NuGetKey(name, node.Version)].SingleOrDefault() : null;
+                    if (node.Type == "package" && package == null)
+                        throw new InvalidOperationException($"Restored graph package was not scanned: {name}@{node.Version}");
+                    var item = Node(name, node.Type, package);
+                    if (node.Data.TryGetProperty("dependencies", out var children))
+                        item.Children.AddRange(children.EnumerateObject().Where(c => nodes.ContainsKey(c.Name))
+                            .Select(c => nodes[c.Name].Name));
+                    scopeNodes.Add(item);
+                }
+                graph.AddRange(scopeNodes);
+            }
             var pending = new Queue<(string Name, string Path)>();
             foreach (var name in direct.Where(nodes.ContainsKey))
                 pending.Enqueue((name, $"{project} → {Label(name, nodes[name].Version)}"));
@@ -66,7 +109,7 @@ public static class DependencyIntroductionPaths
     }
 
     public static void AddNpm(string lockPath, IReadOnlyCollection<Dependency> dependencies,
-        string project, Dictionary<string, List<string>> paths)
+        string project, Dictionary<string, List<string>> paths, List<DependencyGraphNode>? graph = null)
     {
         using var document = JsonDocument.Parse(File.ReadAllText(lockPath));
         var projectDirectory = Path.GetDirectoryName(lockPath)!;
@@ -77,6 +120,18 @@ public static class DependencyIntroductionPaths
             .ToLookup(dependency => NpmKey(dependency.Name, dependency.Version, dependency.Source),
                 StringComparer.Ordinal);
         if (!nodes.ContainsKey("")) throw new InvalidOperationException("npm lockfile has no root package.");
+        var graphNodes = new Dictionary<string, DependencyGraphNode>(StringComparer.Ordinal);
+        DependencyGraphNode GraphNode(string id, Dependency? package = null)
+        {
+            if (!graphNodes.TryGetValue(id, out var node))
+                graphNodes.Add(id, node = new DependencyGraphNode
+                {
+                    Project = project.Replace('\\', '/'), Ecosystem = "npm", Id = id.Length == 0 ? "$root" : id,
+                    Kind = id.Length == 0 ? "root" : "package", Package = package
+                });
+            return node;
+        }
+        GraphNode("");
         var pending = new Queue<(string LockPath, string Path)>();
         pending.Enqueue(("", project));
         var visited = new HashSet<string>(StringComparer.Ordinal);
@@ -107,11 +162,17 @@ public static class DependencyIntroductionPaths
                         $"{child.Name} (alias for {Label(name, version ?? "?")})";
                     var introduction = current.Path + " → " + childLabel;
                     foreach (var dependency in byNameVersionAndSource[NpmKey(name, version, resolved)])
+                    {
                         AddPath(paths, dependency, introduction);
+                        GraphNode(childPath, dependency);
+                        var parent = GraphNode(current.LockPath);
+                        if (!parent.Children.Contains(childPath, StringComparer.Ordinal)) parent.Children.Add(childPath);
+                    }
                     pending.Enqueue((childPath, introduction));
                 }
             }
         }
+        graph?.AddRange(graphNodes.Values);
     }
 
     private static string? ResolveNpmPath(string parentPath, string name,

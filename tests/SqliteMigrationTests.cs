@@ -42,7 +42,7 @@ public class SqliteMigrationTests
                 db.BuildChecks.Add(new BuildCheck
                 {
                     RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 2,
-                    Trusted = true
+                    Trusted = true, GraphJson = "[]"
                 });
                 await db.SaveChangesAsync();
             }
@@ -64,6 +64,7 @@ public class SqliteMigrationTests
                 Assert.AreEqual(new string('b', 64), review.ReportHash);
                 Assert.AreEqual(new string('c', 32), review.DecisionBatchId);
                 Assert.AreEqual(2, (await db.BuildChecks.SingleAsync()).ScannedProjectCount);
+                Assert.AreEqual("[]", (await db.BuildChecks.SingleAsync()).GraphJson);
                 Assert.AreEqual(0, (await db.Database.GetPendingMigrationsAsync()).Count());
             }
         }

@@ -15,7 +15,13 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
         // Select complete snapshots before selecting packages: an empty newer snapshot
         // removes old dependencies, and a NuGet-only snapshot must not replace npm.
         var checks = await db.BuildChecks.AsNoTracking().OrderByDescending(c => c.CreatedAtUtc)
-            .ThenByDescending(c => c.Id).ToListAsync();
+            .ThenByDescending(c => c.Id).Select(c => new BuildCheck
+            {
+                Id = c.Id, Project = c.Project, Commit = c.Commit, Pipeline = c.Pipeline,
+                ContextJson = c.ContextJson, RunId = c.RunId, BatchIndex = c.BatchIndex,
+                BatchCount = c.BatchCount, ScannedProjectCount = c.ScannedProjectCount,
+                CreatedAtUtc = c.CreatedAtUtc, GraphJson = c.GraphJson == null ? null : "[]"
+            }).ToListAsync();
         var runs = checks.Where(c => !string.IsNullOrWhiteSpace(c.Project))
             .GroupBy(c => c.RunId).Where(g => MatchesScope(g.First(), model.Scope)).ToList();
         var projects = checks.Where(c => !string.IsNullOrWhiteSpace(c.Project))
@@ -36,7 +42,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 var snapshot = complete.ToList();
                 selected.Add((ecosystem, snapshot));
                 var check = snapshot.OrderByDescending(c => c.CreatedAtUtc).First();
-                project.Reports.Add(new InventoryReport(ecosystem, check.Id, check.CreatedAtUtc, check.Commit, check.Pipeline));
+                project.Reports.Add(new InventoryReport(ecosystem, check.Id, check.CreatedAtUtc, check.Commit, check.Pipeline, snapshot.All(c => c.GraphJson != null)));
             }
         }
         var dependencies = new List<BuildCheckDependency>();
@@ -93,6 +99,39 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
             };
             versions.Add(version);
             foreach (var name in version.Uses.Select(u => u.Project).Distinct()) projects[name].Versions.Add(version);
+        }
+        // Load graph payloads only when opening one project, never for the inventory overview.
+        if (model.Tab == "projects" && model.Project != null && projects.TryGetValue(model.Project, out var opened))
+        {
+            var selectedRuns = selected.Where(s => s.Checks[0].Project == model.Project &&
+                (model.Ecosystem == "all" || s.Ecosystem == model.Ecosystem)).ToList();
+            var payloads = new Dictionary<int, string?>();
+            foreach (var ids in selectedRuns.SelectMany(s => s.Checks).Select(c => c.Id).Distinct().Chunk(500))
+                foreach (var payload in await db.BuildChecks.AsNoTracking().Where(c => ids.Contains(c.Id))
+                             .Select(c => new { c.Id, c.GraphJson }).ToListAsync())
+                    payloads.Add(payload.Id, payload.GraphJson);
+            var states = versions.ToDictionary(v => DependencyIntroductionPaths.Identity(v.Dependency));
+            foreach (var selection in selectedRuns)
+            {
+                if (selection.Checks.Any(c => payloads[c.Id] == null)) continue;
+                var nodes = selection.Checks.SelectMany(c =>
+                    JsonSerializer.Deserialize<List<DependencyGraphNode>>(payloads[c.Id]!) ?? [])
+                    .Where(n => n.Ecosystem == selection.Ecosystem);
+                foreach (var graph in nodes.GroupBy(n => n.Scope))
+                {
+                    opened.Graphs.Add(new InventoryGraph
+                    {
+                        Project = graph.Key.Project, Ecosystem = graph.Key.Ecosystem, Target = graph.Key.Target,
+                        CheckId = selection.Checks.OrderByDescending(c => c.CreatedAtUtc).First().Id,
+                        Nodes = graph.Select(n =>
+                        {
+                            var state = n.Package == null ? null : states.GetValueOrDefault(DependencyIntroductionPaths.Identity(n.Package));
+                            return new InventoryGraphNode(n.Id, n.Kind, n.Package, n.Children,
+                                state?.Status ?? InventoryStatus.Pending, state?.Reason, state?.Advisories ?? []);
+                        }).ToList()
+                    });
+                }
+            }
         }
         var packages = versions.GroupBy(v => (v.Dependency.Ecosystem,
                 Name: v.Dependency.Ecosystem == "nuget" ? v.Dependency.Name.ToLowerInvariant() : v.Dependency.Name, v.Dependency.Source))

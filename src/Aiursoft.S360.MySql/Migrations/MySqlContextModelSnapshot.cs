@@ -224,6 +224,9 @@ namespace Aiursoft.S360.MySql.Migrations
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<string>("GraphJson")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Pipeline")
                         .HasMaxLength(200)
                         .HasColumnType("varchar(200)");

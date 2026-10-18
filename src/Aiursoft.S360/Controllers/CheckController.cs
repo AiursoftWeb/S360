@@ -49,7 +49,8 @@ public class CheckController(TrustService trust, TemplateDbContext db,
         }
         if (request == null || !ModelState.IsValid || request.ScannedProjectCount < 1 ||
             request.BatchIndex >= request.BatchCount ||
-            (request.Dependencies.Count == 0 && (request.BatchIndex != 0 || request.BatchCount != 1)) ||
+            (request.Dependencies.Count == 0 && request.GraphNodes is not { Count: > 0 } &&
+                (request.BatchIndex != 0 || request.BatchCount != 1)) ||
             request.Dependencies.Cast<Dependency?>().Any(d => d is null ||
                 !TrustPattern.IsValidConcretePackage(d.Ecosystem, d.Name, d.Version)))
             return BadRequest();
@@ -70,10 +71,11 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             return BadRequest("Dependencies must belong to the declared ecosystem.");
         var contextJson = JsonSerializer.Serialize(request.Context);
         var priorBatches = await db.BuildChecks.AsNoTracking().Where(c => c.RunId == request.RunId)
-            .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson }).ToListAsync();
+            .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson, HasGraph = c.GraphJson != null }).ToListAsync();
         if (priorBatches.Any(prior => prior.BatchCount != request.BatchCount || prior.Project != request.Project ||
             prior.Commit != request.Commit || prior.Pipeline != request.Pipeline ||
-            prior.ScannedProjectCount != request.ScannedProjectCount || prior.ContextJson != contextJson))
+            prior.ScannedProjectCount != request.ScannedProjectCount || prior.ContextJson != contextJson ||
+            prior.HasGraph != (request.GraphNodes != null)))
             return BadRequest("Batches in one run must have identical project, commit, pipeline, check context, scanned project count and batch count.");
         if (priorBatches.Any(prior => prior.BatchIndex == request.BatchIndex))
             return Conflict("This batch index has already been reported for the run. Start a new run to recheck current policy.");
@@ -81,6 +83,27 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             !priorBatches.Select(prior => prior.BatchIndex).OrderBy(index => index)
                 .SequenceEqual(Enumerable.Range(0, request.BatchIndex)))
             return BadRequest("Batches must be reported in order, starting at index zero.");
+        if (request.GraphNodes != null)
+        {
+            var nodes = request.GraphNodes.ToList();
+            var graphDependencies = request.Dependencies.ToList();
+            var completeGraph = request.BatchIndex == request.BatchCount - 1;
+            if (completeGraph && priorBatches.Count > 0)
+            {
+                var prior = await db.BuildChecks.AsNoTracking().Include(c => c.Dependencies)
+                    .Where(c => c.RunId == request.RunId).ToListAsync();
+                nodes.AddRange(prior.SelectMany(c => JsonSerializer.Deserialize<List<DependencyGraphNode>>(c.GraphJson!)!));
+                graphDependencies.AddRange(prior.SelectMany(c => c.Dependencies).Select(d => new Dependency
+                {
+                    Ecosystem = d.Ecosystem, Name = d.Name, Version = d.Version, Source = d.Source, Sha256 = d.Sha256
+                }));
+            }
+            // Validate before policy evaluation or artifact writes. Relationships never grant trust.
+            var graphError = DependencyGraphNode.Validate(nodes, graphDependencies, request.Context.Ecosystem, completeGraph);
+            if (graphError != null) return BadRequest(graphError);
+            if (completeGraph && nodes.Select(n => (n.Project, n.Ecosystem)).Distinct().Count() != request.ScannedProjectCount)
+                return BadRequest("Graph manifests must match the scanned project count.");
+        }
         try
         {
             var sourceAllowed = request.Dependencies.Select(dependency =>
@@ -110,6 +133,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             }
             var check = new BuildCheck
             {
+                GraphJson = request.GraphNodes == null ? null : JsonSerializer.Serialize(request.GraphNodes),
                 Project = request.Project, Commit = request.Commit, Pipeline = request.Pipeline, ContextJson = contextJson,
                 RunId = request.RunId, BatchIndex = request.BatchIndex, BatchCount = request.BatchCount,
                 ScannedProjectCount = request.ScannedProjectCount,

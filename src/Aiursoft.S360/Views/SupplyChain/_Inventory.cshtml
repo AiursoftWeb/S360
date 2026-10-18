@@ -81,7 +81,10 @@
                         }
                         else
                         {
-                        <p class="text-muted small">@Localizer["Reported package lists. Dependency paths were not recorded by this CLI version."]</p>
+                        @if (project.Graphs.Count > 0)
+                        {
+                            @await Html.PartialAsync("_InventoryGraph", project.Graphs)
+                        }
                         @foreach (var ecosystem in new[] { "nuget", "npm" })
                         {
                             if (Model.Ecosystem != "all" && Model.Ecosystem != ecosystem) { continue; }
@@ -93,6 +96,10 @@
                                 @foreach (var report in reports)
                                 {
                                     <p class="small text-muted">@report.CheckedAtUtc.ToString("yyyy-MM-dd HH:mm") UTC · <a asp-controller="BuildChecks" asp-action="Index" asp-route-checkId="@report.CheckId">@Localizer["Check record"]</a> <code>@report.Commit</code> @if (!string.IsNullOrEmpty(report.Pipeline)) { <span> · @Localizer["Pipeline"] @report.Pipeline</span> }</p>
+                                }
+                                @if (reports.Any(r => !r.HasGraph))
+                                {
+                                    <p class="text-muted small">@Localizer["Dependency relationships were not recorded in this report. Run the latest CLI to populate the graph; the package list remains available."]</p>
                                 }
                                 @if (reports.Count > 0 && versions.Count == 0) { <p>@Localizer["The complete report contains no dependencies for this ecosystem."]</p> }
                                 @foreach (var group in versions.GroupBy(v => (v.Dependency.Name, v.Dependency.Source)).Take(100))

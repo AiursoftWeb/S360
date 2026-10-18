@@ -54,6 +54,35 @@ public class InventoryTests : TestBase
     }
 
     [TestMethod]
+    [DataRow("review", false)]
+    [DataRow("baseline", true)]
+    [DataRow(null, false)]
+    public async Task ProjectPagesShowMissingReportsWithoutInventingATimestamp(string? purpose, bool incomplete)
+    {
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var report = Report("without-baseline", purpose, "nuget", DateTime.UtcNow);
+            if (incomplete) report.BatchCount = 2;
+            db.BuildChecks.Add(report);
+            await db.SaveChangesAsync();
+        }
+        var project = (await Read("projects")).Projects.Single();
+        Assert.AreEqual(0, project.Reports.Count);
+        Assert.AreEqual(InventoryStatus.Pending, project.Status);
+        await LoginAsAdmin();
+        foreach (var path in new[] { "/SupplyChain/Index", "/Dashboard/Index" })
+        {
+            using var response = await Http.GetAsync(path);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, path);
+            var html = await response.Content.ReadAsStringAsync();
+            StringAssert.Contains(html, _prefix + "without-baseline");
+            StringAssert.Contains(html, "No complete report in this scope.");
+            Assert.DoesNotContain("0001-01-01", html);
+        }
+    }
+
+    [TestMethod]
     public async Task OpenProjectShowsCurrentGraphPolicyAndKeepsLegacyReportsFlat()
     {
         int ruleId;

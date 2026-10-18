@@ -79,7 +79,17 @@
                         <p>@string.Format(@Localizer["{0} vulnerable packages · {1} other packages needing attention"].Value, project.Versions.Count(v => v.Advisories.Count > 0), project.Versions.Count(v => v.Advisories.Count == 0 && v.Status != InventoryStatus.Compliant))</p>
                         @if (project.Reports.Any(r => !r.HasGraph)) { <small>@Localizer["Update the CLI report to see dependency relationships."]</small> }
                         @if (project.Incomplete) { <small>@Localizer["A newer report is incomplete."]</small> }
-                        <footer><span>@project.Reports.Max(r => r.CheckedAtUtc).ToString("yyyy-MM-dd HH:mm") UTC</span><span>@Localizer["Explore"] →</span></footer>
+                        <footer>
+                            @if (project.Reports.Count > 0)
+                            {
+                                <span>@project.Reports.Max(r => r.CheckedAtUtc).ToString("yyyy-MM-dd HH:mm") UTC</span>
+                            }
+                            else
+                            {
+                                <span>@Localizer["No complete report in this scope."]</span>
+                            }
+                            <span>@Localizer["Explore"] →</span>
+                        </footer>
                     </a>
                     continue;
                 }

@@ -48,17 +48,18 @@ public static class BuildCheckRun
 
     public static string? Purpose(string? json)
     {
-        var purpose = ReadContext(json)?.Purpose;
-        return purpose is "review" or "baseline" ? purpose : null;
+        var context = ReadContext(json);
+        if (context?.IsAnonymous == true && context.Purpose != "review") return null;
+        return context?.Purpose is "review" or "baseline" ? context.Purpose : null;
     }
 
-    public static (string? Purpose, CheckKind Kind, string? Ref) ContextKey(BuildCheck check)
+    public static (string? Purpose, bool Anonymous, CheckKind Kind, string? Ref) ContextKey(BuildCheck check)
     {
         var kind = Kind(check.ContextJson);
         var context = ReadContext(check.ContextJson);
         var purpose = Purpose(check.ContextJson);
-        if (purpose == "baseline") return (purpose, CheckKind.Unknown, null);
-        return (purpose, kind, kind switch
+        if (purpose == "baseline") return (purpose, false, CheckKind.Unknown, null);
+        return (purpose, context?.IsAnonymous == true, kind, kind switch
         {
             CheckKind.MergeRequest => context?.MergeRequest ?? context?.Ref,
             CheckKind.Branch => context?.Ref,

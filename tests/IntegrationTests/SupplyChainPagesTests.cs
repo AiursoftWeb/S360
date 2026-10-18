@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
 using Aiursoft.S360.Entities;
+using Aiursoft.S360.Configuration;
 using Aiursoft.S360.SDK;
 using Aiursoft.S360.Services;
 using Aiursoft.S360.Services.BackgroundJobs;
@@ -79,10 +80,17 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    [DataRow(null)]
-    [DataRow("baseline")]
-    public async Task DependencyFreeProjectPassesCliAgainstS360AndRecordsCompleteRun(string? purpose)
+    [DataRow(null, false)]
+    [DataRow("baseline", false)]
+    [DataRow(null, true)]
+    public async Task DependencyFreeProjectPassesCliAgainstS360AndRecordsCompleteRun(string? purpose, bool anonymous)
     {
+        if (anonymous)
+        {
+            using var scope = Server!.Services.CreateScope();
+            await scope.ServiceProvider.GetRequiredService<GlobalSettingsService>()
+                .UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "True");
+        }
         var checkKey = purpose == "baseline" ? "integration-cli-baseline-key" : "integration-cli-check-key";
         GetService<IConfiguration>()["SupplyChain:BaselineApiKey"] = "integration-cli-baseline-key";
         GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-cli-check-key";
@@ -113,7 +121,8 @@ public class SupplyChainPagesTests : TestBase
                          "--project", clientProject, "--",
                          "check", "--path", root, "--server", $"http://localhost:{Port}", "--ecosystem", "nuget"
                      }) start.ArgumentList.Add(argument);
-            start.Environment["S360_CHECK_KEY"] = checkKey;
+            if (anonymous) start.Environment.Remove("S360_CHECK_KEY");
+            else start.Environment["S360_CHECK_KEY"] = checkKey;
             if (purpose != null)
             {
                 start.ArgumentList.Add("--purpose");
@@ -139,12 +148,19 @@ public class SupplyChainPagesTests : TestBase
                 .Where(c => c.Project == reportedProject).ToListAsync();
             Assert.HasCount(1, checks);
             Assert.AreEqual(purpose ?? "review", BuildCheckRun.Purpose(checks[0].ContextJson));
+            Assert.AreEqual(anonymous, BuildCheckRun.ReadContext(checks[0].ContextJson)!.IsAnonymous);
             Assert.AreEqual("nuget", BuildCheckRun.ReadContext(checks[0].ContextJson)!.Ecosystem);
             Assert.AreEqual(1, checks[0].ScannedProjectCount);
             Assert.HasCount(0, checks[0].Dependencies);
             Assert.IsTrue(BuildCheckRun.IsComplete(checks));
         }
-        finally { Directory.Delete(root, recursive: true); }
+        finally
+        {
+            Directory.Delete(root, recursive: true);
+            using var scope = Server!.Services.CreateScope();
+            await scope.ServiceProvider.GetRequiredService<GlobalSettingsService>()
+                .UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "False");
+        }
     }
 
     [TestMethod]
@@ -916,6 +932,59 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
+    public async Task AnonymousReviewRequiresEnabledSettingAndCannotDeclareBaseline()
+    {
+        Assert.AreEqual("False", SettingsMap.Definitions.Single(d => d.Key == SettingsMap.AllowAnonymousReview).DefaultValue);
+        var request = new CheckRequest { Project = "self-reported-" + Guid.NewGuid().ToString("N"),
+            RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1,
+            Context = new CheckContext { Purpose = "review", Provider = "gitlab", IsAnonymous = false },
+            Dependencies = [new Dependency { Ecosystem = "nuget", Name = "Unapproved.Anonymous." + Guid.NewGuid().ToString("N"),
+                Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64) }] };
+        using (var disabled = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.Unauthorized, disabled.StatusCode);
+        using var settingsScope = Server!.Services.CreateScope();
+        var settings = settingsScope.ServiceProvider.GetRequiredService<GlobalSettingsService>();
+        await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "True");
+        try
+        {
+            using (var allowed = await Http.PostAsJsonAsync("/api/check", request))
+            {
+                Assert.AreEqual(HttpStatusCode.OK, allowed.StatusCode);
+                var result = await allowed.Content.ReadFromJsonAsync<CheckResponse>();
+                Assert.IsNotNull(result);
+                Assert.IsFalse(result.Trusted);
+                StringAssert.Contains(result.Decisions.Single().Reason, "No approved trust rule");
+            }
+            using (var scope = Server!.Services.CreateScope())
+            {
+                var check = await scope.ServiceProvider.GetRequiredService<TemplateDbContext>()
+                    .BuildChecks.SingleAsync(c => c.RunId == request.RunId);
+                Assert.IsTrue(BuildCheckRun.ReadContext(check.ContextJson)!.IsAnonymous);
+                Assert.AreEqual("review", BuildCheckRun.Purpose(check.ContextJson));
+            }
+            request.RunId = Guid.NewGuid().ToString("N");
+            request.Context.Purpose = "baseline";
+            using (var baseline = await Http.PostAsJsonAsync("/api/check", request))
+                Assert.AreEqual(HttpStatusCode.Unauthorized, baseline.StatusCode);
+            using (var scope = Server!.Services.CreateScope())
+                Assert.IsFalse(await scope.ServiceProvider.GetRequiredService<TemplateDbContext>()
+                    .BuildChecks.AnyAsync(c => c.RunId == request.RunId));
+            request.Context.Purpose = "review";
+            Http.DefaultRequestHeaders.Add("X-S360-Key", "invalid-present-credential");
+            using (var invalidKey = await Http.PostAsJsonAsync("/api/check", request))
+                Assert.AreEqual(HttpStatusCode.Unauthorized, invalidKey.StatusCode);
+            Http.DefaultRequestHeaders.Remove("X-S360-Key");
+        }
+        finally
+        {
+            Http.DefaultRequestHeaders.Remove("X-S360-Key");
+            await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "False");
+        }
+        using (var disabledAgain = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.Unauthorized, disabledAgain.StatusCode);
+    }
+
+    [TestMethod]
     public async Task OnlyDistinctBaselineCredentialCanDeclareProductionUse()
     {
         var configuration = GetService<IConfiguration>();
@@ -1287,7 +1356,7 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task UnapprovedLegacyDependencyRemainsVisibleAsUnclassifiedEvidence()
+    public async Task UnapprovedReviewDependencyRemainsVisibleWithoutProductionImpact()
     {
         const string key = "integration-observation-key";
         var packageName = "Unapproved.Observed." + Guid.NewGuid().ToString("N");
@@ -1340,11 +1409,13 @@ public class SupplyChainPagesTests : TestBase
         var html = await page.Content.ReadAsStringAsync();
         StringAssert.Contains(html, packageName);
         StringAssert.Contains(html, project);
-        StringAssert.Contains(html, "Checks without a declared purpose");
+        StringAssert.Contains(html, "Review check history");
     }
 
     [TestMethod]
-    public async Task CiKeyChecksApprovedArtifactAndAbsoluteBlock()
+    [DataRow(false)]
+    [DataRow(true)]
+    public async Task ReviewChecksApprovedArtifactVulnerabilityAndAbsoluteBlock(bool anonymous)
     {
         var packageName = "Example." + Guid.NewGuid().ToString("N");
         GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-check-key";
@@ -1381,7 +1452,13 @@ public class SupplyChainPagesTests : TestBase
             }
             await db.SaveChangesAsync();
         }
-        Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
+        if (anonymous)
+        {
+            using var scope = Server!.Services.CreateScope();
+            await scope.ServiceProvider.GetRequiredService<GlobalSettingsService>()
+                .UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "True");
+        }
+        else Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var dependency = new Dependency
         {
             Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
@@ -1438,6 +1515,24 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var artifact = await db.PackageArtifacts.SingleAsync(a => a.Name == packageName);
+            db.Vulnerabilities.Add(new Vulnerability { Ecosystem = "nuget", PackageName = packageName,
+                SourceId = "GHSA-fixture-" + Guid.NewGuid().ToString("N"), Summary = "Test-only advisory",
+                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = artifact.Id }] });
+            await db.SaveChangesAsync();
+        }
+        using (var affected = await Http.PostAsJsonAsync("/api/check", new CheckRequest
+               { Dependencies = [dependency], ScannedProjectCount = 1, RunId = Guid.NewGuid().ToString("N") }))
+        {
+            affected.EnsureSuccessStatusCode();
+            var decision = await affected.Content.ReadFromJsonAsync<CheckResponse>();
+            Assert.IsNotNull(decision);
+            Assert.IsFalse(decision.Trusted);
+            StringAssert.Contains(decision.Decisions.Single().Reason, "known active vulnerability");
+        }
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.BlockRules.Add(new BlockRule
             {
                 Ecosystem = "nuget", PackagePattern = packageName, Version = "*", Active = true,
@@ -1464,6 +1559,9 @@ public class SupplyChainPagesTests : TestBase
         StringAssert.Contains(html, "Accepted");
         StringAssert.Contains(html, "Currently blocked");
         StringAssert.Contains(html, packageName);
+        using var settingsScope = Server!.Services.CreateScope();
+        await settingsScope.ServiceProvider.GetRequiredService<GlobalSettingsService>()
+            .UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "False");
     }
 
     [TestMethod]

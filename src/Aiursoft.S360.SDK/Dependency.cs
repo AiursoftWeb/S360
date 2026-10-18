@@ -57,6 +57,8 @@ public class CheckContext
 {
     /// <summary>Baseline declares production use; review never changes production inventory.</summary>
     [RegularExpression("^(review|baseline)$")] public string? Purpose { get; set; }
+    /// <summary>Set by the server from authentication, never trusted from the caller.</summary>
+    public bool IsAnonymous { get; set; }
     /// <summary>Null covers both supported ecosystems; a scoped baseline replaces only that ecosystem.</summary>
     [RegularExpression("^(nuget|npm)$")] public string? Ecosystem { get; set; }
     [Required, RegularExpression("^(local|gitlab)$")]

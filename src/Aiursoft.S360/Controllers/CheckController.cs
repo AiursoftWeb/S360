@@ -1,4 +1,7 @@
 using System.Text.Json;
+using Aiursoft.S360.Configuration;
+using Aiursoft.WebTools.Attributes;
+using Microsoft.AspNetCore.Authentication;
 using Aiursoft.AiurProtocol.Models;
 using Aiursoft.S360.SDK;
 using Aiursoft.S360.Services;
@@ -19,29 +22,50 @@ namespace Aiursoft.S360.Controllers;
     Policy = AppPermissionNames.CanCheckDependencies)]
 [Route("api/check")]
 public class CheckController(TrustService trust, TemplateDbContext db,
-    BackgroundJobRegistry jobs, IMemoryCache cache, IConfiguration configuration) : ControllerBase
+    BackgroundJobRegistry jobs, IMemoryCache cache, IConfiguration configuration,
+    GlobalSettingsService settings, IAuthorizationService authorization) : ControllerBase
 {
-    [HttpPost]
+    [HttpPost, AllowAnonymous, LimitPerMin(120)]
     [RequestSizeLimit(4 * 1024 * 1024)]
-    public async Task<IActionResult> Check([FromBody] CheckRequest request)
+    public async Task<IActionResult> Check([FromBody] CheckRequest? request)
     {
-        if (!ModelState.IsValid || request.ScannedProjectCount < 1 ||
+        // Only review checks may bypass machine authentication.
+        var purpose = request?.Context?.Purpose;
+        if (string.IsNullOrEmpty(purpose)) purpose = "review";
+        var authentication = await HttpContext.AuthenticateAsync(S360CheckKeyHandler.SchemeName);
+        var anonymous = !authentication.Succeeded;
+        if (anonymous)
+        {
+            if (Request.Headers.ContainsKey("X-S360-Key") || purpose != "review" ||
+                !await settings.GetBoolSettingAsync(SettingsMap.AllowAnonymousReview))
+                return Challenge(S360CheckKeyHandler.SchemeName);
+        }
+        else
+        {
+            HttpContext.User = authentication.Principal!;
+            if (!(await authorization.AuthorizeAsync(User, AppPermissionNames.CanCheckDependencies)).Succeeded)
+                return Forbid(S360CheckKeyHandler.SchemeName);
+        }
+        if (request == null || !ModelState.IsValid || request.ScannedProjectCount < 1 ||
             request.BatchIndex >= request.BatchCount ||
             (request.Dependencies.Count == 0 && (request.BatchIndex != 0 || request.BatchCount != 1)) ||
             request.Dependencies.Cast<Dependency?>().Any(d => d is null ||
                 !TrustPattern.IsValidConcretePackage(d.Ecosystem, d.Name, d.Version)))
             return BadRequest();
-        if (request.Context?.Purpose == "baseline")
+        request.Context ??= new CheckContext();
+        request.Context.Purpose = purpose;
+        request.Context.IsAnonymous = anonymous;
+        if (purpose == "baseline")
         {
             if (!User.HasClaim(S360CheckKeyHandler.BaselineClaim, "true"))
                 return Forbid(S360CheckKeyHandler.SchemeName);
             if (string.IsNullOrWhiteSpace(request.Project))
                 return BadRequest("A production baseline must identify its project.");
         }
-        if (request.Context?.Ecosystem is { Length: > 0 } ecosystem &&
+        if (request.Context.Ecosystem is { Length: > 0 } ecosystem &&
             request.Dependencies.Any(dependency => dependency.Ecosystem != ecosystem))
             return BadRequest("Dependencies must belong to the declared ecosystem.");
-        var contextJson = request.Context == null ? null : JsonSerializer.Serialize(request.Context);
+        var contextJson = JsonSerializer.Serialize(request.Context);
         var priorBatches = await db.BuildChecks.AsNoTracking().Where(c => c.RunId == request.RunId)
             .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson }).ToListAsync();
         if (priorBatches.Any(prior => prior.BatchCount != request.BatchCount || prior.Project != request.Project ||

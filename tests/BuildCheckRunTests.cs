@@ -74,6 +74,11 @@ public class BuildCheckRunTests
             Ref = "master", DefaultBranch = "master", PipelineSource = "push" });
         Assert.AreEqual("review", BuildCheckRun.Purpose(second.ContextJson));
         Assert.AreNotEqual(BuildCheckRun.ContextKey(first), BuildCheckRun.ContextKey(second));
+        first.ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = "baseline", IsAnonymous = true });
+        Assert.IsNull(BuildCheckRun.Purpose(first.ContextJson));
+        first.ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = "review", IsAnonymous = true,
+            Provider = "gitlab", Ref = "master", DefaultBranch = "master", PipelineSource = "push" });
+        Assert.AreNotEqual(BuildCheckRun.ContextKey(first), BuildCheckRun.ContextKey(second));
         Assert.IsNull(BuildCheckRun.Purpose(null));
         Assert.IsNull(BuildCheckRun.Purpose("{invalid"));
         Assert.IsNull(BuildCheckRun.Purpose(JsonSerializer.Serialize(new CheckContext { Provider = "gitlab",

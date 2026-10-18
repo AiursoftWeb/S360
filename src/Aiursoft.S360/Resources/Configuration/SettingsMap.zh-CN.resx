@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>用于测试的占位数字。</value>
   </data>
+  <data name="Allow anonymous review" xml:space="preserve">
+    <value>允许匿名审核</value>
+  </data>
+  <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
+    <value>允许在无 API 密钥的情况下进行依赖项审查。匿名审查将记录为未验证的报告，且不会更新生产环境使用情况。基线报告始终需要其受保护的凭据。</value>
+  </data>
   <data name="Allow User Adjust Nickname" xml:space="preserve">
     <value>允许用户修改昵称</value>
   </data>

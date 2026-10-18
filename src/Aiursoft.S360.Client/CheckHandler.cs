@@ -45,8 +45,10 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         var selectedEcosystem = ecosystem == "all" ? null : ecosystem;
         var server = context.GetValue(ServerOption) ?? Environment.GetEnvironmentVariable("S360_SERVER");
         var key = Environment.GetEnvironmentVariable("S360_CHECK_KEY");
-        if (string.IsNullOrWhiteSpace(server) || string.IsNullOrWhiteSpace(key))
-            throw new InvalidOperationException("S360_SERVER and S360_CHECK_KEY must be configured.");
+        if (string.IsNullOrWhiteSpace(server))
+            throw new InvalidOperationException("S360_SERVER must be configured.");
+        if (purpose == "baseline" && string.IsNullOrWhiteSpace(key))
+            throw new InvalidOperationException("S360_CHECK_KEY is required for baseline reports.");
         var path = Path.GetFullPath(context.GetValue(PathOption)!);
         // A lockfile URL must not silently redirect the archive download to another source.
         using var http = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });

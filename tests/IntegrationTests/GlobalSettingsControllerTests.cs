@@ -16,6 +16,7 @@ public class GlobalSettingsControllerTests : TestBase
         var indexHtml = await indexResponse.Content.ReadAsStringAsync();
         Assert.Contains("Global Settings", indexHtml);
         Assert.Contains(SettingsMap.ProjectName, indexHtml);
+        Assert.Contains(SettingsMap.AllowAnonymousReview, indexHtml);
 
         // 2. Edit (POST)
         var newProjectName = "My New Project " + Guid.NewGuid();

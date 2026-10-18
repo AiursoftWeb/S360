@@ -1,0 +1,82 @@
+@using Aiursoft.S360.Authorization
+@using Microsoft.AspNetCore.Authorization
+@model Aiursoft.S360.Models.SupplyChainViewModels.InventoryPackage
+@inject IAuthorizationService Authorization
+@{
+    var canManage = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageTrustRules)).Succeeded;
+    var inventoryScope = ViewData["InventoryScope"] as string ?? "baseline";
+    var reasons = Model.Versions.SelectMany(v => v.Rules).Select(r => r.Justification).Where(r => !string.IsNullOrWhiteSpace(r)).Distinct().ToList();
+    var purposes = Model.Versions.SelectMany(v => v.Requests).Where(r => !string.IsNullOrWhiteSpace(r.Justification)).DistinctBy(r => r.Id).ToList();
+}
+<details class="s360-inventory-package">
+    <summary class="s360-inventory-package-summary">
+        <span class="s360-inventory-package-name"><strong>@Model.Name</strong><small>@(Model.Ecosystem == "nuget" ? "NuGet" : "npm") · @string.Join(", ", Model.Versions.Select(v => v.Dependency.Version).Distinct())</small><span class="s360-inventory-purpose-preview">@(purposes.FirstOrDefault()?.Justification ?? reasons.FirstOrDefault() ?? @Localizer["No purpose or approval reason recorded"].Value)</span></span>
+        <span class="s360-inventory-project-preview"><span>@string.Format(@Localizer["{0} projects"].Value, Model.Projects.Count)</span><small>@string.Join(", ", Model.Projects.Take(2))@(Model.Projects.Count > 2 ? " …" : "")</small></span>
+        @await Html.PartialAsync("_InventoryStatus", Model.Status)
+        <i class="s360-inventory-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+    </summary>
+    <div class="s360-inventory-package-body">
+        <div class="s360-inventory-explanation">
+            <div><h3>@Localizer["Why is it needed?"]</h3>
+                @if (purposes.Count == 0) { <p class="text-muted">@Localizer["No project purpose recorded. An approval reason does not explain every project's use."]</p> }
+                @foreach (var request in purposes)
+                {
+                    <p><a asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@request.Id">@(request.Project ?? @Localizer["Dependency request"].Value)</a> — @request.Justification</p>
+                }
+            </div>
+            <div><h3>@Localizer["Why was it approved?"]</h3>
+                @if (reasons.Count == 0) { <p class="text-muted">@Localizer["No approval reason recorded."]</p> }
+                @foreach (var reason in reasons) { <p>@reason</p> }
+            </div>
+        </div>
+        @foreach (var version in Model.Versions)
+        {
+            <section class="s360-inventory-version">
+                <div class="s360-inventory-version-heading"><strong>@version.Dependency.Version</strong>@await Html.PartialAsync("_InventoryStatus", version.Status)</div>
+                <p>@version.Reason</p>
+                @if (version.Advisories.Count > 0)
+                {
+                    <p><a asp-controller="VulnerabilityAudit" asp-action="Index" asp-route-ecosystem="@Model.Ecosystem" asp-route-detailed="true">@string.Join(", ", version.Advisories)</a></p>
+                }
+                <h4>@Localizer["Recorded in these projects"]</h4>
+                <ul class="s360-inventory-uses">
+                    @foreach (var use in version.Uses)
+                    {
+                        <li><a asp-action="Index" asp-route-tab="projects" asp-route-scope="@inventoryScope" asp-route-project="@use.Project">@use.Project</a>
+                            <small>@use.CheckedAtUtc.ToString("yyyy-MM-dd HH:mm") UTC · <a asp-controller="BuildChecks" asp-action="Index" asp-route-checkId="@use.CheckId">@Localizer["Check record"]</a>
+                            @if (!string.IsNullOrEmpty(use.Commit)) { <code>@use.Commit[..Math.Min(12, use.Commit.Length)]</code> }
+                            @if (!string.IsNullOrEmpty(use.Pipeline)) { <span> · @Localizer["Pipeline"] @use.Pipeline</span> }
+                            </small>
+                        </li>
+                    }
+                </ul>
+                <details class="s360-inventory-policy">
+                    <summary>@Localizer["Approval scope and package identity"]</summary>
+                    <p class="small mt-3">@Localizer["Source"]: @Model.Source<br />SHA-256: <code>@version.Dependency.Sha256</code></p>
+                    @if (version.Rules.Count == 0) { <p>@Localizer["No matching approval rule is recorded."]</p> }
+                    @foreach (var rule in version.Rules)
+                    {
+                        <div class="s360-inventory-rule">
+                            <div><strong>#@rule.Id · @rule.PackagePattern</strong> <code>@rule.Version</code>
+                                <small>@rule.Status · @Localizer["Expires (UTC)"]: @(rule.ExpiresAtUtc?.ToString("u") ?? @Localizer["No expiry recorded"].Value)</small>
+                            </div>
+                            @if (canManage && rule.Status == Aiursoft.S360.Entities.TrustRuleStatus.Approved)
+                            {
+                                <details class="s360-inventory-revoke">
+                                    <summary>@Localizer["Revoke rule"]</summary>
+                                    <p>@Localizer["This revokes the approval rule for every matching package and project, including matches outside this view."]</p>
+                                    <a asp-action="Index" asp-route-tab="rules" asp-route-ecosystem="@Model.Ecosystem" asp-route-query="@rule.PackagePattern">@Localizer["Inspect rule scope"]</a>
+                                    <form asp-action="RevokeRule" method="post" class="mt-2">
+                                        <input type="hidden" name="id" value="@rule.Id" />
+                                        <label class="form-label">@Localizer["Reason"]<input class="form-control mt-1" name="reason" required maxlength="2000" /></label>
+                                        <button class="btn btn-outline-danger btn-sm">@Localizer["Revoke rule"]</button>
+                                    </form>
+                                </details>
+                            }
+                        </div>
+                    }
+                </details>
+            </section>
+        }
+    </div>
+</details>

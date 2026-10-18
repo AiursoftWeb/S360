@@ -1,0 +1,16 @@
+@using Aiursoft.S360.Models.SupplyChainViewModels
+@model InventoryStatus
+<span class="s360-inventory-status s360-inventory-status-@Model.ToString().ToLowerInvariant()">
+    @if (Model == InventoryStatus.Compliant)
+    {
+        <i data-lucide="circle-check" aria-hidden="true"></i><span>@Localizer["Compliant"]</span>
+    }
+    else if (Model == InventoryStatus.NonCompliant)
+    {
+        <i data-lucide="circle-alert" aria-hidden="true"></i><span>@Localizer["Needs attention"]</span>
+    }
+    else
+    {
+        <i data-lucide="circle-help" aria-hidden="true"></i><span>@Localizer["Not verified"]</span>
+    }
+</span>

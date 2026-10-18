@@ -24,7 +24,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         LinkText = "Dependency catalog", LinkOrder = 2)]
     public async Task<IActionResult> Index(string ecosystem = "all", string? query = null, int? supplierId = null,
         string? lookupName = null, string? lookupVersion = null, string? lookupSource = null,
-        string tab = "dependencies", string scope = "baseline", string filter = "all", string? project = null, int page = 1)
+        string tab = "projects", string scope = "baseline", string filter = "all", string? project = null, int page = 1)
         => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => IndexSnapshotAsync(ecosystem, query, supplierId,
             lookupName, lookupVersion, lookupSource, tab, scope, filter, project, page));
 

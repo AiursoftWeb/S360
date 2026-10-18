@@ -18,6 +18,7 @@ public class IndexViewModel : UiStackLayoutViewModel
     public int TrackedArtifacts { get; set; }
     public int ActiveBlockRules { get; set; }
     public DateTime? LastVulnerabilitySyncUtc { get; set; }
+    public SupplyChainViewModels.InventoryViewModel? Inventory { get; set; }
 
     public IndexViewModel()
     {

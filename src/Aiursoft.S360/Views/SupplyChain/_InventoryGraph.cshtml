@@ -2,7 +2,7 @@
 @using System.Text.Json
 @model List<InventoryGraph>
 <section class="s360-graph" aria-label="@Localizer["Dependency relationships"]">
-    <div class="s360-graph-heading"><h3>@Localizer["Dependency relationships"]</h3><p>@Localizer["Choose a manifest and target, then focus on a package to see what introduces it and what it needs."]</p></div>
+    <div class="s360-graph-heading"><div><span class="s360-inventory-eyebrow">@Localizer["Explore dependencies"]</span><h3>@Localizer["From your project to every package"]</h3><p>@Localizer["Start with three levels. Expand a node to follow its dependencies, or select it for details."]</p></div><button type="button" class="btn btn-outline-secondary s360-graph-share">@Localizer["Copy view link"]</button></div>
     <div class="s360-graph-controls">
         <label>@Localizer["Manifest and target"]<select class="form-select s360-graph-scope">
             @for (var i = 0; i < Model.Count; i++)
@@ -11,21 +11,37 @@
                 <option value="@i">@(graph.Ecosystem == "nuget" ? "NuGet" : "npm") · @graph.Project @graph.Target · #@graph.CheckId</option>
             }
         </select></label>
-        <label>@Localizer["Find a package"]<input type="search" class="form-control s360-graph-search" placeholder="@Localizer["Package name or installed path"]" /></label>
-        <label>@Localizer["Focus"]<select class="form-select s360-graph-focus"></select></label>
+        <label>@Localizer["Find a package"]<input type="search" class="form-control s360-graph-search" maxlength="214" placeholder="@Localizer["Package name, path or CVE"]" /></label>
+        <label>@Localizer["Maximum depth"]<input type="number" class="form-control s360-graph-depth" min="1" max="20" value="3" /></label>
+    </div>
+    <div class="s360-graph-toolbar">
+        <button type="button" class="btn btn-outline-primary s360-graph-direct">@Localizer["Direct dependencies only"]</button>
+        <label class="s360-graph-risk-switch"><input type="checkbox" class="form-check-input s360-graph-risk" /> @Localizer["Vulnerability paths"]</label>
+        <button type="button" class="btn btn-outline-secondary s360-graph-reset">@Localizer["Reset view"]</button>
+        <span class="s360-graph-summary" role="status"></span>
     </div>
     <div class="s360-graph-legend">
-        @await Html.PartialAsync("_InventoryStatus", InventoryStatus.Compliant)
-        @await Html.PartialAsync("_InventoryStatus", InventoryStatus.NonCompliant)
-        @await Html.PartialAsync("_InventoryStatus", InventoryStatus.Pending)
-        <span>@Localizer["Arrows point from a project or package to its dependencies."]</span>
+        <span><i class="s360-dot direct"></i>@Localizer["Direct dependency"]</span>
+        <span><i class="s360-dot indirect"></i>@Localizer["Indirect dependency"]</span>
+        <span><i class="s360-dot vulnerable"></i>@Localizer["Known vulnerability"]</span>
+        <span>@Localizer["Green and blue describe the relationship, not approval. Other audit issues are labeled on each node."]</span>
     </div>
+    <p class="s360-graph-risk-summary" role="status"></p>
     <p class="s360-graph-notice small text-muted" role="status"></p>
-    <div class="s360-graph-canvas" tabindex="0" role="img" aria-label="@Localizer["Dependency graph"]"></div>
-    <p class="s360-graph-detail small" role="status"></p>
+    <div class="s360-graph-body">
+        <div class="s360-graph-stage">
+            <div class="s360-graph-navigation" role="group" aria-label="@Localizer["Diagram controls"]">
+                <button type="button" class="btn btn-light s360-graph-zoom-in" aria-label="@Localizer["Zoom in"]">+</button>
+                <button type="button" class="btn btn-light s360-graph-zoom-out" aria-label="@Localizer["Zoom out"]">−</button>
+                <button type="button" class="btn btn-light s360-graph-fit">@Localizer["Fit view"]</button>
+                <button type="button" class="btn btn-light s360-graph-fullscreen">@Localizer["Full screen"]</button>
+            </div>
+            <div class="s360-graph-canvas" tabindex="0" role="group" aria-label="@Localizer["Dependency graph. Drag to pan, use the controls to zoom, or select a node."]"></div>
+        </div>
+        <aside class="s360-graph-detail" aria-label="@Localizer["Dependency details"]" aria-live="polite"></aside>
+    </div>
     <noscript><p>@Localizer["Enable JavaScript to view the graph. All package details are listed below."]</p></noscript>
     <div class="s360-graph-loc" hidden>
-        <span data-key="all">@Localizer["All dependencies"]</span>
         <span data-key="limited">@Localizer["This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below."]</span>
         <span data-key="failed">@Localizer["The graph could not be displayed. Package details remain available below."]</span>
         <span data-key="empty">@Localizer["No matching packages."]</span>
@@ -33,6 +49,28 @@
         <span data-key="pending">@Localizer["Not verified"]</span>
         <span data-key="problem">@Localizer["Needs attention"]</span>
         <span data-key="reference">@Localizer["Project reference"]</span>
+        <span data-key="direct">@Localizer["Direct dependency"]</span>
+        <span data-key="indirect">@Localizer["Indirect dependency"]</span>
+        <span data-key="unlinked">@Localizer["Root relationship not recorded"]</span>
+        <span data-key="unlinkedNotice">@Localizer["Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred."]</span>
+        <span data-key="select">@Localizer["Select a node to see its version, audit status and introduction paths."]</span>
+        <span data-key="introduced">@Localizer["Introduced by"]</span>
+        <span data-key="children">@Localizer["Dependencies"]</span>
+        <span data-key="used">@Localizer["Used by projects"]</span>
+        <span data-key="purpose">@Localizer["Recorded purpose and approval reasons"]</span>
+        <span data-key="noPurpose">@Localizer["No purpose or approval reason recorded"]</span>
+        <span data-key="source">@Localizer["Package source"]</span>
+        <span data-key="expand">@Localizer["Expand dependencies"]</span>
+        <span data-key="collapse">@Localizer["Collapse dependencies"]</span>
+        <span data-key="path">@Localizer["Show introduction paths"]</span>
+        <span data-key="visible">@(Localizer["{0} of {1} nodes shown"].Value)</span>
+        <span data-key="risks">@(Localizer["{0} vulnerable packages in this diagram, including {1} hidden by depth or filters."].Value)</span>
+        <span data-key="pathsNotice">@Localizer["Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits."]</span>
+        <span data-key="none">@Localizer["No known vulnerabilities in the reported graph. Check audit status before relying on this result."]</span>
+        <span data-key="copied">@Localizer["View link copied."]</span>
+        <span data-key="copyFailed">@Localizer["Copy is unavailable. Copy the current address from your browser."]</span>
+        <span data-key="readable">@Localizer["Drag to explore this diagram at a readable scale, or choose Fit view for an overview."]</span>
+        <span data-key="viewChanged">@Localizer["The saved report has changed. Showing the current dependency graph."]</span>
     </div>
     <script type="application/json" class="s360-graph-data">@Html.Raw(JsonSerializer.Serialize(Model))</script>
 </section>

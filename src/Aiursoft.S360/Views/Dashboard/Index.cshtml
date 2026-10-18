@@ -5,6 +5,11 @@
     <link rel="stylesheet" href="~/styles/s360.css" />
 }
 
+@if (Model.Inventory != null)
+{
+    @await Html.PartialAsync("../SupplyChain/_Inventory", Model.Inventory)
+}
+
 <div class="s360-dashboard">
     <section class="s360-dashboard-hero">
         <div class="s360-dashboard-hero-copy">

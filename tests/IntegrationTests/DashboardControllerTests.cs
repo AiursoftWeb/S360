@@ -14,6 +14,7 @@ public class DashboardControllerTests : TestBase
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         StringAssert.Contains(html, "Welcome to S360.");
+        StringAssert.Contains(html, "Know what your projects depend on");
         StringAssert.Contains(html, "Your latest requests");
         StringAssert.Contains(html, "What S360 checks before a dependency is trusted.");
         StringAssert.Contains(html, "Blocklist comes first");
@@ -36,5 +37,6 @@ public class DashboardControllerTests : TestBase
         StringAssert.Contains(html, "Words you will see");
         Assert.DoesNotContain("For authorized reviewers", html);
         Assert.DoesNotContain("Across the organization", html);
+        Assert.DoesNotContain("s360-inventory-tabs", html);
     }
 }

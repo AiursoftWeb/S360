@@ -8,13 +8,15 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Aiursoft.S360.Models.SupplyChainViewModels;
+using Aiursoft.S360.Services.Vulnerability;
 
 namespace Aiursoft.S360.Controllers;
 
 [LimitPerMin]
 [Authorize]
 public class DashboardController(TemplateDbContext db, UserManager<User> users,
-    IAuthorizationService authorization) : Controller
+    IAuthorizationService authorization, CatalogInventoryService inventory) : Controller
 {
     [RenderInNavBar(
         NavGroupName = "Features",
@@ -49,6 +51,12 @@ public class DashboardController(TemplateDbContext db, UserManager<User> users,
         };
         if (model.CanReadSupplyChain)
         {
+            model.Inventory = new InventoryViewModel { Tab = "projects", CanRead = true };
+            await VulnerabilityAuditSnapshot.ExecuteAsync(db, async () =>
+            {
+                await inventory.PopulateAsync(model.Inventory);
+                return true;
+            });
             model.PendingReviews = await db.DependencyApplications.CountAsync(a =>
                 a.Status == ApplicationStatus.ReadyForReview);
             model.TrackedArtifacts = await db.PackageArtifacts.CountAsync();

@@ -23,11 +23,13 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 CreatedAtUtc = c.CreatedAtUtc, GraphJson = c.GraphJson == null ? null : "[]"
             }).ToListAsync();
         var runs = checks.Where(c => !string.IsNullOrWhiteSpace(c.Project))
-            .GroupBy(c => c.RunId).Where(g => MatchesScope(g.First(), model.Scope)).ToList();
-        var projects = checks.Where(c => !string.IsNullOrWhiteSpace(c.Project))
-            .Select(c => c.Project!).Distinct().ToDictionary(name => name, name => new InventoryProject { Name = name });
+            .GroupBy(c => c.RunId).Where(g => MatchesScope(g.First(), model.Scope))
+            .Where(g => model.Ecosystem == "all" ||
+                BuildCheckRun.ReadContext(g.First().ContextJson)?.Ecosystem is not { Length: > 0 } ecosystem ||
+                ecosystem == model.Ecosystem).ToList();
+        var projects = runs.Select(run => run.First().Project!).Distinct().ToDictionary(name => name, name => new InventoryProject { Name = name });
         var selected = new List<(string Ecosystem, List<BuildCheck> Checks)>();
-        foreach (var ecosystem in new[] { "nuget", "npm" })
+        foreach (var ecosystem in new[] { "nuget", "npm" }.Where(e => model.Ecosystem == "all" || e == model.Ecosystem))
         {
             var groups = runs.Where(run => BuildCheckRun.ReadContext(run.First().ContextJson)?.Ecosystem is not { Length: > 0 } scope || scope == ecosystem)
                 .GroupBy(run => (run.First().Project, Context: BuildCheckRun.ContextKey(run.First())));
@@ -142,7 +144,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
             .Select(g => new InventoryPackage { Name = g.First().Dependency.Name, Ecosystem = g.Key.Ecosystem,
                 Source = g.Key.Source, Versions = g.OrderBy(v => v.Dependency.Version).ToList() }).OrderBy(p => p.Name).ToList();
         model.PackageCount = packages.Count;
-        model.ProjectCount = projects.Values.Count(p => p.Reports.Count > 0);
+        model.ProjectCount = projects.Count;
         model.ProblemCount = packages.Count(p => p.Status == InventoryStatus.NonCompliant);
         bool VersionMatches(InventoryVersion version) => (model.Ecosystem == "all" || version.Dependency.Ecosystem == model.Ecosystem) &&
             (model.Project == null || version.Uses.Any(u => u.Project == model.Project)) &&
@@ -165,7 +167,6 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 .Where(p => Contains(p.Name, model.Query) || p.Versions.Any(v =>
                     Contains(v.Dependency.Name, model.Query) || v.Rules.Any(r => Contains(r.Justification, model.Query)) ||
                     v.Requests.Any(r => Contains(r.Justification, model.Query))))
-                .Where(p => model.Ecosystem == "all" || p.Reports.Any(r => r.Ecosystem == model.Ecosystem))
                 .OrderByDescending(p => p.Status).ThenBy(p => p.Name).ToList();
             model.Total = filtered.Count;
             model.Page = Math.Min(model.Page, model.PageCount);

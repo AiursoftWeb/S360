@@ -45,10 +45,10 @@ public class InventoryTests : TestBase
     };
 
     private async Task<InventoryViewModel> Read(string tab = "dependencies", string scope = "baseline",
-        string? query = null, string filter = "all", int page = 1, string? project = null)
+        string? query = null, string filter = "all", int page = 1, string? project = null, string ecosystem = "all")
     {
         using var serviceScope = Server!.Services.CreateScope();
-        var model = new InventoryViewModel { Tab = tab, Scope = scope, Query = query ?? _prefix, Filter = filter, Page = page, CanRead = true, Project = project };
+        var model = new InventoryViewModel { Tab = tab, Scope = scope, Query = query ?? _prefix, Filter = filter, Page = page, CanRead = true, Project = project, Ecosystem = ecosystem };
         await serviceScope.ServiceProvider.GetRequiredService<CatalogInventoryService>().PopulateAsync(model);
         return model;
     }
@@ -106,6 +106,95 @@ public class InventoryTests : TestBase
         var html = await Http.GetStringAsync("/SupplyChain/Index?tab=projects&project=" + Uri.EscapeDataString(_prefix + "graph"));
         StringAssert.Contains(html, "s360-graph-data");
         StringAssert.Contains(html, "dependency-graph.js");
+    }
+
+    [TestMethod]
+    public async Task ProjectListsRespectReportScopeAndEcosystemWithoutLosingIncompleteReports()
+    {
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var now = DateTime.UtcNow;
+            db.BuildChecks.AddRange(Report("production", "baseline", "nuget", now),
+                Report("production", "review", "nuget", now.AddMinutes(1)),
+                Report("proposed-only", "review", "nuget", now),
+                Report("legacy-only", null, "nuget", now),
+                Report("frontend-only", "baseline", "npm", now));
+            var incomplete = Report("incomplete-only", "baseline", "nuget", now);
+            incomplete.BatchCount = 2;
+            db.BuildChecks.Add(incomplete);
+            await db.SaveChangesAsync();
+        }
+        var baseline = await Read("projects");
+        CollectionAssert.AreEquivalent(new[] { _prefix + "production", _prefix + "frontend-only", _prefix + "incomplete-only" },
+            baseline.Projects.Select(p => p.Name).ToArray());
+        Assert.IsTrue(baseline.Projects.Single(p => p.Name.EndsWith("incomplete-only")).Incomplete);
+        Assert.AreEqual(InventoryStatus.Pending, baseline.Projects.Single(p => p.Name.EndsWith("incomplete-only")).Status);
+        Assert.AreEqual(InventoryStatus.Compliant, baseline.Projects.Single(p => p.Name.EndsWith("production")).Status);
+        CollectionAssert.AreEquivalent(new[] { _prefix + "production", _prefix + "proposed-only" },
+            (await Read("projects", scope: "review")).Projects.Select(p => p.Name).ToArray());
+        Assert.AreEqual(_prefix + "legacy-only", (await Read("projects", scope: "history")).Projects.Single().Name);
+        Assert.AreEqual(0, (await Read("projects", project: _prefix + "proposed-only")).Total);
+        var nuget = await Read("projects", ecosystem: "nuget");
+        CollectionAssert.AreEquivalent(new[] { _prefix + "production", _prefix + "incomplete-only" },
+            nuget.Projects.Select(p => p.Name).ToArray());
+        Assert.AreEqual(2, nuget.Total);
+        var allNuget = await Read("projects", ecosystem: "nuget", query: "");
+        Assert.AreEqual(allNuget.Total, allNuget.ProjectCount);
+        await LoginAsAdmin();
+        var html = await Http.GetStringAsync("/SupplyChain/Index?tab=projects&scope=baseline&ecosystem=nuget&query=" + Uri.EscapeDataString(_prefix));
+        Assert.DoesNotContain(_prefix + "proposed-only", html);
+        Assert.DoesNotContain(_prefix + "legacy-only", html);
+        Assert.DoesNotContain(_prefix + "frontend-only", html);
+        StringAssert.Contains(html, "npm: not included in this audit.");
+        StringAssert.Contains(html, "Status covers only the reported ecosystems.");
+        StringAssert.Contains(html, "No complete snapshot is available; current coverage is not verified");
+    }
+
+    [TestMethod]
+    public async Task ProjectStatusUsesSelectedEcosystemsAndPreservesFailuresInReportedPackages()
+    {
+        var nugetName = "NuGet.Approved." + Guid.NewGuid().ToString("N");
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var nuget = Artifact(nugetName);
+            var npm = Artifact("npm-unapproved-" + Guid.NewGuid().ToString("N"), "npm");
+            db.TrustRules.Add(Approve(nuget));
+            db.BuildChecks.AddRange(Report("backend", "baseline", "nuget", DateTime.UtcNow, nuget),
+                Report("mixed", "baseline", "nuget", DateTime.UtcNow, nuget),
+                Report("mixed", "baseline", "npm", DateTime.UtcNow, npm));
+            var partial = Report("mixed", "baseline", "npm", DateTime.UtcNow.AddMinutes(1));
+            partial.BatchCount = 2;
+            db.BuildChecks.Add(partial);
+            var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
+            if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
+            audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+            await db.SaveChangesAsync();
+        }
+        var all = await Read("projects");
+        Assert.AreEqual(InventoryStatus.Compliant, all.Projects.Single(p => p.Name.EndsWith("backend")).Status);
+        Assert.AreEqual(InventoryStatus.NonCompliant, all.Projects.Single(p => p.Name.EndsWith("mixed")).Status);
+        var selected = await Read("projects", ecosystem: "nuget", filter: "compliant");
+        Assert.AreEqual(2, selected.Total);
+        Assert.IsTrue(selected.Projects.All(p => p.Status == InventoryStatus.Compliant && !p.Incomplete));
+        Assert.IsTrue(selected.Projects.All(p => p.Reports.All(r => r.Ecosystem == "nuget")));
+        Assert.AreEqual(InventoryStatus.NonCompliant, (await Read("projects", ecosystem: "npm")).Projects.Single().Status);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var artifact = await db.PackageArtifacts.SingleAsync(a => a.Name == nugetName);
+            db.VulnerabilityMatches.Add(new VulnerabilityMatch
+            {
+                PackageArtifactId = artifact.Id, VulnerabilityId = 0,
+                Vulnerability = new Vulnerability { Ecosystem = "nuget", PackageName = artifact.Name,
+                    SourceId = "GHSA-inventory-scope-" + Guid.NewGuid().ToString("N") }
+            });
+            await db.SaveChangesAsync();
+        }
+        Assert.AreEqual(2, (await Read("projects", ecosystem: "nuget", filter: "cve")).Total);
+        Assert.IsTrue((await Read("projects", ecosystem: "nuget")).Projects.All(p => p.Status == InventoryStatus.NonCompliant));
     }
 
     [TestMethod]

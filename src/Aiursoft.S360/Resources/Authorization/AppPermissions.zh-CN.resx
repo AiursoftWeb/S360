@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>检查依赖项</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>创建和管理个人 API 密钥，并使用这些密钥审核依赖项。</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>创建 API 密钥并调用 S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>创建启用基线的个人 API 密钥，并声明生产环境依赖清单。</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>删除角色</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>管理信任规则</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>发布生产基线</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>查看所有请求、构建检查和漏洞审计记录。</value>

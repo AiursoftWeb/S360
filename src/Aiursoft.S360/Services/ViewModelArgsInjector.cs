@@ -101,6 +101,9 @@ public class ViewModelArgsInjector(
 
         _ = localizer["Dependency catalog"];
         _ = localizer["Request a new dependency"];
+
+        _ = localizer["API Key"];
+        _ = localizer["API Keys"];
     }
 
     public void InjectSimple(

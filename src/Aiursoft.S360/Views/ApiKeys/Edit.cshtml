@@ -1,0 +1,15 @@
+@model Aiursoft.S360.Models.ApiKeysViewModels.EditViewModel
+<h1 class="h3 mb-4">@(Model.Id.HasValue ? @Localizer["Edit API Key"] : @Localizer["Create API Key"])</h1>
+<div class="card"><div class="card-body">
+<form asp-action="@(Model.Id.HasValue ? "Edit" : "Create")" method="post">
+    <input asp-for="Id" type="hidden" />
+    <div asp-validation-summary="All" class="text-danger mb-3"></div>
+    <div class="mb-3"><label asp-for="Name" class="form-label">@Localizer["Key name"]</label><input asp-for="Name" class="form-control" maxlength="100" required /></div>
+    <div class="mb-3"><label asp-for="ExpirationTime" class="form-label">@Localizer["Expiration (UTC)"]</label><input asp-for="ExpirationTime" type="datetime-local" class="form-control" required /></div>
+    <div class="form-check mb-3"><input asp-for="IsEnabled" class="form-check-input" /><label asp-for="IsEnabled" class="form-check-label">@Localizer["Enabled"]</label></div>
+    <div class="form-check mb-3"><input asp-for="CanPublishBaselines" class="form-check-input" /><label asp-for="CanPublishBaselines" class="form-check-label">@Localizer["Allow production baseline reports"]</label></div>
+    <p class="text-muted">@Localizer["Review keys cannot publish production baselines. Baseline reporting also requires your current production baseline permission."]</p>
+    <button type="submit" class="btn btn-primary">@Localizer["Save"]</button>
+    <a asp-action="Index" class="btn btn-outline-secondary">@Localizer["Back to API Keys"]</a>
+</form>
+</div></div>

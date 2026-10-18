@@ -47,6 +47,7 @@ public class BuildCheckRunTests
     [DataRow("push", "v1", "master", null, "v1", CheckKind.Tag)]
     [DataRow(null, "master", "master", null, null, CheckKind.Unknown)]
     [DataRow("push", null, "master", null, null, CheckKind.Unknown)]
+    [DataRow("push", "master", null, null, null, CheckKind.Unknown)]
     public void OnlyDefaultBranchContextEstablishesBaseline(string? source, string? reference,
         string? defaultBranch, string? mergeRequest, string? tag, CheckKind expected)
     {

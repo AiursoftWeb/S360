@@ -39,9 +39,10 @@ public static class BuildCheckRun
             context.PipelineSource is "merge_request_event" or "external_pull_request_event")
             return CheckKind.MergeRequest;
         if (!string.IsNullOrWhiteSpace(context.Tag)) return CheckKind.Tag;
-        if (string.IsNullOrWhiteSpace(context.Ref) || string.IsNullOrWhiteSpace(context.PipelineSource))
+        if (string.IsNullOrWhiteSpace(context.Ref) || string.IsNullOrWhiteSpace(context.PipelineSource) ||
+            string.IsNullOrWhiteSpace(context.DefaultBranch))
             return CheckKind.Unknown;
-        return !string.IsNullOrWhiteSpace(context.DefaultBranch) && context.Ref == context.DefaultBranch
+        return context.Ref == context.DefaultBranch
             ? CheckKind.DefaultBranch : CheckKind.Branch;
     }
 

@@ -1,5 +1,6 @@
 @model Aiursoft.S360.Models.SupplyChainViewModels.BuildChecksViewModel
 @using Aiursoft.S360.Models.Shared
+@using Aiursoft.S360.Services
 @* ReSharper disable once Razor.SectionNotResolved *@
 @section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
 
@@ -17,7 +18,7 @@
 <p>@Model.Total @Localizer["batch records"]</p>
 @foreach (var check in Model.Checks)
 {
-    <div class="card mb-3">
+    <div class="card mb-3" id="check-@check.Id">
         <div class="card-header">
             <strong>@check.Project</strong> · @check.CreatedAtUtc.ToString("u") ·
             @if (check.Trusted) { <span class="badge bg-success">@Localizer["Accepted"]</span> }
@@ -34,6 +35,20 @@
             }
         </div>
         <div class="card-body">
+            <div class="mb-2"><strong>@Localizer["Reported source"]:</strong>
+                @switch (BuildCheckRun.Kind(check.ContextJson))
+                {
+                    case CheckKind.DefaultBranch: <span>@Localizer["Default branch"]</span> break;
+                    case CheckKind.MergeRequest: <span>@Localizer["Merge request"]</span> break;
+                    case CheckKind.Branch: <span>@Localizer["Other branch"]</span> break;
+                    case CheckKind.Tag: <span>@Localizer["Tag build"]</span> break;
+                    case CheckKind.Local: <span>@Localizer["Local check"]</span> break;
+                    default: <span>@Localizer["Unclassified"]</span> break;
+                }
+                @{ var context = BuildCheckRun.ReadContext(check.ContextJson); }
+                @if (context?.Ref != null) { <code class="ms-2">@context.Ref</code> }
+                @if (context?.MergeRequest != null) { <span class="ms-2">MR !@context.MergeRequest</span> }
+            </div>
             <div>@Localizer["Commit"]: <code>@check.Commit</code> · @Localizer["Pipeline"]: <code>@check.Pipeline</code></div>
             <div>@Localizer["Run"]: <code>@check.RunId</code> · @Localizer["Batch"] @(check.BatchIndex + 1)/@check.BatchCount ·
                 @Localizer["Scanned projects"]: @check.ScannedProjectCount ·
@@ -48,7 +63,7 @@
             </tr></thead><tbody>
             @foreach (var item in check.Dependencies.OrderBy(d => d.Ecosystem).ThenBy(d => d.Name))
             {
-                <tr><td>@(item.Trusted ? Localizer["Accepted"] : Localizer["Rejected"])</td>
+                <tr><td>@(item.Trusted ? @Localizer["Accepted"] : @Localizer["Rejected"])</td>
                     <td>@item.Ecosystem: <code>@item.Name</code></td><td>@item.Version</td><td><small>@item.Source</small></td>
                     <td><code title="@item.Sha256">@item.Sha256[..Math.Min(item.Sha256.Length, 16)]</code></td>
                     <td>@item.Reason
@@ -66,16 +81,16 @@
 @if (Model.Page * 50 < Model.Total) { <a class="btn btn-outline-secondary" asp-action="Index" asp-route-project="@Model.Project" asp-route-page="@(Model.Page + 1)">@Localizer["Next"]</a> }
 </div>
 @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
-    Localizer["Read a check record"].Value,
+    @Localizer["Read a check record"].Value,
     "list-checks",
     [
-        new ConceptTerm(Localizer["Run"].Value, Localizer["One reported check attempt. Its batches share a run identifier so you can inspect the complete result."].Value),
-        new ConceptTerm(Localizer["Batch"].Value, Localizer["A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run."].Value),
-        new ConceptTerm(Localizer["Accepted versus enforced"].Value, Localizer["Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build."].Value),
-        new ConceptTerm(Localizer["Scanned projects"].Value, Localizer["The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count."].Value),
-        new ConceptTerm(Localizer["Decision reason"].Value, Localizer["The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history."].Value),
-        new ConceptTerm(Localizer["Vulnerability data time"].Value, Localizer["When the advisory data behind this decision was last checked; a blank value is not a clean bill of health."].Value)
+        new ConceptTerm(@Localizer["Run"].Value, @Localizer["One reported check attempt. Its batches share a run identifier so you can inspect the complete result."].Value),
+        new ConceptTerm(@Localizer["Batch"].Value, @Localizer["A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run."].Value),
+        new ConceptTerm(@Localizer["Accepted versus enforced"].Value, @Localizer["Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build."].Value),
+        new ConceptTerm(@Localizer["Scanned projects"].Value, @Localizer["The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count."].Value),
+        new ConceptTerm(@Localizer["Decision reason"].Value, @Localizer["The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history."].Value),
+        new ConceptTerm(@Localizer["Vulnerability data time"].Value, @Localizer["When the advisory data behind this decision was last checked; a blank value is not a clean bill of health."].Value)
     ],
-    Localizer["These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here."].Value))
+    @Localizer["These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here."].Value))
 </div>
 </div>

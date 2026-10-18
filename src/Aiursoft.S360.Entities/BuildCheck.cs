@@ -12,6 +12,7 @@ public class BuildCheck
     [MaxLength(200)] public string? Project { get; set; }
     [MaxLength(80)] public string? Commit { get; set; }
     [MaxLength(200)] public string? Pipeline { get; set; }
+    [MaxLength(6000)] public string? ContextJson { get; set; }
     [MaxLength(32)] public string RunId { get; set; } = string.Empty;
     public int BatchIndex { get; set; }
     public int BatchCount { get; set; } = 1;

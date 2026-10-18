@@ -18,8 +18,17 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>A limited portion of the dependency list sent to the API. An accepted batch is not the same as a fully accepted run.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Accepted</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Accepted versus enforced</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Batch</value>
@@ -42,17 +51,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>Currently blocked</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Reason for decision</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Default branch</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Each row represents one API batch. The CLI check passes only if the run is complete and every batch is accepted. The recorded result is historical; any current blocklist warning is shown separately.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Incomplete run</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Local check</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Merge request</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>No external dependencies were found in the reported supported projects.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>One reported check attempt. Its batches share a run identifier so you can inspect the complete result.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Other branch</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Package</value>
@@ -66,11 +93,17 @@
   <data name="Project" xml:space="preserve">
     <value>Project</value>
   </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Read a check record</value>
+  </data>
   <data name="Reason" xml:space="preserve">
     <value>Reason</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Rejected</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Reported source</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Run</value>
@@ -90,11 +123,32 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Tag build</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>The number of supported projects the CLI recognised. A zero-dependency check still contacts S360 and records this count.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>These are reported checks; Runner enforcement is a separate roll-out step and is not implied by a record here.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Unclassified</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Vulnerability data</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Time of vulnerability data</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>When the advisory data underpinning this decision was last checked; a blank value does not mean that everything is clear.</value>
   </data>
 
 </root>

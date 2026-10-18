@@ -54,11 +54,13 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         // not a safe wire-size target for large npm dependency graphs.
         var batches = dependencies.Count == 0 ? new List<Dependency[]> { Array.Empty<Dependency>() } : dependencies.Chunk(1000).ToList();
         var runId = Guid.NewGuid().ToString("N");
+        var checkContext = ReadContext(Environment.GetEnvironmentVariable);
         for (var batchIndex = 0; batchIndex < batches.Count; batchIndex++)
         {
             var batch = batches[batchIndex];
             var response = await client.CheckAsync(server, key, new CheckRequest
             {
+                Context = checkContext,
                 Dependencies = batch.ToList(), ScannedProjectCount = scan.ScannedProjectCount,
                 RunId = runId, BatchIndex = batchIndex, BatchCount = batches.Count,
                 Project = Environment.GetEnvironmentVariable("CI_PROJECT_PATH") ?? Path.GetFileName(path),
@@ -92,4 +94,17 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         if (!approved) throw new InvalidOperationException("S360 rejected dependencies. Submit a request through the S360 web UI.");
         Console.WriteLine($"S360 approved {dependencies.Count} dependency artifacts across {scan.ScannedProjectCount} supported projects.");
     }
+
+    public static CheckContext ReadContext(Func<string, string?> read) =>
+        string.Equals(read("GITLAB_CI"), "true", StringComparison.OrdinalIgnoreCase)
+            ? new CheckContext
+            {
+                Provider = "gitlab", PipelineSource = read("CI_PIPELINE_SOURCE"),
+                Ref = read("CI_COMMIT_BRANCH") ?? read("CI_MERGE_REQUEST_SOURCE_BRANCH_NAME") ??
+                    read("CI_EXTERNAL_PULL_REQUEST_SOURCE_BRANCH_NAME") ?? read("CI_COMMIT_REF_NAME"),
+                DefaultBranch = read("CI_DEFAULT_BRANCH"),
+                MergeRequest = read("CI_MERGE_REQUEST_IID") ?? read("CI_EXTERNAL_PULL_REQUEST_IID"),
+                Tag = read("CI_COMMIT_TAG")
+            }
+            : new CheckContext { Provider = "local" };
 }

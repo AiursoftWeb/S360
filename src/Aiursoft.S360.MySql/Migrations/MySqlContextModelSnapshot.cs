@@ -17,7 +17,7 @@ namespace Aiursoft.S360.MySql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.12")
+                .HasAnnotation("ProductVersion", "10.0.13")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
@@ -171,6 +171,10 @@ namespace Aiursoft.S360.MySql.Migrations
                     b.Property<string>("Commit")
                         .HasMaxLength(80)
                         .HasColumnType("varchar(80)");
+
+                    b.Property<string>("ContextJson")
+                        .HasMaxLength(6000)
+                        .HasColumnType("varchar(6000)");
 
                     b.Property<DateTime>("CreatedAtUtc")
                         .HasColumnType("datetime(6)");

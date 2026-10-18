@@ -15,7 +15,7 @@ namespace Aiursoft.S360.Sqlite.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "10.0.12");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.13");
 
             modelBuilder.Entity("Aiursoft.S360.Entities.ApplicationEdge", b =>
                 {
@@ -155,6 +155,10 @@ namespace Aiursoft.S360.Sqlite.Migrations
 
                     b.Property<string>("Commit")
                         .HasMaxLength(80)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ContextJson")
+                        .HasMaxLength(6000)
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAtUtc")

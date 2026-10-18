@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet ใช้สำหรับแพ็กเกจ .NET ส่วน npm ใช้สำหรับแพ็กเกจ JavaScript เลือกตัวที่โปรเจกต์ของคุณติดตั้งจริง</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>รายละเอียดแพ็กเกจ</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>ไม่อนุญาตให้ใช้แหล่งที่มาของแพ็กเกจนี้สำหรับการตรวจสอบ S360 อีกต่อไป</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>คำขอล่าสุด</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>ขอเพิ่มแพ็กเกจที่ต้องพึ่งพาใหม่</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>ขออนุมัติก่อนเพิ่มแพ็กเกจใหม่ลงในโปรเจกต์ของคุณ ระบุชื่อและเวอร์ชันที่แน่นอน พร้อมอธิบายเหตุผลที่จำเป็นต้องใช้</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>แหล่งที่มา</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>ส่งเพื่อดำเนินการแก้ไขข้อขัดแย้ง</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>ส่งคำขอ</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>รีจิสทรีที่จัดหาไฟล์แพ็กเกจ แพ็กเกจจากรีจิสทรีอื่นต้องได้รับการตรวจสอบแยกต่างหาก</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>ติดตามความคืบหน้าและผลการพิจารณาคำขอสำหรับแพ็กเกจที่คุณส่งคำขอ</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>ทำไมจึงจำเป็นต้องใช้ไลบรารีนี้?</value>

@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>Poista käyttäjä</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Riippuvuudet</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Riippuvuuksien hyväksynnät</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Riippuvuusluettelo</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>Hakemisto</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>Henkilökohtainen</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Käytännöt</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>Luottamussäännön esikatselu</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>Rekisteröidy</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Pyydä uutta riippuvuutta</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Roolin tiedot</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360-yleiskatsaus</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Tietoturvatarkastus</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Asetukset</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Käyttäjät</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Haavoittuvuudet</value>
   </data>
 
 </root>

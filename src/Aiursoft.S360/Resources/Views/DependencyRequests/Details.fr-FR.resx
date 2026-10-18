@@ -66,6 +66,9 @@
   <data name="Retry as a new request" xml:space="preserve">
     <value>Réessayer en tant que nouvelle demande</value>
   </data>
+  <data name="Review decision" xml:space="preserve">
+    <value>Décision de l’examen</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
   </data>

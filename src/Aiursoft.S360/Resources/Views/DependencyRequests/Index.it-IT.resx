@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet è per i pacchetti .NET; npm è per i pacchetti JavaScript. Scegli quello che il tuo progetto installa effettivamente.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Dettagli del pacchetto</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>L&apos;origine del pacchetto non è più consentita per i controlli S360.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Richieste recenti</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Richiedi una nuova dipendenza</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Richiedi l&apos;approvazione prima di aggiungere un nuovo pacchetto al tuo progetto. Inserisci il nome e la versione esatti e spiega perché è necessario.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Origine</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Invia per la risoluzione</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Invia la richiesta</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Il registro che fornisce l’archivio del pacchetto. Un pacchetto proveniente da un altro registro richiede una revisione specifica.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Segui lo stato della revisione e le decisioni relative alle dipendenze che hai richiesto.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Perché è necessaria questa dipendenza?</value>

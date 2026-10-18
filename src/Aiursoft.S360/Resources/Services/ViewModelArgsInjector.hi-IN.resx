@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>उपयोगकर्ता हटाएं</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>निर्भरताएँ</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>निर्भरता अनुमोदन</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>निर्भरता सूची</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>निर्देशिका</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>व्यक्तिगत</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>नीतियाँ</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>विश्वास नियम का पूर्वावलोकन</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>पंजीकरण करें</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>नई निर्भरता का अनुरोध करें</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>भूमिका विवरण</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360 का अवलोकन</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>सुरक्षा ऑडिट</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>सेटिंग्स</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>उपयोगकर्ता</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>कमज़ोरियाँ</value>
   </data>
 
 </root>

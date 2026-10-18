@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet on .NET-paketeille ja npm JavaScript-paketeille. Valitse se, jota projektisi todella käyttää pakettien asentamiseen.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Paketin tiedot</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>Pakettivarantoa ei enää sallita S360-tarkistuksissa.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Viimeisimmät pyynnöt</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Pyydä uutta riippuvuutta</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Pyydä hyväksyntä ennen uuden paketin lisäämistä projektiisi. Anna paketin tarkka nimi ja versio sekä kerro, miksi sitä tarvitaan.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Lähde</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Lähetä ratkaistavaksi</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Lähetä pyyntö</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Rekisteri, josta paketin arkisto haetaan. Toisesta rekisteristä peräisin oleva paketti on tarkistettava erikseen.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Seuraa pyytämiesi riippuvuuksien tarkastelun etenemistä ja päätöksiä.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Miksi tätä riippuvuutta tarvitaan?</value>

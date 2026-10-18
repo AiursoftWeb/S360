@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Decisioni registrate per le tue richieste</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Catalogo delle dipendenze</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Sviluppa esclusivamente in UTC mentre il sistema converte e visualizza automaticamente le date nell&apos;ora locale dell&apos;utente.</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>Attività recenti</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Richiedi una nuova dipendenza</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>Panoramica delle richieste</value>

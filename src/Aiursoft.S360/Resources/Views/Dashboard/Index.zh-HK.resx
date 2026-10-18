@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>已記錄的工作審批結果</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>相依項目目錄</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>在開發時一律使用 UTC，系統會自動將日期轉換並以用戶的本地時間顯示。</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>最近活動</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>申請新增相依項目</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>請求概覽</value>

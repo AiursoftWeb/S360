@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>Gebruiker verwijderen</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Afhankelijkheden</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Goedkeuringen van afhankelijkheden</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Dependencycatalogus</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>Map</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>Persoonlijk</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Beleidsregels</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>Voorbeeld van vertrouwensregel</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>Registreren</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Een nieuwe afhankelijkheid aanvragen</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Rolgegevens</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360-overzicht</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Beveiligingsaudit</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Instellingen</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Gebruikers</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Kwetsbaarheden</value>
   </data>
 
 </root>

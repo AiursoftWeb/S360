@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>Slet bruger</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Afhængigheder</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Godkendelser af afhængigheder</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Afhængighedskatalog</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>Mappe</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>Personlig</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Politikker</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>Forhåndsvis tillidsregel</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>Registrer</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Anmod om en ny afhængighed</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Roledetaljer</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360-oversigt</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Sikkerhedsrevision</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Indstillinger</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Brugere</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Sårbarheder</value>
   </data>
 
 </root>

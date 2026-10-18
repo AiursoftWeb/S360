@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Keputusan yang tercatat untuk pekerjaan Anda</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Katalog Dependensi</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Kembangkan secara eksklusif dalam UTC sementara sistem secara otomatis mengonversi dan menampilkan tanggal dalam zona waktu lokal pengguna.</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>Aktivitas terbaru</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Ajukan dependensi baru</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>Ikhtisar permintaan</value>

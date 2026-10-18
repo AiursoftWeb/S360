@@ -84,8 +84,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>Supprimer l&apos;utilisateur</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Dépendances</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Approbations des dépendances</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Catalogue des dépendances</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>Répertoire</value>
@@ -150,6 +156,9 @@
   <data name="Personal" xml:space="preserve">
     <value>Personnel</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Politiques</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>Prévisualiser la règle de confiance</value>
   </data>
@@ -162,6 +171,9 @@
   <data name="Register" xml:space="preserve">
     <value>S&apos;inscrire</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Demander une nouvelle dépendance</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Détails du rôle</value>
   </data>
@@ -170,6 +182,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>Vue d’ensemble de S360</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Audit de sécurité</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Paramètres</value>
@@ -197,6 +212,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Utilisateurs</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Vulnérabilités</value>
   </data>
 
 </root>

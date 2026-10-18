@@ -84,8 +84,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>ユーザーを削除</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>依存関係</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>依存関係の承認</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>依存関係カタログ</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>ディレクトリ</value>
@@ -150,6 +156,9 @@
   <data name="Personal" xml:space="preserve">
     <value>個人</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>ポリシー</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>信頼ルールのプレビュー</value>
   </data>
@@ -162,6 +171,9 @@
   <data name="Register" xml:space="preserve">
     <value>登録</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>新しい依存関係をリクエストする</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>ロール詳細</value>
   </data>
@@ -170,6 +182,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360の概要</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>セキュリティ監査</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>設定</value>
@@ -197,6 +212,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>ユーザー</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>脆弱性</value>
   </data>
 
 </root>

@@ -84,8 +84,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>刪除使用者</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>相依性</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>相依性核准</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>相依套件目錄</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>目錄</value>
@@ -150,6 +156,9 @@
   <data name="Personal" xml:space="preserve">
     <value>個人</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>政策</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>預覽信任規則</value>
   </data>
@@ -162,6 +171,9 @@
   <data name="Register" xml:space="preserve">
     <value>註冊</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>申請新增相依項目</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>角色詳細資訊</value>
   </data>
@@ -170,6 +182,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360 概覽</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>安全性稽核</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>設定</value>
@@ -197,6 +212,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>使用者</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>弱點</value>
   </data>
 
 </root>

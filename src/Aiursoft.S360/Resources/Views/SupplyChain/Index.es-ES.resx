@@ -60,6 +60,9 @@
   <data name="Check a concrete package against rules" xml:space="preserve">
     <value>Comprobar un paquete concreto según las reglas</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Catálogo de dependencias</value>
+  </data>
   <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
     <value>Introduce la hora UTC; este campo no convierte la hora local de tu dispositivo.</value>
   </data>

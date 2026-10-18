@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>การตัดสินใจที่บันทึกไว้สำหรับคำขอของคุณ</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>แค็ตตาล็อกไลบรารีที่ต้องพึ่งพา</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>พัฒนาเฉพาะในเวลา UTC โดยระบบจะแปลงและแสดงวันที่โดยอัตโนมัติเป็นเขตเวลาท้องถิ่นของผู้ใช้</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>กิจกรรมล่าสุด</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>ส่งคำขอเพิ่มดีเพนเดนซีใหม่</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>ภาพรวมคำขอ</value>

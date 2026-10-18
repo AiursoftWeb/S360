@@ -84,8 +84,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>ลบผู้ใช้</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>สิ่งที่ต้องพึ่งพา</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>การอนุมัติการพึ่งพา</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>แค็ตตาล็อกการพึ่งพา</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>ไดเรกทอรี</value>
@@ -150,6 +156,9 @@
   <data name="Personal" xml:space="preserve">
     <value>ส่วนตัว</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>นโยบาย</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>ดูตัวอย่างกฎความน่าเชื่อถือ</value>
   </data>
@@ -162,6 +171,9 @@
   <data name="Register" xml:space="preserve">
     <value>สมัครสมาชิก</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>ส่งคำขอเพิ่มรายการการพึ่งพาใหม่</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>รายละเอียดบทบาท</value>
   </data>
@@ -170,6 +182,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>ภาพรวม S360</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>การตรวจสอบความปลอดภัย</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>การตั้งค่า</value>
@@ -197,6 +212,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>ผู้ใช้</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>ช่องโหว่</value>
   </data>
 
 </root>

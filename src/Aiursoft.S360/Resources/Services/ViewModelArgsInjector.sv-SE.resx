@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>Ta bort användare</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Beroenden</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Godkännanden av beroenden</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Beroendekatalog</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>Katalog</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>Personligt</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Policyer</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>Förhandsgranska förtroenderegel</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>Registrera</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Begär ett nytt beroende</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Rollinformation</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360-översikt</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Säkerhetsgranskning</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Inställningar</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Användare</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Sårbarheter</value>
   </data>
 
 </root>

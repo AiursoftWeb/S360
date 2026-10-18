@@ -60,6 +60,9 @@
   <data name="Check a concrete package against rules" xml:space="preserve">
     <value>Verificați un pachet specific în raport cu regulile</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Catalogul dependențelor</value>
+  </data>
   <data name="Enter the UTC time; this field does not convert your device&apos;s local time." xml:space="preserve">
     <value>Introduceți ora UTC; acest câmp nu convertește ora locală a dispozitivului.</value>
   </data>

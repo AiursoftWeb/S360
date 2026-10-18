@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Beslissingen voor je werk vastgelegd</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Catalogus van afhankelijkheden</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Ontwikkel uitsluitend in UTC terwijl het systeem data automatisch converteert en weergeeft in de lokale tijdzone van de gebruiker.</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>Recente activiteit</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Een nieuwe afhankelijkheid aanvragen</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>Overzicht van verzoeken</value>

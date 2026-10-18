@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>Hapus Pengguna</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Dependensi</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Persetujuan dependensi</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Katalog Dependensi</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>Direktori</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>Pribadi</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Kebijakan</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>Pratinjau aturan kepercayaan</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>Daftar</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Ajukan dependensi baru</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Detail Peran</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>Ikhtisar S360</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Audit Keamanan</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Pengaturan</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Pengguna</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Kerentanan</value>
   </data>
 
 </root>

@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>حذف المستخدم</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>التبعيات</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>الموافقات على التبعيات</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>كتالوج التبعيات</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>دليل</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>شخصي</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>السياسات</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>معاينة قاعدة الثقة</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>تسجيل</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>طلب إضافة اعتماد جديد</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>تفاصيل الدور</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>نظرة عامة على S360</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>التدقيق الأمني</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>الإعدادات</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>المستخدمون</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>الثغرات الأمنية</value>
   </data>
 
 </root>

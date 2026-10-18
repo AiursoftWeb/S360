@@ -81,8 +81,14 @@
   <data name="Delete User" xml:space="preserve">
     <value>Șterge utilizator</value>
   </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Dependențe</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Aprobări pentru dependențe</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Catalogul dependențelor</value>
   </data>
   <data name="Directory" xml:space="preserve">
     <value>Director</value>
@@ -147,6 +153,9 @@
   <data name="Personal" xml:space="preserve">
     <value>Personal</value>
   </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Politici</value>
+  </data>
   <data name="Preview trust rule" xml:space="preserve">
     <value>Previzualizare regulă de încredere</value>
   </data>
@@ -159,6 +168,9 @@
   <data name="Register" xml:space="preserve">
     <value>Înregistrare</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Solicitați o nouă dependență</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Detalii Rol</value>
   </data>
@@ -167,6 +179,9 @@
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>Prezentare generală S360</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Audit de securitate</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Setări</value>
@@ -194,6 +209,9 @@
   </data>
   <data name="Users" xml:space="preserve">
     <value>Utilizatori</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Vulnerabilități</value>
   </data>
 
 </root>

@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>Το NuGet είναι για πακέτα .NET· το npm είναι για πακέτα JavaScript. Επιλέξτε αυτό που εγκαθιστά πράγματι το έργο σας.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Στοιχεία πακέτου</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>Η πηγή του πακέτου δεν επιτρέπεται πλέον για ελέγχους S360.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Πρόσφατα αιτήματα</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Αίτημα για νέα εξάρτηση</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Ζητήστε έγκριση πριν προσθέσετε ένα νέο πακέτο στο έργο σας. Καταχωρίστε το ακριβές όνομα και την έκδοσή του και εξηγήστε γιατί το χρειάζεστε.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Πηγή</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Υποβολή για επίλυση</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Υποβολή αιτήματος</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Το μητρώο που παρέχει το αρχείο πακέτου. Ένα πακέτο από άλλο μητρώο χρειάζεται ξεχωριστό έλεγχο.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Παρακολουθήστε την πρόοδο της αξιολόγησης και τις αποφάσεις για τις εξαρτήσεις που ζητήσατε.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Γιατί χρειάζεται αυτή η εξάρτηση;</value>

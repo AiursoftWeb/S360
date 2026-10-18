@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet призначений для пакетів .NET, а npm — для пакетів JavaScript. Виберіть той, який справді встановлює ваш проєкт.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Відомості про пакет</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>Джерело пакетів більше не дозволено для перевірок S360.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Останні запити</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Подати запит на нову залежність</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Перш ніж додавати новий пакет до проєкту, надішліть запит на затвердження. Укажіть точну назву й версію пакета та поясніть, навіщо він потрібен.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Джерело</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Надіслати на опрацювання</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Надіслати запит</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Реєстр, з якого отримують архів пакета. Пакет з іншого реєстру потребує окремої перевірки.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Відстежуйте перебіг перевірки та рішення щодо запитаних вами залежностей.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Для чого потрібна ця залежність?</value>

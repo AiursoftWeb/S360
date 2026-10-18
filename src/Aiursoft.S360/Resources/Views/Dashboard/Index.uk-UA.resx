@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Рішення щодо ваших запитів</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Каталог залежностей</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Розробляйте виключно в UTC, тоді як система автоматично перетворює та відображає дати у часовому поясі користувача.</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>Нещодавня активність</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Запросити нову залежність</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>Огляд запитів</value>

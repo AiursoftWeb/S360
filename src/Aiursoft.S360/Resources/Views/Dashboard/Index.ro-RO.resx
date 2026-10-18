@@ -144,6 +144,9 @@
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Decizii consemnate pentru solicitările tale</value>
   </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Catalogul de dependențe</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>Dezvoltați exclusiv în UTC, în timp ce sistemul convertește și afișează automat datele în fusul orar local al utilizatorului.</value>
   </data>
@@ -275,6 +278,9 @@
   </data>
   <data name="Recent activity" xml:space="preserve">
     <value>Activitate recentă</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Solicitați o nouă dependență</value>
   </data>
   <data name="Request overview" xml:space="preserve">
     <value>Prezentare generală a solicitărilor</value>

@@ -54,6 +54,9 @@
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet służy do pakietów .NET, a npm do pakietów JavaScript. Wybierz ten, którego faktycznie używa Twój projekt.</value>
   </data>
+  <data name="Package details" xml:space="preserve">
+    <value>Szczegóły pakietu</value>
+  </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>Źródło pakietu nie jest już dozwolone w kontrolach S360.</value>
   </data>
@@ -66,6 +69,12 @@
   <data name="Recent requests" xml:space="preserve">
     <value>Ostatnie zgłoszenia</value>
   </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Poproś o dodanie nowej zależności</value>
+  </data>
+  <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
+    <value>Przed dodaniem nowego pakietu do projektu poproś o zatwierdzenie. Podaj jego dokładną nazwę i wersję oraz wyjaśnij, dlaczego jest potrzebny.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Źródło</value>
   </data>
@@ -75,8 +84,14 @@
   <data name="Submit for resolution" xml:space="preserve">
     <value>Prześlij do rozpatrzenia</value>
   </data>
+  <data name="Submit request" xml:space="preserve">
+    <value>Wyślij prośbę</value>
+  </data>
   <data name="The registry that supplies the package archive. A package from another registry needs its own review." xml:space="preserve">
     <value>Rejestr, z którego pobierane jest archiwum pakietu. Pakiet z innego rejestru wymaga osobnej weryfikacji.</value>
+  </data>
+  <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
+    <value>Śledź postępy w weryfikacji i decyzje dotyczące zgłoszonych przez Ciebie zależności.</value>
   </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Dlaczego ta zależność jest potrzebna?</value>

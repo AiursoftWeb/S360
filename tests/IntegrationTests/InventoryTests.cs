@@ -62,6 +62,7 @@ public class InventoryTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var artifact = Artifact("Graph.Policy." + Guid.NewGuid().ToString("N"));
             var rule = Approve(artifact);
+            rule.Justification = "Read structured project configuration.";
             db.TrustRules.Add(rule);
             var report = Report("graph", "baseline", "nuget", DateTime.UtcNow, artifact);
             report.GraphJson = JsonSerializer.Serialize(new[]
@@ -84,6 +85,9 @@ public class InventoryTests : TestBase
         Assert.IsTrue((await Read("projects")).Projects.All(p => p.Graphs.Count == 0));
         var opened = (await Read("projects", project: _prefix + "graph")).Projects.Single();
         Assert.IsTrue(opened.Reports.Single().HasGraph);
+        var graphPackage = opened.Graphs.Single().Nodes.Single(n => n.Package != null);
+        CollectionAssert.AreEquivalent(new[] { _prefix + "graph", _prefix + "legacy" }, graphPackage.Projects);
+        CollectionAssert.Contains(graphPackage.Purposes, "Read structured project configuration.");
         Assert.AreEqual(InventoryStatus.Compliant, opened.Graphs.Single().Nodes.Single(n => n.Package != null).Status,
             opened.Graphs.Single().Nodes.Single(n => n.Package != null).Reason);
         using (var scope = Server!.Services.CreateScope())
@@ -231,7 +235,11 @@ public class InventoryTests : TestBase
         Assert.AreEqual("Catalog.Package24", (await Read(query: "Project-24")).Packages.Single().Name);
         Assert.AreEqual(0, (await Read(query: "not-present")).Total);
         await LoginAsAdmin();
-        var html = await Http.GetStringAsync("/SupplyChain/Index?query=Project-24");
+        var overview = await Http.GetStringAsync("/SupplyChain/Index?query=Project-24");
+        StringAssert.Contains(overview, "s360-project-card");
+        StringAssert.Contains(overview, "Project-24");
+        Assert.DoesNotContain("s360-graph-data", overview);
+        var html = await Http.GetStringAsync("/SupplyChain/Index?tab=dependencies&query=Project-24");
         StringAssert.Contains(html, "Catalog.Package24");
         StringAssert.Contains(html, "Pagination purpose: parse employee-provided documents.");
         StringAssert.Contains(html, "No project purpose recorded");

@@ -127,7 +127,11 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                         {
                             var state = n.Package == null ? null : states.GetValueOrDefault(DependencyIntroductionPaths.Identity(n.Package));
                             return new InventoryGraphNode(n.Id, n.Kind, n.Package, n.Children,
-                                state?.Status ?? InventoryStatus.Pending, state?.Reason, state?.Advisories ?? []);
+                                state?.Status ?? InventoryStatus.Pending, state?.Reason, state?.Advisories ?? [],
+                                state?.Uses.Select(u => u.Project).Distinct().Order().ToList() ?? [],
+                                state == null ? [] : state.Requests.Select(r => r.Justification)
+                                    .Concat(state.Rules.Select(r => r.Justification))
+                                    .Where(p => !string.IsNullOrWhiteSpace(p)).Distinct().ToList());
                         }).ToList()
                     });
                 }

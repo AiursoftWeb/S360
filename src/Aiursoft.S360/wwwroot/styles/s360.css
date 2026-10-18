@@ -505,15 +505,66 @@
 
 .s360-inventory-purpose-preview { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; font-size: .78rem; font-weight: 400; color: var(--s360-muted); margin-top: .55rem; }
 
-/* Project dependency graphs share the inventory's visual language. */
-.s360-graph { border: 1px solid var(--bs-border-color); border-radius: 12px; padding: 1.25rem; margin-bottom: 1.5rem; min-width: 0; }
-.s360-graph-heading h3 { margin-bottom: .4rem; }
-.s360-graph-heading p { color: var(--bs-secondary-color); }
-.s360-graph-controls { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 2fr); gap: 1rem; }
-.s360-graph-controls label { min-width: 0; font-weight: 600; font-size: .85rem; }
+/* Project browsing and graph controls stay scoped to this business view. */
+.s360-project-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1rem; }
+.s360-project-card { display: flex; flex-direction: column; gap: .8rem; padding: 1.5rem; border: 1px solid var(--s360-line); border-radius: 16px; background: #fff; color: var(--s360-ink); text-decoration: none; transition: box-shadow .15s, border-color .15s; }
+.s360-project-card:hover, .s360-project-card:focus-visible { color: var(--s360-ink); text-decoration: none; border-color: #8fa8c8; box-shadow: 0 8px 24px #243d6612; }
+.s360-project-card-heading, .s360-project-card footer { display: flex; justify-content: space-between; align-items: center; gap: .5rem; }
+.s360-project-card h2 { font-size: 1.1rem; overflow-wrap: anywhere; margin: 0; }
+.s360-project-card-counts { display: flex; gap: 1.3rem; color: var(--s360-muted); font-size: .85rem; }
+.s360-project-card-counts strong { color: var(--s360-ink); margin-left: .3rem; }
+.s360-project-card p, .s360-project-card small { margin: 0; font-size: .8rem; color: var(--s360-muted); }
+.s360-project-card footer { margin-top: auto; padding-top: .75rem; border-top: 1px solid var(--s360-line); font-size: .75rem; color: var(--s360-muted); }
+.s360-project-back { display: inline-block; margin-bottom: 1rem; }
+.s360-graph { border: 1px solid var(--s360-line); border-radius: 16px; padding: 1.25rem; margin-bottom: 1.5rem; min-width: 0; background: #fff; }
+.s360-graph-heading { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; }
+.s360-graph-heading h3 { font-size: 1.2rem; margin: .4rem 0; }
+.s360-graph-heading p { font-size: .85rem; color: var(--s360-muted); }
+.s360-graph-heading > button { flex-shrink: 0; }
+.s360-graph-controls { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) 110px; gap: 1rem; }
+.s360-graph-controls label { min-width: 0; font-weight: 600; font-size: .8rem; }
 .s360-graph-controls select, .s360-graph-controls input { margin-top: .4rem; }
-.s360-graph-legend { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin: 1rem 0; font-size: .8rem; }
-.s360-graph-canvas { max-width: 100%; max-height: 600px; overflow: auto; background: #fff; border-radius: 8px; }
-.s360-graph-canvas > svg { display: block; margin: 1rem auto; width: auto; height: auto; max-width: none; }
-.s360-graph-detail { overflow-wrap: anywhere; margin-top: 1rem; }
-@media (max-width: 767px) { .s360-graph-controls { grid-template-columns: minmax(0, 1fr); } .s360-graph { padding: .75rem; } }
+.s360-graph-toolbar, .s360-graph-legend { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin: 1rem 0; font-size: .8rem; }
+.s360-graph-risk-switch { display: inline-flex; align-items: center; gap: .4rem; cursor: pointer; }
+.s360-graph-summary { color: var(--s360-muted); margin-left: auto; }
+.s360-graph-legend > span { display: inline-flex; align-items: center; gap: .4rem; }
+.s360-graph-legend > span:last-child { color: var(--s360-muted); flex-basis: 100%; }
+.s360-dot { width: 9px; height: 9px; border-radius: 50%; background: #218358; flex-shrink: 0; }
+.s360-dot.indirect { background: #427bc1; }
+.s360-dot.vulnerable { background: #cf354c; }
+.s360-graph-risk-summary { font-size: .8rem; color: var(--s360-muted); }
+.s360-graph-risk-summary.has-risk { color: #9d263a; background: #fff1f2; border-left: 3px solid #cf354c; padding: .7rem .9rem; border-radius: 4px; }
+.s360-graph-body { display: grid; grid-template-columns: minmax(0, 1fr) 270px; border: 1px solid var(--s360-line); border-radius: 12px; overflow: hidden; }
+.s360-graph-stage { position: relative; min-width: 0; background: radial-gradient(#a9b6ca55 .7px, transparent .7px) 0 0 / 18px 18px, #f8fafd; }
+.s360-graph-navigation { position: absolute; top: .75rem; left: .75rem; display: flex; gap: .3rem; z-index: 1; flex-wrap: wrap; }
+.s360-graph-navigation button { box-shadow: 0 1px 4px #243d6618; font-size: .75rem; }
+.s360-graph-canvas { width: 100%; height: 560px; overflow: hidden; cursor: grab; touch-action: none; }
+.s360-graph-canvas:active { cursor: grabbing; }
+.s360-graph-canvas > svg { display: block; width: 100%; height: 100%; max-width: none; margin: 0; }
+.s360-graph-canvas g.node { cursor: pointer; }
+.s360-graph-canvas g.node:focus-visible > rect, .s360-graph-canvas g.node.s360-selected > rect { stroke-width: 3px; stroke: #182c4c; }
+.s360-graph-canvas .s360-node-toggle circle { fill: #fff; stroke: #637691; stroke-width: 1px; }
+.s360-graph-canvas .s360-node-toggle text { fill: #29496d; font-size: 10px; font-weight: 700; }
+.s360-graph-canvas .s360-node-toggle:focus-visible circle { stroke-width: 3px; }
+.s360-graph-detail { padding: 1rem; border-left: 1px solid var(--s360-line); max-height: 560px; overflow: auto; overflow-wrap: anywhere; background: #fff; }
+.s360-graph-detail h4 { font-size: 1rem; }
+.s360-graph-detail h5 { font-size: .75rem; color: var(--s360-muted); margin: 1.2rem 0 .5rem; }
+.s360-graph-detail p { font-size: .8rem; margin: .6rem 0; }
+.s360-graph-detail ul { padding-left: 1rem; }
+.s360-graph-node-link { background: none; border: 0; padding: .2rem 0; text-align: left; color: #35659c; font-size: .8rem; overflow-wrap: anywhere; }
+.s360-graph-node-link:hover { text-decoration: underline; }
+.s360-graph-actions { display: flex; flex-wrap: wrap; gap: .4rem; margin: 1rem 0; }
+.s360-graph-project-link { display: block; font-size: .8rem; margin: .4rem 0; }
+.s360-node-status, .s360-cve-label { display: inline-block; border-radius: 5px; padding: .2rem .4rem; background: #edf6ef; color: #245939; font-size: .75rem; margin: .2rem .3rem .2rem 0; }
+.s360-node-status.status-1, .s360-node-status.status-2 { color: #79550d; background: #fff5dc; }
+.s360-cve-label { color: #9d263a; background: #fff1f2; }
+.s360-graph:fullscreen { padding: 1.5rem; overflow: auto; border-radius: 0; }
+.s360-graph:fullscreen .s360-graph-canvas { height: max(400px, calc(100vh - 350px)); }
+.s360-graph:fullscreen .s360-graph-detail { max-height: max(400px, calc(100vh - 350px)); }
+@media (max-width: 1100px) { .s360-graph-body { grid-template-columns: minmax(0, 1fr); } .s360-graph-detail { border-left: 0; border-top: 1px solid var(--s360-line); max-height: 320px; } }
+@media (max-width: 767px) {
+    .s360-graph-controls { grid-template-columns: minmax(0, 1fr) 100px; }
+    .s360-graph-controls > label:first-child { grid-column: 1 / -1; }
+    .s360-graph-heading { flex-direction: column; } .s360-graph { padding: .75rem; }
+    .s360-graph-canvas { height: 450px; } .s360-graph-summary { flex-basis: 100%; margin: 0; }
+}

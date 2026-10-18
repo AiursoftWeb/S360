@@ -8,7 +8,7 @@ public enum InventoryStatus { Compliant, Pending, NonCompliant }
 public class InventoryViewModel
 {
     public const int PageSize = 20;
-    public string Tab { get; init; } = "dependencies";
+    public string Tab { get; init; } = "projects";
     public string Scope { get; init; } = "baseline";
     public string Ecosystem { get; init; } = "all";
     public string Filter { get; init; } = "all";
@@ -76,6 +76,7 @@ public class InventoryGraph
 // Serialized for dependency-graph.js.
 // ReSharper disable NotAccessedPositionalProperty.Global
 public record InventoryGraphNode(string Id, string Kind, Dependency? Package, List<string> Children,
-    InventoryStatus Status, string? Reason, List<string> Advisories);
+    InventoryStatus Status, string? Reason, List<string> Advisories,
+    List<string> Projects, List<string> Purposes);
 
 // ReSharper restore NotAccessedPositionalProperty.Global

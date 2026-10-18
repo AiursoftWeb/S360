@@ -139,4 +139,27 @@ public class SqliteMigrationTests
         }
         finally { if (File.Exists(file)) File.Delete(file); }
     }
+    [TestMethod]
+    public async Task PublishedAuditMigrationPreservesCompletedLegacyRoundsWithoutGuessingFailedOnes()
+    {
+        await using var connection = new Microsoft.Data.Sqlite.SqliteConnection("Data Source=:memory:");
+        await connection.OpenAsync();
+        await using var db = new SqliteContext(new DbContextOptionsBuilder<SqliteContext>()
+            .UseSqlite(connection).Options);
+        await db.GetService<IMigrator>().MigrateAsync("20261018134311_RecordDependencyGraphs");
+        await db.Database.ExecuteSqlRawAsync("""
+            INSERT INTO VulnerabilitySyncStates (Id, LastAttemptAtUtc, LastSuccessAtUtc, LastError)
+            VALUES (1, '2026-10-18 10:00:00', '2026-10-18 10:05:00', NULL),
+                   (2, '2026-10-18 11:00:00', '2026-10-18 10:05:00', 'Interrupted legacy attempt'),
+                   (3, NULL, NULL, NULL);
+            """);
+        await db.Database.MigrateAsync();
+        var states = await db.VulnerabilitySyncStates.OrderBy(s => s.Id).ToListAsync();
+        Assert.AreEqual(states[0].LastAttemptAtUtc, states[0].LastSuccessfulAttemptAtUtc);
+        Assert.IsNull(states[1].LastSuccessfulAttemptAtUtc);
+        Assert.IsNotNull(states[1].LastSuccessAtUtc);
+        Assert.AreEqual("Interrupted legacy attempt", states[1].LastError);
+        Assert.IsNull(states[2].LastSuccessfulAttemptAtUtc);
+    }
+
 }

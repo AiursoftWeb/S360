@@ -120,6 +120,7 @@ public class SupplyChainPolicyTests
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
             LastAttemptAtUtc = artifact.LastCheckedAtUtc.Value.AddSeconds(-1),
+            LastSuccessfulAttemptAtUtc = artifact.LastCheckedAtUtc.Value.AddSeconds(-1),
             LastSuccessAtUtc = artifact.LastCheckedAtUtc.Value.AddSeconds(1)
         });
         await db.SaveChangesAsync();
@@ -150,6 +151,7 @@ public class SupplyChainPolicyTests
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
             LastAttemptAtUtc = checkedAt.AddSeconds(-1),
+            LastSuccessfulAttemptAtUtc = checkedAt.AddSeconds(-1),
             LastSuccessAtUtc = checkedAt.AddSeconds(1)
         });
         await db.SaveChangesAsync();
@@ -188,7 +190,7 @@ public class SupplyChainPolicyTests
             });
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
-            LastAttemptAtUtc = now.AddSeconds(-1), LastSuccessAtUtc = now.AddSeconds(1)
+            LastAttemptAtUtc = now.AddSeconds(-1), LastSuccessfulAttemptAtUtc = now.AddSeconds(-1), LastSuccessAtUtc = now.AddSeconds(1)
         });
         await db.SaveChangesAsync();
 
@@ -217,7 +219,7 @@ public class SupplyChainPolicyTests
         });
         var audit = new VulnerabilitySyncState
         {
-            LastAttemptAtUtc = previousSuccess.AddSeconds(-1), LastSuccessAtUtc = previousSuccess
+            LastAttemptAtUtc = previousSuccess.AddSeconds(-1), LastSuccessfulAttemptAtUtc = previousSuccess.AddSeconds(-1), LastSuccessAtUtc = previousSuccess
         };
         db.VulnerabilitySyncStates.Add(audit);
         await db.SaveChangesAsync();
@@ -228,13 +230,14 @@ public class SupplyChainPolicyTests
         StringAssert.Contains(beforeCompletion.Reason, "has not completed");
 
         audit.LastAttemptAtUtc = partialCheck.AddSeconds(-1);
+        audit.LastSuccessfulAttemptAtUtc = partialCheck.AddSeconds(-1);
         audit.LastSuccessAtUtc = partialCheck.AddSeconds(1);
         await db.SaveChangesAsync();
         Assert.IsTrue((await service.AssessAsync([package])).Single().Trusted);
     }
 
     [TestMethod]
-    public async Task FailedLatestVulnerabilitySyncCannotReuseFreshPreviousSuccess()
+    public async Task RefreshAttemptsCannotInvalidateOrExtendPublishedResults()
     {
         var options = new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase("s360-failed-audit-" + Guid.NewGuid()).Options;
@@ -251,7 +254,7 @@ public class SupplyChainPolicyTests
         });
         var audit = new VulnerabilitySyncState
         {
-            LastAttemptAtUtc = lastCheck.AddSeconds(-1), LastSuccessAtUtc = lastCheck.AddSeconds(1)
+            LastAttemptAtUtc = lastCheck.AddSeconds(-1), LastSuccessfulAttemptAtUtc = lastCheck.AddSeconds(-1), LastSuccessAtUtc = lastCheck.AddSeconds(1)
         };
         db.VulnerabilitySyncStates.Add(audit);
         await db.SaveChangesAsync();
@@ -263,10 +266,11 @@ public class SupplyChainPolicyTests
         await db.SaveChangesAsync();
 
         var failed = (await service.AssessAsync([package])).Single();
-        Assert.IsFalse(failed.Trusted);
-        StringAssert.Contains(failed.Reason, "synchronization failed");
+        Assert.IsTrue(failed.Trusted);
+        Assert.AreEqual(lastCheck.AddSeconds(1), audit.LastSuccessAtUtc);
 
         audit.LastError = null;
+        audit.LastSuccessfulAttemptAtUtc = audit.LastAttemptAtUtc;
         audit.LastSuccessAtUtc = DateTime.UtcNow;
         await db.SaveChangesAsync();
         Assert.IsFalse((await service.AssessAsync([package])).Single().Trusted);
@@ -329,6 +333,7 @@ public class SupplyChainPolicyTests
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
             LastAttemptAtUtc = DateTime.UtcNow.AddSeconds(-1),
+            LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddSeconds(-1),
             LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
         });
         await db.SaveChangesAsync();

@@ -878,6 +878,9 @@ namespace Aiursoft.S360.MySql.Migrations
                     b.Property<DateTime?>("LastSuccessAtUtc")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<DateTime?>("LastSuccessfulAttemptAtUtc")
+                        .HasColumnType("datetime(6)");
+
                     b.HasKey("Id");
 
                     b.ToTable("VulnerabilitySyncStates");

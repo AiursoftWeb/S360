@@ -25,6 +25,12 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
     public async Task<IActionResult> Index(string ecosystem = "all", string? query = null, int? supplierId = null,
         string? lookupName = null, string? lookupVersion = null, string? lookupSource = null,
         string tab = "dependencies", string scope = "baseline", string filter = "all", string? project = null, int page = 1)
+        => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => IndexSnapshotAsync(ecosystem, query, supplierId,
+            lookupName, lookupVersion, lookupSource, tab, scope, filter, project, page));
+
+    private async Task<IActionResult> IndexSnapshotAsync(string ecosystem, string? query, int? supplierId,
+        string? lookupName, string? lookupVersion, string? lookupSource, string tab, string scope,
+        string filter, string? project, int page)
     {
         if (tab is not ("dependencies" or "projects" or "rules") ||
             ecosystem is not ("all" or "nuget" or "npm") || scope is not ("baseline" or "review" or "history") ||
@@ -65,17 +71,14 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             r.Status == TrustRuleStatus.Approved &&
             (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)).OrderBy(r => r.PackagePattern).ToList();
         var audit = await db.VulnerabilitySyncStates.AsNoTracking()
-            .Select(s => new { s.LastAttemptAtUtc, s.LastSuccessAtUtc, s.LastError }).FirstOrDefaultAsync();
-        var auditStartedAtUtc = audit?.LastAttemptAtUtc;
+            .Select(s => new { s.LastAttemptAtUtc, s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc, s.LastError }).FirstOrDefaultAsync();
+        var auditStartedAtUtc = audit?.LastSuccessfulAttemptAtUtc;
         var completedAuditAtUtc = audit?.LastSuccessAtUtc;
-        var auditStatus = VulnerabilityAuditFreshness.HasFailedLatestAttempt(
-            audit?.LastAttemptAtUtc, completedAuditAtUtc, audit?.LastError)
-            ? CatalogAuditStatus.Failed
-            : completedAuditAtUtc == null
-                ? CatalogAuditStatus.Missing
-                : completedAuditAtUtc <= now.AddHours(-12)
-                    ? CatalogAuditStatus.Stale
-                    : CatalogAuditStatus.Current;
+        var auditStatus = completedAuditAtUtc == null || auditStartedAtUtc == null
+            ? CatalogAuditStatus.Missing
+            : completedAuditAtUtc <= now.AddHours(-12)
+                ? CatalogAuditStatus.Stale
+                : CatalogAuditStatus.Current;
         var artifactQuery = db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == ecosystem &&
             allowedSources.Contains(a.Source) &&
             a.FirstTrustedAtUtc != null && a.SourceVerifiedAtUtc != null && a.LastCheckedAtUtc != null &&
@@ -127,6 +130,8 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             Ecosystem = ecosystem, Query = query, SupplierId = supplierId,
             LookupName = lookupName, LookupVersion = lookupVersion, LookupSource = lookupSource,
             AuditStatus = auditStatus,
+            LatestAuditFailed = VulnerabilityAuditFreshness.HasFailedLatestAttempt(
+                audit?.LastAttemptAtUtc, completedAuditAtUtc, audit?.LastError),
             Rules = selectedCatalogRules.Take(500).ToList(),
             Artifacts = available.Take(500).ToList(),
             ResultsTruncated = selectedCatalogRules.Count > 500 || available.Count > 500,
@@ -236,6 +241,9 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
 
     [HttpGet]
     public async Task<IActionResult> Details(int id)
+        => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => DetailsSnapshotAsync(id));
+
+    private async Task<IActionResult> DetailsSnapshotAsync(int id)
     {
         if (id < 1) return BadRequest();
         var artifact = await db.PackageArtifacts.AsNoTracking().SingleOrDefaultAsync(a => a.Id == id);

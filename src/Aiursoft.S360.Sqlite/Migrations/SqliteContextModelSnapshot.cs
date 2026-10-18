@@ -841,6 +841,9 @@ namespace Aiursoft.S360.Sqlite.Migrations
                     b.Property<DateTime?>("LastSuccessAtUtc")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime?>("LastSuccessfulAttemptAtUtc")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.ToTable("VulnerabilitySyncStates");

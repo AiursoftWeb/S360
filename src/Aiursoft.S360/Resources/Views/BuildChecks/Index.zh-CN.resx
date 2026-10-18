@@ -30,6 +30,9 @@
   <data name="Accepted versus enforced" xml:space="preserve">
     <value>已接受与已强制执行</value>
   </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>匿名评审</value>
+  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>审计目的</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
     <value>该次检查运行时记录的策略说明。当前的阻止列表警告是独立信息，不会改写这段历史记录。</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>项目和管道标识符由未认证的调用者提供。</value>
   </data>
   <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
     <value>这些是已上报的检查；Runner 强制执行是单独的上线步骤，不能仅凭此处的记录推断已启用。</value>

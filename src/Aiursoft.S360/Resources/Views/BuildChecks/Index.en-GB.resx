@@ -30,6 +30,9 @@
   <data name="Accepted versus enforced" xml:space="preserve">
     <value>Accepted versus enforced</value>
   </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Anonymous review</value>
+  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Audit purpose</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
     <value>The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>The project and pipeline identifiers are provided by an unauthenticated caller.</value>
   </data>
   <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
     <value>These are reported checks; Runner enforcement is a separate roll-out step and is not implied by a record here.</value>

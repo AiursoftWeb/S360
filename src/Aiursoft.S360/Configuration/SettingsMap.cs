@@ -12,6 +12,7 @@ public class SettingsMap
     public const string Icp = "Icp";
     public const string DummyNumber = "DummyNumber";
     public const string DummyChoice = "DummyChoice";
+    public const string AllowAnonymousReview = "AllowAnonymousReview";
 
     public class FakeLocalizer
     {
@@ -72,6 +73,14 @@ public class SettingsMap
             Description = Localizer["The ICP license number for China mainland users. Leave empty to hide."],
             Type = SettingType.Text,
             DefaultValue = ""
+        },
+        new GlobalSettingDefinition
+        {
+            Key = AllowAnonymousReview,
+            Name = Localizer["Allow anonymous review"],
+            Description = Localizer["Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential."],
+            Type = SettingType.Bool,
+            DefaultValue = "False"
         },
         new GlobalSettingDefinition
         {

@@ -43,6 +43,11 @@
                     default: <span>@Localizer["Undeclared purpose"]</span> break;
                 }
             </div>
+            @if (BuildCheckRun.ReadContext(check.ContextJson)?.IsAnonymous == true)
+            {
+                <p class="text-muted"><span class="badge bg-secondary">@Localizer["Anonymous review"]</span>
+                    @Localizer["The project and pipeline identifiers are supplied by an unauthenticated caller."]</p>
+            }
             <div class="mb-2"><strong>@Localizer["Reported source"]:</strong>
                 @switch (BuildCheckRun.Kind(check.ContextJson))
                 {

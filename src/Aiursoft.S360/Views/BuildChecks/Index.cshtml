@@ -35,6 +35,14 @@
             }
         </div>
         <div class="card-body">
+            <div class="mb-2"><strong>@Localizer["Audit purpose"]:</strong>
+                @switch (BuildCheckRun.Purpose(check.ContextJson))
+                {
+                    case "baseline": <span class="badge bg-primary">@Localizer["Production baseline"]</span> break;
+                    case "review": <span>@Localizer["Review only"]</span> break;
+                    default: <span>@Localizer["Undeclared purpose"]</span> break;
+                }
+            </div>
             <div class="mb-2"><strong>@Localizer["Reported source"]:</strong>
                 @switch (BuildCheckRun.Kind(check.ContextJson))
                 {
@@ -84,6 +92,7 @@
     @Localizer["Read a check record"].Value,
     "list-checks",
     [
+        new ConceptTerm(@Localizer["Audit purpose"].Value, @Localizer["Review only records a proposed dependency check. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage."].Value),
         new ConceptTerm(@Localizer["Run"].Value, @Localizer["One reported check attempt. Its batches share a run identifier so you can inspect the complete result."].Value),
         new ConceptTerm(@Localizer["Batch"].Value, @Localizer["A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run."].Value),
         new ConceptTerm(@Localizer["Accepted versus enforced"].Value, @Localizer["Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build."].Value),

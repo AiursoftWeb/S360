@@ -55,6 +55,8 @@ public class CheckResponse : AiurResponse
 /// <summary>Client-reported check provenance; this is not deployment attestation.</summary>
 public class CheckContext
 {
+    /// <summary>Baseline declares production use; review never changes production inventory.</summary>
+    [RegularExpression("^(review|baseline)$")] public string? Purpose { get; set; }
     [Required, RegularExpression("^(local|gitlab)$")]
     public string Provider { get; set; } = "local";
     [StringLength(80)] public string? PipelineSource { get; set; }

@@ -31,6 +31,13 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             request.Dependencies.Cast<Dependency?>().Any(d => d is null ||
                 !TrustPattern.IsValidConcretePackage(d.Ecosystem, d.Name, d.Version)))
             return BadRequest();
+        if (request.Context?.Purpose == "baseline")
+        {
+            if (!User.HasClaim(S360CheckKeyHandler.BaselineClaim, "true"))
+                return Forbid(S360CheckKeyHandler.SchemeName);
+            if (string.IsNullOrWhiteSpace(request.Project))
+                return BadRequest("A production baseline must identify its project.");
+        }
         var contextJson = request.Context == null ? null : JsonSerializer.Serialize(request.Context);
         var priorBatches = await db.BuildChecks.AsNoTracking().Where(c => c.RunId == request.RunId)
             .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson }).ToListAsync();

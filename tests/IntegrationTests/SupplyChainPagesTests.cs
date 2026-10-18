@@ -79,10 +79,14 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task DependencyFreeProjectPassesCliAgainstS360AndRecordsCompleteRun()
+    [DataRow(null)]
+    [DataRow("baseline")]
+    public async Task DependencyFreeProjectPassesCliAgainstS360AndRecordsCompleteRun(string? purpose)
     {
-        const string checkKey = "integration-cli-check-key";
-        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = checkKey;
+        var checkKey = purpose == "baseline" ? "integration-cli-baseline-key" : "integration-cli-check-key";
+        GetService<IConfiguration>()["SupplyChain:BaselineApiKey"] = "integration-cli-baseline-key";
+        GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-cli-check-key";
+        var reportedProject = "integration/dependency-free-" + Guid.NewGuid().ToString("N");
         var root = Path.Combine(Path.GetTempPath(), "s360-cli-pass-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(Path.Combine(root, "obj"));
         try
@@ -110,7 +114,12 @@ public class SupplyChainPagesTests : TestBase
                          "check", "--path", root, "--server", $"http://localhost:{Port}"
                      }) start.ArgumentList.Add(argument);
             start.Environment["S360_CHECK_KEY"] = checkKey;
-            start.Environment["CI_PROJECT_PATH"] = "integration/dependency-free";
+            if (purpose != null)
+            {
+                start.ArgumentList.Add("--purpose");
+                start.ArgumentList.Add(purpose);
+            }
+            start.Environment["CI_PROJECT_PATH"] = reportedProject;
             using var process = Process.Start(start) ?? throw new InvalidOperationException("Could not start the CLI.");
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
             var outputTask = process.StandardOutput.ReadToEndAsync(timeout.Token);
@@ -127,8 +136,9 @@ public class SupplyChainPagesTests : TestBase
             using var scope = Server!.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var checks = await db.BuildChecks.Include(c => c.Dependencies)
-                .Where(c => c.Project == "integration/dependency-free").ToListAsync();
+                .Where(c => c.Project == reportedProject).ToListAsync();
             Assert.HasCount(1, checks);
+            Assert.AreEqual(purpose ?? "review", BuildCheckRun.Purpose(checks[0].ContextJson));
             Assert.AreEqual(1, checks[0].ScannedProjectCount);
             Assert.HasCount(0, checks[0].Dependencies);
             Assert.IsTrue(BuildCheckRun.IsComplete(checks));
@@ -905,6 +915,51 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
+    public async Task OnlyDistinctBaselineCredentialCanDeclareProductionUse()
+    {
+        var configuration = GetService<IConfiguration>();
+        configuration["SupplyChain:CheckApiKey"] = "review-only-key";
+        configuration["SupplyChain:BaselineApiKey"] = "protected-baseline-key";
+        var runId = Guid.NewGuid().ToString("N");
+        var request = new CheckRequest { Project = "baseline-auth-project", RunId = runId,
+            ScannedProjectCount = 1, Context = new CheckContext { Purpose = "baseline" } };
+        Http.DefaultRequestHeaders.Add("X-S360-Key", "review-only-key");
+        using (var forbidden = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.Forbidden, forbidden.StatusCode);
+        using (var scope = Server!.Services.CreateScope())
+            Assert.IsFalse(await scope.ServiceProvider.GetRequiredService<TemplateDbContext>()
+                .BuildChecks.AnyAsync(c => c.RunId == runId));
+        Http.DefaultRequestHeaders.Remove("X-S360-Key");
+        Http.DefaultRequestHeaders.Add("X-S360-Key", "protected-baseline-key");
+        using (var accepted = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.OK, accepted.StatusCode);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var check = await scope.ServiceProvider.GetRequiredService<TemplateDbContext>()
+                .BuildChecks.SingleAsync(c => c.RunId == runId);
+            Assert.AreEqual("baseline", BuildCheckRun.Purpose(check.ContextJson));
+        }
+        request.RunId = Guid.NewGuid().ToString("N");
+        request.Project = " ";
+        using (var unnamed = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, unnamed.StatusCode);
+        request.Project = "baseline-auth-project";
+        request.Context.Purpose = "production-typo";
+        using (var invalid = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
+        request.Context.Purpose = "baseline";
+        configuration["SupplyChain:CheckApiKey"] = "protected-baseline-key";
+        using (var reusedKey = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.Forbidden, reusedKey.StatusCode);
+        configuration["SupplyChain:CheckApiKey"] = "review-only-key";
+        configuration["SupplyChain:BaselineApiKey"] = "";
+        Http.DefaultRequestHeaders.Remove("X-S360-Key");
+        Http.DefaultRequestHeaders.Add("X-S360-Key", "review-only-key");
+        using (var disabled = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.Forbidden, disabled.StatusCode);
+    }
+
+    [TestMethod]
     public async Task CheckApiRejectsMalformedConcretePackageIdentity()
     {
         GetService<IConfiguration>()["SupplyChain:CheckApiKey"] = "integration-check-key";
@@ -1271,14 +1326,13 @@ public class SupplyChainPagesTests : TestBase
         using var quick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
         quick.EnsureSuccessStatusCode();
         var quickHtml = await quick.Content.ReadAsStringAsync();
-        StringAssert.Contains(quickHtml, packageName);
-        StringAssert.Contains(quickHtml, "Unclassified check evidence");
+        Assert.DoesNotContain(packageName, quickHtml);
         using var page = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
         page.EnsureSuccessStatusCode();
         var html = await page.Content.ReadAsStringAsync();
         StringAssert.Contains(html, packageName);
         StringAssert.Contains(html, project);
-        StringAssert.Contains(html, "Unclassified check evidence");
+        StringAssert.Contains(html, "Checks without a declared purpose");
     }
 
     [TestMethod]
@@ -2524,7 +2578,7 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task VulnerabilityImpactKeepsMainlineBaselineSeparateFromReviewAndLegacyEvidence()
+    public async Task OnlyExplicitProductionBaselineChangesReportedImpact()
     {
         await LoginAsAdmin();
         var name = "Example.Impact." + Guid.NewGuid().ToString("N");
@@ -2554,10 +2608,10 @@ public class SupplyChainPagesTests : TestBase
             vulnerableId = vulnerable.Id;
             fixedId = fixedArtifact.Id;
         }
-        var mainline = new CheckContext { Provider = "gitlab", Ref = "master", DefaultBranch = "master", PipelineSource = "push" };
-        var review = new CheckContext { Provider = "gitlab", Ref = "master", DefaultBranch = "master",
+        var baseline = new CheckContext { Purpose = "baseline", Provider = "local" };
+        var review = new CheckContext { Purpose = "review", Provider = "gitlab", Ref = "master", DefaultBranch = "master",
             PipelineSource = "merge_request_event", MergeRequest = "42" };
-        var baselineId = await Record(vulnerableId, mainline, -5, trusted: false);
+        var baselineId = await Record(vulnerableId, baseline, -5, trusted: false);
         await Record(fixedId, review, -4, trusted: true);
         await Record(fixedId, new CheckContext(), -3, trusted: true);
         using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
@@ -2565,7 +2619,7 @@ public class SupplyChainPagesTests : TestBase
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
             StringAssert.Contains(html, name);
-            StringAssert.Contains(html, "A default-branch check reports an affected version");
+            StringAssert.Contains(html, "Production baseline reports an affected version");
             StringAssert.Contains(html, "Affected ranges and fix boundaries");
             StringAssert.Contains(html, "8.0.2");
             StringAssert.Contains(html, project);
@@ -2577,8 +2631,10 @@ public class SupplyChainPagesTests : TestBase
             record.EnsureSuccessStatusCode();
             StringAssert.Contains(await record.Content.ReadAsStringAsync(), $"id=\"check-{baselineId}\"");
         }
-        mainline.PipelineSource = "schedule";
-        await Record(fixedId, mainline, -2, trusted: true);
+        baseline.Provider = "gitlab";
+        baseline.Ref = baseline.DefaultBranch = "master";
+        baseline.PipelineSource = "schedule";
+        await Record(fixedId, baseline, -2, trusted: true);
         await Record(vulnerableId, review, -1, trusted: false);
         using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
         {
@@ -2590,20 +2646,50 @@ public class SupplyChainPagesTests : TestBase
             detailed.EnsureSuccessStatusCode();
             var html = await detailed.Content.ReadAsStringAsync();
             StringAssert.Contains(html, name);
-            StringAssert.Contains(html, "Review and local check history");
+            StringAssert.Contains(html, "Review check history");
             StringAssert.Contains(html, "Merge request");
         }
         await Record(vulnerableId, null, 0, trusted: false);
-        using var legacy = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
-        legacy.EnsureSuccessStatusCode();
-        var legacyHtml = await legacy.Content.ReadAsStringAsync();
-        StringAssert.Contains(legacyHtml, name);
-        StringAssert.Contains(legacyHtml, "Unclassified check evidence");
-        Assert.DoesNotContain("A default-branch check reports an affected version", legacyHtml);
-        await Record(fixedId, mainline, 0, trusted: true);
-        using var confirmed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
-        confirmed.EnsureSuccessStatusCode();
-        Assert.DoesNotContain(name, await confirmed.Content.ReadAsStringAsync());
+        using (var legacy = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        {
+            legacy.EnsureSuccessStatusCode();
+            Assert.DoesNotContain(name, await legacy.Content.ReadAsStringAsync());
+        }
+        // Even an affected default-branch review cannot replace the production baseline.
+        review.PipelineSource = "push";
+        review.MergeRequest = null;
+        await Record(vulnerableId, review, 1, trusted: false);
+        using (var reviewOnly = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+            Assert.DoesNotContain(name, await reviewOnly.Content.ReadAsStringAsync());
+        var affectedBaseline = await Record(vulnerableId, baseline, 2, trusted: false);
+        using (var affected = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        {
+            var html = await affected.Content.ReadAsStringAsync();
+            StringAssert.Contains(html, "Production baseline reports an affected version");
+            StringAssert.Contains(html, $"checkId={affectedBaseline}");
+        }
+        // A newer incomplete baseline cannot replace the last complete inventory.
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            db.BuildChecks.Add(new BuildCheck { Project = project, RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1, BatchCount = 2, CreatedAtUtc = now.AddSeconds(3),
+                ContextJson = JsonSerializer.Serialize(baseline) });
+            await db.SaveChangesAsync();
+        }
+        using (var incomplete = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+            StringAssert.Contains(await incomplete.Content.ReadAsStringAsync(), $"checkId={affectedBaseline}");
+        // A complete dependency-free production report clears the old inventory.
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            db.BuildChecks.Add(new BuildCheck { Project = project, RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1, BatchCount = 1, CreatedAtUtc = now.AddSeconds(4),
+                ContextJson = JsonSerializer.Serialize(baseline) });
+            await db.SaveChangesAsync();
+        }
+        using (var cleared = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+            Assert.DoesNotContain(name, await cleared.Content.ReadAsStringAsync());
 
         async Task<int> Record(int artifactId, CheckContext? context, int seconds, bool trusted)
         {
@@ -2862,11 +2948,11 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using var affectedQuick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        using var affectedQuick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
         affectedQuick.EnsureSuccessStatusCode();
         var html = await affectedQuick.Content.ReadAsStringAsync();
         StringAssert.Contains(html, name);
-        StringAssert.Contains(html, "Unclassified check evidence");
+        StringAssert.Contains(html, "Checks without a declared purpose");
     }
 
     [TestMethod]

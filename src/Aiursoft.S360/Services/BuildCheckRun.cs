@@ -46,11 +46,19 @@ public static class BuildCheckRun
             ? CheckKind.DefaultBranch : CheckKind.Branch;
     }
 
-    public static (CheckKind Kind, string? Ref) ContextKey(BuildCheck check)
+    public static string? Purpose(string? json)
+    {
+        var purpose = ReadContext(json)?.Purpose;
+        return purpose is "review" or "baseline" ? purpose : null;
+    }
+
+    public static (string? Purpose, CheckKind Kind, string? Ref) ContextKey(BuildCheck check)
     {
         var kind = Kind(check.ContextJson);
         var context = ReadContext(check.ContextJson);
-        return (kind, kind switch
+        var purpose = Purpose(check.ContextJson);
+        if (purpose == "baseline") return (purpose, CheckKind.Unknown, null);
+        return (purpose, kind, kind switch
         {
             CheckKind.MergeRequest => context?.MergeRequest ?? context?.Ref,
             CheckKind.Branch => context?.Ref,

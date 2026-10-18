@@ -57,7 +57,7 @@ public class InventoryProject
     public bool Incomplete { get; set; }
     public InventoryStatus Status => Versions.Any(v => v.Status == InventoryStatus.NonCompliant)
         ? InventoryStatus.NonCompliant
-        : Incomplete || Reports.Select(r => r.Ecosystem).Distinct().Count() < 2 ||
+        : Incomplete || Reports.Count == 0 ||
           Versions.Any(v => v.Status == InventoryStatus.Pending)
             ? InventoryStatus.Pending : InventoryStatus.Compliant;
 }

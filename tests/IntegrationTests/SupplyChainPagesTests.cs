@@ -715,6 +715,7 @@ public class SupplyChainPagesTests : TestBase
             }
             state.LastSuccessAtUtc = DateTime.UtcNow.AddMinutes(-10);
             state.LastAttemptAtUtc = DateTime.UtcNow;
+            state.LastSuccessfulAttemptAtUtc = DateTime.UtcNow;
             state.LastError = "OSV temporarily unavailable";
             await db.SaveChangesAsync();
         }
@@ -1450,6 +1451,7 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(audit);
             }
             audit.LastAttemptAtUtc = checkedAtUtc.AddMinutes(-1);
+            audit.LastSuccessfulAttemptAtUtc = checkedAtUtc.AddMinutes(-1);
             audit.LastSuccessAtUtc = checkedAtUtc.AddSeconds(1);
             audit.LastError = null;
             await db.SaveChangesAsync();
@@ -1544,6 +1546,7 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(audit);
             }
             audit.LastAttemptAtUtc = checkedAt.AddMinutes(-1);
+            audit.LastSuccessfulAttemptAtUtc = checkedAt.AddMinutes(-1);
             audit.LastSuccessAtUtc = checkedAt.AddSeconds(1);
             audit.LastError = null;
             await db.SaveChangesAsync();
@@ -1705,11 +1708,13 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
+                    LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+                audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
             }
             await db.SaveChangesAsync();
@@ -1877,11 +1882,13 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
+                    LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+                audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
             }
             await db.SaveChangesAsync();
@@ -1978,7 +1985,7 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task CatalogHidesPreviouslyAvailableArtifactsWhenAuditIsUnavailable()
+    public async Task CatalogKeepsPublishedArtifactsAfterRefreshFailureButHidesExpiredResults()
     {
         await LoginAsAdmin();
         var packageName = "Example.AuditFailure." + Guid.NewGuid().ToString("N");
@@ -2011,6 +2018,7 @@ public class SupplyChainPagesTests : TestBase
             }
             audit.LastSuccessAtUtc = now.AddSeconds(1);
             audit.LastAttemptAtUtc = now;
+            audit.LastSuccessfulAttemptAtUtc = now;
             audit.LastError = null;
             await db.SaveChangesAsync();
             artifactId = artifact.Id;
@@ -2039,10 +2047,10 @@ public class SupplyChainPagesTests : TestBase
                 response.EnsureSuccessStatusCode();
                 var html = await response.Content.ReadAsStringAsync();
                 StringAssert.Contains(html, "latest vulnerability synchronization failed");
-                Assert.DoesNotContain("title=\"" + sha256 + "\"", html);
+                StringAssert.Contains(html, "title=\"" + sha256 + "\"");
             }
             using var details = await Http.GetAsync($"/SupplyChain/Details/{artifactId}");
-            Assert.AreEqual(HttpStatusCode.NotFound, details.StatusCode);
+            Assert.AreEqual(HttpStatusCode.OK, details.StatusCode);
 
             using (var scope = Server!.Services.CreateScope())
             {
@@ -2050,6 +2058,7 @@ public class SupplyChainPagesTests : TestBase
                 var audit = await db.VulnerabilitySyncStates.FirstAsync();
                 audit.LastSuccessAtUtc = now.AddHours(-13);
                 audit.LastAttemptAtUtc = audit.LastSuccessAtUtc;
+                audit.LastSuccessfulAttemptAtUtc = audit.LastSuccessAtUtc;
                 audit.LastError = null;
                 await db.SaveChangesAsync();
             }
@@ -2067,6 +2076,7 @@ public class SupplyChainPagesTests : TestBase
                 var audit = await db.VulnerabilitySyncStates.FirstAsync();
                 audit.LastSuccessAtUtc = null;
                 audit.LastAttemptAtUtc = null;
+                audit.LastSuccessfulAttemptAtUtc = null;
                 await db.SaveChangesAsync();
             }
             using (var missing = await Http.GetAsync(url))
@@ -2084,6 +2094,7 @@ public class SupplyChainPagesTests : TestBase
             var audit = await db.VulnerabilitySyncStates.FirstAsync();
             audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
             audit.LastAttemptAtUtc = DateTime.UtcNow;
+            audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow;
             audit.LastError = null;
             await db.SaveChangesAsync();
         }
@@ -2137,11 +2148,13 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
+                    LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+                audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
             }
             await db.SaveChangesAsync();
@@ -2210,11 +2223,13 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
+                    LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+                audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
             }
             await db.SaveChangesAsync();
@@ -2312,11 +2327,13 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
                 {
                     LastAttemptAtUtc = now.AddMinutes(-1),
+                    LastSuccessfulAttemptAtUtc = now.AddMinutes(-1),
                     LastSuccessAtUtc = now.AddSeconds(1)
                 });
             else
             {
                 audit.LastAttemptAtUtc = now.AddMinutes(-1);
+                audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
                 audit.LastSuccessAtUtc = now.AddSeconds(1);
             }
             await db.SaveChangesAsync();
@@ -2364,6 +2381,7 @@ public class SupplyChainPagesTests : TestBase
             }
             audit.LastSuccessAtUtc = checkedAtUtc.AddMinutes(-1);
             audit.LastAttemptAtUtc = checkedAtUtc;
+            audit.LastSuccessfulAttemptAtUtc = checkedAtUtc;
             audit.LastError = "Later package query failed";
             await db.SaveChangesAsync();
         }
@@ -2470,11 +2488,13 @@ public class SupplyChainPagesTests : TestBase
             if (audit == null)
                 db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
                 {
-                    LastAttemptAtUtc = now.AddMinutes(-1), LastSuccessAtUtc = now.AddSeconds(1)
+                    LastAttemptAtUtc = now.AddMinutes(-1), LastSuccessfulAttemptAtUtc = now.AddMinutes(-1),
+                    LastSuccessAtUtc = now.AddSeconds(1)
                 });
             else
             {
                 audit.LastAttemptAtUtc = now.AddMinutes(-1);
+                audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
                 audit.LastSuccessAtUtc = now.AddSeconds(1);
             }
             await db.SaveChangesAsync();
@@ -2613,6 +2633,7 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(audit);
             }
             audit.LastAttemptAtUtc = checkedAt.AddSeconds(-1);
+            audit.LastSuccessfulAttemptAtUtc = checkedAt.AddSeconds(-1);
             audit.LastSuccessAtUtc = checkedAt.AddSeconds(1);
             audit.LastError = null;
             await db.SaveChangesAsync();
@@ -2779,6 +2800,7 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(audit);
             }
             audit.LastAttemptAtUtc = checkedAtUtc.AddMinutes(-1);
+            audit.LastSuccessfulAttemptAtUtc = checkedAtUtc.AddMinutes(-1);
             audit.LastSuccessAtUtc = checkedAtUtc.AddSeconds(1);
             audit.LastError = null;
             await db.SaveChangesAsync();
@@ -2849,11 +2871,13 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
+                    LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+                audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
             }
             await db.SaveChangesAsync();
@@ -2875,19 +2899,7 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var audit = await db.VulnerabilitySyncStates.SingleAsync();
-            audit.LastAttemptAtUtc = audit.LastSuccessAtUtc!.Value.AddSeconds(1);
-            audit.LastError = "OSV temporarily unavailable";
-            await db.SaveChangesAsync();
-        }
-        using (var failedAudit = await Approve(reportHash))
-        {
-            Assert.AreEqual(HttpStatusCode.BadRequest, failedAudit.StatusCode);
-            StringAssert.Contains(await failedAudit.Content.ReadAsStringAsync(), "latest vulnerability audit failed");
-        }
-        using (var scope = Server!.Services.CreateScope())
-        {
-            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var audit = await db.VulnerabilitySyncStates.SingleAsync();
+            audit.LastSuccessfulAttemptAtUtc = audit.LastAttemptAtUtc;
             audit.LastSuccessAtUtc = audit.LastAttemptAtUtc!.Value.AddSeconds(1);
             audit.LastError = null;
             var application = await db.DependencyApplications.Include(a => a.Packages)
@@ -2908,6 +2920,9 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var artifact = await db.PackageArtifacts.SingleAsync(a => a.Name == "Example.Batch.Child." + suffix);
             artifact.SourceVerifiedAtUtc = DateTime.UtcNow;
+            var audit = await db.VulnerabilitySyncStates.SingleAsync();
+            audit.LastAttemptAtUtc = DateTime.UtcNow;
+            audit.LastError = "OSV temporarily unavailable";
             await db.SaveChangesAsync();
         }
         using (var first = await Approve(reportHash))

@@ -47,9 +47,14 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         return decisions;
     }
 
-    private async Task<Assessment> AssessCoreAsync(IEnumerable<Dependency> dependencies)
+    private Task<Assessment> AssessCoreAsync(IEnumerable<Dependency> dependencies)
     {
         var requested = dependencies.ToList();
+        return VulnerabilityAuditSnapshot.ExecuteAsync(db, () => AssessSnapshotAsync(requested));
+    }
+
+    private async Task<Assessment> AssessSnapshotAsync(IReadOnlyCollection<Dependency> requested)
+    {
         var conflicting = requested.GroupBy(d => Identity(d.Ecosystem, d.Name, d.Version, TrustPattern.NormalizeSource(d.Source)))
             .Where(g => g.Select(d => d.Sha256.ToLowerInvariant()).Distinct().Skip(1).Any())
             .Select(g => g.Key).ToHashSet();
@@ -71,7 +76,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         }
         var now = DateTime.UtcNow;
         var audit = await db.VulnerabilitySyncStates.AsNoTracking()
-            .Select(s => new { s.LastAttemptAtUtc, s.LastSuccessAtUtc, s.LastError }).FirstOrDefaultAsync();
+            .Select(s => new { s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc }).FirstOrDefaultAsync();
         var newlyAdmitted = new List<Dependency>();
         var pendingExisting = new List<Dependency>();
         var decisions = requested.Select(dependency =>
@@ -96,14 +101,8 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
             }
             if (sameHash.All(a => a.SourceVerifiedAtUtc == null))
                 return Reject(dependency, "Package archive has not been independently verified from its source.");
-            if (VulnerabilityAuditFreshness.HasFailedLatestAttempt(audit?.LastAttemptAtUtc,
-                    audit?.LastSuccessAtUtc, audit?.LastError))
-            {
-                pendingExisting.Add(dependency);
-                return Reject(dependency, "Vulnerability audit latest synchronization failed; retry is required.");
-            }
             if (sameHash.All(a => !VulnerabilityAuditFreshness.IsCurrent(a.LastCheckedAtUtc,
-                    audit?.LastAttemptAtUtc, audit?.LastSuccessAtUtc, now)))
+                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now)))
             {
                 pendingExisting.Add(dependency);
                 return Reject(dependency, "Vulnerability audit has not completed for this package within 12 hours.");

@@ -23,6 +23,9 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
         CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
         LinkText = "Dependency approvals", LinkOrder = 1)]
     public async Task<IActionResult> Index(string filter = "pending", int page = 1)
+        => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => IndexSnapshotAsync(filter, page));
+
+    private async Task<IActionResult> IndexSnapshotAsync(string filter, int page)
     {
         if (filter is not ("pending" or "expiring" or "expired" or "all") || page is < 1 or > 10000)
             return BadRequest();
@@ -114,6 +117,10 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Approve(int id, string reportHash, int supplierId,
         DateTime expiresAtUtc, string reason)
+        => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => ApproveSnapshotAsync(id, reportHash, supplierId, expiresAtUtc, reason));
+
+    private async Task<IActionResult> ApproveSnapshotAsync(int id, string reportHash, int supplierId,
+        DateTime expiresAtUtc, string reason)
     {
         expiresAtUtc = UtcExpiry.Normalize(expiresAtUtc);
         if (string.IsNullOrWhiteSpace(reason) || reason.Length > 2000 ||
@@ -142,10 +149,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
 
         var now = DateTime.UtcNow;
         var audit = await db.VulnerabilitySyncStates.AsNoTracking()
-            .Select(s => new { s.LastAttemptAtUtc, s.LastSuccessAtUtc, s.LastError }).FirstOrDefaultAsync();
-        if (VulnerabilityAuditFreshness.HasFailedLatestAttempt(audit?.LastAttemptAtUtc,
-                audit?.LastSuccessAtUtc, audit?.LastError))
-            return BadRequest("The latest vulnerability audit failed; retry it before approving dependencies.");
+            .Select(s => new { s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc }).FirstOrDefaultAsync();
         var blocks = await db.BlockRules.AsNoTracking().Where(b => b.Active && b.Ecosystem == application.Ecosystem).ToListAsync();
         var rules = await db.TrustRules.Where(r => r.Ecosystem == application.Ecosystem).ToListAsync();
         var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
@@ -185,7 +189,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             if (artifact.SourceVerifiedAtUtc == null)
                 return BadRequest($"Package archive has not been independently verified from its source: {artifact.Name}@{artifact.Version}.");
             if (!VulnerabilityAuditFreshness.IsCurrent(artifact.LastCheckedAtUtc,
-                    audit?.LastAttemptAtUtc, audit?.LastSuccessAtUtc, now))
+                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now))
                 return BadRequest($"Vulnerability audit is missing or stale: {artifact.Name}@{artifact.Version}.");
             if (affectedIds.Contains(artifact.Id))
                 return BadRequest($"Known active vulnerability: {artifact.Name}@{artifact.Version}.");

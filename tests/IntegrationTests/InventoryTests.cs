@@ -76,6 +76,7 @@ public class InventoryTests : TestBase
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
             audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+            audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
             audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
             audit.LastError = null;
             await db.SaveChangesAsync(); ruleId = rule.Id;
@@ -155,6 +156,7 @@ public class InventoryTests : TestBase
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
             audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+            audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
             audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
             await db.SaveChangesAsync(); ruleId = rule.Id; artifactId = artifact.Id;
         }
@@ -182,6 +184,7 @@ public class InventoryTests : TestBase
             (await db.TrustRules.SingleAsync(r => r.Id == ruleId)).Status = TrustRuleStatus.Approved;
             var audit = await db.VulnerabilitySyncStates.SingleAsync();
             audit.LastAttemptAtUtc = DateTime.UtcNow.AddDays(-1);
+            audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddDays(-1);
             audit.LastSuccessAtUtc = DateTime.UtcNow.AddDays(-1);
             await db.SaveChangesAsync();
         }

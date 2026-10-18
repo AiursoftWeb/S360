@@ -27,11 +27,11 @@ else
 
 <div class="s360-workspace-layout">
 <div class="s360-workspace-main">
-@if (Model.AuditStatus == CatalogAuditStatus.Failed)
+@if (Model.LatestAuditFailed)
 {
-    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit."]</div></div>
+    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["The latest vulnerability synchronization failed. Previously published results remain usable until their original expiry."]</div></div>
 }
-else if (Model.AuditStatus == CatalogAuditStatus.Missing)
+@if (Model.AuditStatus == CatalogAuditStatus.Missing)
 {
     <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available."]</div></div>
 }

@@ -18,6 +18,7 @@ public class CatalogViewModel : UiStackLayoutViewModel
     public List<Supplier> Suppliers { get; set; } = [];
     public bool ResultsTruncated { get; set; }
     public CatalogAuditStatus AuditStatus { get; set; }
+    public bool LatestAuditFailed { get; set; }
     public string? LookupName { get; set; }
     public string? LookupVersion { get; set; }
     public string? LookupSource { get; set; }

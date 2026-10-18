@@ -12,6 +12,39 @@ namespace Aiursoft.S360.Tests;
 public class DependencyScannerTests
 {
     [TestMethod]
+    [DataRow("nuget")]
+    [DataRow("npm")]
+    public async Task EcosystemScopeChecksOnlySelectedProjects(string ecosystem)
+    {
+        var root = Path.Combine(Path.GetTempPath(), "s360-scope-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(Path.Combine(root, "obj"));
+        try
+        {
+            var project = Path.Combine(root, "Empty.csproj");
+            var assets = Path.Combine(root, "obj", "project.assets.json");
+            await File.WriteAllTextAsync(project, "<Project />");
+            await File.WriteAllTextAsync(assets, JsonSerializer.Serialize(new
+            {
+                targets = new Dictionary<string, object> { ["net10.0"] = new { } },
+                packageFolders = new { }, libraries = new { },
+                project = new { restore = new { projectPath = project } }
+            }));
+            await File.WriteAllTextAsync(Path.Combine(root, "package.json"), """{"name":"sample"}""");
+            await File.WriteAllTextAsync(Path.Combine(root, "package-lock.json"),
+                """{"lockfileVersion":3,"packages":{"":{}}}""");
+            using var http = new HttpClient(new FixedHandler([]));
+            Assert.AreEqual(2, (await DependencyScanner.ScanDetailedAsync(root, http)).ScannedProjectCount);
+            if (ecosystem == "nuget")
+                await File.WriteAllTextAsync(Path.Combine(root, "package.json"), "uninstalled npm project");
+            else File.Delete(assets);
+            var report = await DependencyScanner.ScanDetailedAsync(root, http, ecosystem: ecosystem);
+            Assert.AreEqual(1, report.ScannedProjectCount);
+            Assert.HasCount(0, report.Dependencies);
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [TestMethod]
     public async Task DiscoverySkipsGeneratedDirectoriesBeforeFindingProjects()
     {
         var root = Path.Combine(Path.GetTempPath(), "s360-pruned-discovery-" + Guid.NewGuid().ToString("N"));

@@ -27,13 +27,22 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         Description = "review checks proposed dependencies; baseline declares these dependencies are in production and requires a baseline credential.",
         DefaultValueFactory = _ => "review"
     };
-    protected override IEnumerable<Option> GetCommandOptions() => [PathOption, ServerOption, PurposeOption];
+    private static readonly Option<string> EcosystemOption = new("--ecosystem")
+    {
+        Description = "Dependency ecosystem to check: all, nuget or npm.",
+        DefaultValueFactory = _ => "all"
+    };
+    protected override IEnumerable<Option> GetCommandOptions() => [PathOption, ServerOption, PurposeOption, EcosystemOption];
 
     protected override async Task Execute(ParseResult context)
     {
         var purpose = context.GetValue(PurposeOption)!;
         if (purpose is not ("review" or "baseline"))
             throw new InvalidOperationException("--purpose must be review or baseline.");
+        var ecosystem = context.GetValue(EcosystemOption)!;
+        if (ecosystem is not ("all" or "nuget" or "npm"))
+            throw new InvalidOperationException("--ecosystem must be all, nuget or npm.");
+        var selectedEcosystem = ecosystem == "all" ? null : ecosystem;
         var server = context.GetValue(ServerOption) ?? Environment.GetEnvironmentVariable("S360_SERVER");
         var key = Environment.GetEnvironmentVariable("S360_CHECK_KEY");
         if (string.IsNullOrWhiteSpace(server) || string.IsNullOrWhiteSpace(key))
@@ -42,7 +51,7 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         // A lockfile URL must not silently redirect the archive download to another source.
         using var http = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });
         http.Timeout = TimeSpan.FromMinutes(10);
-        var scan = await DependencyScanner.ScanDetailedAsync(path, http);
+        var scan = await DependencyScanner.ScanDetailedAsync(path, http, ecosystem: selectedEcosystem);
         var dependencies = scan.Dependencies;
         foreach (var skipped in scan.SkippedOptional)
             Console.WriteLine($"SKIPPED {skipped}");
@@ -62,7 +71,7 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         // not a safe wire-size target for large npm dependency graphs.
         var batches = dependencies.Count == 0 ? new List<Dependency[]> { Array.Empty<Dependency>() } : dependencies.Chunk(1000).ToList();
         var runId = Guid.NewGuid().ToString("N");
-        var checkContext = ReadContext(Environment.GetEnvironmentVariable, purpose);
+        var checkContext = ReadContext(Environment.GetEnvironmentVariable, purpose, selectedEcosystem);
         for (var batchIndex = 0; batchIndex < batches.Count; batchIndex++)
         {
             var batch = batches[batchIndex];
@@ -103,16 +112,16 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         Console.WriteLine($"S360 approved {dependencies.Count} dependency artifacts across {scan.ScannedProjectCount} supported projects.");
     }
 
-    public static CheckContext ReadContext(Func<string, string?> read, string purpose = "review") =>
+    public static CheckContext ReadContext(Func<string, string?> read, string purpose = "review", string? ecosystem = null) =>
         string.Equals(read("GITLAB_CI"), "true", StringComparison.OrdinalIgnoreCase)
             ? new CheckContext
             {
-                Purpose = purpose, Provider = "gitlab", PipelineSource = read("CI_PIPELINE_SOURCE"),
+                Purpose = purpose, Ecosystem = ecosystem, Provider = "gitlab", PipelineSource = read("CI_PIPELINE_SOURCE"),
                 Ref = read("CI_COMMIT_BRANCH") ?? read("CI_MERGE_REQUEST_SOURCE_BRANCH_NAME") ??
                     read("CI_EXTERNAL_PULL_REQUEST_SOURCE_BRANCH_NAME") ?? read("CI_COMMIT_REF_NAME"),
                 DefaultBranch = read("CI_DEFAULT_BRANCH"),
                 MergeRequest = read("CI_MERGE_REQUEST_IID") ?? read("CI_EXTERNAL_PULL_REQUEST_IID"),
                 Tag = read("CI_COMMIT_TAG")
             }
-            : new CheckContext { Purpose = purpose, Provider = "local" };
+            : new CheckContext { Purpose = purpose, Ecosystem = ecosystem, Provider = "local" };
 }

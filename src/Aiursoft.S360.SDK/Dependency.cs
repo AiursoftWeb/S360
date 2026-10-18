@@ -57,6 +57,8 @@ public class CheckContext
 {
     /// <summary>Baseline declares production use; review never changes production inventory.</summary>
     [RegularExpression("^(review|baseline)$")] public string? Purpose { get; set; }
+    /// <summary>Null covers both supported ecosystems; a scoped baseline replaces only that ecosystem.</summary>
+    [RegularExpression("^(nuget|npm)$")] public string? Ecosystem { get; set; }
     [Required, RegularExpression("^(local|gitlab)$")]
     public string Provider { get; set; } = "local";
     [StringLength(80)] public string? PipelineSource { get; set; }

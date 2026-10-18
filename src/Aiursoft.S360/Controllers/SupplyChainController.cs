@@ -17,15 +17,31 @@ namespace Aiursoft.S360.Controllers;
 [Authorize]
 [LimitPerMin]
 public class SupplyChainController(TemplateDbContext db, UserManager<User> users, TrustService trust,
-    IConfiguration configuration) : Controller
+    IConfiguration configuration, CatalogInventoryService inventory, IAuthorizationService authorization) : Controller
 {
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
         CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
         LinkText = "Dependency catalog", LinkOrder = 2)]
-    public async Task<IActionResult> Index(string ecosystem = "nuget", string? query = null, int? supplierId = null,
-        string? lookupName = null, string? lookupVersion = null, string? lookupSource = null)
+    public async Task<IActionResult> Index(string ecosystem = "all", string? query = null, int? supplierId = null,
+        string? lookupName = null, string? lookupVersion = null, string? lookupSource = null,
+        string tab = "dependencies", string scope = "baseline", string filter = "all", string? project = null, int page = 1)
     {
-        if (ecosystem is not ("nuget" or "npm")) return BadRequest();
+        if (tab is not ("dependencies" or "projects" or "rules") ||
+            ecosystem is not ("all" or "nuget" or "npm") || scope is not ("baseline" or "review" or "history") ||
+            filter is not ("all" or "issues" or "pending" or "compliant" or "cve") ||
+            page is < 1 or > 10000 || query?.Length > 214 || project?.Length > 200) return BadRequest();
+        if (tab != "rules" && lookupName == null && lookupVersion == null && lookupSource == null && supplierId == null)
+        {
+            var inventoryModel = new InventoryViewModel
+            {
+                Tab = tab, Scope = scope, Ecosystem = ecosystem, Filter = filter,
+                Query = query?.Trim(), Project = string.IsNullOrWhiteSpace(project) ? null : project.Trim(), Page = page,
+                CanRead = (await authorization.AuthorizeAsync(User, AppPermissionNames.CanReadSupplyChain)).Succeeded
+            };
+            if (inventoryModel.CanRead) await inventory.PopulateAsync(inventoryModel);
+            return this.StackView(new CatalogViewModel { Inventory = inventoryModel });
+        }
+        if (ecosystem == "all") ecosystem = "nuget";
         if (supplierId is < 1) return BadRequest();
         query = query?.Trim();
         if (query?.Length > 214) return BadRequest();
@@ -358,7 +374,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             db.Suppliers.Add(new Supplier { Name = name });
             await db.SaveChangesAsync();
         }
-        return RedirectToAction(nameof(Index));
+        return RedirectToAction(nameof(Index), new { tab = "rules" });
     }
 
     [Authorize(Policy = AppPermissionNames.CanManageTrustRules)]
@@ -393,7 +409,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         });
         db.TrustRules.Add(rule);
         await db.SaveChangesAsync();
-        return RedirectToAction(nameof(Index), new { ecosystem });
+        return RedirectToAction(nameof(Index), new { ecosystem, tab = "rules" });
     }
 
     [Authorize(Policy = AppPermissionNames.CanManageTrustRules)]
@@ -411,7 +427,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             TrustRuleId = id, Decision = TrustRuleStatus.Revoked, ReviewerId = user, Reason = reason
         });
         await db.SaveChangesAsync();
-        return RedirectToAction(nameof(Index), new { rule.Ecosystem });
+        return RedirectToAction(nameof(Index), new { rule.Ecosystem, tab = "rules" });
     }
 
     [Authorize(Policy = AppPermissionNames.CanManageBlocklist)]

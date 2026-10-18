@@ -12,7 +12,14 @@
     var canRequest = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanSubmitDependencyRequests)).Succeeded;
 }
 
+@if (Model.Inventory != null)
+{
+    @await Html.PartialAsync("_Inventory", Model.Inventory)
+}
+else
+{
 <div class="s360-workspace s360-catalog-page">
+<p><a asp-action="Index">← @Localizer["Back to dependency inventory"]</a></p>
 <div class="s360-workspace-head"><div class="row mb-3"><div class="col"><h1>@Localizer["Dependency catalog"]</h1>
     <p class="text-muted">@Localizer["A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency."]</p>
     @if (canRequest) { <p><a asp-controller="DependencyRequests" asp-action="Create">@Localizer["Can't find a package? Submit a request"]</a></p> }
@@ -59,6 +66,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 
 <div id="s360-catalog-search" class="s360-workspace-anchor">
 <form method="get" class="row g-2 mb-4">
+    <input type="hidden" name="tab" value="rules" />
     <div class="col-auto"><select name="ecosystem" class="form-select">
         <option value="nuget" selected="@(Model.Ecosystem == "nuget")">NuGet</option>
         <option value="npm" selected="@(Model.Ecosystem == "npm")">npm</option>
@@ -76,6 +84,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 <div class="card mb-4"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Check a concrete package against rules"]</h2></div>
     <div class="card-body">
         <form method="get" class="row g-2">
+            <input type="hidden" name="tab" value="rules" />
             <input type="hidden" name="ecosystem" value="@Model.Ecosystem" />
             <div class="col-md-3"><input name="lookupName" value="@Model.LookupName" required maxlength="214" class="form-control" placeholder="@Localizer["Exact package name"]" /></div>
             <div class="col-md-2"><input name="lookupVersion" value="@Model.LookupVersion" required maxlength="128" class="form-control" placeholder="@Localizer["Exact version"]" /></div>
@@ -206,3 +215,5 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 
 </div>
 </div>
+
+}

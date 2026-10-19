@@ -24,7 +24,7 @@ public class CliCheckTests
     {
         var dependency = new Dependency { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
             Source = "https://registry.npmjs.org", Sha256 = new string('a', 64) };
-        using var handler = new VerificationHandler(dependency, pending);
+        var handler = new VerificationHandler(dependency, pending);
         var services = new ServiceCollection();
         services.AddLogging();
         services.AddAiurProtocolClient();
@@ -42,7 +42,7 @@ public class CliCheckTests
     {
         var dependency = new Dependency { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
             Source = "https://registry.npmjs.org", Sha256 = new string('a', 64) };
-        using var handler = new VerificationHandler(dependency, true);
+        var handler = new VerificationHandler(dependency, true);
         var services = new ServiceCollection();
         services.AddLogging();
         services.AddAiurProtocolClient();

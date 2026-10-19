@@ -48,7 +48,7 @@ public class S360Client(AiurProtocolClient client)
             format: BodyFormat.HttpJsonBody,
             autoRetry: false,
             headers: headers);
-        if (response.Code != Aiursoft.AiurProtocol.Models.Code.ResultShown ||
+        if (response.Code != AiurProtocol.Models.Code.ResultShown ||
             response.Decisions.Count != request.Dependencies.Count)
             throw new InvalidOperationException("S360 returned an incomplete dependency decision set.");
         for (var i = 0; i < request.Dependencies.Count; i++)

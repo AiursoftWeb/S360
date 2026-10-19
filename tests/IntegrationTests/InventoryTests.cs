@@ -132,8 +132,7 @@ public class InventoryTests : TestBase
         Assert.IsTrue(baseline.Projects.Single(p => p.Name.EndsWith("incomplete-only")).Incomplete);
         Assert.AreEqual(InventoryStatus.Pending, baseline.Projects.Single(p => p.Name.EndsWith("incomplete-only")).Status);
         Assert.AreEqual(InventoryStatus.Compliant, baseline.Projects.Single(p => p.Name.EndsWith("production")).Status);
-        CollectionAssert.AreEquivalent(new[] { _prefix + "production", _prefix + "proposed-only" },
-            (await Read("projects", scope: "review")).Projects.Select(p => p.Name).ToArray());
+        Assert.AreEqual(0, (await Read("projects", scope: "review")).ProjectCount);
         Assert.AreEqual(_prefix + "legacy-only", (await Read("projects", scope: "history")).Projects.Single().Name);
         Assert.AreEqual(0, (await Read("projects", project: _prefix + "proposed-only")).Total);
         var nuget = await Read("projects", ecosystem: "nuget");
@@ -224,7 +223,7 @@ public class InventoryTests : TestBase
         var projects = await Read("projects");
         Assert.IsTrue(projects.Projects.Single().Incomplete);
         Assert.AreNotEqual(InventoryStatus.Compliant, projects.Projects.Single().Status);
-        CollectionAssert.AreEqual(new[] { "Proposed.Package" }, (await Read(scope: "review")).Packages.Select(p => p.Name).ToArray());
+        Assert.AreEqual(0, (await Read(scope: "review")).PackageCount);
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();

@@ -290,7 +290,7 @@ public class SupplyChainPagesTests : TestBase
     [DataRow(null, false)]
     [DataRow("baseline", false)]
     [DataRow(null, true)]
-    public async Task DependencyFreeProjectPassesCliAgainstS360AndRecordsCompleteRun(string? purpose, bool anonymous)
+    public async Task DependencyFreeProjectPassesCliAndOnlyBaselineRecordsCompleteRun(string? purpose, bool anonymous)
     {
         if (anonymous)
         {
@@ -354,13 +354,16 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var checks = await db.BuildChecks.Include(c => c.Dependencies)
                 .Where(c => c.Project == reportedProject).ToListAsync();
-            Assert.HasCount(1, checks);
-            Assert.AreEqual(purpose ?? "review", BuildCheckRun.Purpose(checks[0].ContextJson));
-            Assert.AreEqual(anonymous, BuildCheckRun.ReadContext(checks[0].ContextJson)!.IsAnonymous);
-            Assert.AreEqual("nuget", BuildCheckRun.ReadContext(checks[0].ContextJson)!.Ecosystem);
-            Assert.AreEqual(1, checks[0].ScannedProjectCount);
-            Assert.HasCount(0, checks[0].Dependencies);
-            Assert.IsTrue(BuildCheckRun.IsComplete(checks));
+            if (purpose == "baseline")
+            {
+                Assert.HasCount(1, checks);
+                Assert.AreEqual("baseline", BuildCheckRun.Purpose(checks[0].ContextJson));
+                Assert.AreEqual("nuget", BuildCheckRun.ReadContext(checks[0].ContextJson)!.Ecosystem);
+                Assert.AreEqual(1, checks[0].ScannedProjectCount);
+                Assert.HasCount(0, checks[0].Dependencies);
+                Assert.IsTrue(BuildCheckRun.IsComplete(checks));
+            }
+            else Assert.HasCount(0, checks);
         }
         finally
         {
@@ -451,10 +454,9 @@ public class SupplyChainPagesTests : TestBase
             Assert.DoesNotContain("S360 approved", output);
             using var scope = Server!.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var check = await db.BuildChecks.Include(c => c.Dependencies)
-                .SingleAsync(c => c.Project == "integration/unconfigured-source");
-            Assert.IsFalse(check.Trusted);
-            Assert.IsNull(check.Dependencies.Single().PackageArtifactId);
+            Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.Project == "integration/unconfigured-source"));
+            Assert.IsFalse(await db.BuildCheckDependencies.AnyAsync(d => d.Name == packageName));
+            Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name == packageName));
         }
         finally { Directory.Delete(root, recursive: true); }
     }
@@ -1099,15 +1101,17 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiRecordsVerifiedDependencyFreeProjectWithoutAllowingEmptyScanClaims()
     {
-        await AddCheckKeyAsync("integration-check-key");
+        await AddCheckKeyAsync("integration-check-key", baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         using (var missingProject = await Http.PostAsJsonAsync("/api/check", new CheckRequest
                {
+                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
                    Dependencies = [], RunId = Guid.NewGuid().ToString("N")
                }))
             Assert.AreEqual(HttpStatusCode.BadRequest, missingProject.StatusCode);
         using (var incompleteBatch = await Http.PostAsJsonAsync("/api/check", new CheckRequest
                {
+                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
                    Dependencies = [], ScannedProjectCount = 1, BatchCount = 2,
                    RunId = Guid.NewGuid().ToString("N")
                }))
@@ -1116,6 +1120,7 @@ public class SupplyChainPagesTests : TestBase
         var runId = Guid.NewGuid().ToString("N");
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
                {
+                   Context = new CheckContext { Purpose = "baseline" },
                    Dependencies = [], ScannedProjectCount = 2, RunId = runId,
                    Project = "dependency-free-project"
                }))
@@ -1167,10 +1172,9 @@ public class SupplyChainPagesTests : TestBase
             }
             using (var scope = Server!.Services.CreateScope())
             {
-                var check = await scope.ServiceProvider.GetRequiredService<TemplateDbContext>()
-                    .BuildChecks.SingleAsync(c => c.RunId == request.RunId);
-                Assert.IsTrue(BuildCheckRun.ReadContext(check.ContextJson)!.IsAnonymous);
-                Assert.AreEqual("review", BuildCheckRun.Purpose(check.ContextJson));
+                var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+                Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.RunId == request.RunId));
+                Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name == request.Dependencies[0].Name));
             }
             request.RunId = Guid.NewGuid().ToString("N");
             request.Context.Purpose = "baseline";
@@ -1277,7 +1281,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiStoresCompleteGraphsAcrossBatchesAndRejectsMissingOrInventedPackages()
     {
-        await AddCheckKeyAsync("integration-check-key");
+        await AddCheckKeyAsync("integration-check-key", baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var package = new Dependency { Ecosystem = "nuget", Name = "Graph." + Guid.NewGuid().ToString("N"),
             Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64) };
@@ -1285,7 +1289,8 @@ public class SupplyChainPagesTests : TestBase
             Id = "$root", Kind = "root", Children = ["package"] };
         var node = new DependencyGraphNode { Project = root.Project, Ecosystem = "nuget", Target = root.Target,
             Id = "package", Package = package };
-        var request = new CheckRequest { Project = "graph-" + Guid.NewGuid().ToString("N"),
+        var request = new CheckRequest {
+            Context = new CheckContext { Purpose = "baseline" }, Project = "graph-" + Guid.NewGuid().ToString("N"),
             ScannedProjectCount = 1, Dependencies = [package], GraphNodes = [root], BatchCount = 2 };
         using (var first = await Http.PostAsJsonAsync("/api/check", request))
             Assert.AreEqual(HttpStatusCode.OK, first.StatusCode);
@@ -1329,7 +1334,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiRejectsConflictingBatchMetadataWithinOneRun()
     {
-        await AddCheckKeyAsync("integration-check-key");
+        await AddCheckKeyAsync("integration-check-key", baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var runId = Guid.NewGuid().ToString("N");
         var dependency = new Dependency
@@ -1339,6 +1344,7 @@ public class SupplyChainPagesTests : TestBase
         };
         using (var first = await Http.PostAsJsonAsync("/api/check", new CheckRequest
                {
+                   Context = new CheckContext { Purpose = "baseline" },
                    Dependencies = [dependency], ScannedProjectCount = 1,
                    RunId = runId, BatchIndex = 0, BatchCount = 2,
                    Project = "first-project", Commit = "first-commit"
@@ -1346,6 +1352,7 @@ public class SupplyChainPagesTests : TestBase
             Assert.AreEqual(HttpStatusCode.OK, first.StatusCode);
         using var conflicting = await Http.PostAsJsonAsync("/api/check", new CheckRequest
         {
+            Context = new CheckContext { Purpose = "baseline" },
             Dependencies = [dependency], ScannedProjectCount = 1,
             RunId = runId, BatchIndex = 1, BatchCount = 2,
             Project = "different-project", Commit = "first-commit"
@@ -1353,6 +1360,7 @@ public class SupplyChainPagesTests : TestBase
         Assert.AreEqual(HttpStatusCode.BadRequest, conflicting.StatusCode);
         using var inconsistentScan = await Http.PostAsJsonAsync("/api/check", new CheckRequest
         {
+            Context = new CheckContext { Purpose = "baseline" },
             Dependencies = [dependency], ScannedProjectCount = 2,
             RunId = runId, BatchIndex = 1, BatchCount = 2,
             Project = "first-project", Commit = "first-commit"
@@ -1363,7 +1371,7 @@ public class SupplyChainPagesTests : TestBase
             Dependencies = [dependency], ScannedProjectCount = 1,
             RunId = runId, BatchIndex = 1, BatchCount = 2,
             Project = "first-project", Commit = "first-commit",
-            Context = new CheckContext { Provider = "gitlab", Ref = "master", DefaultBranch = "master", PipelineSource = "push" }
+            Context = new CheckContext { Purpose = "baseline", Provider = "gitlab", Ref = "master", DefaultBranch = "master", PipelineSource = "push" }
         });
         Assert.AreEqual(HttpStatusCode.BadRequest, inconsistentContext.StatusCode);
         await LoginAsAdmin();
@@ -1377,7 +1385,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiRejectsOutOfOrderBatchesWithoutRecordingThem()
     {
-        await AddCheckKeyAsync("integration-check-key");
+        await AddCheckKeyAsync("integration-check-key", baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var runId = Guid.NewGuid().ToString("N");
         var dependency = new Dependency
@@ -1388,6 +1396,7 @@ public class SupplyChainPagesTests : TestBase
         };
         var request = new CheckRequest
         {
+            Context = new CheckContext { Purpose = "baseline" },
             Dependencies = [dependency], ScannedProjectCount = 1, RunId = runId,
             BatchIndex = 1, BatchCount = 2, Project = "out-of-order-project"
         };
@@ -1458,11 +1467,12 @@ public class SupplyChainPagesTests : TestBase
             audit.LastError = null;
             await db.SaveChangesAsync();
         }
-        await AddCheckKeyAsync(key);
+        await AddCheckKeyAsync(key, baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", key);
         var runId = Guid.NewGuid().ToString("N");
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
                {
+                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
                    Dependencies = [first], ScannedProjectCount = 1,
                    RunId = runId, BatchIndex = 0, BatchCount = 2
                }))
@@ -1482,6 +1492,7 @@ public class SupplyChainPagesTests : TestBase
         }
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
                {
+                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
                    Dependencies = [second], ScannedProjectCount = 1,
                    RunId = runId, BatchIndex = 1, BatchCount = 2
                }))
@@ -1554,11 +1565,12 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
         }
         var configuration = GetService<IConfiguration>();
-        await AddCheckKeyAsync(key);
+        await AddCheckKeyAsync(key, baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", key);
         var runId = Guid.NewGuid().ToString("N");
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
                {
+                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
                    Dependencies = [first], ScannedProjectCount = 1,
                    RunId = runId, BatchIndex = 0, BatchCount = 2
                }))
@@ -1573,6 +1585,7 @@ public class SupplyChainPagesTests : TestBase
         {
             using var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
             {
+                Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
                 Dependencies = [second], ScannedProjectCount = 1,
                 RunId = runId, BatchIndex = 1, BatchCount = 2
             });
@@ -1598,11 +1611,12 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     public async Task CheckApiRejectsDuplicateBatchWithoutAddingAnotherRecord()
     {
-        await AddCheckKeyAsync("integration-check-key");
+        await AddCheckKeyAsync("integration-check-key", baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var runId = Guid.NewGuid().ToString("N");
         var request = new CheckRequest
         {
+            Context = new CheckContext { Purpose = "baseline" },
             Dependencies = [new Dependency
             {
                 Ecosystem = "nuget", Name = "Unapproved." + Guid.NewGuid().ToString("N"),
@@ -1623,60 +1637,66 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task UnapprovedReviewDependencyRemainsVisibleWithoutProductionImpact()
+    [DataRow(false)]
+    [DataRow(true)]
+    public async Task ReviewNeverRegistersUnknownPackagesOrProjectReports(bool anonymous)
     {
-        const string key = "integration-observation-key";
-        var packageName = "Unapproved.Observed." + Guid.NewGuid().ToString("N");
-        var project = "observed-project-" + Guid.NewGuid().ToString("N");
-        await AddCheckKeyAsync(key);
-        Http.DefaultRequestHeaders.Add("X-S360-Key", key);
-        var dependency = new Dependency
+        var suffix = Guid.NewGuid().ToString("N");
+        var project = "review-only-" + suffix;
+        var dependency = new Dependency { Ecosystem = "nuget", Name = "Unapproved." + suffix,
+            Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('d', 64) };
+        using var scope = Server!.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+        var supplier = new Supplier { Name = "Review-only vendor " + suffix };
+        db.TrustRules.Add(new TrustRule { ApplicationId = null, SupplierId = supplier.Id, Supplier = supplier, Ecosystem = dependency.Ecosystem,
+            PackagePattern = dependency.Name + ".Approved", Version = "1.*", Source = dependency.Source,
+            Status = TrustRuleStatus.Approved });
+        await db.SaveChangesAsync();
+        var settings = scope.ServiceProvider.GetRequiredService<GlobalSettingsService>();
+        if (anonymous) await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "True");
+        else
         {
-            Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
-            Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('d', 64)
-        };
-        for (var attempt = 0; attempt < 2; attempt++)
-        {
-            using var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-            {
-                Dependencies = [dependency], ScannedProjectCount = 1,
-                RunId = Guid.NewGuid().ToString("N"), Project = project
-            });
-            response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadFromJsonAsync<CheckResponse>();
-            Assert.IsNotNull(result);
-            Assert.IsFalse(result.Trusted);
-            StringAssert.Contains(result.Decisions.Single().Reason, "No approved trust rule");
+            await AddCheckKeyAsync("review-key");
+            Http.DefaultRequestHeaders.Add("X-S360-Key", "review-key");
         }
-        using (var scope = Server!.Services.CreateScope())
+        var request = new CheckRequest { Project = project, ScannedProjectCount = 1,
+            Dependencies = [dependency, new Dependency { Ecosystem = dependency.Ecosystem,
+                Name = dependency.Name + ".Approved", Version = dependency.Version,
+                Source = dependency.Source, Sha256 = dependency.Sha256 }], BatchCount = 2 };
+        try
         {
-            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifacts = await db.PackageArtifacts.Where(a => a.Name == packageName).ToListAsync();
-            Assert.HasCount(1, artifacts);
-            Assert.IsNull(artifacts[0].FirstTrustedAtUtc);
-            var checks = await db.BuildCheckDependencies.Where(d => d.Name == packageName).ToListAsync();
-            Assert.HasCount(2, checks);
-            Assert.IsTrue(checks.All(c => c.PackageArtifactId == artifacts[0].Id && !c.Trusted));
-            db.Vulnerabilities.Add(new Vulnerability
+            // Replaying or checking another batch must not create persistent run state.
+            for (var attempt = 0; attempt < 2; attempt++)
             {
-                Ecosystem = "nuget", PackageName = packageName,
-                SourceId = "GHSA-" + Guid.NewGuid().ToString("N"),
-                Summary = "Observed vulnerable dependency",
-                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = artifacts[0].Id }]
-            });
-            await db.SaveChangesAsync();
+                using var response = await Http.PostAsJsonAsync("/api/check", request);
+                response.EnsureSuccessStatusCode();
+                var result = await response.Content.ReadFromJsonAsync<CheckResponse>();
+                Assert.IsNotNull(result);
+                Assert.IsFalse(result.Trusted);
+                StringAssert.Contains(result.Decisions[0].Reason, "No approved trust rule");
+                StringAssert.Contains(result.Decisions[1].Reason, "verification and vulnerability audit are pending");
+            }
+            request.BatchIndex = 1;
+            request.Dependencies = [];
+            request.GraphNodes = [new DependencyGraphNode { Project = "src/Test.csproj", Ecosystem = "nuget", Id = "$root", Kind = "root" }];
+            using var graphBatch = await Http.PostAsJsonAsync("/api/check", request);
+            graphBatch.EnsureSuccessStatusCode();
+            Assert.IsTrue((await graphBatch.Content.ReadFromJsonAsync<CheckResponse>())!.Trusted);
+            Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name.StartsWith(dependency.Name)));
+            Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.RunId == request.RunId));
+            Assert.IsFalse(await db.BuildCheckDependencies.AnyAsync(d => d.Name.StartsWith(dependency.Name)));
+            Assert.IsFalse(GetService<Microsoft.Extensions.Caching.Memory.IMemoryCache>()
+                .TryGetValue("s360-osv-audit-queued", out _));
+            await LoginAsAdmin();
+            foreach (var url in new[] { "/BuildChecks/Index", "/VulnerabilityAudit/Index?detailed=true",
+                         "/SupplyChain?tab=projects&scope=review" })
+            {
+                using var page = await Http.GetAsync(url);
+                page.EnsureSuccessStatusCode();
+                Assert.DoesNotContain(project, await page.Content.ReadAsStringAsync());
+            }
         }
-        await LoginAsAdmin();
-        using var quick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
-        quick.EnsureSuccessStatusCode();
-        var quickHtml = await quick.Content.ReadAsStringAsync();
-        Assert.DoesNotContain(packageName, quickHtml);
-        using var page = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
-        page.EnsureSuccessStatusCode();
-        var html = await page.Content.ReadAsStringAsync();
-        StringAssert.Contains(html, packageName);
-        StringAssert.Contains(html, project);
-        StringAssert.Contains(html, "Review check history");
+        finally { await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "False"); }
     }
 
     [TestMethod]
@@ -1702,7 +1722,7 @@ public class SupplyChainPagesTests : TestBase
             {
                 Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
                 Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64),
-                FirstTrustedAtUtc = DateTime.UtcNow, SourceVerifiedAtUtc = DateTime.UtcNow,
+                SourceVerifiedAtUtc = DateTime.UtcNow,
                 LastCheckedAtUtc = DateTime.UtcNow
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
@@ -1760,12 +1780,7 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var rejectedCheck = await db.BuildChecks.Include(c => c.Dependencies)
-                .SingleAsync(c => c.RunId == unconfiguredRunId);
-            Assert.IsFalse(rejectedCheck.Trusted);
-            Assert.AreEqual(2, rejectedCheck.Dependencies.Count());
-            Assert.IsNull(rejectedCheck.Dependencies.Single(d => d.Source == "https://127.0.0.1").PackageArtifactId);
-            Assert.IsNotNull(rejectedCheck.Dependencies.Single(d => d.Source == dependency.Source).PackageArtifactId);
+            Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.RunId == unconfiguredRunId));
             Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name == packageName &&
                 a.Source == "https://127.0.0.1"));
         }
@@ -1825,9 +1840,14 @@ public class SupplyChainPagesTests : TestBase
         using var history = await Http.GetAsync("/BuildChecks/Index");
         history.EnsureSuccessStatusCode();
         var html = await history.Content.ReadAsStringAsync();
-        StringAssert.Contains(html, "Accepted");
-        StringAssert.Contains(html, "Currently blocked");
-        StringAssert.Contains(html, packageName);
+        Assert.DoesNotContain(packageName, html);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            Assert.IsFalse(await db.BuildCheckDependencies.AnyAsync(d => d.Name == packageName));
+            Assert.AreEqual(1, await db.PackageArtifacts.CountAsync(a => a.Name == packageName));
+            Assert.IsNull((await db.PackageArtifacts.SingleAsync(a => a.Name == packageName)).FirstTrustedAtUtc);
+        }
         using var settingsScope = Server!.Services.CreateScope();
         await settingsScope.ServiceProvider.GetRequiredService<GlobalSettingsService>()
             .UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "False");
@@ -3033,8 +3053,8 @@ public class SupplyChainPagesTests : TestBase
             detailed.EnsureSuccessStatusCode();
             var html = await detailed.Content.ReadAsStringAsync();
             StringAssert.Contains(html, name);
-            StringAssert.Contains(html, "Review check history");
-            StringAssert.Contains(html, "Merge request");
+            Assert.DoesNotContain("Review check history", html);
+            Assert.DoesNotContain("MR !42", html);
         }
         await Record(vulnerableId, null, 0, trusted: false);
         using (var legacy = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
@@ -3126,7 +3146,7 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task VulnerabilityProjectsLinkToTheirReportScopeAndCountEachProjectOnce()
+    public async Task VulnerabilityProjectsIgnoreLegacyReviewsAndLinkOnlyBaselineOrUndeclaredReports()
     {
         await LoginAsAdmin();
         var suffix = Guid.NewGuid().ToString("N");
@@ -3179,26 +3199,26 @@ public class SupplyChainPagesTests : TestBase
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         StringAssert.Contains(html, "Production baseline projects: <strong>1</strong>");
-        StringAssert.Contains(html, "Projects in review reports: <strong>2</strong>");
+        Assert.DoesNotContain("Projects in review reports", html);
         StringAssert.Contains(html, "View reported projects");
         Assert.DoesNotContain(legacyProject, html);
-        var links = System.Text.RegularExpressions.Regex.Matches(html, "href=\"([^\"]+)\"[^>]*>" + reviewProject + "</a>");
-        Assert.AreEqual(1, links.Count, "Two merge requests from one project must share one project entry.");
-        var reviewUrl = WebUtility.HtmlDecode(links[0].Groups[1].Value);
-        StringAssert.Contains(reviewUrl, "scope=review");
-        StringAssert.Contains(reviewUrl, "ecosystem=nuget");
-        using (var projectPage = await Http.GetAsync(reviewUrl))
+        Assert.DoesNotContain(reviewProject, html);
+        Assert.DoesNotContain("scope=review", html);
+        var baselineLinks = System.Text.RegularExpressions.Regex.Matches(html, "href=\"([^\"]+)\"[^>]*>" + baselineProject + "</a>");
+        Assert.AreEqual(1, baselineLinks.Count);
+        var baselineUrl = WebUtility.HtmlDecode(baselineLinks[0].Groups[1].Value);
+        StringAssert.Contains(baselineUrl, "scope=baseline");
+        StringAssert.Contains(baselineUrl, "ecosystem=nuget");
+        using (var projectPage = await Http.GetAsync(baselineUrl))
         {
             projectPage.EnsureSuccessStatusCode();
-            StringAssert.Contains(await projectPage.Content.ReadAsStringAsync(), reviewProject);
+            StringAssert.Contains(await projectPage.Content.ReadAsStringAsync(), baselineProject);
         }
-        var baselineLinks = System.Text.RegularExpressions.Regex.Matches(html, "href=\"([^\"]+)\"[^>]*>" + baselineProject + "</a>");
-        Assert.AreEqual(2, baselineLinks.Count, "A project can have baseline and review evidence without merging the scopes.");
-        Assert.IsTrue(baselineLinks.Any(link => WebUtility.HtmlDecode(link.Groups[1].Value).Contains("scope=baseline")));
-        Assert.IsTrue(baselineLinks.Any(link => WebUtility.HtmlDecode(link.Groups[1].Value).Contains("scope=review")));
         using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
         detailed.EnsureSuccessStatusCode();
         var detailedHtml = await detailed.Content.ReadAsStringAsync();
+        Assert.DoesNotContain(reviewProject, detailedHtml);
+        Assert.DoesNotContain("scope=review", detailedHtml);
         StringAssert.Contains(detailedHtml, legacyProject);
         StringAssert.Contains(detailedHtml, "scope=history");
     }

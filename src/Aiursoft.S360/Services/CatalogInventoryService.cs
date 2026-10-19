@@ -22,7 +22,8 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 BatchCount = c.BatchCount, ScannedProjectCount = c.ScannedProjectCount,
                 CreatedAtUtc = c.CreatedAtUtc, GraphJson = c.GraphJson == null ? null : "[]"
             }).ToListAsync();
-        var runs = checks.Where(c => !string.IsNullOrWhiteSpace(c.Project))
+        var runs = checks.Where(c => !string.IsNullOrWhiteSpace(c.Project) &&
+                BuildCheckRun.Purpose(c.ContextJson) != "review")
             .GroupBy(c => c.RunId).Where(g => MatchesScope(g.First(), model.Scope))
             .Where(g => model.Ecosystem == "all" ||
                 BuildCheckRun.ReadContext(g.First().ContextJson)?.Ecosystem is not { Length: > 0 } ecosystem ||

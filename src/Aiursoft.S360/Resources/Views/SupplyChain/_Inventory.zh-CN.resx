@@ -162,6 +162,9 @@
   <data name="Result pages" xml:space="preserve">
     <value>结果页</value>
   </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>审核检查结果不会保存为项目清单。</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
   </data>

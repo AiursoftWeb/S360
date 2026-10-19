@@ -3288,6 +3288,16 @@ public class SupplyChainPagesTests : TestBase
     public async Task AuditOverviewDeduplicatesAcrossAllPagesAndCountsOnlyBaselineProjects()
     {
         await LoginAsAdmin();
+        async Task<Dictionary<string, int>> Counts(string ecosystem)
+        {
+            using var response = await Http.GetAsync($"/VulnerabilityAudit/Index?ecosystem={ecosystem}");
+            response.EnsureSuccessStatusCode();
+            var html = await response.Content.ReadAsStringAsync();
+            return System.Text.RegularExpressions.Regex.Matches(html, """data-audit-count="([^"]+)">([0-9]+)</strong>""")
+                .ToDictionary(m => m.Groups[1].Value, m => int.Parse(m.Groups[2].Value));
+        }
+        var before = await Counts("nuget");
+        var npmBefore = await Counts("npm");
         int ruleId;
         using (var scope = Server!.Services.CreateScope())
         {
@@ -3339,15 +3349,15 @@ public class SupplyChainPagesTests : TestBase
             using var response = await Http.GetAsync($"/VulnerabilityAudit/Index?ecosystem=nuget&page={page}");
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
-            StringAssert.Contains(html, "data-audit-count=\"advisories\">101</strong>");
-            StringAssert.Contains(html, "data-audit-count=\"packages\">1</strong>");
-            StringAssert.Contains(html, "data-audit-count=\"projects\">2</strong>");
-            StringAssert.Contains(html, "data-audit-count=\"rules\">2</strong>");
+            StringAssert.Contains(html, $"data-audit-count=\"advisories\">{before["advisories"] + 101}</strong>");
+            StringAssert.Contains(html, $"data-audit-count=\"packages\">{before["packages"] + 1}</strong>");
+            StringAssert.Contains(html, $"data-audit-count=\"projects\">{before["projects"] + 2}</strong>");
+            StringAssert.Contains(html, $"data-audit-count=\"rules\">{before["rules"] + 2}</strong>");
             StringAssert.Contains(html, $"/SupplyChain/RuleDetails/{ruleId}");
             Assert.DoesNotContain("company/review-only", html);
         }
-        using var npm = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=npm");
-        StringAssert.Contains(await npm.Content.ReadAsStringAsync(), "data-audit-count=\"advisories\">0</strong>");
+        var npmAfter = await Counts("npm");
+        foreach (var count in npmBefore) Assert.AreEqual(count.Value, npmAfter[count.Key]);
     }
 
     [TestMethod]

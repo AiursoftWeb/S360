@@ -86,6 +86,7 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
                     db.PackageArtifacts.Add(artifact);
                 }
                 else artifact.SourceVerifiedAtUtc ??= DateTime.UtcNow;
+                artifact.SourceVerificationRejected = false;
                 map[key] = artifact;
             }
             await db.SaveChangesAsync();

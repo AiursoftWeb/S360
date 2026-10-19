@@ -1,4 +1,8 @@
 using Aiursoft.S360.Entities;
+using Aiursoft.S360.SDK;
+using Aiursoft.S360.Services;
+using Aiursoft.S360.Services.Resolution;
+using Microsoft.Extensions.Logging.Abstractions;
 using Aiursoft.S360.InMemory;
 using Aiursoft.S360.Services.BackgroundJobs;
 using Aiursoft.S360.Sqlite;
@@ -9,6 +13,37 @@ namespace Aiursoft.S360.Tests;
 [TestClass]
 public class DependencyResolutionFailureTests
 {
+    [TestMethod]
+    public async Task IndependentlyResolvedArchiveClearsPriorSourceRejectionButStillRequiresAudit()
+    {
+        var options = new DbContextOptionsBuilder<InMemoryContext>()
+            .UseInMemoryDatabase("s360-source-recovery-" + Guid.NewGuid()).Options;
+        await using var db = new InMemoryContext(options);
+        var dependency = new Dependency { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
+            Source = "https://registry.npmjs.org", Sha256 = new string('a', 64) };
+        var application = new DependencyApplication { RequestedByUserId = "employee", Ecosystem = "npm",
+            Source = dependency.Source, Justification = "Reverify the source", ResolutionContext = "npm",
+            DirectPackages = """[{"Name":"sample","Version":"1.0.0"}]""", Status = ApplicationStatus.Resolving };
+        db.DependencyApplications.Add(application);
+        db.TrustRules.Add(new TrustRule { SupplierId = 0, ApplicationId = null, Ecosystem = "npm",
+            PackagePattern = "sample", Version = "1.*", Source = dependency.Source, Status = TrustRuleStatus.Approved });
+        db.PackageArtifacts.Add(new PackageArtifact { Ecosystem = dependency.Ecosystem, Name = dependency.Name,
+            Version = dependency.Version, Source = dependency.Source, Sha256 = dependency.Sha256,
+            SourceVerificationRejected = true });
+        await db.SaveChangesAsync();
+        var job = new DependencyResolutionJob(db, null!, null!, NullLogger<DependencyResolutionJob>.Instance, null!);
+        Assert.IsTrue(await job.SaveResolutionAsync(application.Id,
+            new ResolutionReport([dependency], [new ResolutionEdge(null, dependency)], [], "npm")));
+        var artifact = await db.PackageArtifacts.SingleAsync();
+        Assert.IsFalse(artifact.SourceVerificationRejected);
+        Assert.IsNotNull(artifact.SourceVerifiedAtUtc);
+        Assert.IsNull(artifact.LastCheckedAtUtc);
+        Assert.IsNull(artifact.FirstTrustedAtUtc);
+        var decision = (await new TrustService(db).AssessAsync([dependency])).Single();
+        Assert.IsFalse(decision.Trusted);
+        Assert.IsTrue(decision.PendingVerification);
+    }
+
     [TestMethod]
     public async Task InMemoryTestProviderAlsoRecordsResolutionFailure()
     {

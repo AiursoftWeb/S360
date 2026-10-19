@@ -9,6 +9,7 @@ using Aiursoft.S360.Services;
 using Aiursoft.S360.Services.BackgroundJobs;
 using Aiursoft.S360.Services.Resolution;
 using Aiursoft.Canon.BackgroundJobs;
+using Aiursoft.Canon.TaskQueue;
 using Microsoft.Extensions.Caching.Memory;
 using Aiursoft.S360.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ namespace Aiursoft.S360.Controllers;
 [Route("api/check")]
 public class CheckController(TrustService trust, TemplateDbContext db,
     BackgroundJobRegistry jobs, IMemoryCache cache, IConfiguration configuration,
-    GlobalSettingsService settings, IAuthorizationService authorization) : ControllerBase
+    GlobalSettingsService settings, IAuthorizationService authorization, ArtifactVerificationAdmission admission, ServiceTaskQueue taskQueue) : ControllerBase
 {
     [HttpPost, AllowAnonymous, LimitPerMin(120)]
     [RequestSizeLimit(4 * 1024 * 1024)]
@@ -71,20 +72,26 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             return BadRequest("Dependencies must belong to the declared ecosystem.");
         if (purpose == "review")
         {
-            // Review is a read-only, per-batch policy query. The CLI validates the
-            // complete graph and aggregates all decisions; no run is stored here.
-            if (request.GraphNodes != null)
+            // Reviews may queue globally approved artifacts for independent verification,
+            // but never store project reports or change production inventory.
+            if (anonymous && !admission.AnonymousReviews.Wait(0))
             {
-                var completeGraph = request.BatchCount == 1;
-                var graphError = DependencyGraphNode.Validate(request.GraphNodes, request.Dependencies,
-                    request.Context.Ecosystem, completeGraph);
-                if (graphError != null) return BadRequest(graphError);
-                if (completeGraph && request.GraphNodes.Select(n => (n.Project, n.Ecosystem)).Distinct().Count() != request.ScannedProjectCount)
-                    return BadRequest("Graph manifests must match the scanned project count.");
+                Response.Headers.RetryAfter = "15";
+                return StatusCode(StatusCodes.Status429TooManyRequests);
             }
             try
             {
-                var decisions = await CheckDependenciesAsync(request.Dependencies, persist: false);
+                if (request.GraphNodes != null)
+                {
+                    var completeGraph = request.BatchCount == 1;
+                    var graphError = DependencyGraphNode.Validate(request.GraphNodes, request.Dependencies,
+                        request.Context.Ecosystem, completeGraph);
+                    if (graphError != null) return BadRequest(graphError);
+                    if (completeGraph && request.GraphNodes.Select(n => (n.Project, n.Ecosystem)).Distinct().Count() != request.ScannedProjectCount)
+                        return BadRequest("Graph manifests must match the scanned project count.");
+                }
+                var decisions = await CheckDependenciesAsync(request.Dependencies, persist: false, anonymous);
+                QueueAudit(decisions);
                 return Ok(new CheckResponse
                 {
                     Code = Code.ResultShown, Trusted = decisions.All(d => d.Trusted), Decisions = decisions,
@@ -94,6 +101,10 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             catch (ArgumentException)
             {
                 return BadRequest("Invalid package source.");
+            }
+            finally
+            {
+                if (anonymous) admission.AnonymousReviews.Release();
             }
         }
         var contextJson = JsonSerializer.Serialize(request.Context);
@@ -236,14 +247,9 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             }
             db.BuildChecks.Add(check);
             await db.SaveChangesAsync();
-            if ((check.Dependencies.Any(d => d.PackageArtifact is { SourceVerifiedAtUtc: null } ||
-                    d.PackageArtifact is { LastCheckedAtUtc: null }) ||
-                 decisions.Any(d => d.Reason.Contains("Vulnerability audit", StringComparison.Ordinal))) &&
-                !cache.TryGetValue("s360-osv-audit-queued", out _))
-            {
-                cache.Set("s360-osv-audit-queued", true, TimeSpan.FromMinutes(5));
-                jobs.TriggerNow<VulnerabilityAuditJob>();
-            }
+            QueueAudit(decisions, check.Dependencies.Any(d =>
+                d.PackageArtifact is { SourceVerifiedAtUtc: null, SourceVerificationRejected: false } ||
+                d.PackageArtifact is { LastCheckedAtUtc: null, SourceVerificationRejected: false }));
             return Ok(new CheckResponse
             {
                 Code = Code.ResultShown,
@@ -259,13 +265,13 @@ public class CheckController(TrustService trust, TemplateDbContext db,
         }
     }
 
-    private async Task<List<DependencyDecision>> CheckDependenciesAsync(List<Dependency> dependencies, bool persist)
+    private async Task<List<DependencyDecision>> CheckDependenciesAsync(List<Dependency> dependencies, bool persist, bool anonymous = false)
     {
         var sourceAllowed = dependencies.Select(dependency =>
             AllowedPackageSources.Contains(configuration, dependency.Ecosystem, dependency.Source)).ToArray();
         var permitted = dependencies.Where((_, index) => sourceAllowed[index]).ToList();
         var assessed = permitted.Count == 0 ? [] : persist
-            ? await trust.CheckAsync(permitted) : await trust.AssessAsync(permitted);
+            ? await trust.CheckAsync(permitted) : await trust.ReviewAsync(permitted, () => admission.TryAdmit(anonymous));
         var index = 0;
         return dependencies.Select((dependency, position) => sourceAllowed[position]
             ? assessed[index++]
@@ -274,6 +280,15 @@ public class CheckController(TrustService trust, TemplateDbContext db,
                 Dependency = dependency, Trusted = false,
                 Reason = "Package source is not permitted for CI verification."
             }).ToList();
+    }
+
+    private void QueueAudit(List<DependencyDecision> decisions, bool observedPending = false)
+    {
+        if ((!observedPending && !decisions.Any(d => d.PendingVerification)) ||
+            taskQueue.HasPendingOrProcessingTasks(nameof(VulnerabilityAuditJob)) ||
+            !admission.TryQueueAudit()) return;
+        cache.Set("s360-osv-audit-queued", true, TimeSpan.FromMinutes(5));
+        jobs.TriggerNow<VulnerabilityAuditJob>();
     }
 
     private static string ArtifactKey(string ecosystem, string name, string version,

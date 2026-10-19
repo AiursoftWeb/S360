@@ -45,6 +45,8 @@ public class DependencyDecision
 {
     public Dependency Dependency { get; set; } = new();
     public bool Trusted { get; set; }
+    /// <summary>Policy permits this package, but independent verification or audit is still pending.</summary>
+    public bool PendingVerification { get; set; }
     public string Reason { get; set; } = string.Empty;
     public int? RuleId { get; set; }
 }

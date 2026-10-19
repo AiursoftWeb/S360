@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} projects" xml:space="preserve">
+    <value>{0} 个项目</value>
+  </data>
+  <data name="Approval scope and package identity" xml:space="preserve">
+    <value>审批范围和软件包标识</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>已批准</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>检查记录</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>依赖请求</value>
+  </data>
+  <data name="Expires (UTC)" xml:space="preserve">
+    <value>到期时间（UTC）</value>
+  </data>
+  <data name="Inspect rule scope" xml:space="preserve">
+    <value>查看规则适用范围</value>
+  </data>
+  <data name="No approval reason recorded." xml:space="preserve">
+    <value>未记录审批原因。</value>
+  </data>
+  <data name="No expiry recorded" xml:space="preserve">
+    <value>未记录到期时间</value>
+  </data>
+  <data name="No matching approval rule is recorded." xml:space="preserve">
+    <value>未记录到匹配的审批规则。</value>
+  </data>
+  <data name="No project purpose recorded. An approval reason does not explain every project&apos;s use." xml:space="preserve">
+    <value>未记录项目用途。审批理由并不能说明该项目的每项用途。</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>未记录用途或审批原因</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>待处理</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>流水线</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="Recorded in these projects" xml:space="preserve">
+    <value>记录在以下项目中</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>已拒绝</value>
+  </data>
+  <data name="Revoke rule" xml:space="preserve">
+    <value>撤销规则</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>已撤销</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>来源</value>
+  </data>
+  <data name="This revokes the approval rule for every matching package and project, including matches outside this view." xml:space="preserve">
+    <value>这将撤销适用于所有匹配的软件包和项目的批准规则，包括此视图之外的匹配项。</value>
+  </data>
+  <data name="Why is it needed?" xml:space="preserve">
+    <value>为什么需要它？</value>
+  </data>
+  <data name="Why was it approved?" xml:space="preserve">
+    <value>为什么它会被批准？</value>
+  </data>
+
+</root>

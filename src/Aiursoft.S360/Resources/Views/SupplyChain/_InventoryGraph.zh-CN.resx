@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>显示 {0} / {1} 个节点</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} 个存在漏洞的包位于此图中，其中 {1} 个因深度或筛选器被隐藏。</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>折叠依赖项</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>合规</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>无法复制。请从浏览器中复制当前地址。</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>复制视图链接</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>依赖项</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>依赖项详细信息</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>依赖关系图。拖动以平移，使用控件缩放，或选择一个节点。</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>依赖关系</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>图表控件</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>仅显示直接依赖项</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>直接依赖</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>拖动以可读的缩放比例探索此图表，或选择&quot;适应视图&quot;以查看概览。</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>启用 JavaScript 以查看图表。所有软件包详情均列于下方。</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>展开依赖项</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>探索依赖项</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>查找软件包</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>适应视图</value>
+  </data>
+  <data name="From your project to every package" xml:space="preserve">
+    <value>从你的项目到每个软件包</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>全屏</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>绿色和蓝色表示依赖关系，而非审批状态。其他审计问题会在各节点上单独标注。</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>间接依赖</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>引入方</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>已知漏洞</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>清单和目标</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>最大深度</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>需要关注</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>报告的依赖关系图中未发现已知漏洞。请先检查审计状态，再依赖此结果。</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>没有匹配的程序包。</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>未记录用途或审批原因</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>未验证</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>包名称、路径或 CVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>软件包来源</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>项目引用</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>已记录的用途和批准理由</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>重置视图</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>未记录根节点关系</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>搜索和漏洞路径会包含超出所选深度的祖先节点。重置视图即可恢复深度限制。</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>选择一个节点以查看其版本、审核状态和引入路径。</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>显示引入路径</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>部分已报告的节点无法从此根节点到达。仍可通过搜索找到它们；未推断任何关系。</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>从三层开始。展开节点以查看其依赖项，或选择节点查看详情。</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>无法显示依赖关系图。下方仍提供软件包详情。</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>已保存的报告已更改。正在显示当前的依赖关系图。</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>此图较大，当前仅显示部分内容；请搜索某个程序包以查看其依赖关系。所有程序包仍列在下方。</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>被以下项目使用</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>视图链接已复制。</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>漏洞路径</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>放大</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>缩小</value>
+  </data>
+
+</root>

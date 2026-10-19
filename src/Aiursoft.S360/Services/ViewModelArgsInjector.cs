@@ -104,6 +104,9 @@ public class ViewModelArgsInjector(
 
         _ = localizer["API Key"];
         _ = localizer["API Keys"];
+
+        _ = localizer["Company overview"];
+        _ = localizer["Compliance explorer"];
     }
 
     public void InjectSimple(

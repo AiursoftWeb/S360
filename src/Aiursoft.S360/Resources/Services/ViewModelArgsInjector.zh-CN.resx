@@ -72,6 +72,12 @@
   <data name="Click to login" xml:space="preserve">
     <value>点击登录</value>
   </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>公司概览</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>合规性探索器</value>
+  </data>
   <data name="Create Role" xml:space="preserve">
     <value>创建角色</value>
   </data>

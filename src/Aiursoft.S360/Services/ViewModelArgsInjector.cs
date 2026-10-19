@@ -108,6 +108,8 @@ public class ViewModelArgsInjector(
         _ = localizer["Company overview"];
         _ = localizer["Compliance explorer"];
         _ = localizer["Existing rule set"];
+
+        _ = localizer["Trust rule details"];
     }
 
     public void InjectSimple(

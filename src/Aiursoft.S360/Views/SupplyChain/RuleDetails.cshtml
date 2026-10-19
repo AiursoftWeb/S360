@@ -12,7 +12,7 @@
     <p><a asp-action="Index" asp-route-tab="rules" asp-route-ecosystem="@rule.Ecosystem">← @Localizer["Back to existing rule set"]</a></p>
     <div class="s360-workspace-head">
         <h1>@Localizer["Trust rule details"] #@rule.Id</h1>
-        <p><code>@rule.PackagePattern @rule.Version</code></p>
+        <p class="text-break">@rule.PackagePattern @rule.Version</p>
         <p class="text-muted">@Localizer["A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free."]</p>
     </div>
     <div class="card mb-4"><div class="card-body">

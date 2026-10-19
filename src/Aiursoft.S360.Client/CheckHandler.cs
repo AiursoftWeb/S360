@@ -16,7 +16,7 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
 
     private static readonly Option<string> PathOption = new("--path", aliases: ["-p"])
     {
-        Description = "Directory containing projects that have already been restored/installed.",
+        Description = "Restored .sln file for NuGet/all checks; installed project directory for npm checks.",
         DefaultValueFactory = _ => "."
     };
     private static readonly Option<string?> ServerOption = new("--server")
@@ -51,6 +51,8 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         if (purpose == "baseline" && string.IsNullOrWhiteSpace(key))
             throw new InvalidOperationException("S360_CHECK_KEY is required for baseline reports.");
         var path = Path.GetFullPath(context.GetValue(PathOption)!);
+        if (ecosystem != "npm" && !Path.GetExtension(path).Equals(".sln", StringComparison.OrdinalIgnoreCase))
+            throw new InvalidOperationException("NuGet checks require --path pointing to an explicit .sln file. Restore that same solution first.");
         // A lockfile URL must not silently redirect the archive download to another source.
         using var http = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });
         http.Timeout = TimeSpan.FromMinutes(10);
@@ -83,7 +85,8 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
             {
                 Context = checkContext, GraphNodes = [], ScannedProjectCount = scan.ScannedProjectCount,
                 RunId = runId,
-                Project = Environment.GetEnvironmentVariable("CI_PROJECT_PATH") ?? Path.GetFileName(path),
+                Project = Environment.GetEnvironmentVariable("CI_PROJECT_PATH") ??
+                    Path.GetFileName(ecosystem == "npm" ? path : Path.GetDirectoryName(path)!),
                 Commit = Environment.GetEnvironmentVariable("CI_COMMIT_SHA"),
                 Pipeline = Environment.GetEnvironmentVariable("CI_PIPELINE_URL")
             };

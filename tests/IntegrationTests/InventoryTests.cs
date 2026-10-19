@@ -86,7 +86,7 @@ public class InventoryTests : TestBase
             db.BuildChecks.Add(review);
             await db.SaveChangesAsync();
         }
-        Assert.Contains("#15803d", await ReadBadge("clean", "compliant"));
+        Assert.Contains("#34d399", await ReadBadge("clean", "compliant"));
         Assert.Contains("#a16207", await ReadBadge("partial", "pending"));
         await ReadBadge("review-only", "unknown");
         await ReadBadge("legacy", "unknown");

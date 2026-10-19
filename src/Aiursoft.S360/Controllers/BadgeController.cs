@@ -26,8 +26,9 @@ public class BadgeController(TemplateDbContext db, CatalogInventoryService inven
                 { } p when p.Versions.Any(v => v.Advisories.Count > 0) => ("CVE found", "dc2626"),
                 { Status: InventoryStatus.NonCompliant } => ("non-compliant", "dc2626"),
                 { Status: InventoryStatus.Pending } => ("pending", "a16207"),
-                _ => ("compliant", "15803d")
+                _ => ("compliant", "34d399")
             };
+            var messageColor = color == "34d399" ? "#064e3b" : "#fff";
             // All SVG content is fixed server text; project names and report data are never embedded.
             return Content($"""
                 <svg xmlns="http://www.w3.org/2000/svg" width="184" height="24" viewBox="0 0 184 24" role="img" aria-label="S360: {message}">
@@ -44,7 +45,7 @@ public class BadgeController(TemplateDbContext db, CatalogInventoryService inven
                   <path fill="none" stroke="#a5f3fc" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" d="M14 5l6 2v5c0 3-3 5-6 7-3-2-6-4-6-7V7z M11 12l2 2 4-4"/>
                   <g fill="#fff" font-family="Verdana,DejaVu Sans,sans-serif" font-size="11" text-anchor="middle">
                     <text x="46" y="16" font-weight="bold">S360</text>
-                    <text x="128" y="16">{message}</text>
+                    <text x="128" y="16" fill="{messageColor}">{message}</text>
                   </g>
                 </svg>
                 """, "image/svg+xml");

@@ -15,6 +15,16 @@ S360 manages NuGet and npm dependencies: employees request packages, reviewers a
 
 Try the S360 Web pilot [here](https://s360.aiursoft.com) with your company account. Runner integration and CI enforcement have not been enabled.
 
+## Install with Docker
+
+Run the installer with the desired port (omit it to choose an available port):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/aiursoftweb/s360/master/install.sh | sudo bash -s -- 8080
+```
+
+Installation starts after three seconds; press Ctrl+C to cancel. Then open `http://localhost:8080`.
+
 ## Run manually
 
 1. Install the .NET 10 SDK and Node.js/npm.

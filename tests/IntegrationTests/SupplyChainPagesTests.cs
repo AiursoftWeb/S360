@@ -3392,7 +3392,7 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
             ruleId = rule.Id;
         }
-        await PostForm("/Account/LogOff", new Dictionary<string, string>(), tokenUrl: "/SupplyChain");
+        await PostForm("/Account/LogOff", new Dictionary<string, string>(), tokenUrl: "/ApiKeys");
         var account = await RegisterAndLoginAsync();
         using (var denied = await Http.GetAsync($"/SupplyChain/RuleDetails/{ruleId}"))
             AssertRedirect(denied, "/Error/Code403", exact: false);

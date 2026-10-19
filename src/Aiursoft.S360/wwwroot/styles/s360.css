@@ -558,9 +558,8 @@
 .s360-node-status, .s360-cve-label { display: inline-block; border-radius: 5px; padding: .2rem .4rem; background: #edf6ef; color: #245939; font-size: .75rem; margin: .2rem .3rem .2rem 0; }
 .s360-node-status.status-1, .s360-node-status.status-2 { color: #79550d; background: #fff5dc; }
 .s360-cve-label { color: #9d263a; background: #fff1f2; }
-.s360-graph:fullscreen { padding: 1.5rem; overflow: auto; border-radius: 0; }
-.s360-graph:fullscreen .s360-graph-canvas { height: max(400px, calc(100vh - 350px)); }
-.s360-graph:fullscreen .s360-graph-detail { max-height: max(400px, calc(100vh - 350px)); }
+.s360-graph-stage:fullscreen { width: 100vw; height: 100vh; overflow: hidden; }
+.s360-graph-stage:fullscreen .s360-graph-canvas { height: 100%; }
 @media (max-width: 1100px) { .s360-graph-body { grid-template-columns: minmax(0, 1fr); } .s360-graph-detail { border-left: 0; border-top: 1px solid var(--s360-line); max-height: 320px; } }
 @media (max-width: 767px) {
     .s360-graph-controls { grid-template-columns: minmax(0, 1fr) 100px; }

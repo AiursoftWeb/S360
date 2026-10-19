@@ -86,8 +86,8 @@ public class InventoryTests : TestBase
             db.BuildChecks.Add(review);
             await db.SaveChangesAsync();
         }
-        Assert.Contains("#34d399", await ReadBadge("clean", "compliant"));
-        Assert.Contains("#a16207", await ReadBadge("partial", "pending"));
+        Assert.Contains("#4c1", await ReadBadge("clean", "compliant"));
+        Assert.Contains("#dfb317", await ReadBadge("partial", "pending"));
         await ReadBadge("review-only", "unknown");
         await ReadBadge("legacy", "unknown");
         await ReadBadge("missing", "unknown");
@@ -124,7 +124,7 @@ public class InventoryTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        Assert.Contains("#dc2626", await ReadBadge("policy", "CVE found"));
+        Assert.Contains("#e05d44", await ReadBadge("policy", "CVE found"));
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();

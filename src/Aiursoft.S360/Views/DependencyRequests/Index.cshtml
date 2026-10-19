@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @model Aiursoft.S360.Models.SupplyChainViewModels.MyRequestsViewModel
 @using Aiursoft.S360.Models.Shared
 @* ReSharper disable once Razor.SectionNotResolved *@
@@ -49,7 +50,7 @@ else
         <th>@Localizer["Project"]</th><th>@Localizer["Status"]</th><th></th></tr></thead><tbody>
         @foreach (var application in Model.Applications)
         {
-            <tr><td>@application.CreatedAtUtc.ToString("u")</td><td>@application.Ecosystem</td><td>@application.Project</td>
+            <tr><td><span data-utc-time="@application.CreatedAtUtc.ToHtmlDateTime()"></span></td><td>@application.Ecosystem</td><td>@application.Project</td>
                 <td>@application.Status
                     @if (Model.ApplicationsWithRemovedSources.Contains(application.Id))
                     {

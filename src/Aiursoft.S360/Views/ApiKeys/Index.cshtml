@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @model Aiursoft.S360.Models.ApiKeysViewModels.IndexViewModel
 <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-4">
     <h1 class="h3 mb-0">@Localizer["API Keys"]</h1>
@@ -15,14 +16,14 @@
     @Localizer["To rotate a key, create another, update your integration and verify it works, then delete the old key. Existing keys keep working during the transition."]
 </div></div>
 <div class="card"><div class="card-body">
-<p class="text-muted">@Localizer["Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in UTC."]</p>
+<p class="text-muted">@Localizer["Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone."]</p>
 <div class="table-responsive"><table class="table"><thead><tr>
     <th>@Localizer["Name"]</th><th>@Localizer["Enabled"]</th><th>@Localizer["Production baseline"]</th>
     <th>@Localizer["Expires"]</th><th>@Localizer["Last used"]</th><th>@Localizer["Actions"]</th>
 </tr></thead><tbody>
 @foreach (var key in Model.ApiKeys)
 {
-    <tr><td>@key.Name</td><td>@key.IsEnabled</td><td>@key.CanPublishBaselines</td><td>@key.ExpirationTime.ToString("u")</td><td>@key.LastUsed?.ToString("u")</td>
+    <tr><td>@key.Name</td><td>@key.IsEnabled</td><td>@key.CanPublishBaselines</td><td><span data-utc-time="@key.ExpirationTime.ToHtmlDateTime()"></span></td><td><span data-utc-time="@key.LastUsed?.ToHtmlDateTime()"></span></td>
     <td><div class="d-flex gap-2 flex-wrap"><a asp-action="Edit" asp-route-id="@key.Id" class="btn btn-outline-primary btn-sm">@Localizer["Edit"]</a>
     <form asp-action="Delete" method="post"><input type="hidden" name="id" value="@key.Id" /><button type="submit" class="btn btn-outline-danger btn-sm">@Localizer["Delete"]</button></form></div></td></tr>
 }

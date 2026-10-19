@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @model Aiursoft.S360.Models.SupplyChainViewModels.BlocklistViewModel
 @using Aiursoft.S360.Models.Shared
 @* ReSharper disable once Razor.SectionNotResolved *@
@@ -38,7 +39,7 @@
                     <span class="badge @(rule.Active ? "bg-danger" : "bg-secondary")">@(rule.Active ? Localizer["Active block"] : Localizer["Disabled"])</span>
                 </div><div class="card-body">
                     <p class="mb-2">@rule.Reason</p>
-                    <p class="text-muted small">@Localizer["Created"] @rule.CreatedAtUtc.ToString("u") · @Localizer["By"] @rule.CreatedByUserId</p>
+                    <p class="text-muted small">@Localizer["Created"] <span data-utc-time="@rule.CreatedAtUtc.ToHtmlDateTime()"></span> · @Localizer["By"] @rule.CreatedByUserId</p>
                     @if (rule.Active && Model.Impacts.TryGetValue(rule.Id, out var impact))
                     {
                         <p class="small mb-1">@Localizer["Recorded impact sample"]: @impact.ArtifactCount @Localizer["artifacts"], @impact.ApplicationCount @Localizer["applications"], @impact.CheckRunCount @Localizer["CI check runs"].</p>
@@ -63,7 +64,7 @@
                             <ul class="small mt-3 mb-0">
                                 @foreach (var change in rule.Changes.OrderByDescending(c => c.ChangedAtUtc))
                                 {
-                                    <li>@change.ChangedAtUtc.ToString("u") — @change.ChangedByUserId: @change.Description</li>
+                                    <li><span data-utc-time="@change.ChangedAtUtc.ToHtmlDateTime()"></span> — @change.ChangedByUserId: @change.Description</li>
                                 }
                             </ul>
                         </details>
@@ -73,7 +74,7 @@
                         <details><summary>@Localizer["View history"]</summary><ul class="small mt-2 mb-0">
                             @foreach (var change in rule.Changes.OrderByDescending(c => c.ChangedAtUtc))
                             {
-                                <li>@change.ChangedAtUtc.ToString("u") — @change.ChangedByUserId: @change.Description</li>
+                                <li><span data-utc-time="@change.ChangedAtUtc.ToHtmlDateTime()"></span> — @change.ChangedByUserId: @change.Description</li>
                             }
                         </ul></details>
                     }

@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @model Aiursoft.S360.Models.SupplyChainViewModels.BuildChecksViewModel
 @using Aiursoft.S360.Models.Shared
 @using Aiursoft.S360.Services
@@ -20,7 +21,7 @@
 {
     <div class="card mb-3" id="check-@check.Id">
         <div class="card-header">
-            <strong>@check.Project</strong> · @check.CreatedAtUtc.ToString("u") ·
+            <strong>@check.Project</strong> · <span data-utc-time="@check.CreatedAtUtc.ToHtmlDateTime()"></span> ·
             @if (check.Trusted) { <span class="badge bg-success">@Localizer["Accepted"]</span> }
             else { <span class="badge bg-danger">@Localizer["Rejected"]</span> }
             @if (Model.RunStatuses.TryGetValue(check.RunId, out var runStatus))
@@ -69,7 +70,7 @@
             <div>@Localizer["Commit"]: <code>@check.Commit</code> · @Localizer["Pipeline"]: <code>@check.Pipeline</code></div>
             <div>@Localizer["Run"]: <code>@check.RunId</code> · @Localizer["Batch"] @(check.BatchIndex + 1)/@check.BatchCount ·
                 @Localizer["Scanned projects"]: @check.ScannedProjectCount ·
-                @Localizer["Vulnerability data"]: @check.VulnerabilityDataCheckedAtUtc?.ToString("u")</div>
+                @Localizer["Vulnerability data"]: <span data-utc-time="@check.VulnerabilityDataCheckedAtUtc?.ToHtmlDateTime()"></span></div>
             @if (check.Dependencies.Count() == 0)
             {
                 <p class="text-muted mt-2 mb-0">@Localizer["No external dependencies were found in the reported supported projects."]</p>

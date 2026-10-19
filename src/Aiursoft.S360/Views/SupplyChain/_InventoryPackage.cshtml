@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @using Aiursoft.S360.Entities
 @using Aiursoft.S360.Authorization
 @using Microsoft.AspNetCore.Authorization
@@ -44,7 +45,7 @@
                     @foreach (var use in version.Uses)
                     {
                         <li><a asp-action="Index" asp-route-tab="projects" asp-route-scope="@inventoryScope" asp-route-project="@use.Project" asp-route-ecosystem="@Model.Ecosystem">@use.Project</a>
-                            <small>@use.CheckedAtUtc.ToString("yyyy-MM-dd HH:mm") UTC · <a asp-controller="BuildChecks" asp-action="Index" asp-route-checkId="@use.CheckId">@Localizer["Check record"]</a>
+                            <small><span data-utc-time="@use.CheckedAtUtc.ToHtmlDateTime()"></span> · <a asp-controller="BuildChecks" asp-action="Index" asp-route-checkId="@use.CheckId">@Localizer["Check record"]</a>
                             @if (!string.IsNullOrEmpty(use.Commit)) { <code>@use.Commit[..Math.Min(12, use.Commit.Length)]</code> }
                             @if (!string.IsNullOrEmpty(use.Pipeline)) { <span> · @Localizer["Pipeline"] @use.Pipeline</span> }
                             </small>
@@ -67,7 +68,7 @@
                         };
                         <div class="s360-inventory-rule">
                             <div><strong>#@rule.Id · @rule.PackagePattern</strong> <code>@rule.Version</code>
-                                <small>@ruleStatus · @Localizer["Expires (UTC)"]: @(rule.ExpiresAtUtc?.ToString("u") ?? @Localizer["No expiry recorded"].Value)</small>
+                                <small>@ruleStatus · @Localizer["Expires"]: <span data-utc-time="@rule.ExpiresAtUtc?.ToHtmlDateTime()">@(rule.ExpiresAtUtc == null ? Localizer["No expiry recorded"].Value : "")</span></small>
                             </div>
                             @if (canManage && rule.Status == TrustRuleStatus.Approved)
                             {

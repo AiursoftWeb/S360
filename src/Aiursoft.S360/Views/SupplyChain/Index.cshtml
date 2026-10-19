@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @using Aiursoft.S360.Authorization
 @using Microsoft.AspNetCore.Authorization
 @using Aiursoft.S360.Models.Shared
@@ -107,7 +108,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
     <div class="card-body small text-muted">@Localizer["Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies."]</div>
     <div class="table-responsive"><table class="table table-hover mb-0 s360-catalog-rules"><thead><tr>
         <th class="s360-catalog-supplier">@Localizer["Supplier"]</th><th class="s360-catalog-package">@Localizer["Package"]</th><th>@Localizer["Version"]</th>
-        <th class="s360-catalog-source">@Localizer["Source"]</th><th>@Localizer["Expires (UTC)"]</th>@if (canManageRules) { <th></th> }
+        <th class="s360-catalog-source">@Localizer["Source"]</th><th>@Localizer["Expires"]</th>@if (canManageRules) { <th></th> }
     </tr></thead><tbody>
     @foreach (var rule in Model.Rules)
     {
@@ -123,9 +124,8 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
                     <small>@rule.Source</small>
                 </details>
             </td>
-            <td class="s360-catalog-date" title="@rule.ExpiresAtUtc?.ToString("u")">
-                @rule.ExpiresAtUtc?.ToString("yyyy-MM-dd")
-                <small class="d-block text-muted">@rule.ExpiresAtUtc?.ToString("HH:mm:ss")</small>
+            <td class="s360-catalog-date">
+                <span data-utc-time="@rule.ExpiresAtUtc?.ToHtmlDateTime()"></span>
             </td>
             @if (canManageRules) { <td class="s360-catalog-action">
                 <details class="s360-catalog-revoke">
@@ -146,8 +146,8 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 <div id="s360-catalog-artifacts" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recorded artifacts"]</h2></div>
     <div class="table-responsive"><table class="table table-hover mb-0"><thead><tr>
         <th>@Localizer["Package"]</th><th>@Localizer["Version"]</th><th>@Localizer["Supplier"]</th>
-        <th>@Localizer["Authorization"]</th><th>@Localizer["Expires (UTC)"]</th>
-        <th>@Localizer["SHA-256"]</th><th>@Localizer["Source"]</th><th>@Localizer["Last checked (UTC)"]</th>
+        <th>@Localizer["Authorization"]</th><th>@Localizer["Expires"]</th>
+        <th>@Localizer["SHA-256"]</th><th>@Localizer["Source"]</th><th>@Localizer["Last checked"]</th>
     </tr></thead><tbody>
     @foreach (var row in Model.Artifacts)
     {
@@ -157,14 +157,14 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
             rule.PackagePattern.Contains('*') || rule.Version.Contains('*') ? Localizer["Wildcard rule"] : Localizer["Unpinned exact rule"];
         <tr><td class="s360-catalog-package"><a asp-action="Details" asp-route-id="@artifact.Id"><code>@artifact.Name</code></a></td>
             <td>@artifact.Version</td><td>@rule.Supplier.Name</td>
-            <td><small>@method · #@rule.Id</small></td><td class="s360-catalog-date"><small>@rule.ExpiresAtUtc?.ToString("u")</small></td>
+            <td><small>@method · #@rule.Id</small></td><td class="s360-catalog-date"><small><span data-utc-time="@rule.ExpiresAtUtc?.ToHtmlDateTime()"></span></small></td>
             <td><code title="@artifact.Sha256">@artifact.Sha256[..Math.Min(16, artifact.Sha256.Length)]…</code></td>
             <td class="s360-catalog-source">
                 <details class="s360-catalog-source-details">
                     <summary title="@artifact.Source">@(Uri.TryCreate(artifact.Source, UriKind.Absolute, out var artifactSourceUri) ? artifactSourceUri.Host : artifact.Source)</summary>
                     <small>@artifact.Source</small>
                 </details>
-            </td><td class="s360-catalog-date"><small>@artifact.LastCheckedAtUtc?.ToString("u")</small></td></tr>
+            </td><td class="s360-catalog-date"><small><span data-utc-time="@artifact.LastCheckedAtUtc?.ToHtmlDateTime()"></span></small></td></tr>
     }
     </tbody></table></div>
     <div class="card-footer small text-muted">@Localizer["Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph."]</div>

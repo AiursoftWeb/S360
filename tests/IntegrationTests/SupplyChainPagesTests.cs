@@ -2242,7 +2242,9 @@ public class SupplyChainPagesTests : TestBase
             var html = await catalog.Content.ReadAsStringAsync();
             StringAssert.Contains(html, $"/SupplyChain/Details/{artifactId}");
             StringAssert.Contains(html, "Pinned SHA-256");
-            StringAssert.Contains(html, "Last checked (UTC)");
+            StringAssert.Contains(html, "Last checked");
+            StringAssert.Contains(html, "data-utc-time=");
+            Assert.IsFalse(html.Contains("Last checked (UTC)"));
             StringAssert.Contains(html, "Detail supplier");
         }
         using (var response = await Http.GetAsync($"/SupplyChain/Details/{artifactId}"))

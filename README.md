@@ -61,7 +61,19 @@ For company sign-in, configure `AppSettings__AuthProvider=OIDC` and the `AppSett
 
 ## Dependency checks
 
-The `s360 check --path .` CLI checks restored NuGet and npm inputs against the server policy. It requires `S360_SERVER` and normally `S360_CHECK_KEY`; run `dotnet restore` and `npm ci` first. Create a personal key under **Personal → API Keys** with `CanManageApiKeys` permission; keep it out of source and logs.
+The CLI checks restored dependencies against the server policy. NuGet checks require an explicit `.sln` file and the .NET SDK. Use the same solution and environment for restore, check and build:
+
+```bash
+dotnet restore App.sln
+s360 check --ecosystem nuget --path App.sln
+dotnet build App.sln --no-restore
+```
+
+The solution's restore graph includes referenced projects even when they are not listed in the solution. Unrelated projects are excluded; missing or stale restore output inside the graph still fails. The check evaluates the graph without restoring packages. Restore with the default solution configuration; custom MSBuild command-line properties are not forwarded by the checker.
+
+For npm, run `npm ci` first, then `s360 check --ecosystem npm --path .`. The default ecosystem (`all`) requires a solution and also checks npm projects under its directory. From CLI 1.1.0, directory-only NuGet/all calls must pass the solution file instead.
+
+The CLI requires `S360_SERVER` and normally `S360_CHECK_KEY`. Create a personal key under **Personal → API Keys** with `CanManageApiKeys` permission; keep it out of source and logs.
 
 By default, `--purpose review` records an audit without changing production usage. Use `--purpose baseline` only to declare dependencies already in production; it requires a baseline-enabled personal key and the owner’s current `CanPublishBaselines` permission, supplied as `S360_CHECK_KEY`. Keep that key restricted to trusted release jobs. Only a complete baseline replaces the project inventory, including when its dependencies are rejected.
 

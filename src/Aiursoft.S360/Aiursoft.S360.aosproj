@@ -1,7 +1,7 @@
 <Project Sdk="Aiursoft.Apkg.Sdk">
   <PropertyGroup>
     <PackageName>aiursoft-s360</PackageName>
-    <PackageVersion>1.0.4</PackageVersion>
+    <PackageVersion>1.0.5</PackageVersion>
     <PackageAuthors>Anduin Xue &lt;anduin@aiursoft.com&gt;</PackageAuthors>
     <PackageDescription>Aiursoft S360 Web Application</PackageDescription>
     <TargetDistro>anduinos</TargetDistro>

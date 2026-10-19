@@ -1,4 +1,5 @@
 using System.Buffers;
+using System.Diagnostics;
 using System.Formats.Tar;
 using System.IO.Compression;
 using System.Security.Cryptography;
@@ -18,12 +19,26 @@ public static class DependencyScanner
     {
         if (ecosystem is not (null or "nuget" or "npm"))
             throw new ArgumentException("Unsupported dependency ecosystem.", nameof(ecosystem));
+        root = Path.GetFullPath(root);
+        var solution = ecosystem != "npm" && Path.GetExtension(root).Equals(".sln", StringComparison.OrdinalIgnoreCase)
+            ? root : null;
+        if (solution != null)
+        {
+            if (!File.Exists(solution)) throw new FileNotFoundException("Solution not found.", solution);
+            root = Path.GetDirectoryName(solution)!;
+        }
         if (!Directory.Exists(root)) throw new DirectoryNotFoundException(root);
         var result = new List<Dependency>();
         var skipped = new List<string>();
-        var projectFiles = DiscoverProjectFiles(root).ToList();
-        var manifests = projectFiles.Where(p => (ecosystem is null or "nuget") &&
-            (Path.GetExtension(p) is ".csproj" or ".fsproj" or ".vbproj")).ToList();
+        // Directory scanning remains available to the server's isolated package resolver.
+        // The CLI requires an explicit solution for NuGet checks.
+        var projectFiles = solution != null && ecosystem == "nuget" ? [] : DiscoverProjectFiles(root).ToList();
+        var nugetProjects = solution != null
+            ? await ReadSolutionProjectsAsync(solution, cancellationToken)
+            : projectFiles.Where(p => (ecosystem is null or "nuget") &&
+                (Path.GetExtension(p) is ".csproj" or ".fsproj" or ".vbproj"))
+                .ToDictionary(p => p, p => Path.Combine(Path.GetDirectoryName(p)!, "obj", "project.assets.json"));
+        var manifests = nugetProjects.Keys.ToList();
         var npmComparison = OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
         var npmManifests = projectFiles.Where(p => (ecosystem is null or "npm") &&
             Path.GetFileName(p).Equals("package.json", npmComparison)).ToList();
@@ -38,7 +53,7 @@ public static class DependencyScanner
             var folder = Path.GetDirectoryName(manifest)!;
             if (File.Exists(Path.Combine(folder, "packages.config")))
                 throw new InvalidOperationException($"NuGet packages.config projects are not supported: {manifest}");
-            var assets = Path.Combine(folder, "obj", "project.assets.json");
+            var assets = nugetProjects[manifest];
             if (!File.Exists(assets)) throw new InvalidOperationException($"Missing restore output: {assets}");
             ValidateNuGetAssetsForProject(manifest, assets);
             ValidateNuGetProjectReferences(manifest, assets, discoveredProjects);
@@ -62,6 +77,61 @@ public static class DependencyScanner
         }
         return new ScanReport(result.DistinctBy(DependencyIntroductionPaths.Identity).ToList(),
             skipped, manifests.Count + npmManifests.Count) { IntroductionPaths = introductionPaths, GraphNodes = graphNodes };
+    }
+
+    private static async Task<Dictionary<string, string>> ReadSolutionProjectsAsync(string solution,
+        CancellationToken cancellationToken)
+    {
+        // Let the same SDK that restores the solution evaluate conditional and transitive references.
+        // This target generates a graph only; it does not restore packages or manufacture missing assets.
+        var graphPath = Path.Combine(Path.GetTempPath(), $"s360-restore-{Guid.NewGuid():N}.json");
+        using var timeout = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        timeout.CancelAfter(TimeSpan.FromMinutes(2));
+        var start = new ProcessStartInfo("dotnet")
+        {
+            WorkingDirectory = Directory.GetCurrentDirectory(),
+            RedirectStandardOutput = true, RedirectStandardError = true, UseShellExecute = false
+        };
+        foreach (var argument in new[]
+                 {
+                     "msbuild", solution, "-t:GenerateRestoreGraphFile", $"-p:RestoreGraphOutputPath={graphPath}",
+                     "-nologo", "-v:quiet", "-m:1", "-nr:false"
+                 }) start.ArgumentList.Add(argument);
+        try
+        {
+            using var process = Process.Start(start) ?? throw new InvalidOperationException("Could not evaluate the solution restore graph.");
+            var output = process.StandardOutput.ReadToEndAsync(timeout.Token);
+            var error = process.StandardError.ReadToEndAsync(timeout.Token);
+            try { await process.WaitForExitAsync(timeout.Token); }
+            catch (OperationCanceledException)
+            {
+                if (!process.HasExited) process.Kill(entireProcessTree: true);
+                await process.WaitForExitAsync(CancellationToken.None);
+                throw;
+            }
+            var diagnostics = await output + await error;
+            if (process.ExitCode != 0 || !File.Exists(graphPath))
+                throw new InvalidOperationException($"Could not evaluate the solution restore graph: {diagnostics}");
+            using var graph = JsonDocument.Parse(await File.ReadAllTextAsync(graphPath, timeout.Token));
+            var projects = graph.RootElement.GetProperty("projects");
+            var found = new Dictionary<string, string>(OperatingSystem.IsWindows()
+                ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
+            foreach (var entry in projects.EnumerateObject())
+            {
+                var restore = entry.Value.GetProperty("restore");
+                var project = Path.GetFullPath(restore.GetProperty("projectPath").GetString()!);
+                if (Path.GetExtension(project) is not (".csproj" or ".fsproj" or ".vbproj") ||
+                    restore.GetProperty("projectStyle").GetString() != "PackageReference")
+                    throw new InvalidOperationException($"Unsupported NuGet project in solution restore graph: {project}");
+                var assets = Path.Combine(restore.GetProperty("outputPath").GetString()!, "project.assets.json");
+                found.Add(project, assets);
+            }
+            foreach (var entry in graph.RootElement.GetProperty("restore").EnumerateObject())
+                if (!found.ContainsKey(Path.GetFullPath(entry.Name)))
+                    throw new InvalidOperationException($"Solution restore project is missing from the graph: {entry.Name}");
+            return found;
+        }
+        finally { File.Delete(graphPath); }
     }
 
     private static IEnumerable<string> DiscoverProjectFiles(string root)
@@ -134,7 +204,7 @@ public static class DependencyScanner
             var referencedPath = Path.GetFullPath(Path.Combine(projectFolder, reference.GetString()!));
             if (!discoveredProjects.Contains(referencedPath))
                 throw new InvalidOperationException($"NuGet project reference is outside the scanned projects: " +
-                    $"{referencedPath}. Scan a directory containing both projects.");
+                    $"{referencedPath}. Restore and scan the same solution containing both projects.");
         }
     }
 

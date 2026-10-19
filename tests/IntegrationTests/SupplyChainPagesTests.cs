@@ -307,7 +307,7 @@ public class SupplyChainPagesTests : TestBase
         try
         {
             var project = Path.Combine(root, "Empty.csproj");
-            await File.WriteAllTextAsync(project, "<Project Sdk=\"Microsoft.NET.Sdk\" />");
+            await File.WriteAllTextAsync(project, "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
             await File.WriteAllTextAsync(Path.Combine(root, "obj", "project.assets.json"),
                 JsonSerializer.Serialize(new
                 {
@@ -315,6 +315,7 @@ public class SupplyChainPagesTests : TestBase
                     packageFolders = new { }, libraries = new { },
                     project = new { restore = new { projectPath = project } }
                 }));
+            var solution = await DependencyScannerTests.WriteSolutionAsync(root, project);
             var clientProject = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory,
                 "../../../../src/Aiursoft.S360.Client/Aiursoft.S360.Client.csproj"));
             var start = new ProcessStartInfo("dotnet")
@@ -326,7 +327,7 @@ public class SupplyChainPagesTests : TestBase
                      {
                          "run", "--no-build", "--no-restore", "--configuration", BuildConfiguration,
                          "--project", clientProject, "--",
-                         "check", "--path", root, "--server", $"http://localhost:{Port}", "--ecosystem", "nuget"
+                         "check", "--path", solution, "--server", $"http://localhost:{Port}", "--ecosystem", "nuget"
                      }) start.ArgumentList.Add(argument);
             if (anonymous) start.Environment.Remove("S360_CHECK_KEY");
             else start.Environment["S360_CHECK_KEY"] = checkKey;
@@ -385,7 +386,7 @@ public class SupplyChainPagesTests : TestBase
         try
         {
             var project = Path.Combine(root, "Sample.csproj");
-            await File.WriteAllTextAsync(project, "<Project Sdk=\"Microsoft.NET.Sdk\" />");
+            await File.WriteAllTextAsync(project, "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
             using var archive = new MemoryStream();
             using (var zip = new ZipArchive(archive, ZipArchiveMode.Create, leaveOpen: true))
             using (var manifest = new StreamWriter(zip.CreateEntry(packageName + ".nuspec").Open(), Encoding.UTF8))
@@ -416,6 +417,7 @@ public class SupplyChainPagesTests : TestBase
                     },
                     project = new { restore = new { projectPath = project } }
                 }));
+            var solution = await DependencyScannerTests.WriteSolutionAsync(root, project);
             var clientProject = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory,
                 "../../../../src/Aiursoft.S360.Client/Aiursoft.S360.Client.csproj"));
             var start = new ProcessStartInfo("dotnet")
@@ -426,7 +428,7 @@ public class SupplyChainPagesTests : TestBase
             foreach (var argument in new[]
                      {
                          "run", "--no-build", "--no-restore", "--configuration", BuildConfiguration,
-                         "--project", clientProject, "--", "check", "--path", root,
+                         "--project", clientProject, "--", "check", "--path", solution,
                          "--server", $"http://localhost:{Port}"
                      }) start.ArgumentList.Add(argument);
             start.Environment["S360_CHECK_KEY"] = checkKey;

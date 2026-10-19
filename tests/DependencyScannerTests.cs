@@ -11,6 +11,27 @@ namespace Aiursoft.S360.Tests;
 [TestClass]
 public class DependencyScannerTests
 {
+    internal static async Task<string> WriteSolutionAsync(string root, params string[] projects)
+    {
+        if (projects.Length == 0)
+            projects = Directory.GetFiles(root, "*.*proj", SearchOption.TopDirectoryOnly);
+        var entries = projects.Select(project => (Path: project, Id: Guid.NewGuid().ToString("B").ToUpperInvariant())).ToArray();
+        var text = new StringBuilder("Microsoft Visual Studio Solution File, Format Version 12.00\n");
+        foreach (var entry in entries)
+            text.AppendLine($"Project(\"{{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}}\") = \"{Path.GetFileNameWithoutExtension(entry.Path)}\", \"{Path.GetRelativePath(root, entry.Path)}\", \"{entry.Id}\"\nEndProject");
+        text.AppendLine("Global\nGlobalSection(SolutionConfigurationPlatforms) = preSolution\nDebug|Any CPU = Debug|Any CPU\nEndGlobalSection");
+        text.AppendLine("GlobalSection(ProjectConfigurationPlatforms) = postSolution");
+        foreach (var entry in entries)
+        {
+            text.AppendLine($"{entry.Id}.Debug|Any CPU.ActiveCfg = Debug|Any CPU");
+            text.AppendLine($"{entry.Id}.Debug|Any CPU.Build.0 = Debug|Any CPU");
+        }
+        text.AppendLine("EndGlobalSection\nEndGlobal");
+        var solution = Path.Combine(root, "App.sln");
+        await File.WriteAllTextAsync(solution, text.ToString());
+        return solution;
+    }
+
     [TestMethod]
     [DataRow("nuget")]
     [DataRow("npm")]
@@ -22,7 +43,7 @@ public class DependencyScannerTests
         {
             var project = Path.Combine(root, "Empty.csproj");
             var assets = Path.Combine(root, "obj", "project.assets.json");
-            await File.WriteAllTextAsync(project, "<Project />");
+            await File.WriteAllTextAsync(project, "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
             await File.WriteAllTextAsync(assets, JsonSerializer.Serialize(new
             {
                 targets = new Dictionary<string, object> { ["net10.0"] = new { } },
@@ -34,10 +55,12 @@ public class DependencyScannerTests
                 """{"lockfileVersion":3,"packages":{"":{}}}""");
             using var http = new HttpClient(new FixedHandler([]));
             Assert.AreEqual(2, (await DependencyScanner.ScanDetailedAsync(root, http)).ScannedProjectCount);
+            Assert.AreEqual(2, (await DependencyScanner.ScanDetailedAsync(await WriteSolutionAsync(root), http)).ScannedProjectCount);
             if (ecosystem == "nuget")
                 await File.WriteAllTextAsync(Path.Combine(root, "package.json"), "uninstalled npm project");
             else File.Delete(assets);
-            var report = await DependencyScanner.ScanDetailedAsync(root, http, ecosystem: ecosystem);
+            var path = ecosystem == "nuget" ? await WriteSolutionAsync(root) : root;
+            var report = await DependencyScanner.ScanDetailedAsync(path, http, ecosystem: ecosystem);
             Assert.AreEqual(1, report.ScannedProjectCount);
             Assert.HasCount(0, report.Dependencies);
         }
@@ -45,33 +68,64 @@ public class DependencyScannerTests
     }
 
     [TestMethod]
-    public async Task DiscoverySkipsGeneratedDirectoriesBeforeFindingProjects()
+    [DataRow(false)]
+    [DataRow(true)]
+    public async Task SolutionExcludesUnrelatedPlatformProjectsEvenWithOldAssets(bool oldAssets)
+    {
+        var root = Path.Combine(Path.GetTempPath(), "s360-solution-scope-" + Guid.NewGuid().ToString("N"));
+        var excluded = Path.Combine(root, "Android", "obj");
+        Directory.CreateDirectory(Path.Combine(root, "obj"));
+        Directory.CreateDirectory(excluded);
+        try
+        {
+            var project = Path.Combine(root, "Server.csproj");
+            await File.WriteAllTextAsync(project,
+                "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup><ItemGroup><ProjectReference Include=\"Android/App.csproj\" Condition=\"'$(TargetFramework)' == 'net10.0-android'\" /></ItemGroup></Project>");
+            // This unrelated platform project cannot even be evaluated on the server SDK.
+            await File.WriteAllTextAsync(Path.Combine(root, "Android", "App.csproj"),
+                "<Project Sdk=\"Unavailable.Android.Sdk\" />");
+            if (oldAssets) await File.WriteAllTextAsync(Path.Combine(excluded, "project.assets.json"), "stale output");
+            var assets = Path.Combine(root, "obj", "project.assets.json");
+            await File.WriteAllTextAsync(assets, JsonSerializer.Serialize(new
+            {
+                targets = new Dictionary<string, object> { ["net10.0"] = new { } },
+                packageFolders = new { }, libraries = new { },
+                project = new { restore = new { projectPath = project } }
+            }));
+            using var client = new HttpClient(new FixedHandler([]));
+            var solution = await WriteSolutionAsync(root, project);
+            var report = await DependencyScanner.ScanDetailedAsync(solution, client, ecosystem: "nuget");
+            Assert.AreEqual(1, report.ScannedProjectCount);
+            Assert.HasCount(0, report.Dependencies);
+            File.Delete(assets);
+            var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
+                DependencyScanner.ScanDetailedAsync(solution, client, ecosystem: "nuget"));
+            StringAssert.Contains(error.Message, "Missing restore output");
+            Assert.IsFalse(File.Exists(assets));
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [TestMethod]
+    public async Task NpmDiscoverySkipsGeneratedDirectoriesBeforeFindingProjects()
     {
         var root = Path.Combine(Path.GetTempPath(), "s360-pruned-discovery-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
         try
         {
-            var project = Path.Combine(root, "Sample.csproj");
-            await File.WriteAllTextAsync(project, "<Project />");
-            Directory.CreateDirectory(Path.Combine(root, "obj"));
-            await File.WriteAllTextAsync(Path.Combine(root, "obj", "project.assets.json"),
-                JsonSerializer.Serialize(new
-                {
-                    targets = new Dictionary<string, object> { ["net10.0"] = new { } },
-                    packageFolders = new { }, libraries = new { },
-                    project = new { restore = new { projectPath = project } }
-                }));
-            foreach (var ignored in new[] { "node_modules", "bin", "obj", ".git", "TestResults" })
+            await File.WriteAllTextAsync(Path.Combine(root, "package.json"), "{}");
+            await File.WriteAllTextAsync(Path.Combine(root, "package-lock.json"),
+                """{"lockfileVersion":3,"packages":{"":{}}}""");
+            foreach (var ignored in new[] { "bin", "obj", ".git", "TestResults" })
             {
                 var child = Path.Combine(root, ignored, "nested");
                 Directory.CreateDirectory(child);
                 await File.WriteAllTextAsync(Path.Combine(child, "package.json"), "not valid JSON");
-                await File.WriteAllTextAsync(Path.Combine(child, "Fake.csproj"), "<Project />");
             }
             using var client = new HttpClient(new FixedHandler([]));
-            var report = await DependencyScanner.ScanDetailedAsync(root, client);
+            var report = await DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm");
             Assert.AreEqual(1, report.ScannedProjectCount);
-            Assert.AreEqual(0, report.Dependencies.Count);
+            Assert.HasCount(0, report.Dependencies);
         }
         finally { Directory.Delete(root, true); }
     }
@@ -91,7 +145,7 @@ public class DependencyScannerTests
             Directory.CreateSymbolicLink(link, external);
             using var client = new HttpClient(new FixedHandler([]));
             var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ScanDetailedAsync(root, client));
+                DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm"));
             StringAssert.Contains(error.Message, "Directory links cannot be scanned completely");
         }
         finally
@@ -110,7 +164,7 @@ public class DependencyScannerTests
         Directory.CreateDirectory(Path.Combine(root, "obj"));
         try
         {
-            await File.WriteAllTextAsync(Path.Combine(root, "Sample" + extension), "<Project />");
+            await File.WriteAllTextAsync(Path.Combine(root, "Sample" + extension), "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
             await File.WriteAllTextAsync(Path.Combine(root, "obj", "project.assets.json"),
                 JsonSerializer.Serialize(new
                 {
@@ -119,7 +173,7 @@ public class DependencyScannerTests
                     project = new { restore = new { projectPath = Path.Combine(root, "Sample" + extension) } }
                 }));
             using var client = new HttpClient(new FixedHandler([]));
-            var report = await DependencyScanner.ScanDetailedAsync(root, client);
+            var report = await DependencyScanner.ScanDetailedAsync(await WriteSolutionAsync(root), client, ecosystem: "nuget");
             Assert.AreEqual(0, report.Dependencies.Count);
             Assert.AreEqual(1, report.ScannedProjectCount);
         }
@@ -127,7 +181,7 @@ public class DependencyScannerTests
     }
 
     [TestMethod]
-    public async Task NuGetProjectReferenceInsideScanRootIsIncluded()
+    public async Task NuGetProjectReferenceNotListedInSolutionIsIncluded()
     {
         var root = Path.Combine(Path.GetTempPath(), "s360-project-refs-" + Guid.NewGuid().ToString("N"));
         var main = Path.Combine(root, "Main");
@@ -138,8 +192,8 @@ public class DependencyScannerTests
         {
             var mainProject = Path.Combine(main, "Main.csproj");
             var libraryProject = Path.Combine(library, "Lib.csproj");
-            await File.WriteAllTextAsync(mainProject, "<Project />");
-            await File.WriteAllTextAsync(libraryProject, "<Project />");
+            await File.WriteAllTextAsync(mainProject, "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup><ItemGroup><ProjectReference Include=\"../Lib/Lib.csproj\" /></ItemGroup></Project>");
+            await File.WriteAllTextAsync(libraryProject, "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
             await File.WriteAllTextAsync(Path.Combine(main, "obj", "project.assets.json"),
                 JsonSerializer.Serialize(new
                 {
@@ -159,14 +213,18 @@ public class DependencyScannerTests
                     project = new { restore = new { projectPath = libraryProject } }
                 }));
             using var client = new HttpClient(new FixedHandler([]));
-            var report = await DependencyScanner.ScanDetailedAsync(root, client);
+            var report = await DependencyScanner.ScanDetailedAsync(await WriteSolutionAsync(root, mainProject), client, ecosystem: "nuget");
             Assert.AreEqual(2, report.ScannedProjectCount);
+            File.Delete(Path.Combine(library, "obj", "project.assets.json"));
+            var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(async () =>
+                await DependencyScanner.ScanDetailedAsync(await WriteSolutionAsync(root, mainProject), client, ecosystem: "nuget"));
+            StringAssert.Contains(error.Message, "Missing restore output");
         }
         finally { Directory.Delete(root, true); }
     }
 
     [TestMethod]
-    public async Task NuGetProjectReferenceOutsideScanRootFailsClosed()
+    public async Task NuGetAssetReferenceOutsideEvaluatedGraphFailsClosed()
     {
         var parent = Path.Combine(Path.GetTempPath(), "s360-external-project-" + Guid.NewGuid().ToString("N"));
         var main = Path.Combine(parent, "Main");
@@ -176,8 +234,8 @@ public class DependencyScannerTests
         try
         {
             var mainProject = Path.Combine(main, "Main.csproj");
-            await File.WriteAllTextAsync(mainProject, "<Project />");
-            await File.WriteAllTextAsync(Path.Combine(library, "Lib.csproj"), "<Project />");
+            await File.WriteAllTextAsync(mainProject, "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
+            await File.WriteAllTextAsync(Path.Combine(library, "Lib.csproj"), "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
             await File.WriteAllTextAsync(Path.Combine(main, "obj", "project.assets.json"),
                 JsonSerializer.Serialize(new
                 {
@@ -190,8 +248,8 @@ public class DependencyScannerTests
                     project = new { restore = new { projectPath = mainProject } }
                 }));
             using var client = new HttpClient(new FixedHandler([]));
-            var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ScanDetailedAsync(main, client));
+            var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(async () =>
+                await DependencyScanner.ScanDetailedAsync(await WriteSolutionAsync(main), client, ecosystem: "nuget"));
             StringAssert.Contains(error.Message, "outside the scanned projects");
         }
         finally { Directory.Delete(parent, true); }
@@ -204,11 +262,11 @@ public class DependencyScannerTests
         Directory.CreateDirectory(root);
         try
         {
-            await File.WriteAllTextAsync(Path.Combine(root, "Sample.csproj"), "<Project />");
+            await File.WriteAllTextAsync(Path.Combine(root, "Sample.csproj"), "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
             await File.WriteAllTextAsync(Path.Combine(root, "packages.config"), "<packages />");
             using var client = new HttpClient(new FixedHandler([]));
-            await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ScanDetailedAsync(root, client));
+            await Assert.ThrowsExactlyAsync<InvalidOperationException>(async () =>
+                await DependencyScanner.ScanDetailedAsync(await WriteSolutionAsync(root), client, ecosystem: "nuget"));
         }
         finally { Directory.Delete(root, true); }
     }
@@ -220,12 +278,12 @@ public class DependencyScannerTests
         Directory.CreateDirectory(Path.Combine(root, "obj"));
         try
         {
-            await File.WriteAllTextAsync(Path.Combine(root, "Current.csproj"), "<Project />");
+            await File.WriteAllTextAsync(Path.Combine(root, "Current.csproj"), "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
             await File.WriteAllTextAsync(Path.Combine(root, "obj", "project.assets.json"),
                 JsonSerializer.Serialize(new { project = new { restore = new { projectPath = Path.Combine(root, "Other.csproj") } } }));
             using var client = new HttpClient(new FixedHandler([]));
-            await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ScanDetailedAsync(root, client));
+            await Assert.ThrowsExactlyAsync<InvalidOperationException>(async () =>
+                await DependencyScanner.ScanDetailedAsync(await WriteSolutionAsync(root), client, ecosystem: "nuget"));
         }
         finally { Directory.Delete(root, true); }
     }
@@ -316,7 +374,7 @@ public class DependencyScannerTests
                 """{"lockfileVersion":3,"packages":{"":{}}}""");
             using var client = new HttpClient(new FixedHandler([]));
             await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ScanDetailedAsync(root, client));
+                DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm"));
         }
         finally { Directory.Delete(root, true); }
     }
@@ -335,7 +393,7 @@ public class DependencyScannerTests
             await File.WriteAllTextAsync(Path.Combine(root, "npm-shrinkwrap.json"),
                 """{"lockfileVersion":3,"packages":{"":{}}}""");
             using var client = new HttpClient(new FixedHandler([]));
-            var report = await DependencyScanner.ScanDetailedAsync(root, client);
+            var report = await DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm");
             Assert.AreEqual(0, report.Dependencies.Count);
             Assert.AreEqual(1, report.ScannedProjectCount);
         }
@@ -356,7 +414,7 @@ public class DependencyScannerTests
                 """{"name":"unreviewed","version":"1.0.0"}""");
             using var client = new HttpClient(new FixedHandler([]));
             await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ScanDetailedAsync(root, client));
+                DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm"));
         }
         finally { Directory.Delete(root, true); }
     }
@@ -445,7 +503,7 @@ public class DependencyScannerTests
                 """{"name":"unreviewed","version":"1.0.0"}""");
             using var client = new HttpClient(new FixedHandler([]));
             await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ScanDetailedAsync(root, client));
+                DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm"));
         }
         finally { Directory.Delete(root, true); }
     }
@@ -479,7 +537,7 @@ public class DependencyScannerTests
             };
             await File.WriteAllTextAsync(Path.Combine(root, "package-lock.json"), JsonSerializer.Serialize(lockJson));
             using var client = new HttpClient(new FixedHandler(bytes));
-            var report = await DependencyScanner.ScanDetailedAsync(root, client);
+            var report = await DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm");
             Assert.AreEqual(1, report.Dependencies.Count);
             Assert.AreEqual("@example/package", report.Dependencies[0].Name);
         }

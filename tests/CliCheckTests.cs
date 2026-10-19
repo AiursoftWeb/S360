@@ -39,14 +39,18 @@ public class CliCheckTests
     }
 
     [TestMethod]
-    public async Task DependencyFreeProjectStillFailsWhenS360IsUnavailable()
+    [DataRow("nuget", true)]
+    [DataRow("all", true)]
+    [DataRow("nuget", false)]
+    [DataRow("all", false)]
+    public async Task CliRequiresSolutionAndStillFailsWhenS360IsUnavailable(string ecosystem, bool explicitSolution)
     {
         var root = Path.Combine(Path.GetTempPath(), "s360-empty-cli-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(Path.Combine(root, "obj"));
         try
         {
             var project = Path.Combine(root, "Empty.csproj");
-            await File.WriteAllTextAsync(project, "<Project Sdk=\"Microsoft.NET.Sdk\" />");
+            await File.WriteAllTextAsync(project, "<Project Sdk=\"Microsoft.NET.Sdk\"><PropertyGroup><TargetFramework>net10.0</TargetFramework></PropertyGroup></Project>");
             await File.WriteAllTextAsync(Path.Combine(root, "obj", "project.assets.json"),
                 JsonSerializer.Serialize(new
                 {
@@ -54,6 +58,7 @@ public class CliCheckTests
                     packageFolders = new { }, libraries = new { },
                     project = new { restore = new { projectPath = project } }
                 }));
+            var solution = await DependencyScannerTests.WriteSolutionAsync(root, project);
             var clientProject = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory,
                 "../../../../src/Aiursoft.S360.Client/Aiursoft.S360.Client.csproj"));
             var start = new ProcessStartInfo("dotnet")
@@ -65,7 +70,7 @@ public class CliCheckTests
                      {
                          "run", "--no-build", "--no-restore", "--configuration", BuildConfiguration,
                          "--project", clientProject, "--",
-                         "check", "--path", root, "--server", "http://127.0.0.1:1"
+                         "check", "--ecosystem", ecosystem, "--path", explicitSolution ? solution : root, "--server", "http://127.0.0.1:1"
                      }) start.ArgumentList.Add(argument);
             start.Environment["S360_CHECK_KEY"] = "test-only-check-key";
             using var process = Process.Start(start) ?? throw new InvalidOperationException("Could not start the CLI.");
@@ -80,7 +85,7 @@ public class CliCheckTests
             }
             var output = await outputTask + await errorTask;
             Assert.AreNotEqual(0, process.ExitCode);
-            StringAssert.Contains(output, "127.0.0.1");
+            StringAssert.Contains(output, explicitSolution ? "127.0.0.1" : "explicit .sln file");
             Assert.DoesNotContain("NuGet restore libraries are missing", output);
             Assert.DoesNotContain("S360 approved", output);
         }

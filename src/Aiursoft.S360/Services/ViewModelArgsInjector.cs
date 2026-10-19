@@ -107,6 +107,7 @@ public class ViewModelArgsInjector(
 
         _ = localizer["Company overview"];
         _ = localizer["Compliance explorer"];
+        _ = localizer["Existing rule set"];
     }
 
     public void InjectSimple(

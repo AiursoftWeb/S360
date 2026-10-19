@@ -3073,6 +3073,25 @@ public class SupplyChainPagesTests : TestBase
         }
         using (var incomplete = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
             StringAssert.Contains(await incomplete.Content.ReadAsStringAsync(), $"checkId={affectedBaseline}");
+        // A full batch count with mixed graph availability is still incomplete.
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var runId = Guid.NewGuid().ToString("N");
+            for (var index = 0; index < 2; index++)
+                db.BuildChecks.Add(new BuildCheck
+                {
+                    Project = project, RunId = runId, BatchIndex = index, BatchCount = 2,
+                    ScannedProjectCount = 1, CreatedAtUtc = now.AddSeconds(3),
+                    ContextJson = JsonSerializer.Serialize(baseline), GraphJson = index == 0 ? null : "[]"
+                });
+            await db.SaveChangesAsync();
+        }
+        using (var mixedGraphs = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        {
+            mixedGraphs.EnsureSuccessStatusCode();
+            StringAssert.Contains(await mixedGraphs.Content.ReadAsStringAsync(), $"checkId={affectedBaseline}");
+        }
         // A complete dependency-free production report clears the old inventory.
         using (var scope = Server!.Services.CreateScope())
         {

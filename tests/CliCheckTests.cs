@@ -69,7 +69,7 @@ public class CliCheckTests
             var trusted = pending && Calls > 1;
             return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK)
             {
-                Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new CheckResponse { Code = Code.ResultShown, Trusted = trusted,
+                Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new CheckResponse { Code = Code.ResultShown, Message = "Dependency review completed.", Trusted = trusted,
                     Decisions = [new DependencyDecision { Dependency = dependency, Trusted = trusted,
                         PendingVerification = pending && !trusted,
                         Reason = trusted ? "Approved" : pending ? "Audit pending" : "No approved trust rule." }] },

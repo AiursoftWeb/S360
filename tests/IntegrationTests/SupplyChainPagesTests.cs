@@ -453,6 +453,11 @@ public class SupplyChainPagesTests : TestBase
             StringAssert.Contains(output, packageName + "@" + version);
             StringAssert.Contains(output, source);
             StringAssert.Contains(output, "Package source is not permitted");
+            StringAssert.Contains(output, $"S360 BLOCKED ({purpose}): 1 package artifact(s)");
+            StringAssert.Contains(output, "Project: Sample.csproj");
+            StringAssert.Contains(output, "policy/source/hash rejection");
+            Assert.DoesNotContain("Unhandled exception", output);
+            Assert.DoesNotContain("InvalidOperationException", output);
             Assert.DoesNotContain("S360 approved", output);
             using var scope = Server!.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();

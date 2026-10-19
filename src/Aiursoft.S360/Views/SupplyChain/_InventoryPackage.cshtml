@@ -7,17 +7,29 @@
 @{
     var canManage = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageTrustRules)).Succeeded;
     var inventoryScope = ViewData["InventoryScope"] as string ?? "baseline";
+    var projects = Model.Projects;
     var reasons = Model.Versions.SelectMany(v => v.Rules).Select(r => r.Justification).Where(r => !string.IsNullOrWhiteSpace(r)).Distinct().ToList();
     var purposes = Model.Versions.SelectMany(v => v.Requests).Where(r => !string.IsNullOrWhiteSpace(r.Justification)).DistinctBy(r => r.Id).ToList();
 }
 <details class="s360-inventory-package" open="@(Model.Name.Equals(ViewData["InventoryQuery"] as string, StringComparison.OrdinalIgnoreCase))">
     <summary class="s360-inventory-package-summary">
         <span class="s360-inventory-package-name"><strong>@Model.Name</strong><small>@(Model.Ecosystem == "nuget" ? "NuGet" : "npm") · @string.Join(", ", Model.Versions.Select(v => v.Dependency.Version).Distinct())</small><span class="s360-inventory-purpose-preview">@(purposes.FirstOrDefault()?.Justification ?? reasons.FirstOrDefault() ?? @Localizer["No purpose or approval reason recorded"].Value)</span></span>
-        <span class="s360-inventory-project-preview"><span>@string.Format(@Localizer["{0} projects"].Value, Model.Projects.Count)</span><small>@string.Join(", ", Model.Projects.Take(2))@(Model.Projects.Count > 2 ? " …" : "")</small></span>
+        <span class="s360-inventory-project-preview"><span class="s360-inventory-project-action">@string.Format(@Localizer["View all {0} projects"].Value, projects.Count)</span><small>@string.Join(", ", projects.Take(2))@(projects.Count > 2 ? " …" : "")</small></span>
         @await Html.PartialAsync("_InventoryStatus", Model.Status)
         <i class="s360-inventory-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
     </summary>
     <div class="s360-inventory-package-body">
+        <section class="s360-inventory-projects mb-4">
+            <h3>@string.Format(@Localizer["Projects using this package ({0})"].Value, projects.Count)</h3>
+            <ul class="s360-inventory-uses">
+                @foreach (var project in projects)
+                {
+                    <li><a asp-action="Index" asp-route-tab="projects" asp-route-scope="@inventoryScope" asp-route-project="@project" asp-route-ecosystem="@Model.Ecosystem">@project</a>
+                        <small>@Localizer["Versions"]: @string.Join(", ", Model.Versions.Where(v => v.Uses.Any(u => u.Project == project)).Select(v => v.Dependency.Version).Distinct())</small>
+                    </li>
+                }
+            </ul>
+        </section>
         <div class="s360-inventory-explanation">
             <div><h3>@Localizer["Why is it needed?"]</h3>
                 @if (purposes.Count == 0) { <p class="text-muted">@Localizer["No project purpose recorded. An approval reason does not explain every project's use."]</p> }

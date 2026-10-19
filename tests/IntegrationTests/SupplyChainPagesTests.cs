@@ -3285,6 +3285,152 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
+    public async Task AuditOverviewDeduplicatesAcrossAllPagesAndCountsOnlyBaselineProjects()
+    {
+        await LoginAsAdmin();
+        async Task<Dictionary<string, int>> Counts(string ecosystem)
+        {
+            using var response = await Http.GetAsync($"/VulnerabilityAudit/Index?ecosystem={ecosystem}");
+            response.EnsureSuccessStatusCode();
+            var html = await response.Content.ReadAsStringAsync();
+            return System.Text.RegularExpressions.Regex.Matches(html, """data-audit-count="([^"]+)">([0-9]+)</strong>""")
+                .ToDictionary(m => m.Groups[1].Value, m => int.Parse(m.Groups[2].Value));
+        }
+        var before = await Counts("nuget");
+        var npmBefore = await Counts("npm");
+        int ruleId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var supplier = new Supplier { Name = "Overview supplier" };
+            var artifact = new PackageArtifact
+            {
+                Ecosystem = "nuget", Name = "Example.Overview", Version = "1.0.0",
+                Source = "https://nuget.aiursoft.com/v3/index.json", Sha256 = new string('a', 64)
+            };
+            var rules = new[] { "1.*", "1.0.*" }.Select(version => new TrustRule
+            {
+                ApplicationId = null, SupplierId = 0, Supplier = supplier, Ecosystem = "nuget",
+                PackagePattern = artifact.Name, Version = version, Source = artifact.Source,
+                Status = TrustRuleStatus.Approved
+            }).ToList();
+            db.TrustRules.AddRange(rules);
+            for (var i = 0; i < 102; i++)
+                db.Vulnerabilities.Add(new Vulnerability
+                {
+                    Ecosystem = "nuget", PackageName = i == 101 ? "example.overview" : artifact.Name,
+                    SourceId = $"GHSA-overview-{i}", Aliases = i == 101 ? "[\"GHSA-overview-0\"]" : "[]",
+                    RawAffectedJson = """
+                        [{"package":{"ecosystem":"NuGet","name":"Example.Overview"},"versions":["1.0.0"]}]
+                        """,
+                    Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = 0, PackageArtifact = artifact }]
+                });
+            foreach (var project in new[] { "company/one", "company/two", "company/review-only" })
+                db.BuildChecks.Add(new BuildCheck
+                {
+                    Project = project, RunId = Guid.NewGuid().ToString("N"), BatchCount = 1, ScannedProjectCount = 1,
+                    ContextJson = JsonSerializer.Serialize(new CheckContext
+                    {
+                        Purpose = project.EndsWith("review-only", StringComparison.Ordinal) ? "review" : "baseline",
+                        Ecosystem = "nuget"
+                    }),
+                    Dependencies = [new BuildCheckDependency
+                    {
+                        BuildCheckId = 0, PackageArtifactId = 0, PackageArtifact = artifact,
+                        Ecosystem = "nuget", Name = artifact.Name, Version = artifact.Version,
+                        Source = artifact.Source, Sha256 = artifact.Sha256
+                    }]
+                });
+            await db.SaveChangesAsync();
+            ruleId = rules[0].Id;
+        }
+        foreach (var page in new[] { 1, 2 })
+        {
+            using var response = await Http.GetAsync($"/VulnerabilityAudit/Index?ecosystem=nuget&page={page}");
+            response.EnsureSuccessStatusCode();
+            var html = await response.Content.ReadAsStringAsync();
+            StringAssert.Contains(html, $"data-audit-count=\"advisories\">{before["advisories"] + 101}</strong>");
+            StringAssert.Contains(html, $"data-audit-count=\"packages\">{before["packages"] + 1}</strong>");
+            StringAssert.Contains(html, $"data-audit-count=\"projects\">{before["projects"] + 2}</strong>");
+            StringAssert.Contains(html, $"data-audit-count=\"rules\">{before["rules"] + 2}</strong>");
+            StringAssert.Contains(html, $"/SupplyChain/RuleDetails/{ruleId}");
+            Assert.DoesNotContain("company/review-only", html);
+        }
+        var npmAfter = await Counts("npm");
+        foreach (var count in npmBefore) Assert.AreEqual(count.Value, npmAfter[count.Key]);
+    }
+
+    [TestMethod]
+    public async Task ImportedRuleDetailsShowHistoryExclusionsAndInactiveStatusWithoutWritingPolicy()
+    {
+        await LoginAsAdmin();
+        int ruleId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var rule = new TrustRule
+            {
+                ApplicationId = null, SupplierId = 0, Supplier = new Supplier { Name = "Imported vendor" },
+                Ecosystem = "nuget", PackagePattern = "Example.Details", Version = "1.*",
+                Source = "https://nuget.aiursoft.com/v3/index.json", Justification = "Needed for document export",
+                Status = TrustRuleStatus.Revoked, ExpiresAtUtc = DateTime.UtcNow.AddDays(-1),
+                Reviews = [new TrustRuleReview { TrustRuleId = 0, Decision = TrustRuleStatus.Revoked,
+                    ReviewerId = "reviewer", Reason = "Replaced by maintained package" }]
+            };
+            var advisory = new Vulnerability
+            {
+                Ecosystem = "nuget", PackageName = rule.PackagePattern, SourceId = "GHSA-rule-details",
+                RawAffectedJson = """
+                    [{"package":{"ecosystem":"NuGet","name":"Example.Details"},"versions":["1.0.0"]}]
+                    """
+            };
+            db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+            {
+                TrustRuleId = 0, TrustRule = rule, VulnerabilityId = 0, Vulnerability = advisory,
+                Reason = "Exclude vulnerable old releases"
+            });
+            await db.SaveChangesAsync();
+            ruleId = rule.Id;
+        }
+        await Http.GetAsync("/Account/LogOff");
+        var account = await RegisterAndLoginAsync();
+        using (var denied = await Http.GetAsync($"/SupplyChain/RuleDetails/{ruleId}"))
+            AssertRedirect(denied, "/Error/Code403", exact: false);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var user = await db.Users.SingleAsync(u => u.Email == account.email);
+            db.UserClaims.Add(new Microsoft.AspNetCore.Identity.IdentityUserClaim<string>
+            {
+                UserId = user.Id, ClaimType = Authorization.AppPermissions.Type,
+                ClaimValue = Authorization.AppPermissionNames.CanReadSupplyChain
+            });
+            await db.SaveChangesAsync();
+        }
+        await Http.GetAsync("/Account/LogOff");
+        await PostForm("/Account/Login", new Dictionary<string, string>
+            { ["EmailOrUserName"] = account.email, ["Password"] = account.password });
+        using var response = await Http.GetAsync($"/SupplyChain/RuleDetails/{ruleId}");
+        response.EnsureSuccessStatusCode();
+        var html = await response.Content.ReadAsStringAsync();
+        StringAssert.Contains(html, "Needed for document export");
+        StringAssert.Contains(html, "Replaced by maintained package");
+        StringAssert.Contains(html, "Exclude vulnerable old releases");
+        StringAssert.Contains(html, "GHSA-rule-details");
+        StringAssert.Contains(html, "Expired");
+        StringAssert.Contains(html, "Revoked");
+        Assert.DoesNotContain("/SupplyChain/RevokeRule", html);
+        Assert.DoesNotContain("/VulnerabilityAudit/ExcludeAffectedVersions", html);
+        using var missing = await Http.GetAsync("/SupplyChain/RuleDetails/2147483647");
+        Assert.AreEqual(HttpStatusCode.NotFound, missing.StatusCode);
+        using var verifyScope = Server!.Services.CreateScope();
+        var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+        Assert.AreEqual(TrustRuleStatus.Revoked, (await verifyDb.TrustRules.FindAsync(ruleId))!.Status);
+        Assert.AreEqual(1, await verifyDb.TrustRuleReviews.CountAsync(r => r.TrustRuleId == ruleId));
+        Assert.AreEqual(1, await verifyDb.TrustRuleVulnerabilityExclusions.CountAsync(e => e.TrustRuleId == ruleId));
+    }
+
+    [TestMethod]
     public async Task QuickAuditWarnsAboutUndownloadedVulnerableWildcardVersionUntilExcluded()
     {
         var packageName = "Example." + Guid.NewGuid().ToString("N");

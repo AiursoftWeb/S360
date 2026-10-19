@@ -33,6 +33,30 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         LinkText = "Existing rule set", LinkOrder = 0)]
     public IActionResult Rules() => RedirectToAction(nameof(Index), new { tab = "rules" });
 
+    [Authorize(Policy = AppPermissionNames.CanReadSupplyChain)]
+    public async Task<IActionResult> RuleDetails(int id)
+        => await VulnerabilityAuditSnapshot.ExecuteAsync<IActionResult>(db, async () =>
+        {
+            var rule = await db.TrustRules.AsNoTracking().Include(r => r.Supplier)
+                .Include(r => r.Reviews).AsSplitQuery().SingleOrDefaultAsync(r => r.Id == id);
+            if (rule == null) return NotFound();
+            var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
+                .Where(e => e.TrustRuleId == id).Include(e => e.Vulnerability)
+                .OrderByDescending(e => e.CreatedAtUtc).ToListAsync();
+            // Only advisory ranges are needed, never build graphs or artifact matches.
+            var advisories = await db.Vulnerabilities.AsNoTracking()
+                .Where(v => v.Ecosystem == rule.Ecosystem && !v.Withdrawn).ToListAsync();
+            var ranges = advisories.Where(v => TrustPattern.Matches(rule.PackagePattern, v.PackageName, rule.Ecosystem))
+                .Select(v => new RuleAdvisoryRange(v, OsvRangeMatcher.Intersects(v.RawAffectedJson,
+                    rule.Ecosystem, v.PackageName, rule.Version, rule.IncludePrerelease)))
+                .Where(r => r.Intersection != RangeRisk.NotAffected)
+                .OrderBy(r => r.Advisory.PackageName).ThenBy(r => r.Advisory.SourceId).ToList();
+            return this.StackView(new RuleDetailsViewModel
+            {
+                Rule = rule, Exclusions = exclusions, AdvisoryRanges = ranges
+            });
+        });
+
     private async Task<IActionResult> IndexSnapshotAsync(string ecosystem, string? query, int? supplierId,
         string? lookupName, string? lookupVersion, string? lookupSource, string tab, string scope,
         string filter, string? project, int page)

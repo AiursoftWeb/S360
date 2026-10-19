@@ -1,0 +1,93 @@
+@using Aiursoft.WebTools
+@using Aiursoft.S360.Entities
+@using Aiursoft.S360.Services.Vulnerability
+@model Aiursoft.S360.Models.SupplyChainViewModels.RuleDetailsViewModel
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
+@{
+    var rule = Model.Rule;
+    var expired = rule.ExpiresAtUtc <= DateTime.UtcNow;
+}
+<div class="s360-workspace">
+    <p><a asp-action="Index" asp-route-tab="rules" asp-route-ecosystem="@rule.Ecosystem">← @Localizer["Back to existing rule set"]</a></p>
+    <div class="s360-workspace-head">
+        <h1>@Localizer["Trust rule details"] #@rule.Id</h1>
+        <p class="text-break">@rule.PackagePattern @rule.Version</p>
+        <p class="text-muted">@Localizer["A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free."]</p>
+    </div>
+    <div class="card mb-4"><div class="card-body">
+        <h2 class="h5">@Localizer["Authorization"]</h2>
+        <dl class="row mb-0">
+            <dt class="col-sm-3">@Localizer["Status"]</dt><dd class="col-sm-9">
+                @switch (rule.Status)
+                {
+                    case TrustRuleStatus.Approved: <span>@Localizer["Approved"]</span> break;
+                    case TrustRuleStatus.Pending: <span>@Localizer["Pending"]</span> break;
+                    case TrustRuleStatus.Rejected: <span>@Localizer["Rejected"]</span> break;
+                    case TrustRuleStatus.Revoked: <span>@Localizer["Revoked"]</span> break;
+                }
+                @if (expired) { <span class="badge bg-secondary ms-2">@Localizer["Expired"]</span> }
+            </dd>
+            <dt class="col-sm-3">@Localizer["Ecosystem"]</dt><dd class="col-sm-9">@rule.Ecosystem</dd>
+            <dt class="col-sm-3">@Localizer["Package pattern"]</dt><dd class="col-sm-9 text-break"><code>@rule.PackagePattern</code></dd>
+            <dt class="col-sm-3">@Localizer["Version pattern"]</dt><dd class="col-sm-9"><code>@rule.Version</code></dd>
+            <dt class="col-sm-3">@Localizer["Source"]</dt><dd class="col-sm-9 text-break">@rule.Source</dd>
+            <dt class="col-sm-3">@Localizer["Supplier"]</dt><dd class="col-sm-9">@rule.Supplier.Name</dd>
+            <dt class="col-sm-3">@Localizer["Prerelease versions"]</dt><dd class="col-sm-9">@(rule.IncludePrerelease ? @Localizer["Included"] : @Localizer["Excluded"])</dd>
+            <dt class="col-sm-3">@Localizer["SHA-256"]</dt><dd class="col-sm-9 text-break">@(rule.Sha256 ?? @Localizer["Not pinned"].Value)</dd>
+            <dt class="col-sm-3">@Localizer["Expires"]</dt><dd class="col-sm-9">
+                @if (rule.ExpiresAtUtc is { } expiry) { <span data-utc-time="@expiry.ToHtmlDateTime()"></span> }
+                else { @Localizer["No expiry"] }
+            </dd>
+            <dt class="col-sm-3">@Localizer["Reason"]</dt><dd class="col-sm-9 text-break">@rule.Justification</dd>
+            <dt class="col-sm-3">@Localizer["Requested at"]</dt><dd class="col-sm-9"><span data-utc-time="@rule.RequestedAtUtc.ToHtmlDateTime()"></span></dd>
+        </dl>
+    </div></div>
+    <div class="card mb-4"><div class="card-body">
+        <h2 class="h5">@Localizer["Related advisory ranges"] (@Model.AdvisoryRanges.Count)</h2>
+        <p class="small text-muted">@Localizer["These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page."]</p>
+        <p><a asp-controller="VulnerabilityAudit" asp-action="Index" asp-route-ecosystem="@rule.Ecosystem">@Localizer["View current vulnerability audit"]</a></p>
+        @if (Model.AdvisoryRanges.Count == 0) { <p class="text-muted">@Localizer["No related ranges in stored active advisories. This is not proof that the entire rule is safe."]</p> }
+        @foreach (var range in Model.AdvisoryRanges)
+        {
+            <div class="border-top py-3">
+                <strong>@range.Advisory.PackageName</strong> · <a href="@range.Advisory.Url" target="_blank" rel="noopener noreferrer">@range.Advisory.SourceId</a>
+                <span class="badge bg-secondary ms-2">@(range.Intersection == RangeRisk.Affected ? @Localizer["Range overlaps pattern"] : @Localizer["Range could not be evaluated"])</span>
+                <p class="small mb-0 mt-1">@range.Advisory.Summary</p>
+            </div>
+        }
+    </div></div>
+    <div class="card mb-4"><div class="card-body">
+        <h2 class="h5">@Localizer["Vulnerability exclusions"] (@Model.Exclusions.Count)</h2>
+        <p class="small text-muted">@Localizer["Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline."]</p>
+        @if (Model.Exclusions.Count == 0) { <p class="text-muted">@Localizer["No exclusions recorded."]</p> }
+        @foreach (var exclusion in Model.Exclusions)
+        {
+            <div class="border-top py-3">
+                <strong>@exclusion.Vulnerability.PackageName</strong> · <a href="@exclusion.Vulnerability.Url" target="_blank" rel="noopener noreferrer">@exclusion.Vulnerability.SourceId</a>
+                @if (exclusion.Vulnerability.Withdrawn) { <span class="badge bg-secondary">@Localizer["Withdrawn"]</span> }
+                <p class="mb-1 text-break">@exclusion.Reason</p>
+                <small class="text-muted"><span data-utc-time="@exclusion.CreatedAtUtc.ToHtmlDateTime()"></span></small>
+            </div>
+        }
+    </div></div>
+    <div class="card"><div class="card-body">
+        <h2 class="h5">@Localizer["Review history"]</h2>
+        @if (!rule.Reviews.Any()) { <p class="text-muted">@Localizer["No review records. This rule may have been imported directly."]</p> }
+        @foreach (var review in rule.Reviews.OrderByDescending(r => r.ReviewedAtUtc))
+        {
+            <div class="border-top py-3">
+                <strong>@switch (review.Decision)
+                {
+                    case TrustRuleStatus.Approved: <span>@Localizer["Approved"]</span> break;
+                    case TrustRuleStatus.Pending: <span>@Localizer["Pending"]</span> break;
+                    case TrustRuleStatus.Rejected: <span>@Localizer["Rejected"]</span> break;
+                    case TrustRuleStatus.Revoked: <span>@Localizer["Revoked"]</span> break;
+                }</strong>
+                <small class="text-muted ms-2"><span data-utc-time="@review.ReviewedAtUtc.ToHtmlDateTime()"></span></small>
+                <p class="mb-1 text-break">@review.Reason</p>
+                <small class="text-muted">@Localizer["Reviewer"]: @review.ReviewerId</small>
+            </div>
+        }
+    </div></div>
+</div>

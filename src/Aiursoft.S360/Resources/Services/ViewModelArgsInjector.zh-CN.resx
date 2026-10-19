@@ -219,6 +219,9 @@
   <data name="Template" xml:space="preserve">
     <value>模板</value>
   </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>信任规则详情</value>
+  </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>未授权</value>
   </data>

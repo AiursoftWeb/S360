@@ -112,7 +112,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
     </tr></thead><tbody>
     @foreach (var rule in Model.Rules)
     {
-        <tr><td class="s360-catalog-supplier">@rule.Supplier.Name</td><td class="s360-catalog-package"><code>@rule.PackagePattern</code>
+        <tr><td class="s360-catalog-supplier">@rule.Supplier.Name</td><td class="s360-catalog-package"><a asp-action="RuleDetails" asp-route-id="@rule.Id">#@rule.Id · <code>@rule.PackagePattern</code></a>
                 @if (Model.BlockedRuleReasons.TryGetValue(rule.Id, out var blockedReason))
                 {
                     <span class="badge bg-danger" title="@blockedReason">@Localizer["Overridden by blocklist"]</span>

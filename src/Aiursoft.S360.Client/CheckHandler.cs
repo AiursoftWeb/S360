@@ -203,7 +203,7 @@ public class CheckHandler : CommandHandlerBuilder
                 output.WriteLine("  Introduced by: unavailable in the restored dependency graph.");
             foreach (var path in paths)
             {
-                var steps = path.Split(" → ", StringSplitOptions.None);
+                var steps = path.Split(" → ");
                 output.WriteLine($"  Project: {steps[0]}");
                 foreach (var step in steps.Skip(1)) output.WriteLine($"    -> {step}");
             }

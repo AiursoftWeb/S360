@@ -59,6 +59,78 @@ public class CliCheckTests
         Assert.AreEqual(1, handler.Calls);
     }
 
+    [TestMethod]
+    public void DenialsShowExactDependencyChainsAndApprovalEntryWithoutTreatingPendingAsUnapproved()
+    {
+        var missing = new Dependency { Ecosystem = "nuget", Name = "Microsoft.Bcl.AsyncInterfaces", Version = "9.0.4",
+            Source = "https://nuget.example.test/v3/index.json", Sha256 = new string('a', 64) };
+        var pending = new Dependency { Ecosystem = "nuget", Name = "Aiursoft.WebTools", Version = "10.0.19",
+            Source = missing.Source, Sha256 = new string('b', 64) };
+        var scan = new ScanReport([missing, pending], [], 2);
+        scan.IntroductionPaths[DependencyIntroductionPaths.Identity(missing)] =
+        [
+            "src/App.csproj → Microsoft.ML@5.0.1 → Microsoft.Bcl.AsyncInterfaces@9.0.4",
+            "tests/App.Tests.csproj → App (project reference) → Microsoft.ML@5.0.1 → Microsoft.Bcl.AsyncInterfaces@9.0.4"
+        ];
+        scan.IntroductionPaths[DependencyIntroductionPaths.Identity(pending)] =
+            ["src/App.csproj → Aiursoft.WebTools@10.0.19"];
+        using var output = new StringWriter();
+        CheckHandler.WriteDenials(output,
+            [new DependencyDecision { Dependency = missing, Reason = "No approved trust rule." },
+                new DependencyDecision { Dependency = pending, PendingVerification = true,
+                    Reason = "Package archive verification and vulnerability audit are pending." }],
+            scan, "https://s360.example.test/prefix/", "review", []);
+        var text = output.ToString();
+        StringAssert.Contains(text, "S360 BLOCKED (review): 2 package artifact(s)");
+        StringAssert.Contains(text, "[1] Microsoft.Bcl.AsyncInterfaces@9.0.4 (nuget)");
+        StringAssert.Contains(text, missing.Source);
+        StringAssert.Contains(text, "Project: src/App.csproj");
+        StringAssert.Contains(text, "Project: tests/App.Tests.csproj");
+        StringAssert.Contains(text, "-> Microsoft.ML@5.0.1");
+        StringAssert.Contains(text, "-> App (project reference)");
+        StringAssert.Contains(text, "-> Microsoft.Bcl.AsyncInterfaces@9.0.4");
+        StringAssert.Contains(text, "Request approval: https://s360.example.test/prefix/DependencyRequests/Create");
+        var pendingSection = text[text.IndexOf("[2]", StringComparison.Ordinal)..];
+        StringAssert.Contains(pendingSection, "Verification pending, not an approval request");
+        Assert.DoesNotContain("Request approval:", pendingSection);
+        StringAssert.Contains(text, "direct package you chose");
+    }
+
+    [TestMethod]
+    [DataRow("This version has a known active vulnerability.", "Upgrade or remove")]
+    [DataRow("Excluded vulnerable or uncertain version: GHSA-example.", "outside the excluded range")]
+    [DataRow("Previously recorded package bytes changed.", "policy/source/hash rejection")]
+    [DataRow("Explicitly rejected or revoked.", "policy/source/hash rejection")]
+    [DataRow("Package source is not permitted for S360 checks.", "policy/source/hash rejection")]
+    public void SecurityDenialsDoNotSuggestRequestingApproval(string reason, string action)
+    {
+        var dependency = new Dependency { Ecosystem = "nuget", Name = "Example", Version = "1.2.3",
+            Source = "https://nuget.example.test", Sha256 = new string('a', 64) };
+        using var output = new StringWriter();
+        CheckHandler.WriteDenials(output, [new DependencyDecision { Dependency = dependency, Reason = reason }],
+            new ScanReport([dependency], [], 1), "https://s360.example.test", "baseline", []);
+        var text = output.ToString();
+        StringAssert.Contains(text, reason);
+        StringAssert.Contains(text, action);
+        StringAssert.Contains(text, "Introduced by: unavailable");
+        Assert.DoesNotContain("Request approval:", text);
+        Assert.DoesNotContain("/DependencyRequests/Create", text);
+    }
+
+    [TestMethod]
+    public void RejectedReportIsNotPresentedAsSuccessfulPackagesOrAnApprovalRequest()
+    {
+        using var output = new StringWriter();
+        CheckHandler.WriteDenials(output, [], new ScanReport([], [], 1),
+            "https://s360.example.test", "baseline", ["The complete report is missing batches."]);
+        var text = output.ToString();
+        StringAssert.Contains(text, "S360 BLOCKED (baseline): dependency report rejected.");
+        StringAssert.Contains(text, "Report rejected: The complete report is missing batches.");
+        StringAssert.Contains(text, "Rerun the complete check");
+        Assert.DoesNotContain("0 package", text);
+        Assert.DoesNotContain("Request approval:", text);
+    }
+
     private sealed class VerificationHandler(Dependency dependency, bool pending) : HttpMessageHandler
     {
         public int Calls { get; private set; }

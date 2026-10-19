@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Aiursoft.S360.Client;
 
-public class CheckHandler : ExecutableCommandHandlerBuilder
+public class CheckHandler : CommandHandlerBuilder
 {
     protected override string Name => "check";
     protected override string Description => "Reject unapproved NuGet and npm dependencies in the current build.";
@@ -32,9 +32,16 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         Description = "Dependency ecosystem to check: all, nuget or npm.",
         DefaultValueFactory = _ => "all"
     };
-    protected override IEnumerable<Option> GetCommandOptions() => [PathOption, ServerOption, PurposeOption, EcosystemOption];
+    public override Command BuildAsCommand()
+    {
+        var command = base.BuildAsCommand();
+        foreach (var option in new Option[] { PathOption, ServerOption, PurposeOption, EcosystemOption })
+            command.Options.Add(option);
+        command.SetAction(Execute);
+        return command;
+    }
 
-    protected override async Task Execute(ParseResult context)
+    private static async Task<int> Execute(ParseResult context)
     {
         var purpose = context.GetValue(PurposeOption)!;
         if (purpose is not ("review" or "baseline"))
@@ -70,6 +77,8 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
         using var provider = services.BuildServiceProvider();
         var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
         var approved = true;
+        var denied = new List<DependencyDecision>();
+        var reportErrors = new List<string>();
         var graphError = DependencyGraphNode.Validate(scan.GraphNodes, dependencies, selectedEcosystem, complete: true);
         if (graphError != null) throw new InvalidOperationException(graphError);
         var runId = Guid.NewGuid().ToString("N");
@@ -132,36 +141,99 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
             {
                 const string message = "S360 package verification did not complete within 10 minutes. " +
                     "The build remains blocked; check source verification and vulnerability audit job results, then retry.";
-                if (purpose != "baseline") throw new TimeoutException(message, ex);
+                if (purpose != "baseline")
+                {
+                    Console.Error.WriteLine(message);
+                    Console.Error.WriteLine($"Audit status: {server.TrimEnd('/')}/VulnerabilityAudit/Index");
+                    return 1;
+                }
                 Console.Error.WriteLine(message);
                 // Still declare the complete production inventory, including rejected
                 // packages; a failed preflight must not leave an old green baseline.
                 break;
             }
-            foreach (var decision in response.Decisions.Where(d => !d.Trusted))
-            {
-                approved = false;
-                Console.Error.WriteLine($"DENIED {decision.Dependency.Ecosystem} {decision.Dependency.Name}@{decision.Dependency.Version} from {decision.Dependency.Source}: {decision.Reason}");
-                foreach (var introductionPath in scan.PathsFor(decision.Dependency))
-                    Console.Error.WriteLine($"  Introduced by: {introductionPath}");
-            }
+            denied.AddRange(response.Decisions.Where(d => !d.Trusted));
             if (!response.Trusted && response.Decisions.All(d => d.Trusted))
-                Console.Error.WriteLine($"DENIED: {response.Message} Rerun the full check.");
-            approved &= response.Trusted;
+                reportErrors.Add(response.Message ?? "S360 rejected the complete check without a package-specific reason.");
+            approved &= response.Trusted && response.Decisions.All(d => d.Trusted);
         }
         if (purpose == "baseline")
         {
             approved = true;
+            // Final baseline decisions can differ from preflight; display the
+            // actual production report, without duplicate or stale denials.
+            denied.Clear();
+            reportErrors.Clear();
             foreach (var request in requests)
             {
                 request.Context = checkContext;
                 var response = await client.CheckAsync(server, key, request);
                 approved &= response.Trusted && response.Decisions.All(d => d.Trusted);
-                if (!response.Trusted) Console.Error.WriteLine($"DENIED production baseline: {response.Message}");
+                denied.AddRange(response.Decisions.Where(d => !d.Trusted));
+                if (!response.Trusted && response.Decisions.All(d => d.Trusted))
+                    reportErrors.Add(response.Message ?? "S360 rejected the complete check without a package-specific reason.");
             }
         }
-        if (!approved) throw new InvalidOperationException("S360 rejected dependencies. Review the denial reasons; request approval only for dependencies outside approved policy.");
+        if (!approved)
+        {
+            WriteDenials(Console.Error, denied, scan, server, purpose, reportErrors);
+            return 1;
+        }
         Console.WriteLine($"S360 approved {dependencies.Count} dependency artifacts across {scan.ScannedProjectCount} supported projects.");
+        return 0;
+    }
+
+    public static void WriteDenials(TextWriter output, IReadOnlyList<DependencyDecision> denied,
+        ScanReport scan, string server, string purpose, IEnumerable<string> reportErrors)
+    {
+        var root = server.TrimEnd('/');
+        output.WriteLine(denied.Count > 0
+            ? $"S360 BLOCKED ({purpose}): {denied.Count} package artifact(s) need attention."
+            : $"S360 BLOCKED ({purpose}): dependency report rejected.");
+        for (var index = 0; index < denied.Count; index++)
+        {
+            var decision = denied[index];
+            var package = decision.Dependency;
+            output.WriteLine();
+            output.WriteLine($"[{index + 1}] {package.Name}@{package.Version} ({package.Ecosystem})");
+            output.WriteLine($"  Reason: {decision.Reason}");
+            output.WriteLine($"  Source: {package.Source}");
+            var paths = scan.PathsFor(package);
+            if (paths.Count == 0)
+                output.WriteLine("  Introduced by: unavailable in the restored dependency graph.");
+            foreach (var path in paths)
+            {
+                var steps = path.Split(" → ");
+                output.WriteLine($"  Project: {steps[0]}");
+                foreach (var step in steps.Skip(1)) output.WriteLine($"    -> {step}");
+            }
+            var next = decision.PendingVerification
+                ? $"Verification pending, not an approval request. Resolve other denials, then retry; if it persists, check {root}/VulnerabilityAudit/Index"
+                : decision.Reason switch
+                {
+                    "No approved trust rule." => $"Request approval: {root}/DependencyRequests/Create",
+                    "Approval expired; review required." => $"Request renewed approval: {root}/DependencyRequests/Create",
+                    "This version has a known active vulnerability." => $"Upgrade or remove the affected dependency; inspect findings: {root}/VulnerabilityAudit/Index",
+                    _ when decision.Reason.StartsWith("Excluded vulnerable or uncertain version:", StringComparison.Ordinal) =>
+                        $"Use a version outside the excluded range; inspect findings: {root}/VulnerabilityAudit/Index",
+                    _ => $"Review this policy/source/hash rejection with your security reviewer: {root}. An approval request does not bypass it."
+                };
+            output.WriteLine($"  Next: {next}");
+        }
+        foreach (var error in reportErrors)
+        {
+            output.WriteLine();
+            output.WriteLine($"Report rejected: {error}");
+            output.WriteLine("Next: Rerun the complete check; if it persists, contact the S360 administrator.");
+        }
+        if (denied.Any(d => !d.PendingVerification && d.Reason is "No approved trust rule." or "Approval expired; review required."))
+        {
+            output.WriteLine();
+            output.WriteLine("For an approval request, enter the direct package you chose, with its exact version and source.");
+            output.WriteLine("Follow the chain above to that direct package; S360 resolves the dependencies it brings in.");
+        }
+        output.WriteLine();
+        output.WriteLine("The check failed. Build and publish must remain blocked until these issues are resolved.");
     }
 
     public static CheckContext ReadContext(Func<string, string?> read, string purpose = "review", string? ecosystem = null) =>

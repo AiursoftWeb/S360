@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @using Aiursoft.S360.Authorization
 @using Aiursoft.S360.Entities
 @using Microsoft.AspNetCore.Authorization
@@ -29,7 +30,7 @@
 {
     <div class="card mb-3"><div class="card-header d-flex justify-content-between">
         <strong>@Localizer["Request"] #@application.Id — @application.Ecosystem — @application.Status</strong>
-        <small>@application.CreatedAtUtc.ToString("u")</small>
+        <small><span data-utc-time="@application.CreatedAtUtc.ToHtmlDateTime()"></span></small>
     </div><div class="card-body">
         <p>@application.Justification</p>
         <p>@Localizer["Project"]: @application.Project · @Localizer["Source"]: <code>@application.Source</code></p>

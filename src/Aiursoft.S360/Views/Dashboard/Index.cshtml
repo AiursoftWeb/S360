@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @using Aiursoft.S360.Entities
 @using Aiursoft.S360.Models.SupplyChainViewModels
 @using System.Globalization
@@ -112,8 +113,8 @@
             </section></div>
         </div>
         <div class="card mb-3"><div class="card-body s360-overview-freshness">
-            <span><strong>@Localizer["Latest baseline report"]</strong> @(summary.LatestReportUtc?.ToString("yyyy-MM-dd HH:mm 'UTC'") ?? @Localizer["Not available"].Value)</span>
-            <span><strong>@Localizer["Last successful OSV sync"]</strong> @(Model.LastVulnerabilitySyncUtc?.ToString("yyyy-MM-dd HH:mm 'UTC'") ?? @Localizer["Not available"].Value)
+            <span><strong>@Localizer["Latest baseline report"]</strong> <span data-utc-time="@summary.LatestReportUtc?.ToHtmlDateTime()">@(summary.LatestReportUtc == null ? Localizer["Not available"].Value : "")</span></span>
+            <span><strong>@Localizer["Last successful OSV sync"]</strong> <span data-utc-time="@Model.LastVulnerabilitySyncUtc?.ToHtmlDateTime()">@(Model.LastVulnerabilitySyncUtc == null ? Localizer["Not available"].Value : "")</span>
                 @if (!Model.VulnerabilityAuditCurrent) { <span class="badge bg-warning text-dark">@Localizer["Missing or stale"]</span> }
             </span>
         </div></div>

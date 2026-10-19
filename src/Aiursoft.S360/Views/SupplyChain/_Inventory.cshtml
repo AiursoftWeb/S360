@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @using Aiursoft.S360.Models.SupplyChainViewModels
 @model InventoryViewModel
 @{
@@ -88,7 +89,7 @@
                             @if (project.Reports.Count == 0) { <small>@Localizer["This report is incomplete. No complete snapshot is available; current coverage is not verified."]</small> }
                             else { <small>@Localizer["A newer report is incomplete."]</small> }
                         }
-                        <footer><span>@if (project.Reports.Count > 0) { @(project.Reports.Max(r => r.CheckedAtUtc).ToString("yyyy-MM-dd HH:mm")) <span>UTC</span> }
+                        <footer><span>@if (project.Reports.Count > 0) { <span data-utc-time="@(project.Reports.Max(r => r.CheckedAtUtc).ToHtmlDateTime())"></span> }
                             else { @Localizer["No complete report available."] }</span><span>@Localizer["Explore"] →</span></footer>
                     </a>
                     continue;
@@ -121,7 +122,7 @@
                                 @if (reports.Count == 0) { <p class="text-muted">@Localizer["No complete report for this ecosystem. Its compliance is unknown."]</p> }
                                 @foreach (var report in reports)
                                 {
-                                    <p class="small text-muted">@report.CheckedAtUtc.ToString("yyyy-MM-dd HH:mm") UTC · <a asp-controller="BuildChecks" asp-action="Index" asp-route-checkId="@report.CheckId">@Localizer["Check record"]</a> <code>@report.Commit</code> @if (!string.IsNullOrEmpty(report.Pipeline)) { <span> · @Localizer["Pipeline"] @report.Pipeline</span> }</p>
+                                    <p class="small text-muted"><span data-utc-time="@report.CheckedAtUtc.ToHtmlDateTime()"></span> · <a asp-controller="BuildChecks" asp-action="Index" asp-route-checkId="@report.CheckId">@Localizer["Check record"]</a> <code>@report.Commit</code> @if (!string.IsNullOrEmpty(report.Pipeline)) { <span> · @Localizer["Pipeline"] @report.Pipeline</span> }</p>
                                 }
                                 @if (reports.Any(r => !r.HasGraph))
                                 {

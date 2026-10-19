@@ -1,3 +1,4 @@
+@using Aiursoft.WebTools
 @using Aiursoft.S360.Entities
 @using Aiursoft.S360.Models.Shared
 @model Aiursoft.S360.Models.SupplyChainViewModels.RequestDetailsViewModel
@@ -7,7 +8,7 @@
 <div class="s360-workspace">
 <div class="s360-workspace-head">
 <h1>@Localizer["Dependency request"] #@Model.Application.Id</h1>
-<p>@Localizer["Status"]: <strong>@Model.Application.Status</strong> · @Localizer["Requested"] @Model.Application.CreatedAtUtc.ToString("u")</p>
+<p>@Localizer["Status"]: <strong>@Model.Application.Status</strong> · @Localizer["Requested"] <span data-utc-time="@Model.Application.CreatedAtUtc.ToHtmlDateTime()"></span></p>
 <p>@Localizer["Purpose"]: @Model.Application.Justification</p>
 <p>@Localizer["Source"]: <code>@Model.Application.Source</code> · @Localizer["Resolution context"]: @Model.Application.ResolutionContext</p>
 </div>

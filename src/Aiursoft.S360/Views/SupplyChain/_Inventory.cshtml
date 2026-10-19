@@ -100,6 +100,28 @@
                             @if (!project.Reports.Any(r => r.Ecosystem == "npm")) { <span>@Localizer["npm: not included in this audit."]</span> }
                         </small></span>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", project.Status)<i data-lucide="chevron-down" aria-hidden="true"></i></summary>
                     <div class="s360-inventory-project-body"><a class="s360-project-back" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem">← @Localizer["All projects"]</a>
+                        @{
+                            var badgeUrl = Url.Action("Project", "Badge", new { project = project.Name }, Context.Request.Scheme)!;
+                            var detailsUrl = Url.Action("Index", "SupplyChain", new { tab = "projects", project = project.Name, scope = "baseline", ecosystem = "all" }, Context.Request.Scheme)!;
+                            var markdown = $"[![S360 compliance]({badgeUrl})]({detailsUrl})";
+                        }
+                        <section class="card mb-3 s360-badge-generator">
+                            <div class="card-body">
+                                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-2">
+                                    <h3 class="h6 mb-0">@Localizer["README badge"]</h3>
+                                    <img src="@badgeUrl" width="184" height="24" alt="@Localizer["S360 compliance badge"]" />
+                                </div>
+                                <p class="small text-muted">@Localizer["Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment."]</p>
+                                <label class="form-label" for="s360-badge-markdown">@Localizer["Markdown"]</label>
+                                <textarea id="s360-badge-markdown" class="form-control font-monospace mb-2" rows="3" readonly spellcheck="false">@markdown</textarea>
+                                <button type="button" class="btn btn-outline-primary" data-copy-badge>@Localizer["Copy Markdown"]</button>
+                                <span class="small ms-2" role="status" data-badge-copy-status></span>
+                                <div hidden data-badge-localization>
+                                    <span data-key="copied">@Localizer["Copied!"]</span>
+                                    <span data-key="copyFailed">@Localizer["Select and copy the Markdown above."]</span>
+                                </div>
+                            </div>
+                        </section>
                         @if (project.Incomplete)
                         {
                             <div class="alert alert-warning" role="status"><div class="alert-message">

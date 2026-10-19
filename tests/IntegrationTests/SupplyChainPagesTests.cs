@@ -3126,6 +3126,84 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
+    public async Task VulnerabilityProjectsLinkToTheirReportScopeAndCountEachProjectOnce()
+    {
+        await LoginAsAdmin();
+        var suffix = Guid.NewGuid().ToString("N");
+        var baselineProject = "company/baseline-" + suffix;
+        var reviewProject = "company/review-" + suffix;
+        var legacyProject = "company/legacy-" + suffix;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var artifact = new PackageArtifact
+            {
+                Ecosystem = "nuget", Name = "Example.ProjectImpact." + suffix, Version = "1.0.0",
+                Source = "https://nuget.aiursoft.com/v3/index.json", Sha256 = new string('a', 64)
+            };
+            db.Vulnerabilities.Add(new Vulnerability
+            {
+                Ecosystem = "nuget", PackageName = artifact.Name, SourceId = "GHSA-projects-" + suffix,
+                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = 0, PackageArtifact = artifact }]
+            });
+            var reports = new (string Project, string? Purpose, string? MergeRequest)[]
+            {
+                (baselineProject, "baseline", null),
+                (baselineProject, "review", "1"),
+                (reviewProject, "review", "2"),
+                (reviewProject, "review", "3"),
+                (legacyProject, null, null)
+            };
+            foreach (var report in reports)
+                db.BuildChecks.Add(new BuildCheck
+                {
+                    Project = report.Project, RunId = Guid.NewGuid().ToString("N"),
+                    BatchCount = 1, ScannedProjectCount = 1,
+                    ContextJson = report.Purpose == null ? null : JsonSerializer.Serialize(new CheckContext
+                    {
+                        Purpose = report.Purpose, Ecosystem = "nuget", Provider = "gitlab",
+                        Ref = "master", DefaultBranch = "master",
+                        PipelineSource = report.Purpose == "review" ? "merge_request_event" : "push",
+                        MergeRequest = report.MergeRequest
+                    }),
+                    Dependencies = [new BuildCheckDependency
+                    {
+                        BuildCheckId = 0, PackageArtifactId = 0, PackageArtifact = artifact,
+                        Ecosystem = "nuget", Name = artifact.Name, Version = artifact.Version,
+                        Source = artifact.Source, Sha256 = artifact.Sha256
+                    }]
+                });
+            await db.SaveChangesAsync();
+        }
+        using var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        response.EnsureSuccessStatusCode();
+        var html = await response.Content.ReadAsStringAsync();
+        StringAssert.Contains(html, "Production baseline projects: <strong>1</strong>");
+        StringAssert.Contains(html, "Projects in review reports: <strong>2</strong>");
+        StringAssert.Contains(html, "View reported projects");
+        Assert.DoesNotContain(legacyProject, html);
+        var links = System.Text.RegularExpressions.Regex.Matches(html, "href=\"([^\"]+)\"[^>]*>" + reviewProject + "</a>");
+        Assert.AreEqual(1, links.Count, "Two merge requests from one project must share one project entry.");
+        var reviewUrl = WebUtility.HtmlDecode(links[0].Groups[1].Value);
+        StringAssert.Contains(reviewUrl, "scope=review");
+        StringAssert.Contains(reviewUrl, "ecosystem=nuget");
+        using (var projectPage = await Http.GetAsync(reviewUrl))
+        {
+            projectPage.EnsureSuccessStatusCode();
+            StringAssert.Contains(await projectPage.Content.ReadAsStringAsync(), reviewProject);
+        }
+        var baselineLinks = System.Text.RegularExpressions.Regex.Matches(html, "href=\"([^\"]+)\"[^>]*>" + baselineProject + "</a>");
+        Assert.AreEqual(2, baselineLinks.Count, "A project can have baseline and review evidence without merging the scopes.");
+        Assert.IsTrue(baselineLinks.Any(link => WebUtility.HtmlDecode(link.Groups[1].Value).Contains("scope=baseline")));
+        Assert.IsTrue(baselineLinks.Any(link => WebUtility.HtmlDecode(link.Groups[1].Value).Contains("scope=review")));
+        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
+        detailed.EnsureSuccessStatusCode();
+        var detailedHtml = await detailed.Content.ReadAsStringAsync();
+        StringAssert.Contains(detailedHtml, legacyProject);
+        StringAssert.Contains(detailedHtml, "scope=history");
+    }
+
+    [TestMethod]
     public async Task QuickAuditWarnsAboutUndownloadedVulnerableWildcardVersionUntilExcluded()
     {
         var packageName = "Example." + Guid.NewGuid().ToString("N");

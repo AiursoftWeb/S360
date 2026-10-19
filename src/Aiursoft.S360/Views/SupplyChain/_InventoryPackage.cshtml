@@ -1,3 +1,4 @@
+@using Aiursoft.S360.Entities
 @using Aiursoft.S360.Authorization
 @using Microsoft.AspNetCore.Authorization
 @model Aiursoft.S360.Models.SupplyChainViewModels.InventoryPackage
@@ -56,11 +57,19 @@
                     @if (version.Rules.Count == 0) { <p>@Localizer["No matching approval rule is recorded."]</p> }
                     @foreach (var rule in version.Rules)
                     {
+                        var ruleStatus = rule.Status switch
+                        {
+                            TrustRuleStatus.Pending => @Localizer["Pending"].Value,
+                            TrustRuleStatus.Approved => @Localizer["Approved"].Value,
+                            TrustRuleStatus.Rejected => @Localizer["Rejected"].Value,
+                            TrustRuleStatus.Revoked => @Localizer["Revoked"].Value,
+                            _ => rule.Status.ToString()
+                        };
                         <div class="s360-inventory-rule">
                             <div><strong>#@rule.Id · @rule.PackagePattern</strong> <code>@rule.Version</code>
-                                <small>@rule.Status · @Localizer["Expires (UTC)"]: @(rule.ExpiresAtUtc?.ToString("u") ?? @Localizer["No expiry recorded"].Value)</small>
+                                <small>@ruleStatus · @Localizer["Expires (UTC)"]: @(rule.ExpiresAtUtc?.ToString("u") ?? @Localizer["No expiry recorded"].Value)</small>
                             </div>
-                            @if (canManage && rule.Status == Aiursoft.S360.Entities.TrustRuleStatus.Approved)
+                            @if (canManage && rule.Status == TrustRuleStatus.Approved)
                             {
                                 <details class="s360-inventory-revoke">
                                     <summary>@Localizer["Revoke rule"]</summary>

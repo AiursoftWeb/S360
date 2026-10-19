@@ -1,3 +1,4 @@
+@using Aiursoft.S360.Entities
 @using Aiursoft.S360.Models.SupplyChainViewModels
 @using System.Globalization
 @model Aiursoft.S360.Models.DashboardViewModels.IndexViewModel
@@ -24,7 +25,7 @@
         <div class="row g-3 mb-3">
             <div class="col-6 col-xl-3"><a class="card s360-overview-metric" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects"><div class="card-body"><span>@Localizer["Reported projects"]</span><strong>@summary.ProjectCount</strong><small>@Localizer["Latest baseline per project"]</small></div></a></div>
             <div class="col-6 col-xl-3"><a class="card s360-overview-metric" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies"><div class="card-body"><span>@Localizer["Packages in use"]</span><strong>@summary.PackageCount</strong><small>@Localizer["Across reported projects"]</small></div></a></div>
-            <div class="col-6 col-xl-3"><a class="card s360-overview-metric" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies" asp-route-filter="cve"><div class="card-body"><span>@Localizer["Packages with known vulnerabilities"]</span><strong class="@(summary.VulnerablePackageCount > 0 ? "text-danger" : "")">@summary.VulnerablePackageCount</strong><small>@Localizer["{0} affected projects", summary.VulnerableProjectCount]</small></div></a></div>
+            <div class="col-6 col-xl-3"><a class="card s360-overview-metric" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies" asp-route-filter="cve"><div class="card-body"><span>@Localizer["Packages with known vulnerabilities"]</span><strong class="@(summary.VulnerablePackageCount > 0 ? "text-danger" : "")">@summary.VulnerablePackageCount</strong><small>@string.Format(@Localizer["{0} affected projects"].Value, summary.VulnerableProjectCount)</small></div></a></div>
             <div class="col-6 col-xl-3"><div class="card s360-overview-metric"><div class="card-body"><span>@Localizer["Awaiting review"]</span><strong>@Model.PendingReviews</strong>
                 @if (Model.CanReviewRequests) { <a asp-controller="DependencyReviews" asp-action="Index">@Localizer["Open approval center"]</a> }
                 else { <small>@Localizer["Across the organization"]</small> }
@@ -37,13 +38,13 @@
         }
         <div class="row g-3 mb-3">
             @foreach (var chart in new[] {
-                (Tab: "projects", Title: Localizer["Project compliance"].Value, Counts: summary.ProjectStatuses, Total: summary.ProjectCount),
-                (Tab: "dependencies", Title: Localizer["Package compliance"].Value, Counts: summary.PackageStatuses, Total: summary.PackageCount) })
+                (Tab: "projects", Title: @Localizer["Project compliance"].Value, Counts: summary.ProjectStatuses, Total: summary.ProjectCount),
+                (Tab: "dependencies", Title: @Localizer["Package compliance"].Value, Counts: summary.PackageStatuses, Total: summary.PackageCount) })
             {
                 var segments = new[] {
-                    (Status: InventoryStatus.Compliant, Filter: "compliant", Css: "compliant", Label: Localizer["Compliant"].Value),
-                    (Status: InventoryStatus.NonCompliant, Filter: "issues", Css: "issues", Label: Localizer["Needs attention"].Value),
-                    (Status: InventoryStatus.Pending, Filter: "pending", Css: "pending", Label: Localizer["Not verified"].Value) };
+                    (Status: InventoryStatus.Compliant, Filter: "compliant", Css: "compliant", Label: @Localizer["Compliant"].Value),
+                    (Status: InventoryStatus.NonCompliant, Filter: "issues", Css: "issues", Label: @Localizer["Needs attention"].Value),
+                    (Status: InventoryStatus.Pending, Filter: "pending", Css: "pending", Label: @Localizer["Not verified"].Value) };
                 <div class="col-12 col-lg-6"><section class="card h-100">
                     <div class="card-header"><h2 class="h5 card-title mb-0">@chart.Title</h2></div>
                     <div class="card-body">
@@ -83,7 +84,7 @@
                         var width = (100m * affectedProjects / Math.Max(1, summary.ProjectCount)).ToString("0.####", CultureInfo.InvariantCulture);
                         <a class="s360-risk-row" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies" asp-route-ecosystem="@package.Ecosystem" asp-route-query="@package.Name">
                             <span class="s360-risk-title"><strong>@package.Name</strong>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", package.Status)</span>
-                            <small>@Localizer["{0} affected projects", affectedProjects] · @(package.Ecosystem == "nuget" ? "NuGet" : "npm")
+                            <small>@string.Format(@Localizer["{0} affected projects"].Value, affectedProjects) · @(package.Ecosystem == "nuget" ? "NuGet" : "npm")
                                 @if (package.Versions.Any(v => v.Advisories.Count > 0)) { <span> · @Localizer["Known vulnerabilities"]</span> }
                             </small>
                             <span class="s360-risk-track @(package.Status == InventoryStatus.Pending ? "pending" : "")" aria-hidden="true"><span style="width: @(width)%"></span></span>
@@ -102,7 +103,7 @@
                             <span class="s360-risk-title"><strong>@project.Name</strong>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", project.Status)</span>
                             <small>
                                 @if (project.Reports.Count == 0) { @Localizer["No complete baseline report"] }
-                                else { @Localizer["{0} package versions needing attention", project.Versions.Count(v => v.Status != InventoryStatus.Compliant)] }
+                                else { @string.Format(@Localizer["{0} package versions needing attention"].Value, project.Versions.Count(v => v.Status != InventoryStatus.Compliant)) }
                                 @if (project.Incomplete) { <span> · @Localizer["Incomplete report"]</span> }
                             </small>
                         </a>
@@ -111,20 +112,31 @@
             </section></div>
         </div>
         <div class="card mb-3"><div class="card-body s360-overview-freshness">
-            <span><strong>@Localizer["Latest baseline report"]</strong> @(summary.LatestReportUtc?.ToString("yyyy-MM-dd HH:mm 'UTC'") ?? Localizer["Not available"].Value)</span>
-            <span><strong>@Localizer["Last successful OSV sync"]</strong> @(Model.LastVulnerabilitySyncUtc?.ToString("yyyy-MM-dd HH:mm 'UTC'") ?? Localizer["Not available"].Value)
+            <span><strong>@Localizer["Latest baseline report"]</strong> @(summary.LatestReportUtc?.ToString("yyyy-MM-dd HH:mm 'UTC'") ?? @Localizer["Not available"].Value)</span>
+            <span><strong>@Localizer["Last successful OSV sync"]</strong> @(Model.LastVulnerabilitySyncUtc?.ToString("yyyy-MM-dd HH:mm 'UTC'") ?? @Localizer["Not available"].Value)
                 @if (!Model.VulnerabilityAuditCurrent) { <span class="badge bg-warning text-dark">@Localizer["Missing or stale"]</span> }
             </span>
         </div></div>
     }
     <details class="card" open="@(!Model.CanReadSupplyChain)">
-        <summary class="card-header s360-overview-personal"><strong>@Localizer["My requests"]</strong><span class="text-muted">@Localizer["{0} total · {1} in progress · {2} approved", Model.MyRequests, Model.MyInProgress, Model.MyApproved]</span></summary>
+        <summary class="card-header s360-overview-personal"><strong>@Localizer["My requests"]</strong><span class="text-muted">@string.Format(@Localizer["{0} total · {1} in progress · {2} approved"].Value, Model.MyRequests, Model.MyInProgress, Model.MyApproved)</span></summary>
         <div class="card-body">
             @if (Model.CanSubmitRequests) { <p><a asp-controller="DependencyRequests" asp-action="History">@Localizer["View all"]</a></p> }
             @if (Model.RecentRequests.Count == 0) { <p class="mb-0">@Localizer["No requests yet. Request a new dependency when your project needs a package that is not approved."]</p> }
             @foreach (var request in Model.RecentRequests)
             {
-                <a class="s360-risk-row" asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@request.Id"><span class="s360-risk-title"><strong>@(string.IsNullOrWhiteSpace(request.Project) ? Localizer["Request #{0}", request.Id] : request.Project)</strong><span>@request.Status</span></span><small>@request.Ecosystem.ToUpperInvariant() · @Localizer["Request #{0}", request.Id]</small></a>
+                var requestStatus = request.Status switch
+                {
+                    ApplicationStatus.Resolving => @Localizer["Resolving"].Value,
+                    ApplicationStatus.ReadyForReview => @Localizer["Awaiting review"].Value,
+                    ApplicationStatus.Failed => @Localizer["Failed"].Value,
+                    ApplicationStatus.Approved => @Localizer["Approved"].Value,
+                    ApplicationStatus.Rejected => @Localizer["Rejected"].Value,
+                    ApplicationStatus.Withdrawn => @Localizer["Withdrawn"].Value,
+                    ApplicationStatus.Revoked => @Localizer["Revoked"].Value,
+                    _ => request.Status.ToString()
+                };
+                <a class="s360-risk-row" asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@request.Id"><span class="s360-risk-title"><strong>@(string.IsNullOrWhiteSpace(request.Project) ? string.Format(@Localizer["Request #{0}"].Value, request.Id) : request.Project)</strong><span>@requestStatus</span></span><small>@request.Ecosystem.ToUpperInvariant() · @string.Format(@Localizer["Request #{0}"].Value, request.Id)</small></a>
             }
         </div>
     </details>

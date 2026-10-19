@@ -69,6 +69,33 @@ public class CheckController(TrustService trust, TemplateDbContext db,
         if (request.Context.Ecosystem is { Length: > 0 } ecosystem &&
             request.Dependencies.Any(dependency => dependency.Ecosystem != ecosystem))
             return BadRequest("Dependencies must belong to the declared ecosystem.");
+        if (purpose == "review")
+        {
+            // Review is a read-only, per-batch policy query. The CLI validates the
+            // complete graph and aggregates all decisions; no run is stored here.
+            if (request.GraphNodes != null)
+            {
+                var completeGraph = request.BatchCount == 1;
+                var graphError = DependencyGraphNode.Validate(request.GraphNodes, request.Dependencies,
+                    request.Context.Ecosystem, completeGraph);
+                if (graphError != null) return BadRequest(graphError);
+                if (completeGraph && request.GraphNodes.Select(n => (n.Project, n.Ecosystem)).Distinct().Count() != request.ScannedProjectCount)
+                    return BadRequest("Graph manifests must match the scanned project count.");
+            }
+            try
+            {
+                var decisions = await CheckDependenciesAsync(request.Dependencies, persist: false);
+                return Ok(new CheckResponse
+                {
+                    Code = Code.ResultShown, Trusted = decisions.All(d => d.Trusted), Decisions = decisions,
+                    Message = "Dependency review completed. No project report was saved."
+                });
+            }
+            catch (ArgumentException)
+            {
+                return BadRequest("Invalid package source.");
+            }
+        }
         var contextJson = JsonSerializer.Serialize(request.Context);
         var priorBatches = await db.BuildChecks.AsNoTracking().Where(c => c.RunId == request.RunId)
             .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson, HasGraph = c.GraphJson != null }).ToListAsync();
@@ -108,20 +135,10 @@ public class CheckController(TrustService trust, TemplateDbContext db,
         {
             var sourceAllowed = request.Dependencies.Select(dependency =>
                 AllowedPackageSources.Contains(configuration, dependency.Ecosystem, dependency.Source)).ToArray();
-            var permittedDependencies = request.Dependencies.Where((_, index) => sourceAllowed[index]).ToList();
-            var permittedDecisions = permittedDependencies.Count == 0
-                ? [] : await trust.CheckAsync(permittedDependencies);
-            var permittedIndex = 0;
-            var decisions = request.Dependencies.Select((dependency, index) => sourceAllowed[index]
-                ? permittedDecisions[permittedIndex++]
-                : new DependencyDecision
-                {
-                    Dependency = dependency, Trusted = false,
-                    Reason = "Package source is not permitted for CI verification."
-                }).ToList();
+            var decisions = await CheckDependenciesAsync(request.Dependencies, persist: true);
             var runTrusted = decisions.All(d => d.Trusted);
             string? runDenialReason = null;
-            var requestedKeys = permittedDependencies.Select(dependency => ArtifactKey(
+            var requestedKeys = request.Dependencies.Where((_, index) => sourceAllowed[index]).Select(dependency => ArtifactKey(
                 dependency.Ecosystem, dependency.Name, dependency.Version,
                 TrustPattern.NormalizeSource(dependency.Source), dependency.Sha256)).Distinct().ToList();
             var artifactLookup = new Dictionary<string, PackageArtifact>(StringComparer.Ordinal);
@@ -240,6 +257,23 @@ public class CheckController(TrustService trust, TemplateDbContext db,
         {
             return BadRequest("Invalid package source.");
         }
+    }
+
+    private async Task<List<DependencyDecision>> CheckDependenciesAsync(List<Dependency> dependencies, bool persist)
+    {
+        var sourceAllowed = dependencies.Select(dependency =>
+            AllowedPackageSources.Contains(configuration, dependency.Ecosystem, dependency.Source)).ToArray();
+        var permitted = dependencies.Where((_, index) => sourceAllowed[index]).ToList();
+        var assessed = permitted.Count == 0 ? [] : persist
+            ? await trust.CheckAsync(permitted) : await trust.AssessAsync(permitted);
+        var index = 0;
+        return dependencies.Select((dependency, position) => sourceAllowed[position]
+            ? assessed[index++]
+            : new DependencyDecision
+            {
+                Dependency = dependency, Trusted = false,
+                Reason = "Package source is not permitted for CI verification."
+            }).ToList();
     }
 
     private static string ArtifactKey(string ecosystem, string name, string version,

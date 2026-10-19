@@ -32,7 +32,6 @@
             <label class="s360-inventory-query">@Localizer["Search inventory"]<input type="search" name="query" value="@Model.Query" maxlength="214" class="form-control" placeholder="@Localizer["Package, project, purpose or approval reason"]" /></label>
             <label>@Localizer["Reports"]<select name="scope" class="form-select">
                 <option value="baseline" selected="@(Model.Scope == "baseline")">@Localizer["Current baseline"]</option>
-                <option value="review" selected="@(Model.Scope == "review")">@Localizer["Proposed changes (Review)"]</option>
                 <option value="history" selected="@(Model.Scope == "history")">@Localizer["Unclassified history"]</option>
             </select></label>
             <label>@Localizer["Ecosystem"]<select name="ecosystem" class="form-select">
@@ -51,7 +50,7 @@
         </form>
         <div class="s360-inventory-context">
             @if (Model.Scope == "baseline") { <span>@Localizer["Latest complete baselines. These are reported dependencies, not proof of deployment."]</span> }
-            else if (Model.Scope == "review") { <span>@Localizer["Proposed dependencies from Review checks. These do not replace the current baseline."]</span> }
+            else if (Model.Scope == "review") { <span>@Localizer["Review checks are not saved as project inventory."]</span> }
             else { <span>@Localizer["Older reports without a declared purpose. Current use cannot be inferred from these records."]</span> }
             <a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="@Model.Tab">@Localizer["Reset filters"]</a>
         </div>

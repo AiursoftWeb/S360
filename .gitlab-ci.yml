@@ -61,7 +61,7 @@ build:
         # Audit and compile the same restore output in this job. Shared caches
         # retain their original source even after changing nuget.config.
         - dotnet restore --disable-parallel --no-cache --configfile nuget.config --packages "$CI_PROJECT_DIR/obj/s360-packages"
-        - s360 check --ecosystem nuget --purpose "$S360_PURPOSE"
+        - s360 check --path Aiursoft.S360.sln --ecosystem nuget --purpose "$S360_PURPOSE"
         - dotnet build -maxcpucount:1 --no-self-contained --no-restore
     retry:
         max: 2

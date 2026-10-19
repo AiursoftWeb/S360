@@ -120,6 +120,9 @@
   <data name="Existing package CVEs" xml:space="preserve">
     <value>现有软件包漏洞（CVE）</value>
   </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>现有规则集</value>
+  </data>
   <data name="Features" xml:space="preserve">
     <value>功能</value>
   </data>

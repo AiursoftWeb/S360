@@ -28,6 +28,11 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => IndexSnapshotAsync(ecosystem, query, supplierId,
             lookupName, lookupVersion, lookupSource, tab, scope, filter, project, page));
 
+    [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
+        CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
+        LinkText = "Existing rule set", LinkOrder = 0)]
+    public IActionResult Rules() => RedirectToAction(nameof(Index), new { tab = "rules" });
+
     private async Task<IActionResult> IndexSnapshotAsync(string ecosystem, string? query, int? supplierId,
         string? lookupName, string? lookupVersion, string? lookupSource, string tab, string scope,
         string filter, string? project, int page)

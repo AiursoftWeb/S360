@@ -33,6 +33,9 @@
   <data name="Dependency request" xml:space="preserve">
     <value>依赖请求</value>
   </data>
+  <data name="Expires" xml:space="preserve">
+    <value>过期时间</value>
+  </data>
   <data name="Expires (UTC)" xml:space="preserve">
     <value>到期时间（UTC）</value>
   </data>
@@ -60,6 +63,9 @@
   <data name="Pipeline" xml:space="preserve">
     <value>流水线</value>
   </data>
+  <data name="Projects using this package ({0})" xml:space="preserve">
+    <value>使用此软件包的项目（{0}）</value>
+  </data>
   <data name="Reason" xml:space="preserve">
     <value>原因</value>
   </data>
@@ -80,6 +86,12 @@
   </data>
   <data name="This revokes the approval rule for every matching package and project, including matches outside this view." xml:space="preserve">
     <value>这将撤销适用于所有匹配的软件包和项目的批准规则，包括此视图之外的匹配项。</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="View all {0} projects" xml:space="preserve">
+    <value>查看全部 {0} 个项目</value>
   </data>
   <data name="Why is it needed?" xml:space="preserve">
     <value>为什么需要它？</value>

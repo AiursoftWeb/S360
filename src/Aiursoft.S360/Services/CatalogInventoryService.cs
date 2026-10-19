@@ -143,6 +143,22 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 Name: v.Dependency.Ecosystem == "nuget" ? v.Dependency.Name.ToLowerInvariant() : v.Dependency.Name, v.Dependency.Source))
             .Select(g => new InventoryPackage { Name = g.First().Dependency.Name, Ecosystem = g.Key.Ecosystem,
                 Source = g.Key.Source, Versions = g.OrderBy(v => v.Dependency.Version).ToList() }).OrderBy(p => p.Name).ToList();
+        model.Summary = new InventorySummary
+        {
+            ProjectCount = projects.Count, PackageCount = packages.Count,
+            VulnerablePackageCount = packages.Count(p => p.Versions.Any(v => v.Advisories.Count > 0)),
+            VulnerableProjectCount = projects.Values.Count(p => p.Versions.Any(v => v.Advisories.Count > 0)),
+            ProjectStatuses = projects.Values.GroupBy(p => p.Status).ToDictionary(g => g.Key, g => g.Count()),
+            PackageStatuses = packages.GroupBy(p => p.Status).ToDictionary(g => g.Key, g => g.Count()),
+            LatestReportUtc = projects.Values.SelectMany(p => p.Reports).Select(r => (DateTime?)r.CheckedAtUtc).Max(),
+            PriorityPackages = packages.Where(p => p.Status != InventoryStatus.Compliant)
+                .OrderByDescending(p => p.Versions.Any(v => v.Advisories.Count > 0))
+                .ThenByDescending(p => p.Status).ThenByDescending(p => p.AffectedProjectCount).ThenBy(p => p.Name).Take(5).ToList(),
+            PriorityProjects = projects.Values.Where(p => p.Status != InventoryStatus.Compliant)
+                .OrderByDescending(p => p.Versions.Any(v => v.Advisories.Count > 0))
+                .ThenByDescending(p => p.Status).ThenByDescending(p => p.Versions.Count(v => v.Status != InventoryStatus.Compliant))
+                .ThenBy(p => p.Name).Take(5).ToList()
+        };
         model.PackageCount = packages.Count;
         model.ProjectCount = projects.Count;
         model.ProblemCount = packages.Count(p => p.Status == InventoryStatus.NonCompliant);

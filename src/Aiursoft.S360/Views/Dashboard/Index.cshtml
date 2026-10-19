@@ -1,139 +1,131 @@
+@using Aiursoft.S360.Models.SupplyChainViewModels
+@using System.Globalization
 @model Aiursoft.S360.Models.DashboardViewModels.IndexViewModel
-
 @* ReSharper disable once Razor.SectionNotResolved *@
 @section styles {
     <link rel="stylesheet" href="~/styles/s360.css" />
 }
-
-@if (Model.Inventory != null)
-{
-    @await Html.PartialAsync("../SupplyChain/_Inventory", Model.Inventory)
-}
-
-<div class="s360-dashboard">
-    <section class="s360-dashboard-hero">
-        <div class="s360-dashboard-hero-copy">
-            <span class="s360-eyebrow"><span class="s360-pulse"></span> @Localizer["Your supply-chain workspace"]</span>
-            <h1>@Localizer["Welcome to S360."]</h1>
-            <p>@Localizer["Follow requests from first package to final decision, explore what your organization already allows, and keep emerging risks in view."]</p>
-            <div class="s360-dashboard-actions">
-                @if (Model.CanSubmitRequests)
-                {
-                    <a asp-controller="DependencyRequests" asp-action="Create" class="btn btn-light"><i data-lucide="package-plus"></i> @Localizer["Request a new dependency"]</a>
-                }
-                <a asp-controller="SupplyChain" asp-action="Index" class="btn @(Model.CanSubmitRequests ? "btn-outline-light" : "btn-light")"><i data-lucide="library-big"></i> @Localizer["Dependency catalog"]</a>
-            </div>
-        </div>
-        <div class="s360-dashboard-hero-art" aria-hidden="true">
-            <div class="s360-orbit s360-orbit-outer"></div>
-            <div class="s360-orbit s360-orbit-inner"></div>
-            <div class="s360-orbit-core"><i data-lucide="shield-check"></i></div>
-            <span class="s360-orbit-token one"><i data-lucide="package"></i></span>
-            <span class="s360-orbit-token two"><i data-lucide="fingerprint"></i></span>
-            <span class="s360-orbit-token three"><i data-lucide="scan-search"></i></span>
-        </div>
-    </section>
-
-    <div class="s360-dashboard-intro">
-        <div><span class="s360-kicker">@Localizer["At a glance"]</span><h2>@Localizer["Your work, without the guesswork."]</h2></div>
-        <p>@Localizer["These counts describe your own requests. Organization-wide review figures appear only for authorized readers."]</p>
-    </div>
-
-    <section class="s360-stat-grid" aria-label="@Localizer["Request overview"]">
-        <article class="s360-stat-card"><span class="s360-stat-icon blue"><i data-lucide="files"></i></span><div><strong>@Model.MyRequests</strong><span>@Localizer["My requests"]</span><small>@Localizer["All requests you submitted"]</small></div></article>
-        <article class="s360-stat-card"><span class="s360-stat-icon amber"><i data-lucide="hourglass"></i></span><div><strong>@Model.MyInProgress</strong><span>@Localizer["In progress"]</span><small>@Localizer["Resolving or awaiting review"]</small></div></article>
-        <article class="s360-stat-card"><span class="s360-stat-icon green"><i data-lucide="badge-check"></i></span><div><strong>@Model.MyApproved</strong><span>@Localizer["Approved requests"]</span><small>@Localizer["Decisions recorded for your work"]</small></div></article>
-        @if (Model.CanReadSupplyChain)
-        {
-            <article class="s360-stat-card"><span class="s360-stat-icon violet"><i data-lucide="clipboard-list"></i></span><div><strong>@Model.PendingReviews</strong><span>@Localizer["Awaiting review"]</span><small>@Localizer["Across the organization"]</small></div></article>
-        }
-        else
-        {
-            <article class="s360-stat-card s360-stat-card-message"><span class="s360-stat-icon violet"><i data-lucide="shield"></i></span><div><strong>@Localizer["Policy"]</strong><span>@Localizer["Built into every decision"]</span><small>@Localizer["Blacklists, sources, versions, and hashes"]</small></div></article>
-        }
-    </section>
-
-    <div class="s360-dashboard-columns">
-        <section class="s360-panel">
-            <div class="s360-panel-header"><div><span class="s360-kicker">@Localizer["Recent activity"]</span><h2>@Localizer["Your latest requests"]</h2></div>
-                @if (Model.CanSubmitRequests)
-                {
-                    <a asp-controller="DependencyRequests" asp-action="History" class="s360-text-link">@Localizer["View all"] <i data-lucide="arrow-right"></i></a>
-                }
-            </div>
-            @if (Model.RecentRequests.Count == 0)
+<div class="container-fluid p-0 s360-overview">
+    <header class="s360-overview-heading">
+        <div><h1 class="h3">@Localizer["Company overview"]</h1><p class="text-muted mb-0">@Localizer["Projects, dependencies, and the risks that need attention."]</p></div>
+        <div class="d-flex gap-2 flex-wrap">
+            @if (Model.CanReadSupplyChain)
             {
-                <div class="s360-empty-state"><i data-lucide="package-search"></i><h3>@Localizer["No requests yet"]</h3><p>@Localizer["Start by browsing the catalog. When you need a new package, your request and its full dependency report will appear here."]</p></div>
+                <a class="btn btn-outline-primary" asp-controller="SupplyChain" asp-action="Index">@Localizer["Explore compliance"]</a>
             }
-            else
+            @if (Model.CanSubmitRequests)
             {
-                <div class="s360-request-list">
-                    @foreach (var request in Model.RecentRequests)
+                <a class="btn btn-primary" asp-controller="DependencyRequests" asp-action="Create">@Localizer["Request a new dependency"]</a>
+            }
+        </div>
+    </header>
+    @if (Model.Summary is { } summary)
+    {
+        <div class="row g-3 mb-3">
+            <div class="col-6 col-xl-3"><a class="card s360-overview-metric" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects"><div class="card-body"><span>@Localizer["Reported projects"]</span><strong>@summary.ProjectCount</strong><small>@Localizer["Latest baseline per project"]</small></div></a></div>
+            <div class="col-6 col-xl-3"><a class="card s360-overview-metric" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies"><div class="card-body"><span>@Localizer["Packages in use"]</span><strong>@summary.PackageCount</strong><small>@Localizer["Across reported projects"]</small></div></a></div>
+            <div class="col-6 col-xl-3"><a class="card s360-overview-metric" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies" asp-route-filter="cve"><div class="card-body"><span>@Localizer["Packages with known vulnerabilities"]</span><strong class="@(summary.VulnerablePackageCount > 0 ? "text-danger" : "")">@summary.VulnerablePackageCount</strong><small>@Localizer["{0} affected projects", summary.VulnerableProjectCount]</small></div></a></div>
+            <div class="col-6 col-xl-3"><div class="card s360-overview-metric"><div class="card-body"><span>@Localizer["Awaiting review"]</span><strong>@Model.PendingReviews</strong>
+                @if (Model.CanReviewRequests) { <a asp-controller="DependencyReviews" asp-action="Index">@Localizer["Open approval center"]</a> }
+                else { <small>@Localizer["Across the organization"]</small> }
+            </div></div></div>
+        </div>
+        <p class="small text-muted">@Localizer["Current baseline reports only; review checks and projects that have not reported are not included. This is not a live production inventory."] @Localizer["Packages are counted by ecosystem, name, and source; versions are grouped."]</p>
+        @if (summary.ProjectCount == 0)
+        {
+            <div class="alert alert-info" role="status"><div class="alert-message">@Localizer["No baseline reports yet. Run a baseline check from a project's official pipeline to populate this overview."]</div></div>
+        }
+        <div class="row g-3 mb-3">
+            @foreach (var chart in new[] {
+                (Tab: "projects", Title: Localizer["Project compliance"].Value, Counts: summary.ProjectStatuses, Total: summary.ProjectCount),
+                (Tab: "dependencies", Title: Localizer["Package compliance"].Value, Counts: summary.PackageStatuses, Total: summary.PackageCount) })
+            {
+                var segments = new[] {
+                    (Status: InventoryStatus.Compliant, Filter: "compliant", Css: "compliant", Label: Localizer["Compliant"].Value),
+                    (Status: InventoryStatus.NonCompliant, Filter: "issues", Css: "issues", Label: Localizer["Needs attention"].Value),
+                    (Status: InventoryStatus.Pending, Filter: "pending", Css: "pending", Label: Localizer["Not verified"].Value) };
+                <div class="col-12 col-lg-6"><section class="card h-100">
+                    <div class="card-header"><h2 class="h5 card-title mb-0">@chart.Title</h2></div>
+                    <div class="card-body">
+                        @if (chart.Total == 0) { <p class="text-muted">@Localizer["No baseline data"]</p> }
+                        else
+                        {
+                            <div class="s360-compliance-chart" aria-label="@chart.Title">
+                                @foreach (var segment in segments)
+                                {
+                                    var count = chart.Counts.GetValueOrDefault(segment.Status);
+                                    if (count == 0) { continue; }
+                                    var width = (100m * count / chart.Total).ToString("0.####", CultureInfo.InvariantCulture);
+                                    <a class="@segment.Css" style="width: @(width)%" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="@chart.Tab" asp-route-filter="@segment.Filter" aria-label="@segment.Label: @count" title="@segment.Label: @count"></a>
+                                }
+                            </div>
+                        }
+                        <ul class="s360-chart-legend">
+                            @foreach (var segment in segments)
+                            {
+                                <li><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="@chart.Tab" asp-route-filter="@segment.Filter"><span><i class="@segment.Css" aria-hidden="true"></i>@segment.Label</span><strong>@chart.Counts.GetValueOrDefault(segment.Status)</strong></a></li>
+                            }
+                        </ul>
+                    </div>
+                </section></div>
+            }
+        </div>
+        <p class="small text-muted">@Localizer["Compliant means current checks passed for the reported ecosystems. Not verified includes incomplete reports and missing or stale evidence."]</p>
+        <div class="row g-3 mb-3">
+            <div class="col-12 col-xl-6"><section class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center gap-2"><h2 class="h5 card-title mb-0">@Localizer["Priority packages"]</h2><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies">@Localizer["View all"]</a></div>
+                <div class="card-body">
+                    <p class="small text-muted">@Localizer["Known vulnerabilities first, then other audit issues. Open a package to see who uses it and the recorded reasons."]</p>
+                    @if (summary.PriorityPackages.Count == 0) { <p class="text-muted">@Localizer["No package issues found in the available baseline data."]</p> }
+                    @foreach (var package in summary.PriorityPackages)
                     {
-                        <a asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@request.Id" class="s360-request-row">
-                            <span class="s360-request-icon"><i data-lucide="package"></i></span>
-                            <span class="s360-request-main"><strong>@(string.IsNullOrWhiteSpace(request.Project) ? Localizer["Request #{0}", request.Id] : request.Project)</strong><small>@request.Ecosystem.ToUpperInvariant() · @Localizer["Request #{0}", request.Id]</small></span>
-                            <span class="s360-status s360-status-@request.Status.ToString().ToLowerInvariant()">@request.Status</span>
-                            <i data-lucide="chevron-right" class="s360-request-chevron"></i>
+                        var affectedProjects = package.AffectedProjectCount;
+                        var width = (100m * affectedProjects / Math.Max(1, summary.ProjectCount)).ToString("0.####", CultureInfo.InvariantCulture);
+                        <a class="s360-risk-row" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies" asp-route-ecosystem="@package.Ecosystem" asp-route-query="@package.Name">
+                            <span class="s360-risk-title"><strong>@package.Name</strong>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", package.Status)</span>
+                            <small>@Localizer["{0} affected projects", affectedProjects] · @(package.Ecosystem == "nuget" ? "NuGet" : "npm")
+                                @if (package.Versions.Any(v => v.Advisories.Count > 0)) { <span> · @Localizer["Known vulnerabilities"]</span> }
+                            </small>
+                            <span class="s360-risk-track @(package.Status == InventoryStatus.Pending ? "pending" : "")" aria-hidden="true"><span style="width: @(width)%"></span></span>
                         </a>
                     }
                 </div>
-            }
-        </section>
-        <aside class="s360-panel s360-guide-panel">
-            <div class="s360-panel-header"><div><span class="s360-kicker">@Localizer["A good first step"]</span><h2>@Localizer["How S360 helps"]</h2></div></div>
-            <div class="s360-guide-row"><span>01</span><div><strong>@Localizer["Find an existing approval"]</strong><p>@Localizer["Search NuGet and npm packages, suppliers, exact versions, and wildcard rules in the available catalog."]</p></div></div>
-            <div class="s360-guide-row"><span>02</span><div><strong>@Localizer["Request what is missing"]</strong><p>@Localizer["Enter direct dependencies. S360 resolves the complete graph and records the package artifacts."]</p></div></div>
-            <div class="s360-guide-row"><span>03</span><div><strong>@Localizer["Follow the decision"]</strong><p>@Localizer["Reviewers see new dependencies, blocked items, vulnerability findings, and the exact report they approve."]</p></div></div>
-            <div class="s360-guide-glossary">
-                <h3>@Localizer["Words you will see"]</h3>
-                <dl>
-                    <div><dt>@Localizer["Direct dependency"]</dt><dd>@Localizer["A package your project asks for explicitly."]</dd></div>
-                    <div><dt>@Localizer["Transitive dependency"]</dt><dd>@Localizer["A package pulled in by another package. It needs authorization too."]</dd></div>
-                    <div><dt>@Localizer["Artifact SHA-256"]</dt><dd>@Localizer["A fingerprint of the downloaded package archive, not just its name and version."]</dd></div>
-                    <div><dt>@Localizer["Trust rule"]</dt><dd>@Localizer["A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them."]</dd></div>
-                </dl>
-            </div>
-            <a asp-controller="Home" asp-action="Index" asp-fragment="how-it-works" class="s360-guide-link">@Localizer["Learn about the workflow"] <i data-lucide="arrow-up-right"></i></a>
-        </aside>
-    </div>
-
-    <section class="s360-decision-section" aria-labelledby="s360-decision-title">
-        <div class="s360-dashboard-intro"><div><span class="s360-kicker">@Localizer["A decision you can explain"]</span><h2 id="s360-decision-title">@Localizer["What S360 checks before a dependency is trusted."]</h2></div><p>@Localizer["A familiar name or an approved root package is not enough. The decision applies to each resolved package and its evidence."]</p></div>
-        <div class="s360-decision-grid">
-            <article><span class="s360-decision-number">01</span><span class="s360-decision-icon"><i data-lucide="shield-ban"></i></span><h3>@Localizer["Blocklist comes first"]</h3><p>@Localizer["Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule."]</p></article>
-            <article><span class="s360-decision-number">02</span><span class="s360-decision-icon"><i data-lucide="package-check"></i></span><h3>@Localizer["Match the actual artifact"]</h3><p>@Localizer["The package name, exact version, approved source, and archive SHA-256 keep the review tied to concrete inputs."]</p></article>
-            <article><span class="s360-decision-number">03</span><span class="s360-decision-icon"><i data-lucide="git-fork"></i></span><h3>@Localizer["Include the whole graph"]</h3><p>@Localizer["Every transitive package needs its own valid authorization; a trusted parent does not grant automatic trust to its children."]</p></article>
-            <article><span class="s360-decision-number">04</span><span class="s360-decision-icon"><i data-lucide="radar"></i></span><h3>@Localizer["Revisit the risk"]</h3><p>@Localizer["Expiry, revocation, and new security advisories can change the current answer without erasing the earlier decision."]</p></article>
+            </section></div>
+            <div class="col-12 col-xl-6"><section class="card h-100">
+                <div class="card-header d-flex justify-content-between align-items-center gap-2"><h2 class="h5 card-title mb-0">@Localizer["Projects needing attention"]</h2><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects">@Localizer["View all"]</a></div>
+                <div class="card-body">
+                    <p class="small text-muted">@Localizer["Open a project to trace the dependency path and inspect the exact versions."]</p>
+                    @if (summary.PriorityProjects.Count == 0) { <p class="text-muted">@Localizer["No project issues found in the available baseline data."]</p> }
+                    @foreach (var project in summary.PriorityProjects)
+                    {
+                        <a class="s360-risk-row" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-project="@project.Name">
+                            <span class="s360-risk-title"><strong>@project.Name</strong>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", project.Status)</span>
+                            <small>
+                                @if (project.Reports.Count == 0) { @Localizer["No complete baseline report"] }
+                                else { @Localizer["{0} package versions needing attention", project.Versions.Count(v => v.Status != InventoryStatus.Compliant)] }
+                                @if (project.Incomplete) { <span> · @Localizer["Incomplete report"]</span> }
+                            </small>
+                        </a>
+                    }
+                </div>
+            </section></div>
         </div>
-    </section>
-
-    @if (Model.CanReadSupplyChain)
-    {
-        <section class="s360-operations">
-            <div class="s360-dashboard-intro"><div><span class="s360-kicker">@Localizer["For authorized reviewers"]</span><h2>@Localizer["Keep the wider picture in view."]</h2></div><p>@Localizer["These organization-wide indicators are not a substitute for opening the underlying report."]</p></div>
-            <div class="s360-operations-grid">
-                <article><span><i data-lucide="boxes"></i></span><strong>@Model.TrackedArtifacts</strong><h3>@Localizer["Tracked artifacts"]</h3><p>@Localizer["Package files recorded across both ecosystems, including items not currently authorized."]</p></article>
-                <article><span><i data-lucide="shield-ban"></i></span><strong>@Model.ActiveBlockRules</strong><h3>@Localizer["Active block rules"]</h3><p>@Localizer["Absolute exclusions that take priority over trust rules and approvals."]</p></article>
-                <article><span><i data-lucide="radar"></i></span><strong>@(Model.LastVulnerabilitySyncUtc == null ? "—" : Model.LastVulnerabilitySyncUtc.Value.ToString("yyyy-MM-dd"))</strong><h3>@Localizer["Last successful OSV sync"]</h3><p>@Localizer["A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC."]</p></article>
-            </div>
-            <div class="s360-tool-links">
-                @if (Model.CanReviewRequests)
-                {
-                    <a asp-controller="DependencyReviews" asp-action="Index"><i data-lucide="clipboard-check"></i><span><strong>@Localizer["Approval center"]</strong><small>@Localizer["Review pending and expiring decisions"]</small></span><i data-lucide="arrow-up-right"></i></a>
-                }
-                <a asp-controller="VulnerabilityAudit" asp-action="Index"><i data-lucide="scan-search"></i><span><strong>@Localizer["Known vulnerabilities"]</strong><small>@Localizer["Quick and detailed risk views"]</small></span><i data-lucide="arrow-up-right"></i></a>
-                <a asp-controller="BuildChecks" asp-action="Index"><i data-lucide="list-checks"></i><span><strong>@Localizer["Build check records"]</strong><small>@Localizer["See reported dependency decisions"]</small></span><i data-lucide="arrow-up-right"></i></a>
-                @if (Model.CanManageTrustRules || Model.CanManageBlocklist)
-                {
-                    <a asp-controller="SupplyChain" asp-action="Index"><i data-lucide="sliders-horizontal"></i><span><strong>@Localizer["Policy management"]</strong><small>@Localizer["Suppliers, trust rules, and absolute blocks"]</small></span><i data-lucide="arrow-up-right"></i></a>
-                }
-            </div>
-        </section>
+        <div class="card mb-3"><div class="card-body s360-overview-freshness">
+            <span><strong>@Localizer["Latest baseline report"]</strong> @(summary.LatestReportUtc?.ToString("yyyy-MM-dd HH:mm 'UTC'") ?? Localizer["Not available"].Value)</span>
+            <span><strong>@Localizer["Last successful OSV sync"]</strong> @(Model.LastVulnerabilitySyncUtc?.ToString("yyyy-MM-dd HH:mm 'UTC'") ?? Localizer["Not available"].Value)
+                @if (!Model.VulnerabilityAuditCurrent) { <span class="badge bg-warning text-dark">@Localizer["Missing or stale"]</span> }
+            </span>
+        </div></div>
     }
-
-    <section class="s360-dashboard-note">
-        <i data-lucide="info"></i>
-        <p><strong>@Localizer["Rollout note:"]</strong> @Localizer["This workspace is being prepared before Runner enforcement. An approved Web request does not mean every build is already checked; CI integration follows the service deployment."]</p>
-    </section>
+    <details class="card" open="@(!Model.CanReadSupplyChain)">
+        <summary class="card-header s360-overview-personal"><strong>@Localizer["My requests"]</strong><span class="text-muted">@Localizer["{0} total · {1} in progress · {2} approved", Model.MyRequests, Model.MyInProgress, Model.MyApproved]</span></summary>
+        <div class="card-body">
+            @if (Model.CanSubmitRequests) { <p><a asp-controller="DependencyRequests" asp-action="History">@Localizer["View all"]</a></p> }
+            @if (Model.RecentRequests.Count == 0) { <p class="mb-0">@Localizer["No requests yet. Request a new dependency when your project needs a package that is not approved."]</p> }
+            @foreach (var request in Model.RecentRequests)
+            {
+                <a class="s360-risk-row" asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@request.Id"><span class="s360-risk-title"><strong>@(string.IsNullOrWhiteSpace(request.Project) ? Localizer["Request #{0}", request.Id] : request.Project)</strong><span>@request.Status</span></span><small>@request.Ecosystem.ToUpperInvariant() · @Localizer["Request #{0}", request.Id]</small></a>
+            }
+        </div>
+    </details>
 </div>

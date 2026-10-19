@@ -12,16 +12,13 @@ public class IndexViewModel : UiStackLayoutViewModel
     public bool CanSubmitRequests { get; set; }
     public bool CanReadSupplyChain { get; set; }
     public bool CanReviewRequests { get; set; }
-    public bool CanManageTrustRules { get; set; }
-    public bool CanManageBlocklist { get; set; }
     public int PendingReviews { get; set; }
-    public int TrackedArtifacts { get; set; }
-    public int ActiveBlockRules { get; set; }
     public DateTime? LastVulnerabilitySyncUtc { get; set; }
-    public SupplyChainViewModels.InventoryViewModel? Inventory { get; set; }
+    public SupplyChainViewModels.InventorySummary? Summary { get; set; }
+    public bool VulnerabilityAuditCurrent { get; set; }
 
     public IndexViewModel()
     {
-        PageTitle = "S360 overview";
+        PageTitle = "Company overview";
     }
 }

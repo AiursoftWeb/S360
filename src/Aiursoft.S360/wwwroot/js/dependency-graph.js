@@ -7,6 +7,7 @@ if (host) {
     const graphs = JSON.parse(find('data').textContent);
     const scope = find('scope'), search = find('search'), depth = find('depth'), risk = find('risk');
     const canvas = find('canvas'), detail = find('detail'), notice = find('notice');
+    const stage = find('stage');
     const compact = window.matchMedia('(max-width: 767px)');
     let nodes, parents, distances, root, selected = '', mermaid, svg, bounds, view, drag;
     let expanded = new Set(), collapsed = new Set(), sequence = 0, timer, rendering = Promise.resolve();
@@ -293,7 +294,7 @@ if (host) {
     find('zoom-in').addEventListener('click', () => zoom(.8));
     find('zoom-out').addEventListener('click', () => zoom(1.25));
     find('fullscreen').addEventListener('click', async () => {
-        try { if (document.fullscreenElement === host) await document.exitFullscreen(); else await host.requestFullscreen(); }
+        try { if (document.fullscreenElement === stage) await document.exitFullscreen(); else await stage.requestFullscreen(); }
         catch { /* The browser may not support fullscreen; the diagram stays usable. */ }
     });
     find('share').addEventListener('click', async () => {

@@ -39,6 +39,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>匿名</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>API 金鑰</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>API 金鑰</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>可用相依項目</value>
   </data>
@@ -65,6 +71,12 @@
   </data>
   <data name="Click to login" xml:space="preserve">
     <value>點擊登入</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>公司概覽</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>合規探索器</value>
   </data>
   <data name="Create Role" xml:space="preserve">
     <value>建立角色</value>
@@ -107,6 +119,9 @@
   </data>
   <data name="Existing package CVEs" xml:space="preserve">
     <value>現有套件的 CVE</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>現有規則集</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>功能</value>
@@ -203,6 +218,9 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>範本</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>信任規則詳情</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>未獲授權</value>

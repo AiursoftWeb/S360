@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Et dummytal til test.</value>
   </data>
+  <data name="Allow anonymous review" xml:space="preserve">
+    <value>Tillad anonym gennemgang</value>
+  </data>
+  <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
+    <value>Tillad afhængighedsreviews uden en API-nøgle. Anonyme reviews registreres som uverificerede rapporter og opdaterer aldrig produktionsbrug. Baseline-rapporter kræver altid deres beskyttede legitimationsoplysninger.</value>
+  </data>
   <data name="Allow User Adjust Nickname" xml:space="preserve">
     <value>Tillad bruger at ændre apelation</value>
   </data>

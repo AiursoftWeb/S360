@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Periksa dependensi</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Buat dan kelola kunci API pribadi, lalu gunakan kunci tersebut untuk meninjau permintaan dependensi.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>Buat kunci API dan panggil S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Buat kunci API pribadi yang mendukung baseline dan nyatakan inventaris dependensi produksi.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Hapus Peran</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Kelola aturan kepercayaan</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Publikasikan baseline produksi</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Baca semua permintaan, pemeriksaan build, dan catatan audit kerentanan.</value>

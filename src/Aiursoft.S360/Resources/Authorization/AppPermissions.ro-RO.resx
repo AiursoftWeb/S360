@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Verifică dependențele</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Creați și gestionați chei API personale și folosiți-le pentru revizuirile dependențelor.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>Creați chei API și apelați S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Creați chei API personale cu activare de bază și declarați inventarele de dependențe de producție.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Șterge Roluri</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Gestionați regulile de încredere</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Publicare linii de bază de producție</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Citiți toate solicitările, verificările procesului de compilare și înregistrările auditurilor de vulnerabilități.</value>

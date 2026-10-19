@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>發送至 API 的依賴項清單中的一個有限部分。批次獲接納並不代表整個執行過程均獲接納。</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>已接受</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>「已接受」表示 S360 已接受此檢查所提交的套件證據。這不代表所有批次均已送達，亦不代表已設定 GitLab Runner 停止建置。</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>接受與強制執行</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>匿名審查</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API 密鑰 ID</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>審計目的</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>已驗證的帳戶</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>批次</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>目前已封鎖</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>決策原因</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>預設分支</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>每一列代表一個 API 批次。只有在一次完整執行中所有批次均獲接納，才可通過 CLI 檢查。記錄的結果反映過往情況；目前的封鎖清單警告會另行顯示。</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>執行未完成</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>本地檢查</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>合併請求</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>下一頁</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>在所報告的受支援專案中找不到外部相依項目。</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>一次已報告的檢查嘗試。其批次共用一個執行識別碼，以便您可以檢視完整結果。</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>其他分支</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>套件</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>上一頁</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>生產基準</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>專案</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>讀取檢查記錄</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>原因</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>已拒絕</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>報告來源</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>僅供審閱</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>「審查」會傳回政策決定，但不會儲存項目報告。「基線」表示用於生產環境，並只會在所有批次均已到達後更新項目清單，即使相依項目遭拒亦然。沒有指定用途的舊記錄絕不會更新生產環境的使用情況。</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>執行</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>狀態</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>標籤構建</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>CLI 識別到的受支援專案數目。即使檢查中沒有任何相依套件，仍會聯絡 S360 並記錄此數目。</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>該次檢查運行時記錄的政策說明。目前的封鎖清單警告是獨立的，絕不會改寫此歷史記錄。</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>項目和流水線識別符號由未經驗證的調用者提供。</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>這些是已回報的檢查；Runner 強制執行是另一個獨立的推出步驟，不能單憑此處的記錄推斷已啟用。</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>未分類</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>未聲明目的</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>版本</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>漏洞資料</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>漏洞資料時間</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>此決定所依據的公告資料最後檢查時間；空白並不代表狀況良好。</value>
   </data>
 
 </root>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} 個套件項目 · {1} 個需要處理</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} 個結果 · 第 {1} 頁，共 {2} 頁</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} 個有漏洞的套件 · {1} 個其他需要處理的套件</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>較新的報告不完整。</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>較新的報告不完整。目前顯示的是最後一個完整快照；現行覆蓋範圍未經驗證。</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>所有項目</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>所有狀態</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>審批規則及工具</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>瀏覽此專案的所有相依套件</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>瀏覽審批規則</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>檢查記錄</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>公司概覽</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>合規性檢視器</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>合規</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>數字反映所選報告範圍。狀態會根據現行政策及已儲存的漏洞數據進行評估。</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>目前基準</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>相依性</value>
+  </data>
+  <data name="Dependency relationships were not recorded in this report. Run the latest CLI to populate the graph; the package list remains available." xml:space="preserve">
+    <value>此報告中未記錄相依性關係。請執行最新的 CLI 以建立圖譜；套件清單仍可瀏覽。</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>生態系統</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>探索</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>尋找專案或套件，查看其合規狀況，並追查其用途。</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>庫存檢視</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>已知漏洞</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>最新的完整基線。這些是報告中列出的相依項目，並非已部署的證明。</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>需要留意</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>下一頁</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>沒有可用的完整報告。</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>此生態系統沒有完整報告，合規狀況未明。</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>無符合記錄</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>未核實</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm：未包含於此審計中。</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet 和 npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet：本次審核未涵蓋。</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>已觀察套件</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>較早的報告未有申報用途。無法從這些記錄推斷目前的使用情況。</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>套件、項目、用途或核准原因</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>需要關注的套件</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>第 {0} 頁，共 {1} 頁</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>管道</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>上一頁</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>項目</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>有報告的專案</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>檢視專案清單需要供應鏈讀取權限。您仍可瀏覽核准規則。</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>報告</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>重設篩選條件</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>結果頁面</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>審查檢查不會儲存為項目庫存。</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜尋</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>搜尋庫存</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>狀態只涵蓋已報告的生態系統。</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>供應鏈</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>完整報告中不包含此套件生態系統的相依項目。</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>此報告尚未完整。現時沒有完整快照；目前的覆蓋範圍未經核實。</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>嘗試使用不同的搜尋或報告範圍。僅憑一條核准規則，並不足以證明某個專案使用了該套件。</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>未分類歷史</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>更新 CLI 報告以查看依賴關係。</value>
+  </data>
+
+</root>

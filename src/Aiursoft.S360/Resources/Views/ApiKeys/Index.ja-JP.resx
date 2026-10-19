@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Actions" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="API Key created" xml:space="preserve">
+    <value>APIキーを作成しました</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>APIキー</value>
+  </data>
+  <data name="Create API Key" xml:space="preserve">
+    <value>APIキーを作成</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>編集</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>有効期限</value>
+  </data>
+  <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone." xml:space="preserve">
+    <value>キーはお客様のアカウントに紐づいています。APIの利用権限を削除するか、アカウントをロックすると、キーも無効になります。時刻はお客様の現地時間で表示されます。</value>
+  </data>
+  <data name="Last used" xml:space="preserve">
+    <value>最終使用日</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名前</value>
+  </data>
+  <data name="New API Key" xml:space="preserve">
+    <value>新しいAPIキー</value>
+  </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>本番用ベースライン</value>
+  </data>
+  <data name="Send the key using X-S360-Key, or set S360_CHECK_KEY for the CLI. Never include keys in URLs, source control or logs." xml:space="preserve">
+    <value>キーは X-S360-Key を使用して送信するか、CLI では S360_CHECK_KEY を設定してください。キーを URL、ソース管理、ログに含めないでください。</value>
+  </data>
+  <data name="This key is displayed only once. Save it in your private configuration." xml:space="preserve">
+    <value>このキーは一度しか表示されません。安全な設定場所に保存してください。</value>
+  </data>
+  <data name="To rotate a key, create another, update your integration and verify it works, then delete the old key. Existing keys keep working during the transition." xml:space="preserve">
+    <value>キーをローテーションするには、新しいキーを作成し、連携先を更新して正常に動作することを確認してから、古いキーを削除してください。切り替え中も既存のキーは引き続き使用できます。</value>
+  </data>
+
+</root>

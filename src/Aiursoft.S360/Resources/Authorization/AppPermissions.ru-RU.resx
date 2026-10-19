@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Проверка зависимостей</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Создавайте и управляйте личными API-ключами и используйте их для проверок зависимостей.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>Создание API-ключей и вызов S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Создание личных API-ключей с поддержкой базовых версий и объявление списков производственных зависимостей.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Удаление ролей</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Управление правилами доверия</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Публикация производственных базовых версий</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Просматривать все запросы, результаты проверок сборок и записи аудита уязвимостей.</value>

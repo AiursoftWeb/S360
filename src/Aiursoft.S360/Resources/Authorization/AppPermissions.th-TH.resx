@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>ตรวจสอบ dependencies</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>สร้างและจัดการคีย์ API ส่วนตัว และใช้เพื่อตรวจสอบการพึ่งพา</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>สร้างคีย์ API และเรียกใช้ S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>สร้างคีย์ API ส่วนบุคคลที่เปิดใช้ baseline และระบุรายการ dependency สำหรับระบบ production</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>ลบบทบาท</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>จัดการกฎความน่าเชื่อถือ</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>เผยแพร่เบสไลน์การผลิต</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>อ่านคำขอทั้งหมด การตรวจสอบบิลด์ และบันทึกการตรวจสอบช่องโหว่</value>

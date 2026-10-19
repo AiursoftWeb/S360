@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>테스트용 가짜 번호입니다.</value>
   </data>
+  <data name="Allow anonymous review" xml:space="preserve">
+    <value>익명 리뷰 허용</value>
+  </data>
+  <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
+    <value>API 키 없이 의존성 검토를 허용합니다. 익명 검토는 검증되지 않은 보고서로 기록되며 프로덕션 사용량을 업데이트하지 않습니다. 기준선 보고서에는 항상 해당 보고서에 지정된 보호된 자격 증명이 필요합니다.</value>
+  </data>
   <data name="Allow User Adjust Nickname" xml:space="preserve">
     <value>사용자 닉네임 조정 허용</value>
   </data>

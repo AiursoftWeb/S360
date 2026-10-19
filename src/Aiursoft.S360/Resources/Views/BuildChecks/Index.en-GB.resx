@@ -126,6 +126,9 @@
   <data name="Review only records a proposed dependency check. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
     <value>Review records only a proposed dependency check. Baseline declares production use and updates the project inventory only once every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage.</value>
   </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage.</value>
+  </data>
   <data name="Run" xml:space="preserve">
     <value>Run</value>
   </data>

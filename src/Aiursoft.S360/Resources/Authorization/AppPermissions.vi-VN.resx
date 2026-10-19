@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Kiểm tra các phần phụ thuộc</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Tạo và quản lý khóa API cá nhân, đồng thời sử dụng chúng để đánh giá các yêu cầu về dependency.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>Tạo khóa API và gọi S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Tạo các khóa API cá nhân có khả năng tạo baseline và khai báo danh mục phụ thuộc sản xuất.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Xóa Vai trò</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Quản lý các quy tắc tin cậy</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Công bố các phiên bản cơ sở cho môi trường sản xuất</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Đọc tất cả yêu cầu, các lần kiểm tra bản dựng và hồ sơ kiểm tra lỗ hổng bảo mật.</value>

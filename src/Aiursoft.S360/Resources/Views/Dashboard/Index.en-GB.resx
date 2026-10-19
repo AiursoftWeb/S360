@@ -21,6 +21,15 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation.</value>
   </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} affected projects</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} package versions requiring attention</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} total · {1} in progress · {2} approved</value>
+  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC.</value>
   </data>
@@ -63,6 +72,9 @@
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Absolute exclusions that take priority over trust rules and approvals.</value>
   </data>
+  <data name="Across reported projects" xml:space="preserve">
+    <value>Across reported projects</value>
+  </data>
   <data name="Across the organization" xml:space="preserve">
     <value>Across the organisation</value>
   </data>
@@ -80,6 +92,9 @@
   </data>
   <data name="Approval center" xml:space="preserve">
     <value>Approval centre</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
   </data>
   <data name="Approved requests" xml:space="preserve">
     <value>Approved requests</value>
@@ -135,11 +150,23 @@
   <data name="Comes with full Docker support for simplified, consistent, and reliable deployments." xml:space="preserve">
     <value>Comes with full Docker support for streamlined, consistent, and reliable deployments.</value>
   </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Company overview</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Compliant</value>
+  </data>
+  <data name="Compliant means current checks passed for the reported ecosystems. Not verified includes incomplete reports and missing or stale evidence." xml:space="preserve">
+    <value>Compliant means the latest checks have passed for the reported ecosystems. Not verified includes incomplete reports and missing or out-of-date evidence.</value>
+  </data>
   <data name="Comprehensive Documentation" xml:space="preserve">
     <value>Comprehensive Documentation</value>
   </data>
   <data name="Consistency Validation" xml:space="preserve">
     <value>Consistency Validation</value>
+  </data>
+  <data name="Current baseline reports only; review checks and projects that have not reported are not included. This is not a live production inventory." xml:space="preserve">
+    <value>Only reports from the current baseline are included; review checks and projects that have not reported are excluded. This is not a live production inventory.</value>
   </data>
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Decisions recorded for your work</value>
@@ -183,6 +210,12 @@
   <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
     <value>Packages that are explicitly blocked are refused, even if they are included indirectly or match a broad supplier rule.</value>
   </data>
+  <data name="Explore compliance" xml:space="preserve">
+    <value>Explore compliance</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Failed</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Features a built-in file management system with automatic avatar compression and privacy protection.</value>
   </data>
@@ -219,6 +252,9 @@
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Includes comprehensive documentation and practical examples to get you started quickly.</value>
   </data>
+  <data name="Incomplete report" xml:space="preserve">
+    <value>Incomplete report</value>
+  </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Integrated File Management</value>
   </data>
@@ -228,14 +264,26 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Known vulnerabilities</value>
   </data>
+  <data name="Known vulnerabilities first, then other audit issues. Open a package to see who uses it and the recorded reasons." xml:space="preserve">
+    <value>Known vulnerabilities first, then other audit issues. Open a package to see who uses it and the recorded reasons.</value>
+  </data>
   <data name="Last successful OSV sync" xml:space="preserve">
     <value>Last successful OSV sync</value>
+  </data>
+  <data name="Latest baseline per project" xml:space="preserve">
+    <value>Latest baseline per project</value>
+  </data>
+  <data name="Latest baseline report" xml:space="preserve">
+    <value>Latest baseline report</value>
   </data>
   <data name="Learn about the workflow" xml:space="preserve">
     <value>Learn about the workflow</value>
   </data>
   <data name="Match the actual artifact" xml:space="preserve">
     <value>Match the actual artefact</value>
+  </data>
+  <data name="Missing or stale" xml:space="preserve">
+    <value>Missing or stale</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Models are validated on both client and server sides based on data annotations.</value>
@@ -249,23 +297,77 @@
   <data name="My requests" xml:space="preserve">
     <value>My requests</value>
   </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Needs attention</value>
+  </data>
   <data name="New request" xml:space="preserve">
     <value>New request</value>
+  </data>
+  <data name="No baseline data" xml:space="preserve">
+    <value>No baseline data</value>
+  </data>
+  <data name="No baseline reports yet. Run a baseline check from a project&apos;s official pipeline to populate this overview." xml:space="preserve">
+    <value>No baseline reports yet. Run a baseline check from a project&apos;s official pipeline to populate this overview.</value>
+  </data>
+  <data name="No complete baseline report" xml:space="preserve">
+    <value>No complete baseline report</value>
+  </data>
+  <data name="No package issues found in the available baseline data." xml:space="preserve">
+    <value>No package issues found in the available baseline data.</value>
+  </data>
+  <data name="No project issues found in the available baseline data." xml:space="preserve">
+    <value>No project issues found in the available baseline data.</value>
   </data>
   <data name="No requests yet" xml:space="preserve">
     <value>No requests yet</value>
   </data>
+  <data name="No requests yet. Request a new dependency when your project needs a package that is not approved." xml:space="preserve">
+    <value>No requests yet. Request a new dependency when your project needs a package that is not approved.</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Not verified</value>
+  </data>
+  <data name="Open a project to trace the dependency path and inspect the exact versions." xml:space="preserve">
+    <value>Open a project to trace the dependency path and inspect the exact versions.</value>
+  </data>
+  <data name="Open approval center" xml:space="preserve">
+    <value>Open approval centre</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect Integration</value>
   </data>
+  <data name="Package compliance" xml:space="preserve">
+    <value>Package compliance</value>
+  </data>
   <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
     <value>Package files recorded across both ecosystems, including items not currently authorised.</value>
+  </data>
+  <data name="Packages are counted by ecosystem, name, and source; versions are grouped." xml:space="preserve">
+    <value>Packages are counted by ecosystem, name and source; versions are grouped.</value>
+  </data>
+  <data name="Packages in use" xml:space="preserve">
+    <value>Packages in use</value>
+  </data>
+  <data name="Packages with known vulnerabilities" xml:space="preserve">
+    <value>Packages with known vulnerabilities</value>
   </data>
   <data name="Policy" xml:space="preserve">
     <value>Policy</value>
   </data>
   <data name="Policy management" xml:space="preserve">
     <value>Policy management</value>
+  </data>
+  <data name="Priority packages" xml:space="preserve">
+    <value>Priority packages</value>
+  </data>
+  <data name="Project compliance" xml:space="preserve">
+    <value>Project compliance</value>
+  </data>
+  <data name="Projects needing attention" xml:space="preserve">
+    <value>Projects requiring attention</value>
+  </data>
+  <data name="Projects, dependencies, and the risks that need attention." xml:space="preserve">
+    <value>Projects, dependencies and risks requiring attention.</value>
   </data>
   <data name="Quick and detailed risk views" xml:space="preserve">
     <value>Quick and detailed risk views</value>
@@ -279,6 +381,15 @@
   <data name="Recent activity" xml:space="preserve">
     <value>Recent activity</value>
   </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Reported projects</value>
+  </data>
+  <data name="Request #{0}" xml:space="preserve">
+    <value>Request #{0}</value>
+  </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Request a new dependency</value>
   </data>
@@ -287,6 +398,9 @@
   </data>
   <data name="Request what is missing" xml:space="preserve">
     <value>Request what is missing</value>
+  </data>
+  <data name="Resolving" xml:space="preserve">
+    <value>Resolving</value>
   </data>
   <data name="Resolving or awaiting review" xml:space="preserve">
     <value>Being processed or awaiting review</value>
@@ -302,6 +416,9 @@
   </data>
   <data name="Revisit the risk" xml:space="preserve">
     <value>Review the risk</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Revoked</value>
   </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Robust Integration Testing</value>
@@ -383,6 +500,9 @@
   </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Why use the Aiursoft Template?</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Withdrawn</value>
   </data>
   <data name="Words you will see" xml:space="preserve">
     <value>Words you will see</value>

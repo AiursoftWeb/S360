@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>規則授予使用套件的權限。它無法證明專案實際使用了這些套件，或允許的版本沒有漏洞。</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>已核准</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>授權</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>返回至現有規則集</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>生態系統</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>已排除</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>排除項目會從授權中移除受影響的版本。它們不會隱藏已由生產基準報告的受影響版本。</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>已過期</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>到期日</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>已包含</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>無排除項目記錄。</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>無到期日</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>儲存的有效公告中沒有相關範圍。這不代表整條規則就是安全的。</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>沒有審核紀錄。此規則可能是直接匯入的。</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>未鎖定</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>套件模式</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>待處理</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>預先發布版本</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>範圍無法評估</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>範圍與模式重疊</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>原因</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>已拒絕</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>相關諮詢範圍</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>要求時間</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>審核紀錄</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>審核者</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>已撤銷</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>來源</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>狀態</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>供應商</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>這些已發布的版本範圍與規則模式重疊，或無法進行評估。這並非表示該規則目前允許所有列出的版本：狀態、到期日、排除項目、其他規則以及封鎖清單同樣適用。對生產環境的影響將於漏洞稽核頁面顯示。</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>信任規則詳細資訊</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>版本模式</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>檢視目前的弱點稽核</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>漏洞排除項目</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>已撤回</value>
+  </data>
+
+</root>

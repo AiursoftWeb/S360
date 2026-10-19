@@ -72,6 +72,12 @@
   <data name="Click to login" xml:space="preserve">
     <value>Click to log in</value>
   </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Company overview</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Compliance explorer</value>
+  </data>
   <data name="Create Role" xml:space="preserve">
     <value>Create Role</value>
   </data>
@@ -113,6 +119,9 @@
   </data>
   <data name="Existing package CVEs" xml:space="preserve">
     <value>Existing package CVEs</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>Existing rule set</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Features</value>
@@ -209,6 +218,9 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>Template</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Trust rule details</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Unauthorised</value>

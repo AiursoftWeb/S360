@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>의존성 확인</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>개인 API 키를 생성하고 관리하며 의존성 검토에 사용합니다.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>API 키 생성 및 S360 호출</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>기준선 기능이 활성화된 개인 API 키를 생성하고 프로덕션 종속성 인벤토리를 선언합니다.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>역할 삭제</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>신뢰 규칙 관리</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>프로덕션 기준선 게시</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>모든 요청, 빌드 검사 및 취약점 감사 기록을 조회합니다.</value>

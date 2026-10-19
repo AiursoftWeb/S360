@@ -426,6 +426,9 @@ namespace Aiursoft.S360.Sqlite.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
+                    b.Property<bool>("SourceVerificationRejected")
+                        .HasColumnType("INTEGER");
+
                     b.Property<DateTime?>("SourceVerifiedAtUtc")
                         .HasColumnType("TEXT");
 

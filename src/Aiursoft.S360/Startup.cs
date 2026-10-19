@@ -58,6 +58,7 @@ public class Startup : IWebStartup
 
         // Services
         services.AddMemoryCache();
+        services.AddSingleton<Services.ArtifactVerificationAdmission>();
         services.AddHttpClient();
         services.AddHttpClient(PackageResolutionService.ArchiveClientName)
             .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });

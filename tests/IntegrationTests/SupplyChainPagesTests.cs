@@ -375,11 +375,13 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task CliRejectsPackageFromUnconfiguredSourceWithActionableDetails()
+    [DataRow("review")]
+    [DataRow("baseline")]
+    public async Task CliRejectsPackageFromUnconfiguredSourceWithActionableDetails(string purpose)
     {
         const string checkKey = "integration-cli-source-key";
         const string source = "https://unconfigured.example.test/v3/index.json";
-        await AddCheckKeyAsync(checkKey);
+        await AddCheckKeyAsync(checkKey, baseline: purpose == "baseline");
         var root = Path.Combine(Path.GetTempPath(), "s360-cli-source-" + Guid.NewGuid().ToString("N"));
         var packageName = "example." + Guid.NewGuid().ToString("N");
         const string version = "1.2.3";
@@ -432,7 +434,7 @@ public class SupplyChainPagesTests : TestBase
                      {
                          "run", "--no-build", "--no-restore", "--configuration", BuildConfiguration,
                          "--project", clientProject, "--", "check", "--path", solution,
-                         "--server", $"http://localhost:{Port}"
+                         "--server", $"http://localhost:{Port}", "--purpose", purpose
                      }) start.ArgumentList.Add(argument);
             start.Environment["S360_CHECK_KEY"] = checkKey;
             start.Environment["CI_PROJECT_PATH"] = "integration/unconfigured-source";
@@ -454,8 +456,14 @@ public class SupplyChainPagesTests : TestBase
             Assert.DoesNotContain("S360 approved", output);
             using var scope = Server!.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.Project == "integration/unconfigured-source"));
-            Assert.IsFalse(await db.BuildCheckDependencies.AnyAsync(d => d.Name == packageName));
+            Assert.AreEqual(purpose == "baseline", await db.BuildChecks.AnyAsync(c => c.Project == "integration/unconfigured-source"));
+            Assert.AreEqual(purpose == "baseline", await db.BuildCheckDependencies.AnyAsync(d => d.Name == packageName));
+            if (purpose == "baseline")
+            {
+                var report = await db.BuildChecks.SingleAsync(c => c.Project == "integration/unconfigured-source");
+                Assert.IsFalse(report.Trusted);
+                Assert.AreEqual("baseline", BuildCheckRun.Purpose(report.ContextJson));
+            }
             Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name == packageName));
         }
         finally { Directory.Delete(root, recursive: true); }
@@ -1639,7 +1647,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     [DataRow(false)]
     [DataRow(true)]
-    public async Task ReviewNeverRegistersUnknownPackagesOrProjectReports(bool anonymous)
+    public async Task ReviewQueuesOnlyApprovedPackagesWithoutProjectReports(bool anonymous)
     {
         var suffix = Guid.NewGuid().ToString("N");
         var project = "review-only-" + suffix;
@@ -1674,7 +1682,8 @@ public class SupplyChainPagesTests : TestBase
                 Assert.IsNotNull(result);
                 Assert.IsFalse(result.Trusted);
                 StringAssert.Contains(result.Decisions[0].Reason, "No approved trust rule");
-                StringAssert.Contains(result.Decisions[1].Reason, "verification and vulnerability audit are pending");
+                Assert.IsFalse(result.Decisions[0].PendingVerification);
+                Assert.IsTrue(result.Decisions[1].PendingVerification);
             }
             request.BatchIndex = 1;
             request.Dependencies = [];
@@ -1682,10 +1691,14 @@ public class SupplyChainPagesTests : TestBase
             using var graphBatch = await Http.PostAsJsonAsync("/api/check", request);
             graphBatch.EnsureSuccessStatusCode();
             Assert.IsTrue((await graphBatch.Content.ReadFromJsonAsync<CheckResponse>())!.Trusted);
-            Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name.StartsWith(dependency.Name)));
+            var artifact = await db.PackageArtifacts.SingleAsync(a => a.Name.StartsWith(dependency.Name));
+            Assert.AreEqual(dependency.Name + ".Approved", artifact.Name);
+            Assert.IsNull(artifact.SourceVerifiedAtUtc);
+            Assert.IsNull(artifact.LastCheckedAtUtc);
+            Assert.IsNull(artifact.FirstTrustedAtUtc);
             Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.RunId == request.RunId));
             Assert.IsFalse(await db.BuildCheckDependencies.AnyAsync(d => d.Name.StartsWith(dependency.Name)));
-            Assert.IsFalse(GetService<Microsoft.Extensions.Caching.Memory.IMemoryCache>()
+            Assert.IsTrue(GetService<Microsoft.Extensions.Caching.Memory.IMemoryCache>()
                 .TryGetValue("s360-osv-audit-queued", out _));
             await LoginAsAdmin();
             foreach (var url in new[] { "/BuildChecks/Index", "/VulnerabilityAudit/Index?detailed=true",
@@ -1695,6 +1708,49 @@ public class SupplyChainPagesTests : TestBase
                 page.EnsureSuccessStatusCode();
                 Assert.DoesNotContain(project, await page.Content.ReadAsStringAsync());
             }
+        }
+        finally { await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "False"); }
+    }
+
+    [TestMethod]
+    public async Task AnonymousReviewBoundsNewVersionWorkAndConcurrentRequestsWithoutProjectImpact()
+    {
+        using var scope = Server!.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+        var settings = scope.ServiceProvider.GetRequiredService<GlobalSettingsService>();
+        await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "True");
+        var name = "Example.Admission." + Guid.NewGuid().ToString("N");
+        var supplier = new Supplier { Name = name };
+        db.TrustRules.Add(new TrustRule { ApplicationId = null, SupplierId = supplier.Id, Supplier = supplier,
+            Ecosystem = "nuget", PackagePattern = name, Version = "1.*", Source = "https://api.nuget.org/v3/index.json",
+            Status = TrustRuleStatus.Approved });
+        await db.SaveChangesAsync();
+        var request = new CheckRequest { Project = name, ScannedProjectCount = 1,
+            Dependencies = Enumerable.Range(0, 21).Select(i => new Dependency { Ecosystem = "nuget",
+                Name = name, Version = "1.0." + i, Source = "https://api.nuget.org/v3/index.json",
+                Sha256 = new string('a', 64) }).ToList() };
+        try
+        {
+            for (var attempt = 0; attempt < 2; attempt++)
+            {
+                using var response = await Http.PostAsJsonAsync("/api/check", request);
+                response.EnsureSuccessStatusCode();
+                var result = await response.Content.ReadFromJsonAsync<CheckResponse>();
+                Assert.IsNotNull(result);
+                Assert.IsFalse(result.Trusted);
+                Assert.IsTrue(result.Decisions.All(d => d.PendingVerification));
+                Assert.AreEqual(20, await db.PackageArtifacts.CountAsync(a => a.Name == name));
+            }
+            var admission = scope.ServiceProvider.GetRequiredService<ArtifactVerificationAdmission>();
+            for (var i = 0; i < 4; i++) Assert.IsTrue(admission.AnonymousReviews.Wait(0));
+            try
+            {
+                using var busy = await Http.PostAsJsonAsync("/api/check", request);
+                Assert.AreEqual(HttpStatusCode.TooManyRequests, busy.StatusCode);
+                Assert.IsNotNull(busy.Headers.RetryAfter);
+            }
+            finally { admission.AnonymousReviews.Release(4); }
+            Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.Project == name));
         }
         finally { await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "False"); }
     }

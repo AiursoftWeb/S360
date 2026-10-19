@@ -4,7 +4,6 @@ using Aiursoft.CommandFramework.Framework;
 using Aiursoft.S360.SDK;
 using Aiursoft.AiurProtocol.Services;
 using Aiursoft.AiurProtocol;
-using Aiursoft.AiurProtocol.Models;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Aiursoft.S360.Client;
@@ -111,25 +110,33 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
             requests.Add(request);
         } while (dependencyQueue.Count > 0 || graphQueue.Count > 0);
         if (requests.Count > 10000) throw new InvalidOperationException("The dependency report exceeds the batch limit.");
-        for (var batchIndex = 0; batchIndex < requests.Count; batchIndex++)
+        // Review the complete scan before submitting any baseline batches. Polling
+        // must never create duplicate or partially retried production reports.
+        using var verificationDeadline = new CancellationTokenSource(TimeSpan.FromMinutes(10));
+        for (var index = 0; index < requests.Count; index++)
         {
-            var request = requests[batchIndex];
-            request.BatchIndex = batchIndex;
-            request.BatchCount = requests.Count;
-            var batch = request.Dependencies;
-            var response = await client.CheckAsync(server, key, request);
-            if (response.Code != Code.ResultShown)
-                throw new InvalidOperationException("S360 did not return a successful dependency-check result.");
-            if (response.Decisions.Count != batch.Count)
-                throw new InvalidOperationException("S360 returned an incomplete dependency decision set.");
-            for (var i = 0; i < batch.Count; i++)
+            requests[index].BatchIndex = index;
+            requests[index].BatchCount = requests.Count;
+        }
+        foreach (var request in requests)
+        {
+            request.Context = ReadContext(Environment.GetEnvironmentVariable, "review", selectedEcosystem);
+            CheckResponse response;
+            try
             {
-                var actual = response.Decisions[i].Dependency;
-                var expected = batch[i];
-                if (actual.Ecosystem != expected.Ecosystem || actual.Name != expected.Name ||
-                    actual.Version != expected.Version || actual.Source != expected.Source ||
-                    !actual.Sha256.Equals(expected.Sha256, StringComparison.OrdinalIgnoreCase))
-                    throw new InvalidOperationException("S360 returned a mismatched dependency decision set.");
+                response = await client.CheckWhenReadyAsync(server, key, request,
+                    TimeSpan.FromMinutes(10), verificationDeadline.Token);
+            }
+            catch (Exception ex) when (ex is TimeoutException ||
+                                       ex is OperationCanceledException && verificationDeadline.IsCancellationRequested)
+            {
+                const string message = "S360 package verification did not complete within 10 minutes. " +
+                    "The build remains blocked; check source verification and vulnerability audit job results, then retry.";
+                if (purpose != "baseline") throw new TimeoutException(message, ex);
+                Console.Error.WriteLine(message);
+                // Still declare the complete production inventory, including rejected
+                // packages; a failed preflight must not leave an old green baseline.
+                break;
             }
             foreach (var decision in response.Decisions.Where(d => !d.Trusted))
             {
@@ -142,7 +149,18 @@ public class CheckHandler : ExecutableCommandHandlerBuilder
                 Console.Error.WriteLine($"DENIED: {response.Message} Rerun the full check.");
             approved &= response.Trusted;
         }
-        if (!approved) throw new InvalidOperationException("S360 rejected dependencies. Submit a request through the S360 web UI.");
+        if (purpose == "baseline")
+        {
+            approved = true;
+            foreach (var request in requests)
+            {
+                request.Context = checkContext;
+                var response = await client.CheckAsync(server, key, request);
+                approved &= response.Trusted && response.Decisions.All(d => d.Trusted);
+                if (!response.Trusted) Console.Error.WriteLine($"DENIED production baseline: {response.Message}");
+            }
+        }
+        if (!approved) throw new InvalidOperationException("S360 rejected dependencies. Review the denial reasons; request approval only for dependencies outside approved policy.");
         Console.WriteLine($"S360 approved {dependencies.Count} dependency artifacts across {scan.ScannedProjectCount} supported projects.");
     }
 

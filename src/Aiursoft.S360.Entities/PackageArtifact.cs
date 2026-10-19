@@ -23,6 +23,7 @@ public class PackageArtifact
     [MaxLength(64)] public string IdentityKey { get; set; } = string.Empty;
     [MaxLength(64)] public string Sha256 { get; set; } = string.Empty;
     public DateTime FirstSeenAtUtc { get; init; } = DateTime.UtcNow;
+    public bool SourceVerificationRejected { get; set; }
     public DateTime? SourceVerifiedAtUtc { get; set; }
     public DateTime? FirstTrustedAtUtc { get; set; }
     public DateTime? LastCheckedAtUtc { get; set; }

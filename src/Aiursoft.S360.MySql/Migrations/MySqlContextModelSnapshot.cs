@@ -447,6 +447,9 @@ namespace Aiursoft.S360.MySql.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("varchar(500)");
 
+                    b.Property<bool>("SourceVerificationRejected")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<DateTime?>("SourceVerifiedAtUtc")
                         .HasColumnType("datetime(6)");
 

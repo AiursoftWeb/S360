@@ -47,6 +47,48 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         return decisions;
     }
 
+    public async Task<List<DependencyDecision>> ReviewAsync(IEnumerable<Dependency> dependencies, Func<bool>? admitNewArtifact = null)
+    {
+        var assessment = await AssessCoreAsync(dependencies);
+        var added = new List<PackageArtifact>();
+        foreach (var dependency in assessment.NewlyAdmitted)
+        {
+            var source = TrustPattern.NormalizeSource(dependency.Source);
+            var key = PackageArtifact.CalculateIdentityKey(dependency.Ecosystem, dependency.Name,
+                dependency.Version, source, dependency.Sha256);
+            if (added.Any(a => a.IdentityKey == key)) continue;
+            if (admitNewArtifact != null && !admitNewArtifact()) continue;
+            var artifact = new PackageArtifact
+            {
+                Ecosystem = dependency.Ecosystem, Name = dependency.Name, Version = dependency.Version,
+                Source = source, Sha256 = dependency.Sha256.ToLowerInvariant(), IdentityKey = key
+            };
+            // An observation only queues independent verification. It never grants trust
+            // or declares production use, even when a wildcard rule already permits it.
+            db.PackageArtifacts.Add(artifact);
+            added.Add(artifact);
+        }
+        for (var attempt = 0; added.Count > 0; attempt++)
+        {
+            try { await db.SaveChangesAsync(); break; }
+            catch (DbUpdateException) when (attempt < 2)
+            {
+                // Concurrent reviews can overlap partially. Remove only identities
+                // registered elsewhere and retry the remaining observations.
+                var keys = added.Select(a => a.IdentityKey).ToList();
+                var existing = new HashSet<string>(StringComparer.Ordinal);
+                foreach (var batch in keys.Chunk(500))
+                    existing.UnionWith(await db.PackageArtifacts.AsNoTracking()
+                        .Where(a => batch.Contains(a.IdentityKey)).Select(a => a.IdentityKey).ToListAsync());
+                if (existing.Count == 0) throw;
+                foreach (var artifact in added.Where(a => existing.Contains(a.IdentityKey)))
+                    db.Entry(artifact).State = EntityState.Detached;
+                added.RemoveAll(a => existing.Contains(a.IdentityKey));
+            }
+        }
+        return assessment.Decisions;
+    }
+
     private Task<Assessment> AssessCoreAsync(IEnumerable<Dependency> dependencies)
     {
         var requested = dependencies.ToList();
@@ -97,19 +139,21 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
             if (sameHash.Count == 0)
             {
                 newlyAdmitted.Add(dependency);
-                return Reject(dependency, "Package archive verification and vulnerability audit are pending.");
-            }
-            if (sameHash.All(a => a.SourceVerifiedAtUtc == null))
-                return Reject(dependency, "Package archive has not been independently verified from its source.");
-            if (sameHash.All(a => !VulnerabilityAuditFreshness.IsCurrent(a.LastCheckedAtUtc,
-                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now)))
-            {
-                pendingExisting.Add(dependency);
-                return Reject(dependency, "Vulnerability audit has not completed for this package within 12 hours.");
+                return Pending(dependency, "Package archive verification and vulnerability audit are pending.");
             }
             if (matchingArtifacts.Any(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase) &&
                                           affectedIds.Contains(a.Id)))
                 return Reject(dependency, "This version has a known active vulnerability.");
+            if (sameHash.Any(a => a.SourceVerificationRejected))
+                return Reject(dependency, "Package archive does not match its approved source or the source is no longer permitted.");
+            if (sameHash.All(a => a.SourceVerifiedAtUtc == null))
+                return Pending(dependency, "Package archive has not been independently verified from its source.");
+            if (sameHash.All(a => !VulnerabilityAuditFreshness.IsCurrent(a.LastCheckedAtUtc,
+                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now)))
+            {
+                pendingExisting.Add(dependency);
+                return Pending(dependency, "Vulnerability audit has not completed for this package within 12 hours.");
+            }
             return decision;
         }).ToList();
         return new Assessment(decisions, newlyAdmitted, pendingExisting, known);
@@ -152,6 +196,9 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
 
     private static DependencyDecision Reject(Dependency dependency, string reason) =>
         new() { Dependency = dependency, Trusted = false, Reason = reason };
+
+    private static DependencyDecision Pending(Dependency dependency, string reason) =>
+        new() { Dependency = dependency, Trusted = false, PendingVerification = true, Reason = reason };
 
     public static DependencyDecision Evaluate(Dependency dependency, IEnumerable<TrustRule> rules,
         IEnumerable<BlockRule> blocks, DateTime now,

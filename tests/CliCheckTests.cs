@@ -1,6 +1,10 @@
 using System.Diagnostics;
 using System.Text.Json;
 using Aiursoft.S360.Client;
+using Aiursoft.S360.SDK;
+using Aiursoft.AiurProtocol;
+using Aiursoft.AiurProtocol.Services;
+using Aiursoft.AiurProtocol.Models;
 
 namespace Aiursoft.S360.Tests;
 
@@ -12,6 +16,67 @@ public class CliCheckTests
 #else
     private const string BuildConfiguration = "Release";
 #endif
+
+    [TestMethod]
+    [DataRow(false)]
+    [DataRow(true)]
+    public async Task PendingVerificationWaitsForAuditButPermanentDenialDoesNotRetry(bool pending)
+    {
+        var dependency = new Dependency { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
+            Source = "https://registry.npmjs.org", Sha256 = new string('a', 64) };
+        using var handler = new VerificationHandler(dependency, pending);
+        var services = new ServiceCollection();
+        services.AddLogging();
+        services.AddAiurProtocolClient();
+        services.AddHttpClient(string.Empty).ConfigurePrimaryHttpMessageHandler(() => handler);
+        using var provider = services.BuildServiceProvider();
+        var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
+        var request = new CheckRequest { ScannedProjectCount = 1, Dependencies = [dependency] };
+        var response = await client.CheckWhenReadyAsync("http://localhost", null, request, TimeSpan.FromSeconds(30));
+        Assert.AreEqual(pending, response.Trusted);
+        Assert.AreEqual(pending ? 2 : 1, handler.Calls);
+    }
+
+    [TestMethod]
+    public async Task PendingVerificationTimesOutWithoutApprovingOrRetryingABaseline()
+    {
+        var dependency = new Dependency { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
+            Source = "https://registry.npmjs.org", Sha256 = new string('a', 64) };
+        using var handler = new VerificationHandler(dependency, true);
+        var services = new ServiceCollection();
+        services.AddLogging();
+        services.AddAiurProtocolClient();
+        services.AddHttpClient(string.Empty).ConfigurePrimaryHttpMessageHandler(() => handler);
+        using var provider = services.BuildServiceProvider();
+        var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
+        var request = new CheckRequest { ScannedProjectCount = 1, Dependencies = [dependency] };
+        await Assert.ThrowsAsync<TimeoutException>(() => client.CheckWhenReadyAsync("http://localhost", null,
+            request, TimeSpan.FromSeconds(2)));
+        Assert.AreEqual(1, handler.Calls);
+        request.Context = new CheckContext { Purpose = "baseline" };
+        await Assert.ThrowsAsync<ArgumentException>(() => client.CheckWhenReadyAsync("http://localhost", null,
+            request, TimeSpan.FromSeconds(30)));
+        Assert.AreEqual(1, handler.Calls);
+    }
+
+    private sealed class VerificationHandler(Dependency dependency, bool pending) : HttpMessageHandler
+    {
+        public int Calls { get; private set; }
+
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            Calls++;
+            var trusted = pending && Calls > 1;
+            return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK)
+            {
+                Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new CheckResponse { Code = Code.ResultShown, Trusted = trusted,
+                    Decisions = [new DependencyDecision { Dependency = dependency, Trusted = trusted,
+                        PendingVerification = pending && !trusted,
+                        Reason = trusted ? "Approved" : pending ? "Audit pending" : "No approved trust rule." }] },
+                    ProtocolSettings.JsonSettings), System.Text.Encoding.UTF8, "application/json")
+            });
+        }
+    }
 
     [TestMethod]
     public void CliReportsGitlabContextWithoutPromotingLocalProjectVariables()

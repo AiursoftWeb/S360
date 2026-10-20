@@ -54,6 +54,9 @@
   <data name="Available dependencies" xml:space="preserve">
     <value>Dipendenze disponibili</value>
   </data>
+  <data name="Back to dependency inventory" xml:space="preserve">
+    <value>Torna all&apos;inventario delle dipendenze</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>Non trovi un pacchetto? Invia una richiesta</value>
   </data>
@@ -84,11 +87,17 @@
   <data name="Find packages" xml:space="preserve">
     <value>Trova pacchetti</value>
   </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Come leggere il catalogo</value>
+  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>Fonte del pacchetto HTTPS</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Includi le versioni preliminari</value>
+  </data>
+  <data name="Last checked" xml:space="preserve">
+    <value>Ultimo controllo</value>
   </data>
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Ultimo controllo (UTC)</value>
@@ -170,6 +179,9 @@
   </data>
   <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
     <value>L&apos;URL del registro approvato fa parte della regola. Lo stesso pacchetto proveniente da una fonte diversa non è coperto.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Previously published results remain usable until their original expiry." xml:space="preserve">
+    <value>La più recente sincronizzazione delle vulnerabilità non è riuscita. I risultati pubblicati in precedenza restano utilizzabili fino alla loro scadenza originale.</value>
   </data>
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>La sincronizzazione più recente delle vulnerabilità non è riuscita. Gli artefatti registrati rimarranno nascosti fino al completamento di un audit.</value>

@@ -14,18 +14,23 @@ public class BadgeController(TemplateDbContext db, CatalogInventoryService inven
     [ResponseCache(Duration = 60, Location = ResponseCacheLocation.Any)]
     public async Task<IActionResult> Project(string? project)
     {
-        if (string.IsNullOrWhiteSpace(project) || project.Length > 200) return BadRequest();
+        if (string.IsNullOrWhiteSpace(project) || project.Length > 750) return BadRequest();
         return await VulnerabilityAuditSnapshot.ExecuteAsync(db, async () =>
         {
-            var model = new InventoryViewModel { Tab = "projects", Project = project, Scope = "baseline" };
+            var model = new InventoryViewModel
+            {
+                Tab = "projects", Scope = "baseline",
+                Project = project.Contains("//", StringComparison.Ordinal) ? project : null,
+                Repository = project.Contains("//", StringComparison.Ordinal) ? null : project
+            };
             await inventory.PopulateAsync(model, projectOnly: true);
-            var result = model.Projects.SingleOrDefault();
+            var result = model.Summary;
             var (message, color) = result switch
             {
-                null => ("unknown", "9f9f9f"),
-                { } p when p.Versions.Any(v => v.Advisories.Count > 0) => ("CVE found", "e05d44"),
-                { Status: InventoryStatus.NonCompliant } => ("non-compliant", "e05d44"),
-                { Status: InventoryStatus.Pending } => ("pending", "dfb317"),
+                { ProjectCount: 0 } => ("unknown", "9f9f9f"),
+                { VulnerableProjectCount: > 0 } => ("CVE found", "e05d44"),
+                {} p when p.ProjectStatuses.GetValueOrDefault(InventoryStatus.NonCompliant) > 0 => ("non-compliant", "e05d44"),
+                {} p when p.ProjectStatuses.GetValueOrDefault(InventoryStatus.Pending) > 0 => ("pending", "dfb317"),
                 _ => ("compliant", "4c1")
             };
             var messageWidth = message switch

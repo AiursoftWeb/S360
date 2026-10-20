@@ -92,7 +92,66 @@ public class InventoryTests : TestBase
         await ReadBadge("legacy", "unknown");
         await ReadBadge("missing", "unknown");
         Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.GetAsync("/badge.svg")).StatusCode);
-        Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.GetAsync("/badge.svg?project=" + new string('a', 201))).StatusCode);
+        Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.GetAsync("/badge.svg?project=" + new string('a', 751))).StatusCode);
+    }
+
+    [TestMethod]
+    public async Task RepositoryBadgeAggregatesSolutionsAndCompletedSolutionsReplaceLegacyNuGetOnly()
+    {
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var now = DateTime.UtcNow;
+            var artifact = Artifact("Legacy." + Guid.NewGuid().ToString("N"));
+            db.BuildChecks.Add(Report("repository", "baseline", "nuget", now.AddMinutes(-1), artifact));
+            foreach (var path in new[] { "First.sln", "Second.sln" })
+            {
+                var report = Report("repository//" + path, "baseline", "nuget", now);
+                report.ContextJson = JsonSerializer.Serialize(new CheckContext
+                {
+                    Purpose = "baseline", Ecosystem = "nuget", Repository = _prefix + "repository", SolutionPath = path
+                });
+                db.BuildChecks.Add(report);
+            }
+            await db.SaveChangesAsync();
+        }
+        await ReadBadge("repository", "compliant");
+        var model = await Read("projects", ecosystem: "nuget");
+        Assert.HasCount(2, model.Projects);
+        Assert.IsFalse(model.Projects.Any(p => p.Name == _prefix + "repository"));
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var bad = Report("repository//Second.sln", "baseline", "nuget", DateTime.UtcNow.AddMinutes(1),
+                Artifact("Unapproved." + Guid.NewGuid().ToString("N")));
+            bad.ContextJson = JsonSerializer.Serialize(new CheckContext
+            {
+                Purpose = "baseline", Ecosystem = "nuget", Repository = _prefix + "repository", SolutionPath = "Second.sln"
+            });
+            db.BuildChecks.Add(bad);
+            // A NuGet solution report does not discard a separately reported npm baseline.
+            db.BuildChecks.Add(Report("repository", "baseline", "npm", DateTime.UtcNow));
+            await db.SaveChangesAsync();
+        }
+        await ReadBadge("repository", "non-compliant");
+        await ReadBadge("repository//First.sln", "compliant");
+        await ReadBadge("repository//Second.sln", "non-compliant");
+        Assert.HasCount(1, (await Read("projects", ecosystem: "npm")).Projects);
+    }
+
+    [TestMethod]
+    public void IncompleteSolutionCannotRetireLegacyBaseline()
+    {
+        var legacy = Report("repository", "baseline", "nuget", DateTime.UtcNow.AddMinutes(-1));
+        var solution = Report("repository//Product.sln", "baseline", "nuget", DateTime.UtcNow);
+        solution.ContextJson = JsonSerializer.Serialize(new CheckContext
+        {
+            Purpose = "baseline", Ecosystem = "nuget", Repository = _prefix + "repository", SolutionPath = "Product.sln"
+        });
+        solution.BatchCount = 2;
+        Assert.HasCount(2, BuildCheckRun.ForEcosystem([legacy, solution], "nuget"));
+        solution.BatchCount = 1;
+        CollectionAssert.AreEqual(new[] { solution }, BuildCheckRun.ForEcosystem([legacy, solution], "nuget"));
     }
 
     [TestMethod]
@@ -161,12 +220,19 @@ public class InventoryTests : TestBase
             rule.Justification = "Read structured project configuration.";
             db.TrustRules.Add(rule);
             var report = Report("graph", "baseline", "nuget", DateTime.UtcNow, artifact);
-            report.GraphJson = JsonSerializer.Serialize(new[]
+            var dependency = new Dependency { Ecosystem = artifact.Ecosystem, Name = artifact.Name,
+                Version = artifact.Version, Source = artifact.Source, Sha256 = artifact.Sha256 };
+            var packageId = SolutionDependencyGraph.PackageId(dependency);
+            report.GraphJson = JsonSerializer.Serialize(new DependencyReportGraph
             {
-                new DependencyGraphNode { Project = "src/App.csproj", Ecosystem = "nuget", Id = "$root", Kind = "root", Children = ["package"] },
-                new DependencyGraphNode { Project = "src/App.csproj", Ecosystem = "nuget", Id = "package",
-                    Package = new Dependency { Ecosystem = artifact.Ecosystem, Name = artifact.Name, Version = artifact.Version,
-                        Source = artifact.Source + "/", Sha256 = artifact.Sha256 } }
+                Solution = new SolutionDependencyGraph
+                {
+                    SolutionPath = "Product.sln",
+                    Nodes = [new() { Id = "project:src/App.csproj", ProjectPath = "src/App.csproj", IsSolutionMember = true },
+                        new() { Id = packageId, Package = dependency }],
+                    Contexts = [new() { ProjectPath = "src/App.csproj", Target = "net10.0",
+                        Edges = [new() { ParentId = "project:src/App.csproj", ChildId = packageId }] }]
+                }
             });
             db.BuildChecks.Add(report);
             db.BuildChecks.Add(Report("legacy", "baseline", null, DateTime.UtcNow, artifact));
@@ -181,11 +247,11 @@ public class InventoryTests : TestBase
         Assert.IsTrue((await Read("projects")).Projects.All(p => p.Graphs.Count == 0));
         var opened = (await Read("projects", project: _prefix + "graph")).Projects.Single();
         Assert.IsTrue(opened.Reports.Single().HasGraph);
-        var graphPackage = opened.Graphs.Single().Nodes.Single(n => n.Package != null);
+        var graphPackage = opened.Solution!.Packages.Single();
         CollectionAssert.AreEquivalent(new[] { _prefix + "graph", _prefix + "legacy" }, graphPackage.Projects);
         CollectionAssert.Contains(graphPackage.Purposes, "Read structured project configuration.");
-        Assert.AreEqual(InventoryStatus.Compliant, opened.Graphs.Single().Nodes.Single(n => n.Package != null).Status,
-            opened.Graphs.Single().Nodes.Single(n => n.Package != null).Reason);
+        Assert.AreEqual(InventoryStatus.Compliant, opened.Solution!.Packages.Single().Status,
+            opened.Solution!.Packages.Single().Reason);
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
@@ -193,8 +259,8 @@ public class InventoryTests : TestBase
             await db.SaveChangesAsync();
         }
         opened = (await Read("projects", project: _prefix + "graph")).Projects.Single();
-        Assert.AreEqual(InventoryStatus.NonCompliant, opened.Graphs.Single().Nodes.Single(n => n.Package != null).Status,
-            opened.Graphs.Single().Nodes.Single(n => n.Package != null).Reason);
+        Assert.AreEqual(InventoryStatus.NonCompliant, opened.Solution!.Packages.Single().Status,
+            opened.Solution!.Packages.Single().Reason);
         var legacy = (await Read("projects", project: _prefix + "legacy")).Projects.Single();
         Assert.IsFalse(legacy.Reports.Single(r => r.Ecosystem == "nuget").HasGraph);
         Assert.AreEqual(0, legacy.Graphs.Count);
@@ -439,7 +505,7 @@ public class InventoryTests : TestBase
         StringAssert.Contains(packageDetails, "open=\"open\"");
         var projects = await Http.GetStringAsync("/SupplyChain/Index?tab=projects&project=" + Uri.EscapeDataString(_prefix + "Project-24"));
         StringAssert.Contains(projects, "Catalog.Package24");
-        StringAssert.Contains(projects, "Dependency relationships were not recorded");
+        StringAssert.Contains(projects, "A complete solution graph was not recorded");
         using var invalid = await Http.GetAsync("/SupplyChain/Index?tab=invalid");
         Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
     }

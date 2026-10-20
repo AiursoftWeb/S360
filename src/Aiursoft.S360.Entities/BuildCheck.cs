@@ -9,7 +9,7 @@ public class BuildCheck
 {
     [Key]
     public int Id { get; init; }
-    [MaxLength(200)] public string? Project { get; set; }
+    [MaxLength(750)] public string? Project { get; set; }
     [MaxLength(80)] public string? Commit { get; set; }
     [MaxLength(200)] public string? Pipeline { get; set; }
     [MaxLength(6000)] public string? ContextJson { get; set; }

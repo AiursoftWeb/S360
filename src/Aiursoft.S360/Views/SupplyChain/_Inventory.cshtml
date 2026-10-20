@@ -13,7 +13,7 @@
         <a class="s360-project-back" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem">← @Localizer["All projects"]</a>
         <header class="s360-project-header">
             <span class="s360-inventory-eyebrow">S360 · @Localizer["Supply chain"]</span>
-            <div class="s360-project-title"><h1>@Model.Project</h1>
+            <div class="s360-project-title"><h1>@Model.Project?.Replace("//", " · ")</h1>
                 @if (selectedProject != null) { @await Html.PartialAsync("../SupplyChain/_InventoryStatus", selectedProject.Status) }
             </div>
             @if (selectedProject != null)
@@ -117,7 +117,7 @@
                 {
                     <a class="s360-project-card" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-project="@project.Name" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem">
                         <div class="s360-project-card-heading"><i data-lucide="folder-git-2" aria-hidden="true"></i>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", project.Status)</div>
-                        <h2>@project.Name</h2>
+                        <h2>@project.DisplayName</h2>
                         <small>@Localizer["Status covers only the reported ecosystems."]
                             @if (!project.Reports.Any(r => r.Ecosystem == "nuget")) { <span>@Localizer["NuGet: not included in this audit."]</span> }
                             @if (!project.Reports.Any(r => r.Ecosystem == "npm")) { <span>@Localizer["npm: not included in this audit."]</span> }
@@ -162,9 +162,9 @@
                                 else { @Localizer["A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified."] }
                             </div></div>
                         }
-                        @if (project.Graphs.Count > 0)
+                        @if (project.Solution != null || project.Graphs.Count > 0)
                         {
-                            @await Html.PartialAsync("../SupplyChain/_InventoryGraph", project.Graphs)
+                            @await Html.PartialAsync("../SupplyChain/_InventoryGraph", project)
                         }
                         @foreach (var ecosystem in new[] { "nuget", "npm" })
                         {
@@ -184,7 +184,7 @@
                                 }
                                 @if (reports.Any(r => !r.HasGraph))
                                 {
-                                    <p class="text-muted small">@Localizer["Dependency relationships were not recorded in this report. Run the latest CLI to populate the graph; the package list remains available."]</p>
+                                    <p class="text-muted small">@Localizer["A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available."]</p>
                                 }
                                 @if (reports.Count > 0 && versions.Count == 0) { <p>@Localizer["The complete report contains no dependencies for this ecosystem."]</p> }
                                 @foreach (var package in packages.Take(100))

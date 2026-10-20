@@ -5,6 +5,7 @@ namespace Aiursoft.S360.SDK;
 
 public class S360Client(AiurProtocolClient client)
 {
+    public bool SupportsSolutionGraphs { get; private set; }
     /// <summary>Wait only for independent verification of policy-approved review dependencies.</summary>
     public async Task<CheckResponse> CheckWhenReadyAsync(string server, string? apiKey, CheckRequest request,
         TimeSpan timeout, CancellationToken cancellationToken = default)
@@ -48,6 +49,12 @@ public class S360Client(AiurProtocolClient client)
             format: BodyFormat.HttpJsonBody,
             autoRetry: false,
             headers: headers);
+        if (request.SolutionGraph != null)
+        {
+            if (response.SolutionGraphVersion != 1)
+                throw new InvalidOperationException("The S360 server does not support solution reports yet. Deploy the server update before using this CLI.");
+            SupportsSolutionGraphs = true;
+        }
         if (response.Code != AiurProtocol.Models.Code.ResultShown ||
             response.Decisions.Count != request.Dependencies.Count)
             throw new InvalidOperationException("S360 returned an incomplete dependency decision set.");

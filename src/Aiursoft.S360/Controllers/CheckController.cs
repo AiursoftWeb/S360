@@ -51,11 +51,22 @@ public class CheckController(TrustService trust, TemplateDbContext db,
         if (request == null || !ModelState.IsValid || request.ScannedProjectCount < 1 ||
             request.BatchIndex >= request.BatchCount ||
             (request.Dependencies.Count == 0 && request.GraphNodes is not { Count: > 0 } &&
+                request.SolutionGraph is not { Nodes.Count: > 0 } && request.SolutionGraph is not { Contexts.Count: > 0 } &&
                 (request.BatchIndex != 0 || request.BatchCount != 1)) ||
             request.Dependencies.Cast<Dependency?>().Any(d => d is null ||
                 !TrustPattern.IsValidConcretePackage(d.Ecosystem, d.Name, d.Version)))
             return BadRequest();
         request.Context ??= new CheckContext();
+        if (request.SolutionGraph != null)
+        {
+            if (request.Context.Ecosystem == "npm" || string.IsNullOrWhiteSpace(request.Context.Repository) ||
+                !SolutionDependencyGraph.IsPortablePath(request.Context.Repository) || request.Context.Repository.StartsWith("..", StringComparison.Ordinal) ||
+                request.Context.SolutionPath != request.SolutionGraph.SolutionPath)
+                return BadRequest("A solution report must identify its repository and solution path.");
+            request.Project = request.Context.Repository + "//" + request.Context.SolutionPath;
+        }
+        else if (request.Context.SolutionPath != null)
+            return BadRequest("Solution provenance requires a solution graph.");
         request.Context.Purpose = purpose;
         request.Context.IsAnonymous = anonymous;
         request.Context.UserId = anonymous ? null : User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -81,19 +92,13 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             }
             try
             {
-                if (request.GraphNodes != null)
-                {
-                    var completeGraph = request.BatchCount == 1;
-                    var graphError = DependencyGraphNode.Validate(request.GraphNodes, request.Dependencies,
-                        request.Context.Ecosystem, completeGraph);
-                    if (graphError != null) return BadRequest(graphError);
-                    if (completeGraph && request.GraphNodes.Select(n => (n.Project, n.Ecosystem)).Distinct().Count() != request.ScannedProjectCount)
-                        return BadRequest("Graph manifests must match the scanned project count.");
-                }
+                var graphError = DependencyReportGraph.Validate(request, [], request.Dependencies, request.BatchCount == 1);
+                if (graphError != null) return BadRequest(graphError);
                 var decisions = await CheckDependenciesAsync(request.Dependencies, persist: false, anonymous);
                 QueueAudit(decisions);
                 return Ok(new CheckResponse
                 {
+                    SolutionGraphVersion = request.SolutionGraph == null ? 0 : 1,
                     Code = Code.ResultShown, Trusted = decisions.All(d => d.Trusted), Decisions = decisions,
                     Message = "Dependency review completed. No project report was saved."
                 });
@@ -108,12 +113,16 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             }
         }
         var contextJson = JsonSerializer.Serialize(request.Context);
+        var graphJson = DependencyReportGraph.Serialize(request);
         var priorBatches = await db.BuildChecks.AsNoTracking().Where(c => c.RunId == request.RunId)
-            .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson, HasGraph = c.GraphJson != null }).ToListAsync();
+            .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson,
+                HasGraph = c.GraphJson != null, GraphLength = c.GraphJson == null ? 0 : c.GraphJson.Length }).ToListAsync();
+        if (priorBatches.Sum(c => (long)c.GraphLength) + (graphJson?.Length ?? 0) > DependencyReportGraph.MaximumSerializedCharacters)
+            return BadRequest("The complete dependency graph exceeds the report size limit.");
         if (priorBatches.Any(prior => prior.BatchCount != request.BatchCount || prior.Project != request.Project ||
             prior.Commit != request.Commit || prior.Pipeline != request.Pipeline ||
             prior.ScannedProjectCount != request.ScannedProjectCount || prior.ContextJson != contextJson ||
-            prior.HasGraph != (request.GraphNodes != null)))
+            prior.HasGraph != (request.GraphNodes != null || request.SolutionGraph != null)))
             return BadRequest("Batches in one run must have identical project, commit, pipeline, check context, scanned project count and batch count.");
         if (priorBatches.Any(prior => prior.BatchIndex == request.BatchIndex))
             return Conflict("This batch index has already been reported for the run. Start a new run to recheck current policy.");
@@ -121,26 +130,25 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             !priorBatches.Select(prior => prior.BatchIndex).OrderBy(index => index)
                 .SequenceEqual(Enumerable.Range(0, request.BatchIndex)))
             return BadRequest("Batches must be reported in order, starting at index zero.");
-        if (request.GraphNodes != null)
+        if (request.GraphNodes != null || request.SolutionGraph != null)
         {
-            var nodes = request.GraphNodes.ToList();
+            var earlier = new List<DependencyReportGraph>();
             var graphDependencies = request.Dependencies.ToList();
             var completeGraph = request.BatchIndex == request.BatchCount - 1;
             if (completeGraph && priorBatches.Count > 0)
             {
                 var prior = await db.BuildChecks.AsNoTracking().Include(c => c.Dependencies)
                     .Where(c => c.RunId == request.RunId).ToListAsync();
-                nodes.AddRange(prior.SelectMany(c => JsonSerializer.Deserialize<List<DependencyGraphNode>>(c.GraphJson!)!));
+                try { earlier.AddRange(prior.Select(c => DependencyReportGraph.Read(c.GraphJson!))); }
+                catch (JsonException) { return BadRequest("An earlier graph batch is unreadable. Start a new report."); }
                 graphDependencies.AddRange(prior.SelectMany(c => c.Dependencies).Select(d => new Dependency
                 {
                     Ecosystem = d.Ecosystem, Name = d.Name, Version = d.Version, Source = d.Source, Sha256 = d.Sha256
                 }));
             }
             // Validate before policy evaluation or artifact writes. Relationships never grant trust.
-            var graphError = DependencyGraphNode.Validate(nodes, graphDependencies, request.Context.Ecosystem, completeGraph);
+            var graphError = DependencyReportGraph.Validate(request, earlier, graphDependencies, completeGraph);
             if (graphError != null) return BadRequest(graphError);
-            if (completeGraph && nodes.Select(n => (n.Project, n.Ecosystem)).Distinct().Count() != request.ScannedProjectCount)
-                return BadRequest("Graph manifests must match the scanned project count.");
         }
         try
         {
@@ -161,7 +169,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             }
             var check = new BuildCheck
             {
-                GraphJson = request.GraphNodes == null ? null : JsonSerializer.Serialize(request.GraphNodes),
+                GraphJson = graphJson,
                 Project = request.Project, Commit = request.Commit, Pipeline = request.Pipeline, ContextJson = contextJson,
                 RunId = request.RunId, BatchIndex = request.BatchIndex, BatchCount = request.BatchCount,
                 ScannedProjectCount = request.ScannedProjectCount,
@@ -252,6 +260,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
                 d.PackageArtifact is { LastCheckedAtUtc: null, SourceVerificationRejected: false }));
             return Ok(new CheckResponse
             {
+                SolutionGraphVersion = request.SolutionGraph == null ? 0 : 1,
                 Code = Code.ResultShown,
                 Message = runTrusted ? "Dependency trust checked." :
                     runDenialReason ?? "This batch does not pass current policy; rerun the complete check.",

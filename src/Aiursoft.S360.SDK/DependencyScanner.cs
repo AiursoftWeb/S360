@@ -637,6 +637,7 @@ public static class DependencyScanner
 
 public record ScanReport(List<Dependency> Dependencies, List<string> SkippedOptional, int ScannedProjectCount)
 {
+    public SolutionDependencyGraph? SolutionGraph { get; init; }
     public List<DependencyGraphNode> GraphNodes { get; init; } = [];
     public Dictionary<string, List<string>> IntroductionPaths { get; init; } = new(StringComparer.Ordinal);
 

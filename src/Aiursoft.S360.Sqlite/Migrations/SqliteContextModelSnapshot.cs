@@ -217,7 +217,7 @@ namespace Aiursoft.S360.Sqlite.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Project")
-                        .HasMaxLength(200)
+                        .HasMaxLength(750)
                         .HasColumnType("TEXT");
 
                     b.Property<string>("RunId")

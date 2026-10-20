@@ -21,6 +21,15 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Soporte &quot;fire-and-forget&quot; para tareas de larga duración (como correos electrónicos o IA), con una interfaz gráfica para la gestión de colas, procesamiento paralelo y cancelación.</value>
   </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} proyectos afectados</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} versiones de paquetes que requieren atención</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} en total · {1} en curso · {2} aprobadas</value>
+  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Una fecha en blanco significa que todavía no se ha completado correctamente ninguna sincronización de vulnerabilidades. Las horas están en UTC.</value>
   </data>
@@ -63,6 +72,9 @@
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Exclusiones absolutas que prevalecen sobre las reglas de confianza y las aprobaciones.</value>
   </data>
+  <data name="Across reported projects" xml:space="preserve">
+    <value>En los proyectos notificados</value>
+  </data>
   <data name="Across the organization" xml:space="preserve">
     <value>En toda la organización</value>
   </data>
@@ -80,6 +92,9 @@
   </data>
   <data name="Approval center" xml:space="preserve">
     <value>Centro de aprobación</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Aprobado</value>
   </data>
   <data name="Approved requests" xml:space="preserve">
     <value>Solicitudes aprobadas</value>
@@ -135,11 +150,23 @@
   <data name="Comes with full Docker support for simplified, consistent, and reliable deployments." xml:space="preserve">
     <value>Incluye soporte completo para Docker para implementaciones simplificadas, consistentes y fiables.</value>
   </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Resumen de la empresa</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Conforme</value>
+  </data>
+  <data name="Compliant means current checks passed for the reported ecosystems. Not verified includes incomplete reports and missing or stale evidence." xml:space="preserve">
+    <value>«Conforme» significa que se han superado las comprobaciones actuales en los ecosistemas indicados. «No verificado» incluye informes incompletos y pruebas ausentes o desactualizadas.</value>
+  </data>
   <data name="Comprehensive Documentation" xml:space="preserve">
     <value>Documentación Integral</value>
   </data>
   <data name="Consistency Validation" xml:space="preserve">
     <value>Validación de consistencia</value>
+  </data>
+  <data name="Current baseline reports only; review checks and projects that have not reported are not included. This is not a live production inventory." xml:space="preserve">
+    <value>Solo informes de línea base actuales; no se incluyen comprobaciones de revisión ni proyectos que no hayan informado. Esto no es un inventario de producción en tiempo real.</value>
   </data>
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Decisiones registradas para tus solicitudes</value>
@@ -183,6 +210,12 @@
   <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
     <value>Los paquetes bloqueados explícitamente se rechazan aunque lleguen de forma indirecta o coincidan con una regla general de proveedor.</value>
   </data>
+  <data name="Explore compliance" xml:space="preserve">
+    <value>Explorar el cumplimiento</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Cuenta con un sistema integrado de gestión de archivos con compresión automática de avatares y protección de privacidad.</value>
   </data>
@@ -219,6 +252,9 @@
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Incluye documentación extensa y ejemplos prácticos para que puedas empezar rápidamente.</value>
   </data>
+  <data name="Incomplete report" xml:space="preserve">
+    <value>Informe incompleto</value>
+  </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Gestión Integrada de Archivos</value>
   </data>
@@ -228,14 +264,26 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Vulnerabilidades conocidas</value>
   </data>
+  <data name="Known vulnerabilities first, then other audit issues. Open a package to see who uses it and the recorded reasons." xml:space="preserve">
+    <value>Vulnerabilidades conocidas primero, luego otros problemas de auditoría. Abra un paquete para ver quién lo utiliza y las razones registradas.</value>
+  </data>
   <data name="Last successful OSV sync" xml:space="preserve">
     <value>Última sincronización de OSV completada correctamente</value>
+  </data>
+  <data name="Latest baseline per project" xml:space="preserve">
+    <value>Última referencia por proyecto</value>
+  </data>
+  <data name="Latest baseline report" xml:space="preserve">
+    <value>Último informe de línea de base</value>
   </data>
   <data name="Learn about the workflow" xml:space="preserve">
     <value>Más información sobre el flujo de trabajo</value>
   </data>
   <data name="Match the actual artifact" xml:space="preserve">
     <value>Identifica el artefacto real</value>
+  </data>
+  <data name="Missing or stale" xml:space="preserve">
+    <value>Ausente o desactualizado</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Los modelos se validan en ambos lados, cliente y servidor, basándose en las anotaciones de datos.</value>
@@ -249,23 +297,77 @@
   <data name="My requests" xml:space="preserve">
     <value>Mis solicitudes</value>
   </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Requiere atención</value>
+  </data>
   <data name="New request" xml:space="preserve">
     <value>Nueva solicitud</value>
+  </data>
+  <data name="No baseline data" xml:space="preserve">
+    <value>Sin datos de referencia</value>
+  </data>
+  <data name="No baseline reports yet. Run a baseline check from a project&apos;s official pipeline to populate this overview." xml:space="preserve">
+    <value>Todavía no hay informes de referencia. Ejecuta una comprobación de referencia desde la canalización oficial de un proyecto para completar esta vista.</value>
+  </data>
+  <data name="No complete baseline report" xml:space="preserve">
+    <value>No hay ningún informe de referencia completo</value>
+  </data>
+  <data name="No package issues found in the available baseline data." xml:space="preserve">
+    <value>No se han encontrado problemas en los paquetes con los datos de línea base disponibles.</value>
+  </data>
+  <data name="No project issues found in the available baseline data." xml:space="preserve">
+    <value>No se han encontrado problemas de proyecto en los datos de línea de base disponibles.</value>
   </data>
   <data name="No requests yet" xml:space="preserve">
     <value>Aún no hay solicitudes</value>
   </data>
+  <data name="No requests yet. Request a new dependency when your project needs a package that is not approved." xml:space="preserve">
+    <value>Aún no hay solicitudes. Solicite una nueva dependencia cuando su proyecto necesite un paquete que no esté aprobado.</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>No verificado</value>
+  </data>
+  <data name="Open a project to trace the dependency path and inspect the exact versions." xml:space="preserve">
+    <value>Abre un proyecto para seguir la ruta de dependencias y consultar las versiones exactas.</value>
+  </data>
+  <data name="Open approval center" xml:space="preserve">
+    <value>Abrir centro de aprobación</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Integración de OpenID Connect</value>
   </data>
+  <data name="Package compliance" xml:space="preserve">
+    <value>Cumplimiento de los paquetes</value>
+  </data>
   <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
     <value>Archivos de paquetes registrados en ambos ecosistemas, incluidos los que no están autorizados actualmente.</value>
+  </data>
+  <data name="Packages are counted by ecosystem, name, and source; versions are grouped." xml:space="preserve">
+    <value>Los paquetes se cuentan por ecosistema, nombre y origen; las versiones se agrupan.</value>
+  </data>
+  <data name="Packages in use" xml:space="preserve">
+    <value>Paquetes en uso</value>
+  </data>
+  <data name="Packages with known vulnerabilities" xml:space="preserve">
+    <value>Paquetes con vulnerabilidades conocidas</value>
   </data>
   <data name="Policy" xml:space="preserve">
     <value>Política</value>
   </data>
   <data name="Policy management" xml:space="preserve">
     <value>Gestión de políticas</value>
+  </data>
+  <data name="Priority packages" xml:space="preserve">
+    <value>Paquetes prioritarios</value>
+  </data>
+  <data name="Project compliance" xml:space="preserve">
+    <value>Cumplimiento de proyectos</value>
+  </data>
+  <data name="Projects needing attention" xml:space="preserve">
+    <value>Proyectos que requieren atención</value>
+  </data>
+  <data name="Projects, dependencies, and the risks that need attention." xml:space="preserve">
+    <value>Proyectos, dependencias y los riesgos que requieren atención.</value>
   </data>
   <data name="Quick and detailed risk views" xml:space="preserve">
     <value>Vistas rápidas y detalladas de riesgos</value>
@@ -279,6 +381,15 @@
   <data name="Recent activity" xml:space="preserve">
     <value>Actividad reciente</value>
   </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rechazada</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Proyectos reportados</value>
+  </data>
+  <data name="Request #{0}" xml:space="preserve">
+    <value>Solicitud #{0}</value>
+  </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Solicitar una nueva dependencia</value>
   </data>
@@ -287,6 +398,9 @@
   </data>
   <data name="Request what is missing" xml:space="preserve">
     <value>Solicita lo que falta</value>
+  </data>
+  <data name="Resolving" xml:space="preserve">
+    <value>Resolviendo</value>
   </data>
   <data name="Resolving or awaiting review" xml:space="preserve">
     <value>En trámite o pendiente de revisión</value>
@@ -302,6 +416,9 @@
   </data>
   <data name="Revisit the risk" xml:space="preserve">
     <value>Volver a evaluar el riesgo</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Revocado</value>
   </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Pruebas de integración robustas</value>
@@ -383,6 +500,9 @@
   </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>¿Por qué usar la Plantilla de Aiursoft?</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Retirada</value>
   </data>
   <data name="Words you will see" xml:space="preserve">
     <value>Términos que encontrarás</value>

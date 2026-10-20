@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Actions" xml:space="preserve">
+    <value>Aktionen</value>
+  </data>
+  <data name="API Key created" xml:space="preserve">
+    <value>API-Schlüssel erstellt</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>API-Schlüssel</value>
+  </data>
+  <data name="Create API Key" xml:space="preserve">
+    <value>API-Schlüssel erstellen</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Bearbeiten</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Aktiviert</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Läuft ab</value>
+  </data>
+  <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone." xml:space="preserve">
+    <value>Schlüssel gehören zu Ihrem Konto. Das Entfernen Ihrer API-Berechtigung oder das Sperren Ihres Kontos deaktiviert ebenfalls Ihre Schlüssel. Die Zeiten werden in Ihrer lokalen Zeitzone angezeigt.</value>
+  </data>
+  <data name="Last used" xml:space="preserve">
+    <value>Zuletzt verwendet</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="New API Key" xml:space="preserve">
+    <value>Neuer API-Schlüssel</value>
+  </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Produktionsbaseline</value>
+  </data>
+  <data name="Send the key using X-S360-Key, or set S360_CHECK_KEY for the CLI. Never include keys in URLs, source control or logs." xml:space="preserve">
+    <value>Senden Sie den Schlüssel über X-S360-Key oder setzen Sie S360_CHECK_KEY für die CLI. Schließen Sie Schlüssel niemals in URLs, Versionskontrollen oder Protokolle ein.</value>
+  </data>
+  <data name="This key is displayed only once. Save it in your private configuration." xml:space="preserve">
+    <value>Dieser Schlüssel wird nur einmal angezeigt. Speichern Sie ihn in Ihrer privaten Konfiguration.</value>
+  </data>
+  <data name="To rotate a key, create another, update your integration and verify it works, then delete the old key. Existing keys keep working during the transition." xml:space="preserve">
+    <value>Um einen Schlüssel zu wechseln, erstellen Sie einen neuen, passen Sie Ihre Integration an und prüfen Sie, ob sie funktioniert. Löschen Sie anschließend den alten Schlüssel. Während der Umstellung funktionieren vorhandene Schlüssel weiterhin.</value>
+  </data>
+
+</root>

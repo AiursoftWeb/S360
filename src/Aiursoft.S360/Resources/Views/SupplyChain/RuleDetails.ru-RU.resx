@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>Правило разрешает использовать пакеты. Оно не доказывает, что проект их использует или что разрешённые версии не содержат уязвимостей.</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Одобрено</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Авторизация</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>Назад к существующему набору правил</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Экосистема</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Исключены</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>Исключения вычитают затронутые версии из авторизации. Они не скрывают затронутую версию, уже сообщённую производственной базой.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Истёк срок действия</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Срок действия</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>Включены</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>Исключения не зарегистрированы.</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>Без срока действия</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>Нет связанных диапазонов в сохранённых активных уведомлениях. Это не доказательство того, что всё правило безопасно.</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>Записи о проверках отсутствуют. Возможно, это правило было импортировано напрямую.</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>Не зафиксирован</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Шаблон пакета</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Ожидает рассмотрения</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>Предварительные версии</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Диапазон не удалось оценить</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>Диапазон соответствует шаблону</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Причина</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Отклонено</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>Связанные диапазоны уязвимостей</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Запрошено</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>История проверок</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>Рецензент</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Отозвана</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Источник</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Поставщик</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>Опубликованные диапазоны пересекаются с шаблоном правила либо не могли быть оценены. Это не утверждение о том, что правило в настоящее время разрешает все перечисленные версии: также применяются статус, срок действия, исключения, другие правила и список запрещённых пакетов. Влияние на производственную среду отображается на странице аудита уязвимостей.</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Подробности правила доверия</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Шаблон версии</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>Просмотреть текущий аудит уязвимостей</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Исключения по уязвимостям</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Отозвана</value>
+  </data>
+
+</root>

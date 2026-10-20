@@ -60,6 +60,12 @@
   <data name="Compliant" xml:space="preserve">
     <value>合規</value>
   </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>已複製！</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>複製 Markdown</value>
+  </data>
   <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
     <value>數字反映所選報告範圍。狀態會根據現行政策及已儲存的漏洞數據進行評估。</value>
   </data>
@@ -89,6 +95,9 @@
   </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>最新的完整基線。這些是報告中列出的相依項目，並非已部署的證明。</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
   </data>
   <data name="Needs attention" xml:space="preserve">
     <value>需要留意</value>
@@ -147,6 +156,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>檢視專案清單需要供應鏈讀取權限。您仍可瀏覽核准規則。</value>
   </data>
+  <data name="README badge" xml:space="preserve">
+    <value>README 徽章</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>報告</value>
   </data>
@@ -159,11 +171,20 @@
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>審查檢查不會儲存為項目庫存。</value>
   </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>S360 合規徽章</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>搜尋</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>搜尋庫存</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>請選取並複製上方的 Markdown。</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>在 GitHub 或 GitLab 分享你最新的基準合規狀況。此徽章公開顯示，無需登入。涵蓋已申報的生態系統，不代表已部署至正式環境。</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>狀態</value>

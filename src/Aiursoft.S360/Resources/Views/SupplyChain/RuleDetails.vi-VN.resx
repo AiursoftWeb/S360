@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>Quy tắc cho phép sử dụng các gói. Điều đó không chứng minh rằng một dự án có sử dụng chúng hay các phiên bản được phép không có lỗ hổng bảo mật.</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Đã phê duyệt</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Ủy quyền</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>Quay lại danh sách quy tắc hiện có</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Hệ sinh thái</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Bị loại trừ</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>Các loại trừ sẽ loại bỏ các phiên bản bị ảnh hưởng khỏi sự ủy quyền. Chúng không che giấu một phiên bản bị ảnh hưởng đã được báo cáo bởi một cơ sở chuẩn sản xuất.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Đã hết hạn</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Ngày hết hạn</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>Được bao gồm</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>Chưa ghi nhận ngoại lệ nào.</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>Không hết hạn</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>Không có dải liên quan nào trong các thông báo bảo mật đang hoạt động được lưu trữ. Điều này không chứng minh rằng toàn bộ quy tắc là an toàn.</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>Không có bản ghi đánh giá nào. Quy tắc này có thể đã được nhập trực tiếp.</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>Chưa được cố định</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Mẫu gói</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Chờ xử lý</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>Phiên bản trước</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Khoảng không thể được đánh giá</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>Dải phiên bản trùng với mẫu</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Lý do</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Bị từ chối</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>Các khoảng phiên bản cố vấn liên quan</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Thời điểm yêu cầu</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>Lịch sử đánh giá</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>Người đánh giá</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Đã thu hồi</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Nguồn</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Nhà cung cấp</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>Các dải phiên bản đã công bố này giao với mẫu quy tắc hoặc không thể được đánh giá. Điều này không có nghĩa là quy tắc hiện cho phép mọi phiên bản được liệt kê: trạng thái, thời hạn, các mục loại trừ, những quy tắc khác và danh sách chặn cũng được áp dụng. Tác động trong môi trường sản xuất được hiển thị trên trang kiểm tra lỗ hổng.</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Chi tiết quy tắc tin cậy</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Mẫu phiên bản</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>Xem kiểm toán lỗ hổng hiện tại</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Loại trừ lỗ hổng</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Đã rút lại</value>
+  </data>
+
+</root>

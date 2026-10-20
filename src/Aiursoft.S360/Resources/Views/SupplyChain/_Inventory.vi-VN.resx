@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} gói hiện vật · {1} cần được chú ý</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} kết quả · Trang {1} trên {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} gói dễ bị tấn công · {1} gói khác cần được chú ý</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>Bản báo cáo mới hơn chưa đầy đủ.</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>Báo cáo mới hơn chưa hoàn chỉnh. Ảnh chụp đầy đủ gần nhất được hiển thị; mức độ bao phủ hiện tại chưa được xác minh.</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>Tất cả các dự án</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>Tất cả trạng thái</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>Quy tắc phê duyệt và công cụ</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>Xem tất cả các thành phần phụ thuộc của dự án này</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>Xem các quy tắc phê duyệt</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Bản ghi kiểm tra</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Tổng quan công ty</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Trình khám phá tuân thủ</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Tuân thủ</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>Đã sao chép!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Sao chép Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>Số lượng phản ánh phạm vi báo cáo đã chọn. Trạng thái được đánh giá dựa trên chính sách hiện hành và dữ liệu lỗ hổng đã lưu.</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>Mốc cơ sở hiện tại</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Các gói phụ thuộc</value>
+  </data>
+  <data name="Dependency relationships were not recorded in this report. Run the latest CLI to populate the graph; the package list remains available." xml:space="preserve">
+    <value>Các mối quan hệ phụ thuộc không được ghi lại trong báo cáo này. Hãy chạy CLI mới nhất để tạo biểu đồ; danh sách gói vẫn khả dụng.</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Hệ sinh thái</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Khám phá</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>Tìm dự án hoặc gói, kiểm tra mức độ tuân thủ và truy tìm lý do chúng được sử dụng.</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>Giao diện danh mục</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Lỗ hổng bảo mật đã biết</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>Các baseline hoàn chỉnh mới nhất. Đây là các phụ thuộc được báo cáo, không phải bằng chứng triển khai.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Cần chú ý</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Tiếp theo</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>Không có báo cáo hoàn chỉnh.</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>Không có báo cáo đầy đủ cho hệ sinh thái này. Mức độ tuân thủ của nó chưa rõ.</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>Không tìm thấy bản ghi phù hợp</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Chưa được xác minh</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: không được bao gồm trong cuộc kiểm tra này.</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet và npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: không được bao gồm trong lần kiểm toán này.</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>Gói quan sát</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>Các báo cáo cũ không nêu rõ mục đích. Không thể suy ra mục đích sử dụng hiện tại từ những hồ sơ này.</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>Gói, dự án, mục đích hoặc lý do phê duyệt</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>Gói cần chú ý</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>Trang {0} / {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>Quy trình</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Trước</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Dự án</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>Dự án có báo cáo</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Việc đọc danh mục dự án yêu cầu quyền đọc chuỗi cung ứng. Bạn vẫn có thể xem các quy tắc phê duyệt.</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>Biểu tượng README</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Báo cáo</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>Đặt lại bộ lọc</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>Các trang kết quả</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>Các mục kiểm tra đánh giá không được lưu vào danh mục dự án.</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>Huy hiệu tuân thủ S360</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Tìm kiếm</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>Tìm kiếm danh mục</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>Chọn và sao chép Markdown ở trên.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>Chia sẻ tình trạng tuân thủ baseline mới nhất của bạn trên GitHub hoặc GitLab. Huy hiệu là công khai và không yêu cầu đăng nhập. Nó bao gồm các hệ sinh thái được báo cáo, không phải triển khai sản xuất.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Trạng thái</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>Trạng thái chỉ bao gồm các hệ sinh thái đã được báo cáo.</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Chuỗi cung ứng</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>Báo cáo hoàn chỉnh không chứa phụ thuộc nào cho hệ sinh thái này.</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>Báo cáo này không đầy đủ. Không có bản chụp hoàn chỉnh nào khả dụng; phạm vi bao phủ hiện tại chưa được xác minh.</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>Hãy thử tìm kiếm hoặc phạm vi báo cáo khác. Chỉ riêng một quy tắc phê duyệt không phải là bằng chứng cho thấy dự án sử dụng một gói.</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>Lịch sử chưa phân loại</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>Cập nhật báo cáo CLI để xem các mối quan hệ phụ thuộc.</value>
+  </data>
+
+</root>

@@ -54,6 +54,9 @@
   <data name="Available dependencies" xml:space="preserve">
     <value>사용 가능한 종속성</value>
   </data>
+  <data name="Back to dependency inventory" xml:space="preserve">
+    <value>의존성 목록으로 돌아가기</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>패키지를 찾을 수 없나요? 요청을 제출하세요</value>
   </data>
@@ -84,11 +87,17 @@
   <data name="Find packages" xml:space="preserve">
     <value>패키지 찾기</value>
   </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>카탈로그 읽는 법</value>
+  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>HTTPS 패키지 소스</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>프리릴리스 포함</value>
+  </data>
+  <data name="Last checked" xml:space="preserve">
+    <value>마지막 확인</value>
   </data>
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>마지막 확인 시각(UTC)</value>
@@ -170,6 +179,9 @@
   </data>
   <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
     <value>승인된 레지스트리 URL은 규칙의 일부입니다. 동일한 패키지라도 출처가 다르면 이 규칙이 적용되지 않습니다.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Previously published results remain usable until their original expiry." xml:space="preserve">
+    <value>최근 취약점 동기화가 실패했습니다. 이전에 게시된 결과는 원래의 만료 시점까지 계속 사용할 수 있습니다.</value>
   </data>
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>최신 취약점 동기화에 실패했습니다. 감사가 성공적으로 완료될 때까지 기록된 아티팩트가 숨겨집니다.</value>

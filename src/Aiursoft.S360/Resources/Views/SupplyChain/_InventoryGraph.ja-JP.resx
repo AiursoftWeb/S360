@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{0} / {1} ノードを表示中</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>この図には脆弱性のあるパッケージが {0} 個あり、そのうち {1} 個は深さの制限またはフィルターによって非表示になっています。</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>依存関係を折りたたむ</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>準拠</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>コピー機能は利用できません。ブラウザーから現在のアドレスをコピーしてください。</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>表示リンクをコピー</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>依存関係</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>依存関係の詳細</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>依存関係グラフ。ドラッグでパン、コントロールでズーム、またはノードを選択してください。</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>依存関係</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>図の操作</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>直接依存関係のみ</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>直接依存関係</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>図をドラッグして見やすい大きさで確認するか、「全体を表示」を選んで概要を確認してください。</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>グラフを表示するには、JavaScriptを有効にしてください。すべてのパッケージの詳細は下記にリストされています。</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>依存関係を展開</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>依存関係を探索</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>パッケージを検索</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>表示を合わせる</value>
+  </data>
+  <data name="From your project to every package" xml:space="preserve">
+    <value>プロジェクトからすべてのパッケージへ</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>全画面表示</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>緑色と青色は関係性を示すものであり、承認を意味するものではありません。その他の監査上の問題は各ノードに表示されます。</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>間接依存</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>導入元</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>既知の脆弱性</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>マニフェストとターゲット</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>最大深度</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>要対応</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>報告されたグラフに既知の脆弱性は見つかりませんでした。この結果を頼りにする前に、監査ステータスを確認してください。</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>一致するパッケージがありません。</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>目的または承認理由が記録されていません</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>未確認</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>パッケージ名、パスまたはCVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>パッケージソース</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>プロジェクト参照</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>記録された目的と承認理由</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>表示をリセット</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>ルートとの関係は記録されていません</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>検索および脆弱性のパスには、選択された深さを超える祖先が含まれます。ビューをリセットして深さの制限に戻ります。</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>ノードを選択すると、バージョン、監査状況、導入経路を確認できます。</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>導入経路を表示</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>報告されたノードの中には、このルートからの経路がないものがあります。検索すれば見つけることはできますが、関係性は推測されていません。</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>まずは3階層から始めましょう。ノードを展開すると依存関係をたどることができ、選択すると詳細を確認できます。</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>グラフを表示できませんでした。パッケージの詳細は引き続き以下に表示されます。</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>保存済みレポートが変更されました。現在の依存関係グラフを表示しています。</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>このグラフは大きいため、限定ビューが表示されています。パッケージを検索すると、その関係性にフォーカスできます。すべてのパッケージは下のリストに表示され続けます。</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>プロジェクトで使用中</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>表示用リンクがコピーされました。</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>脆弱性のパス</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>拡大</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>縮小</value>
+  </data>
+
+</root>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Actions" xml:space="preserve">
+    <value>작업</value>
+  </data>
+  <data name="API Key created" xml:space="preserve">
+    <value>API 키가 생성되었습니다</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>API 키</value>
+  </data>
+  <data name="Create API Key" xml:space="preserve">
+    <value>API 키 생성</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>삭제</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>수정</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>사용 설정</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>만료</value>
+  </data>
+  <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone." xml:space="preserve">
+    <value>키(Key)는 계정에 속합니다. API 권한을 제거하거나 계정을 잠금 처리하면 키도 비활성화됩니다. 시간은 사용자의 로컬 시간대에 표시됩니다.</value>
+  </data>
+  <data name="Last used" xml:space="preserve">
+    <value>마지막 사용</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>이름</value>
+  </data>
+  <data name="New API Key" xml:space="preserve">
+    <value>새 API 키</value>
+  </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>프로덕션 베이스라인</value>
+  </data>
+  <data name="Send the key using X-S360-Key, or set S360_CHECK_KEY for the CLI. Never include keys in URLs, source control or logs." xml:space="preserve">
+    <value>X-S360-Key를 사용해 키를 전송하거나, CLI에서 S360_CHECK_KEY를 설정하세요. URL, 소스 관리 시스템 또는 로그에 키를 절대 포함하지 마세요.</value>
+  </data>
+  <data name="This key is displayed only once. Save it in your private configuration." xml:space="preserve">
+    <value>이 키는 한 번만 표시됩니다. 개인 설정에 저장해 두세요.</value>
+  </data>
+  <data name="To rotate a key, create another, update your integration and verify it works, then delete the old key. Existing keys keep working during the transition." xml:space="preserve">
+    <value>키를 교체하려면 새 키를 만든 뒤 연동을 업데이트하고 정상적으로 작동하는지 확인한 다음 기존 키를 삭제하세요. 전환하는 동안 기존 키는 계속 사용할 수 있습니다.</value>
+  </data>
+
+</root>

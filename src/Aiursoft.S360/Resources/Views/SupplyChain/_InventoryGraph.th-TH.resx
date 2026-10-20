@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>แสดงโหนด {0} จาก {1} โหนด</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>แพ็กเกจเสี่ยง {0} รายการในแผนภาพนี้ ซึ่งรวมถึง {1} รายการที่ถูกซ่อนด้วยระดับความลึกหรือตัวกรอง</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>ยุบการพึ่งพา</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>เป็นไปตามข้อกำหนด</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>การคัดลอกไม่พร้อมใช้งาน กรุณาคัดลอกที่อยู่ปัจจุบันจากเบราว์เซอร์ของคุณ</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>คัดลอกลิงก์มุมมอง</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>การพึ่งพา</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>รายละเอียดการพึ่งพา</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>กราฟการพึ่งพา ลากเพื่อเลื่อนมุมมอง ใช้ปุ่มควบคุมเพื่อซูม หรือเลือกโหนด</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>ความสัมพันธ์ของรายการที่ขึ้นอยู่กัน</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>การควบคุมแผนภาพ</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>เฉพาะการพึ่งพาโดยตรง</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>การพึ่งพาโดยตรง</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>ลากเพื่อสำรวจแผนภาพนี้ในขนาดที่อ่านได้ หรือเลือก ปรับให้พอดีกับมุมมอง เพื่อดูภาพรวม</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>เปิดใช้งาน JavaScript เพื่อดูกราฟ รายละเอียดแพ็กเกจทั้งหมดถูกระบุไว้ด้านล่าง</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>ขยายการพึ่งพา</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>สำรวจความเชื่อมโยง</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>ค้นหาแพ็กเกจ</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>ปรับมุมมองให้พอดี</value>
+  </data>
+  <data name="From your project to every package" xml:space="preserve">
+    <value>จากโปรเจกต์ของคุณไปยังทุกแพ็กเกจ</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>เต็มหน้าจอ</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>สีเขียวและสีน้ำเงินใช้บอกความสัมพันธ์ ไม่ได้หมายถึงการอนุมัติ ปัญหาอื่น ๆ ที่พบจากการตรวจสอบจะแสดงกำกับไว้บนแต่ละโหนด</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>การพึ่งพาทางอ้อม</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>นำเข้าโดย</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>ช่องโหว่ที่ทราบแล้ว</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>ไฟล์ Manifest และเป้าหมาย</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>ความลึกสูงสุด</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>ต้องดำเนินการ</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>ไม่พบช่องโหว่ที่ทราบในกราฟที่รายงาน โปรดตรวจสอบสถานะการตรวจสอบความปลอดภัยก่อนนำผลลัพธ์นี้ไปใช้</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>ไม่พบแพ็กเกจที่ตรงกัน</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>ไม่มีการบันทึกวัตถุประสงค์หรือเหตุผลในการอนุมัติ</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>ยังไม่ได้รับการยืนยัน</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>ชื่อแพ็กเกจ เส้นทาง หรือ CVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>แหล่งที่มาของแพ็กเกจ</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>การอ้างอิงโปรเจกต์</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>วัตถุประสงค์และเหตุผลในการอนุมัติที่บันทึกไว้</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>รีเซ็ตมุมมอง</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>ไม่ได้บันทึกความสัมพันธ์กับรูท</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>การค้นหาและเส้นทางช่องโหว่รวมบรรพบุรุษที่เกินความลึกที่เลือกไว้ รีเซ็ตมุมมองเพื่อกลับไปยังขีดจำกัดความลึก</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>เลือกโหนดเพื่อดูเวอร์ชัน สถานะการตรวจสอบ และเส้นทางที่นำเข้ามา</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>แสดงเส้นทางที่นำมา</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>โหนดบางรายการที่รายงานไม่มีเส้นทางเชื่อมโยงจากโหนดรากนี้ แต่ยังค้นหาโหนดเหล่านั้นได้ โดยไม่มีการอนุมานความสัมพันธ์ใด ๆ</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>เริ่มต้นที่ระดับความลึก 3 ระดับ ขยายโหนดเพื่อดูการอ้างอิงที่เกี่ยวข้อง หรือเลือกโหนดเพื่อดูรายละเอียด</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>ไม่สามารถแสดงกราฟได้ รายละเอียดแพ็กเกจยังคงมีให้ด้านล่าง</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>รายงานที่บันทึกไว้มีการเปลี่ยนแปลง แสดงแผนภูมิการพึ่งพาปัจจุบัน</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>กราฟนี้มีขนาดใหญ่ แสดงมุมมองแบบจำกัด; ค้นหาแพ็กเกจเพื่อเน้นความสัมพันธ์ของแพ็กเกจนั้น แพ็กเกจทั้งหมดยังคงอยู่ในรายการด้านล่าง</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>ถูกใช้โดยโปรเจกต์</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>คัดลอกลิงก์มุมมองแล้ว</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>เส้นทางช่องโหว่</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>ซูมเข้า</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>ซูมออก</value>
+  </data>
+
+</root>

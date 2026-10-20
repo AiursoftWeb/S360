@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Approval scope and package identity" xml:space="preserve">
+    <value>승인 범위 및 패키지 ID</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>승인됨</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>검사 기록</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>의존성 요청</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>만료일</value>
+  </data>
+  <data name="Inspect rule scope" xml:space="preserve">
+    <value>규칙 범위 검사</value>
+  </data>
+  <data name="No approval reason recorded." xml:space="preserve">
+    <value>승인 사유가 기록되지 않았습니다.</value>
+  </data>
+  <data name="No matching approval rule is recorded." xml:space="preserve">
+    <value>일치하는 승인 규칙이 기록되지 않았습니다.</value>
+  </data>
+  <data name="No project purpose recorded. An approval reason does not explain every project&apos;s use." xml:space="preserve">
+    <value>프로젝트 목적 기록이 없습니다. 승인 이유는 모든 프로젝트의 용도를 설명하지 않습니다.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>목적 또는 승인 사유가 기록되지 않았습니다</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>대기 중</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>파이프라인</value>
+  </data>
+  <data name="Projects using this package ({0})" xml:space="preserve">
+    <value>이 패키지를 사용하는 프로젝트 ({0})</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>사유</value>
+  </data>
+  <data name="Recorded in these projects" xml:space="preserve">
+    <value>다음 프로젝트에 기록됨</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>거부됨</value>
+  </data>
+  <data name="Revoke rule" xml:space="preserve">
+    <value>규칙 취소</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>취소됨</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>출처</value>
+  </data>
+  <data name="This revokes the approval rule for every matching package and project, including matches outside this view." xml:space="preserve">
+    <value>이 작업은 이 뷰 내에서 확인되지 않는 매칭 항목을 포함하여, 모든 매칭되는 패키지 및 프로젝트에 대한 승인 규칙을 폐기합니다.</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>버전</value>
+  </data>
+  <data name="View all {0} projects" xml:space="preserve">
+    <value>프로젝트 {0}개 모두 보기</value>
+  </data>
+  <data name="Why is it needed?" xml:space="preserve">
+    <value>왜 필요한가요?</value>
+  </data>
+  <data name="Why was it approved?" xml:space="preserve">
+    <value>승인된 이유는 무엇인가요?</value>
+  </data>
+
+</root>

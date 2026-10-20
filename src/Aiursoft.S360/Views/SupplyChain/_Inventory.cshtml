@@ -4,8 +4,32 @@
 @{
     ViewData["InventoryScope"] = Model.Scope;
     ViewData["InventoryQuery"] = Model.Query;
+    var isProjectDetails = Model.Tab == "projects" && Model.Project != null;
+    var selectedProject = isProjectDetails ? Model.Projects.SingleOrDefault() : null;
 }
-<div class="s360-workspace s360-inventory">
+<div class="s360-workspace s360-inventory @(isProjectDetails ? "s360-project-detail" : "")">
+    @if (isProjectDetails)
+    {
+        <a class="s360-project-back" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem">← @Localizer["All projects"]</a>
+        <header class="s360-project-header">
+            <span class="s360-inventory-eyebrow">S360 · @Localizer["Supply chain"]</span>
+            <div class="s360-project-title"><h1>@Model.Project</h1>
+                @if (selectedProject != null) { @await Html.PartialAsync("../SupplyChain/_InventoryStatus", selectedProject.Status) }
+            </div>
+            @if (selectedProject != null)
+            {
+                <p class="s360-project-facts">@string.Format(@Localizer["{0} package artifacts · {1} need attention"].Value, selectedProject.Versions.Count, selectedProject.Versions.Count(v => v.Status == InventoryStatus.NonCompliant))
+                    @if (selectedProject.Reports.Count > 0) { <span> · <span data-utc-time="@selectedProject.Reports.Max(r => r.CheckedAtUtc).ToHtmlDateTime()"></span></span> }
+                </p>
+                <p class="s360-project-coverage">@Localizer["Status covers only the reported ecosystems."]
+                    @if (!selectedProject.Reports.Any(r => r.Ecosystem == "nuget")) { <span>@Localizer["NuGet: not included in this audit."]</span> }
+                    @if (!selectedProject.Reports.Any(r => r.Ecosystem == "npm")) { <span>@Localizer["npm: not included in this audit."]</span> }
+                </p>
+            }
+        </header>
+    }
+    else
+    {
     <header class="s360-inventory-header">
         <div><span class="s360-inventory-eyebrow">S360 · @Localizer["Supply chain"]</span><h1>@Localizer["Compliance explorer"]</h1><p>@Localizer["Find a project or package, inspect its compliance, and trace why it is used."]</p></div>
         <div class="d-flex flex-wrap gap-2"><a class="btn btn-outline-secondary" asp-controller="Dashboard" asp-action="Index">@Localizer["Company overview"]</a><a class="btn btn-outline-primary" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="rules">@Localizer["Approval rules and tools"]</a></div>
@@ -14,22 +38,34 @@
         <a class="@(Model.Tab == "projects" ? "active" : "")" aria-current="@(Model.Tab == "projects" ? "page" : null)" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem" asp-route-query="@Model.Query" asp-route-filter="@Model.Filter"><i data-lucide="folder-git-2" aria-hidden="true"></i>@Localizer["Projects"]</a>
         <a class="@(Model.Tab == "dependencies" ? "active" : "")" aria-current="@(Model.Tab == "dependencies" ? "page" : null)" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem" asp-route-query="@Model.Query" asp-route-filter="@Model.Filter"><i data-lucide="package" aria-hidden="true"></i>@Localizer["Dependencies"]</a>
     </nav>
+    }
     @if (!Model.CanRead)
     {
         <div class="alert alert-info" role="status"><div class="alert-message">@Localizer["Reading project inventory requires supply-chain read permission. You can still browse the approval rules."]</div></div>
     }
     else
     {
+        @if (!isProjectDetails)
+        {
         <div class="s360-inventory-overview">
             <div><strong>@Model.PackageCount</strong><span>@Localizer["Observed packages"]</span></div>
             <div><strong>@Model.ProjectCount</strong><span>@Localizer["Projects with reports"]</span></div>
             <div><strong>@Model.ProblemCount</strong><span>@Localizer["Packages needing attention"]</span></div>
             <p>@Localizer["Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data."]</p>
         </div>
+        }
         <form method="get" asp-controller="SupplyChain" asp-action="Index" class="s360-inventory-search">
             <input type="hidden" name="tab" value="@Model.Tab" />
             @if (Model.Project != null) { <input type="hidden" name="project" value="@Model.Project" /> }
+            @if (!isProjectDetails)
+            {
             <label class="s360-inventory-query">@Localizer["Search inventory"]<input type="search" name="query" value="@Model.Query" maxlength="214" class="form-control" placeholder="@Localizer["Package, project, purpose or approval reason"]" /></label>
+            }
+            else
+            {
+                <input type="hidden" name="query" value="@Model.Query" />
+                <input type="hidden" name="filter" value="@Model.Filter" />
+            }
             <label>@Localizer["Reports"]<select name="scope" class="form-select">
                 <option value="baseline" selected="@(Model.Scope == "baseline")">@Localizer["Current baseline"]</option>
                 <option value="history" selected="@(Model.Scope == "history")">@Localizer["Unclassified history"]</option>
@@ -39,6 +75,8 @@
                 <option value="nuget" selected="@(Model.Ecosystem == "nuget")">NuGet</option>
                 <option value="npm" selected="@(Model.Ecosystem == "npm")">npm</option>
             </select></label>
+            @if (!isProjectDetails)
+            {
             <label>@Localizer["Status"]<select name="filter" class="form-select">
                 <option value="all" selected="@(Model.Filter == "all")">@Localizer["All statuses"]</option>
                 <option value="issues" selected="@(Model.Filter == "issues")">@Localizer["Needs attention"]</option>
@@ -46,16 +84,20 @@
                 <option value="pending" selected="@(Model.Filter == "pending")">@Localizer["Not verified"]</option>
                 <option value="compliant" selected="@(Model.Filter == "compliant")">@Localizer["Compliant"]</option>
             </select></label>
-            <button class="btn btn-primary">@Localizer["Search"]</button>
+            }
+            <button class="btn btn-primary">@if (isProjectDetails) { @Localizer["Explore"] } else { @Localizer["Search"] }</button>
         </form>
         <div class="s360-inventory-context">
             @if (Model.Scope == "baseline") { <span>@Localizer["Latest complete baselines. These are reported dependencies, not proof of deployment."]</span> }
             else if (Model.Scope == "review") { <span>@Localizer["Review checks are not saved as project inventory."]</span> }
             else { <span>@Localizer["Older reports without a declared purpose. Current use cannot be inferred from these records."]</span> }
-            <a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="@Model.Tab">@Localizer["Reset filters"]</a>
+            <a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="@Model.Tab" asp-route-project="@Model.Project">@Localizer["Reset filters"]</a>
         </div>
-        @if (Model.Project != null) { <h2 class="h4 mb-3">@Model.Project</h2> }
-        <div class="s360-inventory-results" role="status">@string.Format(@Localizer["{0} results · Page {1} of {2}"].Value, Model.Total, Model.Page, Model.PageCount)</div>
+        @if (!isProjectDetails)
+        {
+            @if (Model.Project != null) { <h2 class="h4 mb-3">@Model.Project</h2> }
+            <div class="s360-inventory-results" role="status">@string.Format(@Localizer["{0} results · Page {1} of {2}"].Value, Model.Total, Model.Page, Model.PageCount)</div>
+        }
         @if (Model.Total == 0)
         {
             <div class="s360-inventory-empty"><i data-lucide="search" aria-hidden="true"></i><h2>@Localizer["No matching records"]</h2><p>@Localizer["Try a different search or report scope. An approval rule alone is not evidence that a project uses a package."]</p><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="rules">@Localizer["Browse approval rules"]</a></div>
@@ -93,24 +135,15 @@
                     </a>
                     continue;
                 }
-                <details class="s360-inventory-project" open>
-                    <summary><span><strong>@project.Name</strong><small>@string.Format(@Localizer["{0} package artifacts · {1} need attention"].Value, project.Versions.Count, project.Versions.Count(v => v.Status == InventoryStatus.NonCompliant))</small>
-                        <small>@Localizer["Status covers only the reported ecosystems."]
-                            @if (!project.Reports.Any(r => r.Ecosystem == "nuget")) { <span>@Localizer["NuGet: not included in this audit."]</span> }
-                            @if (!project.Reports.Any(r => r.Ecosystem == "npm")) { <span>@Localizer["npm: not included in this audit."]</span> }
-                        </small></span>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", project.Status)<i data-lucide="chevron-down" aria-hidden="true"></i></summary>
-                    <div class="s360-inventory-project-body"><a class="s360-project-back" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem">← @Localizer["All projects"]</a>
+                <article class="s360-project-content">
                         @{
                             var badgeUrl = Url.Action("Project", "Badge", new { project = project.Name }, Context.Request.Scheme)!;
                             var detailsUrl = Url.Action("Index", "SupplyChain", new { tab = "projects", project = project.Name, scope = "baseline", ecosystem = "all" }, Context.Request.Scheme)!;
                             var markdown = $"[![S360 compliance]({badgeUrl})]({detailsUrl})";
                         }
-                        <section class="card mb-3 s360-badge-generator">
-                            <div class="card-body">
-                                <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-2">
-                                    <h3 class="h6 mb-0">@Localizer["README badge"]</h3>
-                                    <img src="@badgeUrl" height="20" alt="@Localizer["S360 compliance badge"]" />
-                                </div>
+                        <details class="mb-3 s360-badge-generator">
+                            <summary><span>@Localizer["README badge"]</span><img src="@badgeUrl" height="20" alt="@Localizer["S360 compliance badge"]" /><i data-lucide="chevron-down" aria-hidden="true"></i></summary>
+                            <div class="s360-badge-generator-body">
                                 <p class="small text-muted">@Localizer["Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment."]</p>
                                 <label class="form-label" for="s360-badge-markdown">@Localizer["Markdown"]</label>
                                 <textarea id="s360-badge-markdown" class="form-control font-monospace mb-2" rows="3" readonly spellcheck="false">@markdown</textarea>
@@ -121,7 +154,7 @@
                                     <span data-key="copyFailed">@Localizer["Select and copy the Markdown above."]</span>
                                 </div>
                             </div>
-                        </section>
+                        </details>
                         @if (project.Incomplete)
                         {
                             <div class="alert alert-warning" role="status"><div class="alert-message">
@@ -164,12 +197,11 @@
                                 }
                             </section>
                         }
-                    </div>
-                </details>
+                </article>
             }
             </div>
         }
-        @if (Model.PageCount > 1)
+        @if (!isProjectDetails && Model.PageCount > 1)
         {
             <nav class="s360-inventory-pagination" aria-label="@Localizer["Result pages"]">
                 @if (Model.Page > 1) { <a class="btn btn-outline-primary" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="@Model.Tab" asp-route-scope="@Model.Scope" asp-route-query="@Model.Query" asp-route-project="@Model.Project" asp-route-ecosystem="@Model.Ecosystem" asp-route-filter="@Model.Filter" asp-route-page="@(Model.Page - 1)">@Localizer["Previous"]</a> }

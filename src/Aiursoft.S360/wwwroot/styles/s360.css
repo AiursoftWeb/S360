@@ -598,3 +598,24 @@ a.s360-overview-metric:hover { box-shadow: 0 0 0 2px var(--bs-primary, #3b7ddd);
 
 .s360-risk-track.pending > span { background: #c6ced8; }
 .s360-overview-personal { display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem 1rem; cursor: pointer; }
+
+/* An opened project has its own heading and content, without a result-card shell. */
+.s360-project-header { margin-bottom: 1.5rem; }
+.s360-project-title { display: flex; align-items: center; flex-wrap: wrap; gap: 1rem; margin: .5rem 0 .75rem; }
+.s360-project-title h1 { margin: 0; color: var(--bs-body-color); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 750; letter-spacing: -.035em; overflow-wrap: anywhere; min-width: 0; }
+.s360-project-facts { margin: 0 0 .4rem; color: var(--bs-body-color); font-size: .9rem; }
+.s360-project-coverage { margin: 0; color: var(--bs-secondary-color); font-size: .8rem; }
+.s360-project-detail .s360-inventory-search { color: var(--bs-body-color); border-color: var(--bs-border-color); background: var(--bs-body-bg); padding: .75rem 1rem; }
+.s360-project-content { min-width: 0; }
+.s360-project-detail .s360-badge-generator { padding: 0; border-color: var(--bs-border-color); background: var(--bs-body-bg); }
+.s360-project-detail .s360-badge-generator > summary { color: var(--bs-body-color); }
+.s360-badge-generator > summary { display: flex; align-items: center; gap: 1rem; padding: .85rem 1rem; list-style: none; }
+.s360-badge-generator > summary::-webkit-details-marker { display: none; }
+.s360-badge-generator > summary > span { flex: 1; }
+.s360-inventory .s360-badge-generator > summary > img { width: auto; height: 20px; }
+.s360-badge-generator[open] > summary > svg { transform: rotate(180deg); }
+.s360-badge-generator-body { padding: 0 1rem 1rem; }
+.s360-project-facts > span { white-space: nowrap; }
+@media (max-width: 600px) {
+    .s360-project-detail .s360-inventory-search > label { flex: 1 1 8rem; }
+}

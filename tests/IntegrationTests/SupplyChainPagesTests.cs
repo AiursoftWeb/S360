@@ -337,6 +337,7 @@ public class SupplyChainPagesTests : TestBase
                 start.ArgumentList.Add(purpose);
             }
             start.Environment["CI_PROJECT_PATH"] = reportedProject;
+            start.Environment["CI_PROJECT_DIR"] = root;
             using var process = Process.Start(start) ?? throw new InvalidOperationException("Could not start the CLI.");
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
             var outputTask = process.StandardOutput.ReadToEndAsync(timeout.Token);
@@ -353,11 +354,13 @@ public class SupplyChainPagesTests : TestBase
             using var scope = Server!.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var checks = await db.BuildChecks.Include(c => c.Dependencies)
-                .Where(c => c.Project == reportedProject).ToListAsync();
+                .Where(c => c.Project == reportedProject + "//" + Path.GetFileName(solution)).ToListAsync();
             if (purpose == "baseline")
             {
                 Assert.HasCount(1, checks);
                 Assert.AreEqual("baseline", BuildCheckRun.Purpose(checks[0].ContextJson));
+                Assert.AreEqual(Path.GetFileName(solution), BuildCheckRun.ReadContext(checks[0].ContextJson)!.SolutionPath);
+                Assert.IsNotNull(DependencyReportGraph.Read(checks[0].GraphJson!).Solution);
                 Assert.AreEqual("nuget", BuildCheckRun.ReadContext(checks[0].ContextJson)!.Ecosystem);
                 Assert.AreEqual(1, checks[0].ScannedProjectCount);
                 Assert.HasCount(0, checks[0].Dependencies);
@@ -420,7 +423,12 @@ public class SupplyChainPagesTests : TestBase
                     {
                         [$"{packageName}/{version}"] = new { sha512 }
                     },
-                    project = new { restore = new { projectPath = project } }
+                    project = new
+                    {
+                        restore = new { projectPath = project },
+                        frameworks = new Dictionary<string, object>
+                        { ["net10.0"] = new { dependencies = new Dictionary<string, object> { [packageName] = new { target = "Package", version } } } }
+                    }
                 }));
             var solution = await DependencyScannerTests.WriteSolutionAsync(root, project);
             var clientProject = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory,
@@ -438,6 +446,7 @@ public class SupplyChainPagesTests : TestBase
                      }) start.ArgumentList.Add(argument);
             start.Environment["S360_CHECK_KEY"] = checkKey;
             start.Environment["CI_PROJECT_PATH"] = "integration/unconfigured-source";
+            start.Environment["CI_PROJECT_DIR"] = root;
             using var process = Process.Start(start) ?? throw new InvalidOperationException("Could not start the CLI.");
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
             var outputTask = process.StandardOutput.ReadToEndAsync(timeout.Token);
@@ -461,11 +470,11 @@ public class SupplyChainPagesTests : TestBase
             Assert.DoesNotContain("S360 approved", output);
             using var scope = Server!.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            Assert.AreEqual(purpose == "baseline", await db.BuildChecks.AnyAsync(c => c.Project == "integration/unconfigured-source"));
+            Assert.AreEqual(purpose == "baseline", await db.BuildChecks.AnyAsync(c => c.Project == "integration/unconfigured-source//" + Path.GetFileName(solution)));
             Assert.AreEqual(purpose == "baseline", await db.BuildCheckDependencies.AnyAsync(d => d.Name == packageName));
             if (purpose == "baseline")
             {
-                var report = await db.BuildChecks.SingleAsync(c => c.Project == "integration/unconfigured-source");
+                var report = await db.BuildChecks.SingleAsync(c => c.Project == "integration/unconfigured-source//" + Path.GetFileName(solution));
                 Assert.IsFalse(report.Trusted);
                 Assert.AreEqual("baseline", BuildCheckRun.Purpose(report.ContextJson));
             }

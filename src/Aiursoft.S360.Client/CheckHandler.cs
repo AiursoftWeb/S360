@@ -1,5 +1,4 @@
 using System.CommandLine;
-using System.Text.Json;
 using Aiursoft.CommandFramework.Framework;
 using Aiursoft.S360.SDK;
 using Aiursoft.AiurProtocol.Services;
@@ -79,57 +78,27 @@ public class CheckHandler : CommandHandlerBuilder
         var approved = true;
         var denied = new List<DependencyDecision>();
         var reportErrors = new List<string>();
-        var graphError = DependencyGraphNode.Validate(scan.GraphNodes, dependencies, selectedEcosystem, complete: true);
-        if (graphError != null) throw new InvalidOperationException(graphError);
-        var runId = Guid.NewGuid().ToString("N");
         var checkContext = ReadContext(Environment.GetEnvironmentVariable, purpose, selectedEcosystem);
-        var requests = new List<CheckRequest>();
-        var dependencyQueue = new Queue<Dependency>(dependencies);
-        var graphQueue = new Queue<DependencyGraphNode>(scan.GraphNodes);
-        // Bound serialized size, not just item count: shared transitive graphs can have many edges.
-        do
+        var repository = Environment.GetEnvironmentVariable("CI_PROJECT_PATH") ??
+            Path.GetFileName(ecosystem == "npm" ? path : FindRepositoryRoot(path));
+        if (scan.SolutionGraph != null)
         {
-            var request = new CheckRequest
-            {
-                Context = checkContext, GraphNodes = [], ScannedProjectCount = scan.ScannedProjectCount,
-                RunId = runId,
-                Project = Environment.GetEnvironmentVariable("CI_PROJECT_PATH") ??
-                    Path.GetFileName(ecosystem == "npm" ? path : Path.GetDirectoryName(path)!),
-                Commit = Environment.GetEnvironmentVariable("CI_COMMIT_SHA"),
-                Pipeline = Environment.GetEnvironmentVariable("CI_PIPELINE_URL")
-            };
-            var size = JsonSerializer.SerializeToUtf8Bytes(request).Length;
-            while (dependencyQueue.TryPeek(out var dependency) && request.Dependencies.Count < 1000)
-            {
-                var bytes = JsonSerializer.SerializeToUtf8Bytes(dependency).Length + 1;
-                if (size + bytes > 3 * 1024 * 1024) break;
-                request.Dependencies.Add(dependencyQueue.Dequeue());
-                size += bytes;
-            }
-            while (graphQueue.TryPeek(out var node) && request.GraphNodes.Count < 1000)
-            {
-                var bytes = JsonSerializer.SerializeToUtf8Bytes(node).Length + 1;
-                if (size + bytes > 3 * 1024 * 1024) break;
-                request.GraphNodes.Add(graphQueue.Dequeue());
-                size += bytes;
-            }
-            if (request.Dependencies.Count == 0 && request.GraphNodes.Count == 0 &&
-                (dependencyQueue.Count > 0 || graphQueue.Count > 0))
-                throw new InvalidOperationException("A dependency graph node exceeds the report size limit.");
-            requests.Add(request);
-        } while (dependencyQueue.Count > 0 || graphQueue.Count > 0);
-        if (requests.Count > 10000) throw new InvalidOperationException("The dependency report exceeds the batch limit.");
+            scan.SolutionGraph.SolutionPath = Path.GetRelativePath(
+                Environment.GetEnvironmentVariable("CI_PROJECT_DIR") ?? FindRepositoryRoot(path), path).Replace('\\', '/');
+            checkContext.Repository = repository;
+            checkContext.SolutionPath = scan.SolutionGraph.SolutionPath;
+        }
+        var project = scan.SolutionGraph == null ? repository : repository + "//" + scan.SolutionGraph.SolutionPath;
+        var requests = DependencyReportGraph.CreateBatches(scan, checkContext, project,
+            Environment.GetEnvironmentVariable("CI_COMMIT_SHA"), Environment.GetEnvironmentVariable("CI_PIPELINE_URL"));
         // Review the complete scan before submitting any baseline batches. Polling
         // must never create duplicate or partially retried production reports.
         using var verificationDeadline = new CancellationTokenSource(TimeSpan.FromMinutes(10));
-        for (var index = 0; index < requests.Count; index++)
-        {
-            requests[index].BatchIndex = index;
-            requests[index].BatchCount = requests.Count;
-        }
         foreach (var request in requests)
         {
             request.Context = ReadContext(Environment.GetEnvironmentVariable, "review", selectedEcosystem);
+            request.Context.Repository = checkContext.Repository;
+            request.Context.SolutionPath = checkContext.SolutionPath;
             CheckResponse response;
             try
             {
@@ -148,6 +117,8 @@ public class CheckHandler : CommandHandlerBuilder
                     return 1;
                 }
                 Console.Error.WriteLine(message);
+                if (scan.SolutionGraph != null && !client.SupportsSolutionGraphs)
+                    throw new InvalidOperationException("The server has not confirmed solution-report support; no baseline was submitted.");
                 // Still declare the complete production inventory, including rejected
                 // packages; a failed preflight must not leave an old green baseline.
                 break;
@@ -181,6 +152,15 @@ public class CheckHandler : CommandHandlerBuilder
         }
         Console.WriteLine($"S360 approved {dependencies.Count} dependency artifacts across {scan.ScannedProjectCount} supported projects.");
         return 0;
+    }
+
+    private static string FindRepositoryRoot(string solution)
+    {
+        var parent = Path.GetDirectoryName(solution)!;
+        for (var directory = new DirectoryInfo(parent); directory != null; directory = directory.Parent)
+            if (Directory.Exists(Path.Combine(directory.FullName, ".git")) || File.Exists(Path.Combine(directory.FullName, ".git")))
+                return directory.FullName;
+        return parent;
     }
 
     public static void WriteDenials(TextWriter output, IReadOnlyList<DependencyDecision> denied,

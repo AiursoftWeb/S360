@@ -60,6 +60,12 @@
   <data name="Compliant" xml:space="preserve">
     <value>合规</value>
   </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>已复制！</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>复制 Markdown</value>
+  </data>
   <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
     <value>统计数量描述所选的报告范围。状态是根据当前策略和已存储的漏洞数据进行评估的。</value>
   </data>
@@ -89,6 +95,9 @@
   </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>最新完整基线。这些是报告的依赖项，而非部署证明。</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
   </data>
   <data name="Needs attention" xml:space="preserve">
     <value>需要关注</value>
@@ -153,6 +162,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>查看项目清单需要供应链读取权限。您仍然可以浏览审批规则。</value>
   </data>
+  <data name="README badge" xml:space="preserve">
+    <value>README 徽章</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>报告</value>
   </data>
@@ -165,11 +177,20 @@
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>审核检查结果不会保存为项目清单。</value>
   </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>S360 合规徽章</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>搜索清单</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>请选中并复制上方的 Markdown 内容。</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>在 GitHub 或 GitLab 上分享您的最新基线合规状态。该徽章是公开的，无需登录即可查看。它涵盖已报告的生态系统，而非生产环境部署。</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>状态</value>

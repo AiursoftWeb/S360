@@ -10,11 +10,12 @@ namespace Aiursoft.S360.Services;
 
 public class CatalogInventoryService(TemplateDbContext db, TrustService trust, IConfiguration configuration) : IScopedDependency
 {
-    public async Task PopulateAsync(InventoryViewModel model)
+    public async Task PopulateAsync(InventoryViewModel model, bool projectOnly = false)
     {
         // Select complete snapshots before selecting packages: an empty newer snapshot
         // removes old dependencies, and a NuGet-only snapshot must not replace npm.
-        var checks = await db.BuildChecks.AsNoTracking().OrderByDescending(c => c.CreatedAtUtc)
+        var checks = await db.BuildChecks.AsNoTracking()
+            .Where(c => !projectOnly || c.Project == model.Project).OrderByDescending(c => c.CreatedAtUtc)
             .ThenByDescending(c => c.Id).Select(c => new BuildCheck
             {
                 Id = c.Id, Project = c.Project, Commit = c.Commit, Pipeline = c.Pipeline,
@@ -104,7 +105,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
             foreach (var name in version.Uses.Select(u => u.Project).Distinct()) projects[name].Versions.Add(version);
         }
         // Load graph payloads only when opening one project, never for the inventory overview.
-        if (model.Tab == "projects" && model.Project != null && projects.TryGetValue(model.Project, out var opened))
+        if (!projectOnly && model.Tab == "projects" && model.Project != null && projects.TryGetValue(model.Project, out var opened))
         {
             var selectedRuns = selected.Where(s => s.Checks[0].Project == model.Project &&
                 (model.Ecosystem == "all" || s.Ecosystem == model.Ecosystem)).ToList();

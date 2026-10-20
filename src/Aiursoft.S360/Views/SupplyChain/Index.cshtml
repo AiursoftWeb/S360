@@ -223,5 +223,6 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
     @if (Model.Inventory is { Tab: "projects", Project: not null, CanRead: true })
     {
         <script type="module" src="~/js/dependency-graph.js" asp-append-version="true"></script>
+        <script src="~/js/project-badge.js" asp-append-version="true" defer></script>
     }
 }

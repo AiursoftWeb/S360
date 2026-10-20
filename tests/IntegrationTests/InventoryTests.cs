@@ -54,6 +54,101 @@ public class InventoryTests : TestBase
         return model;
     }
 
+    private async Task<string> ReadBadge(string project, string expected)
+    {
+        var response = await Http.GetAsync("/badge.svg?project=" + Uri.EscapeDataString(_prefix + project));
+        Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        Assert.AreEqual("image/svg+xml", response.Content.Headers.ContentType?.MediaType);
+        Assert.AreEqual(TimeSpan.FromSeconds(60), response.Headers.CacheControl?.MaxAge);
+        var svg = await response.Content.ReadAsStringAsync();
+        Assert.AreEqual("S360: " + expected, System.Xml.Linq.XDocument.Parse(svg).Root!.Element(
+            System.Xml.Linq.XName.Get("title", "http://www.w3.org/2000/svg"))!.Value);
+        Assert.DoesNotContain(_prefix, svg);
+        return svg;
+    }
+
+    [TestMethod]
+    public async Task AnonymousBadgeUsesOnlyExactLatestBaselinesAndMarksIncompleteReportsPending()
+    {
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var now = DateTime.UtcNow;
+            db.BuildChecks.AddRange(Report("clean", "baseline", "nuget", now),
+                Report("clean-extra", "baseline", "npm", now),
+                Report("review-only", "review", "nuget", now),
+                Report("legacy", null, "nuget", now));
+            var incomplete = Report("partial", "baseline", "nuget", now);
+            incomplete.BatchCount = 2;
+            db.BuildChecks.AddRange(incomplete, Report("partial", "baseline", "nuget", now.AddMinutes(-1)));
+            var review = Report("clean", "review", "nuget", now.AddMinutes(1));
+            review.BatchCount = 2;
+            db.BuildChecks.Add(review);
+            await db.SaveChangesAsync();
+        }
+        Assert.Contains("#4c1", await ReadBadge("clean", "compliant"));
+        Assert.Contains("#dfb317", await ReadBadge("partial", "pending"));
+        await ReadBadge("review-only", "unknown");
+        await ReadBadge("legacy", "unknown");
+        await ReadBadge("missing", "unknown");
+        Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.GetAsync("/badge.svg")).StatusCode);
+        Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.GetAsync("/badge.svg?project=" + new string('a', 201))).StatusCode);
+    }
+
+    [TestMethod]
+    public async Task AnonymousBadgeReevaluatesCvesWithdrawalPolicyAndFreshnessWithoutWritingData()
+    {
+        int artifactId, ruleId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var artifact = Artifact("Badge." + Guid.NewGuid().ToString("N"));
+            var rule = Approve(artifact);
+            db.TrustRules.Add(rule);
+            db.BuildChecks.Add(Report("policy", "baseline", "nuget", DateTime.UtcNow, artifact));
+            var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
+            if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
+            audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddHours(-2);
+            await db.SaveChangesAsync();
+            artifactId = artifact.Id; ruleId = rule.Id;
+        }
+        await ReadBadge("policy", "compliant");
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            db.VulnerabilityMatches.Add(new VulnerabilityMatch
+            {
+                VulnerabilityId = 0, PackageArtifactId = artifactId,
+                Vulnerability = new Vulnerability { SourceId = "CVE-2099-1234", Ecosystem = "nuget", PackageName = "Badge" }
+            });
+            await db.SaveChangesAsync();
+        }
+        Assert.Contains("#e05d44", await ReadBadge("policy", "CVE found"));
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            (await db.VulnerabilityMatches.Include(m => m.Vulnerability).SingleAsync(m => m.PackageArtifactId == artifactId)).Vulnerability.Withdrawn = true;
+            (await db.TrustRules.SingleAsync(r => r.Id == ruleId)).Status = TrustRuleStatus.Revoked;
+            await db.SaveChangesAsync();
+        }
+        await ReadBadge("policy", "non-compliant");
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            (await db.TrustRules.SingleAsync(r => r.Id == ruleId)).Status = TrustRuleStatus.Approved;
+            (await db.PackageArtifacts.SingleAsync(a => a.Id == artifactId)).LastCheckedAtUtc = DateTime.UtcNow.AddDays(-1);
+            await db.SaveChangesAsync();
+        }
+        await ReadBadge("policy", "pending");
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            Assert.AreEqual(1, await db.BuildChecks.CountAsync(c => c.Project == _prefix + "policy"));
+            Assert.IsTrue((await db.PackageArtifacts.SingleAsync(a => a.Id == artifactId)).LastCheckedAtUtc < DateTime.UtcNow.AddHours(-12));
+        }
+    }
+
     [TestMethod]
     public async Task OpenProjectShowsCurrentGraphPolicyAndKeepsLegacyReportsFlat()
     {

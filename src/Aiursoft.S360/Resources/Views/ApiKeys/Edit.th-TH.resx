@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Allow production baseline reports" xml:space="preserve">
+    <value>อนุญาตให้รายงานข้อมูลพื้นฐานสำหรับระบบจริง</value>
+  </data>
+  <data name="Back to API Keys" xml:space="preserve">
+    <value>กลับไปยังคีย์ API</value>
+  </data>
+  <data name="Create API Key" xml:space="preserve">
+    <value>สร้างคีย์ API</value>
+  </data>
+  <data name="Edit API Key" xml:space="preserve">
+    <value>แก้ไขคีย์ API</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>เปิดใช้งาน</value>
+  </data>
+  <data name="Expiration (UTC)" xml:space="preserve">
+    <value>วันหมดอายุ (UTC)</value>
+  </data>
+  <data name="Key name" xml:space="preserve">
+    <value>ชื่อคีย์</value>
+  </data>
+  <data name="Review keys cannot publish production baselines. Baseline reporting also requires your current production baseline permission." xml:space="preserve">
+    <value>คีย์ประเภท Review ไม่สามารถเผยแพร่ฐานข้อมูลการผลิตได้ การรายงานฐานข้อมูลยังต้องการสิทธิ์ฐานข้อมูลการผลิตปัจจุบันของคุณด้วย</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>บันทึก</value>
+  </data>
+
+</root>

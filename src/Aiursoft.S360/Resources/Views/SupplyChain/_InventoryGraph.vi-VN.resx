@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>Hiển thị {0} trong số {1} nút</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} gói có lỗ hổng bảo mật trong biểu đồ này, bao gồm {1} bị ẩn do độ sâu hoặc bộ lọc.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Thu gọn các phụ thuộc</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Tuân thủ</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Không thể sao chép. Hãy sao chép địa chỉ hiện tại từ trình duyệt của bạn.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Sao chép liên kết chế độ xem</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Các gói phụ thuộc</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Chi tiết về các gói phụ thuộc</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Đồ thị phụ thuộc. Kéo để di chuyển, sử dụng các nút điều khiển để thu phóng hoặc chọn một nút.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Quan hệ phụ thuộc</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Điều khiển sơ đồ</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>Chỉ phụ thuộc trực tiếp</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Phụ thuộc trực tiếp</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Kéo để khám phá biểu đồ này ở tỷ lệ dễ đọc, hoặc chọn Xem vừa vặn để xem tổng quan.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Bật JavaScript để xem biểu đồ. Tất cả chi tiết gói được liệt kê bên dưới.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Mở rộng các phụ thuộc</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Khám phá các gói phụ thuộc</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Tìm gói</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Vừa khung nhìn</value>
+  </data>
+  <data name="From your project to every package" xml:space="preserve">
+    <value>Từ dự án của bạn đến mọi gói</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Toàn màn hình</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>Màu xanh lá và xanh dương biểu thị mối quan hệ, không phải sự chấp thuận. Các vấn đề kiểm tra khác được ghi nhãn trên từng nút.</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Phụ thuộc gián tiếp</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Được giới thiệu bởi</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Lỗ hổng đã biết</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Tệp kê khai và mục tiêu</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Độ sâu tối đa</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Cần chú ý</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>Không có lỗ hổng bảo mật nào được biết đến trong đồ thị đã báo cáo. Kiểm tra trạng thái kiểm toán trước khi dựa vào kết quả này.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Không có gói nào phù hợp.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Chưa ghi nhận mục đích hoặc lý do phê duyệt</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Chưa được xác minh</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Tên gói, đường dẫn hoặc CVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Nguồn gói</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Tham chiếu dự án</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Mục đích và lý do phê duyệt đã ghi nhận</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Đặt lại chế độ xem</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Quan hệ gốc không được ghi nhận</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Đường dẫn tìm kiếm và lỗ hổng bảo mật bao gồm cả các nút tổ tiên vượt quá độ sâu đã chọn. Đặt lại chế độ xem để quay về giới hạn độ sâu.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Chọn một nút để xem phiên bản, trạng thái kiểm toán và các đường dẫn giới thiệu.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Hiển thị các đường dẫn đến gói</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Một số nút được báo cáo không có đường dẫn từ gốc này. Tìm kiếm vẫn có thể tìm thấy chúng; không có mối quan hệ nào được suy luận.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Bắt đầu với ba cấp độ. Mở rộng một nút để xem các phần phụ thuộc của nó, hoặc chọn nút để biết thêm chi tiết.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>Không thể hiển thị biểu đồ. Chi tiết gói vẫn khả dụng bên dưới.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Báo cáo đã lưu đã thay đổi. Đang hiển thị đồ thị phụ thuộc hiện tại.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Đồ thị này có quy mô lớn. Chỉ hiển thị một phần; hãy tìm kiếm gói để xem các mối quan hệ của gói đó. Tất cả các gói vẫn có trong danh sách bên dưới.</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Được sử dụng bởi các dự án</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Đã sao chép liên kết xem.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Đường dẫn lỗ hổng</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Phóng to</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Thu nhỏ</value>
+  </data>
+
+</root>

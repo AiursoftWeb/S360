@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>규칙은 패키지 사용을 허용합니다. 하지만 프로젝트가 해당 패키지를 실제로 사용하는지, 또는 허용된 버전에 취약점이 없는지를 증명하지는 않습니다.</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>승인됨</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>권한 부여</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>기존 규칙 세트로 돌아가기</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>에코시스템</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>제외됨</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>제외 항목은 인가 범위에서 영향받는 버전을 제외합니다. 프로덕션 베이스라인에서 이미 보고된 영향받는 버전을 숨기는 것은 아닙니다.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>만료됨</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>만료</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>포함</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>제외된 항목이 없습니다.</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>만료 없음</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>저장된 활성 어드바이저리에 관련 범위가 없습니다. 이는 규칙 전체가 안전하다는 증거가 아닙니다.</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>검토 기록이 없습니다. 이 규칙은 직접 가져온 것일 수 있습니다.</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>고정되지 않음</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>패키지 패턴</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>대기 중</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>프리릴리스 버전</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>범위를 평가할 수 없음</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>범위가 패턴과 중복됨</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>사유</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>거부됨</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>관련 보안 공지 범위</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>요청 시각</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>검토 이력</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>검토자</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>취소됨</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>출처</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>상태</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>공급업체</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>게시된 이 버전 범위는 규칙 패턴과 겹치거나 평가할 수 없습니다. 이는 규칙이 현재 나열된 모든 버전을 허용한다는 의미가 아닙니다. 상태, 만료 여부, 제외 항목, 다른 규칙 및 차단 목록도 적용됩니다. 운영 환경에 미치는 영향은 취약점 감사 페이지에서 확인할 수 있습니다.</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>신뢰 규칙 세부 정보</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>버전 패턴</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>현재 취약점 감사 보기</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>취약점 제외</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>철회됨</value>
+  </data>
+
+</root>

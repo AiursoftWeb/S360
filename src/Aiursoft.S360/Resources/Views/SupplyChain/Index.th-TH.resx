@@ -54,6 +54,9 @@
   <data name="Available dependencies" xml:space="preserve">
     <value>ไลบรารีที่พร้อมใช้งาน</value>
   </data>
+  <data name="Back to dependency inventory" xml:space="preserve">
+    <value>กลับไปยังรายการคลังข้อมูลการพึ่งพา</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>หากไม่พบแพ็กเกจ ส่งคำขอ</value>
   </data>
@@ -84,11 +87,17 @@
   <data name="Find packages" xml:space="preserve">
     <value>ค้นหาแพ็กเกจ</value>
   </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>วิธีอ่านแค็ตตาล็อก</value>
+  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>แหล่งแพ็กเกจ HTTPS</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>รวมรุ่นพรีรีลีส</value>
+  </data>
+  <data name="Last checked" xml:space="preserve">
+    <value>ตรวจสอบล่าสุด</value>
   </data>
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>ตรวจสอบล่าสุด (UTC)</value>
@@ -170,6 +179,9 @@
   </data>
   <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
     <value>URL ของรีจิสทรีที่ได้รับอนุมัติเป็นส่วนหนึ่งของกฎนี้ แพ็กเกจเดียวกันจากแหล่งอื่นจะไม่อยู่ภายใต้กฎนี้</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Previously published results remain usable until their original expiry." xml:space="preserve">
+    <value>การซิงโครไนซ์ข้อมูลช่องโหว่ล่าสุดล้มเหลว ผลลัพธ์ที่เผยแพร่ก่อนหน้านี้ยังคงใช้งานได้จนกว่าจะถึงวันหมดอายุเดิม</value>
   </data>
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>การซิงโครไนซ์ข้อมูลช่องโหว่ล่าสุดล้มเหลว รายการสิ่งที่บันทึกไว้จะถูกซ่อนไว้จนกว่าการตรวจสอบจะสำเร็จ</value>

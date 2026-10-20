@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>パッケージアーティファクト数：{0} · 要対応：{1}</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0}件の結果 · {2}ページ中{1}ページ</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>脆弱性のあるパッケージ {0} 件 · 対応が必要なその他のパッケージ {1} 件</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>新しいレポートは不完全です。</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>新しいレポートが不完全です。直前の完全なスナップショットが表示されていますが、現在のカバレッジは検証されていません。</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>すべてのプロジェクト</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>すべてのステータス</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>承認ルールとツール</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>このプロジェクトのすべての依存関係を参照する</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>承認ルールを表示</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>チェック記録</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>会社概要</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>コンプライアンスエクスプローラー</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>準拠</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>コピーしました！</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Markdownをコピー</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>件数は、選択したレポート範囲を示します。ステータスは、現在のポリシーと保存されている脆弱性データに基づいて評価されます。</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>現在のベースライン</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>依存関係</value>
+  </data>
+  <data name="Dependency relationships were not recorded in this report. Run the latest CLI to populate the graph; the package list remains available." xml:space="preserve">
+    <value>このレポートには依存関係が記録されていません。グラフを構築するには最新のCLIを実行してください。パッケージリストは引き続き利用可能です。</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>エコシステム</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>詳しく見る</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>プロジェクトまたはパッケージを検索し、コンプライアンスを確認して、使用されている理由を特定します。</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>インベントリ表示</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>既知の脆弱性</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>最新の完全なベースライン。これらは報告された依存関係であり、デプロイの証拠ではありません。</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>要対応</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>次へ</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>完全なレポートは利用できません。</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>このエコシステムには完全なレポートがありません。コンプライアンスは不明です。</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>一致するレコードはありません</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>未確認</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm：今回の監査には含まれていません。</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet と npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet：今回の監査には含まれていません。</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>観測パッケージ</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>用途が明記されていない過去のレポートです。これらの記録から現在の使用状況を推測することはできません。</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>パッケージ、プロジェクト、用途、または承認理由</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>対応が必要なパッケージ</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>全 {1} ページ中 {0} ページ目</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>パイプライン</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>前へ</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>プロジェクト</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>レポート付きプロジェクト</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>プロジェクトのインベントリを表示するには、サプライチェーンの読み取り権限が必要です。承認ルールを閲覧することは引き続き可能です。</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>READMEバッジ</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>レポート</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>フィルターをリセット</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>結果ページ</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>レビュー時の確認結果はプロジェクトのインベントリとして保存されません。</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>S360 準拠バッジ</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>検索</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>在庫を検索</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>上記のMarkdownを選択してコピーしてください。</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>最新のベースライン準拠状況を GitHub または GitLab で共有できます。バッジは公開されており、サインインは不要です。対象となるのは報告されたエコシステムであり、本番環境へのデプロイ状況ではありません。</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>ステータス</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>ステータスの対象となるのは、報告されたエコシステムのみです。</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>サプライチェーン</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>このエコシステムの依存関係は、完全なレポートには含まれていません。</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>このレポートは不完全です。完全なスナップショットがないため、現在のカバレッジは確認されていません。</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>別の検索条件やレポートの範囲をお試しください。承認ルール単体では、プロジェクトがパッケージを使用している証拠にはなりません。</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>未分類の履歴</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>依存関係を確認するには、CLIレポートを更新してください。</value>
+  </data>
+
+</root>

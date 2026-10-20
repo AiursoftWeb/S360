@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>API로 전송되는 종속 항목 목록의 제한된 일부입니다. 승인된 배치가 전체 실행의 승인을 의미하는 것은 아닙니다.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>승인됨</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>‘Accepted’는 S360이 이 검사에 대해 보고된 패키지 증거를 승인했다는 의미입니다. 모든 배치가 도착했거나 GitLab Runner가 빌드를 중단하도록 구성되었다는 뜻은 아닙니다.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>수락과 강제 적용</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>익명 검토</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API 키 ID</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>감사 목적</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>인증된 계정</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>배치</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>현재 차단됨</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>판단 사유</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>기본 브랜치</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>각 행은 API 배치 하나를 나타냅니다. 모든 배치가 승인된 완전한 실행만 CLI 검사를 통과할 수 있습니다. 기록된 결과는 과거의 결과이며, 현재 차단 목록 경고는 별도로 표시됩니다.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>실행 미완료</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>로컬 검사</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>병합 요청</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>다음</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>보고된 지원 프로젝트에서 외부 종속 항목을 찾지 못했습니다.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>보고된 검사 시도 1건입니다. 해당 배치들은 실행 식별자를 공유하므로 완전한 결과를 검토할 수 있습니다.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>기타 브랜치</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>패키지</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>이전</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>운영 기준선</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>프로젝트</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>점검 기록 읽기</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>사유</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>거부됨</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>보고된 출처</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>검토 전용</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>검토는 프로젝트 보고서를 저장하지 않고 정책 결정을 반환합니다. 기준선은 모든 배치가 도착한 경우에만 프로덕션 사용을 선언하고 프로젝트 인벤토리를 업데이트하며, 종속성이 거부된 경우에도 마찬가지입니다. 목적이 지정되지 않은 이전 기록은 프로덕션 사용량을 업데이트하지 않습니다.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>실행</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>상태</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>태그 빌드</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>CLI가 인식한 지원되는 프로젝트의 수입니다. 종속성이 0개인 검사도 S360에 연결하여 이 수를 기록합니다.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>해당 검사가 실행될 당시 기록된 정책 설명입니다. 현재 차단 목록 경고는 이 기록과 별개이며, 기록을 덮어쓰지 않습니다.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>프로젝트 및 파이프라인 식별자는 인증되지 않은 호출자에 의해 제공됩니다.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>이것들은 보고된 검사 항목이며, Runner 강제 적용은 별도의 배포 단계로 여기의 기록에 의해 암시되지 않습니다.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>분류되지 않음</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>미선평 목적</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>버전</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>취약점 데이터</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>취약점 데이터 확인 시점</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>해당 결정의 근거가 된 보안 공지(어드바이저리) 데이터가 마지막으로 확인된 시점입니다. 값이 비어 있는 것은 문제가 없음을 의미하지 않습니다.</value>
   </data>
 
 </root>

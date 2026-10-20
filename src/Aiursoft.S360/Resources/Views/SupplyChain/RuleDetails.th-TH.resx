@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>กฎอนุญาตให้ใช้แพ็กเกจ แต่ไม่ได้พิสูจน์ว่าโปรเจกต์ได้ใช้แพ็กเกจเหล่านั้น หรือว่าเวอร์ชันที่ได้รับอนุญาตปราศจากช่องโหว่</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>อนุมัติ</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>การอนุญาต</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>กลับไปยังชุดกฎเดิม</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>ระบบนิเวศ</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>ถูกยกเว้น</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>ข้อยกเว้นจะลบเวอร์ชันที่ได้รับผลกระทบออกจากการอนุญาต แต่จะไม่ซ่อนเวอร์ชันที่ได้รับผลกระทบที่ถูกรายงานไว้แล้วจากฐานข้อมูลการผลิต</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>หมดอายุ</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>หมดอายุ</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>รวมอยู่ด้วย</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>ไม่มีรายการยกเว้นที่บันทึกไว้</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>ไม่มีวันหมดอายุ</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>ไม่พบช่วงที่เกี่ยวข้องในคำแนะนำที่ใช้งานอยู่ซึ่งจัดเก็บไว้ ข้อนี้ไม่ใช่หลักฐานว่ากฎทั้งหมดปลอดภัย</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>ไม่มีบันทึกการตรวจสอบ กฎนี้อาจถูกนำเข้าโดยตรง</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>ไม่ถูกล็อก</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>แพทเทิร์นของแพ็กเกจ</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>รอดำเนินการ</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>เวอร์ชันพรีรีลีส</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>ช่วงเวอร์ชันไม่สามารถประเมินได้</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>ช่วงทับกับรูปแบบ</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>เหตุผล</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>ถูกปฏิเสธ</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>ช่วงคำแนะนำที่เกี่ยวข้อง</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>วันที่ขอ</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>ประวัติการตรวจสอบ</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>ผู้ตรวจสอบ</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>เพิกถอนแล้ว</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>แหล่งที่มา</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>ผู้จัดจำหน่าย</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>ช่วงเวอร์ชันที่เผยแพร่เหล่านี้ทับซ้อนกับรูปแบบของกฎ หรือไม่สามารถประเมินได้ ทั้งนี้ไม่ได้หมายความว่ากฎอนุญาตให้ใช้ทุกเวอร์ชันที่ระบุอยู่ในขณะนี้ เนื่องจากยังต้องพิจารณาสถานะ วันหมดอายุ ข้อยกเว้น กฎอื่น ๆ และรายการบล็อกด้วย ผลกระทบต่อระบบจริงแสดงอยู่ในหน้าตรวจสอบช่องโหว่</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>รายละเอียดกฎความไว้วางใจ</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>รูปแบบเวอร์ชัน</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>ดูการตรวจสอบช่องโหว่ปัจจุบัน</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>ข้อยกเว้นช่องโหว่</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>ถูกถอนแล้ว</value>
+  </data>
+
+</root>

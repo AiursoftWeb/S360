@@ -60,6 +60,12 @@
   <data name="Compliant" xml:space="preserve">
     <value>Compliant</value>
   </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>Copied!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Copy Markdown</value>
+  </data>
   <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
     <value>Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data.</value>
   </data>
@@ -89,6 +95,9 @@
   </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>Latest complete baselines. These are reported dependencies, not proof of deployment.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
   </data>
   <data name="Needs attention" xml:space="preserve">
     <value>Requires attention</value>
@@ -147,6 +156,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>Viewing the project inventory requires supply-chain read permission. You can still browse the approval rules.</value>
   </data>
+  <data name="README badge" xml:space="preserve">
+    <value>README badge</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Reports</value>
   </data>
@@ -159,11 +171,20 @@
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>Review checks are not saved as project inventory.</value>
   </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>S360 compliance badge</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Search inventory</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>Select and copy the Markdown above.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment.</value>
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>

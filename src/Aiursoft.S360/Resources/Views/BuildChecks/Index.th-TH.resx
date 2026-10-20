@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>ส่วนหนึ่งของรายการ dependency ที่แบ่งเป็นชุดตามขนาดและส่งไปยัง API การยอมรับชุดหนึ่งไม่ได้หมายความว่ารันทั้งหมดได้รับการยอมรับ</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>ยอมรับแล้ว</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>&quot;Accepted&quot; หมายถึง S360 ได้รับหลักฐานแพ็กเกจที่รายงานไว้สำหรับการตรวจสอบนี้แล้ว ไม่ได้หมายความว่าทุกชุดข้อมูลมาถึงครบถ้วน หรือมีการตั้งค่า GitLab Runner เพื่อหยุดการบิลด์</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>การยอมรับกับการบังคับใช้นโยบาย</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>การตรวจสอบแบบไม่ระบุตัวตน</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API Key ID</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>วัตถุประสงค์ของการตรวจสอบ</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>บัญชีที่ตรวจสอบสิทธิ์แล้ว</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>ชุด</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>ถูกบล็อกอยู่ในขณะนี้</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>เหตุผลในการตัดสินใจ</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>สาขาเริ่มต้น</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>แต่ละแถวคือชุดคำขอ API หนึ่งชุด การตรวจสอบ CLI จะผ่านได้ก็ต่อเมื่อการทำงานเสร็จสมบูรณ์และทุกชุดได้รับการยอมรับ ผลการตรวจสอบที่บันทึกไว้เป็นข้อมูลย้อนหลัง ส่วนคำเตือนเกี่ยวกับรายการบล็อกในปัจจุบันจะแสดงแยกต่างหาก</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>การดำเนินการไม่สมบูรณ์</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>การตรวจสอบภายใน</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>คำขอรวมโค้ด</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>ถัดไป</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>ไม่พบการพึ่งพาภายนอกในโครงการที่รองรับซึ่งรายงานไว้</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>ความพยายามตรวจสอบที่มีการรายงานหนึ่งครั้ง แบตช์ทั้งหมดใช้ตัวระบุการทำงานเดียวกัน เพื่อให้คุณตรวจสอบผลลัพธ์ทั้งหมดได้</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>สาขาอื่น</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>แพ็กเกจ</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>ก่อนหน้า</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>ฐานข้อมูลการผลิต</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>โครงการ</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>อ่านบันทึกการตรวจสอบ</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>เหตุผล</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>ถูกปฏิเสธ</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>แหล่งที่รายงาน</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>ตรวจสอบเท่านั้น</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>การตรวจสอบจะแสดงผลการตัดสินตามนโยบายโดยไม่บันทึกรายงานโครงการ ส่วนการกำหนดค่า Baseline จะแจ้งว่าโครงการมีการใช้งานจริงและปรับปรุงรายการโครงการก็ต่อเมื่อได้รับข้อมูลครบทุกชุดแล้วเท่านั้น แม้ว่าจะปฏิเสธแพ็กเกจก็ตาม ระเบียนเก่าที่ไม่มีการระบุวัตถุประสงค์จะไม่ปรับปรุงข้อมูลการใช้งานจริง</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>รอบการทำงาน</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>สถานะ</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>การสร้างจากแท็ก</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>จำนวนโปรเจกต์ที่รองรับซึ่ง CLI ได้ระบุไว้ การตรวจสอบที่พึ่งพาเป็นศูนย์ยังคงติดต่อ S360 และบันทึกจำนวนนี้</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>คำอธิบายนโยบายที่บันทึกไว้เมื่อมีการตรวจสอบครั้งนั้น คำเตือนจากรายการบล็อกปัจจุบันเป็นข้อมูลแยกต่างหาก และจะไม่เขียนทับประวัตินี้</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>ผู้เรียกที่ไม่ได้รับการยืนยันตัวตนเป็นผู้ระบุตัวระบุโปรเจกต์และไปป์ไลน์</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>เหล่านี้เป็นการตรวจสอบที่รายงานแล้ว การบังคับใช้โดย Runner เป็นขั้นตอนการเปิดตัวแยกต่างหาก และไม่ได้สื่อถึงจากการบันทึกที่นี่</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>ไม่ได้จัดประเภท</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>วัตถุประสงค์ที่ไม่ได้ระบุ</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>เวอร์ชัน</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>ข้อมูลช่องโหว่</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>เวลาของข้อมูลช่องโหว่</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>ระบุเวลาที่ตรวจสอบข้อมูลคำแนะนำประกอบการตัดสินใจนี้ครั้งล่าสุด ค่าว่างไม่ได้หมายความว่าผลตรวจสอบไม่มีปัญหา</value>
   </data>
 
 </root>

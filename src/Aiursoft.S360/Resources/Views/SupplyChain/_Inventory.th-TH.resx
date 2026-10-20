@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} แพ็กเกจอาร์ทิแฟกต์ · {1} ต้องการการดำเนินการ</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>ผลลัพธ์ {0} รายการ · หน้า {1} จาก {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>แพ็กเกจที่มีช่องโหว่ {0} รายการ · แพ็กเกจอื่นที่ต้องดำเนินการ {1} รายการ</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>รายงานฉบับใหม่ไม่สมบูรณ์</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>รายงานฉบับใหม่ยังไม่สมบูรณ์ ระบบแสดงข้อมูลสรุปฉบับล่าสุดที่สมบูรณ์แล้ว แต่ยังไม่ได้ยืนยันความครอบคลุมในปัจจุบัน</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>ทุกโปรเจกต์</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>สถานะทั้งหมด</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>กฎเกณฑ์การอนุมัติและเครื่องมือ</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>ดูรายการ dependency ทั้งหมดของโปรเจกต์นี้</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>ดูกฎการอนุมัติ</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>บันทึกการตรวจสอบ</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>ภาพรวมบริษัท</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>ตัวสำรวจการปฏิบัติตามข้อกำหนด</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>ปฏิบัติตามข้อกำหนด</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>คัดลอกแล้ว!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>คัดลอก Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>จำนวนนับอธิบายขอบเขตรายงานที่เลือก สถานะถูกประเมินตามนโยบายปัจจุบันและข้อมูลช่องโหว่ที่เก็บไว้</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>ฐานข้อมูลอ้างอิงปัจจุบัน</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>รายการพึ่งพา</value>
+  </data>
+  <data name="Dependency relationships were not recorded in this report. Run the latest CLI to populate the graph; the package list remains available." xml:space="preserve">
+    <value>รายงานนี้ไม่ได้บันทึกความสัมพันธ์ของการพึ่งพา เรียกใช้ CLI เวอร์ชันล่าสุดเพื่อสร้างกราฟ โดยยังสามารถดูรายการแพ็กเกจได้</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>ระบบนิเวศ</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>สำรวจ</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>ค้นหาโปรเจกต์หรือแพ็กเกจ ตรวจสอบสถานะการปฏิบัติตามข้อกำหนด และติดตามที่มาของการใช้งาน</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>มุมมองคลังสินค้า</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>ช่องโหว่ที่ทราบแล้ว</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>เบสไลน์สมบูรณ์ล่าสุด รายการเหล่านี้เป็น dependencies ที่รายงานไว้ ไม่ใช่หลักฐานยืนยันการ deploy</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>ต้องการการดูแล</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>ถัดไป</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>ไม่มีรายงานฉบับสมบูรณ์</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>ไม่มีรายงานฉบับสมบูรณ์สำหรับระบบนิเวศนี้ จึงไม่ทราบสถานะการปฏิบัติตามข้อกำหนด</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>ไม่พบรายการที่ตรงกัน</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>ยังไม่ตรวจสอบ</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: ไม่ถูกรวมอยู่ใน此次การตรวจสอบ</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet และ npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: ไม่ถูกรวมอยู่ในรายงานการตรวจสอบนี้</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>แพ็กเกจที่ตรวจพบ</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>รายงานเก่าที่ไม่ได้ระบุวัตถุประสงค์ การใช้งานปัจจุบันไม่สามารถอนุมานได้จากบันทึกเหล่านี้</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>แพ็กเกจ โปรเจกต์ วัตถุประสงค์ หรือเหตุผลในการอนุมัติ</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>แพ็กเกจที่ต้องตรวจสอบ</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>หน้า {0} จาก {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>ไปป์ไลน์</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>ก่อนหน้า</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>โปรเจกต์</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>โครงการที่มีรายงาน</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>การอ่านรายการสินค้าคงเหลือของโปรเจกต์ต้องได้รับสิทธิ์การอ่านในสายโซ่อุปทาน คุณยังสามารถดูกฎการอนุมัติได้</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>README badge</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>รายงาน</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>รีเซ็ตตัวกรอง</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>หน้าผลลัพธ์</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>การตรวจสอบรีวิวยังไม่ถูกบันทึกเป็นรายการสินค้าคงคลังของโปรเจกต์</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>ป้ายสัญลักษณ์การปฏิบัติตามข้อกำหนด S360</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>ค้นหา</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>ค้นหารายการในคลัง</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>เลือกและคัดลอก Markdown ด้านบน</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>แชร์สถานะการปฏิบัติตามเกณฑ์พื้นฐานล่าสุดของคุณบน GitHub หรือ GitLab ป้ายสถานะนี้เป็นสาธารณะและไม่ต้องลงชื่อเข้าใช้ โดยครอบคลุมเฉพาะระบบนิเวศที่มีการรายงาน ไม่รวมการนำไปใช้งานจริง</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>สถานะ</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>สถานะครอบคลุมเฉพาะระบบนิเวศที่มีรายงานเท่านั้น</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>ห่วงโซ่อุปทาน</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>รายงานฉบับสมบูรณ์ไม่มีการขึ้นต่อสำหรับระบบนิเวศนี้</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>รายงานนี้ไม่สมบูรณ์ ไม่มีภาพรวมข้อมูลที่สมบูรณ์ให้ใช้งาน และยังไม่ได้ตรวจสอบความครอบคลุมในปัจจุบัน</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>ลองค้นหาหรือขอบเขตรายงานอื่น ๆ กฎการอนุมัติเพียงอย่างเดียวไม่ใช่หลักฐานว่าโปรเจกต์ใช้แพ็กเกจนั้น</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>ประวัติที่ไม่มีการจำแนกประเภท</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>อัปเดตรายงาน CLI เพื่อแสดงความสัมพันธ์ของ dependency</value>
+  </data>
+
+</root>

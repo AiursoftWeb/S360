@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>Một phần có giới hạn trong danh sách phần phụ thuộc được gửi đến API. Một lô được chấp nhận không đồng nghĩa với toàn bộ lượt chạy được chấp nhận.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Đã chấp nhận</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>Chấp nhận có nghĩa là S360 đã chấp nhận bằng chứng gói được báo cáo cho kiểm tra này. Điều này không có nghĩa là mọi lô đã đến hoặc rằng GitLab Runner đã được cấu hình để dừng quy trình xây dựng.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Được chấp nhận so với được áp dụng</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Đánh giá ẩn danh</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID khóa API</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>Mục đích kiểm tra</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>Tài khoản đã xác thực</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Lô</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>Hiện đang bị chặn</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Lý do quyết định</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Nhánh mặc định</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Mỗi hàng tương ứng với một lô API. Chỉ một lượt chạy hoàn tất với tất cả các lô được chấp nhận mới vượt qua được bước kiểm tra CLI. Kết quả đã ghi nhận là kết quả trong quá khứ; cảnh báo về danh sách chặn hiện tại được hiển thị riêng.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Lượt chạy chưa hoàn tất</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Kiểm tra cục bộ</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Yêu cầu hợp nhất</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Tiếp theo</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>Không tìm thấy thư viện phụ thuộc bên ngoài nào trong các dự án được hỗ trợ đã báo cáo.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>Một lần kiểm tra được ghi nhận. Các lô của lần kiểm tra này dùng chung một mã định danh lượt chạy để bạn có thể xem toàn bộ kết quả.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Nhánh khác</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Gói</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>Trước</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Dòng cơ bản sản xuất</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Dự án</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Đọc một bản ghi kiểm tra</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Lý do</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Bị từ chối</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Nguồn được báo cáo</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>Chỉ để xem xét</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>Review trả về quyết định chính sách mà không lưu báo cáo dự án. Baseline khai báo việc sử dụng trong môi trường sản xuất và chỉ cập nhật danh mục dự án khi tất cả các lô đã được nhận, ngay cả khi các phần phụ thuộc bị từ chối. Các bản ghi cũ không có mục đích sẽ không bao giờ cập nhật việc sử dụng trong môi trường sản xuất.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Lần chạy</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>Trạng thái</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Bản dựng từ thẻ</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>Số lượng dự án được hỗ trợ mà CLI đã nhận dạng. Một lần kiểm tra không có phụ thuộc vẫn liên hệ với S360 và ghi lại số lượng này.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>Giải thích chính sách được ghi lại khi kiểm tra đó được thực hiện. Cảnh báo danh sách chặn hiện tại là tách biệt và không bao giờ ghi đè lên lịch sử này.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>Các định danh dự án và pipeline được cung cấp bởi người gọi không xác thực.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>Đây là các kiểm tra đã được báo cáo; việc thực thi của Runner là một bước triển khai riêng biệt và không được ngụ ý bởi một bản ghi tại đây.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Chưa phân loại</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>Mục đích chưa được khai báo</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Phiên bản</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Dữ liệu lỗ hổng bảo mật</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Thời gian dữ liệu lỗ hổng</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>Thời điểm dữ liệu cảnh báo làm cơ sở cho quyết định này được kiểm tra gần nhất; giá trị để trống không có nghĩa là mọi thứ đều ổn.</value>
   </data>
 
 </root>

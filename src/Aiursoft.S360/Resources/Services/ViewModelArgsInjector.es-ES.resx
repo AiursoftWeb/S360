@@ -39,6 +39,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anónimo</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>Clave API</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>Claves API</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Dependencias disponibles</value>
   </data>
@@ -65,6 +71,12 @@
   </data>
   <data name="Click to login" xml:space="preserve">
     <value>Haga clic para iniciar sesión</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Resumen de la empresa</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Explorador de cumplimiento</value>
   </data>
   <data name="Create Role" xml:space="preserve">
     <value>Crear Rol</value>
@@ -107,6 +119,9 @@
   </data>
   <data name="Existing package CVEs" xml:space="preserve">
     <value>CVEs de paquetes existentes</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>Conjunto de reglas existente</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Características</value>
@@ -203,6 +218,9 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>Plantilla</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Detalles de la regla de confianza</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>No autorizado</value>

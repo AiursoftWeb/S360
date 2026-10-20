@@ -36,6 +36,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anonim</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>Kunci API</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>Kunci API</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Dependensi yang tersedia</value>
   </data>
@@ -62,6 +68,12 @@
   </data>
   <data name="Click to login" xml:space="preserve">
     <value>Klik untuk masuk</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Ikhtisar Perusahaan</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Penjelajah Kepatuhan</value>
   </data>
   <data name="Create Role" xml:space="preserve">
     <value>Buat Peran</value>
@@ -104,6 +116,9 @@
   </data>
   <data name="Existing package CVEs" xml:space="preserve">
     <value>CVE paket yang ada</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>Set aturan yang ada</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Fitur</value>
@@ -200,6 +215,9 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>Template</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Detail aturan kepercayaan</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Tidak Diizinkan</value>

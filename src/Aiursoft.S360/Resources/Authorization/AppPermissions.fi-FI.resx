@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Tarkista riippuvuudet</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Luo ja hallinnoi henkilökohtaisia API-avaimia ja käytä niitä riippuvuuksien tarkistamiseen.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>Luo API-avaimia ja kutsu S360:aa</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Luo perustelineen mahdollistavat henkilökohtaiset API-avaimet ja ilmoita tuotantoryhmien riippuvuudet.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Poista roolit</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Luottamussääntöjen hallinta</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Julkaise tuotantotasoarvot</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Lue kaikki pyynnöt, koontitarkistukset ja haavoittuvuuksien auditointitiedot.</value>

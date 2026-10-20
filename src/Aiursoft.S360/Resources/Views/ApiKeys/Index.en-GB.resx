@@ -45,6 +45,9 @@
   <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in UTC." xml:space="preserve">
     <value>Keys are associated with your account. Revoking your API permission or locking your account also disables your keys. Times are shown in UTC.</value>
   </data>
+  <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone." xml:space="preserve">
+    <value>Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone.</value>
+  </data>
   <data name="Last used" xml:space="preserve">
     <value>Last used</value>
   </data>

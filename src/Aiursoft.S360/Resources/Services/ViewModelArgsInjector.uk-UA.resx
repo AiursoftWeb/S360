@@ -36,6 +36,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Анонімний</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>Ключ API</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>Ключі API</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Доступні залежності</value>
   </data>
@@ -62,6 +68,12 @@
   </data>
   <data name="Click to login" xml:space="preserve">
     <value>Натисніть, щоб увійти</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Огляд компанії</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Дослідник відповідності</value>
   </data>
   <data name="Create Role" xml:space="preserve">
     <value>Створити роль</value>
@@ -104,6 +116,9 @@
   </data>
   <data name="Existing package CVEs" xml:space="preserve">
     <value>Відомі CVE пакетів</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>Набір наявних правил</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Функції</value>
@@ -200,6 +215,9 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>Шаблон</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Відомості про правила довіри</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Неавторизовано</value>

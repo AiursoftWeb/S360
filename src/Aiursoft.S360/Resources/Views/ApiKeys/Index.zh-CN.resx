@@ -45,6 +45,9 @@
   <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in UTC." xml:space="preserve">
     <value>密钥属于您的账户。移除 API 权限或锁定账户也会停用您的密钥。时间均以 UTC 显示。</value>
   </data>
+  <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone." xml:space="preserve">
+    <value>密钥归属于您的账户。移除您的 API 权限或锁定您的账户也会导致您的密钥失效。时间将显示为您的本地时区。</value>
+  </data>
   <data name="Last used" xml:space="preserve">
     <value>上次使用时间</value>
   </data>

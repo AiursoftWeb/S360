@@ -54,6 +54,9 @@
   <data name="Available dependencies" xml:space="preserve">
     <value>Available dependencies</value>
   </data>
+  <data name="Back to dependency inventory" xml:space="preserve">
+    <value>Back to dependency inventory</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>Can&apos;t find a package? Submit a request</value>
   </data>
@@ -84,11 +87,17 @@
   <data name="Find packages" xml:space="preserve">
     <value>Find packages</value>
   </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>How to read the catalogue</value>
+  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>HTTPS package source</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Include pre-releases</value>
+  </data>
+  <data name="Last checked" xml:space="preserve">
+    <value>Last checked</value>
   </data>
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Last checked (UTC)</value>
@@ -170,6 +179,9 @@
   </data>
   <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
     <value>The approved registry URL is part of the rule. The same package from a different source is not covered.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Previously published results remain usable until their original expiry." xml:space="preserve">
+    <value>The latest vulnerability synchronisation failed. Previously published results remain usable until their original expiry.</value>
   </data>
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>The latest vulnerability synchronisation failed. Recorded artefacts are hidden until a successful audit.</value>

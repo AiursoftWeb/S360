@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Kontrollér afhængigheder</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Opret og administrer personlige API-nøgler og brug dem til afhængighedsreviews.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>Opret API-nøgler og kald S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Opret personlige API-nøgler med baseline-understøttelse, og angiv produktionsafhængigheder.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Slet Roller</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Administrer tillidsregler</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Udgiv produktionsbaselines</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Læs alle anmodninger, byggetjek og sårbarhedsrevisionsposter.</value>

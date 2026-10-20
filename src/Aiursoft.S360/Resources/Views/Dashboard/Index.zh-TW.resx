@@ -21,6 +21,15 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>「即發即忘」支援長時間執行的工作（如電子郵件或人工智慧），具備圖形使用者介面以管理佇列、平行處理及取消作業。</value>
   </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} 個受影響的專案</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} 個需要注意的套件版本</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} 總計 · {1} 進行中 · {2} 已核准</value>
+  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>日期空白表示尚未成功完成任何弱點同步作業。時間皆為 UTC。</value>
   </data>
@@ -63,6 +72,9 @@
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>優先於信任規則與核准的絕對排除項目。</value>
   </data>
+  <data name="Across reported projects" xml:space="preserve">
+    <value>涵蓋已報告的專案</value>
+  </data>
   <data name="Across the organization" xml:space="preserve">
     <value>全組織</value>
   </data>
@@ -80,6 +92,9 @@
   </data>
   <data name="Approval center" xml:space="preserve">
     <value>核准中心</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>已核准</value>
   </data>
   <data name="Approved requests" xml:space="preserve">
     <value>已核准的申請</value>
@@ -135,11 +150,23 @@
   <data name="Comes with full Docker support for simplified, consistent, and reliable deployments." xml:space="preserve">
     <value>提供完整的 Docker 支援，實現簡化、一致且可靠的部署流程。</value>
   </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>公司概覽</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>符合規範</value>
+  </data>
+  <data name="Compliant means current checks passed for the reported ecosystems. Not verified includes incomplete reports and missing or stale evidence." xml:space="preserve">
+    <value>符合規範表示所回報的生態系統目前均已通過檢查。未驗證則包括報告未完成，以及缺少或過時的佐證資料。</value>
+  </data>
   <data name="Comprehensive Documentation" xml:space="preserve">
     <value>完整說明文件</value>
   </data>
   <data name="Consistency Validation" xml:space="preserve">
     <value>一致性驗證</value>
+  </data>
+  <data name="Current baseline reports only; review checks and projects that have not reported are not included. This is not a live production inventory." xml:space="preserve">
+    <value>僅包含目前的基準報告；審查檢查和尚未提交報告的專案均不列入。這不是即時的正式環境清單。</value>
   </data>
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>為您的工作記錄的決策</value>
@@ -183,6 +210,12 @@
   <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
     <value>明確列入封鎖清單的套件，即使是間接引入，或符合範圍廣泛的供應商規則，也一律拒絕。</value>
   </data>
+  <data name="Explore compliance" xml:space="preserve">
+    <value>探索合規性</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>失敗</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>具備內建的檔案管理系統，支援自動頭像壓縮與隱私保護。</value>
   </data>
@@ -219,6 +252,9 @@
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>包含豐富的文件與實用範例，助您快速上手。</value>
   </data>
+  <data name="Incomplete report" xml:space="preserve">
+    <value>報告不完整</value>
+  </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>整合式檔案管理</value>
   </data>
@@ -228,14 +264,26 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>已知弱點</value>
   </data>
+  <data name="Known vulnerabilities first, then other audit issues. Open a package to see who uses it and the recorded reasons." xml:space="preserve">
+    <value>優先顯示已知漏洞，其次為其他稽核問題。開啟套件可查看使用它的專案及記錄的原因。</value>
+  </data>
   <data name="Last successful OSV sync" xml:space="preserve">
     <value>上次成功同步 OSV</value>
+  </data>
+  <data name="Latest baseline per project" xml:space="preserve">
+    <value>每個專案的最新基準</value>
+  </data>
+  <data name="Latest baseline report" xml:space="preserve">
+    <value>最新基準報告</value>
   </data>
   <data name="Learn about the workflow" xml:space="preserve">
     <value>了解工作流程</value>
   </data>
   <data name="Match the actual artifact" xml:space="preserve">
     <value>比對實際套件檔案</value>
+  </data>
+  <data name="Missing or stale" xml:space="preserve">
+    <value>缺失或過期</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>模型會根據資料註解，在客戶端與伺服器端同時進行驗證。</value>
@@ -249,23 +297,77 @@
   <data name="My requests" xml:space="preserve">
     <value>我的請求</value>
   </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>需要處理</value>
+  </data>
   <data name="New request" xml:space="preserve">
     <value>新增請求</value>
+  </data>
+  <data name="No baseline data" xml:space="preserve">
+    <value>沒有基準資料</value>
+  </data>
+  <data name="No baseline reports yet. Run a baseline check from a project&apos;s official pipeline to populate this overview." xml:space="preserve">
+    <value>尚無基線報告。請從專案的正式管道執行基線檢查，以填補此概觀。</value>
+  </data>
+  <data name="No complete baseline report" xml:space="preserve">
+    <value>無完整基準報告</value>
+  </data>
+  <data name="No package issues found in the available baseline data." xml:space="preserve">
+    <value>在可用的基準資料中未發現套件問題。</value>
+  </data>
+  <data name="No project issues found in the available baseline data." xml:space="preserve">
+    <value>在可用的基準資料中找不到專案問題。</value>
   </data>
   <data name="No requests yet" xml:space="preserve">
     <value>目前還沒有任何請求</value>
   </data>
+  <data name="No requests yet. Request a new dependency when your project needs a package that is not approved." xml:space="preserve">
+    <value>目前尚無申請。若專案需要尚未核准的套件，請提出新的相依套件申請。</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>未驗證</value>
+  </data>
+  <data name="Open a project to trace the dependency path and inspect the exact versions." xml:space="preserve">
+    <value>開啟專案以追蹤相依性路徑並查看確切版本。</value>
+  </data>
+  <data name="Open approval center" xml:space="preserve">
+    <value>開啟審核中心</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect 整合</value>
   </data>
+  <data name="Package compliance" xml:space="preserve">
+    <value>套件合規性</value>
+  </data>
   <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
     <value>記錄於兩種生態系統中的套件檔案，包含目前尚未獲授權的項目。</value>
+  </data>
+  <data name="Packages are counted by ecosystem, name, and source; versions are grouped." xml:space="preserve">
+    <value>套件依生態系統、名稱及來源進行計數；版本則予以分組。</value>
+  </data>
+  <data name="Packages in use" xml:space="preserve">
+    <value>使用中套件</value>
+  </data>
+  <data name="Packages with known vulnerabilities" xml:space="preserve">
+    <value>已知含有漏洞的套件</value>
   </data>
   <data name="Policy" xml:space="preserve">
     <value>政策</value>
   </data>
   <data name="Policy management" xml:space="preserve">
     <value>政策管理</value>
+  </data>
+  <data name="Priority packages" xml:space="preserve">
+    <value>優先套件</value>
+  </data>
+  <data name="Project compliance" xml:space="preserve">
+    <value>專案合規</value>
+  </data>
+  <data name="Projects needing attention" xml:space="preserve">
+    <value>需要關注的專案</value>
+  </data>
+  <data name="Projects, dependencies, and the risks that need attention." xml:space="preserve">
+    <value>專案、相依項目，以及需要關注的風險。</value>
   </data>
   <data name="Quick and detailed risk views" xml:space="preserve">
     <value>快速與詳細的風險檢視</value>
@@ -279,6 +381,15 @@
   <data name="Recent activity" xml:space="preserve">
     <value>最近動態</value>
   </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>已拒絕</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>已報告的專案</value>
+  </data>
+  <data name="Request #{0}" xml:space="preserve">
+    <value>請求 #{0}</value>
+  </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>申請新的相依套件</value>
   </data>
@@ -287,6 +398,9 @@
   </data>
   <data name="Request what is missing" xml:space="preserve">
     <value>申請缺少的套件</value>
+  </data>
+  <data name="Resolving" xml:space="preserve">
+    <value>處理中</value>
   </data>
   <data name="Resolving or awaiting review" xml:space="preserve">
     <value>處理中或等待審核</value>
@@ -302,6 +416,9 @@
   </data>
   <data name="Revisit the risk" xml:space="preserve">
     <value>重新評估風險</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>已撤銷</value>
   </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>穩健的整合測試</value>
@@ -383,6 +500,9 @@
   </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>為什麼要使用 Aiursoft 模板？</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>已撤回</value>
   </data>
   <data name="Words you will see" xml:space="preserve">
     <value>常見詞彙</value>

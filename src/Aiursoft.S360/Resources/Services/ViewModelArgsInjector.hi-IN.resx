@@ -36,6 +36,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>अनाम</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>API कुंजी</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>एपीआई कुंजियाँ</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>उपलब्ध निर्भरताएँ</value>
   </data>
@@ -62,6 +68,12 @@
   </data>
   <data name="Click to login" xml:space="preserve">
     <value>लॉगिन करने के लिए क्लिक करें</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>कंपनी का अवलोकन</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>सम्पालन एक्सप्लोरर</value>
   </data>
   <data name="Create Role" xml:space="preserve">
     <value>भूमिका बनाएं</value>
@@ -104,6 +116,9 @@
   </data>
   <data name="Existing package CVEs" xml:space="preserve">
     <value>मौजूदा पैकेज की CVE</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>मौजूदा नियम सेट</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>विशेषताएँ</value>
@@ -200,6 +215,9 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>टेम्पलेट</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>विश्वास नियम विवरण</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>अनधिकृत</value>

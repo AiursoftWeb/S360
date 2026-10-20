@@ -36,6 +36,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Anonyymi</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>API-avain</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>API-avaimet</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Saatavilla olevat riippuvuudet</value>
   </data>
@@ -62,6 +68,12 @@
   </data>
   <data name="Click to login" xml:space="preserve">
     <value>Klikkaa kirjautuaksesi</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Yhtiön yleiskatsaus</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Vaatimustenmukaisuuden tarkastelu</value>
   </data>
   <data name="Create Role" xml:space="preserve">
     <value>Luo rooli</value>
@@ -104,6 +116,9 @@
   </data>
   <data name="Existing package CVEs" xml:space="preserve">
     <value>Olemassa olevien pakettien CVE-haavoittuvuudet</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>Olemassa oleva sääntösetti</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Ominaisuudet</value>
@@ -200,6 +215,9 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>Malli</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Luottamusäännön tiedot</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Luvaton</value>

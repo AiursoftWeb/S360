@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>依存関係を確認</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>パーソナルAPIキーを作成・管理し、依存関係のレビューに使用します。</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>APIキーを作成しS360を呼び出す</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>ベースラインを有効にした個人用 API キーを作成し、本番環境の依存関係インベントリを宣言します。</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>ロールの削除</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>信頼ルールを管理</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>本番環境のベースラインを公開する</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>すべてのリクエスト、ビルドチェック、および脆弱性監査記録を閲覧する。</value>

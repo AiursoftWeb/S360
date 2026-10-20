@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Sprawdzanie zależności</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Twórz osobiste klucze API, zarządzaj nimi i używaj ich do przeglądów zależności.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>Twórz klucze API i wywołuj S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Twórz osobiste klucze API z obsługą bazowych wersji i deklaruj wykazy zależności dla środowiska produkcyjnego.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Usuń role</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Zarządzanie regułami zaufania</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Opublikuj wersje bazowe dla środowiska produkcyjnego</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Wyświetlanie wszystkich zgłoszeń, wyników kontroli kompilacji i rejestrów audytów podatności.</value>

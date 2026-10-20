@@ -36,6 +36,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Ανώνυμος</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>Κλειδί API</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>Κλειδιά API</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Διαθέσιμες εξαρτήσεις</value>
   </data>
@@ -62,6 +68,12 @@
   </data>
   <data name="Click to login" xml:space="preserve">
     <value>Κάντε κλικ για σύνδεση</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Επισκόπηση εταιρείας</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Εξερεύνηση συμμόρφωσης</value>
   </data>
   <data name="Create Role" xml:space="preserve">
     <value>Δημιουργία Ρόλου</value>
@@ -104,6 +116,9 @@
   </data>
   <data name="Existing package CVEs" xml:space="preserve">
     <value>Υπάρχουσες ευπάθειες CVE πακέτων</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>Υπάρχον σύνολο κανόνων</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Λειτουργίες</value>
@@ -200,6 +215,9 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>Πρότυπο</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Λεπτομέρειες κανόνα εμπιστοσύνης</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Μη Εξουσιοδοτημένος</value>

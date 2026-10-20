@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Ένας εικονικός αριθμός για δοκιμές.</value>
   </data>
+  <data name="Allow anonymous review" xml:space="preserve">
+    <value>Επιτρέπει ανώνυμη αξιολόγηση</value>
+  </data>
+  <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
+    <value>Επιτρέπεται η αξιολόγηση εξαρτήσεων χωρίς κλειδί API. Οι ανώνυμες αξιολογήσεις καταγράφονται ως μη επαληθευμένες αναφορές και δεν ενημερώνουν ποτέ τη χρήση παραγωγής. Οι αναφορές基準 απαιτούν πάντα το προστατευμένο διαπιστευτικό τους.</value>
+  </data>
   <data name="Allow User Adjust Nickname" xml:space="preserve">
     <value>Επιτρέψτε στον Χρήστη να Τροποποιήσει το Παρασκήνιο Όνομα</value>
   </data>

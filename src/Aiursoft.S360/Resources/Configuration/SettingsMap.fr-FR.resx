@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Un nombre fictif à des fins de test.</value>
   </data>
+  <data name="Allow anonymous review" xml:space="preserve">
+    <value>Autoriser l&apos;examen anonyme</value>
+  </data>
+  <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
+    <value>Autoriser les examens de dépendances sans clé API. Les examens anonymes sont enregistrés en tant que rapports non vérifiés et ne mettent jamais à jour l&apos;utilisation en production. Les rapports de référence exigent toujours leur identifiant protégé.</value>
+  </data>
   <data name="Allow User Adjust Nickname" xml:space="preserve">
     <value>Autoriser l&apos;utilisateur à modifier son surnom</value>
   </data>

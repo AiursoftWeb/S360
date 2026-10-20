@@ -39,6 +39,12 @@
   <data name="Anonymous" xml:space="preserve">
     <value>Ẩn danh</value>
   </data>
+  <data name="API Key" xml:space="preserve">
+    <value>Khóa API</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>Các khóa API</value>
+  </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Các phụ thuộc hiện có</value>
   </data>
@@ -65,6 +71,12 @@
   </data>
   <data name="Click to login" xml:space="preserve">
     <value>Nhấp để đăng nhập</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Tổng quan công ty</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Trình khám phá tuân thủ</value>
   </data>
   <data name="Create Role" xml:space="preserve">
     <value>Tạo Vai Trò</value>
@@ -107,6 +119,9 @@
   </data>
   <data name="Existing package CVEs" xml:space="preserve">
     <value>Các lỗ hổng CVE trong gói hiện có</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>Bộ quy tắc hiện có</value>
   </data>
   <data name="Features" xml:space="preserve">
     <value>Tính năng</value>
@@ -203,6 +218,9 @@
   </data>
   <data name="Template" xml:space="preserve">
     <value>Mẫu</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Chi tiết quy tắc tin cậy</value>
   </data>
   <data name="Unauthorized" xml:space="preserve">
     <value>Không được ủy quyền</value>

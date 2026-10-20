@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>التحقق من التبعيات</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>أنشئ مفاتيح API شخصية وأدِرها، واستخدمها لمراجعة التبعيات.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>إنشاء مفاتيح API واستدعاء S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>أنشئ مفاتيح API شخصية مفعّلة بالخطوط الأساسية، وأعلِن قوائم جرد تبعيات الإنتاج.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>حذف الأدوار</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>إدارة قواعد الثقة</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>نشر خطوط الأساس للإنتاج</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>الاطلاع على جميع الطلبات وعمليات التحقق من البناء وسجلات تدقيق الثغرات الأمنية.</value>

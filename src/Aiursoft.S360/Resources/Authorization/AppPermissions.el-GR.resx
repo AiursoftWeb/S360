@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Έλεγχος εξαρτήσεων</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Δημιουργήστε και διαχειριστείτε προσωπικά κλειδιά API και χρησιμοποιήστε τα για την αξιολόγηση αιτημάτων εξαρτήσεων.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>Δημιουργία κλειδιών API και κλήση S360</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Δημιουργία προσωπικών κλειδιών API με ενεργοποιημένο baseline και δήλωση αποθεμάτων εξαρτήσεων παραγωγής.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Διαγραφή Ρόλων</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Διαχείριση κανόνων εμπιστοσύνης</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Δημοσίευση παραγωγικών baselines</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Διαβάστε όλα τα αιτήματα, τους ελέγχους κατασκευής και τα αρχεία ελέγχου ευπαθειών.</value>

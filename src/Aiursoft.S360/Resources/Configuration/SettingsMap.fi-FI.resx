@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Väliaikainen luku testaamista varten.</value>
   </data>
+  <data name="Allow anonymous review" xml:space="preserve">
+    <value>Salli anonyymi arviointi</value>
+  </data>
+  <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
+    <value>Salli riippuvuustarkastukset ilman API-avainta. Anonyymit tarkastukset tallennetaan vahvistamattomina raportteina ja ne eivät koskaan päivitä tuotannon käyttötilastoja. Baseline-raportit vaativat aina suojatun tunnuksen.</value>
+  </data>
   <data name="Allow User Adjust Nickname" xml:space="preserve">
     <value>Salli käyttäjän muokata nimimerkkiä</value>
   </data>

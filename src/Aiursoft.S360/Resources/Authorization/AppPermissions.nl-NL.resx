@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Afhankelijkheden controleren</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Maak en beheer persoonlijke API-sleutels en gebruik deze voor afhankelijkheidsbeoordelingen.</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>API-sleutels aanmaken en S360 aanroepen</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>Maak persoonlijke API-sleutels aan waarmee basislijnen kunnen worden ingeschakeld en leg productie-inventarissen van afhankelijkheden vast.</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>Rollen verwijderen</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>Vertrouwensregels beheren</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>Publicatie productielijsten</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>Lees alle verzoeken, buildcontroles en auditgegevens over kwetsbaarheden.</value>

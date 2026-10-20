@@ -66,6 +66,15 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>निर्भरताओं की जाँच करें</value>
   </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>व्यक्तिगत API कुंजियाँ बनाएँ और प्रबंधित करें, और उनका उपयोग निर्भरता समीक्षाओं के लिए करें।</value>
+  </data>
+  <data name="Create API keys and call S360" xml:space="preserve">
+    <value>API कुंजियाँ बनाएं और S360 को कॉल करें</value>
+  </data>
+  <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
+    <value>बेसलाइन-सक्षम व्यक्तिगत API कुंजियाँ बनाएँ और उत्पादन निर्भरता सूचियाँ घोषित करें।</value>
+  </data>
   <data name="Delete Roles" xml:space="preserve">
     <value>भूमिकाएँ हटाएँ</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Manage trust rules" xml:space="preserve">
     <value>विश्वास नियम प्रबंधित करें</value>
+  </data>
+  <data name="Publish production baselines" xml:space="preserve">
+    <value>प्रोडक्शन बेसलाइन प्रकाशित करें</value>
   </data>
   <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
     <value>सभी अनुरोधों, बिल्ड जाँचों और भेद्यता ऑडिट रिकॉर्ड को देखें।</value>

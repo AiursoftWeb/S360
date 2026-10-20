@@ -13,27 +13,27 @@ public class SolutionDependencyGraph
 {
     public int SchemaVersion { get; set; } = 1;
     public string SolutionPath { get; set; } = string.Empty;
-    public List<SolutionGraphNode> Nodes { get; set; } = [];
-    public List<SolutionRestoreContext> Contexts { get; set; } = [];
+    [Required] public List<SolutionGraphNode> Nodes { get; set; } = [];
+    [Required] public List<SolutionRestoreContext> Contexts { get; set; } = [];
 
     public string? ValidatePart()
     {
         if (SchemaVersion != 1 || !IsPortablePath(SolutionPath) || SolutionPath.Length > 512 || SolutionPath.StartsWith("../", StringComparison.Ordinal) ||
-            !SolutionPath.EndsWith(".sln", StringComparison.OrdinalIgnoreCase) || Nodes == null || Contexts == null ||
+            !SolutionPath.EndsWith(".sln", StringComparison.OrdinalIgnoreCase) || !Validator.TryValidateObject(this, new ValidationContext(this), [], true) ||
             Nodes.Count > 5000 || Contexts.Count > 5000)
             return "Invalid solution graph batch.";
-        if (Nodes.Any(n => n == null || string.IsNullOrWhiteSpace(n.Id) || n.Id.Length > 1100 ||
+        if (Nodes.Cast<SolutionGraphNode?>().Any(n => n == null || string.IsNullOrWhiteSpace(n.Id) || n.Id.Length > 1100 ||
                 (n.ProjectPath == null) == (n.Package == null) ||
                 n.ProjectPath != null && !IsPortablePath(n.ProjectPath) ||
                 n.Package != null && !Validator.TryValidateObject(n.Package, new ValidationContext(n.Package), [], true)))
             return "Invalid solution graph node.";
-        foreach (var context in Contexts)
+        foreach (var context in Contexts.Cast<SolutionRestoreContext?>())
         {
             if (context == null || !IsPortablePath(context.ProjectPath) || string.IsNullOrWhiteSpace(context.Target) ||
-                context.Target.Length > 200 || context.Edges == null || context.ProjectTargets == null ||
+                context.Target.Length > 200 || !Validator.TryValidateObject(context, new ValidationContext(context), [], true) ||
                 context.Edges.Count > 5000 || context.ProjectTargets.Count > 10000 ||
                 context.ProjectTargets.Any(p => !IsPortablePath(p.Key) || string.IsNullOrWhiteSpace(p.Value) || p.Value.Length > 200) ||
-                context.Edges.Any(e => e == null || string.IsNullOrWhiteSpace(e.ParentId) || e.ParentId.Length > 1100 ||
+                context.Edges.Cast<SolutionDependencyEdge?>().Any(e => e == null || string.IsNullOrWhiteSpace(e.ParentId) || e.ParentId.Length > 1100 ||
                     string.IsNullOrWhiteSpace(e.ChildId) || e.ChildId.Length > 1100))
                 return "Invalid solution restore context.";
         }
@@ -92,13 +92,13 @@ public class SolutionDependencyGraph
     public string? Validate(IReadOnlyCollection<Dependency> dependencies, int projectCount)
     {
         if (SchemaVersion != 1 || !IsPortablePath(SolutionPath) || SolutionPath.Length > 512 || SolutionPath.StartsWith("../", StringComparison.Ordinal) ||
-            !SolutionPath.EndsWith(".sln", StringComparison.OrdinalIgnoreCase) || Nodes == null || Contexts == null)
+            !SolutionPath.EndsWith(".sln", StringComparison.OrdinalIgnoreCase) || !Validator.TryValidateObject(this, new ValidationContext(this), [], true))
             return "Invalid solution graph header.";
 
         var nodes = new Dictionary<string, SolutionGraphNode>(StringComparer.Ordinal);
         var projects = new HashSet<string>(StringComparer.Ordinal);
         var artifacts = new HashSet<string>(StringComparer.Ordinal);
-        foreach (var node in Nodes)
+        foreach (var node in Nodes.Cast<SolutionGraphNode?>())
         {
             if (node == null || string.IsNullOrWhiteSpace(node.Id) || !nodes.TryAdd(node.Id, node) ||
                 (node.ProjectPath == null) == (node.Package == null))
@@ -138,20 +138,20 @@ public class SolutionDependencyGraph
         var contexts = new HashSet<(string Project, string Target)>();
         var evaluatedProjects = new HashSet<string>(StringComparer.Ordinal);
         var usedPackages = new HashSet<string>(StringComparer.Ordinal);
-        foreach (var context in Contexts)
+        foreach (var context in Contexts.Cast<SolutionRestoreContext?>())
         {
             if (context == null || !projects.Contains(context.ProjectPath) ||
                 string.IsNullOrWhiteSpace(context.Target) || context.Target.Length > 200 ||
-                !contexts.Add((context.ProjectPath, context.Target)) || context.Edges == null || context.ProjectTargets == null)
+                !contexts.Add((context.ProjectPath, context.Target)) || !Validator.TryValidateObject(context, new ValidationContext(context), [], true))
                 return "Each restore context must identify a unique project and target.";
             if (context.ProjectTargets.Any(pair => !projects.Contains(pair.Key) ||
                     string.IsNullOrWhiteSpace(pair.Value) || pair.Value.Length > 200))
                 return "Referenced framework metadata must identify a solution project and framework.";
             evaluatedProjects.Add(context.ProjectPath);
             var edges = new HashSet<(string Parent, string Child)>();
-            foreach (var edge in context.Edges)
+            foreach (var edge in context.Edges.Cast<SolutionDependencyEdge?>())
             {
-                if (edge == null || edge.ParentId == null || edge.ChildId == null ||
+                if (edge == null || string.IsNullOrWhiteSpace(edge.ParentId) || string.IsNullOrWhiteSpace(edge.ChildId) ||
                     !nodes.ContainsKey(edge.ParentId) || !nodes.ContainsKey(edge.ChildId) ||
                     !edges.Add((edge.ParentId, edge.ChildId)))
                     return "Solution edges must be unique within their context and reference existing nodes.";
@@ -238,8 +238,8 @@ public class SolutionRestoreContext
 {
     public string ProjectPath { get; set; } = string.Empty;
     public string Target { get; set; } = string.Empty;
-    public Dictionary<string, string> ProjectTargets { get; set; } = new(StringComparer.Ordinal);
-    public List<SolutionDependencyEdge> Edges { get; set; } = [];
+    [Required] public Dictionary<string, string> ProjectTargets { get; set; } = new(StringComparer.Ordinal);
+    [Required] public List<SolutionDependencyEdge> Edges { get; set; } = [];
 }
 
 public class SolutionDependencyEdge

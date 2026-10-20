@@ -98,7 +98,7 @@ public class DependencyReportGraph
         var partError = request.SolutionGraph.ValidatePart();
         if (partError != null) return partError;
         var manifests = request.GraphNodes ?? [];
-        if (manifests.Any(n => n == null || n.Ecosystem != "npm"))
+        if (manifests.Cast<DependencyGraphNode?>().Any(n => n == null || n.Ecosystem != "npm"))
             return "NuGet relationships must be reported in the solution graph.";
         if (!complete) return DependencyGraphNode.Validate(manifests, [], "npm", false);
         if (earlier.Any(p => p.Solution == null)) return "The report changed graph formats between batches.";

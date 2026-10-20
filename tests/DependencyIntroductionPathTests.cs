@@ -6,6 +6,20 @@ namespace Aiursoft.S360.Tests;
 public class DependencyIntroductionPathTests
 {
     [TestMethod]
+    [DataRow("{\"SolutionPath\":\"App.sln\",\"Nodes\":null}")]
+    [DataRow("{\"SolutionPath\":\"App.sln\",\"Contexts\":null}")]
+    [DataRow("{\"SolutionPath\":\"App.sln\",\"Nodes\":[null]}")]
+    [DataRow("{\"SolutionPath\":\"App.sln\",\"Contexts\":[null]}")]
+    [DataRow("{\"SolutionPath\":\"App.sln\",\"Contexts\":[{\"ProjectPath\":\"App.csproj\",\"Target\":\"net10.0\",\"Edges\":null}]}")]
+    [DataRow("{\"SolutionPath\":\"App.sln\",\"Contexts\":[{\"ProjectPath\":\"App.csproj\",\"Target\":\"net10.0\",\"ProjectTargets\":null}]}")]
+    [DataRow("{\"SolutionPath\":\"App.sln\",\"Contexts\":[{\"ProjectPath\":\"App.csproj\",\"Target\":\"net10.0\",\"Edges\":[null]}]}")]
+    public void SolutionGraphRejectsNullValuesFromExternalJson(string json)
+    {
+        var graph = System.Text.Json.JsonSerializer.Deserialize<SolutionDependencyGraph>(json)!;
+        Assert.IsNotNull(graph.ValidatePart());
+    }
+
+    [TestMethod]
     public void LargeSolutionBatchesReassembleWithoutDroppingDependenciesOrContextEdges()
     {
         var packages = Enumerable.Range(0, 1100).Select(i =>

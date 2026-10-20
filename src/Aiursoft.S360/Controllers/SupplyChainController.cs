@@ -74,7 +74,12 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 CanRead = (await authorization.AuthorizeAsync(User, AppPermissionNames.CanReadSupplyChain)).Succeeded
             };
             if (inventoryModel.CanRead) await inventory.PopulateAsync(inventoryModel);
-            return this.StackView(new CatalogViewModel { Inventory = inventoryModel });
+            return this.StackView(new CatalogViewModel
+            {
+                Inventory = inventoryModel,
+                PageTitle = inventoryModel is { Tab: "projects", Project: not null }
+                    ? inventoryModel.Project : "Dependency catalog"
+            });
         }
         if (ecosystem == "all") ecosystem = "nuget";
         if (supplierId is < 1) return BadRequest();

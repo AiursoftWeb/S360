@@ -43,17 +43,21 @@
             <dt class="col-sm-3">@Localizer["Requested at"]</dt><dd class="col-sm-9"><span data-utc-time="@rule.RequestedAtUtc.ToHtmlDateTime()"></span></dd>
         </dl>
     </div></div>
-    <div class="card mb-4"><div class="card-body">
+    <div class="card mb-4 @(Model.AdvisoryRanges.Any(r => r.Intersection == RangeRisk.Affected) ? "border border-danger" : Model.AdvisoryRanges.Count > 0 ? "border border-warning" : "")"><div class="card-body">
         <h2 class="h5">@Localizer["Related advisory ranges"] (@Model.AdvisoryRanges.Count)</h2>
         <p class="small text-muted">@Localizer["These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page."]</p>
         <p><a asp-controller="VulnerabilityAudit" asp-action="Index" asp-route-ecosystem="@rule.Ecosystem">@Localizer["View current vulnerability audit"]</a></p>
         @if (Model.AdvisoryRanges.Count == 0) { <p class="text-muted">@Localizer["No related ranges in stored active advisories. This is not proof that the entire rule is safe."]</p> }
         @foreach (var range in Model.AdvisoryRanges)
         {
-            <div class="border-top py-3">
-                <strong>@range.Advisory.PackageName</strong> · <a href="@range.Advisory.Url" target="_blank" rel="noopener noreferrer">@range.Advisory.SourceId</a>
-                <span class="badge bg-secondary ms-2">@(range.Intersection == RangeRisk.Affected ? @Localizer["Range overlaps pattern"] : @Localizer["Range could not be evaluated"])</span>
-                <p class="small mb-0 mt-1">@range.Advisory.Summary</p>
+            var overlaps = range.Intersection == RangeRisk.Affected;
+            <div class="alert @(overlaps ? "alert-danger" : "alert-warning") mb-3" role="alert">
+                <div class="alert-icon"><i class="align-middle" data-lucide="alert-triangle"></i></div>
+                <div class="alert-message text-break">
+                    <strong>@range.Advisory.PackageName</strong> · <a class="alert-link" href="@range.Advisory.Url" target="_blank" rel="noopener noreferrer">@range.Advisory.SourceId</a>
+                    <span class="badge @(overlaps ? "bg-danger" : "bg-warning text-dark") ms-2">@(overlaps ? @Localizer["Range overlaps pattern"] : @Localizer["Range could not be evaluated"])</span>
+                    <p class="small mb-0 mt-1">@range.Advisory.Summary</p>
+                </div>
             </div>
         }
     </div></div>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} артефактов пакетов · {1} требуют внимания</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>Результатов: {0} · Страница {1} из {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} уязвимых пакетов · {1} других пакетов требуют внимания</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>Более новый отчёт неполный.</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>Более новый отчёт неполон. Показан последний полный снимок; актуальность данных о покрытии не подтверждена.</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>Все проекты</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>Все статусы</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>Правила утверждения и инструменты</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>Просмотреть все зависимости этого проекта</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>Просмотр правил одобрения</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Запись проверки</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Обзор компании</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Обзор соответствия</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Соответствует требованиям</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>Скопировано!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Копировать Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>Количество показывает выбранный диапазон отчётов. Статус оценивается на основе действующей политики и сохранённых данных об уязвимостях.</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>Текущая базовая версия</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Зависимости</value>
+  </data>
+  <data name="Dependency relationships were not recorded in this report. Run the latest CLI to populate the graph; the package list remains available." xml:space="preserve">
+    <value>Зависимости не были зафиксированы в этом отчёте. Запустите последнюю версию CLI, чтобы построить граф; список пакетов по-прежнему доступен.</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Экосистема</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Изучить</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>Найдите проект или пакет, проверьте его соответствие требованиям и проследите, почему он используется.</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>Виды инвентаря</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Известные уязвимости</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>Последние полные базовые версии. Это задекларированные зависимости, а не подтверждение их использования в работе.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Требует внимания</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Далее</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>Нет доступного полного отчёта.</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>Для этой экосистемы нет полного отчёта. Её соответствие требованиям не установлено.</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>Нет совпадающих записей</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Не проверено</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: не включён в эту проверку.</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet и npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: не включён в эту проверку.</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>Обнаружено пакетов</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>Старые отчёты без указанной цели. Текущее использование не может быть определено по этим записям.</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>Пакет, проект, назначение или причина согласования</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>Пакеты, требующие внимания</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>Страница {0} из {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>Пайплайн</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Предыдущая</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Проекты</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>Проекты с отчётами</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Для просмотра списка проектов требуется разрешение на чтение данных цепочки поставок. Вы по-прежнему можете просматривать правила согласования.</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>Значок README</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Отчёты</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>Сбросить фильтры</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>Страницы результатов</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>Результаты проверок не сохраняются в инвентаре проекта.</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>Значок соответствия S360</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Поиск</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>Поиск по инвентарю</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>Выберите и скопируйте Markdown выше.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>Поделитесь актуальным статусом соответствия базовым требованиям на GitHub или GitLab. Значок общедоступен, вход в систему не требуется. Он отражает сведения об указанных экосистемах, а не о развертывании в рабочей среде.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>Статус распространяется только на экосистемы, по которым представлены отчёты.</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Цепочка поставок</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>Полный отчёт не содержит зависимостей для этой экосистемы.</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>Этот отчёт неполон. Полный снимок отсутствует; актуальный охват не подтверждён.</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>Попробуйте изменить поисковый запрос или область отчётов. Само по себе правило одобрения не доказывает, что проект использует пакет.</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>Неклассифицированная история</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>Обновите отчёт CLI, чтобы увидеть связи между зависимостями.</value>
+  </data>
+
+</root>

@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>API&apos;ye gönderilen bağımlılık listesinin belirli bir bölümü. Kabul edilen bir grup, tamamı kabul edilmiş bir çalıştırmayla aynı şey değildir.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Kabul Edildi</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>Kabul edildi, S360&apos;ın bu denetim için bildirilen paket kanıtlarını kabul ettiği anlamına gelir. Bu, her partinin ulaştığı veya bir GitLab Runner&apos;ın derlemeyi durduracak şekilde yapılandırıldığı anlamına gelmez.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Kabul edilen ve zorunlu kılınan</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Anonim inceleme</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API Anahtar Kimliği</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>Denetim amacı</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>Kimliği doğrulanmış hesap</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Toplu işlem</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>Şu anda engellenmiş</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Karar gerekçesi</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Varsayılan dal</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Her satır bir API grubudur. CLI denetiminden geçebilmek için tüm grupların kabul edildiği eksiksiz bir çalıştırma gerekir. Kaydedilen sonuç geçmişe aittir; güncel engelleme listesi uyarısı ayrıca gösterilir.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Tamamlanmamış çalıştırma</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Yerel kontrol</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Birleştirme isteği</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Sonraki</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>Bildirilen desteklenen projelerde harici bağımlılık bulunamadı.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>Tek bir bildirilen denetim denemesi. Toplu işlemleri bir çalıştırma tanımlayıcısı paylaşır, böylece tam sonucu inceleyebilirsiniz.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Diğer dal</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Paket</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>Önceki</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Üretim taban çizgisi</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Proje</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Bir denetim kaydını okuyun</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Gerekçe</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Reddedildi</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Bildirilen kaynak</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>Yalnızca inceleme</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>İnceleme, proje raporu kaydetmeden bir politika kararı döndürür. Temel kayıt, üretim kullanımını beyan eder ve proje envanterini yalnızca tüm paketler ulaştığında günceller; bağımlılıklar reddedilmiş olsa bile. Amaç belirtilmeyen eski kayıtlar, üretim kullanımını hiçbir zaman güncellemez.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Çalıştırma</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>Durum</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Etiket derlemesi</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>CLI tarafından tanınan desteklenen projelerin sayısı. Sıfır bağımlılıklı bir denetim yine S360 ile iletişime geçer ve bu sayıyı kaydeder.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>Denetim çalıştırıldığında kaydedilen politika açıklaması. Güncel engelleme listesi uyarısı bundan ayrıdır ve bu geçmişi hiçbir zaman değiştirmez.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>Proje ve boru hattı tanımlayıcıları kimliği doğrulanmamış bir istekçi tarafından sağlanır.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>Bunlar bildirilen kontrollerdir; Runner tarafından zorunlu kılma ayrı bir devreye alma adımıdır ve burada bir kaydın bulunması bunun yapıldığı anlamına gelmez.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Sınıflandırılmamış</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>Belirtilmemiş amaç</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Sürüm</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Güvenlik açığı verileri</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Zafiyet verisi zamanı</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>Bu karara dayanak olan tavsiye verilerinin en son ne zaman kontrol edildiği; boş bir değer, güvenli olduğunun kanıtı değildir.</value>
   </data>
 
 </root>

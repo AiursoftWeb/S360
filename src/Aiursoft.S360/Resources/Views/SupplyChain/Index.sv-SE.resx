@@ -54,6 +54,9 @@
   <data name="Available dependencies" xml:space="preserve">
     <value>Tillgängliga beroenden</value>
   </data>
+  <data name="Back to dependency inventory" xml:space="preserve">
+    <value>Tillbaka till beroendeförrådet</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>Hittar du inte ett paket? Skicka en förfrågan</value>
   </data>
@@ -84,11 +87,17 @@
   <data name="Find packages" xml:space="preserve">
     <value>Hitta paket</value>
   </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Så läser du katalogen</value>
+  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>HTTPS-paketkälla</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Inkludera förhandsversioner</value>
+  </data>
+  <data name="Last checked" xml:space="preserve">
+    <value>Senast kontrollerad</value>
   </data>
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Senast kontrollerad (UTC)</value>
@@ -170,6 +179,9 @@
   </data>
   <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
     <value>Den godkända registeradressen ingår i regeln. Samma paket från en annan källa omfattas inte.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Previously published results remain usable until their original expiry." xml:space="preserve">
+    <value>Den senaste synkroniseringen av sårbarheter misslyckades. Tidigare publicerade resultat kan fortfarande användas fram till deras ursprungliga utgångsdatum.</value>
   </data>
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Den senaste synkroniseringen av sårbarheter misslyckades. Registrerade artefakter är dolda tills en granskning har slutförts utan fel.</value>

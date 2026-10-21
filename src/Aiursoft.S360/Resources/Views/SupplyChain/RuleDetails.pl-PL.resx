@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>Reguła zezwala na korzystanie z pakietów. Nie dowodzi jednak, że projekt z nich korzysta ani że dozwolone wersje są wolne od podatności.</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Zatwierdzono</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Autoryzacja</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>Powrót do istniejącego zestawu zasad</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ekosystem</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Wykluczono</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>Wyłączenia odejmują wersje podatne na zagrożenia od zakresu autoryzacji. Nie ukrywają wersji podatnej na zagrożenia, która została już zgłoszona w bazowej konfiguracji produkcyjnej.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Wygasła</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Wygasa</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>Włączone</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>Brak zarejestrowanych wyłączeń.</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>Bez terminu ważności</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>Brak powiązanych zakresów w zapisanych aktywnych alertach. Nie oznacza to, że cała reguła jest bezpieczna.</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>Brak zapisów przeglądu. Ta reguła mogła zostać bezpośrednio zaimportowana.</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>Nie przypięte</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Wzorzec pakietu</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Oczekuje na zatwierdzenie</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>Wersje przedpremierowe</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Nie można ocenić zakresu</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>Zakres nakłada się na wzorzec</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Powód</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Odrzucona</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>Powiązane zakresy poradników</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Złożono w dniu</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>Historia przeglądów</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>Recenzent</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Unieważniona</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Źródło</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Dostawca</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>Te opublikowane zakresy pokrywają się ze wzorcem reguły lub nie można było ich ocenić. Nie oznacza to, że reguła obecnie zezwala na każdą wymienioną wersję: obowiązują również status, data wygaśnięcia, wykluczenia, inne reguły i lista blokowanych elementów. Wpływ na środowisko produkcyjne jest przedstawiony na stronie audytu podatności.</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Szczegóły reguły zaufania</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Wzorzon wersji</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>Pokaż bieżący audyt podatności</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Wykluczenia luk bezpieczeństwa</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Wycofany</value>
+  </data>
+
+</root>

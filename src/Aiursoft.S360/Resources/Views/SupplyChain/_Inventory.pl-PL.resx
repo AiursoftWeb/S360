@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>Artefakty {0} pakietów · {1} wymaga uwagi</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>Wyniki: {0} · Strona {1} z {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} pakietów z lukami · {1} innych pakietów wymagających uwagi</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>Nowsza wersja raportu jest niekompletna.</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>Nowszy raport jest niekompletny. Wyświetlono ostatnią kompletną migawkę; aktualny zakres pokrycia nie został zweryfikowany.</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>Wszystkie projekty</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>Wszystkie statusy</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>Zasady zatwierdzania i narzędzia</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>Przeglądaj wszystkie zależności dla tego projektu</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>Przeglądaj reguły zatwierdzania</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Rekord kontroli</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Przegląd firmy</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Eksplorator zgodności</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Zgodny</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>Skopiowano!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Kopiuj Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>Liczby opisują wybrany zakres raportu. Status jest oceniany na podstawie bieżącej polityki i zapisanych danych o podatnościach.</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>Obecna linia bazowa</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Zależności</value>
+  </data>
+  <data name="Dependency relationships were not recorded in this report. Run the latest CLI to populate the graph; the package list remains available." xml:space="preserve">
+    <value>W tym raporcie nie zapisano relacji między zależnościami. Uruchom najnowszą wersję CLI, aby uzupełnić graf; lista pakietów jest nadal dostępna.</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ekosystem</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Przeglądaj</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>Znajdź projekt lub pakiet, sprawdź jego zgodność i prześledź, dlaczego jest używany.</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>Widoki inwentarza</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Znane podatności</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>Najnowsze kompletne zestawienia bazowe. Są to zgłoszone zależności, a nie dowód ich wdrożenia.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Wymaga uwagi</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Dalej</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>Brak pełnego raportu.</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>Brak pełnego raportu dla tego ekosystemu. Jego zgodność jest nieznana.</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>Brak pasujących rekordów</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Niezweryfikowane</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: nie uwzględniono w tym audycie.</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet i npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: niewliczone w ten audyt.</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>Zaobserwowane pakiety</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>Starsze raporty bez określonego celu. Na podstawie tych zapisów nie można ustalić bieżącego wykorzystania.</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>Pakiet, projekt, cel lub powód zatwierdzenia</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>Pakiety wymagające uwagi</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>Strona {0} z {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>Linia produkcyjna</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Poprzednia</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projekty</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>Projekty z raportami</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Odczytywanie inwentarza projektu wymaga uprawnień do odczytu łańcucha dostaw. Nadal możesz przeglądać zasady zatwierdzania.</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>Odznaka README</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Raporty</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>Wyczyść filtry</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>Strony wyników</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>Sprawdzenia przeglądu nie są zapisywane jako inwentaryzacja projektu.</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>Odznaka zgodności S360</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Szukaj</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>Przeszukaj zasoby</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>Zaznacz i skopiuj powyższy kod Markdown.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>Udostępnij najnowszy wynik zgodności z poziomem bazowym w serwisie GitHub lub GitLab. Odznaka jest publiczna i nie wymaga logowania. Obejmuje zgłoszone ekosystemy, a nie wdrożenia produkcyjne.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>Status obejmuje tylko zgłoszone ekosystemy.</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Łańcuch dostaw</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>Kompletny raport nie zawiera zależności dla tego ekosystemu.</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>Ten raport jest niekompletny. Brak pełnego migawki; bieżący zakres nie został zweryfikowany.</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>Wypróbuj inne kryteria wyszukiwania lub zakres raportu. Sama zasada zatwierdzania nie stanowi dowodu, że projekt używa danego pakietu.</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>Nieklasyfikowana historia</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>Zaktualizuj raport CLI, aby zobaczyć zależności.</value>
+  </data>
+
+</root>

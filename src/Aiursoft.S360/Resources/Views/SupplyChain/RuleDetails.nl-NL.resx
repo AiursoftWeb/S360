@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>Een regel verleent toestemming om pakketten te gebruiken. Het bewijst niet dat een project ze gebruikt of dat de toegestane versies vrij zijn van kwetsbaarheden.</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Goedgekeurd</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Autorisatie</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>Terug naar de bestaande regelset</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ecosysteem</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Uitgesloten</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>Uitsluitingen halen getroffen versies uit de autorisatie. Ze verbergen geen getroffen versie die al door een productie-baseline is gerapporteerd.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Verlopen</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Verloopt</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>Inbegrepen</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>Geen uitsluitingen geregistreerd.</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>Geen vervaldatum</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>Geen gerelateerde bereiken in opgeslagen actieve adviseringen. Dit is geen bewijs dat de volledige regel veilig is.</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>Geen beoordelingsrecords. Deze regel is mogelijk rechtstreeks geïmporteerd.</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>Niet vastgelegd</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Pakketpatroon</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>In behandeling</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>Pre-release versies</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Bereik kon niet worden geëvalueerd</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>Bereik overlapt met patroon</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reden</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Afgewezen</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>Gerelateerde adviesbereiken</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Aangevraagd op</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>Beoordelingsgeschiedenis</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>Beoordelaar</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Ingetrokken</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Bron</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Leverancier</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>Deze gepubliceerde bereiken overlappen het regelpatroon of konden niet worden geëvalueerd. Dit is geen stelling dat de regel momenteel elke genoemde versie toestaat: status, vervaldatum, uitsluitingen, andere regels en de blokkeerlijst zijn ook van toepassing. De productieve impact wordt weergegeven op de pagina voor de kwetsbaarheidsgarantietest.</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Details van vertrouwensregel</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Versiem patroon</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>Huidige kwetsbaarheidsaudit bekijken</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Uitsluitingen van kwetsbaarheden</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Teruggetrokken</value>
+  </data>
+
+</root>

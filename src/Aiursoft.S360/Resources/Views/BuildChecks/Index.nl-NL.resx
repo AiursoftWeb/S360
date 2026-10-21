@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>Een beperkt deel van de afhankelijkheidslijst die naar de API wordt verzonden. Een geaccepteerde batch is niet hetzelfde als een volledig geaccepteerde run.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Geaccepteerd</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>Geaccepteerd betekent dat S360 het voor deze controle gerapporteerde bewijsmateriaal voor pakketten heeft geaccepteerd. Dit betekent niet dat alle batches zijn aangekomen of dat een GitLab Runner was ingesteld om de build te stoppen.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Geaccepteerd versus afgedwongen</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Anonieme beoordeling</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API-sleutel-ID</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>Auditdoel</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>Geverifieerde account</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Batch</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>Momenteel geblokkeerd</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Reden voor besluit</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Standaardtak</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Elke rij is één API-batch. Alleen een volledige run waarin elke batch is geaccepteerd, kan slagen voor de CLI-controle. Het vastgelegde resultaat is historisch; een actuele waarschuwing voor de blokkeerlijst wordt afzonderlijk weergegeven.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Onvolledige uitvoering</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Lokale controle</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Samenvoegingsverzoek</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Volgende</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>Er zijn geen externe afhankelijkheden gevonden in de opgegeven ondersteunde projecten.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>Eén geregistreerde controlepoging. De batches delen een uitvoerings-ID, zodat u het volledige resultaat kunt bekijken.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Andere branch</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Pakket</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>Vorige</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Productiebasislijn</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Project</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Een controlerecord lezen</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Reden</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Afgewezen</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Gemelde bron</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>Alleen beoordelen</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>Review retourneert een beleidsbeslissing zonder een projectrapport op te slaan. Baseline verklaart productiegebruik en werkt de projectinventaris alleen bij wanneer elke batch is aangekomen, zelfs als de afhankelijkheden worden afgewezen. Oudere records zonder doelwerkstelling werken het productiegebruik nooit bij.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Uitvoering</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Tag-build</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>Het aantal ondersteunde projecten dat de CLI herkende. Een controle zonder afhankelijkheden contacteert S360 nog steeds en registreert dit aantal.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>De beleidstoelichting die werd geregistreerd toen die controle werd uitgevoerd. Een actuele blocklistwaarschuwing is apart en herschrijft nooit deze geschiedenis.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>De project- en pipeline-identificaties worden aangeleverd door een niet-geverifieerde aanroeper.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>Dit zijn gemelde controles; Runner-afdwinging is een aparte uitrolstap en wordt niet impliceerd door een record hier.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Ongeclassificeerd</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>Niet-opgegeven doel</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Versie</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Kwetsbaarheidsgegevens</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Tijdstip kwetsbaarheidsgegevens</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>Wanneer de adviesgegevens achter deze beslissing de laatste keer zijn gecontroleerd; een lege waarde is geen bewijs van een schone schijf.</value>
   </data>
 
 </root>

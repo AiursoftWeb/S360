@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>Обмежена частина списку залежностей, надіслана до API. Прийнятий пакет не означає, що весь запуск прийнято.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Прийнято</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>«Прийнято» означає, що S360 прийняла дані про пакети, надані для цієї перевірки. Це не означає, що надійшли всі пакети або що GitLab Runner було налаштовано зупиняти збірку.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Прийнято проти застосовано</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Анонімний огляд</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID ключа API</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>Мета аудиту</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>Автентифікований обліковий запис</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Пакет</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>Наразі заблоковано</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Причина рішення</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Головна гілка</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Кожен рядок відповідає одному пакету API. Перевірку CLI пройде лише повний запуск, у якому прийнято кожен пакет. Зафіксований результат є історичним; попередження про поточне блокування у списку блокування відображається окремо.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Неповний запуск</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Локальна перевірка</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Запит на злиття</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Далі</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>У зазначених підтримуваних проєктах не знайдено зовнішніх залежностей.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>Одна записана спроба перевірки. Її партії мають спільний ідентифікатор запущення, тому ви можете переглянути повний результат.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Інша гілка</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Пакет</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>Попередня</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Базовий рівень виробництва</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Проєкт</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Прочитати запис перевірки</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Причина</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Відхилено</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Заявлене джерело</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>Лише перегляд</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>Перевірка повертає рішення щодо політики, не зберігаючи звіт про проєкт. Базовий режим позначає використання у виробничому середовищі та оновлює реєстр проєктів лише після отримання всіх пакетів, навіть якщо залежності відхилено. Старіші записи без зазначеної мети ніколи не оновлюють дані про використання у виробничому середовищі.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Запуск</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>Статус</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Збірка за тегом</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>Кількість підтримуваних проєктів, які розпізнав CLI. Навіть перевірка без залежностей звертається до S360 і записує цю кількість.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>Пояснення політики, записане під час виконання цієї перевірки. Поточне попередження про список забороненого є окремим і ніколи не перезаписує цю історію.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>Ідентифікатори проєкту та конвеєра надані неавтентифікованим викликом.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>Це звітні перевірки; впровадження Runner — окремий етап розгортання, і його не можна припускати на основі запису тут.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Некласифіковано</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>Невизначена мета</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Версія</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Дані про вразливості</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Час даних про вразливості</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>Коли востаннє перевіряли дані рекомендацій, на яких ґрунтується це рішення; порожнє значення не означає, що проблем немає.</value>
   </data>
 
 </root>

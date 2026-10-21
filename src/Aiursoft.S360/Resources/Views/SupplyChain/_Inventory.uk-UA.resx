@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} артефактів пакетів · {1} потребують уваги</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} результатів · Сторінка {1} з {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>Уразливі пакети: {0} · інші пакети, що потребують уваги: {1}</value>
+  </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>Повний граф розв&apos;язку не був записаний у цьому звіті. Запустіть останню версію CLI, щоб його заповнити; список пакетів залишається доступним.</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>Новіший звіт неповний.</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>Новіший звіт неповний. Показується останній повний знімок; поточне покриття не перевірено.</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>Усі проєкти</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>Усі статуси</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>Правила схвалення та інструменти</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>Переглянути всі залежності для цього проєкту</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>Переглянути правила схвалення</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Запис перевірки</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Огляд компанії</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Огляд відповідності</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Відповідає вимогам</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>Скопійовано!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Копіювати Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>Кількості описують обраний діапазон звіту. Статус оцінюється відповідно до чинної політики та збережених даних про вразливості.</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>Поточна базова версія</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Залежності</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Екосистема</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Переглянути</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>Знайдіть проєкт або пакет, перевірте його відповідність вимогам і з’ясуйте, для чого його використовують.</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>Подання інвентарю</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Відомі вразливості</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>Останні повні базові версії. Це задекларовані залежності, а не доказ впровадження.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Потребує уваги</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Далі</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>Повний звіт недоступний.</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>Немає повного звіту для цієї екосистеми. Її відповідність невідома.</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>Не знайдено відповідних записів</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Не перевірено</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: не включено до цього аудиту.</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet і npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: не включено в цей аудит.</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>Виявлені пакети</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>Старі звіти без зазначеної мети. За цими записами неможливо визначити поточне використання.</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>Пакет, проєкт, призначення або причина схвалення</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>Пакети, що потребують уваги</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>Сторінка {0} з {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>Конвеєр</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Попередня</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Проєкти</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>Проєкти зі звітами</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Читання інвентаризації проєкту вимагає права на читання ланцюга постачання. Ви все ще можете переглядати правила схвалення.</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>Значок README</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Звіти</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>Скинути фільтри</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>Сторінки результатів</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>Перевірки під час аналізу не зберігаються як інвентар проєкту.</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>Значок відповідності S360</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Пошук</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>Пошук запасів</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>Виділіть і скопіюйте наведений вище Markdown.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>Опублікуйте свій останній базовий стан відповідності на GitHub або GitLab. Значок є публічним і не потребує входу в обліковий запис. Він охоплює екосистеми, зазначені у звіті, а не продуктивне розгортання.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>Статус охоплює лише екосистеми, зазначені у звіті.</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Ланцюг постачання</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>Повний звіт не містить залежностей для цієї екосистеми.</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>Цей звіт є неповним. Повний знімок недоступний; поточне покриття не підтверджено.</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>Спробуйте інший пошук або діапазон звіту. Сама по собі правила схвалення не є доказом того, що проєкт використовує пакет.</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>Історія без класифікації</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>Оновіть звіт CLI, щоб побачити залежності.</value>
+  </data>
+
+</root>

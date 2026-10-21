@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{0}/{1} solmua näytetään</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} haavoittuvaa pakettia tässä kaaviossa, joista {1} on piilotettu syvyyden tai suodattimien vuoksi.</value>
+  </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0 näyttää vain projektiviittaukset; 1 sisältää suoraan viitatut paketit.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Supista riippuvuudet</value>
+  </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Värit kuvaavat rekisteröityä haavoittuvuusriskiä. Suorat ja epäsuorat suhteet näkyvät paketin tiedoissa. Muut tarkastusongelmat pysyvät merkittyinä jokaisessa solmussa.</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Vaatimusten mukainen</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Kopiointi ei ole käytettävissä. Kopioi nykyinen osoite selaimestasi.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Kopioi näkymän linkki</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Riippuvuudet</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Riippuvuudet</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Riippuvuuskaavio. Siirry vetämällä, lähennä ja loitonna säätimillä tai valitse solmu.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Riippuvuussuhteet</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Riippuvuusrakenne</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Kaaviokontrollit</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>Vain suoranaiset riippuvuudet</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Suora riippuvuus</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Vedä selataksesi kaaviota luettavassa koossa tai valitse Sovita-näkymä kokonaiskatselmusta varten.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Ota JavaScript käyttöön nähdäksesi kaavion. Kaikki paketin tiedot on lueteltu alla.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Laajenna riippuvuuksia</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Tutki riippuvuuksia</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Etsi pakettia</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Sovita näkymään</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Koko näyttö</value>
+  </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Sisällytetty projektiviittauksen kautta</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Välillinen riippuvuus</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Esitetty</value>
+  </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Tuottaa haavoittuvia riippuvuuksia</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Tunnettu haavoittuvuus</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Listattu ratkaisuun</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Manifest ja kohde</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Maksimisyvys</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Vaatii huomiota</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>Ilmoitetusta riippuvuusgraafista ei löytynyt tunnettuja haavoittuvuuksia. Tarkista auditoinnin tila ennen kuin luotat tähän tulokseen.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Ei vastaavia paketteja.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Tarkoitusta tai hyväksyntäsyitä ei ole kirjattu</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Ei vahvistettu</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Paketin nimi, polku tai CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Pakettikäytäntö</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Paketin lähde</value>
+  </data>
+  <data name="Project file" xml:space="preserve">
+    <value>Projektitiedosto</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Projektiviite</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>Projektit ja niiden suorat riippuvuudet näytetään ensin. Laajenna paketti nähdäksesi sen epäsuorat riippuvuudet.</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Kirjattu käyttötarkoitus ja hyväksynnän perustelut</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Nollaa näkymä</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Ratkaistu kohdalle</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Ratkaistu kohdekehys</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Juurenyhteyttä ei ole tallennettu</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Haku- ja haavoittuvuuksien polut sisältävät valitun syvyyden ylittäviä edeltäjiä. Palauta näkymä, niin syvyysrajoitukset otetaan jälleen käyttöön.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Valitse solmu nähdäksesi sen version, tarkistustilan ja esittelypolut.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Näytä esittelypolut</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Näytä haavoittuvuuksien polut</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Joillakin ilmoitetuilla solmuilla ei ole polkua tästä juurisolmusta. Ne löytyvät silti haulla; niiden välille ei ole päätelty yhteyttä.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Aloita kolmella tasolla. Laajenna solmua seuratakseen sen riippuvuuksia tai valitse se nähdäksesi tiedot.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>Kaavioa ei voitu näyttää. Paketin tiedot ovat edelleen käytettävissä alla.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Tallennettu raportti on muuttunut. Näytetään nykyinen riippuvuuskaavio.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Tämä kaavio on suuri. Näytetään rajattu näkymä; hae pakettia sen suhteiden tarkasteluun. Kaikki paketit ovat edelleen alla olevassa luettelossa.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Projektitiedostojen käytössä</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Käytössä projekteissa</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Linkki näkymään kopioitu.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Haavoittuvuuksiin johtavat polut</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Lähennä</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Loitonna</value>
+  </data>
+
+</root>

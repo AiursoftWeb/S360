@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>कोई नियम पैकेजों के उपयोग की अनुमति देता है। इससे यह साबित नहीं होता कि कोई प्रोजेक्ट उनका उपयोग करता है या अनुमत संस्करणों में कोई सुरक्षा भेद्यता नहीं है।</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>स्वीकृत</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>प्राधिकरण</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>मौजूदा नियम समूह पर वापस जाएँ</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>परिस्थितिकी तंत्र</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>वर्जित</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>बहिष्करण अधिकृत संस्करणों में से प्रभावित संस्करणों को हटाते हैं। वे ऐसे प्रभावित संस्करण को नहीं छिपाते जिसकी सूचना प्रोडक्शन बेसलाइन पहले ही दे चुकी हो।</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>समाप्त</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>समाप्ति तिथि</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>शामिल</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>कोई अपवर्जन दर्ज नहीं।</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>कोई समाप्ति तिथि नहीं</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>संग्रहीत सक्रिय सलाहों में कोई संबंधित रेंज नहीं है। इसका यह प्रमाण नहीं है कि पूरा नियम सुरक्षित है।</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>समीक्षा का कोई रिकॉर्ड नहीं है। यह नियम सीधे आयात किया गया हो सकता है।</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>अनपिंक्ड</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>पैकेज पैटर्न</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>लंबित</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>पूर्व-प्रकाशित संस्करण</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>श्रेणी का मूल्यांकन नहीं किया जा सका</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>रेंज पैटर्न से मेल खाती है</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>कारण</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>अस्वीकृत</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>संबंधित सलाहकारी रेंज</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>अनुरोधित समय</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>समीक्षा इतिहास</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>समीक्षक</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>रद्द</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>स्रोत</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>स्थिति</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>आपूर्तिकर्ता</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>प्रकाशित संस्करण-सीमाएँ नियम के पैटर्न से मेल खाती हैं या उनका मूल्यांकन नहीं किया जा सका। इसका यह अर्थ नहीं है कि नियम वर्तमान में सूचीबद्ध हर संस्करण की अनुमति देता है: स्थिति, समाप्ति, अपवर्जन, अन्य नियम और ब्लॉकलिस्ट भी लागू होते हैं। उत्पादन पर प्रभाव भेद्यता ऑडिट पृष्ठ पर दिखाया गया है।</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>विश्वास नियम का विवरण</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>संस्करण पैटर्न</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>वर्तमान भेद्यता ऑडिट देखें</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>संवेदनशीलता अपवाद</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>वापस लिया गया</value>
+  </data>
+
+</root>

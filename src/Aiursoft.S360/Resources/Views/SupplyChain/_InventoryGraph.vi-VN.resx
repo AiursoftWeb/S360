@@ -24,6 +24,9 @@
   <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
     <value>{0} gói có lỗ hổng bảo mật trong biểu đồ này, bao gồm {1} bị ẩn do độ sâu hoặc bộ lọc.</value>
   </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0 chỉ hiển thị các tham chiếu dự án; 1 bao gồm các gói được tham chiếu trực tiếp.</value>
+  </data>
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Thu gọn các phụ thuộc</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Project reference" xml:space="preserve">
     <value>Tham chiếu dự án</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>Các dự án và các phụ thuộc trực tiếp của chúng được hiển thị trước. Mở rộng một gói để theo dõi các phụ thuộc gián tiếp.</value>
   </data>
   <data name="Recorded purpose and approval reasons" xml:space="preserve">
     <value>Mục đích và lý do phê duyệt đã ghi nhận</value>

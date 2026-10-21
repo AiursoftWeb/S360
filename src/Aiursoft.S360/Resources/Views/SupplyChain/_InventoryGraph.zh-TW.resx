@@ -24,6 +24,9 @@
   <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
     <value>{0} 個易受攻擊的套件在此圖中，包括 {1} 個因深度或篩選器而隱藏的套件。</value>
   </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0 僅顯示專案參考；1 則包含直接參考的套件。</value>
+  </data>
   <data name="Collapse dependencies" xml:space="preserve">
     <value>收合相依項目</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Project reference" xml:space="preserve">
     <value>專案參照</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>專案及其直接相依性會優先顯示。展開套件即可查看間接相依性。</value>
   </data>
   <data name="Recorded purpose and approval reasons" xml:space="preserve">
     <value>已記錄的用途與核准原因</value>

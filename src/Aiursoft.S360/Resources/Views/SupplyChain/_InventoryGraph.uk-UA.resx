@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>Показано вузлів: {0} із {1}</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>Уразливих пакетів на цій діаграмі: {0}, зокрема {1}, прихованих через обмеження глибини або фільтри.</value>
+  </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0 показує лише посилання на проєкти; 1 також включає безпосередньо підключені пакети.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Згорнути залежності</value>
+  </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Кольори відображають зафіксований рівень ризику вразливостей. Прямі та непрямі зв’язки наведено в описі пакета. Інші проблеми, виявлені під час аудиту, позначено на кожному вузлі.</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Відповідає вимогам</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Копіювання недоступне. Скопіюйте поточну адресу з вашого браузера.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Скопіювати посилання на подання</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Залежності</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Деталі залежностей</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Граф залежностей. Перетягуйте для зміщення, використовуйте елементи керування для масштабування або виберіть вузол.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Залежності</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Структура залежностей</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Керування діаграмою</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>Лише безпосередні залежності</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Пряма залежність</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Перетягуйте, щоб переглянути цю діаграму в зручному масштабі, або виберіть «Підігнати під вікно», щоб отримати загальний огляд.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Увімкніть JavaScript, щоб переглянути граф. Всі подробиці про пакети наведено нижче.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Розгорнути залежності</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Дослідити залежності</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Знайти пакет</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Вписати в екран</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Повний екран</value>
+  </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Включено через посилання на проєкт</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Опосередкована залежність</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Додано через</value>
+  </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Спричиняє появу вразливих залежностей</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Відома вразливість</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Указано в рішенні</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Маніфест і ціль</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Максимальна глибина</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Потребує уваги</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>У графі, про який повідомлено, відомих вразливостей не виявлено. Перш ніж покладатися на цей результат, перевірте статус аудиту.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Пакетів, що відповідають умовам, не знайдено.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Не вказано мету чи причину погодження</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Не перевірено</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Назва пакета, шлях або CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Політика пакетів</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Джерело пакета</value>
+  </data>
+  <data name="Project file" xml:space="preserve">
+    <value>Файл проекту</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Посилання на проєкт</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>Спочатку відображаються проєкти та їхні прямі залежності. Розгорніть пакет, щоб прослідкувати за непрямими залежностями.</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Зазначені цілі та причини схвалення</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Скинути подання</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Вирішено для</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Визначений цільовий фреймворк</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Кореневий зв’язок не зафіксовано</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Пошук та шляхи вразливостей включають предків за межами обраної глибини. Скиньте перегляд, щоб повернутися до обмежень глибини.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Виберіть вузол, щоб переглянути його версію, стан аудиту та шляхи введення.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Показати шляхи введення</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Показати шляхи вразливостей</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Деякі вузли зі звіту не мають шляху від цього кореневого вузла. Їх усе одно можна знайти за допомогою пошуку; жодних зв’язків не було припущено.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Почніть із трьох рівнів. Розгорніть вузол, щоб переглянути його залежності, або виберіть його, щоб дізнатися більше.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>Не вдалося відобразити граф. Відомості про пакети доступні нижче.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Збережений звіт було змінено. Показується поточний граф залежностей.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Цей граф великий. Показано обмежене відображення; введіть назву пакета, щоб сфокусуватися на його зв’язках. Усі пакети залишаються у списку нижче.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Використовується у файлах проєктів</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Використовується в проєктах</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Посилання перегляду скопійовано.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Шляхи вразливостей</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Збільшити</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Зменшити масштаб</value>
+  </data>
+
+</root>

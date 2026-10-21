@@ -54,6 +54,9 @@
   <data name="Available dependencies" xml:space="preserve">
     <value>Dependensi yang Tersedia</value>
   </data>
+  <data name="Back to dependency inventory" xml:space="preserve">
+    <value>Kembali ke inventaris dependensi</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>Tidak menemukan paket yang dicari? Ajukan permintaan</value>
   </data>
@@ -84,11 +87,17 @@
   <data name="Find packages" xml:space="preserve">
     <value>Cari paket</value>
   </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Cara membaca katalog</value>
+  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>Sumber paket HTTPS</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Sertakan versi prarilis</value>
+  </data>
+  <data name="Last checked" xml:space="preserve">
+    <value>Terakhir diperiksa</value>
   </data>
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Terakhir diperiksa (UTC)</value>
@@ -170,6 +179,9 @@
   </data>
   <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
     <value>URL registri yang disetujui merupakan bagian dari aturan. Paket yang sama dari sumber berbeda tidak tercakup.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Previously published results remain usable until their original expiry." xml:space="preserve">
+    <value>Sinkronisasi kerentanan terbaru gagal. Hasil yang telah dipublikasikan sebelumnya tetap dapat digunakan hingga masa berlakunya berakhir sesuai jadwal semula.</value>
   </data>
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Sinkronisasi kerentanan terbaru gagal. Artefak yang tercatat disembunyikan hingga audit berhasil.</value>

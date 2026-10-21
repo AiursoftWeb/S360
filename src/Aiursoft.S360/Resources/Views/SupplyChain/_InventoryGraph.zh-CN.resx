@@ -24,6 +24,9 @@
   <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
     <value>{0} 个存在漏洞的包位于此图中，其中 {1} 个因深度或筛选器被隐藏。</value>
   </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0 仅显示项目引用；1 包含直接引用的包。</value>
+  </data>
   <data name="Collapse dependencies" xml:space="preserve">
     <value>折叠依赖项</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Project reference" xml:space="preserve">
     <value>项目引用</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>项目及其直接依赖项会优先显示。展开某个包以查看间接依赖项。</value>
   </data>
   <data name="Recorded purpose and approval reasons" xml:space="preserve">
     <value>已记录的用途和批准理由</value>

@@ -24,6 +24,9 @@
   <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
     <value>{0} paquets vulnérables dans ce diagramme, dont {1} masqués par la profondeur ou les filtres.</value>
   </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0 affiche uniquement les références de projets ; 1 inclut les packages référencés directement.</value>
+  </data>
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Réduire les dépendances</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Project reference" xml:space="preserve">
     <value>Référence de projet</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>Les projets et leurs dépendances directes sont affichés en premier. Développez un paquet pour suivre ses dépendances indirectes.</value>
   </data>
   <data name="Recorded purpose and approval reasons" xml:space="preserve">
     <value>Objet enregistré et motifs d&apos;approbation</value>

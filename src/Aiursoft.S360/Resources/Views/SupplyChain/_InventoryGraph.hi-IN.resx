@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{1} में से {0} नोड दिखाए गए</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>इस चित्र में {0} संवेदनशील पैकेज, जिनमें से {1} गहराई या फ़िल्टर के कारण छिपे हुए हैं।</value>
+  </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0 केवल प्रोजेक्ट संदर्भ दिखाता है; 1 में सीधे संदर्भित पैकेज भी शामिल होते हैं।</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>निर्भरताएँ संक्षिप्त करें</value>
+  </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>रंग दर्ज किए गए भेद्यता जोखिम को दर्शाते हैं। पैकेज के विवरण में प्रत्यक्ष और अप्रत्यक्ष संबंध दिखाए जाते हैं। अन्य ऑडिट समस्याएँ प्रत्येक नोड पर लेबल के रूप में बनी रहती हैं।</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>संमत</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>कॉपी उपलब्ध नहीं है। अपने ब्राउज़र से वर्तमान पता कॉपी करें।</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>लिंक कॉपी करें</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>निर्भरताएँ</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>निर्भरता विवरण</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>निर्भरता ग्राफ़। पैन करने के लिए खींचें, ज़ूम करने के लिए नियंत्रणों का उपयोग करें, या कोई नोड चुनें।</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>निर्भरता संबंध</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>निर्भरता संरचना</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>डायग्राम नियंत्रण</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>केवल प्रत्यक्ष निर्भरताएँ</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>प्रत्यक्ष निर्भरता</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>पढ़ने योग्य पैमाने पर इस आरेख को देखने के लिए खींचें, या एक अवलोकन के लिए &apos;फिट व्यू&apos; चुनें।</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>JavaScript सक्षम करें ताकि ग्राफ़ देख सकें। सभी पैकेज विवरण नीचे सूचीबद्ध हैं।</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>निर्भरताएँ विस्तृत करें</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>निर्भरताएँ देखें</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>पैकेज खोजें</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>दृश्य को फिट करें</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>पूर्ण स्क्रीन</value>
+  </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>प्रोजेक्ट संदर्भ के माध्यम से शामिल</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>अप्रत्यक्ष निर्भरता</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>द्वारा प्रस्तुत</value>
+  </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>असुरक्षित निर्भरताएँ शामिल करता है</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>ज्ञात कमजोरी</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>समाधान में सूचीबद्ध</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>मैनिफेस्ट और लक्ष्य</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>अधिकतम गहराई</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>ध्यान देने की आवश्यकता है</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>रिपोर्ट किए गए ग्राफ़ में कोई ज्ञात सुरक्षा कमज़ोरियाँ नहीं हैं। इस परिणाम पर भरोसा करने से पहले ऑडिट की स्थिति जाँच लें।</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>मेल खाने वाले कोई पैकेज नहीं।</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>कोई उद्देश्य या अनुमोदन कारण दर्ज नहीं है</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>सत्यापित नहीं</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>पैकेज का नाम, पथ या CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>पैकेज नीति</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>पैकेज का स्रोत</value>
+  </data>
+  <data name="Project file" xml:space="preserve">
+    <value>प्रोजेक्ट फ़ाइल</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>प्रोजेक्ट संदर्भ</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>प्रोजेक्ट्स और उनके प्रत्यक्ष निर्भरताएँ पहले प्रदर्शित की जाती हैं। अप्रत्यक्ष निर्भरताओं को अनुसरण करने के लिए एक पैकेज का विस्तार करें।</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>रिकॉर्ड किया गया उद्देश्य और अनुमोदन कारण</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>दृश्य रीसेट करें</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>के लिए निर्धारित</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>निर्धारित फ्रेमवर्क</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>मूल संबंध दर्ज नहीं किया गया</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>खोज और भेद्यता के पथ में चुनी गई गहराई से आगे के पूर्वज भी शामिल होते हैं। गहराई की सीमा पर लौटने के लिए दृश्य रीसेट करें।</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>अपनी संस्करण, ऑडिट स्थिति और प्रस्तुति पथ देखने के लिए एक नोड चुनें।</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>परिचय पथ दिखाएं</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>भेद्यता के पथ दिखाएँ</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>कुछ रिपोर्ट किए गए नोड्स का इस रूट से कोई पथ नहीं है। खोज से वे फिर भी मिल सकते हैं; कोई संबंध अनुमानित नहीं किया गया है।</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>तीन स्तरों से शुरुआत करें। निर्भरताओं को देखने के लिए किसी नोड को विस्तृत करें, या विवरण देखने के लिए उसे चुनें।</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>ग्राफ़ को प्रदर्शित नहीं किया जा सका। पैकेज विवरण नीचे उपलब्ध हैं।</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>सहेजी गई रिपोर्ट बदल गई है। वर्तमान निर्भरता ग्राफ़ दिखाया जा रहा है।</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>यह ग्राफ़ बड़ा है। सीमित दृश्य दिखाया गया है; किसी पैकेज के संबंधों पर ध्यान केंद्रित करने के लिए उसे खोजें। सभी पैकेज नीचे दी गई सूची में उपलब्ध हैं।</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>प्रोजेक्ट फ़ाइलों द्वारा उपयोग किया गया</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>प्रोजेक्टों द्वारा उपयोग किया जाता है</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>दृश्य लिंक कॉपी कर दिया गया।</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>संवेदनशीलता पथ</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>जूम इन</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>ज़ूम आउट</value>
+  </data>
+
+</root>

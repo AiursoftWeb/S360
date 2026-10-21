@@ -33,12 +33,26 @@ public static class DependencyScanner
         // Directory scanning remains available to the server's isolated package resolver.
         // The CLI requires an explicit solution for NuGet checks.
         var projectFiles = solution != null && ecosystem == "nuget" ? [] : DiscoverProjectFiles(root).ToList();
+        var solutionMembers = new HashSet<string>(OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
         var nugetProjects = solution != null
-            ? await ReadSolutionProjectsAsync(solution, cancellationToken)
+            ? await ReadSolutionProjectsAsync(solution, cancellationToken, solutionMembers)
             : projectFiles.Where(p => (ecosystem is null or "nuget") &&
                 (Path.GetExtension(p) is ".csproj" or ".fsproj" or ".vbproj"))
                 .ToDictionary(p => p, p => Path.Combine(Path.GetDirectoryName(p)!, "obj", "project.assets.json"));
         var manifests = nugetProjects.Keys.ToList();
+        var solutionGraph = solution == null ? null : new SolutionDependencyGraph
+        {
+            SolutionPath = Path.GetFileName(solution),
+            Nodes = manifests.Select(manifest =>
+            {
+                var path = Path.GetRelativePath(root, manifest).Replace('\\', '/');
+                return new SolutionGraphNode
+                {
+                    Id = SolutionDependencyGraph.ProjectId(path), ProjectPath = path,
+                    IsSolutionMember = solutionMembers.Contains(manifest)
+                };
+            }).ToList()
+        };
         var npmComparison = OperatingSystem.IsWindows() ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
         var npmManifests = projectFiles.Where(p => (ecosystem is null or "npm") &&
             Path.GetFileName(p).Equals("package.json", npmComparison)).ToList();
@@ -58,7 +72,9 @@ public static class DependencyScanner
             ValidateNuGetAssetsForProject(manifest, assets);
             ValidateNuGetProjectReferences(manifest, assets, discoveredProjects);
             var restored = await ReadNuGetAsync(assets, cancellationToken);
-            DependencyIntroductionPaths.AddNuGet(assets, restored, Path.GetRelativePath(root, manifest), introductionPaths, graphNodes);
+            DependencyIntroductionPaths.AddNuGet(assets, restored, Path.GetRelativePath(root, manifest), introductionPaths,
+                solutionGraph == null ? graphNodes : null);
+            if (solutionGraph != null) SolutionGraphCollector.AddProject(solutionGraph, assets, restored, root);
             result.AddRange(restored);
         }
         foreach (var manifest in npmManifests)
@@ -76,11 +92,12 @@ public static class DependencyScanner
             result.AddRange(installed);
         }
         return new ScanReport(result.DistinctBy(DependencyIntroductionPaths.Identity).ToList(),
-            skipped, manifests.Count + npmManifests.Count) { IntroductionPaths = introductionPaths, GraphNodes = graphNodes };
+            skipped, manifests.Count + npmManifests.Count)
+            { IntroductionPaths = introductionPaths, GraphNodes = graphNodes, SolutionGraph = solutionGraph };
     }
 
     private static async Task<Dictionary<string, string>> ReadSolutionProjectsAsync(string solution,
-        CancellationToken cancellationToken)
+        CancellationToken cancellationToken, HashSet<string> solutionMembers)
     {
         // Let the same SDK that restores the solution evaluate conditional and transitive references.
         // This target generates a graph only; it does not restore packages or manufacture missing assets.
@@ -127,8 +144,39 @@ public static class DependencyScanner
                 found.Add(project, assets);
             }
             foreach (var entry in graph.RootElement.GetProperty("restore").EnumerateObject())
+            {
                 if (!found.ContainsKey(Path.GetFullPath(entry.Name)))
                     throw new InvalidOperationException($"Solution restore project is missing from the graph: {entry.Name}");
+            }
+            // Restore roots include transitive project references too. Ask the SDK for
+            // actual solution membership rather than relabeling the restore closure.
+            start.ArgumentList.Clear();
+            foreach (var argument in new[] { "sln", solution, "list" }) start.ArgumentList.Add(argument);
+            start.Environment["DOTNET_CLI_UI_LANGUAGE"] = "en-US";
+            using var listing = Process.Start(start) ?? throw new InvalidOperationException("Could not read solution membership.");
+            var memberOutput = listing.StandardOutput.ReadToEndAsync(timeout.Token);
+            var memberError = listing.StandardError.ReadToEndAsync(timeout.Token);
+            try { await listing.WaitForExitAsync(timeout.Token); }
+            catch (OperationCanceledException)
+            {
+                if (!listing.HasExited) listing.Kill(entireProcessTree: true);
+                await listing.WaitForExitAsync(CancellationToken.None);
+                throw;
+            }
+            var memberText = await memberOutput;
+            var memberDiagnostics = await memberError;
+            if (listing.ExitCode != 0)
+                throw new InvalidOperationException($"Could not read solution membership: {memberDiagnostics}");
+            var lines = memberText.Split('\n').Select(line => line.TrimEnd('\r')).ToList();
+            var separator = lines.FindIndex(line => line.Length > 0 && line.All(c => c == '-'));
+            if (separator < 0) throw new InvalidOperationException("The SDK returned no solution project list.");
+            foreach (var line in lines.Skip(separator + 1).Where(line => !string.IsNullOrWhiteSpace(line)))
+            {
+                var member = Path.GetFullPath(line.Replace('\\', Path.DirectorySeparatorChar), Path.GetDirectoryName(solution)!);
+                if (!found.ContainsKey(member))
+                    throw new InvalidOperationException($"Solution member is missing from its evaluated restore graph: {line}");
+                solutionMembers.Add(member);
+            }
             return found;
         }
         finally { File.Delete(graphPath); }

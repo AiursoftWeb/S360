@@ -197,13 +197,26 @@ public class DependencyScannerTests
             await File.WriteAllTextAsync(Path.Combine(main, "obj", "project.assets.json"),
                 JsonSerializer.Serialize(new
                 {
-                    targets = new Dictionary<string, object> { ["net10.0"] = new { } },
+                    targets = new Dictionary<string, object> { ["net10.0"] = new Dictionary<string, object>
+                    { ["Lib/1.0.0"] = new { type = "project", framework = "net10.0" } } },
                     packageFolders = new { },
                     libraries = new Dictionary<string, object>
                     {
                         ["Lib/1.0.0"] = new { type = "project", msbuildProject = "../Lib/Lib.csproj" }
                     },
-                    project = new { restore = new { projectPath = mainProject } }
+                    project = new
+                    {
+                        frameworks = new Dictionary<string, object> { ["net10.0"] = new { } },
+                        restore = new
+                        {
+                            projectPath = mainProject,
+                            frameworks = new Dictionary<string, object>
+                            {
+                                ["net10.0"] = new { projectReferences = new Dictionary<string, object>
+                                { [libraryProject] = new { projectPath = libraryProject } } }
+                            }
+                        }
+                    }
                 }));
             await File.WriteAllTextAsync(Path.Combine(library, "obj", "project.assets.json"),
                 JsonSerializer.Serialize(new
@@ -215,6 +228,10 @@ public class DependencyScannerTests
             using var client = new HttpClient(new FixedHandler([]));
             var report = await DependencyScanner.ScanDetailedAsync(await WriteSolutionAsync(root, mainProject), client, ecosystem: "nuget");
             Assert.AreEqual(2, report.ScannedProjectCount);
+            Assert.IsNotNull(report.SolutionGraph);
+            Assert.IsNull(report.SolutionGraph.Validate(report.Dependencies, 2));
+            Assert.IsTrue(report.SolutionGraph.Nodes.Single(n => n.ProjectPath == "Main/Main.csproj").IsSolutionMember);
+            Assert.IsFalse(report.SolutionGraph.Nodes.Single(n => n.ProjectPath == "Lib/Lib.csproj").IsSolutionMember);
             File.Delete(Path.Combine(library, "obj", "project.assets.json"));
             var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(async () =>
                 await DependencyScanner.ScanDetailedAsync(await WriteSolutionAsync(root, mainProject), client, ecosystem: "nuget"));

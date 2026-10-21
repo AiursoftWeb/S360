@@ -235,6 +235,7 @@ public class CliCheckTests
                          "check", "--ecosystem", ecosystem, "--path", explicitSolution ? solution : root, "--server", "http://127.0.0.1:1"
                      }) start.ArgumentList.Add(argument);
             start.Environment["S360_CHECK_KEY"] = "test-only-check-key";
+            start.Environment["CI_PROJECT_DIR"] = root;
             using var process = Process.Start(start) ?? throw new InvalidOperationException("Could not start the CLI.");
             using var timeout = new CancellationTokenSource(TimeSpan.FromSeconds(30));
             var outputTask = process.StandardOutput.ReadToEndAsync(timeout.Token);

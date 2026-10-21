@@ -1,10 +1,12 @@
+import { solutionView } from './solution-graph.js';
 // Relationships come from the reported restore graph; never infer edges from package names.
 const host = document.querySelector('.s360-graph');
 if (host) {
     const find = name => host.querySelector(`.s360-graph-${name}`);
     const text = key => host.querySelector(`[data-key="${key}"]`).textContent;
     const format = (key, ...values) => values.reduce((s, v, i) => s.replace(`{${i}}`, v), text(key));
-    const graphs = JSON.parse(find('data').textContent);
+    const data = JSON.parse(find('data').textContent);
+    const graphs = data.Solution ? [solutionView(data.Solution)] : data.Graphs;
     const scope = find('scope'), search = find('search'), depth = find('depth'), risk = find('risk');
     const canvas = find('canvas'), detail = find('detail'), notice = find('notice');
     const stage = find('stage');
@@ -13,11 +15,12 @@ if (host) {
     let expanded = new Set(), collapsed = new Set(), sequence = 0, timer, rendering = Promise.resolve();
     let suppressClick = false, restoreNotice = '';
     const current = () => graphs[Number(scope.value)];
-    const name = node => node.Package ? `${node.Package.Name}@${node.Package.Version}` : node.Kind === 'root' ? current().Project : node.Id;
+    const name = node => node.Package ? `${node.Package.Name}@${node.Package.Version}` : node.Label || (node.Kind === 'root' ? current().Project : node.Id);
     const status = node => text(['compliant', 'pending', 'problem'][node.Status]);
     const level = () => Math.max(1, Math.min(20, Math.floor(Number(depth.value) || 3)));
-    const relation = node => text(distances.get(node.Id) === 1 ? 'direct' : distances.has(node.Id) ? 'indirect' : 'unlinked');
-    const isOpen = id => !collapsed.has(id) && (expanded.has(id) || distances.get(id) < level());
+    const directDependency = node => node.IsDirect ?? distances.get(node.Id) === 1;
+    const relation = node => text(directDependency(node) ? 'direct' : distances.has(node.Id) ? 'indirect' : 'unlinked');
+    const isOpen = id => !collapsed.has(id) && (expanded.has(id) || nodes.get(id)?.Kind === 'target' || distances.get(id) < level());
     const escapeLabel = value => Array.from(value).map(c => /[a-zA-Z0-9 ._/@-]/.test(c) ? c : `#${c.codePointAt(0)};`).join('');
     const element = (tag, value, className) => {
         const el = document.createElement(tag);
@@ -71,6 +74,14 @@ if (host) {
         const node = nodes.get(selected);
         if (!node) { detail.append(element('p', text('select'), 'text-muted')); return; }
         detail.append(element('h4', name(node)));
+        if (node.RootProjectPath) {
+            detail.append(element('h5', text('resolvedFor')), element('p', node.RootProjectPath, 'small'));
+            detail.append(element('h5', text('framework')), element('p', node.Target, 'small'));
+            if (node.ReferencedTarget) detail.append(element('p', node.ReferencedTarget, 'small'));
+        } else if (node.Kind === 'project' && current().IsSolution) {
+            detail.append(element('p', text(node.IsSolutionMember ? 'solutionMember' : 'referencedMember'), 'small'));
+        }
+        if (node.RiskCount) detail.append(element('p', format('foldedRisk', node.RiskCount), 's360-cve-label'));
         if (node.Package) {
             detail.append(element('p', relation(node), 'small'));
             detail.append(element('span', status(node), `s360-node-status status-${node.Status}`));
@@ -105,6 +116,7 @@ if (host) {
         }
         links('introduced', parents.get(node.Id) || []);
         links('children', node.Children);
+        links('usedByFiles', node.UsedBy || []);
         if (node.Package) {
             detail.append(element('h5', text('purpose')));
             for (const purpose of node.Purposes.length ? node.Purposes : [text('noPurpose')]) detail.append(element('p', purpose, 'small'));
@@ -124,7 +136,8 @@ if (host) {
     async function render(ticket) {
         const focusedNode = canvas.contains(document.activeElement) ? document.activeElement.closest('g.node')?.dataset.node : null;
         const graph = current(), query = search.value.trim().toLowerCase();
-        const vulnerable = graph.Nodes.filter(n => n.Advisories.length > 0);
+        const vulnerable = graph.Nodes.filter(n => n.Package && n.Advisories.length > 0);
+        const vulnerableArtifacts = new Set(vulnerable.map(n => n.ArtifactId || n.Id));
         const seeds = graph.Nodes.filter(n => (!query || `${name(n)} ${n.Id} ${n.Advisories.join(' ')}`.toLowerCase().includes(query)) && (!risk.checked || n.Advisories.length));
         const visible = new Set(), edges = []; let limited = false;
         function add(id) {
@@ -135,10 +148,15 @@ if (host) {
         if (query || risk.checked) {
             // A focused node is retained even if it is outside the ordinary depth or node budget.
             const ordered = [...seeds].sort((a, b) => Number(b.Id === selected) - Number(a.Id === selected));
-            const queue = ordered.map(n => n.Id), visited = new Set();
-            for (let i = 0; i < queue.length; i++) {
-                const id = queue[i]; if (visited.has(id)) continue; visited.add(id);
-                if (add(id)) queue.push(...(parents.get(id) || []));
+            for (const seed of ordered) {
+                const path = new Set(), queue = [seed.Id];
+                for (let i = 0; i < queue.length; i++) {
+                    const id = queue[i]; if (path.has(id)) continue; path.add(id);
+                    queue.push(...(parents.get(id) || []));
+                }
+                const missing = [...path].filter(id => !visible.has(id));
+                if (visible.size + missing.length > 150 && visible.size > 0) { limited = true; continue; }
+                for (const id of path) add(id);
             }
             for (const id of visible) for (const child of nodes.get(id).Children) if (visible.has(child)) edges.push([id, child]);
             if (!nodes.has(selected) || !visible.has(selected)) selected = ordered[0]?.Id || '';
@@ -152,27 +170,30 @@ if (host) {
                 }
             }
         }
+        const referenceEdges = !query && !risk.checked ? (graph.ReferenceEdges || []).filter(([from, to]) => visible.has(from) && visible.has(to)) : [];
         const notes = [restoreNotice];
-        if (limited || edges.length > 400) notes.push(text('limited'));
+        if (limited || edges.length + referenceEdges.length > 400) notes.push(text('limited'));
         if (query || risk.checked) notes.push(text('pathsNotice'));
         if (distances.size < nodes.size) notes.push(text('unlinkedNotice'));
         notice.textContent = notes.filter(Boolean).join(' ');
         find('summary').textContent = format('visible', visible.size, nodes.size);
-        find('risk-summary').textContent = vulnerable.length ? format('risks', vulnerable.length, vulnerable.filter(n => !visible.has(n.Id)).length) : text('none');
+        const visibleVulnerable = new Set(vulnerable.filter(n => visible.has(n.Id)).map(n => n.ArtifactId || n.Id));
+        find('risk-summary').textContent = vulnerableArtifacts.size ? format('risks', vulnerableArtifacts.size, vulnerableArtifacts.size - visibleVulnerable.size) : text('none');
         find('risk-summary').classList.toggle('has-risk', vulnerable.length > 0);
         showDetails();
         if (!visible.size) { canvas.replaceChildren(); svg = null; notice.textContent = text('empty'); return; }
         const ids = new Map([...visible].map((id, i) => [id, `n${i}`]));
-        const code = [compact.matches ? 'flowchart TD' : 'flowchart LR',
+        const code = [compact.matches || graph.IsSolution && risk.checked ? 'flowchart TD' : 'flowchart LR',
             'classDef direct fill:#e8f7ef,stroke:#218358,color:#14563a',
             'classDef indirect fill:#edf4ff,stroke:#427bc1,color:#244a7d',
             'classDef vulnerable fill:#fff0f1,stroke:#cf354c,color:#852036,stroke-width:2px',
             'classDef project fill:#f1f2f6,stroke:#818b9d,color:#354052',
+            'classDef affected fill:#fff9f0,stroke:#b5893e,color:#4f4432,stroke-width:2px',
             'classDef unverified stroke:#ae7916,stroke-dasharray:4 3'];
         for (const id of visible) {
             const node = nodes.get(id);
-            const kind = !node.Package ? 'project' : node.Advisories.length ? 'vulnerable' : !distances.has(id) ? 'project' : distances.get(id) === 1 ? 'direct' : 'indirect';
-            const lines = !node.Package ? [name(node), node.Kind === 'project' ? text('reference') : ''] :
+            const kind = !node.Package ? node.RiskCount ? 'affected' : 'project' : node.Advisories.length ? 'vulnerable' : !distances.has(id) ? 'project' : directDependency(node) ? 'direct' : 'indirect';
+            const lines = !node.Package ? [name(node), node.Kind === 'project-reference' ? text('reference') : '', node.RiskCount ? format('foldedRisk', node.RiskCount) : ''] :
                 [node.Package.Name, node.Package.Version, node.Advisories[0] || (node.Status !== 0 ? status(node) : '')];
             const label = lines.filter(Boolean).flatMap(line => {
                 const shortened = line.length > 100 ? line.slice(0, 97) + '...' : line;
@@ -182,6 +203,7 @@ if (host) {
             if (node.Package && node.Status !== 0 && !node.Advisories.length) code.push(`class ${ids.get(id)} unverified`);
         }
         for (const [from, to] of edges.slice(0, 400)) code.push(`${ids.get(from)} --> ${ids.get(to)}`);
+        for (const [from, to] of referenceEdges.slice(0, Math.max(0, 400 - edges.length))) code.push(`${ids.get(from)} -.-> ${ids.get(to)}`);
         try {
             mermaid ??= (await import('/node_modules/mermaid/dist/mermaid.esm.mjs')).default;
             mermaid.initialize({ startOnLoad: false, securityLevel: 'strict', theme: 'base', maxTextSize: 250000,
@@ -220,7 +242,7 @@ if (host) {
                 group.append(control);
             }
             markSelection();
-            readableView();
+            if (graph.IsSolution) fit(); else readableView();
             if (focusedNode) [...svg.querySelectorAll('g.node')].find(n => n.dataset.node === focusedNode)?.focus({ preventScroll: true });
         } catch {
             if (ticket === sequence) { canvas.replaceChildren(); svg = null; notice.textContent = text('failed'); }
@@ -281,7 +303,7 @@ if (host) {
         event.preventDefault(); applyView();
     });
     function reset() {
-        search.value = ''; risk.checked = false; depth.value = '3'; selected = '';
+        search.value = ''; risk.checked = false; depth.value = current().IsSolution ? '1' : '3'; selected = '';
         expanded.clear(); collapsed.clear(); restoreNotice = ''; schedule();
     }
     scope.addEventListener('change', () => { load(); reset(); });
@@ -318,7 +340,7 @@ if (host) {
                     expanded = new Set(Array.isArray(state.expanded) ? state.expanded.filter(i => Number.isInteger(i) && i >= 0 && i < current().Nodes.length).map(i => current().Nodes[i].Id) : []);
                     collapsed = new Set(Array.isArray(state.collapsed) ? state.collapsed.filter(i => Number.isInteger(i) && i >= 0 && i < current().Nodes.length).map(i => current().Nodes[i].Id) : []);
                 }
-                depth.value = Number.isFinite(state.depth) ? String(Math.min(20, Math.max(1, state.depth))) : '3';
+                depth.value = Number.isFinite(state.depth) ? String(Math.min(20, Math.max(1, state.depth))) : current().IsSolution ? '1' : '3';
                 search.value = typeof state.query === 'string' ? state.query.slice(0, 214) : '';
                 risk.checked = state.risk === true;
             } else restoreNotice = text('viewChanged');

@@ -232,8 +232,8 @@ namespace Aiursoft.S360.MySql.Migrations
                         .HasColumnType("varchar(200)");
 
                     b.Property<string>("Project")
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)");
+                        .HasMaxLength(750)
+                        .HasColumnType("varchar(750)");
 
                     b.Property<string>("RunId")
                         .IsRequired()

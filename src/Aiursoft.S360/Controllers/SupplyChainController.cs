@@ -64,7 +64,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         if (tab is not ("dependencies" or "projects" or "rules") ||
             ecosystem is not ("all" or "nuget" or "npm") || scope is not ("baseline" or "review" or "history") ||
             filter is not ("all" or "issues" or "pending" or "compliant" or "cve") ||
-            page is < 1 or > 10000 || query?.Length > 214 || project?.Length > 200) return BadRequest();
+            page is < 1 or > 10000 || query?.Length > 214 || project?.Length > 750) return BadRequest();
         if (tab != "rules" && lookupName == null && lookupVersion == null && lookupSource == null && supplierId == null)
         {
             var inventoryModel = new InventoryViewModel
@@ -73,12 +73,35 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 Query = query?.Trim(), Project = string.IsNullOrWhiteSpace(project) ? null : project.Trim(), Page = page,
                 CanRead = (await authorization.AuthorizeAsync(User, AppPermissionNames.CanReadSupplyChain)).Succeeded
             };
+            if (inventoryModel.CanRead && tab == "projects" && inventoryModel.Project is { } repository &&
+                !repository.Contains("//", StringComparison.Ordinal))
+            {
+                // Existing repository links resolve to explicit solution identities, never to a guessed csproj.
+                var candidates = await db.BuildChecks.AsNoTracking()
+                    .Where(c => c.Project != null && c.Project.StartsWith(repository + "//"))
+                    .Select(c => new BuildCheck
+                    {
+                        Project = c.Project, ContextJson = c.ContextJson, RunId = c.RunId,
+                        BatchIndex = c.BatchIndex, BatchCount = c.BatchCount, ScannedProjectCount = c.ScannedProjectCount,
+                        Commit = c.Commit, Pipeline = c.Pipeline, GraphJson = c.GraphJson == null ? null : "[]"
+                    }).ToListAsync();
+                var solutions = candidates.GroupBy(c => c.RunId).Where(g => BuildCheckRun.IsComplete(g.ToList()))
+                    .Where(g => BuildCheckRun.ReadContext(g.First().ContextJson) is { } context &&
+                        context.Repository == repository && context.SolutionPath != null &&
+                        BuildCheckRun.Purpose(g.First().ContextJson) == "baseline" &&
+                        (ecosystem == "all" || context.Ecosystem == ecosystem || context.Ecosystem == null))
+                    .Select(g => g.First().Project!).Distinct().ToList();
+                if (solutions.Count == 1)
+                    return RedirectToAction(nameof(Index), new { tab, scope, ecosystem, filter, project = solutions[0] });
+                if (solutions.Count > 1)
+                    return RedirectToAction(nameof(Index), new { tab, scope, ecosystem, filter, query = repository });
+            }
             if (inventoryModel.CanRead) await inventory.PopulateAsync(inventoryModel);
             return this.StackView(new CatalogViewModel
             {
                 Inventory = inventoryModel,
                 PageTitle = inventoryModel is { Tab: "projects", Project: not null }
-                    ? inventoryModel.Project : "Dependency catalog"
+                    ? inventoryModel.Project.Replace("//", " · ", StringComparison.Ordinal) : "Dependency catalog"
             });
         }
         if (ecosystem == "all") ecosystem = "nuget";

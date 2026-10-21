@@ -23,6 +23,7 @@ public class Dependency
 
 public class CheckRequest
 {
+    public SolutionDependencyGraph? SolutionGraph { get; set; }
     /// <summary>Null for older clients. Non-null batches together contain the complete observed graph.</summary>
     [MaxLength(5000)] public List<DependencyGraphNode>? GraphNodes { get; set; }
 
@@ -31,7 +32,7 @@ public class CheckRequest
 
     [Range(1, 10000)] public int ScannedProjectCount { get; set; }
 
-    [StringLength(200)] public string? Project { get; set; }
+    [StringLength(750)] public string? Project { get; set; }
     [StringLength(80)] public string? Commit { get; set; }
     [StringLength(200)] public string? Pipeline { get; set; }
     public CheckContext? Context { get; set; }
@@ -53,6 +54,7 @@ public class DependencyDecision
 
 public class CheckResponse : AiurResponse
 {
+    public int SolutionGraphVersion { get; set; }
     public bool Trusted { get; set; }
     public List<DependencyDecision> Decisions { get; set; } = [];
 }
@@ -60,6 +62,9 @@ public class CheckResponse : AiurResponse
 /// <summary>Client-reported check provenance; this is not deployment attestation.</summary>
 public class CheckContext
 {
+    /// <summary>Repository is provenance; the repository-relative solution path identifies the audited project.</summary>
+    [StringLength(200)] public string? Repository { get; set; }
+    [StringLength(512)] public string? SolutionPath { get; set; }
     /// <summary>Baseline declares production use; review never changes production inventory.</summary>
     [RegularExpression("^(review|baseline)$")] public string? Purpose { get; set; }
     /// <summary>Set by the server from authentication, never trusted from the caller.</summary>

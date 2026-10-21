@@ -8,6 +8,19 @@ public enum CheckKind { Unknown, Local, MergeRequest, Branch, DefaultBranch, Tag
 
 public static class BuildCheckRun
 {
+    /// <summary>Keep legacy repository reports in check history once explicit solution baselines replace them.</summary>
+    public static List<BuildCheck> ForEcosystem(IReadOnlyCollection<BuildCheck> checks, string ecosystem)
+    {
+        var scoped = checks.Where(c => ReadContext(c.ContextJson)?.Ecosystem is not { Length: > 0 } declared ||
+            declared == ecosystem).ToList();
+        var solutionRepositories = scoped.GroupBy(c => c.RunId).Where(g => IsComplete(g.ToList()))
+            .Select(g => ReadContext(g.First().ContextJson))
+            .Where(c => c is { Purpose: "baseline", IsAnonymous: false, SolutionPath: not null, Repository: not null })
+            .Select(c => c!.Repository!).ToHashSet(StringComparer.Ordinal);
+        return scoped.Where(c => Purpose(c.ContextJson) != "baseline" || ReadContext(c.ContextJson)?.SolutionPath != null ||
+            c.Project == null || !solutionRepositories.Contains(c.Project)).ToList();
+    }
+
     public static bool IsComplete(IReadOnlyCollection<BuildCheck> batches)
     {
         if (batches.Count == 0) return false;

@@ -15,7 +15,8 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
         // Select complete snapshots before selecting packages: an empty newer snapshot
         // removes old dependencies, and a NuGet-only snapshot must not replace npm.
         var checks = await db.BuildChecks.AsNoTracking()
-            .Where(c => !projectOnly || c.Project == model.Project).OrderByDescending(c => c.CreatedAtUtc)
+            .Where(c => !projectOnly || c.Project == model.Project || model.Repository != null &&
+                (c.Project == model.Repository || c.Project!.StartsWith(model.Repository + "//"))).OrderByDescending(c => c.CreatedAtUtc)
             .ThenByDescending(c => c.Id).Select(c => new BuildCheck
             {
                 Id = c.Id, Project = c.Project, Commit = c.Commit, Pipeline = c.Pipeline,
@@ -29,17 +30,18 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
             .Where(g => model.Ecosystem == "all" ||
                 BuildCheckRun.ReadContext(g.First().ContextJson)?.Ecosystem is not { Length: > 0 } ecosystem ||
                 ecosystem == model.Ecosystem).ToList();
-        var projects = runs.Select(run => run.First().Project!).Distinct().ToDictionary(name => name, name => new InventoryProject { Name = name });
+        var projects = new Dictionary<string, InventoryProject>(StringComparer.Ordinal);
         var selected = new List<(string Ecosystem, List<BuildCheck> Checks)>();
         foreach (var ecosystem in new[] { "nuget", "npm" }.Where(e => model.Ecosystem == "all" || e == model.Ecosystem))
         {
-            var groups = runs.Where(run => BuildCheckRun.ReadContext(run.First().ContextJson)?.Ecosystem is not { Length: > 0 } scope || scope == ecosystem)
+            var groups = BuildCheckRun.ForEcosystem(runs.SelectMany(run => run).ToList(), ecosystem).GroupBy(c => c.RunId)
                 .GroupBy(run => (run.First().Project, Context: BuildCheckRun.ContextKey(run.First())));
             foreach (var group in groups)
             {
                 var ordered = group.OrderByDescending(g => g.Max(c => c.CreatedAtUtc))
                     .ThenByDescending(g => g.Max(c => c.Id)).ToList();
-                var project = projects[group.Key.Project!];
+                if (!projects.TryGetValue(group.Key.Project!, out var project))
+                    projects.Add(group.Key.Project!, project = new InventoryProject { Name = group.Key.Project! });
                 if (!BuildCheckRun.IsComplete(ordered[0].ToList())) project.Incomplete = true;
                 var complete = ordered.FirstOrDefault(g => BuildCheckRun.IsComplete(g.ToList()));
                 if (complete == null) continue;
@@ -118,9 +120,37 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
             foreach (var selection in selectedRuns)
             {
                 if (selection.Checks.Any(c => payloads[c.Id] == null)) continue;
-                var nodes = selection.Checks.SelectMany(c =>
-                    JsonSerializer.Deserialize<List<DependencyGraphNode>>(payloads[c.Id]!) ?? [])
-                    .Where(n => n.Ecosystem == selection.Ecosystem);
+                var parts = selection.Checks.Select(c => DependencyReportGraph.Read(payloads[c.Id]!)).ToList();
+                if (selection.Ecosystem == "nuget" && parts.All(p => p.Solution != null))
+                {
+                    var solution = SolutionDependencyGraph.Assemble(parts.Select(p => p.Solution!).ToList());
+                    opened.Solution = new InventorySolution
+                    {
+                        Graph = solution,
+                        Repository = BuildCheckRun.ReadContext(selection.Checks[0].ContextJson)?.Repository ?? string.Empty,
+                        CheckId = selection.Checks.OrderByDescending(c => c.CreatedAtUtc).First().Id,
+                        Packages = solution.Nodes.Where(n => n.Package != null).Select(n =>
+                        {
+                            var state = states.GetValueOrDefault(DependencyIntroductionPaths.Identity(n.Package!));
+                            return new InventoryGraphNode(n.Id, "package", n.Package, [],
+                                state?.Status ?? InventoryStatus.Pending, state?.Reason, state?.Advisories ?? [],
+                                state?.Uses.Select(u => u.Project).Distinct().Order().ToList() ?? [],
+                                state == null ? [] : state.Requests.Select(r => r.Justification)
+                                    .Concat(state.Rules.Select(r => r.Justification))
+                                    .Where(p => !string.IsNullOrWhiteSpace(p)).Distinct().ToList());
+                        }).ToList()
+                    };
+                    continue;
+                }
+                if (selection.Ecosystem == "nuget")
+                {
+                    // An old manifest graph cannot prove the structure of a solution.
+                    // Retain the report and package list; never invent missing relationships.
+                    for (var i = 0; i < opened.Reports.Count; i++)
+                        if (opened.Reports[i].Ecosystem == "nuget") opened.Reports[i] = opened.Reports[i] with { HasGraph = false };
+                    continue;
+                }
+                var nodes = parts.SelectMany(p => p.Manifests ?? []).Where(n => n.Ecosystem == selection.Ecosystem);
                 foreach (var graph in nodes.GroupBy(n => n.Scope))
                 {
                     opened.Graphs.Add(new InventoryGraph

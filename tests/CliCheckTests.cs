@@ -11,6 +11,31 @@ namespace Aiursoft.S360.Tests;
 [TestClass]
 public class CliCheckTests
 {
+    [TestMethod]
+    public async Task SolutionReportRejectsServerThatSilentlyIgnoresItsGraph()
+    {
+        var dependency = new Dependency { Ecosystem = "nuget", Name = "Example", Version = "1.0.0",
+            Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64) };
+        var handler = new VerificationHandler(dependency, false);
+        var services = new ServiceCollection();
+        services.AddLogging();
+        services.AddAiurProtocolClient();
+        services.AddHttpClient(string.Empty).ConfigurePrimaryHttpMessageHandler(() => handler);
+        using var provider = services.BuildServiceProvider();
+        var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
+        var request = new CheckRequest
+        {
+            ScannedProjectCount = 1, Dependencies = [dependency], BatchCount = 2,
+            SolutionGraph = new SolutionDependencyGraph { SolutionPath = "App.sln" },
+            Context = new CheckContext { Purpose = "review", Repository = "company/example", SolutionPath = "App.sln" }
+        };
+        var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
+            client.CheckWhenReadyAsync("http://localhost", null, request, TimeSpan.FromSeconds(30)));
+        StringAssert.Contains(error.Message, "Deploy the server update");
+        Assert.IsFalse(client.SupportsSolutionGraphs);
+        Assert.AreEqual(1, handler.Calls);
+    }
+
 #if DEBUG
     private const string BuildConfiguration = "Debug";
 #else

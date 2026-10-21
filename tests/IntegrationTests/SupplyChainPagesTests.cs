@@ -1345,6 +1345,107 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
+    public async Task SolutionReportsKeepSiblingProjectsAndRejectBrokenFinalBatch()
+    {
+        await AddCheckKeyAsync("solution-report-key", baseline: true);
+        Http.DefaultRequestHeaders.Add("X-S360-Key", "solution-report-key");
+        var package = new Dependency { Ecosystem = "nuget", Name = "Solution.Unapproved", Version = "1.0.0",
+            Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64) };
+        var packageId = SolutionDependencyGraph.PackageId(package);
+        var repository = "company/" + Guid.NewGuid().ToString("N");
+        var request = new CheckRequest
+        {
+            Context = new CheckContext { Purpose = "baseline", Ecosystem = "nuget", Repository = repository, SolutionPath = "Product.sln" },
+            ScannedProjectCount = 2, BatchCount = 2, Dependencies = [package],
+            SolutionGraph = new SolutionDependencyGraph
+            {
+                SolutionPath = "Product.sln",
+                Nodes = [new() { Id = "project:Safe.csproj", ProjectPath = "Safe.csproj", IsSolutionMember = true },
+                    new() { Id = "project:SqlServer.csproj", ProjectPath = "SqlServer.csproj", IsSolutionMember = true }],
+                Contexts = [new() { ProjectPath = "Safe.csproj", Target = "net10.0" }]
+            }
+        };
+        using (var first = await Http.PostAsJsonAsync("/api/check", request))
+        {
+            Assert.AreEqual(HttpStatusCode.OK, first.StatusCode, await first.Content.ReadAsStringAsync());
+            Assert.IsFalse((await first.Content.ReadFromJsonAsync<CheckResponse>())!.Trusted);
+        }
+        request.BatchIndex = 1;
+        request.Dependencies = [];
+        request.SolutionGraph.Nodes = [new() { Id = packageId, Package = package }];
+        request.SolutionGraph.Contexts = [new() { ProjectPath = "SqlServer.csproj", Target = "net10.0", Edges = [
+            new() { ParentId = "project:SqlServer.csproj", ChildId = "missing" }] }];
+        using (var broken = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.BadRequest, broken.StatusCode);
+        request.SolutionGraph.Contexts[0].Edges[0].ChildId = packageId;
+        using (var last = await Http.PostAsJsonAsync("/api/check", request))
+        {
+            Assert.AreEqual(HttpStatusCode.OK, last.StatusCode, await last.Content.ReadAsStringAsync());
+            Assert.IsFalse((await last.Content.ReadFromJsonAsync<CheckResponse>())!.Trusted);
+        }
+        using var scope = Server!.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+        var checks = await db.BuildChecks.Where(c => c.RunId == request.RunId).ToListAsync();
+        Assert.HasCount(2, checks);
+        Assert.IsTrue(BuildCheckRun.IsComplete(checks));
+        Assert.IsTrue(checks.All(c => c.Project == repository + "//Product.sln"));
+        var view = new Models.SupplyChainViewModels.InventoryViewModel
+        { Tab = "projects", Scope = "baseline", Ecosystem = "nuget", Project = repository + "//Product.sln" };
+        await scope.ServiceProvider.GetRequiredService<CatalogInventoryService>().PopulateAsync(view);
+        var solution = view.Projects.Single().Solution!;
+        Assert.IsNotNull(solution);
+        Assert.AreEqual(repository, solution.Repository);
+        Assert.HasCount(2, solution.Graph.Nodes.Where(n => n.ProjectPath != null).ToList());
+        Assert.AreEqual("SqlServer.csproj", solution.Graph.PathsTo(new HashSet<string> { packageId }).Single().ProjectPath);
+        await LoginAsAdmin();
+        using var redirect = await Http.GetAsync("/SupplyChain?tab=projects&project=" + Uri.EscapeDataString(repository));
+        Assert.AreEqual(HttpStatusCode.Redirect, redirect.StatusCode);
+        StringAssert.Contains(Uri.UnescapeDataString(redirect.Headers.Location!.OriginalString), repository + "//Product.sln");
+        using var page = await Http.GetAsync(redirect.Headers.Location);
+        Assert.AreEqual(HttpStatusCode.OK, page.StatusCode);
+        var html = await page.Content.ReadAsStringAsync();
+        StringAssert.Contains(html, "Solution structure");
+        StringAssert.Contains(html, "Safe.csproj");
+        StringAssert.Contains(html, "SqlServer.csproj");
+        StringAssert.Contains(html, "<label hidden=\"hidden\">Manifest and target");
+    }
+
+    [TestMethod]
+    public async Task SolutionsInOneRepositoryHaveIndependentBaselinesAndReviewNeverReplacesThem()
+    {
+        await AddCheckKeyAsync("solution-identity-key", baseline: true);
+        Http.DefaultRequestHeaders.Add("X-S360-Key", "solution-identity-key");
+        var repository = "company/" + Guid.NewGuid().ToString("N");
+        var request = new CheckRequest
+        {
+            Context = new CheckContext { Purpose = "baseline", Ecosystem = "nuget", Repository = repository },
+            ScannedProjectCount = 1,
+            SolutionGraph = new SolutionDependencyGraph
+            {
+                Nodes = [new() { Id = "project:App.csproj", ProjectPath = "App.csproj", IsSolutionMember = true }],
+                Contexts = [new() { ProjectPath = "App.csproj", Target = "net10.0" }]
+            }
+        };
+        foreach (var path in new[] { "first/Product.sln", "second/Product.sln" })
+        {
+            request.RunId = Guid.NewGuid().ToString("N");
+            request.Context.SolutionPath = path;
+            request.SolutionGraph.SolutionPath = path;
+            using var response = await Http.PostAsJsonAsync("/api/check", request);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, await response.Content.ReadAsStringAsync());
+        }
+        request.RunId = Guid.NewGuid().ToString("N");
+        request.Context.Purpose = "review";
+        using (var review = await Http.PostAsJsonAsync("/api/check", request))
+            Assert.AreEqual(HttpStatusCode.OK, review.StatusCode, await review.Content.ReadAsStringAsync());
+        using var scope = Server!.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+        var identities = await db.BuildChecks.Where(c => c.Project!.StartsWith(repository + "//")).Select(c => c.Project).ToListAsync();
+        CollectionAssert.AreEquivalent(new[] { repository + "//first/Product.sln", repository + "//second/Product.sln" }, identities);
+        Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.RunId == request.RunId));
+    }
+
+    [TestMethod]
     public async Task CheckApiRejectsConflictingBatchMetadataWithinOneRun()
     {
         await AddCheckKeyAsync("integration-check-key", baseline: true);

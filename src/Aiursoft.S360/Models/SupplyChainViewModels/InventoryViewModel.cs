@@ -14,6 +14,7 @@ public class InventoryViewModel
     public string Filter { get; init; } = "all";
     public string? Query { get; init; }
     public string? Project { get; init; }
+    public string? Repository { get; init; }
     public int Page { get; set; } = 1;
     public int Total { get; set; }
     public int PackageCount { get; set; }
@@ -54,15 +55,25 @@ public record InventoryUse(string Project, int CheckId, DateTime CheckedAtUtc, s
 public class InventoryProject
 {
     public required string Name { get; init; }
+    public string DisplayName => Name.Replace("//", " · ", StringComparison.Ordinal);
     public List<InventoryVersion> Versions { get; init; } = [];
     public List<InventoryReport> Reports { get; init; } = [];
     public List<InventoryGraph> Graphs { get; set; } = [];
+    public InventorySolution? Solution { get; set; }
     public bool Incomplete { get; set; }
     public InventoryStatus Status => Versions.Any(v => v.Status == InventoryStatus.NonCompliant)
         ? InventoryStatus.NonCompliant
         : Incomplete || Reports.Count == 0 ||
           Versions.Any(v => v.Status == InventoryStatus.Pending)
             ? InventoryStatus.Pending : InventoryStatus.Compliant;
+}
+
+public class InventorySolution
+{
+    public required SolutionDependencyGraph Graph { get; init; }
+    public required string Repository { get; init; }
+    public int CheckId { get; init; }
+    public List<InventoryGraphNode> Packages { get; init; } = [];
 }
 
 public record InventoryReport(string Ecosystem, int CheckId, DateTime CheckedAtUtc, string? Commit, string? Pipeline, bool HasGraph = false);

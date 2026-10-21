@@ -1,4 +1,4 @@
-import { solutionView } from './solution-graph.js';
+import { solutionView, solutionPaths } from './solution-graph.js';
 // Relationships come from the reported restore graph; never infer edges from package names.
 const host = document.querySelector('.s360-graph');
 if (host) {
@@ -11,17 +11,17 @@ if (host) {
     const canvas = find('canvas'), detail = find('detail'), notice = find('notice');
     const stage = find('stage');
     const compact = window.matchMedia('(max-width: 767px)');
-    let nodes, parents, distances, root, selected = '', mermaid, svg, bounds, view, drag;
+    let nodes, parents, distances, roots, selected = '', mermaid, svg, bounds, view, drag;
     let expanded = new Set(), collapsed = new Set(), sequence = 0, timer, rendering = Promise.resolve();
     let suppressClick = false, restoreNotice = '';
     const current = () => graphs[Number(scope.value)];
-    const name = node => node.Kind === 'target' ? format('frameworkLabel', node.Target) : node.Package ? `${node.Package.Name}@${node.Package.Version}` : node.Label || (node.Kind === 'root' ? current().Project : node.Id);
+    const name = node => node.Package ? `${node.Package.Name}@${node.Package.Version}` : node.Label || (node.Kind === 'root' ? current().Project : node.Id);
     const status = node => text(['compliant', 'pending', 'problem'][node.Status]);
     const riskStatus = node => node.Advisories.length ? text('vulnerable') : node.RiskCount ? text('affected') : status(node);
     const level = () => Math.max(1, Math.min(20, Math.floor(Number(depth.value) || 3)));
     const directDependency = node => node.IsDirect ?? distances.get(node.Id) === 1;
     const relation = node => text(directDependency(node) ? 'direct' : distances.has(node.Id) ? 'indirect' : 'unlinked');
-    const isOpen = id => !collapsed.has(id) && (expanded.has(id) || nodes.get(id)?.Kind === 'target' || distances.get(id) < level());
+    const isOpen = id => !collapsed.has(id) && (expanded.has(id) || distances.get(id) < level());
     const escapeLabel = value => Array.from(value).map(c => /[a-zA-Z0-9 ._/@-]/.test(c) ? c : `#${c.codePointAt(0)};`).join('');
     const element = (tag, value, className) => {
         const el = document.createElement(tag);
@@ -33,9 +33,9 @@ if (host) {
         nodes = new Map(current().Nodes.map(n => [n.Id, n]));
         parents = new Map(current().Nodes.map(n => [n.Id, []]));
         for (const node of nodes.values()) for (const child of node.Children) parents.get(child)?.push(node.Id);
-        root = current().Nodes.find(n => n.Kind === 'root');
-        distances = new Map([[root.Id, 0]]);
-        const queue = [root.Id];
+        roots = current().RootIds || [current().Nodes.find(n => n.Kind === 'root').Id];
+        distances = new Map(roots.map(id => [id, 0]));
+        const queue = [...roots];
         for (let i = 0; i < queue.length; i++) for (const child of nodes.get(queue[i]).Children) {
             if (!nodes.has(child) || distances.has(child)) continue;
             distances.set(child, distances.get(queue[i]) + 1);
@@ -45,7 +45,7 @@ if (host) {
     function saveView() {
         const url = new URL(location.href);
         const state = { manifest: current().Project, ecosystem: current().Ecosystem, target: current().Target,
-            report: current().CheckId, depth: level(), query: search.value, risk: risk.checked, selected,
+            report: current().CheckId, projection: current().IsSolution ? 3 : 1, depth: level(), query: search.value, risk: risk.checked, selected,
             expanded: [...expanded].map(id => current().Nodes.indexOf(nodes.get(id))),
             collapsed: [...collapsed].map(id => current().Nodes.indexOf(nodes.get(id))) };
         url.hash = new URLSearchParams({ tree: JSON.stringify(state) });
@@ -73,14 +73,17 @@ if (host) {
     function showDetails() {
         detail.replaceChildren();
         const node = nodes.get(selected);
+        detail.hidden = current().IsSolution && !node;
+        find('body').classList.toggle('has-selection', !detail.hidden);
         if (!node) { detail.append(element('p', text('select'), 'text-muted')); return; }
         detail.append(element('h4', name(node)));
-        if (node.RootProjectPath) {
+        if (current().IsSolution && node.Kind === 'project') {
+            detail.append(element('p', node.ProjectPath, 'small'));
+            if (node.Targets.length) detail.append(element('h5', text('framework')), element('p', node.Targets.join(', '), 'small'));
+        } else if (node.RootProjectPath) {
             detail.append(element('h5', text('resolvedFor')), element('p', node.RootProjectPath, 'small'));
             detail.append(element('h5', text('framework')), element('p', node.Target, 'small'));
             if (node.ReferencedTarget) detail.append(element('p', node.ReferencedTarget, 'small'));
-        } else if (node.Kind === 'project' && current().IsSolution) {
-            detail.append(element('p', text(node.IsSolutionMember ? 'solutionMember' : 'referencedMember'), 'small'));
         }
         if (node.RiskCount) detail.append(element('p', format('foldedRisk', node.RiskCount), 's360-cve-label'));
         if (node.Package) {
@@ -127,6 +130,10 @@ if (host) {
         links('introduced', parents.get(node.Id) || []);
         links('children', node.Children);
         links('usedByFiles', node.UsedBy || []);
+        if (node.Package && node.Resolutions?.length) {
+            detail.append(element('h5', text('resolvedFor')));
+            for (const resolution of node.Resolutions) detail.append(element('p', `${resolution.ProjectPath} · ${resolution.Target}`, 'small'));
+        }
         if (node.Package) {
             detail.append(element('h5', text('purpose')));
             for (const purpose of node.Purposes.length ? node.Purposes : [text('noPurpose')]) detail.append(element('p', purpose, 'small'));
@@ -148,14 +155,28 @@ if (host) {
         const graph = current(), query = search.value.trim().toLowerCase();
         const vulnerable = graph.Nodes.filter(n => n.Package && n.Advisories.length > 0);
         const vulnerableArtifacts = new Set(vulnerable.map(n => n.ArtifactId || n.Id));
-        const seeds = graph.Nodes.filter(n => (!query || `${name(n)} ${n.Id} ${n.Advisories.join(' ')}`.toLowerCase().includes(query)) && (!risk.checked || n.Advisories.length));
+        const seeds = graph.Nodes.filter(n => (!query || (nodes.has(search.value.trim()) ? n.Id === search.value.trim() : `${name(n)} ${n.Id} ${n.Advisories.join(' ')}`.toLowerCase().includes(query))) && (!risk.checked || n.Advisories.length));
         const visible = new Set(), edges = []; let limited = false;
         function add(id) {
             if (!nodes.has(id) || visible.has(id)) return false;
             if (visible.size >= 150) { limited = true; return false; }
             visible.add(id); return true;
         }
-        if (query || risk.checked) {
+        if (graph.IsSolution && (query || risk.checked)) {
+            const pathEdges = new Map();
+            const ordered = [...seeds].sort((a, b) => Number(b.Id === selected) - Number(a.Id === selected));
+            for (const seed of ordered) {
+                const paths = solutionPaths(graph, new Set([seed.Id]));
+                const missing = [...paths.visible].filter(id => !visible.has(id));
+                // Keep complete introduction paths; never trim a path halfway to fit the budget.
+                const newEdges = paths.edges.filter(edge => !pathEdges.has(JSON.stringify(edge)));
+                if (visible.size + missing.length > 150 || pathEdges.size + newEdges.length > 400) { limited = true; continue; }
+                for (const id of paths.visible) add(id);
+                for (const edge of newEdges) pathEdges.set(JSON.stringify(edge), edge);
+            }
+            edges.push(...pathEdges.values());
+            if (!visible.has(selected)) selected = seeds[0]?.Id || '';
+        } else if (query || risk.checked) {
             // A focused node is retained even if it is outside the ordinary depth or node budget.
             const ordered = [...seeds].sort((a, b) => Number(b.Id === selected) - Number(a.Id === selected));
             for (const seed of ordered) {
@@ -171,7 +192,7 @@ if (host) {
             for (const id of visible) for (const child of nodes.get(id).Children) if (visible.has(child)) edges.push([id, child]);
             if (!nodes.has(selected) || !visible.has(selected)) selected = ordered[0]?.Id || '';
         } else {
-            const queue = [root.Id]; add(root.Id);
+            const queue = [...roots]; for (const id of roots) add(id);
             for (let i = 0; i < queue.length; i++) {
                 const id = queue[i]; if (!isOpen(id)) continue;
                 for (const child of nodes.get(id).Children) {
@@ -180,9 +201,8 @@ if (host) {
                 }
             }
         }
-        const referenceEdges = !query && !risk.checked ? (graph.ReferenceEdges || []).filter(([from, to]) => visible.has(from) && visible.has(to)) : [];
         const notes = [restoreNotice];
-        if (limited || edges.length + referenceEdges.length > 400) notes.push(text('limited'));
+        if (limited || edges.length > 400) notes.push(text('limited'));
         if (query || risk.checked) notes.push(text('pathsNotice'));
         if (distances.size < nodes.size) notes.push(text('unlinkedNotice'));
         notice.textContent = notes.filter(Boolean).join(' ');
@@ -190,8 +210,9 @@ if (host) {
         const visibleVulnerable = new Set(vulnerable.filter(n => visible.has(n.Id)).map(n => n.ArtifactId || n.Id));
         find('risk-summary').textContent = vulnerableArtifacts.size ? format('risks', vulnerableArtifacts.size, vulnerableArtifacts.size - visibleVulnerable.size) : text('none');
         find('risk-summary').classList.toggle('has-risk', vulnerable.length > 0);
+        find('show-risks').hidden = !vulnerable.length;
         showDetails();
-        if (!visible.size) { canvas.replaceChildren(); svg = null; notice.textContent = text('empty'); return; }
+        if (!visible.size) { canvas.replaceChildren(); svg = null; notice.textContent = limited ? text('limited') : text('empty'); return; }
         const ids = new Map([...visible].map((id, i) => [id, `n${i}`]));
         const code = [compact.matches || graph.IsSolution && risk.checked ? 'flowchart TD' : 'flowchart LR',
             'classDef neutral fill:#f1f2f6,stroke:#818b9d,color:#354052',
@@ -201,17 +222,16 @@ if (host) {
         for (const id of visible) {
             const node = nodes.get(id);
             const kind = node.Advisories.length ? 'vulnerable' : node.RiskCount ? 'affected' : 'neutral';
-            const lines = !node.Package ? [name(node), node.Kind === 'project-reference' ? text('reference') : '', node.RiskCount ? format('foldedRisk', node.RiskCount) : ''] :
-                [node.Package.Name, node.Package.Version, node.Advisories[0] || (node.RiskCount ? format('foldedRisk', node.RiskCount) : node.Status !== 0 ? status(node) : '')];
+            const lines = !node.Package ? [name(node)] :
+                [node.Package.Name, node.Package.Version, node.Advisories[0] || (node.Status !== 0 ? status(node) : '')];
             const label = lines.filter(Boolean).flatMap(line => {
                 const shortened = line.length > 100 ? line.slice(0, 97) + '...' : line;
-                return shortened.match(compact.matches ? /.{1,22}/gu : /.{1,32}/gu) || [''];
+                return [shortened];
             }).map(escapeLabel).join('<br/>');
             code.push(`${ids.get(id)}["${label}"]:::${kind}`);
             if (node.Package && node.Status !== 0 && !node.Advisories.length) code.push(`class ${ids.get(id)} unverified`);
         }
         for (const [from, to] of edges.slice(0, 400)) code.push(`${ids.get(from)} --> ${ids.get(to)}`);
-        for (const [from, to] of referenceEdges.slice(0, Math.max(0, 400 - edges.length))) code.push(`${ids.get(from)} -.-> ${ids.get(to)}`);
         try {
             mermaid ??= (await import('/node_modules/mermaid/dist/mermaid.esm.mjs')).default;
             mermaid.initialize({ startOnLoad: false, securityLevel: 'strict', theme: 'base', maxTextSize: 250000,
@@ -267,7 +287,7 @@ if (host) {
     function readableView() {
         fit();
         if (!svg || canvas.clientWidth / view.width >= .7) return;
-        const anchor = [...svg.querySelectorAll('g.node')].find(n => n.dataset.node === (selected || root.Id));
+        const anchor = [...svg.querySelectorAll('g.node')].find(n => n.dataset.node === (selected || roots[0]));
         if (!anchor) return;
         const rect = anchor.getBoundingClientRect();
         const point = new DOMPoint(rect.x + rect.width / 2, rect.y + rect.height / 2).matrixTransform(svg.getScreenCTM().inverse());
@@ -320,6 +340,7 @@ if (host) {
     depth.addEventListener('change', () => { depth.value = level(); expanded.clear(); collapsed.clear(); search.value = ''; risk.checked = false; schedule(); });
     find('direct').addEventListener('click', () => { depth.value = '1'; depth.dispatchEvent(new Event('change')); });
     find('reset').addEventListener('click', reset);
+    find('show-risks').addEventListener('click', () => { search.value = ''; risk.checked = true; schedule(); });
     find('fit').addEventListener('click', fit);
     find('zoom-in').addEventListener('click', () => zoom(.8));
     find('zoom-out').addEventListener('click', () => zoom(1.25));
@@ -342,7 +363,7 @@ if (host) {
             const index = graphs.findIndex(g => g.Project === state.manifest && g.Target === state.target && g.Ecosystem === state.ecosystem);
             if (index >= 0) {
                 scope.value = String(index); load();
-                if (state.report !== current().CheckId) restoreNotice = text('viewChanged');
+                if (state.report !== current().CheckId || current().IsSolution && state.projection !== 3) restoreNotice = text('viewChanged');
                 else {
                     selected = typeof state.selected === 'string' && nodes.has(state.selected) ? state.selected : '';
                     expanded = new Set(Array.isArray(state.expanded) ? state.expanded.filter(i => Number.isInteger(i) && i >= 0 && i < current().Nodes.length).map(i => current().Nodes[i].Id) : []);

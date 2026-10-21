@@ -1413,7 +1413,9 @@ public class SupplyChainPagesTests : TestBase
         using var page = await Http.GetAsync(redirect.Headers.Location);
         Assert.AreEqual(HttpStatusCode.OK, page.StatusCode);
         var html = await page.Content.ReadAsStringAsync();
-        StringAssert.Contains(html, "Solution structure");
+        StringAssert.Contains(html, "Project dependencies");
+        StringAssert.Contains(html, "s360-graph-show-risks");
+        StringAssert.Contains(html, "Direct dependencies only");
         StringAssert.Contains(html, "Safe.csproj");
         StringAssert.Contains(html, "SqlServer.csproj");
         StringAssert.Contains(html, "<label hidden=\"hidden\">Manifest and target");

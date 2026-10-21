@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>تسمح القاعدة باستخدام الحزم. ولا تثبت أن المشروع يستخدمها أو أن الإصدارات المصرح بها خالية من الثغرات.</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>موافق عليه</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>التفويض</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>العودة إلى مجموعة القواعد الحالية</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>النظام البيئي</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>مستبعد</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>تستبعد الاستثناءات الإصدارات المتأثرة من نطاق التفويض. لكنها لا تخفي إصدارًا متأثرًا سبق الإبلاغ عنه في خط أساس الإنتاج.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>منتهي الصلاحية</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>تاريخ الانتهاء</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>مشمولة</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>لم يتم تسجيل أي استثناءات.</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>لا يوجد تاريخ انتهاء</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>لا توجد نطاقات ذات صلة في التحذيرات النشطة المخزنة. وهذا لا يثبت أن القاعدة بأكملها آمنة.</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>لا توجد سجلات مراجعة. قد يكون هذا القيد قد تم استيراده مباشرة.</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>غير مُثبّت</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>نمط الحزمة</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>قيد الانتظار</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>إصدارات ما قبل الإصدار</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>تعذّر تقييم النطاق</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>النطاق يتداخل مع النمط</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>السبب</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>مرفوض</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>نطاقات الاستشارة ذات الصلة</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>تاريخ الطلب</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>سجل المراجعة</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>المُراجع</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>ملغاة</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>المصدر</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>المورّد</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>تتداخل النطاقات المنشورة مع نمط القاعدة أو تعذّر تقييمها. لا يُعدّ هذا بيانًا بأن القاعدة تسمح حاليًا بكل إصدار مدرج: إذ تنطبق أيضًا الحالة، والانتهاء، والاستثناءات، والقواعد الأخرى، وقائمة الحظر. يُعرض الأثر على بيئة الإنتاج في صفحة تدقيق الثغرات.</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>تفاصيل قاعدة الثقة</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>نمط الإصدار</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>عرض تدقيق الثغرات الحالي</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>استثناءات الثغرات الأمنية</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>مسحوبة</value>
+  </data>
+
+</root>

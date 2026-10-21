@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Actions" xml:space="preserve">
+    <value>Åtgärder</value>
+  </data>
+  <data name="API Key created" xml:space="preserve">
+    <value>API-nyckel skapad</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>API-nycklar</value>
+  </data>
+  <data name="Create API Key" xml:space="preserve">
+    <value>Skapa API-nyckel</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Redigera</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Aktiverad</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Förfaller</value>
+  </data>
+  <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone." xml:space="preserve">
+    <value>Nycklar tillhör ditt konto. Om du tar bort din API-tillgång eller låser ditt konto inaktiveras också dina nycklar. Tider visas i din lokala tidszon.</value>
+  </data>
+  <data name="Last used" xml:space="preserve">
+    <value>Senast använd</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Namn</value>
+  </data>
+  <data name="New API Key" xml:space="preserve">
+    <value>Ny API-nyckel</value>
+  </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Produktionsbaseline</value>
+  </data>
+  <data name="Send the key using X-S360-Key, or set S360_CHECK_KEY for the CLI. Never include keys in URLs, source control or logs." xml:space="preserve">
+    <value>Skicka nyckeln med X-S360-Key eller ställ in S360_CHECK_KEY för CLI:en. Inkludera aldrig nycklar i URL:er, versionshantering eller loggar.</value>
+  </data>
+  <data name="This key is displayed only once. Save it in your private configuration." xml:space="preserve">
+    <value>Denna nyckel visas endast en gång. Spara den i din privata konfiguration.</value>
+  </data>
+  <data name="To rotate a key, create another, update your integration and verify it works, then delete the old key. Existing keys keep working during the transition." xml:space="preserve">
+    <value>För att rotera en nyckel, skapa en ny, uppdatera din integration och verifiera att den fungerar, ta sedan bort den gamla nyckeln. Befintliga nycklar fortsätter att fungera under övergången.</value>
+  </data>
+
+</root>

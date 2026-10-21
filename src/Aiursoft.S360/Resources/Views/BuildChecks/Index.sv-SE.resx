@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>En begränsad del av beroendelistan som skickas till API:et. En accepterad batch är inte detsamma som en fullständig accepterad körning.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Godkänd</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>Godkänd innebär att S360 har godkänt det rapporterade paketunderlaget för den här kontrollen. Det innebär inte att alla batcher har kommit fram eller att en GitLab Runner har konfigurerats för att stoppa bygget.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Godkänd jämfört med verkställd</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Anonym granskning</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID för API-nyckel</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>Revisionsändamål</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>Autentiserat konto</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Batch</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>För närvarande blockerad</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Beslutets grund</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Standardgren</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Varje rad motsvarar en API-batch. Endast en fullständig körning där varje batch har godkänts kan klara CLI-kontrollen. Det registrerade resultatet är historiskt; en aktuell varning om blockeringslistan visas separat.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Ofullständig körning</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Lokal kontroll</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Sammanfogningsbegäran</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Nästa</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>Inga externa beroenden hittades i de rapporterade projekt som stöds.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>En rapporterad kontrollförsök. Dess batcher delar en köridentifierare så att du kan inspektera det fullständiga resultatet.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Annan gren</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Paket</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>Föregående</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Produktionsbaseline</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Projekt</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Läs en kontrollpost</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Orsak</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Avvisad</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Rapporterad källa</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>Endast granskning</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>Granskning returnerar ett policybeslut utan att spara en projektrapport. Baslinje förklarar produktionsanvändning och uppdaterar projektinventeringen endast när varje batch har anlänt, även om beroendena avvisas. Äldre poster utan ett ändamål uppdaterar aldrig produktionsanvändning.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Körning</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Tagbygge</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>Antalet stödda projekt som CLI:en upptäckte. En kontroll utan beroenden kontaktar fortfarande S360 och registrerar detta antal.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>Förklaringen av policy som registrerades när kontrollen utfördes. En aktuell blocklistavarning är separat och skriver aldrig om denna historik.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>Projekt- och pipelineidentifier tillhandahålls av en oautentiserad anropare.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>Detta är rapporterade kontroller; Runner-tvingande är ett separat rullningssteg och är inte antydt av en post här.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Oklassificerad</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>Odeklarerat syfte</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Sårbarhetsdata</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Tidpunkt för sårbarhetsdata</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>När rådgivningsdata bakom det här beslutet senast kontrollerades; ett tomt värde innebär inte att allt är utan anmärkning.</value>
   </data>
 
 </root>

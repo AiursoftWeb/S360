@@ -54,6 +54,9 @@
   <data name="Available dependencies" xml:space="preserve">
     <value>Dostępne zależności</value>
   </data>
+  <data name="Back to dependency inventory" xml:space="preserve">
+    <value>Powrót do wykazu zależności</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>Nie możesz znaleźć pakietu? Zgłoś zapotrzebowanie</value>
   </data>
@@ -84,11 +87,17 @@
   <data name="Find packages" xml:space="preserve">
     <value>Znajdź pakiety</value>
   </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Jak czytać katalog</value>
+  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>Źródło pakietu HTTPS</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Uwzględnij wersje przedpremierowe</value>
+  </data>
+  <data name="Last checked" xml:space="preserve">
+    <value>Ostatnio sprawdzono</value>
   </data>
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Ostatnio sprawdzono (UTC)</value>
@@ -170,6 +179,9 @@
   </data>
   <data name="The approved registry URL is part of the rule. The same package from a different source is not covered." xml:space="preserve">
     <value>Zatwierdzony adres URL rejestru jest częścią reguły. Ta sama paczka z innego źródła nie jest nią objęta.</value>
+  </data>
+  <data name="The latest vulnerability synchronization failed. Previously published results remain usable until their original expiry." xml:space="preserve">
+    <value>Ostatnia synchronizacja danych o lukach w zabezpieczeniach nie powiodła się. Wcześniej opublikowane wyniki pozostają dostępne do upływu pierwotnego terminu ważności.</value>
   </data>
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Nie udało się przeprowadzić ostatniej synchronizacji danych o podatnościach. Zarejestrowane artefakty są ukryte do czasu pomyślnego zakończenia audytu.</value>

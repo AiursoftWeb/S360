@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>تم عرض {0} من {1} من العقد</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} حزم معرضة للخطر في هذا المخطط، بما في ذلك {1} مخفية بسبب العمق أو عوامل التصفية.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>طيّ الاعتمادات</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>متوافق</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>النسخ غير متاح. انسخ العنوان الحالي من متصفحك.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>نسخ رابط العرض</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>التبعيات</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>تفاصيل التبعيات</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>الرسم البياني للتبعيات. اسحب لتحريك العرض، واستخدم عناصر التحكم للتكبير أو التصغير، أو حدّد عقدة.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>علاقات التبعيات</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>عناصر التحكم في المخطط</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>التبعيات المباشرة فقط</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>اعتمادية مباشرة</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>اسحب لاستكشاف هذا المخطط بمقياس يسهل قراءته، أو اختر «ملاءمة العرض» لإلقاء نظرة عامة.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>فعّل JavaScript لعرض الرسم البياني. تظهر تفاصيل جميع الحزم أدناه.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>توسيع الاعتماديات</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>استكشف التبعيات</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>ابحث عن حزمة</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>ملاءمة العرض</value>
+  </data>
+  <data name="From your project to every package" xml:space="preserve">
+    <value>من مشروعك إلى جميع الحزم</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>ملء الشاشة</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>الأخضر والأزرق يصفان العلاقة، وليس الموافقة. يتم وضع علامات على مشاكل التدقيق الأخرى في كل عقدة.</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>التبعية غير المباشرة</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>أُدرج بواسطة</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>ثغرة أمنية معروفة</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>ملف البيان والهدف</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>الحد الأقصى للعمق</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>تحتاج إلى انتباه</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>لا توجد ثغرات أمنية معروفة في المخطط المُبلَّغ عنه. تحقق من حالة التدقيق قبل الاعتماد على هذا النتيجة.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>لا توجد حزم مطابقة.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>لم يُسجَّل أي غرض أو سبب للموافقة</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>غير موثّق</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>اسم الحزمة أو المسار أو معرّف CVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>مصدر الحزمة</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>مرجع المشروع</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>الغرض المسجّل وأسباب الموافقة</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>إعادة تعيين العرض</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>لم تُسجَّل العلاقة بالجذر</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>تتضمن مسارات البحث والثغرات سلفًا يتجاوزون العمق المحدد. أعد ضبط العرض للعودة إلى حدود العمق.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>حدّد عقدة للاطّلاع على إصدارها وحالة التدقيق ومسارات إضافتها.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>عرض مسارات التقديم</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>بعض العقد المبلّغ عنها لا تحتوي على مسار من هذا الجذر. لا يزال بإمكان البحث العثور عليها؛ لم يتم استنتاج أي علاقة.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>ابدأ بثلاثة مستويات. وسّع عقدةً لمتابعة تبعياتها، أو اخترها لعرض التفاصيل.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>تعذّر عرض الرسم البياني. لا تزال تفاصيل الحزم متاحة أدناه.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>لقد تغيّر التقرير المحفوظ. جارٍ عرض مخطط التبعيات الحالي.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>هذا المخطط كبير. يتم عرض عرض محدود؛ ابحث عن حزمة للتركيز على علاقاتها. تبقى جميع الحزم في القائمة أدناه.</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>مستخدم من المشاريع</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>تم نسخ رابط العرض.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>مسارات الثغرات</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>تكبير</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>تصغير</value>
+  </data>
+
+</root>

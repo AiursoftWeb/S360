@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{0} av {1} noder visas</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} sårbara paket i detta diagram, inklusive {1} som döljs av djup eller filter.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Fäll ihop beroenden</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Sammstämmig</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Kopiering är inte tillgänglig. Kopiera den aktuella adressen från webbläsaren.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Kopiera vy-länk</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Beroenden</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Beroendets detaljer</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Beroendediagram. Dra för att panorera, använd kontrollerna för att zooma eller välj en nod.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Beroenderelationer</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Diagramkontroller</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>Endast direkta beroenden</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Direkt beroende</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Dra för att utforska denna diagram på en läslig skala, eller välj Anpassa vy för en översikt.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Aktivera JavaScript för att visa diagrammet. Alla paketdetaljer listas nedan.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Expandera beroenden</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Utforska beroenden</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Hitta ett paket</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Anpassa vy</value>
+  </data>
+  <data name="From your project to every package" xml:space="preserve">
+    <value>Från ditt projekt till varje paket</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Helskärm</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>Grön och blå beskriver relationen, inte godkännande. Övriga granskningsproblem anges på varje nod.</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Indirekt beroende</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Införd av</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Känd sårbarhet</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Manifest och mål</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Maximal djup</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Behöver åtgärdas</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>Inga kända sårbarheter i den rapporterade grafen. Kontrollera granskningstillståndet innan du förlitar dig på detta resultat.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Inga matchande paket.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Inget ändamål eller godkännandegrund har registrerats</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Inte verifierad</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Paketnamn, sökväg eller CVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Paketskälla</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Projektreferens</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Registrerat syfte och godkännandeskäl</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Återställ vy</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Rotrelationen har inte registrerats</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Sök- och sårbarhetssparter inkluderar föregångare utöver den valda djupnivån. Återställ vyn för att återgå till djupbegränsningarna.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Välj en nod för att se dess version, granskningsstatus och introduktionsvägar.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Visa introduktionsvägar</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Vissa rapporterade noder saknar en sökväg från den här roten. De kan fortfarande hittas via sökning; ingen relation har härletts.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Börja med tre nivåer. Expandera en nod för att följa dess beroenden, eller välj den för att se mer information.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>Diagrammet kunde inte visas. Paketdetaljerna finns fortfarande tillgängliga nedan.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Den sparade rapporten har ändrats. Visar den aktuella beroendegrafen.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Det här diagrammet är stort. En begränsad vy visas; sök efter ett paket för att fokusera på dess relationer. Alla paket finns kvar i listan nedan.</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Används av projekt</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Visningslänken har kopierats.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Sårbarhetsvägar</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Zooma in</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Zooma ut</value>
+  </data>
+
+</root>

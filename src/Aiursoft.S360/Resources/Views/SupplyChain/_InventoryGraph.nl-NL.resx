@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{0} van {1} knooppunten weergegeven</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} kwetsbare pakketten in dit diagram, waaronder {1} die door de diepte of filters verborgen zijn.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Afhankelijkheden inklappen</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Conform</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Kopiëren is niet beschikbaar. Kopieer het huidige adres uit uw browser.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Link naar weergave kopiëren</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Afhankelijke pakketten</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Detail van afhankelijkheden</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Afhankelijkheidsgrafiek. Sleep om te pannen, gebruik de bedieningselementen om in te zoomen of selecteer een knooppunt.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Relaties tussen afhankelijkheden</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Bediening van het diagram</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>Alleen directe afhankelijkheden</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Directe afhankelijkheid</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Sleep om dit diagram op een leesbare schaal te verkennen, of kies ‘Weergave passend maken’ voor een overzicht.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Schakel JavaScript in om de grafiek weer te geven. Hieronder staan alle pakketdetails.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Dependencies uitvouwen</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Verken afhankelijkheden</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Zoek een pakket</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Weergave passend maken</value>
+  </data>
+  <data name="From your project to every package" xml:space="preserve">
+    <value>Van je project naar elk pakket</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Volledig scherm</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>Groen en blauw beschrijven de relatie, niet goedkeuring. Andere auditproblemen worden op elk knooppunt gelabeld.</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Indirecte afhankelijkheid</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Geïntroduceerd door</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Bekende kwetsbaarheid</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Manifest en doel</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Maximale diepte</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Aandacht vereist</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>Geen bekende kwetsbaarheden in de gemelde grafiek. Controleer de auditstatus voordat u op dit resultaat vertrouwt.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Geen overeenkomende pakketten.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Geen doel of reden voor goedkeuring vastgelegd</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Niet geverifieerd</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Pakketnaam, pad of CVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Pakketbron</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Projectreferentie</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Vastgelegd doel en redenen voor goedkeuring</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Weergave resetten</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Hoofdrelatie niet geregistreerd</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Zoekresultaten en kwetsbaarheidspaden bevatten ook voorouders buiten de geselecteerde diepte. Herstel de weergave om terug te keren naar de dieptelimieten.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Selecteer een knooppunt om de versie, auditstatus en invoeringspaden te bekijken.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Paden naar de herkomst weergeven</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Sommige gerapporteerde knooppunten hebben geen pad vanaf deze root. U kunt ze nog steeds vinden via de zoekfunctie; er is geen relatie afgeleid.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Begin met drie niveaus. Vouw een knooppunt uit om de afhankelijkheden ervan te volgen, of selecteer het voor meer informatie.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>De grafiek kon niet worden weergegeven. De pakketdetails blijven hieronder beschikbaar.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Het opgeslagen rapport is gewijzigd. Er wordt de huidige afhankelijkheidsgrafiek weergegeven.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Deze grafiek is groot. Er wordt een beperkt overzicht getoond; zoek naar een pakket om de relaties ervan te bekijken. Alle pakketten blijven in de lijst hieronder staan.</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Gebruikt door projecten</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Weergavelink gekopieerd.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Kwetsbaarheidspaden</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Inzoomen</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Uitzoomen</value>
+  </data>
+
+</root>

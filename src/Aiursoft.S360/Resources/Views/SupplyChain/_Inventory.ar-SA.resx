@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} من عناصر الحزمة · {1} تحتاج إلى الانتباه</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} نتيجة · الصفحة {1} من {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} حزم معرضة للخطر · {1} حزم أخرى تتطلب الانتباه</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>يوجد تقرير أحدث غير مكتمل.</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>التقرير الأحدث غير مكتمل. يتم عرض أحدث لقطة كاملة؛ التغطية الحالية غير مُتحقق منها.</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>جميع المشاريع</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>كل الحالات</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>قواعد الموافقة والأدوات</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>استعراض جميع التبعيات لهذا المشروع</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>استعراض قواعد الموافقة</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>سجل الفحص</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>نظرة عامة على الشركة</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>مستكشف الامتثال</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>متوافق</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>تم النسخ!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>نسخ Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>تصف الأعداد نطاق التقارير المحدد. يتم تقييم الحالة بناءً على السياسة الحالية وبيانات الثغرات الأمنية المخزنة.</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>الخط الأساسي الحالي</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>التبعيات</value>
+  </data>
+  <data name="Dependency relationships were not recorded in this report. Run the latest CLI to populate the graph; the package list remains available." xml:space="preserve">
+    <value>لم يتم تسجيل علاقات التبعية في هذا التقرير. شغّل أحدث إصدار من واجهة سطر الأوامر (CLI) لإنشاء الرسم البياني؛ وتظل قائمة الحزم متاحة.</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>النظام البيئي</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>استكشاف</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>ابحث عن مشروع أو حزمة، وتحقّق من امتثالها، وتتبّع سبب استخدامها.</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>عروض المخزون</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>ثغرات أمنية معروفة</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>أحدث الخطوط الأساسية الكاملة. هذه تبعيات مُبلَّغ عنها، وليست دليلًا على النشر.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>تحتاج إلى انتباه</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>لا يتوفر تقرير مكتمل.</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>لا يوجد تقرير كامل لهذا النظام البيئي. حالة الامتثال غير معروفة.</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>لا توجد سجلات مطابقة</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>غير موثّق</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: غير مشمول في هذا التدقيق.</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet و npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: غير مشمول في هذا التدقيق.</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>الحزم المرصودة</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>تقارير سابقة لم يُحدَّد غرضها. لا يمكن استنتاج الاستخدام الحالي من هذه السجلات.</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>الحزمة، المشروع، الغرض أو سبب الاعتماد</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>الحزم التي تحتاج إلى اهتمام</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>الصفحة {0} من {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>خط الأنابيب</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>المشاريع</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>المشاريع التي لديها تقارير</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>يتطلب قراءة قائمة جرد المشروع إذن قراءة سلاسل التوريد. يمكنك الاطلاع على قواعد الاعتماد.</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>شارة README</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>التقارير</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>إعادة تعيين عوامل التصفية</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>صفحات النتائج</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>فحوصات المراجعة لا تُحفظ كمخزون المشروع.</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>شارة الامتثال لـ S360</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>بحث</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>البحث في المخزون</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>حدّد نص Markdown أعلاه وانسخه.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>شارك أحدث امتثال قاعدتك على GitHub أو GitLab. الشارة عامة ولا تتطلب تسجيل الدخول. تغطي النظم البيئية المبلّغ عنها، وليس النشر في بيئة الإنتاج.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>الحالة تشمل الأنظمة المُبلّغ عنها فقط.</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>سلسلة الإمداد</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>لا يحتوي التقرير المكتمل على أي تبعيات لهذا النظام البيئي.</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>هذا التقرير غير مكتمل. لا تتوفر لقطة كاملة؛ ولم يتم التحقق من التغطية الحالية.</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>جرّب بحثًا مختلفًا أو نطاق تقرير. قاعدة الاعتماد وحدها ليست دليلًا على أن المشروع يستخدم الحزمة.</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>السجل غير المصنّف</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>قم بتحديث تقرير CLI لعرض علاقات الاعتماد.</value>
+  </data>
+
+</root>

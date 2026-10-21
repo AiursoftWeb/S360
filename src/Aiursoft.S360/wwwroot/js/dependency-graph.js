@@ -18,7 +18,10 @@ if (host) {
     const name = node => node.Package ? `${node.Package.Name}@${node.Package.Version}` : node.Label || (node.Kind === 'root' ? current().Project : node.Id);
     const status = node => text(['compliant', 'pending', 'problem'][node.Status]);
     const riskStatus = node => node.Advisories.length ? text('vulnerable') : node.RiskCount ? text('affected') : status(node);
-    const level = () => Math.max(1, Math.min(20, Math.floor(Number(depth.value) || 3)));
+    const clampDepth = value => Number.isFinite(value)
+        ? Math.max(current().IsSolution ? 0 : 1, Math.min(20, Math.floor(value)))
+        : current().IsSolution ? 1 : 3;
+    const level = () => clampDepth(depth.valueAsNumber);
     const directDependency = node => node.IsDirect ?? distances.get(node.Id) === 1;
     const relation = node => text(directDependency(node) ? 'direct' : distances.has(node.Id) ? 'indirect' : 'unlinked');
     const isOpen = id => !collapsed.has(id) && (expanded.has(id) || distances.get(id) < level());
@@ -63,7 +66,10 @@ if (host) {
         saveView();
     }
     function toggle(id) {
-        if (isOpen(id)) { expanded.delete(id); collapsed.add(id); }
+        if (current().IsSolution && level() === 0) {
+            depth.value = '1'; collapsed.delete(id); expanded.add(id);
+        }
+        else if (isOpen(id)) { expanded.delete(id); collapsed.add(id); }
         else { collapsed.delete(id); expanded.add(id); }
         selected = id;
         // Explicit expansion returns from path-only filtering to the full graph.
@@ -191,6 +197,12 @@ if (host) {
             }
             for (const id of visible) for (const child of nodes.get(id).Children) if (visible.has(child)) edges.push([id, child]);
             if (!nodes.has(selected) || !visible.has(selected)) selected = ordered[0]?.Id || '';
+        } else if (graph.IsSolution && level() === 0) {
+            // All solution projects remain visible, including their actual project references.
+            for (const id of roots) add(id);
+            for (const id of visible) for (const child of nodes.get(id).Children) {
+                if (nodes.get(child)?.Kind === 'project' && visible.has(child)) edges.push([id, child]);
+            }
         } else {
             const queue = [...roots]; for (const id of roots) add(id);
             for (let i = 0; i < queue.length; i++) {
@@ -369,7 +381,7 @@ if (host) {
                     expanded = new Set(Array.isArray(state.expanded) ? state.expanded.filter(i => Number.isInteger(i) && i >= 0 && i < current().Nodes.length).map(i => current().Nodes[i].Id) : []);
                     collapsed = new Set(Array.isArray(state.collapsed) ? state.collapsed.filter(i => Number.isInteger(i) && i >= 0 && i < current().Nodes.length).map(i => current().Nodes[i].Id) : []);
                 }
-                depth.value = Number.isFinite(state.depth) ? String(Math.min(20, Math.max(1, state.depth))) : current().IsSolution ? '1' : '3';
+                depth.value = String(clampDepth(state.depth));
                 search.value = typeof state.query === 'string' ? state.query.slice(0, 214) : '';
                 risk.checked = state.risk === true;
             } else restoreNotice = text('viewChanged');

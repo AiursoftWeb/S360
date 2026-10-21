@@ -27,6 +27,9 @@
   <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
     <value>{0} gói dễ bị tấn công · {1} gói khác cần được chú ý</value>
   </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>Bản đồ giải pháp hoàn chỉnh chưa được ghi lại trong báo cáo này. Chạy CLI mới nhất để điền thông tin; danh sách gói vẫn khả dụng.</value>
+  </data>
   <data name="A newer report is incomplete." xml:space="preserve">
     <value>Bản báo cáo mới hơn chưa đầy đủ.</value>
   </data>

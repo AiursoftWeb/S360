@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{0} din {1} noduri afișate</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} pachete vulnerabile în acest diagramă, inclusiv {1} ascunse prin adâncime sau filtre.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Restrânge dependențele</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Conform</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Copia nu este disponibilă. Copiați adresa curentă din browserul dumneavoastră.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Copiază linkul către vizualizare</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Dependențe</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Detalii despre dependențe</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Graf de dependențe. Trageți pentru a deplasa, folosiți controalele pentru a mări sau micșora, sau selectați un nod.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Relațiile dintre dependențe</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Controalele diagramei</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Dependență directă</value>
+  </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>Linii punctate sunt referințe de proiect. Căile pachetelor își păstrează framework-ul și versiunea rezolvate.</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Trageți pentru a explora acest diagramă la o scară lizibilă sau alegeți Afișare încadrată pentru o vizualizare generală.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Activează JavaScript pentru a vizualiza graficul. Toate detaliile pachetelor sunt enumerate mai jos.</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>Extindeți un proiect pentru a vedea pachetele rezolvate. Căile vulnerabilităților acoperă întreaga soluție.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Extinde dependențele</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Explorează dependențele</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Găsește un pachet</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Încadrează vizualizarea</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Ecran complet</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>Verdele și albastrul descriu relația, nu indică aprobarea. Alte probleme identificate în urma auditului sunt etichetate pe fiecare nod.</value>
+  </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Inclus printr-o referință la proiect</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Dependență indirectă</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Introdus de</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Vulnerabilitate cunoscută</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Listat(ă) în soluție</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Manifest și țintă</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Adâncime maximă</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Necesită atenție</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>Nu au fost identificate vulnerabilități în graful raportat. Verificați starea auditului înainte de a vă baza pe acest rezultat.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Nu există pachete corespunzătoare.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Nu a fost înregistrat niciun scop sau motiv de aprobare</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Neverificat</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Numele pachetului, calea sau CVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Sursa pachetului</value>
+  </data>
+  <data name="Project file" xml:space="preserve">
+    <value>Fișier de proiect</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Referință de proiect</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Scopul înregistrat și motivele aprobării</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Resetează vizualizarea</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Rezolvat pentru</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Cadru de lucru rezolvat</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Relația cu nodul rădăcină nu este înregistrată</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Căile de căutare și cele ale vulnerabilităților includ strămoși aflați dincolo de adâncimea selectată. Resetați vizualizarea pentru a reveni la limitele de adâncime.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Selectați un nod pentru a vedea versiunea sa, statutul de audit și căile de introducere.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Afișează rutele de introducere</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Unele noduri raportate nu au nicio cale pornind de la această rădăcină. Căutarea le poate găsi în continuare; nu s-a dedus nicio relație.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Începeți cu trei niveluri. Extindeți un nod pentru a-i urmări dependențele sau selectați-l pentru detalii.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>Graficul nu a putut fi afișat. Detaliile pachetelor rămân disponibile mai jos.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Raportul salvat s-a modificat. Se afișează graful curent al dependențelor.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Acest graf este mare. Este afișată o vizualizare limitată; căutați un pachet pentru a-i evidenția relațiile. Toate pachetele rămân în lista de mai jos.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Utilizat de fișierele proiectului</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Utilizat de proiecte</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Linkul către vizualizare a fost copiat.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Trasee ale vulnerabilităților</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Mărește</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Micșorează</value>
+  </data>
+
+</root>

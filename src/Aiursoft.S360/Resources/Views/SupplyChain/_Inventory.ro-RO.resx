@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} artefacte de pachete · {1} necesită atenție</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} rezultate · Pagina {1} din {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} pachete vulnerabile · {1} alte pachete care necesită atenție</value>
+  </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>Graficul complet al soluției nu a fost înregistrat în acest raport. Rulați cea mai recentă versiune a CLI pentru a-l popula; lista de pachete rămâne disponibilă.</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>Un raport mai nou este incomplet.</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>Un raport mai nou este incomplet. Este afișată ultima instantanee completă; acoperirea curentă nu este verificată.</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>Toate proiectele</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>Toate stările</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>Reguli și instrumente de aprobare</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>Răsfoiți toate dependențele acestui proiect</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>Vizualizează regulile de aprobare</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Înregistrarea verificării</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Prezentare generală a companiei</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Explorator de conformitate</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Conform</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>Copiat!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Copiază Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>Numărătorile descriu domeniul de aplicare al rapoartelor selectate. Starea este evaluată în funcție de politica actuală și de datele despre vulnerabilități stocate.</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>Linia de bază curentă</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Dependențe</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ecosistem</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Explorează</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>Găsiți un proiect sau un pachet, verificați conformitatea acestuia și urmăriți motivul utilizării sale.</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>Vizualizări inventar</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Vulnerabilități cunoscute</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>Cele mai recente linii de bază complete. Acestea sunt dependențe raportate, nu dovezi de implementare.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Necesită atenție</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Următorul</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>Nu este disponibil niciun raport complet.</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>Nu există un raport complet pentru acest ecosistem. Conformitatea acestuia este necunoscută.</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>Nicio înregistrare corespunzătoare</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Neverificat</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: nu este inclus în acest audit.</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet și npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: nu este inclus în acest audit.</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>Pachete observate</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>Rapoarte mai vechi fără un scop declarat. Utilizarea curentă nu poate fi dedusă din aceste înregistrări.</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>Pachet, proiect, scop sau motiv al aprobării</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>Pachete care necesită atenție</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>Pagina {0} din {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>Flux de lucru</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Proiecte</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>Proiecte cu rapoarte</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Citirea inventarului proiectelor necesită permisiunea de citire a lanțului de aprovizionare. Puteți consulta în continuare regulile de aprobare.</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>Insignă README</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Raporturi</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>Resetează filtrele</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>Pagini cu rezultate</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>Verificările de recenzie nu sunt salvate ca inventar de proiect.</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>Insignă de conformitate S360</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Cautare</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>Cautare inventar</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>Selectați și copiați textul Markdown de mai sus.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>Partați cel mai recent nivel de conformitate de bază pe GitHub sau GitLab. Insigna este publică și nu necesită autentificare. Aceasta acoperă ecosistemele raportate, nu implementarea în producție.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Stare</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>Starea se referă doar la ecosistemele raportate.</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Lanțul de aprovizionare</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>Raportul complet nu conține dependențe pentru acest ecosistem.</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>Acest raport este incomplet. Nu este disponibilă nicio imagine completă a stării; acoperirea curentă nu este verificată.</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>Încercați o căutare sau un domeniu de raport diferit. O regulă de aprobare, luate singură, nu este dovada că un proiect utilizează un pachet.</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>Istoric neclasificat</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>Actualizați raportul CLI pentru a vedea relațiile dintre dependențe.</value>
+  </data>
+
+</root>

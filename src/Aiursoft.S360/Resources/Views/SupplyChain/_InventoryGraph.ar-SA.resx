@@ -57,11 +57,17 @@
   <data name="Direct dependency" xml:space="preserve">
     <value>اعتمادية مباشرة</value>
   </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>الخطوط المتقطعة تشير إلى مراجع المشاريع. تحافظ مسارات الحزم على إطار العمل والإصدار المحددين لها.</value>
+  </data>
   <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
     <value>اسحب لاستكشاف هذا المخطط بمقياس يسهل قراءته، أو اختر «ملاءمة العرض» لإلقاء نظرة عامة.</value>
   </data>
   <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
     <value>فعّل JavaScript لعرض الرسم البياني. تظهر تفاصيل جميع الحزم أدناه.</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>وسّع مشروعًا لعرض الحزم المحلولة له. تشمل مسارات الثغرات الأمنية الحل بأكمله.</value>
   </data>
   <data name="Expand dependencies" xml:space="preserve">
     <value>توسيع الاعتماديات</value>
@@ -84,6 +90,9 @@
   <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
     <value>الأخضر والأزرق يصفان العلاقة، وليس الموافقة. يتم وضع علامات على مشاكل التدقيق الأخرى في كل عقدة.</value>
   </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>مُضمَّن عبر مرجع إلى مشروع</value>
+  </data>
   <data name="Indirect dependency" xml:space="preserve">
     <value>التبعية غير المباشرة</value>
   </data>
@@ -92,6 +101,9 @@
   </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>ثغرة أمنية معروفة</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>مدرَج في الحل</value>
   </data>
   <data name="Manifest and target" xml:space="preserve">
     <value>ملف البيان والهدف</value>
@@ -120,6 +132,9 @@
   <data name="Package source" xml:space="preserve">
     <value>مصدر الحزمة</value>
   </data>
+  <data name="Project file" xml:space="preserve">
+    <value>ملف المشروع</value>
+  </data>
   <data name="Project reference" xml:space="preserve">
     <value>مرجع المشروع</value>
   </data>
@@ -128,6 +143,12 @@
   </data>
   <data name="Reset view" xml:space="preserve">
     <value>إعادة تعيين العرض</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>تم الحل لـ</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>الإطار المُحلَّلة</value>
   </data>
   <data name="Root relationship not recorded" xml:space="preserve">
     <value>لم تُسجَّل العلاقة بالجذر</value>
@@ -155,6 +176,9 @@
   </data>
   <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
     <value>هذا المخطط كبير. يتم عرض عرض محدود؛ ابحث عن حزمة للتركيز على علاقاتها. تبقى جميع الحزم في القائمة أدناه.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>مستخدمة في ملفات المشروع</value>
   </data>
   <data name="Used by projects" xml:space="preserve">
     <value>مستخدم من المشاريع</value>

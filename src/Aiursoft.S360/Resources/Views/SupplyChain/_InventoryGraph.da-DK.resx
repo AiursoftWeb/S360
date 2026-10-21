@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{0} af {1} viste noder</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} sårbare pakker i dette diagram, herunder {1}, der er skjult på grund af dybde eller filtre.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Fold sammen afhængigheder</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>I overensstemmelse</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Kopiering er ikke tilgængelig. Kopiér den aktuelle adresse fra din browser.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Kopiér link til visning</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Afhængigheder</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Afhængighedsoplysninger</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Afhængighedsgraf. Træk for at panorere, brug kontrollerne for at zoome eller vælg en node.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Afhængighedsrelationer</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Diagramkontrol</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Direkte afhængighed</value>
+  </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>Stiplede linjer er projektreferencer. Pakkestier beholder deres opløste framework og version.</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Træk for at udforske denne diagram på en læsbar skala, eller vælg Tilpas visning for et overblik.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Aktivér JavaScript for at se grafen. Alle pakkeoplysninger er angivet nedenfor.</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>Fold et projekt ud for at se dets løste pakker. Sårbarhedsstier dækker hele løsningen.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Udvid afhængigheder</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Udforsk afhængigheder</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Find en pakke</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Tilpas visning</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Fuld skærm</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>Grøn og blå angiver relationen, ikke en godkendelse. Andre auditproblemer er markeret på hver node.</value>
+  </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Inkluderet via en projektreference</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Indirekte afhængighed</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Introduceret af</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Kendt sårbarhed</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Registreret i løsningen</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Manifest og mål</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Maksimal dybde</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Kræver opmærksomhed</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>Ingen kendte sårbarheder i den rapporterede graf. Tjek revisionsstatus, før du lægger vægt på dette resultat.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Ingen matchende pakker.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Intet formål eller nogen godkendelsesgrund er registreret</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Ikke verificeret</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Pakkenavn, sti eller CVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Pakkekilde</value>
+  </data>
+  <data name="Project file" xml:space="preserve">
+    <value>Projektfil</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Projektreference</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Registreret formål og begrundelser for godkendelse</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Nulstil visning</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Løst for</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Løsningsramme</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Rod-forbindelse ikke registreret</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Søge- og sårbarhedsstier omfatter forfædre ud over den valgte dybde. Nulstil visningen for at vende tilbage til dybdegrænserne.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Vælg en node for at se dens version, revisionsstatus og introduktionsveje.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Vis introduktionsveje</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Nogle af de rapporterede noder har ingen sti fra denne rod. De kan stadig findes via søgning; der er ikke udledt nogen relation.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Start med tre niveauer. Udvid en node for at følge dens afhængigheder, eller vælg den for at få flere oplysninger.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>Grafen kunne ikke vises. Pakkeoplysningerne er stadig tilgængelige nedenfor.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Den gemte rapport er ændret. Den aktuelle afhængighedsgraf vises.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Denne graf er stor. En begrænset visning vises; søg efter en pakke for at fokusere på dens relationer. Alle pakker forbliver på listen nedenfor.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Brugt af projektfiler</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Brugt af projekter</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Visningslink kopieret.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Sårbarhedsstier</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Zoom ind</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Zoom ud</value>
+  </data>
+
+</root>

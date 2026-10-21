@@ -57,11 +57,17 @@
   <data name="Direct dependency" xml:space="preserve">
     <value>การพึ่งพาโดยตรง</value>
   </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>เส้นประแสดงการอ้างอิงระหว่างโปรเจกต์ ส่วนเส้นทางของแพ็กเกจจะคงเฟรมเวิร์กและเวอร์ชันที่แก้ไขข้อกำหนดแล้วไว้</value>
+  </data>
   <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
     <value>ลากเพื่อสำรวจแผนภาพนี้ในขนาดที่อ่านได้ หรือเลือก ปรับให้พอดีกับมุมมอง เพื่อดูภาพรวม</value>
   </data>
   <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
     <value>เปิดใช้งาน JavaScript เพื่อดูกราฟ รายละเอียดแพ็กเกจทั้งหมดถูกระบุไว้ด้านล่าง</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>ขยายโปรเจ็กต์เพื่อดูแพ็กเกจที่แก้ไขการพึ่งพาแล้ว เส้นทางช่องโหว่ครอบคลุมโซลูชันทั้งหมด</value>
   </data>
   <data name="Expand dependencies" xml:space="preserve">
     <value>ขยายการพึ่งพา</value>
@@ -84,6 +90,9 @@
   <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
     <value>สีเขียวและสีน้ำเงินใช้บอกความสัมพันธ์ ไม่ได้หมายถึงการอนุมัติ ปัญหาอื่น ๆ ที่พบจากการตรวจสอบจะแสดงกำกับไว้บนแต่ละโหนด</value>
   </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>รวมผ่านการอ้างอิงโปรเจกต์</value>
+  </data>
   <data name="Indirect dependency" xml:space="preserve">
     <value>การพึ่งพาทางอ้อม</value>
   </data>
@@ -92,6 +101,9 @@
   </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>ช่องโหว่ที่ทราบแล้ว</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>ระบุไว้ในโซลูชัน</value>
   </data>
   <data name="Manifest and target" xml:space="preserve">
     <value>ไฟล์ Manifest และเป้าหมาย</value>
@@ -120,6 +132,9 @@
   <data name="Package source" xml:space="preserve">
     <value>แหล่งที่มาของแพ็กเกจ</value>
   </data>
+  <data name="Project file" xml:space="preserve">
+    <value>ไฟล์โปรเจกต์</value>
+  </data>
   <data name="Project reference" xml:space="preserve">
     <value>การอ้างอิงโปรเจกต์</value>
   </data>
@@ -128,6 +143,12 @@
   </data>
   <data name="Reset view" xml:space="preserve">
     <value>รีเซ็ตมุมมอง</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>แก้ไขสำหรับ</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>เฟรมเวิร์กที่แก้ไขแล้ว</value>
   </data>
   <data name="Root relationship not recorded" xml:space="preserve">
     <value>ไม่ได้บันทึกความสัมพันธ์กับรูท</value>
@@ -155,6 +176,9 @@
   </data>
   <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
     <value>กราฟนี้มีขนาดใหญ่ แสดงมุมมองแบบจำกัด; ค้นหาแพ็กเกจเพื่อเน้นความสัมพันธ์ของแพ็กเกจนั้น แพ็กเกจทั้งหมดยังคงอยู่ในรายการด้านล่าง</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>ไฟล์โปรเจกต์ที่ใช้งาน</value>
   </data>
   <data name="Used by projects" xml:space="preserve">
     <value>ถูกใช้โดยโปรเจกต์</value>

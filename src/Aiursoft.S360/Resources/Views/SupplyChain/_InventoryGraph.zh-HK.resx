@@ -57,11 +57,17 @@
   <data name="Direct dependency" xml:space="preserve">
     <value>直接依賴</value>
   </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>虛線代表專案參考。套件路徑會保留其已解析的框架及版本。</value>
+  </data>
   <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
     <value>拖曳以合適的比例瀏覽此圖表，或選擇「適合檢視」以檢視概覽。</value>
   </data>
   <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
     <value>啟用 JavaScript 以顯示圖表。所有套件詳情已列於下方。</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>展開專案即可查看已解析的套件。漏洞路徑涵蓋整個方案。</value>
   </data>
   <data name="Expand dependencies" xml:space="preserve">
     <value>展開依賴項</value>
@@ -84,6 +90,9 @@
   <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
     <value>綠色和藍色表示關係，並不代表認可。其他審核問題會標示在各個節點上。</value>
   </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>透過專案參照納入</value>
+  </data>
   <data name="Indirect dependency" xml:space="preserve">
     <value>間接依賴</value>
   </data>
@@ -92,6 +101,9 @@
   </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>已知漏洞</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>列於解決方案中</value>
   </data>
   <data name="Manifest and target" xml:space="preserve">
     <value>清單與目標</value>
@@ -120,6 +132,9 @@
   <data name="Package source" xml:space="preserve">
     <value>套件來源</value>
   </data>
+  <data name="Project file" xml:space="preserve">
+    <value>專案檔案</value>
+  </data>
   <data name="Project reference" xml:space="preserve">
     <value>專案參照</value>
   </data>
@@ -128,6 +143,12 @@
   </data>
   <data name="Reset view" xml:space="preserve">
     <value>重設視圖</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>解析目標</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>已解析的框架</value>
   </data>
   <data name="Root relationship not recorded" xml:space="preserve">
     <value>未記錄根節點關係</value>
@@ -155,6 +176,9 @@
   </data>
   <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
     <value>此圖表較大，現只顯示部分內容；搜尋套件以查看其關係。所有套件仍會列於下方。</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>由專案檔案使用</value>
   </data>
   <data name="Used by projects" xml:space="preserve">
     <value>被專案使用</value>

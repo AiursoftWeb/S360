@@ -57,11 +57,17 @@
   <data name="Direct dependency" xml:space="preserve">
     <value>直接依存関係</value>
   </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>点線はプロジェクト参照を示します。パッケージのパスには、解決されたターゲットフレームワークとバージョンが保持されます。</value>
+  </data>
   <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
     <value>図をドラッグして見やすい大きさで確認するか、「全体を表示」を選んで概要を確認してください。</value>
   </data>
   <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
     <value>グラフを表示するには、JavaScriptを有効にしてください。すべてのパッケージの詳細は下記にリストされています。</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>プロジェクトを展開すると、解決済みのパッケージを確認できます。脆弱性のパスはソリューション全体を対象とします。</value>
   </data>
   <data name="Expand dependencies" xml:space="preserve">
     <value>依存関係を展開</value>
@@ -84,6 +90,9 @@
   <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
     <value>緑色と青色は関係性を示すものであり、承認を意味するものではありません。その他の監査上の問題は各ノードに表示されます。</value>
   </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>プロジェクト参照を通じて含める</value>
+  </data>
   <data name="Indirect dependency" xml:space="preserve">
     <value>間接依存</value>
   </data>
@@ -92,6 +101,9 @@
   </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>既知の脆弱性</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>ソリューションに記載</value>
   </data>
   <data name="Manifest and target" xml:space="preserve">
     <value>マニフェストとターゲット</value>
@@ -120,6 +132,9 @@
   <data name="Package source" xml:space="preserve">
     <value>パッケージソース</value>
   </data>
+  <data name="Project file" xml:space="preserve">
+    <value>プロジェクト ファイル</value>
+  </data>
   <data name="Project reference" xml:space="preserve">
     <value>プロジェクト参照</value>
   </data>
@@ -128,6 +143,12 @@
   </data>
   <data name="Reset view" xml:space="preserve">
     <value>表示をリセット</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>解決先</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>解決済みフレームワーク</value>
   </data>
   <data name="Root relationship not recorded" xml:space="preserve">
     <value>ルートとの関係は記録されていません</value>
@@ -155,6 +176,9 @@
   </data>
   <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
     <value>このグラフは大きいため、限定ビューが表示されています。パッケージを検索すると、その関係性にフォーカスできます。すべてのパッケージは下のリストに表示され続けます。</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>プロジェクトファイルで使用</value>
   </data>
   <data name="Used by projects" xml:space="preserve">
     <value>プロジェクトで使用中</value>

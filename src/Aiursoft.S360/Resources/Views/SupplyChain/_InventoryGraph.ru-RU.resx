@@ -57,11 +57,17 @@
   <data name="Direct dependency" xml:space="preserve">
     <value>Прямая зависимость</value>
   </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>Пунктирные линии обозначают ссылки на проекты. Пути пакетов сохраняют разрешённые для них целевую платформу и версию.</value>
+  </data>
   <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
     <value>Перетаскивайте диаграмму, чтобы изучить её в удобном масштабе, или выберите «По размеру окна» для общего обзора.</value>
   </data>
   <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
     <value>Включите JavaScript, чтобы просмотреть граф. Ниже перечислены сведения обо всех пакетах.</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>Разверните проект, чтобы увидеть разрешённые для него пакеты. Пути уязвимостей охватывают всё решение.</value>
   </data>
   <data name="Expand dependencies" xml:space="preserve">
     <value>Развернуть зависимости</value>
@@ -84,6 +90,9 @@
   <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
     <value>Зелёный и синий цвета обозначают тип связи, а не одобрение. Другие замечания аудита отмечены на каждом узле.</value>
   </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Включено через ссылку на проект</value>
+  </data>
   <data name="Indirect dependency" xml:space="preserve">
     <value>Косвенная зависимость</value>
   </data>
@@ -92,6 +101,9 @@
   </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Известная уязвимость</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Указан в решении</value>
   </data>
   <data name="Manifest and target" xml:space="preserve">
     <value>Манифест и целевая платформа</value>
@@ -120,6 +132,9 @@
   <data name="Package source" xml:space="preserve">
     <value>Источник пакета</value>
   </data>
+  <data name="Project file" xml:space="preserve">
+    <value>Файл проекта</value>
+  </data>
   <data name="Project reference" xml:space="preserve">
     <value>Ссылка проекта</value>
   </data>
@@ -128,6 +143,12 @@
   </data>
   <data name="Reset view" xml:space="preserve">
     <value>Сбросить вид</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Разрешено для</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Определённый целевой фреймворк</value>
   </data>
   <data name="Root relationship not recorded" xml:space="preserve">
     <value>Связь с корневым узлом не зафиксирована</value>
@@ -155,6 +176,9 @@
   </data>
   <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
     <value>Этот граф слишком большой. Показана его ограниченная версия; найдите пакет, чтобы сосредоточиться на его связях. Все пакеты по-прежнему перечислены ниже.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Используется в файлах проектов</value>
   </data>
   <data name="Used by projects" xml:space="preserve">
     <value>Используется проектами</value>

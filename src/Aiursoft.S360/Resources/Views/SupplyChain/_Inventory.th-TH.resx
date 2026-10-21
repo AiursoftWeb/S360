@@ -27,6 +27,9 @@
   <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
     <value>แพ็กเกจที่มีช่องโหว่ {0} รายการ · แพ็กเกจอื่นที่ต้องดำเนินการ {1} รายการ</value>
   </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>ไม่มีการบันทึกกราฟโซลูชันฉบับสมบูรณ์ไว้ในรายงานนี้ ให้เรียกใช้ CLI เวอร์ชันล่าสุดเพื่อสร้างกราฟดังกล่าว โดยยังสามารถดูรายการแพ็กเกจได้</value>
+  </data>
   <data name="A newer report is incomplete." xml:space="preserve">
     <value>รายงานฉบับใหม่ไม่สมบูรณ์</value>
   </data>

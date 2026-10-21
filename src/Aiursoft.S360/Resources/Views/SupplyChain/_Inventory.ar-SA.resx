@@ -27,6 +27,9 @@
   <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
     <value>{0} حزم معرضة للخطر · {1} حزم أخرى تتطلب الانتباه</value>
   </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>لم يُسجَّل مخطط الحل الكامل في هذا التقرير. شغّل أحدث إصدار من واجهة سطر الأوامر (CLI) لإنشائه؛ وستظل قائمة الحزم متاحة.</value>
+  </data>
   <data name="A newer report is incomplete." xml:space="preserve">
     <value>يوجد تقرير أحدث غير مكتمل.</value>
   </data>

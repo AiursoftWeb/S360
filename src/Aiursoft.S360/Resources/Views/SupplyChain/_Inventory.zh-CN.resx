@@ -27,6 +27,9 @@
   <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
     <value>{0} 个存在漏洞的软件包 · {1} 个其他需关注的软件包</value>
   </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>此报告未记录完整的解决方案依赖关系图。请运行最新版 CLI 以生成该图；软件包列表仍可查看。</value>
+  </data>
   <data name="A newer report is incomplete." xml:space="preserve">
     <value>较新的报告不完整。</value>
   </data>

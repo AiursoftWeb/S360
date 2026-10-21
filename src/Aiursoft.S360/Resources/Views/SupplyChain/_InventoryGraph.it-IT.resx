@@ -57,11 +57,17 @@
   <data name="Direct dependency" xml:space="preserve">
     <value>Dipendenza diretta</value>
   </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>Le linee tratteggiate rappresentano i riferimenti ai progetti. I percorsi dei pacchetti mantengono il framework e la versione risolti.</value>
+  </data>
   <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
     <value>Trascina per esplorare questo diagramma a una scala leggibile oppure scegli Vista adattamento per una panoramica.</value>
   </data>
   <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
     <value>Abilita JavaScript per visualizzare il grafico. Tutti i dettagli dei pacchetti sono elencati qui sotto.</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>Espandi un progetto per visualizzare i pacchetti risolti. I percorsi delle vulnerabilità coprono l’intera soluzione.</value>
   </data>
   <data name="Expand dependencies" xml:space="preserve">
     <value>Espandi dipendenze</value>
@@ -84,6 +90,9 @@
   <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
     <value>Il verde e il blu descrivono la relazione, non l&apos;approvazione. Le altre problematiche di audit sono indicate su ciascun nodo.</value>
   </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Incluso tramite un riferimento al progetto</value>
+  </data>
   <data name="Indirect dependency" xml:space="preserve">
     <value>Dipendenza indiretta</value>
   </data>
@@ -92,6 +101,9 @@
   </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Vulnerabilità nota</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Elencato nella soluzione</value>
   </data>
   <data name="Manifest and target" xml:space="preserve">
     <value>Manifest e target</value>
@@ -120,6 +132,9 @@
   <data name="Package source" xml:space="preserve">
     <value>Origine del pacchetto</value>
   </data>
+  <data name="Project file" xml:space="preserve">
+    <value>File di progetto</value>
+  </data>
   <data name="Project reference" xml:space="preserve">
     <value>Riferimento al progetto</value>
   </data>
@@ -128,6 +143,12 @@
   </data>
   <data name="Reset view" xml:space="preserve">
     <value>Ripristina visualizzazione</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Risolto per</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Framework risolto</value>
   </data>
   <data name="Root relationship not recorded" xml:space="preserve">
     <value>Relazione con la radice non registrata</value>
@@ -155,6 +176,9 @@
   </data>
   <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
     <value>Questo grafico è grande. Viene mostrata una vista limitata; cerca un pacchetto per concentrarti sulle sue relazioni. Tutti i pacchetti restano nell&apos;elenco sottostante.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Utilizzato dai file di progetto</value>
   </data>
   <data name="Used by projects" xml:space="preserve">
     <value>Utilizzato dai progetti</value>

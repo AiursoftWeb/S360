@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} pakkeelementer · {1} kræver opmærksomhed</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} resultater · Side {1} af {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} sårbare pakker · {1} andre pakker der kræver opmærksomhed</value>
+  </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>Der blev ikke registreret en komplet løsningsgraf i denne rapport. Kør den nyeste CLI for at udfylde den; pakkelisten forbliver tilgængelig.</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>En nyere rapport er ufuldstændig.</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>En nyere rapport er ufuldstændig. Den sidste fuldstændige snapshot vises; den aktuelle dækning er ikke verificeret.</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>Alle projekter</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>Alle statusser</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>Godkendelsesregler og værktøjer</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>Se alle afhængigheder for dette projekt</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>Gennemse godkendelsesregler</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Tjekoptegnelse</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Oversigt over selskabet</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Kompatibilitetsudforsker</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Overholder</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>Kopieret!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Kopiér Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>Antalene beskriver det valgte rapportområde. Status evalueres ud fra den gældende politik og gemte sårbarhedsdata.</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>Aktuel baseline</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Afhængigheder</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Økosystem</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Udforsk</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>Find et projekt eller en pakke, undersøg dets overholdelse af reglerne, og find ud af, hvorfor det bruges.</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>Inventarvisninger</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Kendte sårbarheder</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>Seneste komplette grundlag. Dette er rapporterede afhængigheder, ikke bevis på, at de er installeret.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Kræver opmærksomhed</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Næste</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>Ingen fuldstændig rapport tilgængelig.</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>Ingen komplet rapport for dette økosystem. Dens overholdelse er ukendt.</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>Ingen matchende poster</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Ikke verificeret</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: ikke omfattet af denne gennemgang.</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet og npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: ikke inkluderet i denne revision.</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>Observerede pakker</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>Ældre rapporter uden erklæret formål. Nuværende brug kan ikke udledes fra disse optegnelser.</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>Pakke, projekt, formål eller godkendelsesgrund</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>Pakker, der kræver opmærksomhed</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>Side {0} af {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>Pipeline</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Forrige</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projekter</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>Projekter med rapporter</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Det kræver læserettigheder til forsyningskæden at se projektoversigten. Du kan stadig gennemse godkendelsesreglerne.</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>README-badge</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Rapporter</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>Nulstil filtre</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>Resultatsider</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>Gennemgangskontroller gemmes ikke som projektinventar.</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>S360 overholdelsesbadge</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>Søg i lagerbeholdningen</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>Markér og kopier Markdown ovenfor.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>Del din seneste baseline-compliance på GitHub eller GitLab. Badget er offentligt og kræver ikke login. Det dækker de rapporterede økosystemer, ikke produktionsdeployments.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>Status dækker kun de rapporterede økosystemer.</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Forsyningskæde</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>Den fuldstændige rapport indeholder ingen afhængigheder for dette økosystem.</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>Denne rapport er ufuldstændig. Der er ikke tilgængelig et fuldstændigt snapshot; den aktuelle dækning er ikke verificeret.</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>Prøv en anden søgning eller rapportomfang. En godkendelsesregel alene er ikke bevis for, at et projekt bruger en pakke.</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>Uklassificeret historik</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>Opdater CLI-rapporten for at se afhængighedshierarkier.</value>
+  </data>
+
+</root>

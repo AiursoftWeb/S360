@@ -15,8 +15,9 @@ if (host) {
     let expanded = new Set(), collapsed = new Set(), sequence = 0, timer, rendering = Promise.resolve();
     let suppressClick = false, restoreNotice = '';
     const current = () => graphs[Number(scope.value)];
-    const name = node => node.Package ? `${node.Package.Name}@${node.Package.Version}` : node.Label || (node.Kind === 'root' ? current().Project : node.Id);
+    const name = node => node.Kind === 'target' ? format('frameworkLabel', node.Target) : node.Package ? `${node.Package.Name}@${node.Package.Version}` : node.Label || (node.Kind === 'root' ? current().Project : node.Id);
     const status = node => text(['compliant', 'pending', 'problem'][node.Status]);
+    const riskStatus = node => node.Advisories.length ? text('vulnerable') : node.RiskCount ? text('affected') : status(node);
     const level = () => Math.max(1, Math.min(20, Math.floor(Number(depth.value) || 3)));
     const directDependency = node => node.IsDirect ?? distances.get(node.Id) === 1;
     const relation = node => text(directDependency(node) ? 'direct' : distances.has(node.Id) ? 'indirect' : 'unlinked');
@@ -84,12 +85,21 @@ if (host) {
         if (node.RiskCount) detail.append(element('p', format('foldedRisk', node.RiskCount), 's360-cve-label'));
         if (node.Package) {
             detail.append(element('p', relation(node), 'small'));
-            detail.append(element('span', status(node), `s360-node-status status-${node.Status}`));
-            if (node.Reason) detail.append(element('p', node.Reason, 'small'));
+            const riskClass = node.Advisories.length ? 'vulnerable' : node.RiskCount ? 'affected' : node.Status;
+            detail.append(element('span', riskStatus(node), `s360-node-status status-${riskClass}`));
+            if (node.Reason) {
+                detail.append(element('h5', text('policy')), element('p', `${status(node)} · ${node.Reason}`, 'small'));
+            }
             for (const advisory of node.Advisories) detail.append(element('span', advisory, 's360-cve-label'));
             detail.append(element('h5', text('source')), element('p', node.Package.Source, 'small'));
         }
         const actions = element('div', null, 's360-graph-actions');
+        if (node.RiskCount || node.Advisories.length) {
+            const button = element('button', text('vulnerabilityPaths'), 'btn btn-outline-danger btn-sm');
+            button.type = 'button';
+            button.addEventListener('click', () => { search.value = ''; risk.checked = true; schedule(); });
+            actions.append(button);
+        }
         if (node.Children.length) {
             const button = element('button', `${text(isOpen(node.Id) ? 'collapse' : 'expand')} (${node.Children.length})`, 'btn btn-outline-primary btn-sm');
             button.type = 'button'; button.addEventListener('click', () => toggle(node.Id)); actions.append(button);
@@ -184,17 +194,15 @@ if (host) {
         if (!visible.size) { canvas.replaceChildren(); svg = null; notice.textContent = text('empty'); return; }
         const ids = new Map([...visible].map((id, i) => [id, `n${i}`]));
         const code = [compact.matches || graph.IsSolution && risk.checked ? 'flowchart TD' : 'flowchart LR',
-            'classDef direct fill:#e8f7ef,stroke:#218358,color:#14563a',
-            'classDef indirect fill:#edf4ff,stroke:#427bc1,color:#244a7d',
+            'classDef neutral fill:#f1f2f6,stroke:#818b9d,color:#354052',
             'classDef vulnerable fill:#fff0f1,stroke:#cf354c,color:#852036,stroke-width:2px',
-            'classDef project fill:#f1f2f6,stroke:#818b9d,color:#354052',
             'classDef affected fill:#fff9f0,stroke:#b5893e,color:#4f4432,stroke-width:2px',
             'classDef unverified stroke:#ae7916,stroke-dasharray:4 3'];
         for (const id of visible) {
             const node = nodes.get(id);
-            const kind = !node.Package ? node.RiskCount ? 'affected' : 'project' : node.Advisories.length ? 'vulnerable' : !distances.has(id) ? 'project' : directDependency(node) ? 'direct' : 'indirect';
+            const kind = node.Advisories.length ? 'vulnerable' : node.RiskCount ? 'affected' : 'neutral';
             const lines = !node.Package ? [name(node), node.Kind === 'project-reference' ? text('reference') : '', node.RiskCount ? format('foldedRisk', node.RiskCount) : ''] :
-                [node.Package.Name, node.Package.Version, node.Advisories[0] || (node.Status !== 0 ? status(node) : '')];
+                [node.Package.Name, node.Package.Version, node.Advisories[0] || (node.RiskCount ? format('foldedRisk', node.RiskCount) : node.Status !== 0 ? status(node) : '')];
             const label = lines.filter(Boolean).flatMap(line => {
                 const shortened = line.length > 100 ? line.slice(0, 97) + '...' : line;
                 return shortened.match(compact.matches ? /.{1,22}/gu : /.{1,32}/gu) || [''];
@@ -222,7 +230,7 @@ if (host) {
                 if (!id) continue;
                 const node = nodes.get(id);
                 group.dataset.node = id; group.setAttribute('tabindex', '0'); group.setAttribute('role', 'button');
-                group.setAttribute('aria-label', `${name(node)}${node.Package ? ` · ${relation(node)} · ${status(node)}` : ''}`);
+                group.setAttribute('aria-label', `${name(node)}${node.Package ? ` · ${relation(node)} · ${riskStatus(node)}` : ''}`);
                 const select = () => { selected = id; showDetails(); markSelection(); saveView(); };
                 group.addEventListener('click', event => { if (!suppressClick) { event.stopPropagation(); select(); } });
                 group.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); select(); } });

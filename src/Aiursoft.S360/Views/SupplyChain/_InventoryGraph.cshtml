@@ -28,10 +28,10 @@
     </div>
     <div class="s360-graph-legend">
         @if (solution != null) { <span>@Localizer["Dotted lines are project references. Package paths retain their resolved framework and version."]</span> }
-        <span><i class="s360-dot direct"></i>@Localizer["Direct dependency"]</span>
-        <span><i class="s360-dot indirect"></i>@Localizer["Indirect dependency"]</span>
+        <span><i class="s360-dot neutral"></i>@Localizer["Dependency structure"]</span>
+        <span><i class="s360-dot affected"></i>@Localizer["Introduces vulnerable dependencies"]</span>
         <span><i class="s360-dot vulnerable"></i>@Localizer["Known vulnerability"]</span>
-        <span>@Localizer["Green and blue describe the relationship, not approval. Other audit issues are labeled on each node."]</span>
+        <span>@Localizer["Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node."]</span>
     </div>
     <p class="s360-graph-risk-summary" role="status"></p>
     <p class="s360-graph-notice small text-muted" role="status"></p>
@@ -50,6 +50,7 @@
     <noscript><p>@Localizer["Enable JavaScript to view the graph. All package details are listed below."]</p></noscript>
     <div class="s360-graph-loc" hidden>
         <span data-key="projectFile">@Localizer["Project file"]</span>
+        <span data-key="frameworkLabel">@(Localizer["Framework: {0}"].Value)</span>
         <span data-key="framework">@Localizer["Resolved framework"]</span>
         <span data-key="resolvedFor">@Localizer["Resolved for"]</span>
         <span data-key="usedByFiles">@Localizer["Used by project files"]</span>
@@ -59,6 +60,10 @@
         <span data-key="limited">@Localizer["This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below."]</span>
         <span data-key="failed">@Localizer["The graph could not be displayed. Package details remain available below."]</span>
         <span data-key="empty">@Localizer["No matching packages."]</span>
+        <span data-key="vulnerable">@Localizer["Known vulnerability"]</span>
+        <span data-key="affected">@Localizer["Introduces vulnerable dependencies"]</span>
+        <span data-key="vulnerabilityPaths">@Localizer["Show vulnerability paths"]</span>
+        <span data-key="policy">@Localizer["Package policy"]</span>
         <span data-key="compliant">@Localizer["Compliant"]</span>
         <span data-key="pending">@Localizer["Not verified"]</span>
         <span data-key="problem">@Localizer["Needs attention"]</span>

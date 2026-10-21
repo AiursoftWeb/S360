@@ -1415,7 +1415,7 @@ public class SupplyChainPagesTests : TestBase
         var html = await page.Content.ReadAsStringAsync();
         StringAssert.Contains(html, "Project dependencies");
         StringAssert.Contains(html, "s360-graph-show-risks");
-        StringAssert.Contains(html, "/js/solution-graph.js?v=");
+        StringAssert.Contains(html, "id=\"s360-solution-module\"");
         StringAssert.Contains(html, "Direct dependencies only");
         StringAssert.Contains(html, "Safe.csproj");
         StringAssert.Contains(html, "SqlServer.csproj");

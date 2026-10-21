@@ -10,6 +10,18 @@
 
 S360 manages NuGet and npm dependencies: employees request packages, reviewers approve dependency graphs, and teams track package files, trust rules, blocklists, and vulnerabilities.
 
+## CLI & SDK
+
+Install the CLI with the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0):
+
+```bash
+dotnet tool install --global Aiursoft.S360.Client --add-source https://nuget.aiursoft.com/v3/index.json
+```
+
+Run `s360 --help` to explore commands. See [Dependency checks](#dependency-checks) for configuration and examples.
+
+The [SDK source](src/Aiursoft.S360.SDK) is included in this repository; it is not published as a separate NuGet package.
+
 ![S360 screenshot](./screenshot.png)
 
 ## Try

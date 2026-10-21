@@ -3,10 +3,10 @@
 @model InventoryProject
 @{ var solution = Model.Solution; var graphs = Model.Graphs; }
 <section class="s360-graph" aria-label="@Localizer["Dependency relationships"]">
-    <div class="s360-graph-heading"><div><span class="s360-inventory-eyebrow">@Localizer["Explore dependencies"]</span><h3>@(solution != null ? Localizer["Solution structure"] : Localizer["From your project to every package"])</h3><p>@if (solution != null)
+    <div class="s360-graph-heading"><div><span class="s360-inventory-eyebrow">@Localizer["Explore dependencies"]</span><h3>@(solution != null ? Localizer["Project dependencies"] : Localizer["From your project to every package"])</h3><p>@if (solution != null)
         {
             @string.Format(Localizer["{0} project files · {1} package versions"].Value, solution.Graph.Nodes.Count(n => n.ProjectPath != null), solution.Packages.Count)
-            <span> · @Localizer["Expand a project to see its resolved packages. Vulnerability paths cover the entire solution."]</span>
+            <span> · @Localizer["Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies."]</span>
         }
         else { @Localizer["Start with three levels. Expand a node to follow its dependencies, or select it for details."] }</p></div><button type="button" class="btn btn-outline-secondary s360-graph-share">@Localizer["Copy view link"]</button></div>
     <div class="s360-graph-controls">
@@ -21,19 +21,18 @@
         <label>@Localizer["Maximum depth"]<input type="number" class="form-control s360-graph-depth" min="1" max="20" value="@(solution != null ? 1 : 3)" /></label>
     </div>
     <div class="s360-graph-toolbar">
-        <button type="button" class="btn btn-outline-primary s360-graph-direct">@(solution != null ? Localizer["Projects only"] : Localizer["Direct dependencies only"])</button>
+        <button type="button" class="btn btn-outline-primary s360-graph-direct">@Localizer["Direct dependencies only"]</button>
         <label class="s360-graph-risk-switch"><input type="checkbox" class="form-check-input s360-graph-risk" /> @Localizer["Vulnerability paths"]</label>
         <button type="button" class="btn btn-outline-secondary s360-graph-reset">@Localizer["Reset view"]</button>
         <span class="s360-graph-summary" role="status"></span>
     </div>
     <div class="s360-graph-legend">
-        @if (solution != null) { <span>@Localizer["Dotted lines are project references. Package paths retain their resolved framework and version."]</span> }
         <span><i class="s360-dot neutral"></i>@Localizer["Dependency structure"]</span>
         <span><i class="s360-dot affected"></i>@Localizer["Introduces vulnerable dependencies"]</span>
         <span><i class="s360-dot vulnerable"></i>@Localizer["Known vulnerability"]</span>
         <span>@Localizer["Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node."]</span>
     </div>
-    <p class="s360-graph-risk-summary" role="status"></p>
+    <div class="s360-graph-risk-overview"><p class="s360-graph-risk-summary" role="status"></p><button type="button" class="btn btn-outline-danger s360-graph-show-risks" hidden>@Localizer["Show vulnerability paths"]</button></div>
     <p class="s360-graph-notice small text-muted" role="status"></p>
     <div class="s360-graph-body">
         <div class="s360-graph-stage">

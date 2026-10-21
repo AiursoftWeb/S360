@@ -534,6 +534,8 @@
 .s360-dot { width: 9px; height: 9px; border-radius: 50%; background: #818b9d; flex-shrink: 0; }
 .s360-dot.affected { background: #b5893e; }
 .s360-dot.vulnerable { background: #cf354c; }
+.s360-graph-risk-overview { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; margin-bottom: .75rem; }
+.s360-graph-risk-overview > p { flex: 1 1 300px; margin: 0; }
 .s360-graph-risk-summary { font-size: .8rem; color: var(--s360-muted); }
 .s360-graph-risk-summary.has-risk { color: #9d263a; background: #fff1f2; border-left: 3px solid #cf354c; padding: .7rem .9rem; border-radius: 4px; }
 .s360-graph-body { display: grid; grid-template-columns: minmax(0, 1fr) 270px; border: 1px solid var(--s360-line); border-radius: 12px; overflow: hidden; }
@@ -548,6 +550,8 @@
 .s360-graph-canvas .s360-node-toggle circle { fill: #fff; stroke: #637691; stroke-width: 1px; }
 .s360-graph-canvas .s360-node-toggle text { fill: #29496d; font-size: 10px; font-weight: 700; }
 .s360-graph-canvas .s360-node-toggle:focus-visible circle { stroke-width: 3px; }
+.s360-graph-body:not(.has-selection) { grid-template-columns: minmax(0, 1fr); }
+.s360-graph-detail[hidden] { display: none; }
 .s360-graph-detail { padding: 1rem; border-left: 1px solid var(--s360-line); max-height: 560px; overflow: auto; overflow-wrap: anywhere; background: #fff; }
 .s360-graph-detail h4 { font-size: 1rem; }
 .s360-graph-detail h5 { font-size: .75rem; color: var(--s360-muted); margin: 1.2rem 0 .5rem; }

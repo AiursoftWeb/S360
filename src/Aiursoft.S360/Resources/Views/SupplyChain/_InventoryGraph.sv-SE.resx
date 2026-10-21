@@ -57,11 +57,17 @@
   <data name="Direct dependency" xml:space="preserve">
     <value>Direkt beroende</value>
   </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>Streckade linjer är projektreferenser. Paketvägar behåller sin upplösta ramverk och version.</value>
+  </data>
   <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
     <value>Dra för att utforska denna diagram på en läslig skala, eller välj Anpassa vy för en översikt.</value>
   </data>
   <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
     <value>Aktivera JavaScript för att visa diagrammet. Alla paketdetaljer listas nedan.</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>Expandera ett projekt för att se dess upplösta paket. Sårbarhetsvägar omfattar hela lösningen.</value>
   </data>
   <data name="Expand dependencies" xml:space="preserve">
     <value>Expandera beroenden</value>
@@ -84,6 +90,9 @@
   <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
     <value>Grön och blå beskriver relationen, inte godkännande. Övriga granskningsproblem anges på varje nod.</value>
   </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Inkluderad via ett projektreferens</value>
+  </data>
   <data name="Indirect dependency" xml:space="preserve">
     <value>Indirekt beroende</value>
   </data>
@@ -92,6 +101,9 @@
   </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Känd sårbarhet</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Angiven i lösningen</value>
   </data>
   <data name="Manifest and target" xml:space="preserve">
     <value>Manifest och mål</value>
@@ -120,6 +132,9 @@
   <data name="Package source" xml:space="preserve">
     <value>Paketskälla</value>
   </data>
+  <data name="Project file" xml:space="preserve">
+    <value>Projektfil</value>
+  </data>
   <data name="Project reference" xml:space="preserve">
     <value>Projektreferens</value>
   </data>
@@ -128,6 +143,12 @@
   </data>
   <data name="Reset view" xml:space="preserve">
     <value>Återställ vy</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Löst för</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Fastställd målram</value>
   </data>
   <data name="Root relationship not recorded" xml:space="preserve">
     <value>Rotrelationen har inte registrerats</value>
@@ -155,6 +176,9 @@
   </data>
   <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
     <value>Det här diagrammet är stort. En begränsad vy visas; sök efter ett paket för att fokusera på dess relationer. Alla paket finns kvar i listan nedan.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Används av projektfiler</value>
   </data>
   <data name="Used by projects" xml:space="preserve">
     <value>Används av projekt</value>

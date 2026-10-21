@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Actions" xml:space="preserve">
+    <value>Acțiuni</value>
+  </data>
+  <data name="API Key created" xml:space="preserve">
+    <value>Cheia API a fost creată</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>Chei API</value>
+  </data>
+  <data name="Create API Key" xml:space="preserve">
+    <value>Creați cheie API</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Ștergere</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Editează</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Activat</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Data expirării</value>
+  </data>
+  <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone." xml:space="preserve">
+    <value>Cheile sunt asociate contului tău. Revocarea permisiunii de utilizare a API-ului sau blocarea contului dezactivează și cheile. Orele sunt afișate în fusul orar local.</value>
+  </data>
+  <data name="Last used" xml:space="preserve">
+    <value>Ultima utilizare</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nume</value>
+  </data>
+  <data name="New API Key" xml:space="preserve">
+    <value>Cheie API nouă</value>
+  </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Linia de bază de producție</value>
+  </data>
+  <data name="Send the key using X-S360-Key, or set S360_CHECK_KEY for the CLI. Never include keys in URLs, source control or logs." xml:space="preserve">
+    <value>Trimiteți cheia folosind X-S360-Key sau configurați S360_CHECK_KEY pentru CLI. Nu includeți niciodată cheile în URL-uri, controlul surselor sau jurnale.</value>
+  </data>
+  <data name="This key is displayed only once. Save it in your private configuration." xml:space="preserve">
+    <value>Această cheie este afișată o singură dată. Salvați-o în configurația privată.</value>
+  </data>
+  <data name="To rotate a key, create another, update your integration and verify it works, then delete the old key. Existing keys keep working during the transition." xml:space="preserve">
+    <value>Pentru a roti o cheie, creați alta, actualizați integrarea și verificați că funcționează, apoi ștergeți cheia veche. Cheile existente continuă să funcționeze pe durata tranziției.</value>
+  </data>
+
+</root>

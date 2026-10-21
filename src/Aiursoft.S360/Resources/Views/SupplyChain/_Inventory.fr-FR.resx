@@ -27,6 +27,9 @@
   <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
     <value>{0} paquets vulnérables · {1} autres paquets nécessitant une attention</value>
   </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>Aucun graphe de solution complet n&apos;a été enregistré dans ce rapport. Exécutez la dernière CLI pour le remplir ; la liste des packages reste disponible.</value>
+  </data>
   <data name="A newer report is incomplete." xml:space="preserve">
     <value>Un rapport plus récent est incomplet.</value>
   </data>

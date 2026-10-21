@@ -27,6 +27,9 @@
   <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
     <value>脆弱性のあるパッケージ {0} 件 · 対応が必要なその他のパッケージ {1} 件</value>
   </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>このレポートには完全なソリューショングラフが記録されていません。最新のCLIを実行してデータを入力してください。パッケージ一覧は引き続き利用できます。</value>
+  </data>
   <data name="A newer report is incomplete." xml:space="preserve">
     <value>新しいレポートは不完全です。</value>
   </data>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{1} düğümün {0}&apos;ı gösteriliyor</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>Bu şemada {0} kırılgan paket, derinlik veya filtreler nedeniyle gizlenen {1} paket de dahil.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Bağımlılıkları Daralt</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Uyumlu</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Kopyalama kullanılamıyor. Geçerli adresi tarayıcınızdan kopyalayın.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Görünüm bağlantısını kopyala</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Bağımlılıklar</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Bağımlılık ayrıntıları</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Bağımlılık grafiği. Kaydırmak için sürükleyin, yakınlaştırmak için kontrolleri kullanın veya bir düğüm seçin.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Bağımlılık ilişkileri</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Diyagram kontrolleri</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Doğrudan bağımlılık</value>
+  </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>Kesik çizgiler proje başvurularını gösterir. Paket yolları, çözümlenen çerçeve ve sürüm bilgilerini korur.</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Bu diyagramı okunabilir bir ölçekte incelemek için sürükleyin veya genel bir görünüm için Uydur seçeneğini kullanın.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Grafiği görüntülemek için JavaScript&apos;i etkinleştirin. Tüm paket ayrıntıları aşağıda listelenmiştir.</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>Çözümlenmiş paketleri görmek için bir projeyi genişletin. Kırılganlık yolları tüm çözümü kapsar.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Bağımlılıkları genişlet</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Bağımlılıkları Keşfet</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Paket bul</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Görünüme sığdır</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Tam ekran</value>
+  </data>
+  <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
+    <value>Yeşil ve mavi, onayı değil ilişkiyi ifade eder. Diğer denetim sorunları her düğümde etiketlenir.</value>
+  </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Proje referansı üzerinden dahil edildi</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Dolaylı bağımlılık</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Şununla tanıtıldı</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Bilinen güvenlik açığı</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Çözümde listelenmiş</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Bildirim dosyası ve hedef</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Maksimum derinlik</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Dikkat gerektiriyor</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>Bildirilen grafikte bilinen bir güvenlik açığı yok. Bu sonuca güvenmeden önce denetim durumunu kontrol edin.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Eşleşen paket yok.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Herhangi bir amaç veya onay gerekçesi kaydedilmemiş</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Doğrulanmadı</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Paket adı, yolu veya CVE</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Paket kaynağı</value>
+  </data>
+  <data name="Project file" xml:space="preserve">
+    <value>Proje dosyası</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Proje referansı</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Kaydedilen amaç ve onay gerekçeleri</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Görünümü sıfırla</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Şunun için çözümlendi</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Çözümlenen hedef çerçeve</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Kök ilişkisi kaydedilmedi</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Arama ve güvenlik açığı yolları, seçilen derinliğin ötesindeki üst düğümleri de içerir. Derinlik sınırlarına dönmek için görünümü sıfırlayın.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Sürümünü, denetim durumunu ve eklenme yollarını görmek için bir düğüm seçin.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Tanıtılma yollarını göster</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Bazı raporlanan düğümlerin bu kökten bir yolu yok. Arama yine de onları bulabilir; hiçbir ilişki çıkarılmamıştır.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Üç seviyeden başlayın. Bir düğümü bağımlılıklarını takip etmek için genişletin veya ayrıntılarını görüntülemek için seçin.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>Grafik görüntürülemedi. Paket ayrıntıları aşağıda mevcuttur.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Kaydedilen rapor değişti. Güncel bağımlılık grafiği gösteriliyor.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Bu grafik büyük. Sınırlı bir görünüm gösteriliyor; ilişkilerine odaklanmak için bir paket arayın. Tüm paketler aşağıdaki listede yer almaya devam ediyor.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Proje dosyaları tarafından kullanılıyor</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Projeler tarafından kullanılıyor</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Görünüm bağlantısı kopyalandı.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Güvenlik açığı yolları</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Yakınlaştır</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Uzaklaştır</value>
+  </data>
+
+</root>

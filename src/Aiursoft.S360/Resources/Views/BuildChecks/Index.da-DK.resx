@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>En afgrænset del af afhængighedslisten, der sendes til API&apos;en. En accepteret batch er ikke det samme som en fuldstændigt accepteret kørsel.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Accepteret</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>&quot;Accepteret&quot; betyder, at S360 accepterede de rapporterede pakkebeviser for denne kontrol. Det betyder ikke, at alle partier er ankommet, eller at en GitLab Runner er konfigureret til at stoppe byggeriet.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Accepteret kontra håndhævet</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Anonym review</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API-nøgle-id</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>Formål med revision</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>Autentificeret konto</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Batch</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>Blokeret i øjeblikket</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Beslutningsårsag</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Standardgren</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Hver række svarer til én API-batch. Kun en fuldført kørsel, hvor alle batches er godkendt, kan bestå CLI-kontrollen. Det registrerede resultat er historisk; en aktuel advarsel om blokeringslisten vises separat.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Ufuldstændig kørsel</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Lokal kontrol</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Fletteanmodning</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Næste</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>Der blev ikke fundet eksterne afhængigheder i de angivne understøttede projekter.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>Ét rapporteret kontrolforsøg. Dets batches deler en kørselsidentifikator, så du kan gennemgå det samlede resultat.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Anden gren</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Pakke</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>Forrige</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Produktionsbaseline</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Projekt</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Læs en kontrolpost</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Begrundelse</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Afvist</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Rapporteret kilde</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>Kun til gennemgang</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>Review giver en politikafgørelse uden at gemme en projektrapport. Baseline erklærer produktionsbrug og opdaterer projektfortegnelsen, først når alle batches er ankommet, også selvom afhængighederne afvises. Ældre poster uden et formål opdaterer aldrig produktionsbrugen.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Kørsel</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Tagbuild</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>Antallet af understøttede projekter, som CLI&apos;en genkendte. Et tjek uden afhængigheder kontakter stadig S360 og registrerer dette antal.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>Den politiske forklaring, der blev registreret, da kontrollen blev kørt. En aktuel advarsel om bloklisten er separat og ændrer aldrig denne historik.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>Projekt- og pipelineidentifikatorerne leveres af en ikke-autentificeret caller.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>Dette er indberettede kontroller; håndhævelse via Runner er et separat udrulningstrin og kan ikke udledes af en registrering her.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Ikke klassificeret</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>Ikke angivet formål</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Sårbarhedsdata</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Tidspunkt for sårbarhedsdata</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>Hvornår rådgivningsdataene bag denne beslutning sidst blev kontrolleret; en tom værdi er ikke ensbetydende med, at alt er i orden.</value>
   </data>
 
 </root>

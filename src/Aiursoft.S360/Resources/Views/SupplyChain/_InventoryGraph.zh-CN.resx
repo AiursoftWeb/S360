@@ -57,11 +57,17 @@
   <data name="Direct dependency" xml:space="preserve">
     <value>直接依赖</value>
   </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>虚线表示项目引用。程序包路径将保留其已解析的框架和版本。</value>
+  </data>
   <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
     <value>拖动以可读的缩放比例探索此图表，或选择&quot;适应视图&quot;以查看概览。</value>
   </data>
   <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
     <value>启用 JavaScript 以查看图表。所有软件包详情均列于下方。</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>展开项目以查看其已解析的包。漏洞路径涵盖整个解决方案。</value>
   </data>
   <data name="Expand dependencies" xml:space="preserve">
     <value>展开依赖项</value>
@@ -84,6 +90,9 @@
   <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
     <value>绿色和蓝色表示依赖关系，而非审批状态。其他审计问题会在各节点上单独标注。</value>
   </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>通过项目引用包含</value>
+  </data>
   <data name="Indirect dependency" xml:space="preserve">
     <value>间接依赖</value>
   </data>
@@ -92,6 +101,9 @@
   </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>已知漏洞</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>在解决方案中列出</value>
   </data>
   <data name="Manifest and target" xml:space="preserve">
     <value>清单和目标</value>
@@ -120,6 +132,9 @@
   <data name="Package source" xml:space="preserve">
     <value>软件包来源</value>
   </data>
+  <data name="Project file" xml:space="preserve">
+    <value>项目文件</value>
+  </data>
   <data name="Project reference" xml:space="preserve">
     <value>项目引用</value>
   </data>
@@ -128,6 +143,12 @@
   </data>
   <data name="Reset view" xml:space="preserve">
     <value>重置视图</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>解析为</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>已解析的框架</value>
   </data>
   <data name="Root relationship not recorded" xml:space="preserve">
     <value>未记录根节点关系</value>
@@ -155,6 +176,9 @@
   </data>
   <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
     <value>此图较大，当前仅显示部分内容；请搜索某个程序包以查看其依赖关系。所有程序包仍列在下方。</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>被项目文件使用</value>
   </data>
   <data name="Used by projects" xml:space="preserve">
     <value>被以下项目使用</value>

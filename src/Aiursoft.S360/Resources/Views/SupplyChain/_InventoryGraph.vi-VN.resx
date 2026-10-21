@@ -57,11 +57,17 @@
   <data name="Direct dependency" xml:space="preserve">
     <value>Phụ thuộc trực tiếp</value>
   </data>
+  <data name="Dotted lines are project references. Package paths retain their resolved framework and version." xml:space="preserve">
+    <value>Các đường nét đứt biểu thị tham chiếu dự án. Đường dẫn gói giữ nguyên framework và phiên bản đã được phân giải.</value>
+  </data>
   <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
     <value>Kéo để khám phá biểu đồ này ở tỷ lệ dễ đọc, hoặc chọn Xem vừa vặn để xem tổng quan.</value>
   </data>
   <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
     <value>Bật JavaScript để xem biểu đồ. Tất cả chi tiết gói được liệt kê bên dưới.</value>
+  </data>
+  <data name="Expand a project to see its resolved packages. Vulnerability paths cover the entire solution." xml:space="preserve">
+    <value>Mở rộng một dự án để xem các gói đã được phân giải. Các đường dẫn lỗ hổng bao quát toàn bộ giải pháp.</value>
   </data>
   <data name="Expand dependencies" xml:space="preserve">
     <value>Mở rộng các phụ thuộc</value>
@@ -84,6 +90,9 @@
   <data name="Green and blue describe the relationship, not approval. Other audit issues are labeled on each node." xml:space="preserve">
     <value>Màu xanh lá và xanh dương biểu thị mối quan hệ, không phải sự chấp thuận. Các vấn đề kiểm tra khác được ghi nhãn trên từng nút.</value>
   </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Được bao gồm thông qua tham chiếu dự án</value>
+  </data>
   <data name="Indirect dependency" xml:space="preserve">
     <value>Phụ thuộc gián tiếp</value>
   </data>
@@ -92,6 +101,9 @@
   </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Lỗ hổng đã biết</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Có trong giải pháp</value>
   </data>
   <data name="Manifest and target" xml:space="preserve">
     <value>Tệp kê khai và mục tiêu</value>
@@ -120,6 +132,9 @@
   <data name="Package source" xml:space="preserve">
     <value>Nguồn gói</value>
   </data>
+  <data name="Project file" xml:space="preserve">
+    <value>Tệp dự án</value>
+  </data>
   <data name="Project reference" xml:space="preserve">
     <value>Tham chiếu dự án</value>
   </data>
@@ -128,6 +143,12 @@
   </data>
   <data name="Reset view" xml:space="preserve">
     <value>Đặt lại chế độ xem</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Được phân giải cho</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Framework đã được xác định</value>
   </data>
   <data name="Root relationship not recorded" xml:space="preserve">
     <value>Quan hệ gốc không được ghi nhận</value>
@@ -155,6 +176,9 @@
   </data>
   <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
     <value>Đồ thị này có quy mô lớn. Chỉ hiển thị một phần; hãy tìm kiếm gói để xem các mối quan hệ của gói đó. Tất cả các gói vẫn có trong danh sách bên dưới.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Được sử dụng bởi các tệp dự án</value>
   </data>
   <data name="Used by projects" xml:space="preserve">
     <value>Được sử dụng bởi các dự án</value>

@@ -21,6 +21,15 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Suport „fire-and-forget” pentru sarcini de lungă durată (cum ar fi emailurile sau AI), cu o interfață grafică pentru gestionarea cozii, procesare paralelă și anulare.</value>
   </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} de proiecte afectate</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} versiuni de pachete care necesită atenție</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} total · {1} în curs · {2} aprobate</value>
+  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>O dată goală înseamnă că nu a fost încă finalizată cu succes nicio sincronizare completă a vulnerabilităților. Orele sunt în UTC.</value>
   </data>
@@ -63,6 +72,9 @@
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Excluderi absolute, care au prioritate față de regulile de încredere și aprobări.</value>
   </data>
+  <data name="Across reported projects" xml:space="preserve">
+    <value>În proiectele raportate</value>
+  </data>
   <data name="Across the organization" xml:space="preserve">
     <value>La nivelul întregii organizații</value>
   </data>
@@ -80,6 +92,9 @@
   </data>
   <data name="Approval center" xml:space="preserve">
     <value>Centrul de aprobare</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Aprobat</value>
   </data>
   <data name="Approved requests" xml:space="preserve">
     <value>Cereri aprobate</value>
@@ -135,11 +150,23 @@
   <data name="Comes with full Docker support for simplified, consistent, and reliable deployments." xml:space="preserve">
     <value>Oferă suport complet pentru Docker pentru implementări simplificate, consistente și fiabile.</value>
   </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Prezentare generală a companiei</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Conform</value>
+  </data>
+  <data name="Compliant means current checks passed for the reported ecosystems. Not verified includes incomplete reports and missing or stale evidence." xml:space="preserve">
+    <value>„Conform” înseamnă că verificările actuale au fost trecute pentru ecosistemele raportate. „Neverificat” include rapoarte incomplete și dovezi lipsă sau neactualizate.</value>
+  </data>
   <data name="Comprehensive Documentation" xml:space="preserve">
     <value>Documentație Cuprinzătoare</value>
   </data>
   <data name="Consistency Validation" xml:space="preserve">
     <value>Validare de consistență</value>
+  </data>
+  <data name="Current baseline reports only; review checks and projects that have not reported are not included. This is not a live production inventory." xml:space="preserve">
+    <value>Sunt incluse doar rapoartele de referință actuale; verificările de revizuire și proiectele care nu au raportat nu sunt incluse. Acesta nu este un inventar în timp real al mediului de producție.</value>
   </data>
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Decizii consemnate pentru solicitările tale</value>
@@ -183,6 +210,12 @@
   <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
     <value>Pachetele blocate explicit sunt respinse chiar și atunci când ajung indirect sau se potrivesc unei reguli generale pentru furnizori.</value>
   </data>
+  <data name="Explore compliance" xml:space="preserve">
+    <value>Explorați conformitatea</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Eșuat</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Oferește un sistem integrat de gestionare a fișierelor cu comprimare automată a avatarelor și protecție a confidențialității.</value>
   </data>
@@ -219,6 +252,9 @@
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Include documentație extinsă și exemple practice pentru a te pune rapid pe drum.</value>
   </data>
+  <data name="Incomplete report" xml:space="preserve">
+    <value>Raport incomplet</value>
+  </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Gestionare Integrată a Fișierelor</value>
   </data>
@@ -228,14 +264,26 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Vulnerabilități cunoscute</value>
   </data>
+  <data name="Known vulnerabilities first, then other audit issues. Open a package to see who uses it and the recorded reasons." xml:space="preserve">
+    <value>Mai întâi, vulnerabilitățile cunoscute, apoi celelalte probleme de audit. Deschideți un pachet pentru a vedea cine îl folosește și motivele înregistrate.</value>
+  </data>
   <data name="Last successful OSV sync" xml:space="preserve">
     <value>Ultima sincronizare OSV reușită</value>
+  </data>
+  <data name="Latest baseline per project" xml:space="preserve">
+    <value>Ultima linie de bază per proiect</value>
+  </data>
+  <data name="Latest baseline report" xml:space="preserve">
+    <value>Ultimul raport de referință</value>
   </data>
   <data name="Learn about the workflow" xml:space="preserve">
     <value>Aflați despre fluxul de lucru</value>
   </data>
   <data name="Match the actual artifact" xml:space="preserve">
     <value>Potriviți artefactul efectiv</value>
+  </data>
+  <data name="Missing or stale" xml:space="preserve">
+    <value>Lipsește sau este învechit</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Modelele sunt validate pe ambele părți, client și server, pe baza anotărilor de date.</value>
@@ -249,23 +297,77 @@
   <data name="My requests" xml:space="preserve">
     <value>Solicitările mele</value>
   </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Necesită atenție</value>
+  </data>
   <data name="New request" xml:space="preserve">
     <value>Cerere nouă</value>
+  </data>
+  <data name="No baseline data" xml:space="preserve">
+    <value>Nicio date de bază</value>
+  </data>
+  <data name="No baseline reports yet. Run a baseline check from a project&apos;s official pipeline to populate this overview." xml:space="preserve">
+    <value>Nu există încă rapoarte de referință. Rulați o verificare de referință din pipeline-ul oficial al unui proiect pentru a completa această prezentare generală.</value>
+  </data>
+  <data name="No complete baseline report" xml:space="preserve">
+    <value>Niciun raport de referință complet</value>
+  </data>
+  <data name="No package issues found in the available baseline data." xml:space="preserve">
+    <value>Nu s-au găsit probleme legate de pachete în datele de bază disponibile.</value>
+  </data>
+  <data name="No project issues found in the available baseline data." xml:space="preserve">
+    <value>Nu s-au găsit probleme de proiect în datele de bază disponibile.</value>
   </data>
   <data name="No requests yet" xml:space="preserve">
     <value>Încă nu există solicitări</value>
   </data>
+  <data name="No requests yet. Request a new dependency when your project needs a package that is not approved." xml:space="preserve">
+    <value>Nu există încă solicitări. Solicitați o nouă dependență atunci când proiectul dumneavoastră are nevoie de un pachet care nu este aprobat.</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Neverificat</value>
+  </data>
+  <data name="Open a project to trace the dependency path and inspect the exact versions." xml:space="preserve">
+    <value>Deschideți un proiect pentru a urmări calea dependențelor și a inspecta versiunile exacte.</value>
+  </data>
+  <data name="Open approval center" xml:space="preserve">
+    <value>Deschide centrul de aprobare</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>Integrare OpenID Connect</value>
   </data>
+  <data name="Package compliance" xml:space="preserve">
+    <value>Conformitatea pachetelor</value>
+  </data>
   <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
     <value>Fișiere de pachete înregistrate în ambele ecosisteme, inclusiv cele care nu sunt autorizate în prezent.</value>
+  </data>
+  <data name="Packages are counted by ecosystem, name, and source; versions are grouped." xml:space="preserve">
+    <value>Pachetele sunt numărate după ecosistem, nume și sursă; versiunile sunt grupate.</value>
+  </data>
+  <data name="Packages in use" xml:space="preserve">
+    <value>Pachete utilizate</value>
+  </data>
+  <data name="Packages with known vulnerabilities" xml:space="preserve">
+    <value>Pachete cu vulnerabilități cunoscute</value>
   </data>
   <data name="Policy" xml:space="preserve">
     <value>Politică</value>
   </data>
   <data name="Policy management" xml:space="preserve">
     <value>Gestionarea politicilor</value>
+  </data>
+  <data name="Priority packages" xml:space="preserve">
+    <value>Pachete prioritare</value>
+  </data>
+  <data name="Project compliance" xml:space="preserve">
+    <value>Conformitatea proiectului</value>
+  </data>
+  <data name="Projects needing attention" xml:space="preserve">
+    <value>Proiecte care necesită atenție</value>
+  </data>
+  <data name="Projects, dependencies, and the risks that need attention." xml:space="preserve">
+    <value>Proiecte, dependențe și riscuri care necesită atenție.</value>
   </data>
   <data name="Quick and detailed risk views" xml:space="preserve">
     <value>Vizualizări rapide și detaliate ale riscurilor</value>
@@ -279,6 +381,15 @@
   <data name="Recent activity" xml:space="preserve">
     <value>Activitate recentă</value>
   </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Respins</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Proiecte raportate</value>
+  </data>
+  <data name="Request #{0}" xml:space="preserve">
+    <value>Cerință #{0}</value>
+  </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Solicitați o nouă dependență</value>
   </data>
@@ -287,6 +398,9 @@
   </data>
   <data name="Request what is missing" xml:space="preserve">
     <value>Solicită ceea ce lipsește</value>
+  </data>
+  <data name="Resolving" xml:space="preserve">
+    <value>Se rezolvă</value>
   </data>
   <data name="Resolving or awaiting review" xml:space="preserve">
     <value>În curs de soluționare sau în așteptarea evaluării</value>
@@ -302,6 +416,9 @@
   </data>
   <data name="Revisit the risk" xml:space="preserve">
     <value>Reevaluați riscul</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Revocată</value>
   </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Testare de integrare robustă</value>
@@ -383,6 +500,9 @@
   </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>De ce să folosești Șablonul Aiursoft?</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Retras</value>
   </data>
   <data name="Words you will see" xml:space="preserve">
     <value>Termeni pe care îi veți întâlni</value>

@@ -35,6 +35,8 @@ export function solutionView(solution) {
         }
         const viewId = id => definitions.get(id).ProjectPath ? id : identity(id);
         const ownerId = `project:${context.ProjectPath}`;
+        const owner = nodes.get(ownerId);
+        if (!owner.Targets.includes(context.Target)) owner.Targets.push(context.Target);
         const direct = new Set(outgoing.get(ownerId) || []);
         for (const id of ids) {
             const definition = definitions.get(id), state = states.get(id), key = viewId(id);

@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>Uma porção delimitada da lista de dependências enviada à API. Um lote aceito não é o mesmo que uma execução completa aceita.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Aceito</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>Aceito significa que o S360 aceitou as evidências de pacotes informadas para esta verificação. Isso não significa que todos os lotes foram recebidos nem que um GitLab Runner foi configurado para interromper a compilação.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Aceito versus imposto</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Revisão anônima</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID da chave de API</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>Finalidade da auditoria</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>Conta autenticada</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Lote</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>Bloqueado no momento</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Motivo da decisão</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Branch padrão</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Cada linha corresponde a um lote da API. Somente uma execução completa, com todos os lotes aceitos, pode ser aprovada na verificação da CLI. O resultado registrado é histórico; um aviso de bloqueio atual é exibido separadamente.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Execução incompleta</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Verificação local</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Solicitação de merge</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Próxima</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>Não foram encontradas dependências externas nos projetos compatíveis informados.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>Uma tentativa de verificação registrada. Seus lotes compartilham um identificador de execução para que você possa inspecionar o resultado completo.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Outro branch</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Pacote</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>Anterior</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Referência de produção</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Projeto</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Ler um registro de verificação</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Motivo</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Rejeitado</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Fonte informada</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>Apenas revisão</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>A revisão retorna uma decisão de política sem salvar um relatório do projeto. A linha de base declara o uso em produção e atualiza o inventário do projeto somente quando todos os lotes tiverem chegado, mesmo que as dependências sejam rejeitadas. Registros antigos sem uma finalidade nunca atualizam o uso em produção.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Execução</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Build por tag</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>O número de projetos suportados reconhecidos pelo CLI. Uma verificação sem dependências ainda contata o S360 e registra essa contagem.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>A justificativa da política registrada no momento em que essa verificação foi executada. Um aviso atual de bloqueio é separado e nunca reescreve esse histórico.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>Os identificadores de projeto e pipeline são fornecidos por um chamador não autenticado.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>Estas são verificações registradas; a aplicação das regras pelo Runner é uma etapa separada da implantação e não está implícita em um registro aqui.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Sem classificação</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>Finalidade não declarada</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Versão</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Dados de vulnerabilidade</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Data e hora dos dados de vulnerabilidade</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>Quando os dados de avisos que embasam esta decisão foram verificados pela última vez; um campo em branco não significa que está tudo em ordem.</value>
   </data>
 
 </root>

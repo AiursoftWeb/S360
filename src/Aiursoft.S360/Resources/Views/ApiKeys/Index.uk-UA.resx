@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Actions" xml:space="preserve">
+    <value>Дії</value>
+  </data>
+  <data name="API Key created" xml:space="preserve">
+    <value>API Key створено</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>Ключі API</value>
+  </data>
+  <data name="Create API Key" xml:space="preserve">
+    <value>Створити ключ API</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Видалити</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Редагувати</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Увімкнено</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Термін дії</value>
+  </data>
+  <data name="Keys belong to your account. Removing your API permission or locking your account also disables your keys. Times are shown in your local time zone." xml:space="preserve">
+    <value>Ключі належать до вашого облікового запису. Видалення дозволу API або блокування облікового запису також вимикає ваші ключі. Часи відображаються у вашому місцевому часовому поясі.</value>
+  </data>
+  <data name="Last used" xml:space="preserve">
+    <value>Останнє використання</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Назва</value>
+  </data>
+  <data name="New API Key" xml:space="preserve">
+    <value>Новий ключ API</value>
+  </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Базове виробництво</value>
+  </data>
+  <data name="Send the key using X-S360-Key, or set S360_CHECK_KEY for the CLI. Never include keys in URLs, source control or logs." xml:space="preserve">
+    <value>Надсилайте ключ за допомогою заголовка X-S360-Key або встановіть S360_CHECK_KEY для CLI. Ніколи не включайте ключі в URL, системи контролю версій чи журнали.</value>
+  </data>
+  <data name="This key is displayed only once. Save it in your private configuration." xml:space="preserve">
+    <value>Цей ключ відображається лише один раз. Збережіть його у своїй приватній конфігурації.</value>
+  </data>
+  <data name="To rotate a key, create another, update your integration and verify it works, then delete the old key. Existing keys keep working during the transition." xml:space="preserve">
+    <value>Щоб змінити ключ, створіть новий, оновіть свою інтеграцію та перевірте, чи він працює, після чого видаліть старий ключ. Існуючі ключі продовжують працювати протягом переходного періоду.</value>
+  </data>
+
+</root>

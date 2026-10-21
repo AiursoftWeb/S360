@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>종속성 접기</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>색상은 기록된 취약점 위험을 나타냅니다. 직접 및 간접 관계는 패키지 상세 정보에 표시됩니다. 기타 감사 이슈는 각 노드에 라벨이 유지됩니다.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>준수됨</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>의존성 관계</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>의존성 구조</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>도형 제어</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>도입한 사람:</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>취약한 종속성 도입</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>알려진 취약점</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>패키지 이름, 경로 또는 CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>패키지 정책</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>패키지 출처</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>도입 경로 표시</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>취약점 경로 표시</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>일부 보고된 노드는 이 루트에서 이어지는 경로가 없습니다. 검색으로는 찾을 수 있지만, 관계를 추론하지는 않았습니다.</value>

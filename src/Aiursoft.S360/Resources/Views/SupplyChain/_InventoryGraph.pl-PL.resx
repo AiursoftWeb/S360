@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Zwiń zależności</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Kolory opisują odnotowane ryzyko podatności. Bezpośrednie i pośrednie relacje są wyświetlane w szczegółach pakietu. Inne problemy audytu pozostają oznaczone na każdym węźle.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>Zgodny z wymaganiami</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>Zależności</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Struktura zależności</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Sterowanie diagramem</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>Wprowadzone przez</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Introdukuje podatne zależności</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Znana luka</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>Nazwa pakietu, ścieżka lub CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Polityka pakietów</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>Źródło pakietu</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>Pokaż ścieżki wprowadzenia</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Pokaż ścieżki podatności</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>Niektóre zgłoszone węzły nie mają ścieżki od tego korzenia. Wyszukiwanie może je nadal znaleźć; nie wnioskowano o żadnej relacji.</value>

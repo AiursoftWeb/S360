@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>طيّ الاعتمادات</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>تصف الألوان مخاطر الثغرات الأمنية المسجلة. وتظهر العلاقات المباشرة وغير المباشرة في تفاصيل الحزمة. وتبقى مشكلات التدقيق الأخرى موسومة على كل عقدة.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>متوافق</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>علاقات التبعيات</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>هيكل التبعيات</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>عناصر التحكم في المخطط</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>أُدرج بواسطة</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>يُدرج تبعيات عرضة للثغرات</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>ثغرة أمنية معروفة</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>اسم الحزمة أو المسار أو معرّف CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>سياسة الحزمة</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>مصدر الحزمة</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>عرض مسارات التقديم</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>إظهار مسارات الثغرات</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>بعض العقد المبلّغ عنها لا تحتوي على مسار من هذا الجذر. لا يزال بإمكان البحث العثور عليها؛ لم يتم استنتاج أي علاقة.</value>

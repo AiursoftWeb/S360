@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Restrânge dependențele</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Culorile descriu riscul de vulnerabilitate înregistrat. Relațiile directe și indirecte sunt afișate în detaliile pachetului. Alte probleme de audit rămân etichetate pe fiecare nod.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>Conform</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>Relațiile dintre dependențe</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Structura dependențelor</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Controalele diagramei</value>
@@ -93,6 +99,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>Introdus de</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Introduce dependențe vulnerabile</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Vulnerabilitate cunoscută</value>
   </data>
@@ -122,6 +131,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>Numele pachetului, calea sau CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Politica de pachete</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>Sursa pachetului</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>Afișează rutele de introducere</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Afișare căi de vulnerabilitate</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>Unele noduri raportate nu au nicio cale pornind de la această rădăcină. Căutarea le poate găsi în continuare; nu s-a dedus nicio relație.</value>

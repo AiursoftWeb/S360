@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Réduire les dépendances</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Les couleurs décrivent le risque de vulnérabilité enregistré. Les relations directes et indirectes sont affichées dans les détails du package. Les autres problèmes d&apos;audit restent étiquetés sur chaque nœud.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>Conforme</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>Relations de dépendance</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Structure des dépendances</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Commandes du diagramme</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>Introduit par</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Introduit des dépendances vulnérables</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Vulnérabilité connue</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>Nom du package, chemin ou CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Politique de package</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>Source du package</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>Afficher les chemins d&apos;introduction</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Afficher les chemins de vulnérabilité</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>Certains nœuds signalés n&apos;ont aucun chemin depuis cette racine. La recherche peut toujours les trouver ; aucune relation n&apos;a été déduite.</value>

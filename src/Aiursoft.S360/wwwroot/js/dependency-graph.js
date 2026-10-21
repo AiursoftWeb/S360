@@ -1,7 +1,7 @@
-import { solutionView, solutionPaths } from './solution-graph.js';
 // Relationships come from the reported restore graph; never infer edges from package names.
 const host = document.querySelector('.s360-graph');
 if (host) {
+    const { solutionView, solutionPaths } = await import(document.getElementById('s360-solution-module').src);
     const find = name => host.querySelector(`.s360-graph-${name}`);
     const text = key => host.querySelector(`[data-key="${key}"]`).textContent;
     const format = (key, ...values) => values.reduce((s, v, i) => s.replace(`{${i}}`, v), text(key));

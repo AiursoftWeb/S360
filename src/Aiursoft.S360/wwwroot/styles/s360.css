@@ -531,8 +531,8 @@
 .s360-graph-summary { color: var(--s360-muted); margin-left: auto; }
 .s360-graph-legend > span { display: inline-flex; align-items: center; gap: .4rem; }
 .s360-graph-legend > span:last-child { color: var(--s360-muted); flex-basis: 100%; }
-.s360-dot { width: 9px; height: 9px; border-radius: 50%; background: #218358; flex-shrink: 0; }
-.s360-dot.indirect { background: #427bc1; }
+.s360-dot { width: 9px; height: 9px; border-radius: 50%; background: #818b9d; flex-shrink: 0; }
+.s360-dot.affected { background: #b5893e; }
 .s360-dot.vulnerable { background: #cf354c; }
 .s360-graph-risk-summary { font-size: .8rem; color: var(--s360-muted); }
 .s360-graph-risk-summary.has-risk { color: #9d263a; background: #fff1f2; border-left: 3px solid #cf354c; padding: .7rem .9rem; border-radius: 4px; }
@@ -559,7 +559,8 @@
 .s360-graph-project-link { display: block; font-size: .8rem; margin: .4rem 0; }
 .s360-node-status, .s360-cve-label { display: inline-block; border-radius: 5px; padding: .2rem .4rem; background: #edf6ef; color: #245939; font-size: .75rem; margin: .2rem .3rem .2rem 0; }
 .s360-node-status.status-1, .s360-node-status.status-2 { color: #79550d; background: #fff5dc; }
-.s360-cve-label { color: #9d263a; background: #fff1f2; }
+.s360-node-status.status-affected { color: #79550d; background: #fff5dc; }
+.s360-node-status.status-vulnerable, .s360-cve-label { color: #9d263a; background: #fff1f2; }
 .s360-graph-stage:fullscreen { width: 100vw; height: 100vh; overflow: hidden; }
 .s360-graph-stage:fullscreen .s360-graph-canvas { height: 100%; }
 @media (max-width: 1100px) { .s360-graph-body { grid-template-columns: minmax(0, 1fr); } .s360-graph-detail { border-left: 0; border-top: 1px solid var(--s360-line); max-height: 320px; } }

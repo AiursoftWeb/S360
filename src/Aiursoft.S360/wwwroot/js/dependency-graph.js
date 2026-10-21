@@ -163,9 +163,18 @@ if (host) {
             visible.add(id); return true;
         }
         if (graph.IsSolution && (query || risk.checked)) {
-            const paths = solutionPaths(graph, new Set(seeds.map(node => node.Id)));
-            for (const id of paths.visible) add(id);
-            edges.push(...paths.edges.filter(([from, to]) => visible.has(from) && visible.has(to)));
+            const pathEdges = new Map();
+            const ordered = [...seeds].sort((a, b) => Number(b.Id === selected) - Number(a.Id === selected));
+            for (const seed of ordered) {
+                const paths = solutionPaths(graph, new Set([seed.Id]));
+                const missing = [...paths.visible].filter(id => !visible.has(id));
+                // Keep complete introduction paths; never trim a path halfway to fit the budget.
+                const newEdges = paths.edges.filter(edge => !pathEdges.has(JSON.stringify(edge)));
+                if (visible.size + missing.length > 150 || pathEdges.size + newEdges.length > 400) { limited = true; continue; }
+                for (const id of paths.visible) add(id);
+                for (const edge of newEdges) pathEdges.set(JSON.stringify(edge), edge);
+            }
+            edges.push(...pathEdges.values());
             if (!visible.has(selected)) selected = seeds[0]?.Id || '';
         } else if (query || risk.checked) {
             // A focused node is retained even if it is outside the ordinary depth or node budget.
@@ -203,7 +212,7 @@ if (host) {
         find('risk-summary').classList.toggle('has-risk', vulnerable.length > 0);
         find('show-risks').hidden = !vulnerable.length;
         showDetails();
-        if (!visible.size) { canvas.replaceChildren(); svg = null; notice.textContent = text('empty'); return; }
+        if (!visible.size) { canvas.replaceChildren(); svg = null; notice.textContent = limited ? text('limited') : text('empty'); return; }
         const ids = new Map([...visible].map((id, i) => [id, `n${i}`]));
         const code = [compact.matches || graph.IsSolution && risk.checked ? 'flowchart TD' : 'flowchart LR',
             'classDef neutral fill:#f1f2f6,stroke:#818b9d,color:#354052',

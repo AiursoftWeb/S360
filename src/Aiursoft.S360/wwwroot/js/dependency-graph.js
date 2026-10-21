@@ -15,13 +15,13 @@ if (host) {
     let expanded = new Set(), collapsed = new Set(), sequence = 0, timer, rendering = Promise.resolve();
     let suppressClick = false, restoreNotice = '';
     const current = () => graphs[Number(scope.value)];
-    const name = node => node.Kind === 'target' ? format('frameworkLabel', node.Target) : node.Package ? `${node.Package.Name}@${node.Package.Version}` : node.Label || (node.Kind === 'root' ? current().Project : node.Id);
+    const name = node => node.Package ? `${node.Package.Name}@${node.Package.Version}` : node.Label || (node.Kind === 'root' ? current().Project : node.Id);
     const status = node => text(['compliant', 'pending', 'problem'][node.Status]);
     const riskStatus = node => node.Advisories.length ? text('vulnerable') : node.RiskCount ? text('affected') : status(node);
     const level = () => Math.max(1, Math.min(20, Math.floor(Number(depth.value) || 3)));
     const directDependency = node => node.IsDirect ?? distances.get(node.Id) === 1;
     const relation = node => text(directDependency(node) ? 'direct' : distances.has(node.Id) ? 'indirect' : 'unlinked');
-    const isOpen = id => !collapsed.has(id) && (expanded.has(id) || nodes.get(id)?.Kind === 'target' || distances.get(id) < level());
+    const isOpen = id => !collapsed.has(id) && (expanded.has(id) || distances.get(id) < level());
     const escapeLabel = value => Array.from(value).map(c => /[a-zA-Z0-9 ._/@-]/.test(c) ? c : `#${c.codePointAt(0)};`).join('');
     const element = (tag, value, className) => {
         const el = document.createElement(tag);
@@ -45,7 +45,7 @@ if (host) {
     function saveView() {
         const url = new URL(location.href);
         const state = { manifest: current().Project, ecosystem: current().Ecosystem, target: current().Target,
-            report: current().CheckId, depth: level(), query: search.value, risk: risk.checked, selected,
+            report: current().CheckId, projection: current().IsSolution ? 2 : 1, depth: level(), query: search.value, risk: risk.checked, selected,
             expanded: [...expanded].map(id => current().Nodes.indexOf(nodes.get(id))),
             collapsed: [...collapsed].map(id => current().Nodes.indexOf(nodes.get(id))) };
         url.hash = new URLSearchParams({ tree: JSON.stringify(state) });
@@ -81,6 +81,7 @@ if (host) {
             if (node.ReferencedTarget) detail.append(element('p', node.ReferencedTarget, 'small'));
         } else if (node.Kind === 'project' && current().IsSolution) {
             detail.append(element('p', text(node.IsSolutionMember ? 'solutionMember' : 'referencedMember'), 'small'));
+            if (node.Targets.length) detail.append(element('h5', text('framework')), element('p', node.Targets.join(', '), 'small'));
         }
         if (node.RiskCount) detail.append(element('p', format('foldedRisk', node.RiskCount), 's360-cve-label'));
         if (node.Package) {
@@ -116,7 +117,7 @@ if (host) {
                 const target = nodes.get(id);
                 if (!target) continue;
                 const li = element('li');
-                const button = element('button', name(target), 's360-graph-node-link');
+                const button = element('button', `${name(target)}${target.ShowTarget ? ` (${target.Target})` : ''}`, 's360-graph-node-link');
                 button.type = 'button'; button.addEventListener('click', () => {
                     selected = id; search.value = id; risk.checked = false; schedule();
                 });
@@ -201,8 +202,9 @@ if (host) {
         for (const id of visible) {
             const node = nodes.get(id);
             const kind = node.Advisories.length ? 'vulnerable' : node.RiskCount ? 'affected' : 'neutral';
-            const lines = !node.Package ? [name(node), node.Kind === 'project-reference' ? text('reference') : '', node.RiskCount ? format('foldedRisk', node.RiskCount) : ''] :
-                [node.Package.Name, node.Package.Version, node.Advisories[0] || (node.RiskCount ? format('foldedRisk', node.RiskCount) : node.Status !== 0 ? status(node) : '')];
+            const framework = node.Targets?.join(', ') || (node.ShowTarget ? node.Target : '');
+            const lines = !node.Package ? [name(node), framework, node.Kind === 'project-reference' ? text('reference') : '', node.RiskCount ? format('foldedRisk', node.RiskCount) : ''] :
+                [node.Package.Name, node.Package.Version, framework, node.Advisories[0] || (node.RiskCount ? format('foldedRisk', node.RiskCount) : node.Status !== 0 ? status(node) : '')];
             const label = lines.filter(Boolean).flatMap(line => {
                 const shortened = line.length > 100 ? line.slice(0, 97) + '...' : line;
                 return shortened.match(compact.matches ? /.{1,22}/gu : /.{1,32}/gu) || [''];
@@ -230,7 +232,7 @@ if (host) {
                 if (!id) continue;
                 const node = nodes.get(id);
                 group.dataset.node = id; group.setAttribute('tabindex', '0'); group.setAttribute('role', 'button');
-                group.setAttribute('aria-label', `${name(node)}${node.Package ? ` · ${relation(node)} · ${riskStatus(node)}` : ''}`);
+                group.setAttribute('aria-label', `${name(node)}${node.ShowTarget ? ` · ${node.Target}` : ''}${node.Package ? ` · ${relation(node)} · ${riskStatus(node)}` : ''}`);
                 const select = () => { selected = id; showDetails(); markSelection(); saveView(); };
                 group.addEventListener('click', event => { if (!suppressClick) { event.stopPropagation(); select(); } });
                 group.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); select(); } });
@@ -342,7 +344,7 @@ if (host) {
             const index = graphs.findIndex(g => g.Project === state.manifest && g.Target === state.target && g.Ecosystem === state.ecosystem);
             if (index >= 0) {
                 scope.value = String(index); load();
-                if (state.report !== current().CheckId) restoreNotice = text('viewChanged');
+                if (state.report !== current().CheckId || current().IsSolution && state.projection !== 2) restoreNotice = text('viewChanged');
                 else {
                     selected = typeof state.selected === 'string' && nodes.has(state.selected) ? state.selected : '';
                     expanded = new Set(Array.isArray(state.expanded) ? state.expanded.filter(i => Number.isInteger(i) && i >= 0 && i < current().Nodes.length).map(i => current().Nodes[i].Id) : []);

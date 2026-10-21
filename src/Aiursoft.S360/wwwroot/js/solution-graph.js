@@ -11,15 +11,14 @@ export function solutionView(solution) {
     const nodes = [root];
     const projectNodes = new Map(projects.map(node => {
         const view = { ...empty, Id: node.Id, Kind: 'project', Label: node.ProjectPath.split("/").at(-1),
-            ProjectPath: node.ProjectPath, IsSolutionMember: node.IsSolutionMember, Children: [], RiskCount: 0 };
+            ProjectPath: node.ProjectPath, IsSolutionMember: node.IsSolutionMember, Children: [], Targets: [], RiskCount: 0 };
         nodes.push(view);
         return [node.Id, view];
     }));
     const references = new Map(), packageUsers = new Map();
     graph.Contexts.forEach((context, index) => {
         const ownerId = `project:${context.ProjectPath}`, prefix = `context:${index}:`;
-        const targetId = prefix + '$target';
-        const idFor = id => id === ownerId ? targetId : prefix + id;
+        const idFor = id => id === ownerId ? ownerId : prefix + id;
         const owner = projectNodes.get(ownerId);
         const direct = new Set(context.Edges.filter(edge => edge.ParentId === ownerId).map(edge => edge.ChildId));
         const outgoing = new Map(), ids = new Set([ownerId]);
@@ -32,16 +31,18 @@ export function solutionView(solution) {
                 references.set(key, [edge.ParentId, edge.ChildId]);
             }
         }
-        owner.Children.push(targetId);
+        if (!owner.Targets.includes(context.Target)) owner.Targets.push(context.Target);
+        owner.Children.push(...(outgoing.get(ownerId) || []));
         for (const id of ids) {
+            if (id === ownerId) continue;
             const definition = definitions.get(id), state = states.get(id);
             const view = {
                 ...empty, ...state, Id: idFor(id), CanonicalId: id,
                 ArtifactId: definition.Package ? id : null,
                 IsDirect: definition.Package ? direct.has(id) : null,
                 Package: definition.Package,
-                Kind: id === ownerId ? 'target' : definition.ProjectPath ? 'project-reference' : 'package',
-                Label: id === ownerId ? context.Target : definition.ProjectPath?.split("/").at(-1),
+                Kind: definition.ProjectPath ? 'project-reference' : 'package',
+                Label: definition.ProjectPath?.split("/").at(-1),
                 ProjectPath: definition.ProjectPath,
                 RootProjectPath: context.ProjectPath, Target: context.Target,
                 ReferencedTarget: context.ProjectTargets[definition.ProjectPath] || null,
@@ -54,6 +55,15 @@ export function solutionView(solution) {
             }
         }
     });
+    // Framework is an attribute of the owning project, never an extra dependency.
+    // Package occurrences remain context-scoped; label multi-target paths explicitly.
+    for (const node of nodes) {
+        if (node.Targets) node.Targets.sort((a, b) => a.localeCompare(b, undefined, { numeric: true }));
+        if (node.RootProjectPath) {
+            const owner = projectNodes.get(`project:${node.RootProjectPath}`);
+            node.ShowTarget = owner.Targets.length > 1;
+        }
+    }
     // Compute folded risk markers without merging traversal across restore contexts.
     const byId = new Map(nodes.map(node => [node.Id, node]));
     const parents = new Map(nodes.map(node => [node.Id, []]));

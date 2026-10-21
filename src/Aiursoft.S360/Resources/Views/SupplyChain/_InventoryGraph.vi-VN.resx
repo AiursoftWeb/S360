@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Thu gọn các phụ thuộc</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Màu sắc mô tả mức độ rủi ro lỗ hổng bảo mật đã ghi nhận. Các mối quan hệ trực tiếp và gián tiếp được hiển thị trong chi tiết gói. Các vấn đề kiểm toán khác vẫn được gắn nhãn trên từng nút.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>Tuân thủ</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>Quan hệ phụ thuộc</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Cấu trúc phụ thuộc</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Điều khiển sơ đồ</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>Được giới thiệu bởi</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Giới thiệu các phụ thuộc dễ bị tổn thương</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Lỗ hổng đã biết</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>Tên gói, đường dẫn hoặc CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Chính sách gói</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>Nguồn gói</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>Hiển thị các đường dẫn đến gói</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Hiển thị đường dẫn lỗ hổng</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>Một số nút được báo cáo không có đường dẫn từ gốc này. Tìm kiếm vẫn có thể tìm thấy chúng; không có mối quan hệ nào được suy luận.</value>

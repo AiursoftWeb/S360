@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Свернуть зависимости</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Цвета отражают зафиксированный уровень риска уязвимостей. Прямые и косвенные зависимости отображаются в деталях пакета. Другие проблемы аудита остаются помеченными на каждом узле.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>Соответствует требованиям</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>Связи зависимостей</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Структура зависимостей</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Управление диаграммой</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>Добавлено через</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Вводит уязвимые зависимости</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Известная уязвимость</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>Название пакета, путь или CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Политика пакетов</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>Источник пакета</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>Показать пути введения</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Показать пути уязвимостей</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>У некоторых указанных узлов нет пути от этого корневого узла. Их по-прежнему можно найти с помощью поиска; связи не предполагались.</value>

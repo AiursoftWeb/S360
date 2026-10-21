@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Fold sammen afhængigheder</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Farver beskriver registreret sårbarhedsrisiko. Direkte og indirekte relationer vises i pakkeoplysningerne. Andre revisionsproblemer forbliver markeret på hver knude.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>I overensstemmelse</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>Afhængighedsrelationer</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Afhængighedsstruktur</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Diagramkontrol</value>
@@ -93,6 +99,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>Introduceret af</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Indfører sårbare afhængigheder</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Kendt sårbarhed</value>
   </data>
@@ -122,6 +131,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>Pakkenavn, sti eller CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Pakkepolitik</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>Pakkekilde</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>Vis introduktionsveje</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Vis sårbarhedsposter</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>Nogle af de rapporterede noder har ingen sti fra denne rod. De kan stadig findes via søgning; der er ikke udledt nogen relation.</value>

@@ -21,6 +21,15 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>&quot;Fire-and-forget&quot;-støtte til langvarende opgaver (som emails eller AI), med en brugergrænseflade til køstyring, parallell behandling og annullering.</value>
   </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} berørte projekter</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} pakkeversioner, der kræver opmærksomhed</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} i alt · {1} i gang · {2} godkendt</value>
+  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>En tom dato betyder, at ingen fuldstændig synkronisering af sårbarheder endnu er gennemført. Tidspunkterne er i UTC.</value>
   </data>
@@ -63,6 +72,9 @@
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Absolutte udelukkelser, der har forrang for tillidsregler og godkendelser.</value>
   </data>
+  <data name="Across reported projects" xml:space="preserve">
+    <value>Mellem rapporterede projekter</value>
+  </data>
   <data name="Across the organization" xml:space="preserve">
     <value>På tværs af organisationen</value>
   </data>
@@ -80,6 +92,9 @@
   </data>
   <data name="Approval center" xml:space="preserve">
     <value>Godkendelsescenter</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Godkendt</value>
   </data>
   <data name="Approved requests" xml:space="preserve">
     <value>Godkendte anmodninger</value>
@@ -135,11 +150,23 @@
   <data name="Comes with full Docker support for simplified, consistent, and reliable deployments." xml:space="preserve">
     <value>Kommer med fuld Docker-understøttelse til forenklede, konsistente og pålidelige installationer.</value>
   </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Oversigt over virksomheden</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Overholdende</value>
+  </data>
+  <data name="Compliant means current checks passed for the reported ecosystems. Not verified includes incomplete reports and missing or stale evidence." xml:space="preserve">
+    <value>Overholdende betyder, at de aktuelle kontroller er bestået for de rapporterede økosystemer. Ikke verificeret inkluderer ufuldstændige rapporter samt manglende eller forældet bevis.</value>
+  </data>
   <data name="Comprehensive Documentation" xml:space="preserve">
     <value>Omfattende Dokumentation</value>
   </data>
   <data name="Consistency Validation" xml:space="preserve">
     <value>Konsistensvalidering</value>
+  </data>
+  <data name="Current baseline reports only; review checks and projects that have not reported are not included. This is not a live production inventory." xml:space="preserve">
+    <value>Kun aktuelle baseline-rapporter; review-tjek og projekter, der ikke har rapporteret, er ikke medtaget. Dette er ikke et levende produktionsinventar.</value>
   </data>
   <data name="Decisions recorded for your work" xml:space="preserve">
     <value>Afgørelser registreret for dine anmodninger</value>
@@ -183,6 +210,12 @@
   <data name="Explicitly blocked packages are refused even when they arrive indirectly or match a broad supplier rule." xml:space="preserve">
     <value>Pakker, der er eksplicit blokeret, afvises, selvom de kommer ind indirekte eller er omfattet af en bred leverandørregel.</value>
   </data>
+  <data name="Explore compliance" xml:space="preserve">
+    <value>Udforsk overholdelse</value>
+  </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Fejlet</value>
+  </data>
   <data name="Features a built-in file management system with automatic avatar compression and privacy protection." xml:space="preserve">
     <value>Funktioner et indbygget filhåndteringsystem med automatisk avatarkomprimering og privatlivsbeskyttelse.</value>
   </data>
@@ -219,6 +252,9 @@
   <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
     <value>Inkluderer omfattende dokumentation og praktiske eksempler, så du kan komme i gang hurtigt.</value>
   </data>
+  <data name="Incomplete report" xml:space="preserve">
+    <value>Ufuldendt rapport</value>
+  </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>Integreret Filhåndtering</value>
   </data>
@@ -228,14 +264,26 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Kendte sårbarheder</value>
   </data>
+  <data name="Known vulnerabilities first, then other audit issues. Open a package to see who uses it and the recorded reasons." xml:space="preserve">
+    <value>Kendte sårbarheder først, derefter andre revisionsproblemer. Åbn en pakke for at se, hvem der bruger den, og de registrerede årsager.</value>
+  </data>
   <data name="Last successful OSV sync" xml:space="preserve">
     <value>Seneste vellykkede OSV-synkronisering</value>
+  </data>
+  <data name="Latest baseline per project" xml:space="preserve">
+    <value>Seneste baseline pr. projekt</value>
+  </data>
+  <data name="Latest baseline report" xml:space="preserve">
+    <value>Seneste baseline-rapport</value>
   </data>
   <data name="Learn about the workflow" xml:space="preserve">
     <value>Få mere at vide om arbejdsgangen</value>
   </data>
   <data name="Match the actual artifact" xml:space="preserve">
     <value>Match det faktiske artefakt</value>
+  </data>
+  <data name="Missing or stale" xml:space="preserve">
+    <value>Manglende eller forældet</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>Modeller valideres på både klient- og serversiden baseret på dataanmærkninger.</value>
@@ -249,23 +297,77 @@
   <data name="My requests" xml:space="preserve">
     <value>Mine anmodninger</value>
   </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Behøver opmærksomhed</value>
+  </data>
   <data name="New request" xml:space="preserve">
     <value>Ny anmodning</value>
+  </data>
+  <data name="No baseline data" xml:space="preserve">
+    <value>Ingen basisdata</value>
+  </data>
+  <data name="No baseline reports yet. Run a baseline check from a project&apos;s official pipeline to populate this overview." xml:space="preserve">
+    <value>Ingen baseline-rapporter endnu. Kør en baseline-tjek fra et projekts officielle pipeline for at udfylde dette overblik.</value>
+  </data>
+  <data name="No complete baseline report" xml:space="preserve">
+    <value>Ingen komplet baseline-rapport</value>
+  </data>
+  <data name="No package issues found in the available baseline data." xml:space="preserve">
+    <value>Ingen pakkeproblemer fundet i de tilgængelige baselinesdata.</value>
+  </data>
+  <data name="No project issues found in the available baseline data." xml:space="preserve">
+    <value>Ingen projektproblemer fundet i de tilgængelige baselin-data.</value>
   </data>
   <data name="No requests yet" xml:space="preserve">
     <value>Ingen forespørgsler endnu</value>
   </data>
+  <data name="No requests yet. Request a new dependency when your project needs a package that is not approved." xml:space="preserve">
+    <value>Ingen anmodninger endnu. Anmod om en ny afhængighed, når dit projekt har brug for en pakke, der ikke er godkendt.</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Ikke verificeret</value>
+  </data>
+  <data name="Open a project to trace the dependency path and inspect the exact versions." xml:space="preserve">
+    <value>Åbn et projekt for at spore afhængighedsspor og inspektér de præcise versioner.</value>
+  </data>
+  <data name="Open approval center" xml:space="preserve">
+    <value>Åbn godkendelsescenter</value>
+  </data>
   <data name="OpenID Connect Integration" xml:space="preserve">
     <value>OpenID Connect-integration</value>
   </data>
+  <data name="Package compliance" xml:space="preserve">
+    <value>Pakkeoverholdelse</value>
+  </data>
   <data name="Package files recorded across both ecosystems, including items not currently authorized." xml:space="preserve">
     <value>Pakkefiler registreret på tværs af begge økosystemer, herunder elementer, der ikke er godkendt i øjeblikket.</value>
+  </data>
+  <data name="Packages are counted by ecosystem, name, and source; versions are grouped." xml:space="preserve">
+    <value>Pakker tælles efter økosystem, navn og kilde; versioner grupperes.</value>
+  </data>
+  <data name="Packages in use" xml:space="preserve">
+    <value>Pakker i brug</value>
+  </data>
+  <data name="Packages with known vulnerabilities" xml:space="preserve">
+    <value>Pakker med kendte sårbarheder</value>
   </data>
   <data name="Policy" xml:space="preserve">
     <value>Politik</value>
   </data>
   <data name="Policy management" xml:space="preserve">
     <value>Administration af politikker</value>
+  </data>
+  <data name="Priority packages" xml:space="preserve">
+    <value>Prioritetspakker</value>
+  </data>
+  <data name="Project compliance" xml:space="preserve">
+    <value>Projektgodkendelse</value>
+  </data>
+  <data name="Projects needing attention" xml:space="preserve">
+    <value>Projekter der kræver opmærksomhed</value>
+  </data>
+  <data name="Projects, dependencies, and the risks that need attention." xml:space="preserve">
+    <value>Projekter, afhængigheder og risici, der kræver opmærksomhed.</value>
   </data>
   <data name="Quick and detailed risk views" xml:space="preserve">
     <value>Hurtigt overblik og detaljeret risikovurdering</value>
@@ -279,6 +381,15 @@
   <data name="Recent activity" xml:space="preserve">
     <value>Seneste aktivitet</value>
   </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Afvist</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Rapporterede projekter</value>
+  </data>
+  <data name="Request #{0}" xml:space="preserve">
+    <value>Anmodning #{0}</value>
+  </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Anmod om en ny afhængighed</value>
   </data>
@@ -287,6 +398,9 @@
   </data>
   <data name="Request what is missing" xml:space="preserve">
     <value>Anmod om det, der mangler</value>
+  </data>
+  <data name="Resolving" xml:space="preserve">
+    <value>Løser</value>
   </data>
   <data name="Resolving or awaiting review" xml:space="preserve">
     <value>Under behandling eller afventer gennemgang</value>
@@ -302,6 +416,9 @@
   </data>
   <data name="Revisit the risk" xml:space="preserve">
     <value>Revurdér risikoen</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Inde</value>
   </data>
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>Robust integrationstest</value>
@@ -383,6 +500,9 @@
   </data>
   <data name="Why use the Aiursoft Template?" xml:space="preserve">
     <value>Hvorfor bruge Aiursoft Template?</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Tilbagemeldt</value>
   </data>
   <data name="Words you will see" xml:space="preserve">
     <value>Ord, du vil møde</value>

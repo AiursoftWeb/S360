@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Bağımlılıkları Daralt</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Renkler, kaydedilmiş güvenlik açığı riskini açıklar. Doğrudan ve dolaylı ilişkiler paket ayrıntılarında gösterilir. Diğer denetim sorunları her düğümde etiketli olarak kalır.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>Uyumlu</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>Bağımlılık ilişkileri</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Bağımlılık yapısı</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Diyagram kontrolleri</value>
@@ -93,6 +99,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>Şununla tanıtıldı</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Kırılgan bağımlılıklara yol açar</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Bilinen güvenlik açığı</value>
   </data>
@@ -122,6 +131,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>Paket adı, yolu veya CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Paket politikası</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>Paket kaynağı</value>
@@ -155,6 +167,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>Tanıtılma yollarını göster</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Zararlılık yollarını göster</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>Bazı raporlanan düğümlerin bu kökten bir yolu yok. Arama yine de onları bulabilir; hiçbir ilişki çıkarılmamıştır.</value>

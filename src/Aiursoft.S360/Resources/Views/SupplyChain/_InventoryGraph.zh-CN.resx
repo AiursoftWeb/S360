@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>折叠依赖项</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>颜色表示记录的漏洞风险。直接和间接关系在软件包详情中显示。其他审计问题仍标记在每个节点上。</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>合规</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>依赖关系</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>依赖结构</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>图表控件</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>引入方</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>引入存在漏洞的依赖项</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>已知漏洞</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>包名称、路径或 CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>软件包策略</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>软件包来源</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>显示引入路径</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>显示漏洞路径</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>部分已报告的节点无法从此根节点到达。仍可通过搜索找到它们；未推断任何关系。</value>

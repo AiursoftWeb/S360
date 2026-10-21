@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Comprimi le dipendenze</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>I colori descrivono il rischio di vulnerabilità registrato. Le relazioni dirette e indirette sono mostrate nei dettagli del pacchetto. Le altre questioni di audit restano etichettate su ciascun nodo.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>Conforme</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>Relazioni di dipendenza</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Struttura delle dipendenze</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Controlli del diagramma</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>Introdotto da</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Introduce dipendenze vulnerabili</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Vulnerabilità nota</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>Nome del pacchetto, percorso o CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Politica dei pacchetti</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>Origine del pacchetto</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>Mostra percorsi di introduzione</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Mostra percorsi delle vulnerabilità</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>Alcuni nodi segnalati non hanno un percorso da questa radice. La ricerca può comunque individuarli; non è stata dedotta alcuna relazione.</value>

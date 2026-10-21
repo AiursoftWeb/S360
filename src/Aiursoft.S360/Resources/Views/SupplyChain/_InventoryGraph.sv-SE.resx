@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Fäll ihop beroenden</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Färgerna beskriver registrerad sårbarhetsrisk. Direkta och indirekta samband visas i paketdetaljerna. Övriga granskningsproblem förblir märkta på varje nod.</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>Sammstämmig</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>Beroenderelationer</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Beroendestruktur</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Diagramkontroller</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>Införd av</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Introducerar sårbara beroenden</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>Känd sårbarhet</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>Paketnamn, sökväg eller CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Paketpolicy</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>Paketskälla</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>Visa introduktionsvägar</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Visa sårbarhetsvägar</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>Vissa rapporterade noder saknar en sökväg från den här roten. De kan fortfarande hittas via sökning; ingen relation har härletts.</value>

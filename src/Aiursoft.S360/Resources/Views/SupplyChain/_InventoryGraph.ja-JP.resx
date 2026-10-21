@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>依存関係を折りたたむ</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>色は記録された脆弱性リスクを示しています。直接および間接的な関係はパッケージの詳細に表示されます。その他の監査の問題は、各ノードにラベル付けされたままです。</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>準拠</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>依存関係</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>依存関係構造</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>図の操作</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>導入元</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>脆弱な依存関係を紹介</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>既知の脆弱性</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>パッケージ名、パスまたはCVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>パッケージポリシー</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>パッケージソース</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>導入経路を表示</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>脆弱性パスを表示</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>報告されたノードの中には、このルートからの経路がないものがあります。検索すれば見つけることはできますが、関係性は推測されていません。</value>

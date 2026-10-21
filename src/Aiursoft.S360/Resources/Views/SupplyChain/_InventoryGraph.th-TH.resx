@@ -27,6 +27,9 @@
   <data name="Collapse dependencies" xml:space="preserve">
     <value>ยุบการพึ่งพา</value>
   </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>สีแสดงระดับความเสี่ยงของช่องโหว่ที่บันทึกไว้ ความสัมพันธ์โดยตรงและโดยอ้อมจะแสดงอยู่ในรายละเอียดของแพ็กเกจ ปัญหาการตรวจสอบอื่นๆ ยังคงติดป้ายกำกับไว้ที่แต่ละโหนด</value>
+  </data>
   <data name="Compliant" xml:space="preserve">
     <value>เป็นไปตามข้อกำหนด</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Dependency relationships" xml:space="preserve">
     <value>ความสัมพันธ์ของรายการที่ขึ้นอยู่กัน</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>โครงสร้างการพึ่งพา</value>
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>การควบคุมแผนภาพ</value>
@@ -99,6 +105,9 @@
   <data name="Introduced by" xml:space="preserve">
     <value>นำเข้าโดย</value>
   </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>แนะนำการพึ่งพาที่มีความเปราะบาง</value>
+  </data>
   <data name="Known vulnerability" xml:space="preserve">
     <value>ช่องโหว่ที่ทราบแล้ว</value>
   </data>
@@ -128,6 +137,9 @@
   </data>
   <data name="Package name, path or CVE" xml:space="preserve">
     <value>ชื่อแพ็กเกจ เส้นทาง หรือ CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>นโยบายแพ็กเกจ</value>
   </data>
   <data name="Package source" xml:space="preserve">
     <value>แหล่งที่มาของแพ็กเกจ</value>
@@ -161,6 +173,9 @@
   </data>
   <data name="Show introduction paths" xml:space="preserve">
     <value>แสดงเส้นทางที่นำมา</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>แสดงเส้นทางของช่องโหว่</value>
   </data>
   <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
     <value>โหนดบางรายการที่รายงานไม่มีเส้นทางเชื่อมโยงจากโหนดรากนี้ แต่ยังค้นหาโหนดเหล่านั้นได้ โดยไม่มีการอนุมานความสัมพันธ์ใด ๆ</value>

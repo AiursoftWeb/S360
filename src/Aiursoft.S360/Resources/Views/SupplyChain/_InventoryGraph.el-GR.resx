@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>Εμφανίζονται {0} από {1} κόμβους</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} ευάλωτα πακέτα σε αυτό το διάγραμμα, συμπεριλαμβανομένων {1} που αποκρύπτονται λόγω βάθους ή φίλτρων.</value>
+  </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>Το 0 εμφανίζει μόνο τις αναφορές σε έργα· το 1 περιλαμβάνει τα πακέτα στα οποία γίνεται άμεση αναφορά.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Σύμπτυξη εξαρτήσεων</value>
+  </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Τα χρώματα υποδηλώνουν τον καταγεγραμμένο κίνδυνο ευπαθειών. Οι άμεσες και έμμεσες σχέσεις εμφανίζονται στις λεπτομέρειες του πακέτου. Τα υπόλοιπα ζητήματα ελέγχου επισημαίνονται σε κάθε κόμβο.</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Σύμφωνο</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Η αντιγραφή δεν είναι διαθέσιμη. Αντιγράψτε την τρέχουσα διεύθυνση από το πρόγραμμα περιήγησής σας.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Αντιγραφή συνδέσμου προβολής</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Εξαρτήσεις</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Λεπτομέρειες εξαρτήσεων</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Γράφημα εξαρτήσεων. Σύρετε για μετατόπιση, χρησιμοποιήστε τα κουμπιά για κλιμάκωση ή επιλέξτε έναν κόμβο.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Σχέσεις εξαρτήσεων</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Δομή εξαρτήσεων</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Στοιχεία ελέγχου διαγράμματος</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>Μόνο άμεσες εξαρτήσεις</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Άμεση εξάρτηση</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Σύρετε για να εξερευνήσετε το διάγραμμα σε ευανάγνωστη κλίμακα ή επιλέξτε «Προσαρμογή προβολής» για μια συνολική εικόνα.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Ενεργοποιήστε το JavaScript για να δείτε το διάγραμμα. Όλα τα στοιχεία των πακέτων παρατίθενται παρακάτω.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Ανάπτυξη εξαρτήσεων</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Εξερευνήστε τις εξαρτήσεις</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Βρείτε ένα πακέτο</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Προσαρμογή προβολής</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Πλήρης οθόνη</value>
+  </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Περιλαμβάνεται μέσω αναφοράς σε έργο</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Έμμεση εξάρτηση</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Εισήχθη από</value>
+  </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Εισάγει ευάλωτες εξαρτήσεις</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Γνωστή ευπάθεια</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Αναφέρεται στην λύση</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Αρχείο δήλωσης και στόχος</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Μέγιστο βάθος</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Χρειάζεται προσοχή</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>Δεν έχουν εντοπιστεί γνωστά κενά ασφαλείας στο αναφερόμενο γράφημα. Ελέγξτε την κατάσταση του ελέγχου ασφαλείας πριν βασιστείτε σε αυτό το αποτέλεσμα.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Καμία ταιριαστή συσκευασία.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Δεν έχει καταγραφεί σκοπός ή λόγος έγκρισης</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Μη επαληθευμένο</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Όνομα πακέτου, διαδρομή ή CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Πολιτική πακέτων</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Πηγή πακέτου</value>
+  </data>
+  <data name="Project file" xml:space="preserve">
+    <value>Αρχείο έργου</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Αναφορά έργου</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>Τα έργα και οι άμεσες εξαρτήσεις τους εμφανίζονται πρώτα. Αναπτύξτε ένα πακέτο για να δείτε τις έμμεσες εξαρτήσεις του.</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Καταγεγραμμένος σκοπός και λόγοι έγκρισης</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Επαναφορά προβολής</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Επιλύθηκε για</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Επιλυμένο πλαίσιο εργασίας</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Η σχέση ρίζας δεν καταγράφηκε</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Η αναζήτηση και οι διαδρομές ευπαθειών περιλαμβάνουν προγόνους πέρα από το επιλεγμένο βάθος. Επαναφέρετε την προβολή για να επιστρέψετε στα όρια βάθους.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Επιλέξτε έναν κόμβο για να δείτε την έκδοσή του, την κατάσταση ελέγχου και τις διαδρομές εισαγωγής.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Εμφάνιση διαδρομών εισαγωγής</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Εμφάνιση διαδρομών ευπαθειών</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Ορισμένοι αναφερθέντες κόμβοι δεν έχουν διαδρομή από αυτή τη ρίζα. Η αναζήτηση μπορεί ακόμα να τους εντοπίσει· δεν έχει συνουληφθεί καμία σχέση.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Ξεκινήστε με τρία επίπεδα. Αναπτύξτε έναν κόμβο για να δείτε τις εξαρτήσεις του ή επιλέξτε τον για λεπτομέρειες.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>Ο γράφος δεν μπόρεσε να εμφανιστεί. Τα λεπτομέρειες του πακέτου παραμένουν διαθέσιμες παρακάτω.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Το αποθηκευμένο αναλυτικό δελτίο έχει αλλάξει. Εμφάνιση του τρέχοντος γράφου εξαρτήσεων.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Αυτός ο γράφος είναι μεγάλος. Εμφανίζεται μια περιορισμένη προβολή; αναζητήστε ένα πακέτο για να εστιάσετε στις σχέσεις του. Όλα τα πακέτα παραμένουν στη λίστα παρακάτω.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Χρησιμοποιείται από αρχεία έργου</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Χρησιμοποιείται από έργα</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Ο σύνδεσμος προβολής αντιγράφηκε.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Οδίες ευάλωτων</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Μεγέθυνση</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Μείωση μεγέθους</value>
+  </data>
+
+</root>

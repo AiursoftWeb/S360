@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{0} dari {1} node ditampilkan</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} paket rentan dalam diagram ini, termasuk {1} yang tersembunyi karena batas kedalaman atau filter.</value>
+  </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0 hanya menampilkan referensi proyek; 1 termasuk paket yang direferensikan secara langsung.</value>
+  </data>
+  <data name="Collapse dependencies" xml:space="preserve">
+    <value>Ciutkan dependensi</value>
+  </data>
+  <data name="Colors describe recorded vulnerability risk. Direct and indirect relationships are shown in the package details. Other audit issues remain labeled on each node." xml:space="preserve">
+    <value>Warna menggambarkan risiko kerentanan yang tercatat. Hubungan langsung dan tidak langsung ditampilkan di detail paket. Masalah audit lainnya tetap diberi label pada setiap node.</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Mematuhi</value>
+  </data>
+  <data name="Copy is unavailable. Copy the current address from your browser." xml:space="preserve">
+    <value>Salin tidak tersedia. Salin alamat saat ini dari browser Anda.</value>
+  </data>
+  <data name="Copy view link" xml:space="preserve">
+    <value>Salin tautan tampilan</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Dependensi</value>
+  </data>
+  <data name="Dependency details" xml:space="preserve">
+    <value>Detail dependensi</value>
+  </data>
+  <data name="Dependency graph. Drag to pan, use the controls to zoom, or select a node." xml:space="preserve">
+    <value>Grafik dependensi. Seret untuk menggeser, gunakan kontrol untuk memperbesar/memperkecil, atau pilih sebuah node.</value>
+  </data>
+  <data name="Dependency relationships" xml:space="preserve">
+    <value>Hubungan dependensi</value>
+  </data>
+  <data name="Dependency structure" xml:space="preserve">
+    <value>Struktur dependensi</value>
+  </data>
+  <data name="Diagram controls" xml:space="preserve">
+    <value>Kontrol diagram</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>Hanya dependensi langsung</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Dependensi langsung</value>
+  </data>
+  <data name="Drag to explore this diagram at a readable scale, or choose Fit view for an overview." xml:space="preserve">
+    <value>Seret untuk menjelajahi diagram ini pada skala yang mudah dibaca, atau pilih Tampilan Pas untuk ringkasan.</value>
+  </data>
+  <data name="Enable JavaScript to view the graph. All package details are listed below." xml:space="preserve">
+    <value>Aktifkan JavaScript untuk melihat grafik. Semua detail paket tercantum di bawah.</value>
+  </data>
+  <data name="Expand dependencies" xml:space="preserve">
+    <value>Perluas dependensi</value>
+  </data>
+  <data name="Explore dependencies" xml:space="preserve">
+    <value>Jelajahi dependensi</value>
+  </data>
+  <data name="Find a package" xml:space="preserve">
+    <value>Cari paket</value>
+  </data>
+  <data name="Fit view" xml:space="preserve">
+    <value>Sesuaikan tampilan</value>
+  </data>
+  <data name="Full screen" xml:space="preserve">
+    <value>Layar penuh</value>
+  </data>
+  <data name="Included through a project reference" xml:space="preserve">
+    <value>Disertakan melalui referensi proyek</value>
+  </data>
+  <data name="Indirect dependency" xml:space="preserve">
+    <value>Ketergantungan tidak langsung</value>
+  </data>
+  <data name="Introduced by" xml:space="preserve">
+    <value>Diperkenalkan oleh</value>
+  </data>
+  <data name="Introduces vulnerable dependencies" xml:space="preserve">
+    <value>Memperkenalkan dependensi yang rentan</value>
+  </data>
+  <data name="Known vulnerability" xml:space="preserve">
+    <value>Kerentanan yang diketahui</value>
+  </data>
+  <data name="Listed in the solution" xml:space="preserve">
+    <value>Tercantum dalam solusi</value>
+  </data>
+  <data name="Manifest and target" xml:space="preserve">
+    <value>Manifest dan target</value>
+  </data>
+  <data name="Maximum depth" xml:space="preserve">
+    <value>Kedalaman maksimum</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Perlu perhatian</value>
+  </data>
+  <data name="No known vulnerabilities in the reported graph. Check audit status before relying on this result." xml:space="preserve">
+    <value>Tidak ada kerentanan yang diketahui dalam grafik yang dilaporkan. Periksa status audit sebelum mengandalkan hasil ini.</value>
+  </data>
+  <data name="No matching packages." xml:space="preserve">
+    <value>Tidak ada paket yang cocok.</value>
+  </data>
+  <data name="No purpose or approval reason recorded" xml:space="preserve">
+    <value>Tidak ada tujuan atau alasan persetujuan yang tercatat</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Belum diverifikasi</value>
+  </data>
+  <data name="Package name, path or CVE" xml:space="preserve">
+    <value>Nama paket, jalur, atau CVE</value>
+  </data>
+  <data name="Package policy" xml:space="preserve">
+    <value>Kebijakan paket</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Sumber paket</value>
+  </data>
+  <data name="Project file" xml:space="preserve">
+    <value>File proyek</value>
+  </data>
+  <data name="Project reference" xml:space="preserve">
+    <value>Referensi proyek</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>Proyek dan dependensi langsungnya ditampilkan terlebih dahulu. Perluas paket untuk melihat dependensi tidak langsung.</value>
+  </data>
+  <data name="Recorded purpose and approval reasons" xml:space="preserve">
+    <value>Tujuan yang tercatat dan alasan persetujuan</value>
+  </data>
+  <data name="Reset view" xml:space="preserve">
+    <value>Atur ulang tampilan</value>
+  </data>
+  <data name="Resolved for" xml:space="preserve">
+    <value>Diselesaikan untuk</value>
+  </data>
+  <data name="Resolved framework" xml:space="preserve">
+    <value>Kerangka kerja yang ditentukan</value>
+  </data>
+  <data name="Root relationship not recorded" xml:space="preserve">
+    <value>Hubungan akar tidak tercatat</value>
+  </data>
+  <data name="Search and vulnerability paths include ancestors beyond the selected depth. Reset the view to return to depth limits." xml:space="preserve">
+    <value>Pencarian dan jalur kerentanan mencakup nenek moyang di luar kedalaman yang dipilih. Atur ulang tampilan untuk kembali ke batasan kedalaman.</value>
+  </data>
+  <data name="Select a node to see its version, audit status and introduction paths." xml:space="preserve">
+    <value>Pilih simpul untuk melihat versi, status audit, dan jalur perkenalan.</value>
+  </data>
+  <data name="Show introduction paths" xml:space="preserve">
+    <value>Tampilkan jalur pengenalan</value>
+  </data>
+  <data name="Show vulnerability paths" xml:space="preserve">
+    <value>Tampilkan jalur kerentanan</value>
+  </data>
+  <data name="Some reported nodes have no path from this root. Search can still find them; no relationship has been inferred." xml:space="preserve">
+    <value>Beberapa node yang dilaporkan tidak memiliki jalur dari akar ini. Pencarian masih dapat menemukannya; tidak ada hubungan yang disimpulkan.</value>
+  </data>
+  <data name="Start with three levels. Expand a node to follow its dependencies, or select it for details." xml:space="preserve">
+    <value>Mulai dengan tiga tingkat. Perluas sebuah simpul untuk mengikuti dependensinya, atau pilih simpul tersebut untuk melihat detail.</value>
+  </data>
+  <data name="The graph could not be displayed. Package details remain available below." xml:space="preserve">
+    <value>Grafik tidak dapat ditampilkan. Detail paket tetap tersedia di bawah.</value>
+  </data>
+  <data name="The saved report has changed. Showing the current dependency graph." xml:space="preserve">
+    <value>Laporan yang disimpan telah berubah. Menampilkan grafik dependensi saat ini.</value>
+  </data>
+  <data name="This graph is large. A limited view is shown; search for a package to focus on its relationships. All packages remain in the list below." xml:space="preserve">
+    <value>Grafik ini besar. Tampilan terbatas ditampilkan; cari paket untuk berfokus pada hubungannya. Semua paket tetap ada dalam daftar di bawah.</value>
+  </data>
+  <data name="Used by project files" xml:space="preserve">
+    <value>Digunakan oleh file proyek</value>
+  </data>
+  <data name="Used by projects" xml:space="preserve">
+    <value>Digunakan oleh proyek</value>
+  </data>
+  <data name="View link copied." xml:space="preserve">
+    <value>Tautan tampilan disalin.</value>
+  </data>
+  <data name="Vulnerability paths" xml:space="preserve">
+    <value>Jalur kerentanan</value>
+  </data>
+  <data name="Zoom in" xml:space="preserve">
+    <value>Perbesar</value>
+  </data>
+  <data name="Zoom out" xml:space="preserve">
+    <value>Perkecil</value>
+  </data>
+
+</root>

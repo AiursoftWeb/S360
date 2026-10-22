@@ -24,6 +24,9 @@
   <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
     <value>{0}개의 취약한 패키지가 이 다이어그램에 있으며, 깊이 또는 필터로 인해 {1}개가 숨겨져 있습니다.</value>
   </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0은 프로젝트 참조만 표시하며, 1은 직접 참조된 패키지를 포함합니다.</value>
+  </data>
   <data name="Collapse dependencies" xml:space="preserve">
     <value>종속성 접기</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="Project reference" xml:space="preserve">
     <value>프로젝트 참조</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>프로젝트와 직접 종속성 항목이 먼저 표시됩니다. 패키지를 펼쳐 간접 종속성을 확인하세요.</value>
   </data>
   <data name="Recorded purpose and approval reasons" xml:space="preserve">
     <value>기록된 목적 및 승인 사유</value>

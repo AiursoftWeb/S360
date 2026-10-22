@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>Rajoitettu osa riippuvuuslistasta, joka lähetetään API:lle. Hyväksytty erä ei ole sama kuin täysin hyväksytty ajanto.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Hyväksytty</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>Hyväksytty tarkoittaa, että S360 hyväksyi tässä tarkistuksessa raportoidut pakettitiedot. Se ei tarkoita, että kaikki erät saapuivat tai että GitLab Runner oli määritetty pysäyttämään koontiversion.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Hyväksytty vai valvottu</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Anonyymi arviointi</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API-avainten tunniste</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>Tarkastuksen tarkoitus</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>Varmennettu tili</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Erä</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>Tällä hetkellä estetty</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Päätöksen perustelu</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Oletuslonttu</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Jokainen rivi vastaa yhtä API-erää. CLI-tarkistus menee läpi vain, jos suoritus on kokonainen ja kaikki erät on hyväksytty. Tallennettu tulos on historiallinen; nykyinen estolistavaroitus näytetään erikseen.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Keskeneräinen suoritus</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Paikallinen tarkistus</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Yhdistämispyyntö</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Seuraava</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>Ilmoitetuista tuetuista projekteista ei löytynyt ulkoisia riippuvuuksia.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>Yksi kirjattu tarkistusyritys. Sen erillä on yhteinen suoritus­tunniste, jonka avulla voit tarkastella koko tulosta.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Muu haara</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Paketti</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>Edellinen</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Tuotantotason vertailukohta</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Projekti</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Lue tarkistustallenne</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Syy</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Hylätty</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Ilmoitettu lähde</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>Vain tarkastus</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>Katselma palauttaa politiikkapäätöksen ilman projektiraportin tallentamista. Baseline ilmoittaa tuotantokäytöstä ja päivittää projektin varaston vain, kun kaikki erät ovat saapuneet, vaikka riippuvuudet hylättäisiin. Vanhemmat tallenteet ilman tarkoitusta eivät koskaan päivitä tuotantokäyttöä.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Ajo</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>Tila</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Tunnistekoonti</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>Tuetettujen projektien lukumäärä, jotka CLI tunnistoi. Riippuvuudeton tarkistus ottaa yhteyttä S360:een ja kirjaa tämän määrän.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>Kun kyseinen tarkistus suoritettiin, kirjattiin päätösperustelu. Nykyinen estolistavaroitus on erillinen eikä se koskaan kirjoita tätä historiaa uudelleen.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>Projektin ja suoritusputken tunnisteet antaa käyttäjä, jota ei ole todennettu.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>Nämä ovat raportoituja tarkistuksia; Runner-toteutus on erillinen käyttöönottoaskel eikä sitä johdeta tässä tallenteesta.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Luokittelematon</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>Määrittelemätön tarkoitus</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Versio</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Haavoittuvuustiedot</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Haavoittuvuustietojen aikaleima</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>Milloin tämän päätöksen taustalla olevat neuvoa antavat tiedot tarkistettiin viimeksi; tyhjä arvo ei ole merkki terveydestä.</value>
   </data>
 
 </root>

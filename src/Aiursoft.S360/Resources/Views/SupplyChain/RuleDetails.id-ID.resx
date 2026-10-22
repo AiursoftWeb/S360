@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
+    <value>Aturan memberikan izin untuk menggunakan paket. Hal ini tidak membuktikan bahwa proyek menggunakannya atau bahwa versi yang diizinkan bebas dari kerentanan.</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Disetujui</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Otorisasi</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>Kembali ke kumpulan aturan yang sudah ada</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ekosistem</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Dikecualikan</value>
+  </data>
+  <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
+    <value>Pengecualian mengurangi versi yang terpengaruh dari otorisasi. Mereka tidak menyembunyikan versi terpengaruh yang sudah dilaporkan oleh garis dasar produksi.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Kedaluwarsa</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Kedaluwarsa</value>
+  </data>
+  <data name="Included" xml:space="preserve">
+    <value>Disertakan</value>
+  </data>
+  <data name="No exclusions recorded." xml:space="preserve">
+    <value>Tidak ada pengecualian yang dicatat.</value>
+  </data>
+  <data name="No expiry" xml:space="preserve">
+    <value>Tanpa masa kedaluwarsa</value>
+  </data>
+  <data name="No related ranges in stored active advisories. This is not proof that the entire rule is safe." xml:space="preserve">
+    <value>Tidak ada rentang terkait dalam advisori aktif yang tersimpan. Ini bukan bukti bahwa seluruh aturan aman.</value>
+  </data>
+  <data name="No review records. This rule may have been imported directly." xml:space="preserve">
+    <value>Tidak ada catatan peninjauan. Aturan ini mungkin diimpor secara langsung.</value>
+  </data>
+  <data name="Not pinned" xml:space="preserve">
+    <value>Tidak ditetapkan</value>
+  </data>
+  <data name="Package pattern" xml:space="preserve">
+    <value>Pola paket</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Menunggu</value>
+  </data>
+  <data name="Prerelease versions" xml:space="preserve">
+    <value>Versi prarilis</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Rentang tidak dapat dievaluasi</value>
+  </data>
+  <data name="Range overlaps pattern" xml:space="preserve">
+    <value>Rentang tumpang tindih dengan pola</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Alasan</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Ditolak</value>
+  </data>
+  <data name="Related advisory ranges" xml:space="preserve">
+    <value>Rentang advisori terkait</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Diminta pada</value>
+  </data>
+  <data name="Review history" xml:space="preserve">
+    <value>Riwayat peninjauan</value>
+  </data>
+  <data name="Reviewer" xml:space="preserve">
+    <value>Peninjau</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Dicabut</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Sumber</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Pemasok</value>
+  </data>
+  <data name="These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page." xml:space="preserve">
+    <value>Rentang yang dipublikasikan ini tumpang tindih dengan pola aturan atau tidak dapat dievaluasi. Ini bukan berarti aturan saat ini mengizinkan setiap versi yang tercantum: status, masa berlaku, pengecualian, aturan lain, dan daftar blokir juga berlaku. Dampak terhadap produksi ditampilkan di halaman audit kerentanan.</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Detail aturan kepercayaan</value>
+  </data>
+  <data name="Version pattern" xml:space="preserve">
+    <value>Pola versi</value>
+  </data>
+  <data name="View current vulnerability audit" xml:space="preserve">
+    <value>Lihat audit kerentanan terkini</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Pengecualian kerentanan</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Ditarik</value>
+  </data>
+
+</root>

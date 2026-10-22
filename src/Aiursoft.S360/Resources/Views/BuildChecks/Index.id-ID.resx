@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>Sebagian terbatas dari daftar dependensi yang dikirim ke API. Batch yang diterima tidak sama dengan keseluruhan proses yang diterima.</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>Diterima</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>Diterima berarti S360 menerima bukti paket yang dilaporkan untuk pemeriksaan ini. Ini tidak berarti semua batch telah diterima atau GitLab Runner telah dikonfigurasi untuk menghentikan proses build.</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>Diterima versus diberlakukan</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>Tinjauan anonim</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID Kunci API</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>Tujuan audit</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>Akun terautentikasi</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Batch</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>Saat ini diblokir</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>Alasan keputusan</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>Cabang default</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>Setiap baris mewakili satu batch API. Hanya proses lengkap dengan setiap batch diterima yang dapat lolos pemeriksaan CLI. Hasil yang tercatat bersifat historis; peringatan daftar blokir saat ini ditampilkan secara terpisah.</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>Proses belum lengkap</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>Periksa lokal</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>Permintaan penggabungan</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Berikutnya</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>Tidak ditemukan dependensi eksternal pada proyek yang didukung dan dilaporkan.</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>Satu upaya pemeriksaan yang dilaporkan. Batch-batchnya berbagi satu ID proses sehingga Anda dapat memeriksa hasil lengkapnya.</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>Cabang lainnya</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>Paket</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>Sebelumnya</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>Baseline produksi</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Proyek</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>Baca catatan pemeriksaan</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Alasan</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>Ditolak</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>Sumber yang dilaporkan</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>Hanya untuk peninjauan</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>Tinjauan menghasilkan keputusan kebijakan tanpa menyimpan laporan proyek. Baseline menyatakan penggunaan produksi dan memperbarui inventaris proyek hanya setelah semua batch diterima, meskipun dependensinya ditolak. Catatan lama tanpa tujuan tidak pernah memperbarui penggunaan produksi.</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>Eksekusi</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>Build tag</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>Jumlah proyek yang didukung yang dikenali oleh CLI. Pemeriksaan dengan nol dependensi tetap menghubungi S360 dan mencatat jumlah ini.</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>Penjelasan kebijakan yang dicatat saat pemeriksaan tersebut dijalankan. Peringatan daftar blokir saat ini terpisah dan tidak pernah mengubah riwayat ini.</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>Pengidentifikasi proyek dan pipeline diberikan oleh pemanggil yang tidak terautentikasi.</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>Ini adalah pemeriksaan yang dilaporkan; penerapan oleh Runner merupakan tahap peluncuran terpisah dan tidak dapat disimpulkan dari catatan ini.</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>Tidak diklasifikasikan</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>Tujuan tidak dideklarasikan</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>Versi</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>Data Kerentanan</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>Waktu data kerentanan</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>Kapan data advisori di balik keputusan ini terakhir diperiksa; nilai kosong bukanlah tanda bahwa semuanya aman.</value>
   </data>
 
 </root>

@@ -24,6 +24,9 @@
   <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
     <value>Bu şemada {0} kırılgan paket, derinlik veya filtreler nedeniyle gizlenen {1} paket de dahil.</value>
   </data>
+  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+    <value>0 yalnızca proje başvurularını gösterir; 1, doğrudan başvurulan paketleri de içerir.</value>
+  </data>
   <data name="Collapse dependencies" xml:space="preserve">
     <value>Bağımlılıkları Daralt</value>
   </data>
@@ -56,6 +59,9 @@
   </data>
   <data name="Diagram controls" xml:space="preserve">
     <value>Diyagram kontrolleri</value>
+  </data>
+  <data name="Direct dependencies only" xml:space="preserve">
+    <value>Yalnızca doğrudan bağımlılıklar</value>
   </data>
   <data name="Direct dependency" xml:space="preserve">
     <value>Doğrudan bağımlılık</value>
@@ -143,6 +149,9 @@
   </data>
   <data name="Project reference" xml:space="preserve">
     <value>Proje referansı</value>
+  </data>
+  <data name="Projects and their direct dependencies are shown first. Expand a package to follow indirect dependencies." xml:space="preserve">
+    <value>Projeler ve doğrudan bağımlılıkları önce gösterilir. Dolaylı bağımlılıkları izlemek için bir paketi genişletin.</value>
   </data>
   <data name="Recorded purpose and approval reasons" xml:space="preserve">
     <value>Kaydedilen amaç ve onay gerekçeleri</value>

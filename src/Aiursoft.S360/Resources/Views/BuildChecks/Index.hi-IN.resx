@@ -18,8 +18,29 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Accepted" xml:space="preserve">
+      <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
+    <value>API को भेजी गई निर्भरता सूची का एक सीमित हिस्सा। स्वीकृत बैच, पूर्ण रूप से स्वीकृत रन के समान नहीं होता।</value>
+  </data>
+  <data name="Accepted" xml:space="preserve">
     <value>स्वीकृत</value>
+  </data>
+  <data name="Accepted means S360 accepted the reported package evidence for this check. It does not mean every batch arrived or that a GitLab Runner was configured to stop the build." xml:space="preserve">
+    <value>स्वीकृत का अर्थ है कि S360 ने इस जाँच के लिए रिपोर्ट किए गए पैकेज सबूतों को स्वीकार कर लिया है। इसका अर्थ यह नहीं है कि हर बैच प्राप्त हुआ है या कि बिल्ड रोकने के लिए GitLab Runner की विन्यास की गई है।</value>
+  </data>
+  <data name="Accepted versus enforced" xml:space="preserve">
+    <value>स्वीकृत बनाम लागू किया गया</value>
+  </data>
+  <data name="Anonymous review" xml:space="preserve">
+    <value>गुमनाम समीक्षा</value>
+  </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>एपीआई कुंजी आईडी</value>
+  </data>
+  <data name="Audit purpose" xml:space="preserve">
+    <value>ऑडिट का उद्देश्य</value>
+  </data>
+  <data name="Authenticated account" xml:space="preserve">
+    <value>प्रमाणित खाता</value>
   </data>
   <data name="Batch" xml:space="preserve">
     <value>बैच</value>
@@ -42,17 +63,35 @@
   <data name="Currently blocked" xml:space="preserve">
     <value>वर्तमान में अवरुद्ध</value>
   </data>
+  <data name="Decision reason" xml:space="preserve">
+    <value>निर्णय कारण</value>
+  </data>
+  <data name="Default branch" xml:space="preserve">
+    <value>डिफ़ॉल्ट ब्रांच</value>
+  </data>
   <data name="Each row is one API batch. Only a complete run with every batch accepted can pass the CLI check. The recorded result is historical; a current blocklist warning is shown separately." xml:space="preserve">
     <value>हर पंक्ति एक API बैच है। CLI जाँच में केवल तभी सफल हुआ जा सकता है, जब पूरा रन हो और हर बैच स्वीकार किया गया हो। दर्ज किया गया परिणाम ऐतिहासिक है; मौजूदा ब्लॉकलिस्ट चेतावनी अलग से दिखाई जाती है।</value>
   </data>
   <data name="Incomplete run" xml:space="preserve">
     <value>अधूरा रन</value>
   </data>
+  <data name="Local check" xml:space="preserve">
+    <value>स्थानीय जाँच</value>
+  </data>
+  <data name="Merge request" xml:space="preserve">
+    <value>मर्ज अनुरोध</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>अगला</value>
   </data>
   <data name="No external dependencies were found in the reported supported projects." xml:space="preserve">
     <value>रिपोर्ट की गई समर्थित परियोजनाओं में कोई बाहरी निर्भरता नहीं मिली।</value>
+  </data>
+  <data name="One reported check attempt. Its batches share a run identifier so you can inspect the complete result." xml:space="preserve">
+    <value>एक रिपोर्ट किया गया जाँच प्रयास। इसके बैच एक रन पहचानकर्ता साझा करते हैं ताकि आप परिणाम की पूर्ण जाँच कर सकें।</value>
+  </data>
+  <data name="Other branch" xml:space="preserve">
+    <value>अन्य ब्रांच</value>
   </data>
   <data name="Package" xml:space="preserve">
     <value>पैकेज</value>
@@ -63,14 +102,29 @@
   <data name="Previous" xml:space="preserve">
     <value>पिछला</value>
   </data>
+  <data name="Production baseline" xml:space="preserve">
+    <value>प्रोडक्शन बेसलाइन</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>प्रोजेक्ट</value>
+  </data>
+  <data name="Read a check record" xml:space="preserve">
+    <value>जाँच रिकॉर्ड पढ़ें</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>कारण</value>
   </data>
   <data name="Rejected" xml:space="preserve">
     <value>अस्वीकृत</value>
+  </data>
+  <data name="Reported source" xml:space="preserve">
+    <value>रिपोर्ट किया गया स्रोत</value>
+  </data>
+  <data name="Review only" xml:space="preserve">
+    <value>केवल समीक्षा</value>
+  </data>
+  <data name="Review returns a policy decision without saving a project report. Baseline declares production use and updates the project inventory only when every batch has arrived, even if the dependencies are rejected. Older records without a purpose never update production usage." xml:space="preserve">
+    <value>समीक्षा परियोजना रिपोर्ट सहेजे बिना नीतिगत निर्णय देती है। बेसलाइन उत्पादन में उपयोग की घोषणा करती है और परियोजना सूची को तभी अपडेट करती है, जब सभी बैच आ चुके हों—भले ही निर्भरताएँ अस्वीकृत हों। बिना उद्देश्य वाले पुराने रिकॉर्ड उत्पादन उपयोग को कभी अपडेट नहीं करते।</value>
   </data>
   <data name="Run" xml:space="preserve">
     <value>रन</value>
@@ -90,11 +144,38 @@
   <data name="Status" xml:space="preserve">
     <value>स्थिति</value>
   </data>
+  <data name="Tag build" xml:space="preserve">
+    <value>टैग बिल्ड</value>
+  </data>
+  <data name="The number of supported projects the CLI recognized. A zero-dependency check still contacts S360 and records this count." xml:space="preserve">
+    <value>CLI द्वारा पहचानी गई समर्थित परियोजनाओं की संख्या। शून्य निर्भरताओं वाली जाँच भी S360 से संपर्क करती है और यह संख्या दर्ज करती है।</value>
+  </data>
+  <data name="The policy explanation recorded when that check ran. A current blocklist warning is separate and never rewrites this history." xml:space="preserve">
+    <value>जब वह जाँच चली थी, तब दर्ज की गई नीति की व्याख्या। वर्तमान ब्लॉकलिस्ट चेतावनी अलग है और यह कभी इस इतिहास को पुनः नहीं लिखती।</value>
+  </data>
+  <data name="The project and pipeline identifiers are supplied by an unauthenticated caller." xml:space="preserve">
+    <value>प्रोजेक्ट और पाइपलाइन के पहचानकर्ता ऐसे कॉलर द्वारा दिए जाते हैं जिसकी पहचान प्रमाणित नहीं है।</value>
+  </data>
+  <data name="These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here." xml:space="preserve">
+    <value>ये दर्ज की गई जाँचें हैं; Runner को लागू करना एक अलग रोलआउट चरण है और यहाँ दिया गया कोई रिकॉर्ड इसका संकेत नहीं देता।</value>
+  </data>
+  <data name="Unclassified" xml:space="preserve">
+    <value>अवर्गीकृत</value>
+  </data>
+  <data name="Undeclared purpose" xml:space="preserve">
+    <value>अघोषित उद्देश्य</value>
+  </data>
   <data name="Version" xml:space="preserve">
     <value>संस्करण</value>
   </data>
   <data name="Vulnerability data" xml:space="preserve">
     <value>कमज़ोरियों से संबंधित डेटा</value>
+  </data>
+  <data name="Vulnerability data time" xml:space="preserve">
+    <value>भेद्यता डेटा का समय</value>
+  </data>
+  <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
+    <value>इस निर्णय के आधार में मौजूद सलाहकारी डेटा की पिछली जाँच कब हुई थी; खाली मान का अर्थ यह नहीं है कि सब कुछ ठीक है।</value>
   </data>
 
 </root>

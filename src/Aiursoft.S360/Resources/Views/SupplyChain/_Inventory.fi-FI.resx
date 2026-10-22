@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} pakettia · {1} vaatii huomiota</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} tulosta · sivu {1}/{2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} haavoittuvaa pakettia · {1} muuta pakettia, johon tulee kiinnittää huomiota</value>
+  </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>Tähän raporttiin ei tallennettu täydellistä ratkaisuverkkoa. Luo se suorittamalla uusin CLI-versio; pakettien luettelo on edelleen saatavilla.</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>Uudempi raportti on puutteellinen.</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>Uudempi raportti on keskeneräinen. Viimeisin valmis tilannekuva näytetään; nykyistä kattavuutta ei ole varmennettu.</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>Kaikki hankkeet</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>Kaikki tilat</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>Hyväksyntäsäännöt ja työkalut</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>Selaa kaikkia tämän projektin riippuvuuksia</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>Selaa hyväksymissääntöjä</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Tarkistustietue</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Yrityksen yleiskatsaus</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Vaatimustenmukaisuuden tarkastelu</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Noudattava</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>Kopioitu!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Kopioi Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>Lukumäärät kuvaavat valittua raporttien laajuutta. Tila arvioidaan nykyisten käytäntöjen ja tallennettujen haavoittuvuustietojen perusteella.</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>Nykyinen perustaso</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Riippuvuudet</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Ekosysteemi</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Tutki</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>Etsi projekti tai paketti, tarkista sen vaatimustenmukaisuus ja selvitä, miksi sitä käytetään.</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>Varastonäkymät</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Tunnetut haavoittuvuudet</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>Uusimmat täydelliset lähtötilanneraportit. Nämä ovat ilmoitettuja riippuvuuksia, eivät todisteita käyttöönotosta.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Vaatii huomiota</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Seuraava</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>Täydellistä raporttia ei ole saatavilla.</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>Täydellistä raporttia tästä ekosysteemistä ei ole saatavilla. Sen vaatimustenmukaisuus on tuntematon.</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>Ei vastaavia merkintöjä</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Ei todennettu</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: ei sisälly tähän tarkastukseen.</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet ja npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: ei sisälly tähän tarkastukseen.</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>Havaitut paketit</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>Vanhemmat raportit, joille ei ole ilmoitettu tarkoitusta. Näistä tiedoista ei voi päätellä nykyistä käyttöä.</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>Paketti, projekti, käyttötarkoitus tai hyväksymisen syy</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>Paketit, jotka vaativat huomiota</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>Sivu {0} / {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>Putki</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Edellinen</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Hankkeet</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>Projektit, joilla on raportteja</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Projektin inventaarin lukeminen vaatii toimitusketjun lukuoikeutta. Voit silti selata hyväksyntäsääntöjä.</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>README-merkki</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Raportit</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>Nollaa suodattimet</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>Tulos sivut</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>Tarkistuksia ei tallenneta projektin inventaarioon.</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>S360-vaatimustenmukaisuusmerkki</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Haku</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>Hae inventaariosta</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>Valitse yllä oleva Markdown-teksti ja kopioi se.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>Jaa viimeisin perustason vaatimustenmukaisuustietosi GitHubissa tai GitLabissa. Tunnusmerkki on julkinen, eikä sen tarkastelu vaadi kirjautumista. Se kattaa raportoidut ekosysteemit, ei tuotantokäyttöönottoa.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Tila</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>Tila kattaa vain raportoidut ekosysteemit.</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Toimitusketju</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>Täydellinen raportti ei sisällä riippuvuuksia tämän ekosysteemin osalta.</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>Tämä raportti on epätäydellinen. Täydennettyä snapshotia ei ole saatavilla; nykyinen kattavuus ei ole vahvistettu.</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>Kokeile toista hakua tai raportin laajuutta. Pelkkä hyväksymissääntö ei ole todiste siitä, että projekti käyttää pakettia.</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>Luokittelematon historia</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>Päivitä CLI-raportti nähdäksesi riippuvuussuhteet.</value>
+  </data>
+
+</root>

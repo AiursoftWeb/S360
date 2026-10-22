@@ -21,6 +21,8 @@ using Newtonsoft.Json.Serialization;
 using System.Diagnostics.CodeAnalysis;
 using Aiursoft.AiurProtocol.Server;
 using Aiursoft.S360.Services.Vulnerability;
+using Aiursoft.S360.Services.AlertMonitoring;
+using Aiursoft.AiurProtocol;
 using Aiursoft.S360.Services.Resolution;
 using Microsoft.AspNetCore.Authentication;
 
@@ -60,6 +62,11 @@ public class Startup : IWebStartup
         services.AddMemoryCache();
         services.AddSingleton<Services.ArtifactVerificationAdmission>();
         services.AddHttpClient();
+        services.AddAiurProtocolClient();
+        services.AddScoped<AlertCenterSettingsProvider>();
+        services.AddScoped<IBaselineIncidentClient, BaselineIncidentClient>();
+        services.AddScoped<BaselineMonitoringService>();
+        services.AddSingleton<BaselineMonitorState>();
         services.AddHttpClient(PackageResolutionService.ArchiveClientName)
             .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
         services.AddSingleton<OsvRequestThrottle>();
@@ -80,6 +87,7 @@ public class Startup : IWebStartup
         // Background jobs
         services.RegisterBackgroundJob<DummyJob>();
         var orphanAvatarCleanupJob = services.RegisterBackgroundJob<OrphanAvatarCleanupJob>();
+        var baselineIncidentSyncJob = services.RegisterBackgroundJob<BaselineIncidentSyncJob>();
         var vulnerabilityAuditJob = services.RegisterBackgroundJob<VulnerabilityAuditJob>();
         var dependencyResolutionJob = services.RegisterBackgroundJob<DependencyResolutionJob>();
 
@@ -94,6 +102,11 @@ public class Startup : IWebStartup
             startDelay: TimeSpan.FromMinutes(2));
         services.RegisterScheduledTask(
             registration: dependencyResolutionJob,
+            period: TimeSpan.FromMinutes(1),
+            startDelay: TimeSpan.FromMinutes(1));
+
+        services.RegisterScheduledTask(
+            registration: baselineIncidentSyncJob,
             period: TimeSpan.FromMinutes(1),
             startDelay: TimeSpan.FromMinutes(1));
 

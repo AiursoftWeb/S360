@@ -12,6 +12,11 @@ public class SettingsMap
     public const string Icp = "Icp";
     public const string DummyNumber = "DummyNumber";
     public const string DummyChoice = "DummyChoice";
+    public const string AlertCenterEnabled = "AlertCenter_Enabled";
+    public const string AlertCenterEndpoint = "AlertCenter_Endpoint";
+    public const string AlertCenterApiKey = "AlertCenter_ApiKey";
+    public const string AlertCenterPublicBaseUrl = "AlertCenter_PublicBaseUrl";
+    public const string AlertCenterAutoMitigate = "AlertCenter_AutoMitigate";
     public const string AllowAnonymousReview = "AllowAnonymousReview";
 
     public class FakeLocalizer
@@ -23,6 +28,46 @@ public class SettingsMap
 
     public static readonly List<GlobalSettingDefinition> Definitions = new()
     {
+        new GlobalSettingDefinition
+        {
+            Key = AlertCenterEnabled,
+            Name = Localizer["Enable AlertCenter integration"],
+            Description = Localizer["Report confirmed security findings from company production baselines."],
+            Type = SettingType.Bool,
+            DefaultValue = "False"
+        },
+        new GlobalSettingDefinition
+        {
+            Key = AlertCenterEndpoint,
+            Name = Localizer["AlertCenter endpoint"],
+            Description = Localizer["HTTP(S) base URL of AlertCenter."],
+            Type = SettingType.Text,
+            DefaultValue = "https://alertcenter.aiursoft.com"
+        },
+        new GlobalSettingDefinition
+        {
+            Key = AlertCenterApiKey,
+            Name = Localizer["AlertCenter application API key"],
+            Description = Localizer["Dedicated application key with query, create, metadata patch and mitigate permissions."],
+            Type = SettingType.Secret,
+            DefaultValue = ""
+        },
+        new GlobalSettingDefinition
+        {
+            Key = AlertCenterPublicBaseUrl,
+            Name = Localizer["S360 public base URL"],
+            Description = Localizer["Public S360 base URL used in incident links."],
+            Type = SettingType.Text,
+            DefaultValue = "https://s360.aiursoft.com"
+        },
+        new GlobalSettingDefinition
+        {
+            Key = AlertCenterAutoMitigate,
+            Name = Localizer["Automatically mitigate recovered security incidents"],
+            Description = Localizer["Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual."],
+            Type = SettingType.Bool,
+            DefaultValue = "True"
+        },
         new GlobalSettingDefinition
         {
             Key = ProjectName,

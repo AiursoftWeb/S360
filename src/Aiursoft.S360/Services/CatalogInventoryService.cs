@@ -10,7 +10,16 @@ namespace Aiursoft.S360.Services;
 
 public class CatalogInventoryService(TemplateDbContext db, TrustService trust, IConfiguration configuration) : IScopedDependency
 {
-    public async Task PopulateAsync(InventoryViewModel model, bool projectOnly = false)
+    public Task PopulateAsync(InventoryViewModel model, bool projectOnly = false) => PopulateAsync(model, projectOnly, false);
+
+    public async Task<List<InventoryProject>> ReadBaselineProjectsAsync()
+    {
+        var model = new InventoryViewModel { Tab = "projects", Scope = "baseline", Ecosystem = "nuget" };
+        await PopulateAsync(model, false, true);
+        return model.Projects;
+    }
+
+    private async Task PopulateAsync(InventoryViewModel model, bool projectOnly, bool allProjects)
     {
         // Select complete snapshots before selecting packages: an empty newer snapshot
         // removes old dependencies, and a NuGet-only snapshot must not replace npm.
@@ -26,6 +35,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
             }).ToListAsync();
         var runs = checks.Where(c => !string.IsNullOrWhiteSpace(c.Project) &&
                 BuildCheckRun.Purpose(c.ContextJson) != "review")
+            .Where(c => !allProjects || BuildCheckRun.Kind(c.ContextJson) == CheckKind.DefaultBranch)
             .GroupBy(c => c.RunId).Where(g => MatchesScope(g.First(), model.Scope))
             .Where(g => model.Ecosystem == "all" ||
                 BuildCheckRun.ReadContext(g.First().ContextJson)?.Ecosystem is not { Length: > 0 } ecosystem ||
@@ -218,7 +228,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 .OrderByDescending(p => p.Status).ThenBy(p => p.Name).ToList();
             model.Total = filtered.Count;
             model.Page = Math.Min(model.Page, model.PageCount);
-            model.Projects = filtered.Skip((model.Page - 1) * InventoryViewModel.PageSize).Take(InventoryViewModel.PageSize).ToList();
+            model.Projects = allProjects ? filtered : filtered.Skip((model.Page - 1) * InventoryViewModel.PageSize).Take(InventoryViewModel.PageSize).ToList();
         }
     }
 

@@ -1,0 +1,87 @@
+@using Aiursoft.S360.Models.SupplyChainViewModels
+@using Aiursoft.WebTools
+@model Aiursoft.S360.Models.AlertMonitoring.MonitoringViewModel
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+    <div>
+        <h1 class="h3">@Localizer["AlertCenter monitoring"]</h1>
+        <p class="text-muted mb-0">@Localizer["Security incidents for company production dependency baselines."]</p>
+    </div>
+    <div class="d-flex gap-2">
+        <a asp-controller="GlobalSettings" asp-action="Index" class="btn btn-outline-primary">@Localizer["Connection settings"]</a>
+        <form asp-action="Synchronize" method="post">
+            <button type="submit" class="btn btn-primary" disabled="@(!Model.Enabled || !Model.ApiKeyConfigured)">@Localizer["Synchronize now"]</button>
+        </form>
+    </div>
+</div>
+<div class="row g-4">
+    <div class="col-xl-8">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h2 class="h5">@Localizer["Integration status"]</h2>
+                <dl class="row mb-0">
+                    <dt class="col-sm-5">@Localizer["Enabled"]</dt><dd class="col-sm-7">@(Model.Enabled ? Localizer["Yes"] : Localizer["No"])</dd>
+                    <dt class="col-sm-5">@Localizer["Application API key"]</dt><dd class="col-sm-7">@(Model.ApiKeyConfigured ? Localizer["Configured"] : Localizer["Not configured"])</dd>
+                    <dt class="col-sm-5">@Localizer["Severity"]</dt><dd class="col-sm-7">sev2</dd>
+                    <dt class="col-sm-5">@Localizer["Last synchronization"]</dt>
+                    <dd class="col-sm-7">
+                        @if (Model.LastRun is { } run)
+                        {
+                            <span data-utc-time="@run.CompletedAtUtc.ToHtmlDateTime()"></span>
+                            <span class="badge @(run.Succeeded ? "text-bg-success" : "text-bg-danger")">@(run.Succeeded ? Localizer["Succeeded"] : Localizer["Failed. Check the connection settings and server logs."])</span>
+                        }
+                        else { <span>@Localizer["Not synchronized in this process yet"]</span> }
+                    </dd>
+                </dl>
+                <form asp-action="SaveRecovery" method="post" class="mt-3">
+                    <div class="form-check mb-2">
+                        <input type="checkbox" id="auto-mitigate" name="autoMitigate" value="true" class="form-check-input" checked="@Model.AutoMitigate" disabled="@Model.RecoveryReadOnly" />
+                        <label for="auto-mitigate" class="form-check-label">@Localizer["Automatically mitigate incidents when the complete baseline is confirmed compliant"]</label>
+                    </div>
+                    @if (Model.RecoveryReadOnly) { <p class="small text-muted">@Localizer["This setting is overridden by configuration."]</p> }
+                    <button type="submit" class="btn btn-outline-primary" disabled="@Model.RecoveryReadOnly">@Localizer["Save recovery policy"]</button>
+                </form>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="h5">@Localizer["Current company baselines"]</h2>
+                <p class="text-muted small">@Localizer["Preview the current assessment before enabling notifications. Missing or incomplete evidence never proves recovery."]</p>
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead><tr><th>@Localizer["Repository"]</th><th>@Localizer["Current assessment"]</th><th>@Localizer["Incident"]</th></tr></thead>
+                        <tbody>
+                        @foreach (var repository in Model.Repositories)
+                        {
+                            <tr>
+                                <td class="text-break"><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="baseline" asp-route-query="@repository.Repository">@repository.Repository</a></td>
+                                <td>
+                                    @if (repository.Status == InventoryStatus.NonCompliant) { <span class="badge text-bg-danger">@Localizer["Confirmed findings · sev2"]</span> }
+                                    else if (repository.CanMitigate) { <span class="badge text-bg-success">@Localizer["Confirmed compliant"]</span> }
+                                    else { <span class="badge text-bg-warning">@Localizer["Pending verification"]</span> }
+                                </td>
+                                <td>
+                                    @if (Model.AlertCenterUrl != null && Model.LastRun?.Incidents.TryGetValue(repository.Repository, out var incidentId) == true)
+                                    { <a href="@Model.AlertCenterUrl/Incidents/Details/@incidentId">@Localizer["Open incident"]</a> }
+                                    else { <span class="text-muted">—</span> }
+                                </td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                @if (Model.Repositories.Count == 0) { <p class="text-muted mt-3 mb-0">@Localizer["No eligible company production baselines are available."]</p> }
+            </div>
+        </div>
+    </div>
+    <aside class="col-xl-4">
+        <div class="card"><div class="card-body">
+            <h2 class="h5">@Localizer["Two incidents, independent recovery"]</h2>
+            <p>@Localizer["S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project."]</p>
+            <p>@Localizer["GitLab separately reports a failing default-branch pipeline. Both incidents may share one dependency issue, but each retains its own recovery evidence."]</p>
+            <p>@Localizer["Upgrade the dependency and run the default-branch pipeline. S360 mitigates after the complete baseline is confirmed compliant; GitLab mitigates only after the entire pipeline succeeds."]</p>
+            <p>@Localizer["MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual."]</p>
+            <p class="small text-muted mb-0">@Localizer["Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported."]</p>
+        </div></div>
+    </aside>
+</div>

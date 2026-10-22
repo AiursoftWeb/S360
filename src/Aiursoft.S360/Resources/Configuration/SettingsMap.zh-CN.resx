@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>用于测试的占位数字。</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>AlertCenter 应用 API 密钥</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>AlertCenter 端点</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>允许匿名审核</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>允许用户在个人资料管理页面调整其昵称。</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>自动缓解已恢复的安全事件</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>品牌主页链接</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>品牌名称</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>具有查询、创建、元数据修补和缓解权限的专用应用程序密钥。</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>示例选项</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>占位数字</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>启用 AlertCenter 集成</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>AlertCenter 的 HTTP(S) 基础 URL。</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>ICP 备案号</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>仅当完整生产基线已确认符合要求时，才进行缓解处理。最终处置仍需手动完成。</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>项目标志</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>项目名称</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>用于事件链接的 S360 公共基础 URL。</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>报告来自公司生产基线的已确认安全发现。</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>S360 公共基础 URL</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>页脚中显示的品牌名称。</value>

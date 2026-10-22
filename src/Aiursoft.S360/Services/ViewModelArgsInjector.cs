@@ -70,6 +70,7 @@ public class ViewModelArgsInjector(
         _ = localizer["Permissions"];
         _ = localizer["Background Jobs"];
         _ = localizer["Global Settings"];
+        _ = localizer["AlertCenter monitoring"];
 
         _ = localizer["Access Denied"];
         _ = localizer["Bad Request"];

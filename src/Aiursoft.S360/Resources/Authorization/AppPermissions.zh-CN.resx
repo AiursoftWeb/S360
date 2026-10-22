@@ -66,6 +66,9 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>检查依赖项</value>
   </data>
+  <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
+    <value>配置并同步生产基线的安全事件监控。</value>
+  </data>
   <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
     <value>创建和管理个人 API 密钥，并使用这些密钥审核依赖项。</value>
   </data>
@@ -101,6 +104,9 @@
   </data>
   <data name="Manage absolute package blocks." xml:space="preserve">
     <value>管理绝对阻止的程序包。</value>
+  </data>
+  <data name="Manage AlertCenter integration" xml:space="preserve">
+    <value>管理 AlertCenter 集成</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>管理黑名单</value>

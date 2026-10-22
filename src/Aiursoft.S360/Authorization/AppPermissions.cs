@@ -25,6 +25,7 @@ public class AppPermissions
         var localizer = new FakeLocalizer();
         List<PermissionDescriptor> allPermission =
         [
+            new(AppPermissionNames.CanManageAlertCenterIntegration, localizer["Manage AlertCenter integration"], localizer["Configure and synchronize security incident monitoring for production baselines."]),
             new(AppPermissionNames.CanSubmitDependencyRequests, localizer["Submit dependency requests"], localizer["Submit and view personal dependency requests."]),
             new(AppPermissionNames.CanReadSupplyChain, localizer["Read supply chain"], localizer["Read all requests, build checks and vulnerability audit records."]),
             new(AppPermissionNames.CanReviewDependencyRequests, localizer["Review dependency requests"], localizer["Approve, reject, renew and revoke exact dependency approvals."]),

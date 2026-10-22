@@ -66,6 +66,9 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Kiểm tra các phần phụ thuộc</value>
   </data>
+  <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
+    <value>Cấu hình và đồng bộ hóa giám sát sự cố bảo mật cho các đường chuẩn sản xuất.</value>
+  </data>
   <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
     <value>Tạo và quản lý khóa API cá nhân, đồng thời sử dụng chúng để đánh giá các yêu cầu về dependency.</value>
   </data>
@@ -101,6 +104,9 @@
   </data>
   <data name="Manage absolute package blocks." xml:space="preserve">
     <value>Quản lý các gói bị chặn tuyệt đối.</value>
+  </data>
+  <data name="Manage AlertCenter integration" xml:space="preserve">
+    <value>Quản lý tích hợp AlertCenter</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Quản lý danh sách chặn</value>

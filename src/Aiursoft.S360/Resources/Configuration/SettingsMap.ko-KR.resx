@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>테스트용 가짜 번호입니다.</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>AlertCenter 애플리케이션 API 키</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>AlertCenter 엔드포인트</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>익명 리뷰 허용</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>프로필 관리 페이지에서 사용자가 닉네임을 수정할 수 있도록 허용합니다.</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>회복된 보안 사고를 자동으로 완화</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>브랜드 홈 URL</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>브랜드 이름</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>조회, 생성, 메타데이터 수정 및 완화 권한이 있는 전용 애플리케이션 키.</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>임의 선택</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>임시 번호</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>AlertCenter 연동 활성화</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>AlertCenter의 HTTP(S) 기본 URL.</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>ICP 번호</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>완전한 프로덕션 베이스라인이 준수된 것으로 확인된 경우에만 완화 조치를 수행합니다. 최종 해결은 수동으로 유지됩니다.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>프로젝트 로고</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>프로젝트 이름</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>인시던트 링크에 사용되는 S360 공개 기본 URL.</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>회사의 프로덕션 기준선에서 확인된 보안 발견 사항을 보고합니다.</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>S360 공개 기본 URL</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>푸터에 표시되는 브랜드 이름</value>

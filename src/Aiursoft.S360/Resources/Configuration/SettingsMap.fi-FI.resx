@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Väliaikainen luku testaamista varten.</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>AlertCenter-sovelluksen API-avain</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>AlertCenter-päätepiste</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Salli anonyymi arviointi</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Salli käyttäjien muuttaa nimimerkkiään profiilin hallintasivulla.</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>Lievennä automaattisesti korjatut tietoturvapoikkeamat</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>Brändin kotisivun URL</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>Brändin nimi</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>Kysely-, luonti-, metatietojen päivitys- ja lieventämisoikeuksilla varustettu sovelluskohtainen avain.</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>Väliaikainen valinta</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Väliaikainen luku</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>Ota AlertCenter-integraatio käyttöön</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>AlertCenterin HTTP(S)-pohja-URL.</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>ICP-numero</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>Torju häiriö automaattisesti vain, kun koko tuotantoympäristön perustaso on todettu vaatimusten mukaiseksi. Lopullinen ratkaisu tehdään edelleen manuaalisesti.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Projektin logo</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Projektin nimi</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>Julkinen S360-perus-URL, jota käytetään tapauslinkkeissä.</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>Raportoi vahvistetut tietoturvan havainnot yrityksen tuotantopohjista.</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>S360 julkinen perus-URL</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Brändin nimi, joka näytetään alatunnisteessa.</value>

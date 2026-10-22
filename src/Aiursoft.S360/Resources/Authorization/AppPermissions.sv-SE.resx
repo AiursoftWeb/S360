@@ -66,6 +66,9 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Kontrollera beroenden</value>
   </data>
+  <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
+    <value>Konfigurera och synkronisera övervakning av säkerhetsincidenter för produktionsbaslinjer.</value>
+  </data>
   <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
     <value>Skapa och hantera personliga API-nycklar och använd dem för beroendegranskningar.</value>
   </data>
@@ -101,6 +104,9 @@
   </data>
   <data name="Manage absolute package blocks." xml:space="preserve">
     <value>Hantera absoluta paketblockeringar.</value>
+  </data>
+  <data name="Manage AlertCenter integration" xml:space="preserve">
+    <value>Hantera AlertCenter-integrering</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Hantera blockeringslistan</value>

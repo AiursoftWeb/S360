@@ -66,6 +66,9 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Periksa dependensi</value>
   </data>
+  <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
+    <value>Konfigurasikan dan sinkronkan pemantauan insiden keamanan untuk garis dasar produksi.</value>
+  </data>
   <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
     <value>Buat dan kelola kunci API pribadi, lalu gunakan kunci tersebut untuk meninjau permintaan dependensi.</value>
   </data>
@@ -101,6 +104,9 @@
   </data>
   <data name="Manage absolute package blocks." xml:space="preserve">
     <value>Kelola pemblokiran paket secara mutlak.</value>
+  </data>
+  <data name="Manage AlertCenter integration" xml:space="preserve">
+    <value>Kelola integrasi AlertCenter</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Kelola daftar blokir</value>

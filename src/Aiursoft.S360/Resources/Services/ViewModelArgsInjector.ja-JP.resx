@@ -36,6 +36,9 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft テンプレート</value>
   </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
+    <value>AlertCenter監視</value>
+  </data>
   <data name="Anonymous" xml:space="preserve">
     <value>匿名</value>
   </data>
@@ -152,6 +155,9 @@
   </data>
   <data name="Manage" xml:space="preserve">
     <value>管理</value>
+  </data>
+  <data name="Monitoring" xml:space="preserve">
+    <value>監視</value>
   </data>
   <data name="My requests" xml:space="preserve">
     <value>自分のリクエスト</value>

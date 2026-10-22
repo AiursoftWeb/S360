@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="AlertCenter monitoring" xml:space="preserve">
+    <value>AlertCenter izleme</value>
+  </data>
+  <data name="Application API key" xml:space="preserve">
+    <value>Uygulama API anahtarı</value>
+  </data>
+  <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
+    <value>Eksiksiz baz çizgisi uygun olarak onaylandığında olayları otomatik olarak azaltın</value>
+  </data>
+  <data name="Configured" xml:space="preserve">
+    <value>Yapılandırıldı</value>
+  </data>
+  <data name="Confirmed compliant" xml:space="preserve">
+    <value>Uygunluk onaylandı</value>
+  </data>
+  <data name="Confirmed findings · sev2" xml:space="preserve">
+    <value>Doğrulanmış bulgular · önem seviyesi 2</value>
+  </data>
+  <data name="Connection settings" xml:space="preserve">
+    <value>Bağlantı ayarları</value>
+  </data>
+  <data name="Current assessment" xml:space="preserve">
+    <value>Mevcut değerlendirme</value>
+  </data>
+  <data name="Current company baselines" xml:space="preserve">
+    <value>Mevcut şirket baz çizgileri</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Etkin</value>
+  </data>
+  <data name="Failed. Check the connection settings and server logs." xml:space="preserve">
+    <value>Başarısız. Bağlantı ayarlarını ve sunucu günlüklerini kontrol edin.</value>
+  </data>
+  <data name="GitLab separately reports a failing default-branch pipeline. Both incidents may share one dependency issue, but each retains its own recovery evidence." xml:space="preserve">
+    <value>GitLab ayrıca varsayılan dalda başarısız olan bir pipeline raporlar. Her iki olay da aynı bağımlılık sorununu paylaşabilir, ancak her biri kendi kurtarma kanıtını korur.</value>
+  </data>
+  <data name="Incident" xml:space="preserve">
+    <value>Olay</value>
+  </data>
+  <data name="Integration status" xml:space="preserve">
+    <value>Entegrasyon durumu</value>
+  </data>
+  <data name="Last synchronization" xml:space="preserve">
+    <value>Son senkronizasyon</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>İzleme her dakika kontrol yapar. Açık keşfi mevcut altı saatlik denetim zamanlamasını takip eder. Kimlik bilgileri ve etkinleştirme, ortam geçersiz kılma desteği ile Küresel Ayarları kullanır.</value>
+  </data>
+  <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
+    <value>MR incelemeleri, eski zafiyet verileri, başarısız taramalar ve eksik raporlar güvenlik olaylarını asla otomatik olarak ortadan kaldırmaz. Nihai çözüm manuel olarak kalır.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Hayır</value>
+  </data>
+  <data name="No eligible company production baselines are available." xml:space="preserve">
+    <value>Uygun şirket üretim temel çizgisi bulunmuyor.</value>
+  </data>
+  <data name="Not configured" xml:space="preserve">
+    <value>Yapılandırılmadı</value>
+  </data>
+  <data name="Not synchronized in this process yet" xml:space="preserve">
+    <value>Bu işlem kapsamında henüz eşitleme yapılmadı</value>
+  </data>
+  <data name="Open incident" xml:space="preserve">
+    <value>Olayı aç</value>
+  </data>
+  <data name="Pending verification" xml:space="preserve">
+    <value>Doğrulama bekleniyor</value>
+  </data>
+  <data name="Preview the current assessment before enabling notifications. Missing or incomplete evidence never proves recovery." xml:space="preserve">
+    <value>Bildirimleri etkinleştirmeden önce mevcut değerlendirmeyi önizleyin. Eksik veya eksiksiz olmayan kanıtlar asla kurtarmayı kanıtlamaz.</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>Depo</value>
+  </data>
+  <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
+    <value>S360, en son tamamlanmış üretim bağımlılık taban çizgisinde doğrulanmış CVE&apos;leri veya politika ihlallerini raporlar. Yeni bir CVE, projenin yeniden derlenmesi olmadan bir olayı tetikleyebilir.</value>
+  </data>
+  <data name="Save recovery policy" xml:space="preserve">
+    <value>Kurtarma politikasını kaydet</value>
+  </data>
+  <data name="Security incidents for company production dependency baselines." xml:space="preserve">
+    <value>Şirket üretim bağımlılık baz çizgileri için güvenlik olayları.</value>
+  </data>
+  <data name="Severity" xml:space="preserve">
+    <value>Önem derecesi</value>
+  </data>
+  <data name="Succeeded" xml:space="preserve">
+    <value>Başarılı</value>
+  </data>
+  <data name="Synchronize now" xml:space="preserve">
+    <value>Şimdi senkronize et</value>
+  </data>
+  <data name="This setting is overridden by configuration." xml:space="preserve">
+    <value>Bu ayar yapılandırma tarafından geçersiz kılınıyor.</value>
+  </data>
+  <data name="Two incidents, independent recovery" xml:space="preserve">
+    <value>İki olay, bağımsız kurtarma</value>
+  </data>
+  <data name="Upgrade the dependency and run the default-branch pipeline. S360 mitigates after the complete baseline is confirmed compliant; GitLab mitigates only after the entire pipeline succeeds." xml:space="preserve">
+    <value>Bağımlılığı yükseltin ve varsayılan dalın işlem hattını çalıştırın. S360, temel çizginin tamamının uyumlu olduğu doğrulandıktan sonra olayı azaltır; GitLab ise yalnızca işlem hattının tamamı başarıyla çalıştıktan sonra olayı azaltır.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Evet</value>
+  </data>
+
+</root>

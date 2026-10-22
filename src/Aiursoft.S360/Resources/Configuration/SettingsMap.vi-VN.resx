@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Một số giả mạo để kiểm thử.</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>Khóa API ứng dụng AlertCenter</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>Điểm cuối AlertCenter</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Cho phép đánh giá ẩn danh</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Cho phép người dùng điều chỉnh biệt danh của họ trên trang quản lý hồ sơ.</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>Tự động giảm thiểu các sự cố bảo mật đã được khôi phục</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>URL trang chủ thương hiệu</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>Tên thương hiệu</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>Khóa API chuyên dụng cho ứng dụng, có quyền truy vấn, tạo mới, cập nhật một phần siêu dữ liệu và xử lý giảm thiểu.</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>Lựa chọn giả</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Số giả mạo</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>Bật tích hợp với AlertCenter</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>URL cơ bản HTTP(S) của AlertCenter.</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>Số đăng ký ICP</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>Chỉ giảm thiểu khi đã xác nhận toàn bộ đường cơ sở môi trường sản xuất tuân thủ. Việc xử lý cuối cùng vẫn được thực hiện thủ công.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Logo dự án</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Tên dự án</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>URL cơ bản công khai của S360 được sử dụng trong các liên kết sự cố.</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>Báo cáo các phát hiện bảo mật đã được xác nhận từ các chuẩn mực sản xuất của công ty.</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>URL cơ sở công khai của S360</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Tên thương hiệu được hiển thị trong chân trang.</value>

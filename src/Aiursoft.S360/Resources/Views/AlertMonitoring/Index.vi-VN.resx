@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="AlertCenter monitoring" xml:space="preserve">
+    <value>Giám sát AlertCenter</value>
+  </data>
+  <data name="Application API key" xml:space="preserve">
+    <value>Khóa API ứng dụng</value>
+  </data>
+  <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
+    <value>Tự động khắc phục sự cố khi toàn bộ đường cơ sở được xác nhận là tuân thủ</value>
+  </data>
+  <data name="Configured" xml:space="preserve">
+    <value>Đã cấu hình</value>
+  </data>
+  <data name="Confirmed compliant" xml:space="preserve">
+    <value>Đã xác nhận tuân thủ</value>
+  </data>
+  <data name="Confirmed findings · sev2" xml:space="preserve">
+    <value>Phát hiện đã xác nhận · sev2</value>
+  </data>
+  <data name="Connection settings" xml:space="preserve">
+    <value>Cài đặt kết nối</value>
+  </data>
+  <data name="Current assessment" xml:space="preserve">
+    <value>Đánh giá hiện tại</value>
+  </data>
+  <data name="Current company baselines" xml:space="preserve">
+    <value>Các baseline hiện tại của công ty</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Đã bật</value>
+  </data>
+  <data name="Failed. Check the connection settings and server logs." xml:space="preserve">
+    <value>Thất bại. Kiểm tra cài đặt kết nối và nhật ký máy chủ.</value>
+  </data>
+  <data name="GitLab separately reports a failing default-branch pipeline. Both incidents may share one dependency issue, but each retains its own recovery evidence." xml:space="preserve">
+    <value>GitLab báo cáo riêng rằng pipeline trên nhánh mặc định bị lỗi. Cả hai sự cố có thể cùng xuất phát từ một vấn đề về dependency, nhưng mỗi sự cố vẫn có bằng chứng khắc phục riêng.</value>
+  </data>
+  <data name="Incident" xml:space="preserve">
+    <value>Sự cố</value>
+  </data>
+  <data name="Integration status" xml:space="preserve">
+    <value>Trạng thái tích hợp</value>
+  </data>
+  <data name="Last synchronization" xml:space="preserve">
+    <value>Lần đồng bộ hóa gần nhất</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>Kiểm tra giám sát diễn ra mỗi phút. Việc phát hiện lỗ hổng bảo mật tuân theo lịch kiểm toán sáu giờ hiện có. Thông tin xác thực và kích hoạt sử dụng Cài đặt toàn cục, với hỗ trợ ghi đè theo môi trường.</value>
+  </data>
+  <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
+    <value>Các bản xem xét MR, dữ liệu lỗ hổng lỗi thời, các lần quét thất bại và báo cáo một phần không bao giờ tự động xóa các sự cố bảo mật. Việc giải quyết cuối cùng vẫn phải thực hiện thủ công.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Không</value>
+  </data>
+  <data name="No eligible company production baselines are available." xml:space="preserve">
+    <value>Không có cấu hình cơ sở sản xuất nào đủ điều kiện của công ty.</value>
+  </data>
+  <data name="Not configured" xml:space="preserve">
+    <value>Chưa cấu hình</value>
+  </data>
+  <data name="Not synchronized in this process yet" xml:space="preserve">
+    <value>Chưa được đồng bộ trong quy trình này.</value>
+  </data>
+  <data name="Open incident" xml:space="preserve">
+    <value>Mở sự cố</value>
+  </data>
+  <data name="Pending verification" xml:space="preserve">
+    <value>Chờ xác minh</value>
+  </data>
+  <data name="Preview the current assessment before enabling notifications. Missing or incomplete evidence never proves recovery." xml:space="preserve">
+    <value>Xem trước đánh giá hiện tại trước khi bật thông báo. Việc thiếu hoặc chưa đầy đủ bằng chứng không bao giờ chứng minh được rằng sự cố đã được khắc phục.</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>Kho lưu trữ</value>
+  </data>
+  <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
+    <value>S360 báo cáo các CVE đã được xác nhận hoặc vi phạm chính sách trong đường cơ sở phụ thuộc sản xuất hoàn chỉnh mới nhất. Một CVE mới có thể kích hoạt sự cố mà không cần xây dựng lại dự án.</value>
+  </data>
+  <data name="Save recovery policy" xml:space="preserve">
+    <value>Lưu chính sách khôi phục</value>
+  </data>
+  <data name="Security incidents for company production dependency baselines." xml:space="preserve">
+    <value>Sự cố bảo mật liên quan đến các phiên bản cơ sở của những thư viện phụ thuộc trong môi trường sản xuất của công ty.</value>
+  </data>
+  <data name="Severity" xml:space="preserve">
+    <value>Mức độ nghiêm trọng</value>
+  </data>
+  <data name="Succeeded" xml:space="preserve">
+    <value>Thành công</value>
+  </data>
+  <data name="Synchronize now" xml:space="preserve">
+    <value>Đồng bộ ngay</value>
+  </data>
+  <data name="This setting is overridden by configuration." xml:space="preserve">
+    <value>Thiết lập này bị ghi đè bởi cấu hình.</value>
+  </data>
+  <data name="Two incidents, independent recovery" xml:space="preserve">
+    <value>Hai sự cố, khôi phục độc lập</value>
+  </data>
+  <data name="Upgrade the dependency and run the default-branch pipeline. S360 mitigates after the complete baseline is confirmed compliant; GitLab mitigates only after the entire pipeline succeeds." xml:space="preserve">
+    <value>Nâng cấp phần phụ thuộc và chạy pipeline trên nhánh mặc định. S360 khắc phục sau khi toàn bộ baseline được xác nhận là tuân thủ; GitLab chỉ khắc phục sau khi toàn bộ pipeline chạy thành công.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Có</value>
+  </data>
+
+</root>

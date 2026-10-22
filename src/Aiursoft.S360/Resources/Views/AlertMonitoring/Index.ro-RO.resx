@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="AlertCenter monitoring" xml:space="preserve">
+    <value>Monitorare AlertCenter</value>
+  </data>
+  <data name="Application API key" xml:space="preserve">
+    <value>Cheia API a aplicației</value>
+  </data>
+  <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
+    <value>Remediază automat incidentele atunci când conformitatea întregii configurații de referință este confirmată</value>
+  </data>
+  <data name="Configured" xml:space="preserve">
+    <value>Configurat</value>
+  </data>
+  <data name="Confirmed compliant" xml:space="preserve">
+    <value>Conformitate confirmată</value>
+  </data>
+  <data name="Confirmed findings · sev2" xml:space="preserve">
+    <value>Constatări confirmate · severitatea 2</value>
+  </data>
+  <data name="Connection settings" xml:space="preserve">
+    <value>Setări de conectare</value>
+  </data>
+  <data name="Current assessment" xml:space="preserve">
+    <value>Evaluarea curentă</value>
+  </data>
+  <data name="Current company baselines" xml:space="preserve">
+    <value>Liniile de bază actuale ale companiei</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Activat</value>
+  </data>
+  <data name="Failed. Check the connection settings and server logs." xml:space="preserve">
+    <value>Operațiunea a eșuat. Verificați setările de conexiune și jurnalele serverului.</value>
+  </data>
+  <data name="GitLab separately reports a failing default-branch pipeline. Both incidents may share one dependency issue, but each retains its own recovery evidence." xml:space="preserve">
+    <value>GitLab raportează separat o conductă de integrare continuă eșuată pe ramura implicită. Ambele incidente pot avea aceeași problemă de dependență, dar fiecare își păstrează propriile dovezi de remediere.</value>
+  </data>
+  <data name="Incident" xml:space="preserve">
+    <value>Incident</value>
+  </data>
+  <data name="Integration status" xml:space="preserve">
+    <value>Starea integrării</value>
+  </data>
+  <data name="Last synchronization" xml:space="preserve">
+    <value>Ultima sincronizare</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>Monitorizarea verifică sistemul în fiecare minut. Descoperirea vulnerabilităților respectă programul existent de audit, la fiecare șase ore. Datele de autentificare și activarea se gestionează din Setările globale, fiind acceptate și suprascrieri prin variabile de mediu.</value>
+  </data>
+  <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
+    <value>Revizii MR, date vechi despre vulnerabilități, scanări eșuate și rapoarte parțiale nu elimină niciodată automat incidentele de securitate. Rezolvarea finală rămâne manuală.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nu</value>
+  </data>
+  <data name="No eligible company production baselines are available." xml:space="preserve">
+    <value>Nu sunt disponibile linii de bază eligibile pentru producția companiei.</value>
+  </data>
+  <data name="Not configured" xml:space="preserve">
+    <value>Neconfigurat</value>
+  </data>
+  <data name="Not synchronized in this process yet" xml:space="preserve">
+    <value>Încă nu s-a efectuat nicio sincronizare în acest proces</value>
+  </data>
+  <data name="Open incident" xml:space="preserve">
+    <value>Deschide incidentul</value>
+  </data>
+  <data name="Pending verification" xml:space="preserve">
+    <value>În așteptarea verificării</value>
+  </data>
+  <data name="Preview the current assessment before enabling notifications. Missing or incomplete evidence never proves recovery." xml:space="preserve">
+    <value>Previzualizați evaluarea curentă înainte de a activa notificările. Dovezile absente sau incomplete nu demonstrează niciodată recuperarea.</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>Depozit</value>
+  </data>
+  <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
+    <value>S360 raportează CVE-uri confirmate sau încălcări ale politicilor în cea mai recentă versiune de bază completă a dependențelor din producție. Un CVE nou poate declanșa un incident fără a reconstrui proiectul.</value>
+  </data>
+  <data name="Save recovery policy" xml:space="preserve">
+    <value>Salvează politica de recuperare</value>
+  </data>
+  <data name="Security incidents for company production dependency baselines." xml:space="preserve">
+    <value>Incidente de securitate pentru liniile de bază ale dependențelor de producție ale companiei.</value>
+  </data>
+  <data name="Severity" xml:space="preserve">
+    <value>Gravitate</value>
+  </data>
+  <data name="Succeeded" xml:space="preserve">
+    <value>Reușită</value>
+  </data>
+  <data name="Synchronize now" xml:space="preserve">
+    <value>Sincronizează acum</value>
+  </data>
+  <data name="This setting is overridden by configuration." xml:space="preserve">
+    <value>Această setare este suprascrisă de configurație.</value>
+  </data>
+  <data name="Two incidents, independent recovery" xml:space="preserve">
+    <value>Două incidente, recuperare independentă</value>
+  </data>
+  <data name="Upgrade the dependency and run the default-branch pipeline. S360 mitigates after the complete baseline is confirmed compliant; GitLab mitigates only after the entire pipeline succeeds." xml:space="preserve">
+    <value>Actualizați dependența și rulați pipeline-ul ramurii implicite. S360 atenuează incidentul după ce se confirmă că întregul set de referință este conform; GitLab atenuează incidentul numai după ce întregul pipeline se încheie cu succes.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Da</value>
+  </data>
+
+</root>

@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>テスト用のダミー番号です。</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>AlertCenter アプリケーション API キー</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>AlertCenter のエンドポイント</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>匿名レビューを許可</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>プロフィール管理ページでユーザーがニックネームを調整できるようにする。</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>復旧したセキュリティインシデントを自動的に緩和する</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>ブランド ホーム URL</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>ブランド名</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>クエリ、作成、メタデータのパッチ、およびミティゲーション権限を持つ専用アプリケーションキー。</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>ダミー選択</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>ダミー番号</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>AlertCenter統合を有効化</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>AlertCenterのHTTP(S)ベースURL。</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>ICP番号</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>本番環境の完全なベースラインがコンプライアンスに適合していることを確認した場合にのみ、軽減措置を実行します。最終的な解決は手動で行われます。</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>プロジェクトロゴ</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>プロジェクト名</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>インシデントリンクで使用するS360の公開ベースURL。</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>企業の本番環境のベースラインで確認されたセキュリティ上の問題を報告します。</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>S360の公開ベースURL</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>フッターに表示されるブランド名。</value>

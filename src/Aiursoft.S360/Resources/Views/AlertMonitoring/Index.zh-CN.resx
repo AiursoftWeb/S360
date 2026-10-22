@@ -27,6 +27,9 @@
   <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
     <value>完整基线确认符合要求后自动缓解事件</value>
   </data>
+  <data name="Configured" xml:space="preserve">
+    <value>已配置</value>
+  </data>
   <data name="Confirmed compliant" xml:space="preserve">
     <value>已确认符合要求</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>已启用</value>
+  </data>
+  <data name="Failed. Check the connection settings and server logs." xml:space="preserve">
+    <value>失败。请检查连接设置和服务器日志。</value>
   </data>
   <data name="GitLab separately reports a failing default-branch pipeline. Both incidents may share one dependency issue, but each retains its own recovery evidence." xml:space="preserve">
     <value>GitLab 单独报告默认分支流水线失败。这两个事件可能共享同一个依赖项问题，但各自保留其独立的恢复证据。</value>
@@ -63,8 +69,14 @@
   <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
     <value>MR 审查、过时的漏洞数据、失败的扫描和不完整的报告都不会自动清除安全事件。最终解决仍需手动完成。</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
   <data name="No eligible company production baselines are available." xml:space="preserve">
     <value>没有可用的合格公司生产基线。</value>
+  </data>
+  <data name="Not configured" xml:space="preserve">
+    <value>未配置</value>
   </data>
   <data name="Not synchronized in this process yet" xml:space="preserve">
     <value>本次进程尚未同步</value>
@@ -93,6 +105,9 @@
   <data name="Severity" xml:space="preserve">
     <value>严重程度</value>
   </data>
+  <data name="Succeeded" xml:space="preserve">
+    <value>成功</value>
+  </data>
   <data name="Synchronize now" xml:space="preserve">
     <value>立即同步</value>
   </data>
@@ -104,6 +119,9 @@
   </data>
   <data name="Upgrade the dependency and run the default-branch pipeline. S360 mitigates after the complete baseline is confirmed compliant; GitLab mitigates only after the entire pipeline succeeds." xml:space="preserve">
     <value>升级该依赖项并运行默认分支流水线。S360 会在完整基线确认符合要求后缓解；GitLab 只有在整个流水线成功后才会缓解。</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
   </data>
 
 </root>

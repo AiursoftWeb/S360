@@ -156,6 +156,9 @@
   <data name="Manage" xml:space="preserve">
     <value>管理</value>
   </data>
+  <data name="Monitoring" xml:space="preserve">
+    <value>监控</value>
+  </data>
   <data name="My requests" xml:space="preserve">
     <value>我的请求</value>
   </data>

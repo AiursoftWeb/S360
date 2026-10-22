@@ -20,15 +20,24 @@
             <div class="card-body">
                 <h2 class="h5">@Localizer["Integration status"]</h2>
                 <dl class="row mb-0">
-                    <dt class="col-sm-5">@Localizer["Enabled"]</dt><dd class="col-sm-7">@(Model.Enabled ? Localizer["Yes"] : Localizer["No"])</dd>
-                    <dt class="col-sm-5">@Localizer["Application API key"]</dt><dd class="col-sm-7">@(Model.ApiKeyConfigured ? Localizer["Configured"] : Localizer["Not configured"])</dd>
+                    <dt class="col-sm-5">@Localizer["Enabled"]</dt>
+                    <dd class="col-sm-7">
+                        @if (Model.Enabled) { <span>@Localizer["Yes"]</span> }
+                        else { <span>@Localizer["No"]</span> }
+                    </dd>
+                    <dt class="col-sm-5">@Localizer["Application API key"]</dt>
+                    <dd class="col-sm-7">
+                        @if (Model.ApiKeyConfigured) { <span>@Localizer["Configured"]</span> }
+                        else { <span>@Localizer["Not configured"]</span> }
+                    </dd>
                     <dt class="col-sm-5">@Localizer["Severity"]</dt><dd class="col-sm-7">sev2</dd>
                     <dt class="col-sm-5">@Localizer["Last synchronization"]</dt>
                     <dd class="col-sm-7">
                         @if (Model.LastRun is { } run)
                         {
                             <span data-utc-time="@run.CompletedAtUtc.ToHtmlDateTime()"></span>
-                            <span class="badge @(run.Succeeded ? "text-bg-success" : "text-bg-danger")">@(run.Succeeded ? Localizer["Succeeded"] : Localizer["Failed. Check the connection settings and server logs."])</span>
+                            @if (run.Succeeded) { <span class="badge text-bg-success">@Localizer["Succeeded"]</span> }
+                            else { <span class="badge text-bg-danger">@Localizer["Failed. Check the connection settings and server logs."]</span> }
                         }
                         else { <span>@Localizer["Not synchronized in this process yet"]</span> }
                     </dd>

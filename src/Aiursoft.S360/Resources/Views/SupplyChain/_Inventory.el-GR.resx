@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} πακέτα · {1} χρειάζονται προσοχή</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} αποτελέσματα · Σελίδα {1} από {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} ευάλωτα πακέτα · {1} άλλα πακέτα που χρειάζονται προσοχή</value>
+  </data>
+  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+    <value>Δεν καταγράφηκε πλήρης γράφος λύσης σε αυτή την αναφορά. Εκτελέστε το τελευταίο CLI για να τον συμπληρώσετε; ο κατάλογος πακέτων παραμένει διαθέσιμος.</value>
+  </data>
+  <data name="A newer report is incomplete." xml:space="preserve">
+    <value>Μια νεότερη αναφορά είναι ατελής.</value>
+  </data>
+  <data name="A newer report is incomplete. The last complete snapshot is shown; current coverage is not verified." xml:space="preserve">
+    <value>Μια νεότερη αναφορά είναι ελλιπής. Εμφανίζεται το τελευταίο πλήρες στιγμιότυπο· η τρέχουσα κάλυψη δεν έχει επαληθευτεί.</value>
+  </data>
+  <data name="All projects" xml:space="preserve">
+    <value>Όλα τα έργα</value>
+  </data>
+  <data name="All statuses" xml:space="preserve">
+    <value>Όλες οι καταστάσεις</value>
+  </data>
+  <data name="Approval rules and tools" xml:space="preserve">
+    <value>Κανόνες έγκρισης και εργαλεία</value>
+  </data>
+  <data name="Browse all dependencies for this project" xml:space="preserve">
+    <value>Περιηγηθείτε σε όλες τις εξαρτήσεις αυτού του έργου</value>
+  </data>
+  <data name="Browse approval rules" xml:space="preserve">
+    <value>Περιήγηση κανόνων έγκρισης</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Καταγραφή ελέγχου</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Επισκόπηση εταιρείας</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Εξερεύνηση συμμόρφωσης</value>
+  </data>
+  <data name="Compliant" xml:space="preserve">
+    <value>Συμμορφώνεται</value>
+  </data>
+  <data name="Copied!" xml:space="preserve">
+    <value>Αντιγράφηκε!</value>
+  </data>
+  <data name="Copy Markdown" xml:space="preserve">
+    <value>Αντιγραφή Markdown</value>
+  </data>
+  <data name="Counts describe the selected report scope. Status is evaluated against current policy and stored vulnerability data." xml:space="preserve">
+    <value>Οι μετρήσεις περιγράφουν την επιλεγμένη έκταση αναφοράς. Η κατάσταση αξιολογείται σε σχέση με την τρέχουσα πολιτική και τα αποθηκευμένα δεδομένα ευρωστίας.</value>
+  </data>
+  <data name="Current baseline" xml:space="preserve">
+    <value>Τρέχουσα βασική γραμμή</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Εξαρτήσεις</value>
+  </data>
+  <data name="Ecosystem" xml:space="preserve">
+    <value>Οικοσύστημα</value>
+  </data>
+  <data name="Explore" xml:space="preserve">
+    <value>Εξερεύνηση</value>
+  </data>
+  <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
+    <value>Βρείτε ένα έργο ή πακέτο, ελέγξτε τη συμμόρφωσή του και παρακολουθήστε γιατί χρησιμοποιείται.</value>
+  </data>
+  <data name="Inventory views" xml:space="preserve">
+    <value>Οπτικές απόψεις αποθεματικού</value>
+  </data>
+  <data name="Known vulnerabilities" xml:space="preserve">
+    <value>Γνωστά ευρήματα</value>
+  </data>
+  <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
+    <value>Οι πιο πρόσφατες πλήρεις βασικές καταγραφές. Πρόκειται για αναφερόμενες εξαρτήσεις, όχι για απόδειξη ότι έχουν αναπτυχθεί.</value>
+  </data>
+  <data name="Markdown" xml:space="preserve">
+    <value>Markdown</value>
+  </data>
+  <data name="Needs attention" xml:space="preserve">
+    <value>Απαιτεί προσοχή</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Επόμενο</value>
+  </data>
+  <data name="No complete report available." xml:space="preserve">
+    <value>Δεν υπάρχει διαθέσιμη πλήρης αναφορά.</value>
+  </data>
+  <data name="No complete report for this ecosystem. Its compliance is unknown." xml:space="preserve">
+    <value>Δεν υπάρχει πλήρες αναφορά για αυτό το οικοσύστημα. Η συμμόρφωσή του είναι άγνωστη.</value>
+  </data>
+  <data name="No matching records" xml:space="preserve">
+    <value>Καμία ταιριακή εγγραφή</value>
+  </data>
+  <data name="Not verified" xml:space="preserve">
+    <value>Μη επαληθευμένο</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: δεν συμπεριλαμβάνεται σε αυτόν τον έλεγχο.</value>
+  </data>
+  <data name="NuGet and npm" xml:space="preserve">
+    <value>NuGet και npm</value>
+  </data>
+  <data name="NuGet: not included in this audit." xml:space="preserve">
+    <value>NuGet: δεν περιλαμβάνεται σε αυτόν τον έλεγχο.</value>
+  </data>
+  <data name="Observed packages" xml:space="preserve">
+    <value>Πακέτα που έχουν εντοπιστεί</value>
+  </data>
+  <data name="Older reports without a declared purpose. Current use cannot be inferred from these records." xml:space="preserve">
+    <value>Παλαιότερες αναφορές χωρίς δηλωμένο σκοπό. Η τρέχουσα χρήση δεν μπορεί να συναχθεί από αυτά τα αρχεία.</value>
+  </data>
+  <data name="Package, project, purpose or approval reason" xml:space="preserve">
+    <value>Πακέτο, έργο, σκοπός ή λόγος έγκρισης</value>
+  </data>
+  <data name="Packages needing attention" xml:space="preserve">
+    <value>Πακέτα που χρειάζονται προσοχή</value>
+  </data>
+  <data name="Page {0} of {1}" xml:space="preserve">
+    <value>Σελίδα {0} από {1}</value>
+  </data>
+  <data name="Pipeline" xml:space="preserve">
+    <value>Γραμμή συναρμολόγησης</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Προηγούμενο</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Έργα</value>
+  </data>
+  <data name="Projects with reports" xml:space="preserve">
+    <value>Έργα με αναφορές</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Για την ανάγνωση του αποθετηρίου έργων απαιτείται άδεια ανάγνωσης της αλυσίδας εφοδιασμού. Μπορείτε, ωστόσο, να περιηγηθείτε στους κανόνες έγκρισης.</value>
+  </data>
+  <data name="README badge" xml:space="preserve">
+    <value>Σήμα README</value>
+  </data>
+  <data name="Reports" xml:space="preserve">
+    <value>Αναφορές</value>
+  </data>
+  <data name="Reset filters" xml:space="preserve">
+    <value>Επαναφορά φίλτρων</value>
+  </data>
+  <data name="Result pages" xml:space="preserve">
+    <value>Σελίδες αποτελεσμάτων</value>
+  </data>
+  <data name="Review checks are not saved as project inventory." xml:space="preserve">
+    <value>Οι ελέγχowie αναθεώρησης δεν αποθηκεύονται ως αποθεματικό έργου.</value>
+  </data>
+  <data name="S360 compliance badge" xml:space="preserve">
+    <value>Σήμα συμμόρφωσης S360</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Αναζήτηση</value>
+  </data>
+  <data name="Search inventory" xml:space="preserve">
+    <value>Αναζήτηση αποθεματικού</value>
+  </data>
+  <data name="Select and copy the Markdown above." xml:space="preserve">
+    <value>Επιλέξτε και αντιγράψτε το Markdown παραπάνω.</value>
+  </data>
+  <data name="Share your latest baseline compliance on GitHub or GitLab. The badge is public and requires no sign-in. It covers reported ecosystems, not production deployment." xml:space="preserve">
+    <value>Μοιραστείτε την πιο πρόσφατη συμμόρφωση βάσει της γραμμής αναφοράς σας στο GitHub ή στο GitLab. Το σήμα είναι δημόσιο και δεν απαιτεί σύνδεση. Αφορά τα αναφερόμενα οικοσυστήματα και όχι την ανάπτυξη σε περιβάλλον παραγωγής.</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Κατάσταση</value>
+  </data>
+  <data name="Status covers only the reported ecosystems." xml:space="preserve">
+    <value>Η κατάσταση καλύπτει μόνο τα αναφερόμενα οικοσυστήματα.</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Αλυσίδα εφοδιασμού</value>
+  </data>
+  <data name="The complete report contains no dependencies for this ecosystem." xml:space="preserve">
+    <value>Η πλήρης αναφορά δεν περιέχει εξαρτήσεις για αυτό το οικοσύστημα.</value>
+  </data>
+  <data name="This report is incomplete. No complete snapshot is available; current coverage is not verified." xml:space="preserve">
+    <value>Αυτό το αναλυτικό σημείωμα είναι ελλιπές. Δεν υπάρχει διαθέσιμη πλήρης στιγμιαία λήψη. Η τρέχουσα κάλυψη δεν έχει επιβεβαιωθεί.</value>
+  </data>
+  <data name="Try a different search or report scope. An approval rule alone is not evidence that a project uses a package." xml:space="preserve">
+    <value>Δοκιμάστε διαφορετική αναζήτηση ή εμβέλεια αναφοράς. Ένας κανόνας έγκρισης από μόνος του δεν αποτελεί απόδειξη ότι ένα έργο χρησιμοποιεί ένα πακέτο.</value>
+  </data>
+  <data name="Unclassified history" xml:space="preserve">
+    <value>Ιστορικό χωρίς ταξινόμηση</value>
+  </data>
+  <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
+    <value>Ενημερώστε την αναφορά CLI για να δείτε τις σχέσεις εξαρτήσεων.</value>
+  </data>
+
+</root>

@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Ένας εικονικός αριθμός για δοκιμές.</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>Πλήκτρο API εφαρμογής AlertCenter</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>Τελικό σημείο του AlertCenter</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Επιτρέπει ανώνυμη αξιολόγηση</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Επιτρέψτε στους χρήστες να τροποποιήσουν το ψευδώνυμό τους στη σελίδα διαχείρισης προφίλ.</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>Αυτόματη μετριασμός αποκατασταθέντων περιστατικών ασφαλείας</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>URL αρχικής σελίδας εμπορικού σήματος</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>Όνομα Εταιρείας</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>Ειδικό κλειδί εφαρμογής με δικαιώματα ερωτήματος, δημιουργίας, επεξεργασίας μεταδεδομένων και μετριασμού.</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>Προσχέδιο Επιλογής</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Τυχαίος Αριθμός</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>Ενεργοποίηση ολοκλήρωσης AlertCenter</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>Βασικό URL HTTP(S) του AlertCenter.</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>Αριθμός ΕΙΠ</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>Επιδιορθώστε μόνο όταν επιβεβαιωθεί ότι το πλήρες βασικό περιβάλλον παραγωγής συμμορφώνεται. Η τελική επίλυση παραμένει χειροκίνητη.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Λογότυπο Έργου</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Όνομα Έργου</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>Δημόσιο βασικό URL του S360 που χρησιμοποιείται σε συνδέσμους περιστατικών.</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>Αναφορά επιβεβαιωμένων ευρημάτων ασφαλείας από τις παραγωγικές βάσεις της εταιρείας.</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>Δημόσια βασική διεύθυνση URL του S360</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Το όνομα της εταιρείας που εμφανίζεται στον ποδόσκαλο.</value>

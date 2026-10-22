@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Een dummygetal voor testdoeleinden.</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>AlertCenter applicatie-API-sleutel</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>AlertCenter-eindpunt</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Anonieme review toestaan</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Gebruikers toestaan om hun bijnaam aan te passen op de pagina voor profielbeheer.</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>Automatisch herstelde beveiligingsincidenten afhandelen</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>Brand Home URL</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>Merkenaam</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>Toegewijde applicatie-sleutel met rechten voor query, aanmaken, metadata-patch en mitigeren.</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>Standaard Keuze</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Standaardnummer</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>AlertCenter-integratie inschakelen</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>HTTP(S)-basis-URL van AlertCenter.</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>ICP-nummer</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>Alleen beperken wanneer is bevestigd dat de volledige productie-baseline aan de eisen voldoet. De uiteindelijke afhandeling blijft handmatig.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Projectlogo</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Projectnaam</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>Openbare S360-basis-URL die wordt gebruikt in incidentlinks.</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>Meld bevestigde beveiligingsbevindingen uit de productie-baselines van het bedrijf.</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>S360 openbare basis-URL</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>De merknaam die wordt weergegeven in de voettekst.</value>

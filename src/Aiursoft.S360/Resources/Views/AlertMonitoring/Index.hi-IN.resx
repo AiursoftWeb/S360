@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="AlertCenter monitoring" xml:space="preserve">
+    <value>AlertCenter की निगरानी</value>
+  </data>
+  <data name="Application API key" xml:space="preserve">
+    <value>एप्लिकेशन API कुंजी</value>
+  </data>
+  <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
+    <value>जब पूर्ण बेसलाइन का पालन की पुष्टि हो जाती है, तो स्वतः घटनाओं को कम करें</value>
+  </data>
+  <data name="Configured" xml:space="preserve">
+    <value>विन्यासित</value>
+  </data>
+  <data name="Confirmed compliant" xml:space="preserve">
+    <value>सुनिश्चित अनुपालन</value>
+  </data>
+  <data name="Confirmed findings · sev2" xml:space="preserve">
+    <value>पुष्टि मिले निष्कर्ष · sev2</value>
+  </data>
+  <data name="Connection settings" xml:space="preserve">
+    <value>कनेक्शन सेटिंग्स</value>
+  </data>
+  <data name="Current assessment" xml:space="preserve">
+    <value>वर्तमान आकलन</value>
+  </data>
+  <data name="Current company baselines" xml:space="preserve">
+    <value>वर्तमान कंपनी बेसलाइन</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>सक्रिय</value>
+  </data>
+  <data name="Failed. Check the connection settings and server logs." xml:space="preserve">
+    <value>विफल रहा। कनेक्शन सेटिंग्स और सर्वर लॉग की जाँच करें।</value>
+  </data>
+  <data name="GitLab separately reports a failing default-branch pipeline. Both incidents may share one dependency issue, but each retains its own recovery evidence." xml:space="preserve">
+    <value>GitLab अलग से एक विफल डिफ़ॉल्ट-ब्रांच पाइपलाइन की रिपोर्ट करता है। दोनों घटनाएँ एक ही निर्भरता समस्या साझा कर सकती हैं, लेकिन प्रत्येक अपनी-अपनी रिकवरी प्रमाणिकाओं को बनाए रखती है।</value>
+  </data>
+  <data name="Incident" xml:space="preserve">
+    <value>घटना</value>
+  </data>
+  <data name="Integration status" xml:space="preserve">
+    <value>एकीकरण की स्थिति</value>
+  </data>
+  <data name="Last synchronization" xml:space="preserve">
+    <value>अंतिम समन्वयन</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>निगरानी की जाँच हर मिनट होती है। कमज़ोरियों का पता लगाने की प्रक्रिया मौजूदा छह घंटे के ऑडिट शेड्यूल के अनुसार चलती है। क्रेडेंशियल और सक्षम करने की सेटिंग, पर्यावरण के अनुसार ओवरराइड की सुविधा के साथ, Global Settings में प्रबंधित होती हैं।</value>
+  </data>
+  <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
+    <value>MR समीक्षाएँ, पुराना भेद्यता डेटा, विफल स्कैन और आंशिक रिपोर्ट सुरक्षा घटनाओं को कभी भी अपने-आप बंद नहीं करते। अंतिम समाधान मैन्युअल रूप से ही किया जाता है।</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>नहीं</value>
+  </data>
+  <data name="No eligible company production baselines are available." xml:space="preserve">
+    <value>कंपनी के लिए कोई पात्र प्रोडक्शन बेसलाइन उपलब्ध नहीं है।</value>
+  </data>
+  <data name="Not configured" xml:space="preserve">
+    <value>कॉन्फ़िगर नहीं किया गया</value>
+  </data>
+  <data name="Not synchronized in this process yet" xml:space="preserve">
+    <value>इस प्रक्रिया में अभी तक सिंक्रनाइज़ नहीं किया गया है</value>
+  </data>
+  <data name="Open incident" xml:space="preserve">
+    <value>घटना खोलें</value>
+  </data>
+  <data name="Pending verification" xml:space="preserve">
+    <value>सत्यापन लंबित</value>
+  </data>
+  <data name="Preview the current assessment before enabling notifications. Missing or incomplete evidence never proves recovery." xml:space="preserve">
+    <value>सूचनाओं को सक्षम करने से पहले वर्तमान मूल्यांकन की पूर्वावलोकन करें। अनुपस्थित या अधूरा प्रमाण कभी भी पुनर्प्राप्ति को साबित नहीं करता है।</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>रिपॉज़िटरी</value>
+  </data>
+  <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
+    <value>S360 नवीनतम पूर्ण उत्पादन निर्भरता आधाररेखा में पुष्ट CVE या नीति उल्लंघनों की रिपोर्ट करता है। कोई नया CVE प्रोजेक्ट को दोबारा बनाए बिना भी एक घटना शुरू कर सकता है।</value>
+  </data>
+  <data name="Save recovery policy" xml:space="preserve">
+    <value>रिकवरी नीति सहेजें</value>
+  </data>
+  <data name="Security incidents for company production dependency baselines." xml:space="preserve">
+    <value>कंपनी के उत्पादन निर्भरता बेसलाइन के लिए सुरक्षा घटनाएँ।</value>
+  </data>
+  <data name="Severity" xml:space="preserve">
+    <value>गंभीरता</value>
+  </data>
+  <data name="Succeeded" xml:space="preserve">
+    <value>सफल</value>
+  </data>
+  <data name="Synchronize now" xml:space="preserve">
+    <value>अभी सिंक करें</value>
+  </data>
+  <data name="This setting is overridden by configuration." xml:space="preserve">
+    <value>यह सेटिंग कॉन्फ़िगरेशन द्वारा अधिलेखित है।</value>
+  </data>
+  <data name="Two incidents, independent recovery" xml:space="preserve">
+    <value>दो घटनाएँ, स्वतंत्र रिकवरी</value>
+  </data>
+  <data name="Upgrade the dependency and run the default-branch pipeline. S360 mitigates after the complete baseline is confirmed compliant; GitLab mitigates only after the entire pipeline succeeds." xml:space="preserve">
+    <value>डिपेंडेंसी को अपग्रेड करें और डिफ़ॉल्ट-ब्रांच पाइपलाइन चलाएँ। S360 तब ही मिटिगेट करता है जब पूरा बेसलाइन अनुपालक (compliant) पाया जाता है; GitLab केवल तभी मिटिगेट करता है जब पूरा पाइपलाइन सफल होता है।</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>हाँ</value>
+  </data>
+
+</root>

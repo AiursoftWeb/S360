@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="AlertCenter monitoring" xml:space="preserve">
+    <value>Övervakning av AlertCenter</value>
+  </data>
+  <data name="Application API key" xml:space="preserve">
+    <value>Applikationens API-nyckel</value>
+  </data>
+  <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
+    <value>Hantera incidenter automatiskt när hela baslinjen har bekräftats vara kompatibel</value>
+  </data>
+  <data name="Configured" xml:space="preserve">
+    <value>Konfigurerad</value>
+  </data>
+  <data name="Confirmed compliant" xml:space="preserve">
+    <value>Bekräftat förenlig</value>
+  </data>
+  <data name="Confirmed findings · sev2" xml:space="preserve">
+    <value>Bekräftade fynd · sev2</value>
+  </data>
+  <data name="Connection settings" xml:space="preserve">
+    <value>Anslutningsinställningar</value>
+  </data>
+  <data name="Current assessment" xml:space="preserve">
+    <value>Aktuell bedömning</value>
+  </data>
+  <data name="Current company baselines" xml:space="preserve">
+    <value>Aktuella företagsbaslinjer</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Aktiverad</value>
+  </data>
+  <data name="Failed. Check the connection settings and server logs." xml:space="preserve">
+    <value>Misslyckades. Kontrollera anslutningsinställningarna och serverloggarna.</value>
+  </data>
+  <data name="GitLab separately reports a failing default-branch pipeline. Both incidents may share one dependency issue, but each retains its own recovery evidence." xml:space="preserve">
+    <value>GitLab rapporterar separat ett misslyckat pipeline på standardgrenen. Båda händelserna kan dela ett gemensamt beroendeprocess, men var och en behåller sitt eget återställningsbevis.</value>
+  </data>
+  <data name="Incident" xml:space="preserve">
+    <value>Incident</value>
+  </data>
+  <data name="Integration status" xml:space="preserve">
+    <value>Integrationsstatus</value>
+  </data>
+  <data name="Last synchronization" xml:space="preserve">
+    <value>Senkronisering senast</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>Övervakningen kontrolleras varje minut. Sårbarhetsupptäckt följer den befintliga sex timmars revisionsplan. Autentiseringsuppgifter och aktivering använder Globala inställningar, med stöd för miljööverstyrningar.</value>
+  </data>
+  <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
+    <value>MR-granskningar, inaktuell sårbarhetsdata, misslyckade skanningar och delvisa rapporter rensar aldrig automatiskt säkerhetsincidenter. Slutlig upplösning förblir manuell.</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="No eligible company production baselines are available." xml:space="preserve">
+    <value>Inga tillgängliga produktionsbaser för kvalificerade företag finns.</value>
+  </data>
+  <data name="Not configured" xml:space="preserve">
+    <value>Inte konfigurerad</value>
+  </data>
+  <data name="Not synchronized in this process yet" xml:space="preserve">
+    <value>Inte synkroniserat i den här processen ännu</value>
+  </data>
+  <data name="Open incident" xml:space="preserve">
+    <value>Öppna incident</value>
+  </data>
+  <data name="Pending verification" xml:space="preserve">
+    <value>Väntar på verifiering</value>
+  </data>
+  <data name="Preview the current assessment before enabling notifications. Missing or incomplete evidence never proves recovery." xml:space="preserve">
+    <value>Granska den aktuella bedömningen innan du aktiverar aviseringar. Saknad eller ofullständig bevisning bevisar aldrig återhämtning.</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>Databas</value>
+  </data>
+  <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
+    <value>S360 rapporterar bekräftade CVE:er eller policyöverträdelser i den senaste fullständiga produktionsbaslinjen för beroenden. En ny CVE kan utlösa en incident utan att projektet byggs om.</value>
+  </data>
+  <data name="Save recovery policy" xml:space="preserve">
+    <value>Spara återställningspolicy</value>
+  </data>
+  <data name="Security incidents for company production dependency baselines." xml:space="preserve">
+    <value>Säkerhetsincidenter för företags produktionsberoendebaser.</value>
+  </data>
+  <data name="Severity" xml:space="preserve">
+    <value>Allvarlighetsgrad</value>
+  </data>
+  <data name="Succeeded" xml:space="preserve">
+    <value>Lyckades</value>
+  </data>
+  <data name="Synchronize now" xml:space="preserve">
+    <value>Synkronisera nu</value>
+  </data>
+  <data name="This setting is overridden by configuration." xml:space="preserve">
+    <value>Detta inställningsvärde åsidosätts av konfigurationen.</value>
+  </data>
+  <data name="Two incidents, independent recovery" xml:space="preserve">
+    <value>Två incidenter, oberoende återhämtning</value>
+  </data>
+  <data name="Upgrade the dependency and run the default-branch pipeline. S360 mitigates after the complete baseline is confirmed compliant; GitLab mitigates only after the entire pipeline succeeds." xml:space="preserve">
+    <value>Uppgradera beroendet och kör pipelinen för standardgrenen. S360 åtgärdar incidenten när hela baslinjen har bekräftats uppfylla kraven; GitLab åtgärdar incidenten först när hela pipelinen har slutförts utan fel.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+
+</root>

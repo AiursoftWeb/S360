@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Test amaçlı bir sahte sayı.</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>AlertCenter uygulama API anahtarı</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>AlertCenter uç noktası</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Anonim incelemelere izin ver</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Kullanıcıların profil yönetimi sayfasında takma isimlerini ayarlamasına izin ver.</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>Kurtarılan güvenlik olaylarını otomatik olarak hafiflet</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>Marka Ana Sayfa URL&apos;si</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>Marka Adı</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>Sorgulama, oluşturma, üstveri yamalama ve azaltma izinlerine sahip, uygulamaya özel anahtar.</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>Yanlış Seçim</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Yanlış Numara</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>AlertCenter entegrasyonunu etkinleştir</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>AlertCenter&apos;ın HTTP(S) temel URL&apos;si.</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>ICP Numarası</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>Yalnızca üretim ortamının tüm temel gereksinimlere uygun olduğu doğrulandığında azaltma işlemi uygulayın. Nihai çözümleme manuel olarak yapılır.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Proje Logosu</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Proje Adı</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>Olay bağlantılarında kullanılan genel S360 temel URL&apos;si.</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>Şirketin üretim baz çizgilerinden doğrulanmış güvenlik bulgularını raporlayın.</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>S360 herkese açık temel URL</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Footer&apos;da gösterilen marka adı.</value>

@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Sebuah angka contoh untuk pengujian.</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>Kunci API aplikasi AlertCenter</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>Endpoint AlertCenter</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Izinkan ulasan anonim</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Izinkan pengguna menyesuaikan nama panggilan mereka di halaman pengelolaan profil.</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>Mitigasi insiden keamanan yang telah pulih secara otomatis</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>URL Halaman Utama Merek</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>Nama Merek</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>Kunci aplikasi khusus dengan izin query, create, patch metadata, dan mitigate.</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>Pilihan Contoh</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Nomor Palsu</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>Aktifkan integrasi AlertCenter</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>URL dasar HTTP(S) untuk AlertCenter.</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>Nomor ICP</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>Lakukan mitigasi hanya setelah seluruh baseline produksi dipastikan memenuhi persyaratan. Penyelesaian akhir tetap dilakukan secara manual.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Logo Proyek</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Nama Proyek</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>URL dasar S360 publik yang digunakan dalam tautan insiden.</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>Laporkan temuan keamanan yang terkonfirmasi dari garis dasar produksi perusahaan.</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>URL dasar publik S360</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Nama merek yang ditampilkan di bagian footer.</value>

@@ -66,6 +66,9 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>依存関係を確認</value>
   </data>
+  <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
+    <value>本番環境のベースラインにおけるセキュリティインシデントの監視を構成し、同期します。</value>
+  </data>
   <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
     <value>パーソナルAPIキーを作成・管理し、依存関係のレビューに使用します。</value>
   </data>
@@ -101,6 +104,9 @@
   </data>
   <data name="Manage absolute package blocks." xml:space="preserve">
     <value>絶対的なパッケージブロックを管理します。</value>
+  </data>
+  <data name="Manage AlertCenter integration" xml:space="preserve">
+    <value>AlertCenter統合の管理</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>ブロックリストを管理</value>

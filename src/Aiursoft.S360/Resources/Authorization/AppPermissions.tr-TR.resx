@@ -66,6 +66,9 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Bağımlılıkları denetle</value>
   </data>
+  <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
+    <value>Üretim ortamı temel yapılandırmaları için güvenlik olaylarının izlenmesini yapılandırın ve eşitleyin.</value>
+  </data>
   <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
     <value>Kişisel API anahtarları oluşturun ve yönetin, bunları bağımlılık incelemeleri için kullanın.</value>
   </data>
@@ -101,6 +104,9 @@
   </data>
   <data name="Manage absolute package blocks." xml:space="preserve">
     <value>Mutlak paket engellemelerini yönetin.</value>
+  </data>
+  <data name="Manage AlertCenter integration" xml:space="preserve">
+    <value>AlertCenter entegrasyonunu yönet</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Engelleme listesini yönet</value>

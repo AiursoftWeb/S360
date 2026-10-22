@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Заглушка для тестирования.</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>Ключ API приложения AlertCenter</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>Конечная точка AlertCenter</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Разрешить анонимный обзор</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Позволить пользователям изменять свой ник в странице управления профилем.</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>Автоматически устранять последствия инцидентов безопасности после их устранения</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>URL домашней страницы бренда</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>Название бренда</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>Выделенный ключ приложения с правами на запрос, создание, обновление метаданных и митигацию.</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>Временный выбор</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Временное число</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>Включить интеграцию AlertCenter</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>Базовый HTTP(S) URL AlertCenter.</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>Номер ICP</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>Устранение последствий выполняется только после подтверждения соответствия всей производственной базовой конфигурации. Окончательное решение по-прежнему принимается вручную.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Логотип проекта</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Название проекта</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>Публичный базовый URL S360, используемый в ссылках на инциденты.</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>Сообщать о подтверждённых результатах проверки безопасности из производственных баз предприятия.</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>Публичный базовый URL S360</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>Название бренда, отображаемое в подвале.</value>

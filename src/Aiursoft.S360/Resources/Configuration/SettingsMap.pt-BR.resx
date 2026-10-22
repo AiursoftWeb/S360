@@ -27,6 +27,12 @@
   <data name="A dummy number for testing." xml:space="preserve">
     <value>Um número fictício para testes.</value>
   </data>
+  <data name="AlertCenter application API key" xml:space="preserve">
+    <value>Chave de API do aplicativo AlertCenter</value>
+  </data>
+  <data name="AlertCenter endpoint" xml:space="preserve">
+    <value>endpoint do AlertCenter</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Permitir avaliação anônima</value>
   </data>
@@ -39,11 +45,17 @@
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Permitir que os usuários ajustem seu apelido na página de gerenciamento de perfil.</value>
   </data>
+  <data name="Automatically mitigate recovered security incidents" xml:space="preserve">
+    <value>Mitigar automaticamente incidentes de segurança recuperados</value>
+  </data>
   <data name="Brand Home URL" xml:space="preserve">
     <value>URL da Página Inicial da Marca</value>
   </data>
   <data name="Brand Name" xml:space="preserve">
     <value>Nome da Marca</value>
+  </data>
+  <data name="Dedicated application key with query, create, metadata patch and mitigate permissions." xml:space="preserve">
+    <value>Chave de aplicativo dedicada com permissões para consultar, criar, atualizar metadados e mitigar.</value>
   </data>
   <data name="Dummy Choice" xml:space="preserve">
     <value>Escolha de Teste</value>
@@ -51,14 +63,32 @@
   <data name="Dummy Number" xml:space="preserve">
     <value>Número de Teste</value>
   </data>
+  <data name="Enable AlertCenter integration" xml:space="preserve">
+    <value>Ativar a integração com o AlertCenter</value>
+  </data>
+  <data name="HTTP(S) base URL of AlertCenter." xml:space="preserve">
+    <value>URL base HTTP(S) do AlertCenter.</value>
+  </data>
   <data name="ICP Number" xml:space="preserve">
     <value>Número do ICP</value>
+  </data>
+  <data name="Mitigate only when the complete production baseline is confirmed compliant. Final resolution remains manual." xml:space="preserve">
+    <value>A mitigação só deve ocorrer quando a conformidade de toda a linha de base de produção estiver confirmada. A resolução final continua sendo manual.</value>
   </data>
   <data name="Project Logo" xml:space="preserve">
     <value>Logotipo do Projeto</value>
   </data>
   <data name="Project Name" xml:space="preserve">
     <value>Nome do Projeto</value>
+  </data>
+  <data name="Public S360 base URL used in incident links." xml:space="preserve">
+    <value>URL base público do S360 usado nos links de incidentes.</value>
+  </data>
+  <data name="Report confirmed security findings from company production baselines." xml:space="preserve">
+    <value>Relate constatações de segurança confirmadas com base nos padrões de produção da empresa.</value>
+  </data>
+  <data name="S360 public base URL" xml:space="preserve">
+    <value>URL base pública do S360</value>
   </data>
   <data name="The brand name displayed in the footer." xml:space="preserve">
     <value>O nome da marca exibido no rodapé.</value>

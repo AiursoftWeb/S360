@@ -66,6 +66,9 @@
   <data name="Check dependencies" xml:space="preserve">
     <value>Tarkista riippuvuudet</value>
   </data>
+  <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
+    <value>Määritä ja synkronoi tuotantoympäristöjen perustasojen tietoturvapoikkeamien valvonta.</value>
+  </data>
   <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
     <value>Luo ja hallinnoi henkilökohtaisia API-avaimia ja käytä niitä riippuvuuksien tarkistamiseen.</value>
   </data>
@@ -101,6 +104,9 @@
   </data>
   <data name="Manage absolute package blocks." xml:space="preserve">
     <value>Hallitse pakettien ehdottomia estoja.</value>
+  </data>
+  <data name="Manage AlertCenter integration" xml:space="preserve">
+    <value>Hallitse AlertCenter-integraatiota</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Hallinnoi estolistaa</value>

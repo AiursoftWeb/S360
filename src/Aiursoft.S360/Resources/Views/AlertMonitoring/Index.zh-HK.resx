@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="AlertCenter monitoring" xml:space="preserve">
+    <value>AlertCenter 監控</value>
+  </data>
+  <data name="Application API key" xml:space="preserve">
+    <value>應用程式 API 金鑰</value>
+  </data>
+  <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
+    <value>當完整基線確認合規時，自動緩解事故</value>
+  </data>
+  <data name="Configured" xml:space="preserve">
+    <value>已設定</value>
+  </data>
+  <data name="Confirmed compliant" xml:space="preserve">
+    <value>已確認合規</value>
+  </data>
+  <data name="Confirmed findings · sev2" xml:space="preserve">
+    <value>已確認發現 · sev2</value>
+  </data>
+  <data name="Connection settings" xml:space="preserve">
+    <value>連線設定</value>
+  </data>
+  <data name="Current assessment" xml:space="preserve">
+    <value>目前評估</value>
+  </data>
+  <data name="Current company baselines" xml:space="preserve">
+    <value>目前公司基準</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>已啟用</value>
+  </data>
+  <data name="Failed. Check the connection settings and server logs." xml:space="preserve">
+    <value>失敗。請檢查連線設定及伺服器記錄。</value>
+  </data>
+  <data name="GitLab separately reports a failing default-branch pipeline. Both incidents may share one dependency issue, but each retains its own recovery evidence." xml:space="preserve">
+    <value>GitLab 會另外報告預設分支的管道執行失敗。兩宗事故可能源於同一個依賴項問題，但各自保留獨立的復原證據。</value>
+  </data>
+  <data name="Incident" xml:space="preserve">
+    <value>事故</value>
+  </data>
+  <data name="Integration status" xml:space="preserve">
+    <value>整合狀態</value>
+  </data>
+  <data name="Last synchronization" xml:space="preserve">
+    <value>上次同步</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>監察每分鐘檢查一次。漏洞發現會按照現行每六小時一次的審核排程進行。憑證及啟用設定使用 Global Settings，並支援環境變數覆寫。</value>
+  </data>
+  <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
+    <value>MR 審查、過時的漏洞資料、掃描失敗及不完整報告，均不會自動解除安全事件。最終處理仍須手動完成。</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="No eligible company production baselines are available." xml:space="preserve">
+    <value>沒有可用的合資格公司生產基準。</value>
+  </data>
+  <data name="Not configured" xml:space="preserve">
+    <value>未設定</value>
+  </data>
+  <data name="Not synchronized in this process yet" xml:space="preserve">
+    <value>此程序尚未同步</value>
+  </data>
+  <data name="Open incident" xml:space="preserve">
+    <value>開啟事故</value>
+  </data>
+  <data name="Pending verification" xml:space="preserve">
+    <value>待驗證</value>
+  </data>
+  <data name="Preview the current assessment before enabling notifications. Missing or incomplete evidence never proves recovery." xml:space="preserve">
+    <value>啟用通知前，請先預覽目前的評估結果。證據缺失或不完整，絕不能證明問題已經復原。</value>
+  </data>
+  <data name="Repository" xml:space="preserve">
+    <value>儲存庫</value>
+  </data>
+  <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
+    <value>S360 會在最新一份完整的生產環境相依性基線中，報告已確認的 CVE 或違反政策的情況。即使不重新建置專案，新的 CVE 也可能觸發事故。</value>
+  </data>
+  <data name="Save recovery policy" xml:space="preserve">
+    <value>儲存復原政策</value>
+  </data>
+  <data name="Security incidents for company production dependency baselines." xml:space="preserve">
+    <value>公司正式環境依賴項基準的安全事故。</value>
+  </data>
+  <data name="Severity" xml:space="preserve">
+    <value>嚴重程度</value>
+  </data>
+  <data name="Succeeded" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Synchronize now" xml:space="preserve">
+    <value>立即同步</value>
+  </data>
+  <data name="This setting is overridden by configuration." xml:space="preserve">
+    <value>此設定由設定檔覆寫。</value>
+  </data>
+  <data name="Two incidents, independent recovery" xml:space="preserve">
+    <value>兩個事故，獨立復原</value>
+  </data>
+  <data name="Upgrade the dependency and run the default-branch pipeline. S360 mitigates after the complete baseline is confirmed compliant; GitLab mitigates only after the entire pipeline succeeds." xml:space="preserve">
+    <value>升級依賴項並執行預設分支管線。S360 在完整基線被確認合規後才緩解；GitLab 則須待整條管線成功後才緩解。</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+
+</root>

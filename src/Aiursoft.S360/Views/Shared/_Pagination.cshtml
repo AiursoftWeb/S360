@@ -1,0 +1,40 @@
+@model Aiursoft.S360.Models.Shared.PaginationViewModel
+@{
+    var routes = new RouteValueDictionary(
+        ViewContext.HttpContext.Request.Query.ToDictionary(q => q.Key, q => (object?)q.Value.ToString()));
+    string PageUrl(int page)
+    {
+        routes[Model.PageParameter] = page.ToString(System.Globalization.CultureInfo.InvariantCulture);
+        return Url.Action(null, routes) + (Model.Fragment == null ? "" : "#" + Model.Fragment);
+    }
+    var start = Math.Max(1, Model.Page - 2);
+    var end = Math.Min(Model.PageCount, start + 4);
+    start = Math.Max(1, end - 4);
+}
+<nav class="d-flex flex-wrap justify-content-center align-items-center gap-2 my-3" aria-label="@Localizer["Result pages"]">
+    <span class="small text-muted">@string.Format(@Localizer["{0} results · Page {1} of {2}"].Value, Model.Total, Model.Page, Model.PageCount)</span>
+    @if (Model.PageCount > 1)
+    {
+        @if (Model.Page > 1)
+        {
+            <a class="btn btn-sm btn-outline-secondary" href="@PageUrl(1)">@Localizer["First"]</a>
+            <a class="btn btn-sm btn-outline-secondary" href="@PageUrl(Model.Page - 1)">@Localizer["Previous"]</a>
+        }
+        @for (var number = start; number <= end; number++)
+        {
+            @if (number == Model.Page)
+            {
+                <span class="btn btn-sm btn-primary" aria-current="page">@number</span>
+            }
+            else
+            {
+                <a class="btn btn-sm btn-outline-secondary" href="@PageUrl(number)">@number</a>
+            }
+        }
+        @if (Model.Page < Model.PageCount)
+        {
+            <a class="btn btn-sm btn-outline-secondary" href="@PageUrl(Model.Page + 1)">@Localizer["Next"]</a>
+            <a class="btn btn-sm btn-outline-secondary" href="@PageUrl(Model.PageCount)">@Localizer["Last"]</a>
+        }
+    }
+</nav>

@@ -4040,4 +4040,162 @@ public class SupplyChainPagesTests : TestBase
         StringAssert.Contains(history.Description, newName);
         StringAssert.Contains(history.Description, "Upstream renamed the package");
     }
+
+    [TestMethod]
+    public async Task RequestHistoryPaginationIncludesOlderRequestsAndOnlyTheOwner()
+    {
+        await LoginAsAdmin();
+        int total;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var owner = await db.Users.SingleAsync(u => u.Email == "admin@default.com");
+            total = await db.DependencyApplications.CountAsync(a => a.RequestedByUserId == owner.Id) + 101;
+            var timestamp = DateTime.UtcNow;
+            for (var i = 0; i < 101; i++)
+                db.DependencyApplications.Add(new DependencyApplication
+                {
+                    RequestedByUserId = owner.Id, Project = $"PaginationHistory-{i:000}",
+                    Ecosystem = "nuget", Source = "https://api.nuget.org/v3/index.json",
+                    CreatedAtUtc = timestamp, Status = ApplicationStatus.Failed
+                });
+            db.DependencyApplications.Add(new DependencyApplication
+            {
+                RequestedByUserId = "another-owner", Project = "PaginationHistory-Private",
+                Ecosystem = "nuget", CreatedAtUtc = timestamp
+            });
+            await db.SaveChangesAsync();
+        }
+        var seen = new HashSet<string>();
+        var pageCount = (total + 49) / 50;
+        for (var page = 1; page <= pageCount; page++)
+        {
+            var html = await Http.GetStringAsync($"/DependencyRequests/History?page={page}");
+            var rows = System.Text.RegularExpressions.Regex.Matches(html, @"<td>(PaginationHistory-\d+)</td>");
+            Assert.IsTrue(rows.Count <= 50);
+            foreach (System.Text.RegularExpressions.Match row in rows) Assert.IsTrue(seen.Add(row.Groups[1].Value));
+            Assert.DoesNotContain("PaginationHistory-Private", html);
+            StringAssert.Contains(WebUtility.HtmlDecode(html), $"{total} results · Page {page} of {pageCount}");
+            if (page < pageCount) StringAssert.Contains(html, $"/DependencyRequests/History?page={page + 1}");
+        }
+        Assert.AreEqual(101, seen.Count);
+        var last = await Http.GetStringAsync("/DependencyRequests/History?page=9999");
+        StringAssert.Contains(WebUtility.HtmlDecode(last), $"{total} results · Page {pageCount} of {pageCount}");
+        StringAssert.Contains(await Http.GetStringAsync("/DependencyRequests/Index?page=3"), "PaginationHistory-000");
+        using var invalid = await Http.GetAsync("/DependencyRequests/History?page=0");
+        Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
+    }
+
+    [TestMethod]
+    public async Task CatalogPaginationReachesBeyond500AndKeepsIndependentSectionsAndFilters()
+    {
+        await LoginAsAdmin();
+        int supplierId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var supplier = new Supplier { Name = "Pagination supplier" };
+            db.Suppliers.Add(supplier);
+            var now = DateTime.UtcNow;
+            for (var i = 0; i < 501; i++)
+            {
+                var name = $"Pagination.Catalog{i:000}";
+                db.TrustRules.Add(new TrustRule
+                {
+                    ApplicationId = null, SupplierId = 0, Supplier = supplier,
+                    Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
+                    Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved
+                });
+                db.PackageArtifacts.Add(new PackageArtifact
+                {
+                    Ecosystem = "nuget", Name = name, Version = "1.0.0",
+                    Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64),
+                    FirstTrustedAtUtc = now, SourceVerifiedAtUtc = now, LastCheckedAtUtc = now
+                });
+            }
+            var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
+            if (audit == null)
+            {
+                audit = new VulnerabilitySyncState();
+                db.VulnerabilitySyncStates.Add(audit);
+            }
+            audit.LastAttemptAtUtc = now.AddMinutes(-1);
+            audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
+            audit.LastSuccessAtUtc = now.AddSeconds(1);
+            audit.LastError = null;
+            await db.SaveChangesAsync();
+            supplierId = supplier.Id;
+        }
+        var url = $"/SupplyChain/Index?tab=rules&ecosystem=nuget&query=Pagination.Catalog&supplierId={supplierId}";
+        var first = await Http.GetStringAsync(url);
+        Assert.AreEqual(100, System.Text.RegularExpressions.Regex.Matches(first, @"<code>Pagination.Catalog\d+</code>").Count);
+        var last = await Http.GetStringAsync(url + "&page=11&artifactPage=11");
+        Assert.AreEqual(2, System.Text.RegularExpressions.Regex.Matches(last, @"<code>Pagination.Catalog500</code>").Count);
+        Assert.DoesNotContain("<code>Pagination.Catalog499</code>", last);
+        StringAssert.Contains(WebUtility.HtmlDecode(last), "501 results · Page 11 of 11");
+        var mixed = await Http.GetStringAsync(url + "&page=1&artifactPage=11");
+        Assert.AreEqual(51, System.Text.RegularExpressions.Regex.Matches(mixed, @"<code>Pagination.Catalog\d+</code>").Count);
+        StringAssert.Contains(mixed, "<code>Pagination.Catalog000</code>");
+        StringAssert.Contains(mixed, "<code>Pagination.Catalog500</code>");
+        var next = WebUtility.HtmlDecode(System.Text.RegularExpressions.Regex.Match(mixed,
+            "href=\"([^\"]+#s360-catalog-rules)\">Next").Groups[1].Value);
+        StringAssert.Contains(next, "tab=rules");
+        StringAssert.Contains(next, "query=Pagination.Catalog");
+        StringAssert.Contains(next, $"supplierId={supplierId}");
+        StringAssert.Contains(next, "artifactPage=11");
+        var nextHtml = await Http.GetStringAsync(next);
+        StringAssert.Contains(nextHtml, "<code>Pagination.Catalog050</code>");
+        StringAssert.Contains(nextHtml, "<code>Pagination.Catalog500</code>");
+        Assert.DoesNotContain("<code>Pagination.Catalog000</code>", nextHtml);
+    }
+
+    [TestMethod]
+    public async Task BlocklistPaginationReachesOldRulesAndRetainsEcosystem()
+    {
+        await LoginAsAdmin();
+        int total;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            total = await db.BlockRules.CountAsync(b => b.Ecosystem == "npm") + 201;
+            var now = DateTime.UtcNow;
+            for (var i = 0; i < 201; i++)
+                db.BlockRules.Add(new BlockRule
+                {
+                    Ecosystem = "npm", PackagePattern = $"pagination-block-{i:000}",
+                    Reason = "Pagination regression", CreatedAtUtc = now
+                });
+            db.BlockRules.Add(new BlockRule { Ecosystem = "nuget", PackagePattern = "OtherEcosystem" });
+            await db.SaveChangesAsync();
+        }
+        var first = await Http.GetStringAsync("/SupplyChain/Blocklist?ecosystem=npm");
+        StringAssert.Contains(WebUtility.HtmlDecode(first), $"{total} results · Page 1 of {(total + 49) / 50}");
+        StringAssert.Contains(first, "pagination-block-200");
+        Assert.DoesNotContain("pagination-block-000", first);
+        var next = WebUtility.HtmlDecode(System.Text.RegularExpressions.Regex.Match(first,
+            "href=\"([^\"]+)\">Next").Groups[1].Value);
+        StringAssert.Contains(next, "ecosystem=npm");
+        var last = await Http.GetStringAsync("/SupplyChain/Blocklist?ecosystem=npm&page=5");
+        StringAssert.Contains(last, "pagination-block-000");
+        Assert.DoesNotContain("OtherEcosystem", last);
+        using var invalid = await Http.GetAsync("/SupplyChain/Blocklist?page=-1");
+        Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
+    }
+
+    [TestMethod]
+    public async Task BuildRecordPaginationPreservesExactCheckFilterWhenClampingPage()
+    {
+        await LoginAsAdmin();
+        int checkId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var check = new BuildCheck { Project = "PaginationExact", RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1 };
+            db.BuildChecks.Add(check);
+            await db.SaveChangesAsync(); checkId = check.Id;
+        }
+        var html = await Http.GetStringAsync($"/BuildChecks/Index?checkId={checkId}&page=9999");
+        StringAssert.Contains(html, "PaginationExact");
+        StringAssert.Contains(WebUtility.HtmlDecode(html), "1 results · Page 1 of 1");
+    }
 }

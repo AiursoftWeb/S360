@@ -24,9 +24,9 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         LinkText = "Compliance explorer", LinkOrder = 2)]
     public async Task<IActionResult> Index(string ecosystem = "all", string? query = null, int? supplierId = null,
         string? lookupName = null, string? lookupVersion = null, string? lookupSource = null,
-        string tab = "projects", string scope = "baseline", string filter = "all", string? project = null, int page = 1)
+        string tab = "projects", string scope = "baseline", string filter = "all", string? project = null, int page = 1, int artifactPage = 1)
         => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => IndexSnapshotAsync(ecosystem, query, supplierId,
-            lookupName, lookupVersion, lookupSource, tab, scope, filter, project, page));
+            lookupName, lookupVersion, lookupSource, tab, scope, filter, project, page, artifactPage));
 
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
         CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
@@ -59,12 +59,12 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
 
     private async Task<IActionResult> IndexSnapshotAsync(string ecosystem, string? query, int? supplierId,
         string? lookupName, string? lookupVersion, string? lookupSource, string tab, string scope,
-        string filter, string? project, int page)
+        string filter, string? project, int page, int artifactPage)
     {
         if (tab is not ("dependencies" or "projects" or "rules") ||
             ecosystem is not ("all" or "nuget" or "npm") || scope is not ("baseline" or "review" or "history") ||
             filter is not ("all" or "issues" or "pending" or "compliant" or "cve") ||
-            page is < 1 or > 10000 || query?.Length > 214 || project?.Length > 750) return BadRequest();
+            page is < 1 or > 10000 || artifactPage is < 1 or > 10000 || query?.Length > 214 || project?.Length > 750) return BadRequest();
         if (tab != "rules" && lookupName == null && lookupVersion == null && lookupSource == null && supplierId == null)
         {
             var inventoryModel = new InventoryViewModel
@@ -126,7 +126,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             .Where(r => r.Ecosystem == ecosystem && r.Status != TrustRuleStatus.Pending).ToListAsync();
         var activeApprovedRules = allRules.Where(r => allowedSources.Contains(r.Source) &&
             r.Status == TrustRuleStatus.Approved &&
-            (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)).OrderBy(r => r.PackagePattern).ToList();
+            (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)).OrderBy(r => r.PackagePattern).ThenBy(r => r.Id).ToList();
         var audit = await db.VulnerabilitySyncStates.AsNoTracking()
             .Select(s => new { s.LastAttemptAtUtc, s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc, s.LastError }).FirstOrDefaultAsync();
         var auditStartedAtUtc = audit?.LastSuccessfulAttemptAtUtc;
@@ -177,21 +177,23 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             if (selectedRules != null && displayRule == authorizingRule &&
                 !selectedRules.Contains(authorizingRule)) continue;
             available.Add(new CatalogArtifactRow(artifact, displayRule));
-            if (available.Count > 500) break;
         }
         var selectedCatalogRules = activeApprovedRules.Where(r => (supplierId == null || r.SupplierId == supplierId) &&
             (string.IsNullOrEmpty(query) || TrustPattern.Matches(r.PackagePattern, query, ecosystem) ||
              r.PackagePattern.Contains(query, StringComparison.OrdinalIgnoreCase))).ToList();
+        page = Math.Min(page, Math.Max(1, (selectedCatalogRules.Count + 49) / 50));
+        artifactPage = Math.Min(artifactPage, Math.Max(1, (available.Count + 49) / 50));
         var model = new CatalogViewModel
         {
+            Page = page, TotalRules = selectedCatalogRules.Count,
+            ArtifactPage = artifactPage, TotalArtifacts = available.Count,
             Ecosystem = ecosystem, Query = query, SupplierId = supplierId,
             LookupName = lookupName, LookupVersion = lookupVersion, LookupSource = lookupSource,
             AuditStatus = auditStatus,
             LatestAuditFailed = VulnerabilityAuditFreshness.HasFailedLatestAttempt(
                 audit?.LastAttemptAtUtc, completedAuditAtUtc, audit?.LastError),
-            Rules = selectedCatalogRules.Take(500).ToList(),
-            Artifacts = available.Take(500).ToList(),
-            ResultsTruncated = selectedCatalogRules.Count > 500 || available.Count > 500,
+            Rules = selectedCatalogRules.Skip((page - 1) * 50).Take(50).ToList(),
+            Artifacts = available.Skip((artifactPage - 1) * 50).Take(50).ToList(),
             Suppliers = await db.Suppliers.AsNoTracking().OrderBy(s => s.Name).ToListAsync()
         };
         foreach (var rule in model.Rules.Where(r => !r.PackagePattern.Contains('*') &&
@@ -342,13 +344,15 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
         CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
         LinkText = "Absolute blocklist", LinkOrder = 2)]
-    public async Task<IActionResult> Blocklist(string ecosystem = "nuget")
+    public async Task<IActionResult> Blocklist(string ecosystem = "nuget", int page = 1)
     {
-        if (ecosystem is not ("nuget" or "npm")) return BadRequest();
-        var rules = await db.BlockRules.AsNoTracking().Include(b => b.Changes)
-            .Where(b => b.Ecosystem == ecosystem)
-            .OrderByDescending(b => b.Active).ThenByDescending(b => b.CreatedAtUtc)
-            .Take(201).ToListAsync();
+        if (ecosystem is not ("nuget" or "npm") || page is < 1 or > 10000) return BadRequest();
+        var query = db.BlockRules.AsNoTracking().Where(b => b.Ecosystem == ecosystem);
+        var total = await query.CountAsync();
+        page = Math.Min(page, Math.Max(1, (total + 49) / 50));
+        var rules = await query.Include(b => b.Changes)
+            .OrderByDescending(b => b.Active).ThenByDescending(b => b.CreatedAtUtc).ThenByDescending(b => b.Id)
+            .Skip((page - 1) * 50).Take(50).ToListAsync();
         var artifacts = await db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == ecosystem)
             .OrderByDescending(a => a.Id).Select(a => new { a.Id, a.Name, a.Version })
             .Take(5001).ToListAsync();
@@ -362,7 +366,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             .Take(5001).ToListAsync();
         var model = new BlocklistViewModel
         {
-            Ecosystem = ecosystem, Rules = rules.Take(200).ToList(), RulesLimited = rules.Count > 200,
+            Ecosystem = ecosystem, Rules = rules, Page = page, Total = total,
             PreviewLimited = artifacts.Count > 5000 || applicationPackages.Count > 5000 ||
                 checkDependencies.Count > 5000
         };

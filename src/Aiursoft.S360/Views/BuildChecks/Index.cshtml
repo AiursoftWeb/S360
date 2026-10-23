@@ -95,8 +95,7 @@
         </div>
     </div>
 }
-@if (Model.Page > 1) { <a class="btn btn-outline-secondary" asp-action="Index" asp-route-project="@Model.Project" asp-route-page="@(Model.Page - 1)">@Localizer["Previous"]</a> }
-@if (Model.Page * 50 < Model.Total) { <a class="btn btn-outline-secondary" asp-action="Index" asp-route-project="@Model.Project" asp-route-page="@(Model.Page + 1)">@Localizer["Next"]</a> }
+@await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
 </div>
 @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
     @Localizer["Read a check record"].Value,

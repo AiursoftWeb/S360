@@ -201,13 +201,9 @@
             }
             </div>
         }
-        @if (!isProjectDetails && Model.PageCount > 1)
+        @if (!isProjectDetails)
         {
-            <nav class="s360-inventory-pagination" aria-label="@Localizer["Result pages"]">
-                @if (Model.Page > 1) { <a class="btn btn-outline-primary" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="@Model.Tab" asp-route-scope="@Model.Scope" asp-route-query="@Model.Query" asp-route-project="@Model.Project" asp-route-ecosystem="@Model.Ecosystem" asp-route-filter="@Model.Filter" asp-route-page="@(Model.Page - 1)">@Localizer["Previous"]</a> }
-                <span>@string.Format(@Localizer["Page {0} of {1}"].Value, Model.Page, Model.PageCount)</span>
-                @if (Model.Page < Model.PageCount) { <a class="btn btn-outline-primary" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="@Model.Tab" asp-route-scope="@Model.Scope" asp-route-query="@Model.Query" asp-route-project="@Model.Project" asp-route-ecosystem="@Model.Ecosystem" asp-route-filter="@Model.Filter" asp-route-page="@(Model.Page + 1)">@Localizer["Next"]</a> }
-            </nav>
+            @await Html.PartialAsync("_Pagination", new Aiursoft.S360.Models.Shared.PaginationViewModel(Model.Page, InventoryViewModel.PageSize, Model.Total))
         }
     }
 </div>

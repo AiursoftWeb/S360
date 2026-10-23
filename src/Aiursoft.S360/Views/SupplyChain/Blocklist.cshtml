@@ -28,7 +28,7 @@
                     <div class="col-12"><button class="btn btn-danger"><i data-lucide="shield-ban"></i> @Localizer["Block package"]</button></div>
                 </form>
             </div></div>
-            @if (Model.PreviewLimited || Model.RulesLimited)
+            @if (Model.PreviewLimited)
             {
                 <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["Impact figures below are samples from recent recorded objects, not exhaustive counts. Narrow or review a rule before relying on these figures."]</div></div>
             }
@@ -84,6 +84,7 @@
             {
                 <div class="alert alert-info" role="alert"><div class="alert-message">@Localizer["No block rules have been recorded for this ecosystem."]</div></div>
             }
+            @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
         </main>
         @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
             Localizer["How absolute blocking works"].Value,

@@ -23,7 +23,7 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
     TrustService trust) : Controller
 {
     [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]
-    public Task<IActionResult> Index() => RenderRequests(showForm: true, showHistory: true);
+    public Task<IActionResult> Index(int page = 1) => RenderRequests(showForm: true, showHistory: true, page);
 
     [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]
     [HttpGet]
@@ -37,20 +37,25 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
         CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
         LinkText = "My requests", LinkOrder = 3)]
-    public Task<IActionResult> History() => RenderRequests(showForm: false, showHistory: true);
+    public Task<IActionResult> History(int page = 1) => RenderRequests(showForm: false, showHistory: true, page);
 
-    private async Task<IActionResult> RenderRequests(bool showForm, bool showHistory)
+    private async Task<IActionResult> RenderRequests(bool showForm, bool showHistory, int page = 1)
     {
+        if (page is < 1 or > 10000) return BadRequest();
         var userId = users.GetUserId(User);
         if (userId == null) return Unauthorized();
+        var query = db.DependencyApplications.AsNoTracking().Where(a => a.RequestedByUserId == userId);
+        var total = showHistory ? await query.CountAsync() : 0;
+        page = Math.Min(page, Math.Max(1, (total + 49) / 50));
         var model = new MyRequestsViewModel
         {
             ShowCreateForm = showForm,
             ShowHistory = showHistory,
             PageTitle = showHistory ? "My dependency requests" : "Request a new dependency",
-            Applications = showHistory ? await db.DependencyApplications.AsNoTracking()
-                .Where(a => a.RequestedByUserId == userId)
-                .OrderByDescending(a => a.CreatedAtUtc).Take(100).ToListAsync() : [],
+            Page = page, Total = total,
+            Applications = showHistory ? await query
+                .OrderByDescending(a => a.CreatedAtUtc).ThenByDescending(a => a.Id)
+                .Skip((page - 1) * 50).Take(50).ToListAsync() : [],
             NuGetSources = configuration.GetSection("SupplyChain:NuGetSources").Get<string[]>()?.ToList() ?? [],
             NpmSources = configuration.GetSection("SupplyChain:NpmSources").Get<string[]>()?.ToList() ?? []
         };

@@ -8,6 +8,8 @@ public class MyRequestsViewModel : UiStackLayoutViewModel
     public MyRequestsViewModel() => PageTitle = "My dependency requests";
     public bool ShowCreateForm { get; set; } = true;
     public bool ShowHistory { get; set; } = true;
+    public int Page { get; set; } = 1;
+    public int Total { get; set; }
     public List<DependencyApplication> Applications { get; set; } = [];
     public Dictionary<int, string> CurrentBlockReasons { get; set; } = [];
     public HashSet<int> ApplicationsWithRemovedSources { get; set; } = [];

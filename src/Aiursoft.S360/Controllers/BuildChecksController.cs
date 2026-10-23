@@ -25,11 +25,13 @@ public class BuildChecksController(TemplateDbContext db) : Controller
         var query = db.BuildChecks.AsNoTracking().AsQueryable();
         if (!string.IsNullOrEmpty(project)) query = query.Where(c => c.Project != null && c.Project.Contains(project));
         if (checkId != null) query = query.Where(c => c.Id == checkId);
+        var total = await query.CountAsync();
+        page = Math.Min(page, Math.Max(1, (total + 49) / 50));
         var model = new BuildChecksViewModel
         {
             Project = project,
             Page = page,
-            Total = await query.CountAsync(),
+            Total = total,
             Checks = await query.Include(c => c.Dependencies)
                 .OrderByDescending(c => c.CreatedAtUtc).ThenByDescending(c => c.Id)
                 .Skip((page - 1) * 50).Take(50).ToListAsync()

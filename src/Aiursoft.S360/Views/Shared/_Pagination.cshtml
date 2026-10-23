@@ -1,6 +1,6 @@
 @model Aiursoft.S360.Models.Shared.PaginationViewModel
 @{
-    var routes = new Microsoft.AspNetCore.Routing.RouteValueDictionary(
+    var routes = new RouteValueDictionary(
         ViewContext.HttpContext.Request.Query.ToDictionary(q => q.Key, q => (object?)q.Value.ToString()));
     string PageUrl(int page)
     {

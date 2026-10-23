@@ -98,10 +98,6 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
         }
     </div>
 </div>
-@if (Model.ResultsTruncated)
-{
-    <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["Only the first 500 results are shown. Narrow the package search to inspect more results."]</div></div>
-}
 </div>
 
 <div id="s360-catalog-rules" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Active trust rules"]</h2></div>
@@ -141,6 +137,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
         </tr>
     }
     </tbody></table></div>
+    @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.TotalRules, Fragment: "s360-catalog-rules"))
 </div>
 
 <div id="s360-catalog-artifacts" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recorded artifacts"]</h2></div>
@@ -167,6 +164,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
             </td><td class="s360-catalog-date"><small><span data-utc-time="@artifact.LastCheckedAtUtc?.ToHtmlDateTime()"></span></small></td></tr>
     }
     </tbody></table></div>
+    @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.ArtifactPage, 50, Model.TotalArtifacts, "artifactPage", "s360-catalog-artifacts"))
     <div class="card-footer small text-muted">@Localizer["Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph."]</div>
 </div>
 

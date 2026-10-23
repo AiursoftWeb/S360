@@ -47,14 +47,16 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             _ => applications.Where(a => a.Status == ApplicationStatus.ReadyForReview ||
                 a.Status == ApplicationStatus.Approved || a.Status == ApplicationStatus.Revoked)
         };
+        var total = await filtered.CountAsync();
+        page = Math.Min(page, Math.Max(1, (total + 49) / 50));
         var model = new ReviewApplicationsViewModel
         {
             Filter = filter, Page = page,
             PendingCount = await pending.CountAsync(),
             ExpiringCount = await expiring.CountAsync(),
             ExpiredCount = await expired.CountAsync(),
-            Total = await filtered.CountAsync(),
-            Applications = await filtered.OrderByDescending(a => a.CreatedAtUtc)
+            Total = total,
+            Applications = await filtered.OrderByDescending(a => a.CreatedAtUtc).ThenByDescending(a => a.Id)
                 .Skip((page - 1) * 50).Take(50).ToListAsync(),
             Suppliers = await db.Suppliers.AsNoTracking().OrderBy(s => s.Name).ToListAsync()
         };

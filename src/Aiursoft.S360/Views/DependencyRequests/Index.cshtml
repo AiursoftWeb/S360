@@ -63,6 +63,7 @@ else
                 </td><td><a asp-action="Details" asp-route-id="@application.Id">@Localizer["Details"]</a></td></tr>
         }
     </tbody></table></div>
+    @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
 </div>
 }
 </div>

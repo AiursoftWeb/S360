@@ -16,7 +16,10 @@ public class CatalogViewModel : UiStackLayoutViewModel
     public Dictionary<int, string> BlockedRuleReasons { get; set; } = [];
     public List<CatalogArtifactRow> Artifacts { get; set; } = [];
     public List<Supplier> Suppliers { get; set; } = [];
-    public bool ResultsTruncated { get; set; }
+    public int Page { get; set; } = 1;
+    public int TotalRules { get; set; }
+    public int ArtifactPage { get; set; } = 1;
+    public int TotalArtifacts { get; set; }
     public CatalogAuditStatus AuditStatus { get; set; }
     public bool LatestAuditFailed { get; set; }
     public string? LookupName { get; set; }
@@ -64,7 +67,8 @@ public class BlocklistViewModel : UiStackLayoutViewModel
     public List<BlockRule> Rules { get; set; } = [];
     public Dictionary<int, BlockRuleImpact> Impacts { get; set; } = [];
     public bool PreviewLimited { get; set; }
-    public bool RulesLimited { get; set; }
+    public int Page { get; set; } = 1;
+    public int Total { get; set; }
 }
 
 public record BlockRuleImpact(int ArtifactCount, int ApplicationCount, int CheckRunCount,

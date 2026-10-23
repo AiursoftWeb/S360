@@ -102,11 +102,7 @@
         }
     </div></div>
 }
-<nav class="d-flex justify-content-between mt-3">
-    @if (Model.Page > 1) { <a class="btn btn-outline-secondary" asp-action="Index" asp-route-filter="@Model.Filter" asp-route-page="@(Model.Page - 1)">@Localizer["Previous"]</a> }
-    else { <span></span> }
-    @if (Model.Page * 50 < Model.Total) { <a class="btn btn-outline-secondary" asp-action="Index" asp-route-filter="@Model.Filter" asp-route-page="@(Model.Page + 1)">@Localizer["Next"]</a> }
-</nav>
+@await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
 </div>
 @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
     Localizer["Before you approve"].Value,

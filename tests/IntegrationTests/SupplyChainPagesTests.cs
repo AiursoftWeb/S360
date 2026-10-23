@@ -4045,10 +4045,12 @@ public class SupplyChainPagesTests : TestBase
     public async Task RequestHistoryPaginationIncludesOlderRequestsAndOnlyTheOwner()
     {
         await LoginAsAdmin();
+        int total;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var owner = await db.Users.SingleAsync(u => u.Email == "admin@default.com");
+            total = await db.DependencyApplications.CountAsync(a => a.RequestedByUserId == owner.Id) + 101;
             var timestamp = DateTime.UtcNow;
             for (var i = 0; i < 101; i++)
                 db.DependencyApplications.Add(new DependencyApplication
@@ -4065,20 +4067,20 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
         }
         var seen = new HashSet<string>();
-        for (var page = 1; page <= 3; page++)
+        var pageCount = (total + 49) / 50;
+        for (var page = 1; page <= pageCount; page++)
         {
             var html = await Http.GetStringAsync($"/DependencyRequests/History?page={page}");
             var rows = System.Text.RegularExpressions.Regex.Matches(html, @"<td>(PaginationHistory-\d+)</td>");
-            Assert.AreEqual(page == 3 ? 1 : 50, rows.Count);
+            Assert.IsTrue(rows.Count <= 50);
             foreach (System.Text.RegularExpressions.Match row in rows) Assert.IsTrue(seen.Add(row.Groups[1].Value));
             Assert.DoesNotContain("PaginationHistory-Private", html);
-            StringAssert.Contains(WebUtility.HtmlDecode(html), $"101 results · Page {page} of 3");
-            if (page < 3) StringAssert.Contains(html, $"/DependencyRequests/History?page={page + 1}");
+            StringAssert.Contains(WebUtility.HtmlDecode(html), $"{total} results · Page {page} of {pageCount}");
+            if (page < pageCount) StringAssert.Contains(html, $"/DependencyRequests/History?page={page + 1}");
         }
         Assert.AreEqual(101, seen.Count);
         var last = await Http.GetStringAsync("/DependencyRequests/History?page=9999");
-        StringAssert.Contains(WebUtility.HtmlDecode(last), "101 results · Page 3 of 3");
-        StringAssert.Contains(last, "PaginationHistory-000");
+        StringAssert.Contains(WebUtility.HtmlDecode(last), $"{total} results · Page {pageCount} of {pageCount}");
         StringAssert.Contains(await Http.GetStringAsync("/DependencyRequests/Index?page=3"), "PaginationHistory-000");
         using var invalid = await Http.GetAsync("/DependencyRequests/History?page=0");
         Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
@@ -4111,11 +4113,16 @@ public class SupplyChainPagesTests : TestBase
                     FirstTrustedAtUtc = now, SourceVerifiedAtUtc = now, LastCheckedAtUtc = now
                 });
             }
-            db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
+            var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
+            if (audit == null)
             {
-                LastAttemptAtUtc = now.AddMinutes(-1), LastSuccessfulAttemptAtUtc = now.AddMinutes(-1),
-                LastSuccessAtUtc = now.AddSeconds(1)
-            });
+                audit = new VulnerabilitySyncState();
+                db.VulnerabilitySyncStates.Add(audit);
+            }
+            audit.LastAttemptAtUtc = now.AddMinutes(-1);
+            audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
+            audit.LastSuccessAtUtc = now.AddSeconds(1);
+            audit.LastError = null;
             await db.SaveChangesAsync();
             supplierId = supplier.Id;
         }
@@ -4146,9 +4153,11 @@ public class SupplyChainPagesTests : TestBase
     public async Task BlocklistPaginationReachesOldRulesAndRetainsEcosystem()
     {
         await LoginAsAdmin();
+        int total;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            total = await db.BlockRules.CountAsync(b => b.Ecosystem == "npm") + 201;
             var now = DateTime.UtcNow;
             for (var i = 0; i < 201; i++)
                 db.BlockRules.Add(new BlockRule
@@ -4160,7 +4169,7 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
         }
         var first = await Http.GetStringAsync("/SupplyChain/Blocklist?ecosystem=npm");
-        StringAssert.Contains(WebUtility.HtmlDecode(first), "201 results · Page 1 of 5");
+        StringAssert.Contains(WebUtility.HtmlDecode(first), $"{total} results · Page 1 of {(total + 49) / 50}");
         StringAssert.Contains(first, "pagination-block-200");
         Assert.DoesNotContain("pagination-block-000", first);
         var next = WebUtility.HtmlDecode(System.Text.RegularExpressions.Regex.Match(first,

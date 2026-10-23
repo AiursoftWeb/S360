@@ -20,7 +20,7 @@ public sealed class AlertMonitoringController(GlobalSettingsService settings, Al
     BaselineMonitoringService monitoring, BaselineMonitorState state, BackgroundJobRegistry jobs, ServiceTaskQueue queue,
     IStringLocalizer<AlertMonitoringController> localizer) : Controller
 {
-    [RenderInNavBar(NavGroupName = "Features", NavGroupOrder = 1, CascadedLinksGroupName = "Monitoring",
+    [RenderInNavBar(NavGroupName = "Administration", NavGroupOrder = 9999, CascadedLinksGroupName = "Monitoring",
         CascadedLinksIcon = "bell", CascadedLinksOrder = 2, LinkText = "AlertCenter monitoring", LinkOrder = 1)]
     public async Task<IActionResult> Index()
     {

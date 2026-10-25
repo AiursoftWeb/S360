@@ -11,6 +11,10 @@
     var canManageRules = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageTrustRules)).Succeeded;
     var canManageBlocks = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageBlocklist)).Succeeded;
     var canRequest = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanSubmitDependencyRequests)).Succeeded;
+    var ruleTabRoutes = ViewContext.HttpContext.Request.Query.ToDictionary(q => q.Key, q => q.Value.ToString());
+    ruleTabRoutes["tab"] = "rules";
+    ruleTabRoutes["catalogView"] = "rules";
+    var artifactTabRoutes = new Dictionary<string, string>(ruleTabRoutes) { ["catalogView"] = "artifacts" };
 }
 
 @if (Model.Inventory != null)
@@ -25,6 +29,11 @@ else
     <p class="text-muted">@Localizer["A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency."]</p>
     @if (canRequest) { <p><a asp-controller="DependencyRequests" asp-action="Create">@Localizer["Can't find a package? Submit a request"]</a></p> }
 </div></div></div>
+
+<nav class="s360-inventory-tabs" aria-label="@Localizer["Page sections"]">
+    <a class="@(Model.CatalogView == "rules" ? "active" : "")" aria-current="@(Model.CatalogView == "rules" ? "page" : null)" asp-action="Index" asp-all-route-data="ruleTabRoutes"><i data-lucide="shield-check" aria-hidden="true"></i>@Localizer["Trust rules"]</a>
+    <a class="@(Model.CatalogView == "artifacts" ? "active" : "")" aria-current="@(Model.CatalogView == "artifacts" ? "page" : null)" asp-action="Index" asp-all-route-data="artifactTabRoutes"><i data-lucide="package" aria-hidden="true"></i>@Localizer["Recorded artifacts"]</a>
+</nav>
 
 <div class="s360-workspace-layout">
 <div class="s360-workspace-main">
@@ -42,8 +51,6 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 }
 <nav class="s360-workspace-jumps" aria-label="@Localizer["Page sections"]">
     <a href="#s360-catalog-search"><i data-lucide="search"></i>@Localizer["Find packages"]</a>
-    <a href="#s360-catalog-rules"><i data-lucide="shield-check"></i>@Localizer["Trust rules"]</a>
-    <a href="#s360-catalog-artifacts"><i data-lucide="package"></i>@Localizer["Recorded artifacts"]</a>
     @if (canManageRules) { <a href="#s360-catalog-manage"><i data-lucide="sliders-horizontal"></i>@Localizer["Manage policy"]</a> }
     @if (canManageBlocks) { <a asp-action="Blocklist" asp-route-ecosystem="@Model.Ecosystem"><i data-lucide="shield-ban"></i>@Localizer["Manage blocklist"]</a> }
 </nav>
@@ -68,6 +75,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 <div id="s360-catalog-search" class="s360-workspace-anchor">
 <form method="get" class="row g-2 mb-4">
     <input type="hidden" name="tab" value="rules" />
+    <input type="hidden" name="catalogView" value="@Model.CatalogView" />
     <div class="col-auto"><select name="ecosystem" class="form-select">
         <option value="nuget" selected="@(Model.Ecosystem == "nuget")">NuGet</option>
         <option value="npm" selected="@(Model.Ecosystem == "npm")">npm</option>
@@ -86,6 +94,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
     <div class="card-body">
         <form method="get" class="row g-2">
             <input type="hidden" name="tab" value="rules" />
+            <input type="hidden" name="catalogView" value="@Model.CatalogView" />
             <input type="hidden" name="ecosystem" value="@Model.Ecosystem" />
             <div class="col-md-3"><input name="lookupName" value="@Model.LookupName" required maxlength="214" class="form-control" placeholder="@Localizer["Exact package name"]" /></div>
             <div class="col-md-2"><input name="lookupVersion" value="@Model.LookupVersion" required maxlength="128" class="form-control" placeholder="@Localizer["Exact version"]" /></div>
@@ -100,6 +109,8 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 </div>
 </div>
 
+@if (Model.CatalogView == "rules")
+{
 <div id="s360-catalog-rules" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Active trust rules"]</h2></div>
     <div class="card-body small text-muted">@Localizer["Trust rules are only one condition for availability. The absolute blocklist overrides them, including for indirect dependencies."]</div>
     <div class="table-responsive"><table class="table table-hover mb-0 s360-catalog-rules"><thead><tr>
@@ -140,6 +151,9 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
     @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.TotalRules, Fragment: "s360-catalog-rules"))
 </div>
 
+}
+else
+{
 <div id="s360-catalog-artifacts" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recorded artifacts"]</h2></div>
     <div class="table-responsive"><table class="table table-hover mb-0"><thead><tr>
         <th>@Localizer["Package"]</th><th>@Localizer["Version"]</th><th>@Localizer["Supplier"]</th>
@@ -167,6 +181,8 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
     @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.ArtifactPage, 50, Model.TotalArtifacts, "artifactPage", "s360-catalog-artifacts"))
     <div class="card-footer small text-muted">@Localizer["Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph."]</div>
 </div>
+
+}
 
 @if (canManageRules)
 {

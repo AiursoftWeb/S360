@@ -24,9 +24,9 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         LinkText = "Compliance explorer", LinkOrder = 2)]
     public async Task<IActionResult> Index(string ecosystem = "all", string? query = null, int? supplierId = null,
         string? lookupName = null, string? lookupVersion = null, string? lookupSource = null,
-        string tab = "projects", string scope = "baseline", string filter = "all", string? project = null, int page = 1, int artifactPage = 1)
+        string tab = "projects", string scope = "baseline", string filter = "all", string? project = null, int page = 1, int artifactPage = 1, string catalogView = "rules")
         => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => IndexSnapshotAsync(ecosystem, query, supplierId,
-            lookupName, lookupVersion, lookupSource, tab, scope, filter, project, page, artifactPage));
+            lookupName, lookupVersion, lookupSource, tab, scope, filter, project, page, artifactPage, catalogView));
 
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
         CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
@@ -59,9 +59,9 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
 
     private async Task<IActionResult> IndexSnapshotAsync(string ecosystem, string? query, int? supplierId,
         string? lookupName, string? lookupVersion, string? lookupSource, string tab, string scope,
-        string filter, string? project, int page, int artifactPage)
+        string filter, string? project, int page, int artifactPage, string catalogView)
     {
-        if (tab is not ("dependencies" or "projects" or "rules") ||
+        if (catalogView is not ("rules" or "artifacts") || tab is not ("dependencies" or "projects" or "rules") ||
             ecosystem is not ("all" or "nuget" or "npm") || scope is not ("baseline" or "review" or "history") ||
             filter is not ("all" or "issues" or "pending" or "compliant" or "cve") ||
             page is < 1 or > 10000 || artifactPage is < 1 or > 10000 || query?.Length > 214 || project?.Length > 750) return BadRequest();
@@ -185,7 +185,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         artifactPage = Math.Min(artifactPage, Math.Max(1, (available.Count + 49) / 50));
         var model = new CatalogViewModel
         {
-            Page = page, TotalRules = selectedCatalogRules.Count,
+            CatalogView = catalogView, Page = page, TotalRules = selectedCatalogRules.Count,
             ArtifactPage = artifactPage, TotalArtifacts = available.Count,
             Ecosystem = ecosystem, Query = query, SupplierId = supplierId,
             LookupName = lookupName, LookupVersion = lookupVersion, LookupSource = lookupSource,

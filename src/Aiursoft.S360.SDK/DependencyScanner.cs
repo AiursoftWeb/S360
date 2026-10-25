@@ -369,7 +369,7 @@ public static class DependencyScanner
         !string.IsNullOrWhiteSpace(value) && value is not ("." or "..") &&
         !value.Any(character => character is '/' or '\\' or ':' || char.IsControl(character));
 
-    private static void ValidateNuGetArchiveIdentity(Stream archive, string name, string version, string packageKey)
+    public static void ValidateNuGetArchiveIdentity(Stream archive, string name, string version, string packageKey)
     {
         try
         {

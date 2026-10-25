@@ -39,7 +39,7 @@ public class AllowedPackageSourcesTests
     {
         using var handler = new NuGetHandler(Archive(archiveName, archiveVersion));
         var verifier = CreateVerifier(handler);
-        var artifact = Artifact(handler.Archive, version);
+        var artifact = Artifact(handler.ArchiveBytes, version);
         if (matches) Assert.IsTrue(await verifier.VerifyAsync(artifact));
         else await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => verifier.VerifyAsync(artifact));
         Assert.AreEqual(2, handler.Requests);
@@ -52,7 +52,7 @@ public class AllowedPackageSourcesTests
     {
         using var handler = new NuGetHandler(Archive("Android.Widget", "1.2.3"));
         var verifier = CreateVerifier(handler);
-        var artifact = Artifact(handler.Archive);
+        var artifact = Artifact(handler.ArchiveBytes);
         artifact.Sha256 = new string('0', 64);
         Assert.IsFalse(await verifier.VerifyAsync(artifact));
         artifact.Source = "https://unapproved.example.com/index.json";
@@ -70,8 +70,9 @@ public class AllowedPackageSourcesTests
     [DataRow(404)]
     public async Task NuGetSourceVerificationRejectsRedirectsAndMissingArchives(int status)
     {
-        using var handler = new NuGetHandler(Archive("Android.Widget", "1.2.3")) { ArchiveStatus = (HttpStatusCode)status };
-        await Assert.ThrowsExactlyAsync<HttpRequestException>(() => CreateVerifier(handler).VerifyAsync(Artifact(handler.Archive)));
+        using var handler = new NuGetHandler(Archive("Android.Widget", "1.2.3"));
+        handler.ArchiveStatus = (HttpStatusCode)status;
+        await Assert.ThrowsExactlyAsync<HttpRequestException>(() => CreateVerifier(handler).VerifyAsync(Artifact(handler.ArchiveBytes)));
     }
 
     private static PackageArtifact Artifact(byte[] archive, string version = "1.2.3") => new()
@@ -111,7 +112,7 @@ public class AllowedPackageSourcesTests
 
     private sealed class NuGetHandler(byte[] archive) : HttpMessageHandler
     {
-        public byte[] Archive => archive;
+        public byte[] ArchiveBytes => archive;
         public string BaseAddress { get; set; } = "https://nuget.example.com/packages/";
         public HttpStatusCode ArchiveStatus { get; set; } = HttpStatusCode.OK;
         public int Requests { get; private set; }

@@ -9,6 +9,7 @@ public class CatalogViewModel : UiStackLayoutViewModel
 {
     public CatalogViewModel() => PageTitle = "Dependency catalog";
     public InventoryViewModel? Inventory { get; set; }
+    public string CatalogView { get; set; } = "rules";
     public string Ecosystem { get; set; } = "nuget";
     public string? Query { get; set; }
     public int? SupplierId { get; set; }

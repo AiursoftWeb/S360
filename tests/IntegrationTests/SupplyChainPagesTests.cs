@@ -2091,29 +2091,29 @@ public class SupplyChainPagesTests : TestBase
             supplierId = supplier.Id;
             unrelatedSupplierId = unrelated.Id;
         }
-        using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&query=" + packageName))
+        using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
         {
             response.EnsureSuccessStatusCode();
             StringAssert.Contains(await response.Content.ReadAsStringAsync(), packageName);
         }
-        using (var response = await Http.GetAsync($"/SupplyChain/Index?tab=rules&query={packageName}&supplierId={supplierId}"))
+        using (var response = await Http.GetAsync($"/SupplyChain/Index?tab=rules&catalogView=artifacts&query={packageName}&supplierId={supplierId}"))
         {
             response.EnsureSuccessStatusCode();
             StringAssert.Contains(await response.Content.ReadAsStringAsync(), "title=\"" + new string('a', 64) + "\"");
         }
-        using (var response = await Http.GetAsync($"/SupplyChain/Index?tab=rules&query={packageName}&supplierId={unrelatedSupplierId}"))
+        using (var response = await Http.GetAsync($"/SupplyChain/Index?tab=rules&catalogView=artifacts&query={packageName}&supplierId={unrelatedSupplierId}"))
         {
             response.EnsureSuccessStatusCode();
             Assert.DoesNotContain("title=\"" + new string('a', 64) + "\"", await response.Content.ReadAsStringAsync());
         }
-        var lookupUrl = "/SupplyChain/Index?tab=rules&lookupName=" + packageName + ".Future&lookupVersion=1.1.0&lookupSource=" +
+        var lookupUrl = "/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + packageName + ".Future&lookupVersion=1.1.0&lookupSource=" +
                         Uri.EscapeDataString("https://api.nuget.org/v3/index.json");
         using (var response = await Http.GetAsync(lookupUrl))
         {
             response.EnsureSuccessStatusCode();
             StringAssert.Contains(await response.Content.ReadAsStringAsync(), "pending artifact and vulnerability check");
         }
-        var knownLookupUrl = "/SupplyChain/Index?tab=rules&lookupName=" + packageName +
+        var knownLookupUrl = "/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + packageName +
                              "&lookupVersion=1.0.0&lookupSource=" +
                              Uri.EscapeDataString("https://api.nuget.org/v3/index.json");
         using (var response = await Http.GetAsync(knownLookupUrl))
@@ -2136,7 +2136,7 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&query=" + packageName))
+        using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
         {
             response.EnsureSuccessStatusCode();
             Assert.DoesNotContain("title=\"" + new string('a', 64) + "\"", await response.Content.ReadAsStringAsync());
@@ -2157,13 +2157,14 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&query=" + packageName))
+        using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
         {
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
             Assert.DoesNotContain("title=\"" + new string('a', 64) + "\"", html);
-            StringAssert.Contains(html, "Overridden by blocklist");
-            StringAssert.Contains(html, "Blocked for regression test");
+            var rulesHtml = await Http.GetStringAsync("/SupplyChain/Index?tab=rules&query=" + packageName);
+            StringAssert.Contains(rulesHtml, "Overridden by blocklist");
+            StringAssert.Contains(rulesHtml, "Blocked for regression test");
         }
         using (var scope = Server!.Services.CreateScope())
         {
@@ -2172,7 +2173,7 @@ public class SupplyChainPagesTests : TestBase
             db.TrustRules.Single(r => r.PackagePattern == rulePattern).Status = TrustRuleStatus.Revoked;
             await db.SaveChangesAsync();
         }
-        using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&query=" + packageName))
+        using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
         {
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
@@ -2220,7 +2221,7 @@ public class SupplyChainPagesTests : TestBase
             artifactId = artifact.Id;
         }
 
-        var url = "/SupplyChain/Index?tab=rules&query=" + Uri.EscapeDataString(packageName);
+        var url = "/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + Uri.EscapeDataString(packageName);
         using (var response = await Http.GetAsync(url))
         {
             response.EnsureSuccessStatusCode();
@@ -2364,12 +2365,12 @@ public class SupplyChainPagesTests : TestBase
             excludedSupplierId = excluded.SupplierId;
         }
         await LoginAsAdmin();
-        using (var all = await Http.GetAsync("/SupplyChain/Index?tab=rules&query=" + packageName))
+        using (var all = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
         {
             all.EnsureSuccessStatusCode();
             Assert.DoesNotContain($"/SupplyChain/Details/{artifactId}", await all.Content.ReadAsStringAsync());
         }
-        using var filtered = await Http.GetAsync($"/SupplyChain/Index?tab=rules&query={packageName}&supplierId={excludedSupplierId}");
+        using var filtered = await Http.GetAsync($"/SupplyChain/Index?tab=rules&catalogView=artifacts&query={packageName}&supplierId={excludedSupplierId}");
         filtered.EnsureSuccessStatusCode();
         Assert.DoesNotContain($"/SupplyChain/Details/{artifactId}", await filtered.Content.ReadAsStringAsync());
     }
@@ -2432,7 +2433,7 @@ public class SupplyChainPagesTests : TestBase
             artifactId = artifact.Id;
             ruleId = rule.Id;
         }
-        using (var catalog = await Http.GetAsync("/SupplyChain/Index?tab=rules&query=" + packageName))
+        using (var catalog = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
         {
             catalog.EnsureSuccessStatusCode();
             var html = await catalog.Content.ReadAsStringAsync();
@@ -2459,7 +2460,7 @@ public class SupplyChainPagesTests : TestBase
         configuration["SupplyChain:NuGetSources:1"] = "https://replacement.example.com/v3/index.json";
         try
         {
-            using var catalog = await Http.GetAsync("/SupplyChain/Index?tab=rules&query=" + packageName);
+            using var catalog = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName);
             catalog.EnsureSuccessStatusCode();
             Assert.DoesNotContain($"/SupplyChain/Details/{artifactId}",
                 await catalog.Content.ReadAsStringAsync());
@@ -2538,7 +2539,7 @@ public class SupplyChainPagesTests : TestBase
         }
 
         await LoginAsAdmin();
-        using var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&ecosystem=nuget");
+        using var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&ecosystem=nuget");
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         StringAssert.Contains(html, "title=\"" + approvedHash + "\"");
@@ -2583,7 +2584,7 @@ public class SupplyChainPagesTests : TestBase
             audit.LastError = "Later package query failed";
             await db.SaveChangesAsync();
         }
-        var url = "/SupplyChain/Index?tab=rules&ecosystem=nuget&query=" + Uri.EscapeDataString(name);
+        var url = "/SupplyChain/Index?tab=rules&catalogView=artifacts&ecosystem=nuget&query=" + Uri.EscapeDataString(name);
         using (var pending = await Http.GetAsync(url))
         {
             pending.EnsureSuccessStatusCode();
@@ -2631,12 +2632,12 @@ public class SupplyChainPagesTests : TestBase
         }
 
         await LoginAsAdmin();
-        using var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&query=" + name);
+        using var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + name);
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         Assert.DoesNotContain("title=\"" + firstHash + "\"", html);
         Assert.DoesNotContain("title=\"" + secondHash + "\"", html);
-        using var lookup = await Http.GetAsync("/SupplyChain/Index?tab=rules&lookupName=" + name +
+        using var lookup = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + name +
             "&lookupVersion=1.0.0&lookupSource=" + Uri.EscapeDataString(source));
         lookup.EnsureSuccessStatusCode();
         StringAssert.Contains(await lookup.Content.ReadAsStringAsync(), "Conflicting package hashes");
@@ -2705,7 +2706,7 @@ public class SupplyChainPagesTests : TestBase
         }
 
         await LoginAsAdmin();
-        var url = "/SupplyChain/Index?tab=rules&query=" + Uri.EscapeDataString(name) +
+        var url = "/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + Uri.EscapeDataString(name) +
             "&lookupName=" + Uri.EscapeDataString(name) + "&lookupVersion=1.0.0&lookupSource=" +
             Uri.EscapeDataString(source);
         using var response = await Http.GetAsync(url);
@@ -4087,7 +4088,7 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task CatalogPaginationReachesBeyond500AndKeepsIndependentSectionsAndFilters()
+    public async Task CatalogPaginationShowsOneListPerTabAndKeepsPagesAndFilters()
     {
         await LoginAsAdmin();
         int supplierId;
@@ -4127,26 +4128,54 @@ public class SupplyChainPagesTests : TestBase
             supplierId = supplier.Id;
         }
         var url = $"/SupplyChain/Index?tab=rules&ecosystem=nuget&query=Pagination.Catalog&supplierId={supplierId}";
+        static string TabUrl(string html, string title) => WebUtility.HtmlDecode(
+            System.Text.RegularExpressions.Regex.Matches(html, @"<a\b[^>]*href=""([^""]+)""[^>]*>(.*?)</a>",
+                    System.Text.RegularExpressions.RegexOptions.Singleline)
+                .Single(m => m.Groups[2].Value.Contains(title, StringComparison.Ordinal)).Groups[1].Value);
+        static void AssertOneList(string html, string selected, string other)
+        {
+            Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(html, "<table ").Count);
+            Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(html, "aria-label=\"Result pages\"").Count);
+            StringAssert.Contains(html, $"id=\"s360-catalog-{selected}\"");
+            Assert.DoesNotContain($"id=\"s360-catalog-{other}\"", html);
+            Assert.IsTrue(html.IndexOf("s360-inventory-tabs", StringComparison.Ordinal) < html.IndexOf("<table ", StringComparison.Ordinal));
+            Assert.IsTrue(html.IndexOf("Result pages", StringComparison.Ordinal) > html.IndexOf("</table>", StringComparison.Ordinal));
+        }
         var first = await Http.GetStringAsync(url);
-        Assert.AreEqual(100, System.Text.RegularExpressions.Regex.Matches(first, @"<code>Pagination.Catalog\d+</code>").Count);
+        AssertOneList(first, "rules", "artifacts");
+        Assert.AreEqual(50, System.Text.RegularExpressions.Regex.Matches(first, @"<code>Pagination.Catalog\d+</code>").Count);
         var last = await Http.GetStringAsync(url + "&page=11&artifactPage=11");
-        Assert.AreEqual(2, System.Text.RegularExpressions.Regex.Matches(last, @"<code>Pagination.Catalog500</code>").Count);
-        Assert.DoesNotContain("<code>Pagination.Catalog499</code>", last);
+        AssertOneList(last, "rules", "artifacts");
+        Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(last, @"<code>Pagination.Catalog500</code>").Count);
         StringAssert.Contains(WebUtility.HtmlDecode(last), "501 results · Page 11 of 11");
-        var mixed = await Http.GetStringAsync(url + "&page=1&artifactPage=11");
-        Assert.AreEqual(51, System.Text.RegularExpressions.Regex.Matches(mixed, @"<code>Pagination.Catalog\d+</code>").Count);
-        StringAssert.Contains(mixed, "<code>Pagination.Catalog000</code>");
-        StringAssert.Contains(mixed, "<code>Pagination.Catalog500</code>");
-        var next = WebUtility.HtmlDecode(System.Text.RegularExpressions.Regex.Match(mixed,
+        var artifactUrl = TabUrl(last, "Recorded artifacts");
+        StringAssert.Contains(artifactUrl, "catalogView=artifacts");
+        StringAssert.Contains(artifactUrl, "query=Pagination.Catalog");
+        StringAssert.Contains(artifactUrl, $"supplierId={supplierId}");
+        StringAssert.Contains(artifactUrl, "artifactPage=11");
+        var artifacts = await Http.GetStringAsync(artifactUrl);
+        AssertOneList(artifacts, "artifacts", "rules");
+        Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(artifacts, @"<code>Pagination.Catalog500</code>").Count);
+        StringAssert.Contains(artifacts, "name=\"catalogView\" value=\"artifacts\"");
+        var back = await Http.GetStringAsync(TabUrl(artifacts, "Trust rules"));
+        AssertOneList(back, "rules", "artifacts");
+        StringAssert.Contains(WebUtility.HtmlDecode(back), "501 results · Page 11 of 11");
+        var next = WebUtility.HtmlDecode(System.Text.RegularExpressions.Regex.Match(first,
             "href=\"([^\"]+#s360-catalog-rules)\">Next").Groups[1].Value);
-        StringAssert.Contains(next, "tab=rules");
-        StringAssert.Contains(next, "query=Pagination.Catalog");
-        StringAssert.Contains(next, $"supplierId={supplierId}");
-        StringAssert.Contains(next, "artifactPage=11");
         var nextHtml = await Http.GetStringAsync(next);
         StringAssert.Contains(nextHtml, "<code>Pagination.Catalog050</code>");
-        StringAssert.Contains(nextHtml, "<code>Pagination.Catalog500</code>");
         Assert.DoesNotContain("<code>Pagination.Catalog000</code>", nextHtml);
+        var artifactFirst = await Http.GetStringAsync(url + "&catalogView=artifacts");
+        AssertOneList(artifactFirst, "artifacts", "rules");
+        Assert.AreEqual(50, System.Text.RegularExpressions.Regex.Matches(artifactFirst, @"<code>Pagination.Catalog\d+</code>").Count);
+        var artifactNext = WebUtility.HtmlDecode(System.Text.RegularExpressions.Regex.Match(artifactFirst,
+            "href=\"([^\"]+#s360-catalog-artifacts)\">Next").Groups[1].Value);
+        StringAssert.Contains(artifactNext, "catalogView=artifacts");
+        StringAssert.Contains(await Http.GetStringAsync(artifactNext), "<code>Pagination.Catalog050</code>");
+        var empty = await Http.GetStringAsync(url.Replace("query=Pagination.Catalog", "query=NoMatchingPaginationPackage", StringComparison.Ordinal) + "&catalogView=artifacts");
+        StringAssert.Contains(WebUtility.HtmlDecode(empty), "0 results · Page 1 of 1");
+        using var invalid = await Http.GetAsync(url + "&catalogView=invalid");
+        Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
     }
 
     [TestMethod]

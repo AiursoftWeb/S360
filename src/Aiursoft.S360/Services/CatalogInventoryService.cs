@@ -106,7 +106,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                     : decisions[i].Reason,
                 Advisories = advisories,
                 Rules = rules.Where(r => r.Ecosystem == dependency.Ecosystem && r.Source == dependency.Source &&
-                    TrustPattern.Matches(r.PackagePattern, dependency.Name, dependency.Ecosystem) &&
+                    r.MatchesPackage(dependency.Name) &&
                     TrustPattern.VersionMatches(r.Version, dependency.Version, dependency.Ecosystem, r.IncludePrerelease)).ToList(),
                 Requests = requests.Where(p => artifactIds.Contains(p.PackageArtifactId))
                     .Select(p => p.Application).DistinctBy(a => a.Id).ToList(),

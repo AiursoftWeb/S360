@@ -11,6 +11,23 @@ public class TrustRule
 {
     [Key]
     public int Id { get; init; }
+    public int? PackagePolicyId { get; set; }
+    [JsonIgnore] public PackagePolicy? PackagePolicy { get; set; }
+    public int? LegacySourceRuleId { get; set; }
+    [JsonIgnore] public TrustRule? LegacySourceRule { get; set; }
+    /// <summary>Wildcard templates remain readable history, never an authorization.</summary>
+    [NotMapped] public bool IsLegacyTemplate => PackagePattern.Contains('*');
+    public bool MatchesPackage(string name)
+    {
+        var comparison = Ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+        // Old denials remain fail-closed until explicitly reviewed; legacy approvals grant nothing.
+        if (IsLegacyTemplate)
+            return Status is TrustRuleStatus.Rejected or TrustRuleStatus.Revoked &&
+                PackagePattern.EndsWith('*') && name.StartsWith(PackagePattern[..^1], comparison);
+        return (PackagePolicy?.Name ?? PackagePattern).Equals(name, comparison);
+    }
+
+
     public required int SupplierId { get; set; }
     [JsonIgnore]
     [ForeignKey(nameof(SupplierId))]

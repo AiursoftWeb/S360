@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>规则授予使用软件包的权限。这并不能证明项目正在使用这些软件包，也不能证明获准的版本没有漏洞。</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>此软件包的所有版本授权</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>已批准</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>过期时间</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>历史包名模式。此规则不再授予访问权限。</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>包含</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>已迁移的具体授权</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>未记录排除项。</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>未固定</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>仅显示前 100 条授权。</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>原始规则及审批历史</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>软件包模式</value>

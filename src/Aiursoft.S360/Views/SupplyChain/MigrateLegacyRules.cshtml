@@ -1,0 +1,21 @@
+@model Aiursoft.S360.Models.SupplyChainViewModels.LegacyMigrationViewModel
+<div class="container-fluid">
+    <h1>@Localizer["Review legacy package rules"]</h1>
+    <p>@Localizer["Select verified, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically."]</p>
+    @if (Model.Plan.BlockingRuleIds.Count > 0)
+    {
+        <div class="alert alert-danger" role="alert"><div class="alert-message">@Localizer["Legacy wildcard rejections require a separate review before this migration can proceed."] @string.Join(", ", Model.Plan.BlockingRuleIds)</div></div>
+    }
+    <form method="post" asp-action="MigrateLegacyRules">
+        <input type="hidden" name="fingerprint" value="@Model.Plan.Fingerprint" />
+        <div class="card mb-3"><div class="table-responsive"><table class="table mb-0 text-nowrap"><thead><tr><th>@Localizer["Select"]</th><th>@Localizer["Package"]</th><th>@Localizer["Version"]</th><th>@Localizer["Source"]</th><th>@Localizer["Original rule"]</th></tr></thead><tbody>
+        @foreach (var row in Model.Plan.Rows)
+        {
+            <tr><td><input type="checkbox" name="selections" value="@row.Key" aria-label="@row.Name" /></td><td><code>@row.Name</code></td><td><code>@row.Rule.Version</code></td><td class="text-break">@row.Rule.Source</td><td><a asp-action="RuleDetails" asp-route-id="@row.Rule.Id">#@row.Rule.Id · @row.Rule.PackagePattern</a></td></tr>
+        }
+        </tbody></table></div></div>
+        <label class="form-label" for="migration-reason">@Localizer["Reason"]</label>
+        <input class="form-control mb-3" id="migration-reason" name="reason" maxlength="2000" required />
+        <button class="btn btn-primary" disabled="@(Model.Plan.BlockingRuleIds.Count > 0)">@Localizer["Approve selected migration"]</button>
+    </form>
+</div>

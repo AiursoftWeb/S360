@@ -1089,7 +1089,7 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
         }
         var url = "/SupplyChain/PreviewRule?ecosystem=nuget&packagePattern=" +
-                  Uri.EscapeDataString(root + ".*") + "&version=1.*&source=" + Uri.EscapeDataString(source);
+                  Uri.EscapeDataString(root + ".Child") + "&version=1.*&source=" + Uri.EscapeDataString(source);
         await RegisterAndLoginAsync();
         using (var denied = await Http.GetAsync(url))
             Assert.AreNotEqual(HttpStatusCode.OK, denied.StatusCode);
@@ -2049,7 +2049,7 @@ public class SupplyChainPagesTests : TestBase
     public async Task CatalogNeverListsRevokedOrBlockedArtifactAsAvailable()
     {
         var packageName = "Example." + Guid.NewGuid().ToString("N");
-        var rulePattern = packageName + "*";
+        var rulePattern = packageName;
         await LoginAsAdmin();
         int supplierId;
         int unrelatedSupplierId;
@@ -2106,7 +2106,7 @@ public class SupplyChainPagesTests : TestBase
             response.EnsureSuccessStatusCode();
             Assert.DoesNotContain("title=\"" + new string('a', 64) + "\"", await response.Content.ReadAsStringAsync());
         }
-        var lookupUrl = "/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + packageName + ".Future&lookupVersion=1.1.0&lookupSource=" +
+        var lookupUrl = "/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + packageName + "&lookupVersion=1.1.0&lookupSource=" +
                         Uri.EscapeDataString("https://api.nuget.org/v3/index.json");
         using (var response = await Http.GetAsync(lookupUrl))
         {
@@ -2144,7 +2144,7 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.TrustRules.Single(r => r.PackagePattern == packageName).Status = TrustRuleStatus.Approved;
+            db.TrustRules.Single(r => r.PackagePattern == packageName && r.Version == "1.0.0").Status = TrustRuleStatus.Approved;
             await db.SaveChangesAsync();
         }
         using (var scope = Server!.Services.CreateScope())
@@ -2170,7 +2170,7 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.BlockRules.Single(b => b.PackagePattern == packageName).Active = false;
-            db.TrustRules.Single(r => r.PackagePattern == rulePattern).Status = TrustRuleStatus.Revoked;
+            db.TrustRules.Single(r => r.PackagePattern == rulePattern && r.Version == "1.*").Status = TrustRuleStatus.Revoked;
             await db.SaveChangesAsync();
         }
         using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
@@ -4227,4 +4227,93 @@ public class SupplyChainPagesTests : TestBase
         StringAssert.Contains(html, "PaginationExact");
         StringAssert.Contains(WebUtility.HtmlDecode(html), "1 results · Page 1 of 1");
     }
+    [TestMethod]
+    public async Task ExactPackageApprovalRejectsPrefixesAndGroupsVersionGrants()
+    {
+        await LoginAsAdmin();
+        var name = "Example.Policy." + Guid.NewGuid().ToString("N");
+        int supplierId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var supplier = new Supplier { Name = name };
+            db.Suppliers.Add(supplier);
+            await db.SaveChangesAsync();
+            supplierId = supplier.Id;
+        }
+        var fields = new Dictionary<string, string>
+        {
+            ["supplierId"] = supplierId.ToString(), ["ecosystem"] = "nuget", ["packagePattern"] = name + ".*",
+            ["version"] = "9.*", ["source"] = "https://api.nuget.org/v3/index.json",
+            ["justification"] = "Approve one concrete dependency", ["expiresAtUtc"] = DateTime.UtcNow.AddDays(1).ToString("O")
+        };
+        using (var rejected = await PostForm("/SupplyChain/AddRule", fields, "/SupplyChain/Index?tab=rules"))
+            Assert.AreEqual(HttpStatusCode.BadRequest, rejected.StatusCode);
+        fields["packagePattern"] = name;
+        using (var first = await PostForm("/SupplyChain/AddRule", fields, "/SupplyChain/Index?tab=rules"))
+            Assert.AreEqual(HttpStatusCode.Redirect, first.StatusCode);
+        fields["version"] = "10.*";
+        fields["packagePattern"] = name.ToLowerInvariant();
+        using (var second = await PostForm("/SupplyChain/AddRule", fields, "/SupplyChain/Index?tab=rules"))
+            Assert.AreEqual(HttpStatusCode.Redirect, second.StatusCode);
+        int policyId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var policy = await db.PackagePolicies.Include(p => p.Grants).SingleAsync(p => p.NormalizedName == name.ToLowerInvariant());
+            Assert.HasCount(2, policy.Grants);
+            policyId = policy.Id;
+        }
+        var html = await Http.GetStringAsync("/SupplyChain/Index?tab=rules&query=" + name);
+        Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(html, "/SupplyChain/PackageDetails/" + policyId + "\"><code>").Count);
+        var details = await Http.GetStringAsync("/SupplyChain/PackageDetails/" + policyId);
+        StringAssert.Contains(details, "9.*");
+        StringAssert.Contains(details, "10.*");
+        using var prefixPreview = await Http.GetAsync("/SupplyChain/PreviewRule?ecosystem=nuget&packagePattern=" +
+            Uri.EscapeDataString(name + ".*") + "&version=*&source=" + Uri.EscapeDataString(fields["source"]));
+        Assert.AreEqual(HttpStatusCode.BadRequest, prefixPreview.StatusCode);
+    }
+
+    [TestMethod]
+    public async Task LegacyMigrationRequiresHumanPermissionAndRejectsForgedNames()
+    {
+        await RegisterAndLoginAsync();
+        using (var denied = await Http.GetAsync("/SupplyChain/MigrateLegacyRules"))
+            Assert.AreNotEqual(HttpStatusCode.OK, denied.StatusCode);
+        await LoginAsAdmin();
+        var name = "Example.Migrate." + Guid.NewGuid().ToString("N");
+        int originalId;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var supplier = new Supplier { Name = name };
+            var rule = new TrustRule { SupplierId = 0, Supplier = supplier, ApplicationId = null,
+                Ecosystem = "nuget", PackagePattern = name + "*", Version = "1.*",
+                Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved };
+            db.TrustRules.Add(rule);
+            db.PackageArtifacts.Add(new PackageArtifact { Ecosystem = "nuget", Name = name, Version = "1.0.0",
+                Source = rule.Source, Sha256 = new string('a', 64), SourceVerifiedAtUtc = DateTime.UtcNow });
+            await db.SaveChangesAsync();
+            originalId = rule.Id;
+        }
+        var page = await Http.GetStringAsync("/SupplyChain/MigrateLegacyRules");
+        var fingerprint = System.Text.RegularExpressions.Regex.Match(page, "name=\"fingerprint\" value=\"([^\"]+)\"").Groups[1].Value;
+        Assert.IsFalse(string.IsNullOrEmpty(fingerprint));
+        Assert.DoesNotContain("checked=", page);
+        var fields = new Dictionary<string, string> { ["fingerprint"] = fingerprint,
+            ["selections"] = originalId + ":" + name + ".Fake", ["reason"] = "Review known concrete packages" };
+        using (var forged = await PostForm("/SupplyChain/MigrateLegacyRules", fields))
+            Assert.AreEqual(HttpStatusCode.BadRequest, forged.StatusCode);
+        fields["selections"] = originalId + ":" + name;
+        fields.Remove("__RequestVerificationToken");
+        using (var csrf = await PostForm("/SupplyChain/MigrateLegacyRules", fields, includeToken: false))
+            Assert.AreEqual(HttpStatusCode.BadRequest, csrf.StatusCode);
+        using var migrated = await PostForm("/SupplyChain/MigrateLegacyRules", fields);
+        Assert.AreEqual(HttpStatusCode.Redirect, migrated.StatusCode);
+        using var verify = Server!.Services.CreateScope();
+        var database = verify.ServiceProvider.GetRequiredService<TemplateDbContext>();
+        Assert.AreEqual(1, await database.TrustRules.CountAsync(r => r.LegacySourceRuleId == originalId));
+        Assert.AreEqual(0, await database.TrustRules.CountAsync(r => r.PackagePattern == name + ".Fake"));
+    }
+
 }

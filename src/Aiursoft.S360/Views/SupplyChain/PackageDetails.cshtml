@@ -1,0 +1,41 @@
+@using Aiursoft.S360.Models.Shared
+@using Aiursoft.S360.Entities
+@using Aiursoft.S360.Authorization
+@using Aiursoft.WebTools
+@using Microsoft.AspNetCore.Authorization
+@inject IAuthorizationService Authorization
+@model Aiursoft.S360.Models.SupplyChainViewModels.PackagePolicyViewModel
+@{
+    var policy = Model.Policy;
+    var canManage = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageTrustRules)).Succeeded;
+}
+<div class="container-fluid">
+    <p><a asp-action="Index" asp-route-tab="rules" asp-route-ecosystem="@policy.Ecosystem">@Localizer["Back to existing rule set"]</a></p>
+    <h1><code>@policy.Name</code></h1>
+    <p class="text-break">@policy.Ecosystem · @policy.Source</p>
+    <p class="text-muted">@Localizer["Version grants are independent. Approval of this package does not approve other package names or registries."]</p>
+    <div class="card"><div class="table-responsive"><table class="table mb-0 text-nowrap">
+        <thead><tr><th>@Localizer["Version"]</th><th>@Localizer["Supplier"]</th><th>@Localizer["Status"]</th><th>@Localizer["Expires"]</th><th>@Localizer["SHA-256"]</th>@if (canManage) { <th></th> }</tr></thead>
+        <tbody>@foreach (var grant in Model.Grants)
+        {
+            <tr><td><a asp-action="RuleDetails" asp-route-id="@grant.Id"><code>@grant.Version</code> · #@grant.Id</a></td><td>@grant.Supplier.Name</td>
+                <td>@switch (grant.Status)
+                {
+                    case TrustRuleStatus.Approved: <span>@Localizer["Approved"]</span> break;
+                    case TrustRuleStatus.Pending: <span>@Localizer["Pending"]</span> break;
+                    case TrustRuleStatus.Rejected: <span>@Localizer["Rejected"]</span> break;
+                    case TrustRuleStatus.Revoked: <span>@Localizer["Revoked"]</span> break;
+                }</td>
+                <td><span data-utc-time="@grant.ExpiresAtUtc?.ToHtmlDateTime()"></span></td><td class="text-break"><code>@grant.Sha256</code></td>
+                @if (canManage) { <td><details><summary>@Localizer["Revoke"]</summary><form asp-action="RevokeRule" method="post"><input type="hidden" name="id" value="@grant.Id" /><input class="form-control my-2" name="reason" required maxlength="2000" aria-label="@Localizer["Reason"]" /><button class="btn btn-outline-danger">@Localizer["Revoke"]</button></form></details></td> }
+            </tr>
+        }</tbody>
+    </table></div>
+    @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
+    </div>
+    <div class="card mt-3"><div class="card-body"><h2 class="h5">@Localizer["Recorded project usage"]</h2>
+        <p class="text-muted">@Localizer["These projects appear in recorded dependency reports, including history. This is not proof of current production use."]</p>
+        @foreach (var project in Model.RecordedProjects) { <div>@project</div> }
+        @if (Model.ProjectsLimited) { <p>@Localizer["Only the first 50 projects are shown."]</p> }
+    </div></div>
+</div>

@@ -17,7 +17,7 @@ public class SupplyChainPolicyTests
         Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
     };
 
-    private static TrustRule Rule(string pattern = "Microsoft.*", string version = "10.0.*", int id = 1) => new()
+    private static TrustRule Rule(string pattern = "Microsoft.Extensions.Logging", string version = "10.0.*", int id = 1) => new()
     {
         ApplicationId = null, SupplierId = 0,
         Id = id, Ecosystem = "nuget", PackagePattern = pattern, Version = version,
@@ -26,9 +26,9 @@ public class SupplyChainPolicyTests
     };
 
     [TestMethod]
-    public void SupplierMayHaveIndependentPrefixes()
+    public void SupplierMayHaveIndependentPackages()
     {
-        var rules = new[] { Rule(), Rule("System.*") };
+        var rules = new[] { Rule(), Rule("System.Text.Json") };
         Assert.IsTrue(TrustService.Evaluate(Package(), rules, [], DateTime.UtcNow).Trusted);
         Assert.IsTrue(TrustService.Evaluate(Package("System.Text.Json"), rules, [], DateTime.UtcNow).Trusted);
         Assert.IsFalse(TrustService.Evaluate(Package("System"), rules, [], DateTime.UtcNow).Trusted);
@@ -320,6 +320,7 @@ public class SupplyChainPolicyTests
         var vulnerable = Package(version: "10.0.2");
         var fixedPackage = Package(version: "10.0.8");
         var siblingPackage = Package(name: "Microsoft.Extensions.Configuration", version: "10.0.2");
+        db.TrustRules.Add(Rule("Microsoft.Extensions.Configuration", id: 2));
         db.PackageArtifacts.AddRange(
             new PackageArtifact { Ecosystem = "nuget", Name = vulnerable.Name, Version = vulnerable.Version,
                 Source = vulnerable.Source, Sha256 = vulnerable.Sha256, LastCheckedAtUtc = DateTime.UtcNow,
@@ -445,4 +446,103 @@ public class SupplyChainPolicyTests
             StringAssert.Contains(decision.Reason, "Conflicting previously verified package hashes");
         }
     }
+    [TestMethod]
+    public void ANewNameCannotInheritLegacyPrefixApprovalOrBypassLegacyDenial()
+    {
+        var legacy = Rule("Microsoft.*");
+        var exact = Rule();
+        Assert.IsFalse(TrustService.Evaluate(Package(), [legacy], [], DateTime.UtcNow).Trusted);
+        Assert.IsTrue(TrustService.Evaluate(Package(), [legacy, exact], [], DateTime.UtcNow).Trusted);
+        legacy.Status = TrustRuleStatus.Revoked;
+        Assert.IsFalse(TrustService.Evaluate(Package(), [legacy, exact], [], DateTime.UtcNow).Trusted);
+        Assert.IsFalse(TrustService.Evaluate(Package("Microsoft.NewFake"), [exact], [], DateTime.UtcNow).Trusted);
+    }
+
+    [TestMethod]
+    public async Task OnePackageSharesMultipleVersionGrantsWithoutWideningTheRange()
+    {
+        await using var db = new InMemoryContext(new DbContextOptionsBuilder<InMemoryContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options);
+        var old = Rule(version: "9.*", id: 1);
+        var current = Rule(pattern: "microsoft.extensions.logging", version: "10.*", id: 2);
+        var otherSource = Rule(id: 3);
+        otherSource.Source = "https://nuget.aiursoft.com/v3/index.json";
+        db.TrustRules.AddRange(old, current, otherSource);
+        await db.SaveChangesAsync();
+        Assert.AreEqual(2, await db.PackagePolicies.CountAsync());
+        Assert.AreEqual(old.PackagePolicyId, current.PackagePolicyId);
+        Assert.AreNotEqual(old.PackagePolicyId, otherSource.PackagePolicyId);
+        Assert.IsTrue(TrustService.Evaluate(Package(version: "9.1.0"), [old, current], [], DateTime.UtcNow).Trusted);
+        Assert.IsTrue(TrustService.Evaluate(Package(version: "10.1.0"), [old, current], [], DateTime.UtcNow).Trusted);
+        Assert.IsFalse(TrustService.Evaluate(Package(version: "8.1.0"), [old, current], [], DateTime.UtcNow).Trusted);
+        Assert.IsFalse(TrustService.Evaluate(Package(version: "11.1.0"), [old, current], [], DateTime.UtcNow).Trusted);
+    }
+
+    [TestMethod]
+    public async Task ReviewedLegacyMigrationPreservesHistoryRangesAndExclusions()
+    {
+        await using var connection = new SqliteConnection("Data Source=:memory:");
+        await connection.OpenAsync();
+        await using var db = new SqliteContext(new DbContextOptionsBuilder<SqliteContext>().UseSqlite(connection).Options);
+        await db.Database.EnsureCreatedAsync();
+        var supplier = new Supplier { Name = "Migration vendor" };
+        var original = Rule("Microsoft.*", "10.*");
+        original.Supplier = supplier;
+        db.TrustRuleReviews.Add(new TrustRuleReview { TrustRule = original, TrustRuleId = original.Id,
+            ReviewerId = "original-reviewer", Decision = TrustRuleStatus.Approved, Reason = "Original scope" });
+        db.TrustRules.Add(original);
+        db.PackageArtifacts.Add(new PackageArtifact { Ecosystem = "nuget", Name = "Microsoft.Extensions.Logging",
+            Version = "10.0.8", Source = original.Source, Sha256 = new string('a', 64), SourceVerifiedAtUtc = DateTime.UtcNow });
+        var advisory = new Vulnerability { Ecosystem = "nuget", PackageName = "Microsoft.Extensions.Logging",
+            SourceId = "GHSA-migration", RawAffectedJson = "[]" };
+        db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+        {
+            TrustRule = original, TrustRuleId = original.Id, Vulnerability = advisory,
+            VulnerabilityId = advisory.Id, Reason = "Original exclusion", CreatedByUserId = "original-reviewer"
+        });
+        await db.SaveChangesAsync();
+        var migration = new LegacyRuleMigration(db);
+        var plan = await migration.PreviewAsync();
+        Assert.AreEqual(1, plan.Rows.Count);
+        await migration.ApplyAsync(plan.Fingerprint, [plan.Rows.Single().Key], "migration-reviewer", "Reviewed concrete package list");
+        db.ChangeTracker.Clear();
+        var grants = await db.TrustRules.Include(r => r.PackagePolicy).Include(r => r.Reviews).OrderBy(r => r.Id).ToListAsync();
+        Assert.AreEqual(2, grants.Count);
+        var migrated = grants.Single(r => r.LegacySourceRuleId == original.Id);
+        Assert.AreEqual("10.*", migrated.Version);
+        Assert.AreEqual(original.ExpiresAtUtc, migrated.ExpiresAtUtc);
+        Assert.AreEqual(original.RequestedAtUtc, migrated.RequestedAtUtc);
+        Assert.AreEqual("original-reviewer", grants[0].Reviews.Single().ReviewerId);
+        Assert.AreEqual("migration-reviewer", migrated.Reviews.Single().ReviewerId);
+        Assert.AreEqual(2, await db.TrustRuleVulnerabilityExclusions.CountAsync());
+        Assert.IsTrue(TrustService.Evaluate(Package(), grants, [], DateTime.UtcNow).Trusted);
+        Assert.IsFalse(TrustService.Evaluate(Package("Microsoft.NewFake"), grants, [], DateTime.UtcNow).Trusted);
+        var repeated = await migration.PreviewAsync();
+        Assert.AreEqual(0, repeated.Rows.Count);
+        await migration.ApplyAsync(repeated.Fingerprint, [], "migration-reviewer", "No duplicate grants");
+        Assert.AreEqual(2, await db.TrustRules.CountAsync());
+    }
+
+    [TestMethod]
+    public async Task MigrationRejectsStaleOrInventedSelectionsAndLegacyDenials()
+    {
+        await using var db = new InMemoryContext(new DbContextOptionsBuilder<InMemoryContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options);
+        var original = Rule("Microsoft.*");
+        db.TrustRules.Add(original);
+        await db.SaveChangesAsync();
+        var service = new LegacyRuleMigration(db);
+        var plan = await service.PreviewAsync();
+        await Assert.ThrowsExactlyAsync<ArgumentException>(() => service.ApplyAsync(plan.Fingerprint,
+            ["1:Microsoft.Fake"], "reviewer", "No invented names"));
+        original.Status = TrustRuleStatus.Revoked;
+        await db.SaveChangesAsync();
+        await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => service.ApplyAsync(plan.Fingerprint,
+            [], "reviewer", "No stale decisions"));
+        plan = await service.PreviewAsync();
+        await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => service.ApplyAsync(plan.Fingerprint,
+            [], "reviewer", "Do not drop legacy denial"));
+        Assert.AreEqual(1, await db.TrustRules.CountAsync());
+    }
+
 }

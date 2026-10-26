@@ -447,6 +447,45 @@ namespace Aiursoft.S360.Sqlite.Migrations
                     b.ToTable("PackageArtifacts");
                 });
 
+            modelBuilder.Entity("Aiursoft.S360.Entities.PackagePolicy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Ecosystem")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("IdentityKey")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(214)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("NormalizedName")
+                        .IsRequired()
+                        .HasMaxLength(214)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Source")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityKey")
+                        .IsUnique();
+
+                    b.ToTable("PackagePolicies");
+                });
+
             modelBuilder.Entity("Aiursoft.S360.Entities.Supplier", b =>
                 {
                     b.Property<int>("Id")
@@ -491,10 +530,16 @@ namespace Aiursoft.S360.Sqlite.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("TEXT");
 
+                    b.Property<int?>("LegacySourceRuleId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("PackagePattern")
                         .IsRequired()
                         .HasMaxLength(214)
                         .HasColumnType("TEXT");
+
+                    b.Property<int?>("PackagePolicyId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("RequestedAtUtc")
                         .HasColumnType("TEXT");
@@ -529,6 +574,10 @@ namespace Aiursoft.S360.Sqlite.Migrations
                     b.HasIndex("ApplicationId");
 
                     b.HasIndex("ExpiresAtUtc");
+
+                    b.HasIndex("LegacySourceRuleId");
+
+                    b.HasIndex("PackagePolicyId");
 
                     b.HasIndex("SupplierId");
 
@@ -1071,6 +1120,16 @@ namespace Aiursoft.S360.Sqlite.Migrations
                         .WithMany()
                         .HasForeignKey("ApplicationId");
 
+                    b.HasOne("Aiursoft.S360.Entities.TrustRule", "LegacySourceRule")
+                        .WithMany()
+                        .HasForeignKey("LegacySourceRuleId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Aiursoft.S360.Entities.PackagePolicy", "PackagePolicy")
+                        .WithMany("Grants")
+                        .HasForeignKey("PackagePolicyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("Aiursoft.S360.Entities.Supplier", "Supplier")
                         .WithMany("Rules")
                         .HasForeignKey("SupplierId")
@@ -1078,6 +1137,10 @@ namespace Aiursoft.S360.Sqlite.Migrations
                         .IsRequired();
 
                     b.Navigation("Application");
+
+                    b.Navigation("LegacySourceRule");
+
+                    b.Navigation("PackagePolicy");
 
                     b.Navigation("Supplier");
                 });
@@ -1208,6 +1271,11 @@ namespace Aiursoft.S360.Sqlite.Migrations
                     b.Navigation("Edges");
 
                     b.Navigation("Packages");
+                });
+
+            modelBuilder.Entity("Aiursoft.S360.Entities.PackagePolicy", b =>
+                {
+                    b.Navigation("Grants");
                 });
 
             modelBuilder.Entity("Aiursoft.S360.Entities.Supplier", b =>

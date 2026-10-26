@@ -73,8 +73,6 @@ public class Startup : IWebStartup
         services.AddTransient<OsvRequestHandler>();
         services.AddHttpClient<OsvClient>(client => client.Timeout = TimeSpan.FromMinutes(2))
             .AddHttpMessageHandler<OsvRequestHandler>();
-        services.AddHttpClient<OsvWildcardFeed>(client => client.Timeout = TimeSpan.FromMinutes(15))
-            .AddHttpMessageHandler<OsvRequestHandler>();
         services.AddScoped<PackageResolutionService>();
         services.AddScoped<IArtifactSourceVerifier, ArtifactSourceVerifier>();
         services.AddAssemblyDependencies(typeof(Startup).Assembly);

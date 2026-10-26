@@ -468,6 +468,47 @@ namespace Aiursoft.S360.MySql.Migrations
                     b.ToTable("PackageArtifacts");
                 });
 
+            modelBuilder.Entity("Aiursoft.S360.Entities.PackagePolicy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Ecosystem")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("varchar(10)");
+
+                    b.Property<string>("IdentityKey")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("varchar(64)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(214)
+                        .HasColumnType("varchar(214)");
+
+                    b.Property<string>("NormalizedName")
+                        .IsRequired()
+                        .HasMaxLength(214)
+                        .HasColumnType("varchar(214)");
+
+                    b.Property<string>("Source")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("IdentityKey")
+                        .IsUnique();
+
+                    b.ToTable("PackagePolicies");
+                });
+
             modelBuilder.Entity("Aiursoft.S360.Entities.Supplier", b =>
                 {
                     b.Property<int>("Id")
@@ -516,10 +557,16 @@ namespace Aiursoft.S360.MySql.Migrations
                         .HasMaxLength(2000)
                         .HasColumnType("varchar(2000)");
 
+                    b.Property<int?>("LegacySourceRuleId")
+                        .HasColumnType("int");
+
                     b.Property<string>("PackagePattern")
                         .IsRequired()
                         .HasMaxLength(214)
                         .HasColumnType("varchar(214)");
+
+                    b.Property<int?>("PackagePolicyId")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("RequestedAtUtc")
                         .HasColumnType("datetime(6)");
@@ -554,6 +601,10 @@ namespace Aiursoft.S360.MySql.Migrations
                     b.HasIndex("ApplicationId");
 
                     b.HasIndex("ExpiresAtUtc");
+
+                    b.HasIndex("LegacySourceRuleId");
+
+                    b.HasIndex("PackagePolicyId");
 
                     b.HasIndex("SupplierId");
 
@@ -1112,6 +1163,16 @@ namespace Aiursoft.S360.MySql.Migrations
                         .WithMany()
                         .HasForeignKey("ApplicationId");
 
+                    b.HasOne("Aiursoft.S360.Entities.TrustRule", "LegacySourceRule")
+                        .WithMany()
+                        .HasForeignKey("LegacySourceRuleId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Aiursoft.S360.Entities.PackagePolicy", "PackagePolicy")
+                        .WithMany("Grants")
+                        .HasForeignKey("PackagePolicyId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
                     b.HasOne("Aiursoft.S360.Entities.Supplier", "Supplier")
                         .WithMany("Rules")
                         .HasForeignKey("SupplierId")
@@ -1119,6 +1180,10 @@ namespace Aiursoft.S360.MySql.Migrations
                         .IsRequired();
 
                     b.Navigation("Application");
+
+                    b.Navigation("LegacySourceRule");
+
+                    b.Navigation("PackagePolicy");
 
                     b.Navigation("Supplier");
                 });
@@ -1249,6 +1314,11 @@ namespace Aiursoft.S360.MySql.Migrations
                     b.Navigation("Edges");
 
                     b.Navigation("Packages");
+                });
+
+            modelBuilder.Entity("Aiursoft.S360.Entities.PackagePolicy", b =>
+                {
+                    b.Navigation("Grants");
                 });
 
             modelBuilder.Entity("Aiursoft.S360.Entities.Supplier", b =>

@@ -15,6 +15,26 @@
         <p class="text-break">@rule.PackagePattern @rule.Version</p>
         <p class="text-muted">@Localizer["A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free."]</p>
     </div>
+    @if (rule.IsLegacyTemplate)
+    {
+        <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["Historical package-name pattern. This rule no longer grants access."]</div></div>
+    }
+    @if (Model.DerivedRules.Count > 0)
+    {
+        <div class="card mb-3"><div class="card-body"><h2 class="h5">@Localizer["Migrated concrete grants"]</h2>
+        @foreach (var derived in Model.DerivedRules.Take(100))
+        { <div><a asp-action="RuleDetails" asp-route-id="@derived.Id"><code>@derived.PackagePattern</code> · @derived.Version · #@derived.Id</a></div> }
+        @if (Model.DerivedRules.Count > 100) { <p>@Localizer["Only the first 100 grants are shown."]</p> }
+        </div></div>
+    }
+    @if (rule.LegacySourceRuleId is { } legacyId)
+    {
+        <p><a asp-action="RuleDetails" asp-route-id="@legacyId">@Localizer["Original rule and approval history"] #@legacyId</a></p>
+    }
+    @if (rule.PackagePolicyId is { } policyId)
+    {
+        <p><a asp-action="PackageDetails" asp-route-id="@policyId">@Localizer["All version grants for this package"]</a></p>
+    }
     <div class="card mb-4"><div class="card-body">
         <h2 class="h5">@Localizer["Authorization"]</h2>
         <dl class="row mb-0">

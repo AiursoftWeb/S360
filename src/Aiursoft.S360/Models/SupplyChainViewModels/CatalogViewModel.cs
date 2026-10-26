@@ -1,4 +1,5 @@
 using Aiursoft.S360.Entities;
+using Aiursoft.S360.Services;
 using Aiursoft.UiStack.Layout;
 
 namespace Aiursoft.S360.Models.SupplyChainViewModels;
@@ -18,6 +19,7 @@ public class CatalogViewModel : UiStackLayoutViewModel
     public List<CatalogArtifactRow> Artifacts { get; set; } = [];
     public List<Supplier> Suppliers { get; set; } = [];
     public int Page { get; set; } = 1;
+    public int LegacyRuleCount { get; set; }
     public int TotalRules { get; set; }
     public int ArtifactPage { get; set; } = 1;
     public int TotalArtifacts { get; set; }
@@ -74,3 +76,20 @@ public class BlocklistViewModel : UiStackLayoutViewModel
 
 public record BlockRuleImpact(int ArtifactCount, int ApplicationCount, int CheckRunCount,
     List<string> ExamplePackages);
+
+public class PackagePolicyViewModel : UiStackLayoutViewModel
+{
+    public PackagePolicyViewModel() => PageTitle = "Package authorization";
+    public required PackagePolicy Policy { get; init; }
+    public List<TrustRule> Grants { get; init; } = [];
+    public int Page { get; init; } = 1;
+    public int Total { get; init; }
+    public List<string> RecordedProjects { get; init; } = [];
+    public bool ProjectsLimited { get; init; }
+}
+
+public class LegacyMigrationViewModel : UiStackLayoutViewModel
+{
+    public LegacyMigrationViewModel() => PageTitle = "Review legacy package rules";
+    public required LegacyMigrationPlan Plan { get; init; }
+}

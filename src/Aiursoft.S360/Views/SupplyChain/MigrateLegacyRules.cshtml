@@ -8,7 +8,7 @@
     }
     <form method="post" asp-action="MigrateLegacyRules">
         <input type="hidden" name="fingerprint" value="@Model.Plan.Fingerprint" />
-        <div class="card mb-3"><div class="table-responsive"><table class="table mb-0"><thead><tr><th>@Localizer["Select"]</th><th>@Localizer["Package"]</th><th>@Localizer["Version"]</th><th>@Localizer["Source"]</th><th>@Localizer["Original rule"]</th></tr></thead><tbody>
+        <div class="card mb-3"><div class="table-responsive"><table class="table mb-0 text-nowrap"><thead><tr><th>@Localizer["Select"]</th><th>@Localizer["Package"]</th><th>@Localizer["Version"]</th><th>@Localizer["Source"]</th><th>@Localizer["Original rule"]</th></tr></thead><tbody>
         @foreach (var row in Model.Plan.Rows)
         {
             <tr><td><input type="checkbox" name="selections" value="@row.Key" aria-label="@row.Name" /></td><td><code>@row.Name</code></td><td><code>@row.Rule.Version</code></td><td class="text-break">@row.Rule.Source</td><td><a asp-action="RuleDetails" asp-route-id="@row.Rule.Id">#@row.Rule.Id · @row.Rule.PackagePattern</a></td></tr>

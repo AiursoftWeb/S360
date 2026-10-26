@@ -14,7 +14,7 @@
     <h1><code>@policy.Name</code></h1>
     <p class="text-break">@policy.Ecosystem · @policy.Source</p>
     <p class="text-muted">@Localizer["Version grants are independent. Approval of this package does not approve other package names or registries."]</p>
-    <div class="card"><div class="table-responsive"><table class="table mb-0">
+    <div class="card"><div class="table-responsive"><table class="table mb-0 text-nowrap">
         <thead><tr><th>@Localizer["Version"]</th><th>@Localizer["Supplier"]</th><th>@Localizer["Status"]</th><th>@Localizer["Expires"]</th><th>@Localizer["SHA-256"]</th>@if (canManage) { <th></th> }</tr></thead>
         <tbody>@foreach (var grant in Model.Grants)
         {

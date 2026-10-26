@@ -180,7 +180,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             var excluded = rules.Where(r => r.Status == TrustRuleStatus.Approved &&
                     (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now) &&
                     r.Source == artifact.Source &&
-                    TrustPattern.Matches(r.PackagePattern, artifact.Name, artifact.Ecosystem) &&
+                    r.MatchesPackage(artifact.Name) &&
                     TrustPattern.VersionMatches(r.Version, artifact.Version, artifact.Ecosystem, r.IncludePrerelease))
                 .Select(r => TrustService.MatchingExclusion(r, dependency, exclusions))
                 .FirstOrDefault(e => e != null);
@@ -205,7 +205,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             if (rules.Any(r => r.ApplicationId != application.Id &&
                 r.Status is TrustRuleStatus.Rejected or TrustRuleStatus.Revoked &&
                 r.Source == artifact.Source &&
-                TrustPattern.Matches(r.PackagePattern, artifact.Name, artifact.Ecosystem) &&
+                r.MatchesPackage(artifact.Name) &&
                 TrustPattern.VersionMatches(r.Version, artifact.Version, artifact.Ecosystem, r.IncludePrerelease)))
                 return BadRequest($"A separate rejection/revocation blocks {artifact.Name}@{artifact.Version}.");
             if (rules.Any(r => r.ApplicationId != application.Id && r.Status == TrustRuleStatus.Approved &&

@@ -1,3 +1,4 @@
+@using Aiursoft.S360.Entities
 @using Aiursoft.WebTools
 @using Aiursoft.S360.Authorization
 @using Microsoft.AspNetCore.Authorization
@@ -117,34 +118,25 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
         <th class="s360-catalog-supplier">@Localizer["Supplier"]</th><th class="s360-catalog-package">@Localizer["Package"]</th><th>@Localizer["Version"]</th>
         <th class="s360-catalog-source">@Localizer["Source"]</th><th>@Localizer["Expires"]</th>@if (canManageRules) { <th></th> }
     </tr></thead><tbody>
-    @foreach (var rule in Model.Rules)
+    @foreach (var grants in Model.Rules.GroupBy(r => PackagePolicy.CalculateIdentityKey(r.Ecosystem, r.PackagePattern, r.Source)))
     {
-        <tr><td class="s360-catalog-supplier">@rule.Supplier.Name</td><td class="s360-catalog-package"><a asp-action="RuleDetails" asp-route-id="@rule.Id">#@rule.Id · <code>@rule.PackagePattern</code></a>
-                @if (Model.BlockedRuleReasons.TryGetValue(rule.Id, out var blockedReason))
-                {
-                    <span class="badge bg-danger" title="@blockedReason">@Localizer["Overridden by blocklist"]</span>
-                }
-            </td><td><code>@rule.Version</code></td>
-            <td class="s360-catalog-source">
-                <details class="s360-catalog-source-details">
-                    <summary title="@rule.Source">@(Uri.TryCreate(rule.Source, UriKind.Absolute, out var sourceUri) ? sourceUri.Host : rule.Source)</summary>
-                    <small>@rule.Source</small>
-                </details>
+        var rule = grants.First();
+        <tr><td>@string.Join(", ", grants.Select(r => r.Supplier.Name).Distinct())</td>
+            <td class="s360-catalog-package">
+                @if (rule.PackagePolicyId is { } policyId)
+                { <a asp-action="PackageDetails" asp-route-id="@policyId"><code>@rule.PackagePattern</code></a> }
+                else
+                { <a asp-action="RuleDetails" asp-route-id="@rule.Id"><code>@rule.PackagePattern</code></a> }
+                @if (grants.Any(r => Model.BlockedRuleReasons.ContainsKey(r.Id)))
+                { <span class="badge bg-danger">@Localizer["Overridden by blocklist"]</span> }
             </td>
-            <td class="s360-catalog-date">
-                <span data-utc-time="@rule.ExpiresAtUtc?.ToHtmlDateTime()"></span>
-            </td>
-            @if (canManageRules) { <td class="s360-catalog-action">
-                <details class="s360-catalog-revoke">
-                    <summary>@Localizer["Revoke"]</summary>
-                    <form asp-action="RevokeRule" method="post" class="mt-2">
-                        <input type="hidden" name="id" value="@rule.Id" />
-                        <label class="form-label small" for="s360-revoke-reason-@rule.Id">@Localizer["Reason"]</label>
-                        <input id="s360-revoke-reason-@rule.Id" class="form-control form-control-sm mb-2" name="reason" required maxlength="2000" />
-                        <button class="btn btn-sm btn-outline-danger">@Localizer["Revoke"]</button>
-                    </form>
-                </details>
-            </td> }
+            <td>@foreach (var grant in grants) { <div><a asp-action="RuleDetails" asp-route-id="@grant.Id"><code>@grant.Version</code></a></div> }</td>
+            <td class="s360-catalog-source"><details class="s360-catalog-source-details">
+                <summary title="@rule.Source">@(Uri.TryCreate(rule.Source, UriKind.Absolute, out var sourceUri) ? sourceUri.Host : rule.Source)</summary>
+                <small>@rule.Source</small>
+            </details></td>
+            <td>@foreach (var grant in grants) { <div><span data-utc-time="@grant.ExpiresAtUtc?.ToHtmlDateTime()"></span></div> }</td>
+            @if (canManageRules) { <td><a asp-action="PackageDetails" asp-route-id="@rule.PackagePolicyId">@Localizer["Manage version grants"]</a></td> }
         </tr>
     }
     </tbody></table></div>
@@ -186,6 +178,13 @@ else
 
 @if (canManageRules)
 {
+    @if (Model.LegacyRuleCount > 0)
+    {
+        <div class="alert alert-warning" role="alert"><div class="alert-message">
+            @Localizer["Legacy package-name patterns no longer grant access. Review concrete packages before migration."]
+            <a asp-action="MigrateLegacyRules">@Localizer["Review legacy rules"]</a>
+        </div></div>
+    }
     <div id="s360-catalog-manage" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Manage suppliers and trust rules"]</h2></div><div class="card-body">
         <form asp-action="AddSupplier" method="post" class="row g-2 mb-3">
             <div class="col"><input class="form-control" name="name" required minlength="2" maxlength="128" placeholder="@Localizer["Supplier name"]" /></div>
@@ -196,22 +195,22 @@ else
             <div class="col-md-3"><label class="form-label">@Localizer["Supplier"] <span class="s360-field-help" title="@Localizer["A label for grouping trust rules, not verified proof of a package publisher."]" aria-label="@Localizer["A label for grouping trust rules, not verified proof of a package publisher."]" tabindex="0">?</span></label><select name="supplierId" class="form-select" required><option value="">@Localizer["Supplier"]</option>
                 @foreach (var supplier in Model.Suppliers) { <option value="@supplier.Id">@supplier.Name</option> }
             </select></div>
-            <div class="col-md-3"><label class="form-label">@Localizer["Package pattern"] <span class="s360-field-help" title="@Localizer["A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft."]" aria-label="@Localizer["A trailing * covers a name prefix. Microsoft.* does not include the exact package Microsoft."]" tabindex="0">?</span></label><input class="form-control" name="packagePattern" required placeholder="Microsoft.* / @("@example/*")" /></div>
+            <div class="col-md-3"><label class="form-label">@Localizer["Exact package name"] <span class="s360-field-help" title="@Localizer["Approve one exact package name. New names need a separate approval."]" aria-label="@Localizer["Approve one exact package name. New names need a separate approval."]" tabindex="0">?</span></label><input class="form-control" name="packagePattern" required placeholder="Microsoft.Extensions.Logging" pattern="[^*]+" /></div>
             <div class="col-md-2"><label class="form-label">@Localizer["Version pattern"] <span class="s360-field-help" title="@Localizer["10.0.* can cover future releases. Prefer an exact version when the scope should be narrow."]" aria-label="@Localizer["10.0.* can cover future releases. Prefer an exact version when the scope should be narrow."]" tabindex="0">?</span></label><input class="form-control" name="version" required placeholder="10.0.*" /></div>
             <div class="col-md-4"><label class="form-label">@Localizer["Package source"] <span class="s360-field-help" title="@Localizer["The approved registry URL is part of the rule. The same package from a different source is not covered."]" aria-label="@Localizer["The approved registry URL is part of the rule. The same package from a different source is not covered."]" tabindex="0">?</span></label><input class="form-control" name="source" type="url" required placeholder="https://registry.example.com" /></div>
-            <div class="col-12 s360-inline-help"><i data-lucide="circle-help" aria-hidden="true"></i><span>@Localizer["A trailing * matches a name or version prefix. For example, System.* does not match the exact package System. A wildcard rule may admit future releases, so restrict its source and expiry."]</span></div>
+            <div class="col-12 s360-inline-help"><i data-lucide="circle-help" aria-hidden="true"></i><span>@Localizer["Package names are exact. A version range may allow future versions of this package only."]</span></div>
             <div class="col-md-5"><input class="form-control" name="justification" required minlength="10" maxlength="2000" placeholder="@Localizer["Approval reason"]" /></div>
             <div class="col-md-4"><label for="s360-rule-expiry" class="form-label">@Localizer["Expires at (UTC)"]</label><input id="s360-rule-expiry" class="form-control" name="expiresAtUtc" type="datetime-local" required /><div class="form-text">@Localizer["Enter the UTC time; this field does not convert your device's local time."]</div></div>
             <div class="col-md-3"><label class="form-check-label"><input type="checkbox" name="includePrerelease" value="true" /> @Localizer["Include prerelease"]</label></div>
             <div class="col-12"><button class="btn btn-primary">@Localizer["Approve rule"]</button>
-                <small class="text-warning ms-2">@Localizer["Wildcard rules automatically admit future versions; first-seen hashes are still recorded."]</small></div>
+                <small class="text-warning ms-2">@Localizer["Approved version ranges still require independent archive verification and vulnerability checks."]</small></div>
         </form>
         <div class="border-top mt-4 pt-3">
             <h3 class="h6">@Localizer["Preview a rule before approval"]</h3>
             <p class="small text-muted">@Localizer["Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision."]</p>
             <form asp-action="PreviewRule" method="get" class="row g-2">
                 <input type="hidden" name="ecosystem" value="@Model.Ecosystem" />
-                <div class="col-md-3"><input class="form-control" name="packagePattern" required maxlength="214" aria-label="@Localizer["Package pattern"]" placeholder="Microsoft.* / @("@example/*")" /></div>
+                <div class="col-md-3"><input class="form-control" name="packagePattern" required maxlength="214" aria-label="@Localizer["Exact package name"]" placeholder="Microsoft.Extensions.Logging" pattern="[^*]+" /></div>
                 <div class="col-md-2"><input class="form-control" name="version" required maxlength="128" aria-label="@Localizer["Version pattern"]" placeholder="10.0.*" /></div>
                 <div class="col-md-4"><input class="form-control" name="source" type="url" required maxlength="500" aria-label="@Localizer["Package source"]" placeholder="https://registry.example.com" /></div>
                 <div class="col-md-1"><label class="form-check-label small"><input type="checkbox" name="includePrerelease" value="true" /> @Localizer["Prerelease"]</label></div>

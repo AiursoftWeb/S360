@@ -62,7 +62,7 @@ public class RetryingTransactionTests
         await db.SaveChangesAsync();
         using var handler = new AdvisoryHandler();
         using var http = new HttpClient(handler);
-        var job = new VulnerabilityAuditJob(db, new OsvClient(http), new OsvWildcardFeed(http),
+        var job = new VulnerabilityAuditJob(db, new OsvClient(http),
             new AcceptingVerifier(), NullLogger<VulnerabilityAuditJob>.Instance);
         await job.ExecuteAsync();
         db.ChangeTracker.Clear();

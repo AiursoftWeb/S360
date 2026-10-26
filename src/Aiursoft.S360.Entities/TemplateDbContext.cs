@@ -12,6 +12,7 @@ public abstract class TemplateDbContext(DbContextOptions options) : IdentityDbCo
     public DbSet<ApiKey> ApiKeys => Set<ApiKey>();
     public DbSet<GlobalSetting> GlobalSettings => Set<GlobalSetting>();
     public DbSet<Supplier> Suppliers => Set<Supplier>();
+    public DbSet<PackagePolicy> PackagePolicies => Set<PackagePolicy>();
     public DbSet<TrustRule> TrustRules => Set<TrustRule>();
     public DbSet<TrustRuleReview> TrustRuleReviews => Set<TrustRuleReview>();
     public DbSet<BlockRule> BlockRules => Set<BlockRule>();
@@ -36,6 +37,11 @@ public abstract class TemplateDbContext(DbContextOptions options) : IdentityDbCo
         builder.Entity<ApiKey>().HasOne(k => k.User).WithMany().HasForeignKey(k => k.UserId)
             .OnDelete(DeleteBehavior.Cascade);
         builder.Entity<Supplier>().HasIndex(s => s.Name).IsUnique();
+        builder.Entity<PackagePolicy>().HasIndex(p => p.IdentityKey).IsUnique();
+        builder.Entity<TrustRule>().HasOne(r => r.PackagePolicy).WithMany(p => p.Grants)
+            .HasForeignKey(r => r.PackagePolicyId).OnDelete(DeleteBehavior.Restrict);
+        builder.Entity<TrustRule>().HasOne(r => r.LegacySourceRule).WithMany()
+            .HasForeignKey(r => r.LegacySourceRuleId).OnDelete(DeleteBehavior.Restrict);
         builder.Entity<TrustRule>().HasIndex(r => new { r.Ecosystem, r.Status });
         builder.Entity<TrustRule>().HasIndex(r => r.ExpiresAtUtc);
         builder.Entity<TrustRuleReview>().HasIndex(r => new { r.TrustRuleId, r.ReviewedAtUtc });
@@ -63,8 +69,30 @@ public abstract class TemplateDbContext(DbContextOptions options) : IdentityDbCo
     public virtual  Task MigrateAsync(CancellationToken cancellationToken) =>
         Database.MigrateAsync(cancellationToken);
 
-    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+    public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
+        // Exact grants share a package identity; legacy wildcard rows are retained only as history.
+        var grants = ChangeTracker.Entries<TrustRule>()
+            .Where(e => e.State is EntityState.Added or EntityState.Modified)
+            .Select(e => e.Entity).Where(r => !r.IsLegacyTemplate).ToList();
+        foreach (var grant in grants)
+        {
+            var key = PackagePolicy.CalculateIdentityKey(grant.Ecosystem, grant.PackagePattern, grant.Source);
+            var policy = PackagePolicies.Local.FirstOrDefault(p => p.IdentityKey == key) ??
+                await PackagePolicies.SingleOrDefaultAsync(p => p.IdentityKey == key, cancellationToken);
+            if (policy == null)
+            {
+                policy = new PackagePolicy
+                {
+                    Ecosystem = grant.Ecosystem, Name = grant.PackagePattern,
+                    NormalizedName = PackagePolicy.NormalizeName(grant.Ecosystem, grant.PackagePattern),
+                    Source = grant.Source, IdentityKey = key
+                };
+                PackagePolicies.Add(policy);
+            }
+            grant.PackagePolicy = policy;
+        }
+
         foreach (var entry in ChangeTracker.Entries<PackageArtifact>()
                      .Where(e => e.State is EntityState.Added or EntityState.Modified))
         {
@@ -72,7 +100,7 @@ public abstract class TemplateDbContext(DbContextOptions options) : IdentityDbCo
             artifact.IdentityKey = PackageArtifact.CalculateIdentityKey(artifact.Ecosystem,
                 artifact.Name, artifact.Version, artifact.Source, artifact.Sha256);
         }
-        return base.SaveChangesAsync(cancellationToken);
+        return await base.SaveChangesAsync(cancellationToken);
     }
 
     public virtual  Task<bool> CanConnectAsync() =>

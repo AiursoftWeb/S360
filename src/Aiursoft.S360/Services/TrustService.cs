@@ -8,6 +8,10 @@ namespace Aiursoft.S360.Services;
 
 public class TrustService(TemplateDbContext db) : IScopedDependency
 {
+    public static bool IsValidPackageName(string ecosystem, string name) =>
+        ecosystem is "nuget" or "npm" && TrustPattern.IsValid(name) && !name.Contains('*') &&
+        name is not ("." or "..") && (ecosystem != "nuget" || !name.Contains('/'));
+
     public async Task<List<DependencyDecision>> AssessAsync(IEnumerable<Dependency> dependencies) =>
         (await AssessCoreAsync(dependencies)).Decisions;
 
@@ -100,7 +104,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         var conflicting = requested.GroupBy(d => Identity(d.Ecosystem, d.Name, d.Version, TrustPattern.NormalizeSource(d.Source)))
             .Where(g => g.Select(d => d.Sha256.ToLowerInvariant()).Distinct().Skip(1).Any())
             .Select(g => g.Key).ToHashSet();
-        var rules = await db.TrustRules.AsNoTracking().Where(r => r.Status != TrustRuleStatus.Pending).ToListAsync();
+        var rules = await db.TrustRules.AsNoTracking().Include(r => r.PackagePolicy).Where(r => r.Status != TrustRuleStatus.Pending).ToListAsync();
         var blocks = await db.BlockRules.AsNoTracking().Where(r => r.Active).ToListAsync();
         var artifacts = await LoadMatchingArtifactsAsync(requested);
         var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
@@ -209,7 +213,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         if (block != null)
             return Decision(false, BlockRulePolicy.Explain(block, dependency.Name, dependency.Version), null);
         var matching = rules.Where(r => r.Ecosystem == dependency.Ecosystem && r.Source == source &&
-            TrustPattern.Matches(r.PackagePattern, dependency.Name, dependency.Ecosystem) &&
+            r.MatchesPackage(dependency.Name) &&
             TrustPattern.VersionMatches(r.Version, dependency.Version, dependency.Ecosystem, r.IncludePrerelease)).ToList();
         var denied = matching.FirstOrDefault(r => r.Status is TrustRuleStatus.Rejected or TrustRuleStatus.Revoked);
         if (denied != null) return Decision(false, "Explicitly rejected or revoked.", denied);

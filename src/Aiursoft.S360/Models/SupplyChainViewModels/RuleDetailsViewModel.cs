@@ -9,6 +9,7 @@ public class RuleDetailsViewModel : UiStackLayoutViewModel
     public RuleDetailsViewModel() => PageTitle = "Trust rule details";
     public required TrustRule Rule { get; init; }
     public List<TrustRuleVulnerabilityExclusion> Exclusions { get; init; } = [];
+    public List<TrustRule> DerivedRules { get; init; } = [];
     public List<RuleAdvisoryRange> AdvisoryRanges { get; init; } = [];
 }
 

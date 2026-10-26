@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>규칙은 패키지 사용을 허용합니다. 하지만 프로젝트가 해당 패키지를 실제로 사용하는지, 또는 허용된 버전에 취약점이 없는지를 증명하지는 않습니다.</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>이 패키지의 모든 버전 권한</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>승인됨</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>만료</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>과거 패키지 이름 패턴입니다. 이 규칙은 더 이상 접근 권한을 부여하지 않습니다.</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>포함</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>마이그레이션된 개별 권한 부여 항목</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>제외된 항목이 없습니다.</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>고정되지 않음</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>승인 항목은 처음 100개만 표시됩니다.</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>원래 규칙 및 승인 내역</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>패키지 패턴</value>

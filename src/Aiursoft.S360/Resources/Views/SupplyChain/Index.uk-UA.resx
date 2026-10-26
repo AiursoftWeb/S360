@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Причина погодження</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Затвердіть одну точну назву пакета. Нові назви потребують окремого затвердження.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Затвердити правило</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Для затверджених діапазонів версій усе одно потрібні незалежна перевірка архіву та перевірки на вразливості.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Востаннє перевірено (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Застарілі шаблони назв пакетів більше не надають доступу. Перед міграцією перевірте конкретні пакети.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Керування списком блокування</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Керування постачальниками та правилами довіри</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Керувати дозволами для версій</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Застосувати правила</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Назва пакета</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Назви пакетів мають бути точними. Діапазон версій може дозволяти лише майбутні версії цього пакета.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Шаблон пакета</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Зафіксовані артефакти</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Переглянути застарілі правила</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Скасувати</value>

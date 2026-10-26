@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>تسمح القاعدة باستخدام الحزم. ولا تثبت أن المشروع يستخدمها أو أن الإصدارات المصرح بها خالية من الثغرات.</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>جميع منح الإصدارات لهذه الحزمة</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>موافق عليه</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>تاريخ الانتهاء</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>نمط اسم حزمة قديم. لم تعد هذه القاعدة تمنح صلاحية الوصول.</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>مشمولة</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>التفويضات المحددة المُرحّلة</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>لم يتم تسجيل أي استثناءات.</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>غير مُثبّت</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>يتم عرض أول 100 من الأذونات فقط.</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>القاعدة الأصلية وسجل الموافقة</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>نمط الحزمة</value>

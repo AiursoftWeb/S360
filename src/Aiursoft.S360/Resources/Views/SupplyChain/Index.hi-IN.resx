@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>अनुमोदन का कारण</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>केवल एक सटीक पैकेज नाम को स्वीकृति दें। नए नामों के लिए अलग से स्वीकृति आवश्यक है।</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>नियम स्वीकृत करें</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>स्वीकृत संस्करण-सीमाओं के लिए भी स्वतंत्र संग्रह सत्यापन और भेद्यता जाँच आवश्यक है।</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>अंतिम जाँच (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>पैकेज नाम के पुराने पैटर्न अब पहुँच प्रदान नहीं करते। माइग्रेशन से पहले विशिष्ट पैकेजों की समीक्षा करें।</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>ब्लॉकलिस्ट प्रबंधित करें</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>आपूर्तिकर्ताओं और विश्वास नियमों का प्रबंधन करें</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>संस्करण अनुमतियाँ प्रबंधित करें</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>नियमों से मिलान करें</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>पैकेज का नाम</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>पैकेज के नाम सटीक होते हैं। संस्करण की सीमा केवल इसी पैकेज के भविष्य के संस्करणों को अनुमति दे सकती है।</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>पैकेज पैटर्न</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>रिकॉर्ड किए गए आर्टिफैक्ट</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>पुराने नियमों की समीक्षा करें</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>रद्द करें</value>

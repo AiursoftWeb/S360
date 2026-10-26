@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Lý do phê duyệt</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Phê duyệt một tên gói cụ thể. Tên mới cần được phê duyệt riêng.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Phê duyệt quy tắc</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Các phạm vi phiên bản đã được phê duyệt vẫn cần được xác minh độc lập kho lưu trữ và kiểm tra lỗ hổng bảo mật.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Lần kiểm tra gần nhất (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Các mẫu tên gói cũ không còn cấp quyền truy cập. Hãy xem xét các gói cụ thể trước khi di chuyển.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Quản lý danh sách chặn</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Quản lý nhà cung cấp và quy tắc tin cậy</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Quản lý các quyền cấp cho phiên bản</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Áp dụng quy tắc</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Tên gói</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Tên gói phải chính xác. Phạm vi phiên bản có thể chỉ cho phép các phiên bản tương lai của gói này.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Mẫu gói</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Tạo phẩm đã ghi nhận</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Xem xét các quy tắc cũ</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Thu hồi</value>

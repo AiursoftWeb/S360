@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>กฎอนุญาตให้ใช้แพ็กเกจ แต่ไม่ได้พิสูจน์ว่าโปรเจกต์ได้ใช้แพ็กเกจเหล่านั้น หรือว่าเวอร์ชันที่ได้รับอนุญาตปราศจากช่องโหว่</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>สิทธิ์ทั้งหมดสำหรับทุกเวอร์ชันของแพ็กเกจนี้</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>อนุมัติ</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>หมดอายุ</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>รูปแบบชื่อแพ็กเกจในอดีต กฎนี้ไม่อนุญาตให้เข้าถึงอีกต่อไป</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>รวมอยู่ด้วย</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>สิทธิ์ที่แปลงเป็นรายการเฉพาะแล้ว</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>ไม่มีรายการยกเว้นที่บันทึกไว้</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>ไม่ถูกล็อก</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>แสดงเฉพาะรายการอนุมัติ 100 รายการแรกเท่านั้น</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>กฎต้นฉบับและประวัติการอนุมัติ</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>แพทเทิร์นของแพ็กเกจ</value>

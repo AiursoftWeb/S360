@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Αιτιολογία έγκρισης</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Εγκρίνετε ένα συγκεκριμένο όνομα πακέτου. Για νέα ονόματα απαιτείται ξεχωριστή έγκριση.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Έγκριση κανόνα</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Τα εγκεκριμένα εύρη εκδόσεων εξακολουθούν να απαιτούν ανεξάρτητη επαλήθευση του αρχείου και ελέγχους ευπαθειών.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Τελευταίος έλεγχος (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Τα μοτίβα παλαιού τύπου για ονόματα πακέτων δεν παρέχουν πλέον πρόσβαση. Ελέγξτε τα συγκεκριμένα πακέτα πριν από τη μετάβαση.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Διαχείριση λίστας αποκλεισμού</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Διαχείριση προμηθευτών και κανόνων εμπιστοσύνης</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Διαχείριση εγκρίσεων εκδόσεων</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Έλεγχος κανόνων</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Όνομα πακέτου</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Τα ονόματα των πακέτων είναι ακριβή. Ένα εύρος εκδόσεων μπορεί να επιτρέπει μόνο μελλοντικές εκδόσεις αυτού του πακέτου.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Μοτίβο πακέτου</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Καταγεγραμμένα τεχνουργήματα</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Εξετάστε τους παλιούς κανόνες</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Ανάκληση</value>

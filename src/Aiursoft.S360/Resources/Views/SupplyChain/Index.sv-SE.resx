@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Skäl för godkännande</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Godkänn ett exakt paketnamn. Nya namn kräver ett separat godkännande.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Godkänn regel</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Godkända versionsintervall kräver fortfarande oberoende arkivverifiering och sårbarhetskontroller.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Senast kontrollerad (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Äldre mönster för paketnamn ger inte längre åtkomst. Granska de konkreta paketen före migreringen.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Hantera blockeringslista</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Hantera leverantörer och tillitsregler</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Hantera versionsbeviljanden</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Matcha regler</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Paketnamn</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Paketnamn är exakta. Ett versionsintervall kan endast tillåta framtida versioner av det här paketet.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Paketmönster</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Registrerade artefakter</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Granska äldre regler</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Återkalla</value>

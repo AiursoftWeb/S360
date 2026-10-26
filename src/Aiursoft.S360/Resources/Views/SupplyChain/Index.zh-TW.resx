@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>核准原因</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>核准一個確切的套件名稱。新名稱需要另外核准。</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>核准規則</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>已核准的版本範圍仍須經過獨立的封存檔驗證與漏洞檢查。</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>上次檢查時間（UTC）</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>舊版套件名稱模式不再授予存取權限。請在遷移前檢視具體套件。</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>管理封鎖清單</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>管理供應商與信任規則</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>管理版本授權</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>符合規則</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>套件名稱</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>套件名稱必須完全相符。版本範圍可能僅允許此套件的未來版本。</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>套件模式</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>已記錄的成品</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>檢視傳統規則</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>撤銷</value>

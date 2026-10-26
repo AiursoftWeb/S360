@@ -168,6 +168,9 @@
   <data name="Overview" xml:space="preserve">
     <value>總覽</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>套件授權</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>權限詳細資訊</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>申請新增相依項目</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>檢視舊版套件規則</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>角色詳細資訊</value>

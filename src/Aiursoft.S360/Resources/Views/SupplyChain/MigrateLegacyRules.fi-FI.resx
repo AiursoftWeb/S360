@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Approve selected migration" xml:space="preserve">
+    <value>Hyväksy valittu siirto</value>
+  </data>
+  <data name="Legacy wildcard rejections require a separate review before this migration can proceed." xml:space="preserve">
+    <value>Vanhat jokerimerkkihylkäykset vaativat erillisen tarkistuksen ennen kuin tämä siirto voi jatkua.</value>
+  </data>
+  <data name="Original rule" xml:space="preserve">
+    <value>Alkuperäinen sääntö</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Paketti</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Syy</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>Tarkastele vanhoja pakettisääntöjä</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Valitse</value>
+  </data>
+  <data name="Select verified, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
+    <value>Valitse vahvistetut, tarkat pakettien nimet, joille kukin alkuperäinen versio-oikeus siirretään. Alkuperäiset säännöt ja hyväksynnät säilyvät luettavissa olevana historiatietona. Mitään ei valita automaattisesti.</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>Lähde</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versio</value>
+  </data>
+
+</root>

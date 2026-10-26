@@ -168,6 +168,9 @@
   <data name="Overview" xml:space="preserve">
     <value>概要</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>パッケージの承認</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>権限の詳細</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>新しい依存関係をリクエストする</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>従来のパッケージルールを確認</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>ロール詳細</value>

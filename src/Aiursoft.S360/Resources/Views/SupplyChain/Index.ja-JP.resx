@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>承認理由</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>正確なパッケージ名を1つ承認します。新しい名前には個別の承認が必要です。</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>ルールを承認</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>承認済みのバージョン範囲であっても、独立したアーカイブ検証と脆弱性チェックが必要です。</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>最終確認日時（UTC）</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>従来のパッケージ名パターンでは、アクセスが許可されなくなりました。移行する前に、個々のパッケージを確認してください。</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>ブロックリストを管理</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>サプライヤーと信頼ルールの管理</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>バージョン付与を管理</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>ルールを照合</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>パッケージ名</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>パッケージ名は完全一致です。バージョン範囲を指定すると、このパッケージの将来のバージョンのみが許可される場合があります。</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>パッケージのパターン</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>記録済みの成果物</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>従来のルールを確認</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>無効化</value>

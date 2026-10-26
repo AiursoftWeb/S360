@@ -168,6 +168,9 @@
   <data name="Overview" xml:space="preserve">
     <value>ภาพรวม</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>การอนุมัติแพ็กเกจ</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>รายละเอียดสิทธิ์การใช้งาน</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>ส่งคำขอเพิ่มรายการการพึ่งพาใหม่</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>ตรวจสอบกฎแพ็กเกจเดิม</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>รายละเอียดบทบาท</value>

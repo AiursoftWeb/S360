@@ -165,6 +165,9 @@
   <data name="Overview" xml:space="preserve">
     <value>نظرة عامة</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>تفويض الحزمة</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>تفاصيل الصلاحيات</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>طلب إضافة اعتماد جديد</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>مراجعة قواعد الحزم القديمة</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>تفاصيل الدور</value>

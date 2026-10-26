@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>سبب الموافقة</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>اعتمد اسم حزمة محددًا واحدًا. تتطلب الأسماء الجديدة اعتمادًا منفصلًا.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>اعتماد القاعدة</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>لا تزال نطاقات الإصدارات المعتمدة تتطلب التحقق المستقل من الأرشيف وفحص الثغرات الأمنية.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>آخر تحقق (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>لم تعد أنماط أسماء الحزم القديمة تمنح حق الوصول. راجع الحزم المحددة قبل الترحيل.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>إدارة قائمة الحظر</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>إدارة الموردين وقواعد الثقة</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>إدارة منح الإصدارات</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>مطابقة القواعد</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>اسم الحزمة</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>أسماء الحزم محددة بدقة. قد يتيح نطاق الإصدارات الإصدارات المستقبلية لهذه الحزمة فقط.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>نمط الحزمة</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>العناصر المسجّلة</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>راجع القواعد القديمة</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>إلغاء</value>

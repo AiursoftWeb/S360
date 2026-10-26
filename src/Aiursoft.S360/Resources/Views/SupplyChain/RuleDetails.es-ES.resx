@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Una regla concede permiso para usar paquetes. No demuestra que un proyecto los utilice ni que las versiones permitidas estén libres de vulnerabilidades.</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>Todas las autorizaciones para las versiones de este paquete</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>Aprobado</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>Caduca</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>Patrón histórico de nombre de paquete. Esta regla ya no concede acceso.</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>Incluido</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>Concesiones concretas migradas</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>No se han registrado exclusiones.</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>No fijado</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>Solo se muestran los primeros 100 permisos.</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>Regla original e historial de aprobaciones</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Patrón de paquete</value>

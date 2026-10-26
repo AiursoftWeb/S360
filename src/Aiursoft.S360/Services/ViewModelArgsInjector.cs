@@ -112,6 +112,9 @@ public class ViewModelArgsInjector(
         _ = localizer["Existing rule set"];
 
         _ = localizer["Trust rule details"];
+    
+        _ = localizer["Package authorization"];
+        _ = localizer["Review legacy package rules"];
     }
 
     public void InjectSimple(

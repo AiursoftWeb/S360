@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Motivo da aprovação</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Aprove um nome de pacote exato. Os novos nomes requerem uma aprovação separada.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Aprovar regra</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Os intervalos de versões aprovados continuam a exigir verificação independente dos arquivos e verificações de vulnerabilidades.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Última verificação (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Os padrões legados de nomes de pacotes já não concedem acesso. Reveja os pacotes específicos antes da migração.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Gerir a lista de bloqueio</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Gerir fornecedores e regras de confiança</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Gerir autorizações de versões</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Aplicar regras</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Nome do pacote</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Os nomes dos pacotes são exatos. Um intervalo de versões pode permitir apenas versões futuras deste pacote.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Padrão do pacote</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Artefactos registados</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Rever as regras antigas</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Revogar</value>

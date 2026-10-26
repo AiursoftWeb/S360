@@ -2144,7 +2144,7 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.TrustRules.Single(r => r.PackagePattern == packageName).Status = TrustRuleStatus.Approved;
+            db.TrustRules.Single(r => r.PackagePattern == packageName && r.Version == "1.0.0").Status = TrustRuleStatus.Approved;
             await db.SaveChangesAsync();
         }
         using (var scope = Server!.Services.CreateScope())
@@ -2170,7 +2170,7 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.BlockRules.Single(b => b.PackagePattern == packageName).Active = false;
-            db.TrustRules.Single(r => r.PackagePattern == rulePattern).Status = TrustRuleStatus.Revoked;
+            db.TrustRules.Single(r => r.PackagePattern == rulePattern && r.Version == "1.*").Status = TrustRuleStatus.Revoked;
             await db.SaveChangesAsync();
         }
         using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))

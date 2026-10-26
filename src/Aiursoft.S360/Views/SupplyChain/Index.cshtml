@@ -128,7 +128,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
                 else
                 { <a asp-action="RuleDetails" asp-route-id="@rule.Id"><code>@rule.PackagePattern</code></a> }
                 @if (grants.Any(r => Model.BlockedRuleReasons.ContainsKey(r.Id)))
-                { <span class="badge bg-danger">@Localizer["Overridden by blocklist"]</span> }
+                { <span class="badge bg-danger" title="@string.Join("; ", grants.Where(r => Model.BlockedRuleReasons.ContainsKey(r.Id)).Select(r => Model.BlockedRuleReasons[r.Id]))">@Localizer["Overridden by blocklist"]</span> }
             </td>
             <td>@foreach (var grant in grants) { <div><a asp-action="RuleDetails" asp-route-id="@grant.Id"><code>@grant.Version</code></a></div> }</td>
             <td class="s360-catalog-source"><details class="s360-catalog-source-details">

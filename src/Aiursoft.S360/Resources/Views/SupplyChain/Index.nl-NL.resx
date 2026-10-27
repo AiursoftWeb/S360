@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Reden voor goedkeuring</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Keur één exacte pakketnaam goed. Nieuwe namen vereisen een aparte goedkeuring.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Regel goedkeuren</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Goedgekeurde versiegebieden vereisen nog steeds onafhankelijke archiefverificatie en controles op kwetsbaarheden.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Laatst gecontroleerd (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Oude patronen voor pakketnamen geven geen toegang meer. Controleer concrete pakketten voordat u migreert.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Blokkeerlijst beheren</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Beheer leveranciers en vertrouwensregels</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Versieverleningen beheren</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Regels toetsen</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Pakketnaam</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Pakketnamen zijn exact. Een versiebereik kan alleen toekomstige versies van dit pakket toestaan.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Pakketpatroon</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Geregistreerde artefacten</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Bekijk verouderde regels</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Intrekken</value>

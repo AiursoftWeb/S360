@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Правило разрешает использовать пакеты. Оно не доказывает, что проект их использует или что разрешённые версии не содержат уязвимостей.</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>Все разрешения на версии этого пакета</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>Одобрено</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>Срок действия</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>Исторический шаблон имени пакета. Это правило больше не предоставляет доступ.</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>Включены</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>Перенесённые точечные разрешения</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>Исключения не зарегистрированы.</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>Не зафиксирован</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>Показаны только первые 100 разрешений.</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>Исходное правило и история утверждений</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Шаблон пакета</value>

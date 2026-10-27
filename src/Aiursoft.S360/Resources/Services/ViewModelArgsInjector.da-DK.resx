@@ -165,6 +165,9 @@
   <data name="Overview" xml:space="preserve">
     <value>Oversigt</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>Pakkeautorisation</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Tilladelsesdetaljer</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Anmod om en ny afhængighed</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>Gennemgå ældre pakkeregler</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>Roledetaljer</value>

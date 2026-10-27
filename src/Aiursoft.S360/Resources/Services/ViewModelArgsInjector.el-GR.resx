@@ -165,6 +165,9 @@
   <data name="Overview" xml:space="preserve">
     <value>Επισκόπηση</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>Εξουσιοδότηση πακέτου</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Λεπτομέρειες Εξουσιοδότησης</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Ζητήστε μια νέα εξάρτηση</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>Επισκόπηση παλαιών κανόνων πακέτων</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>Λεπτομέρειες Ρόλου</value>

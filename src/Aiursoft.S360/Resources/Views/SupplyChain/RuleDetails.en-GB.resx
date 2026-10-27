@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are free of vulnerabilities.</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>All version grants for this package</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>Expires</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>Historical package-name pattern. This rule no longer grants access.</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>Included</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>Migrated specific permissions</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>No exclusions recorded.</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>Not pinned</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>Only the first 100 grants are shown.</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>Original rule and approval history</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Package pattern</value>

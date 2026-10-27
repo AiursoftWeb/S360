@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Sääntö antaa luvan pakettien käyttöön. Se ei kuitenkaan osoita, että projekti käyttää niitä tai että sallituissa versioissa ei ole haavoittuvuuksia.</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>Kaikki tämän paketin versioille myönnetyt käyttöoikeudet</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>Hyväksytty</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>Vaihtoehto</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>Historiallinen paketin nimimalli. Tämä sääntö ei enää myönnä pääsyä.</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>Sisällytetty</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>Siirretyt tarkat myöntöoikeudet</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>Ei merkittyä poikkeuksia.</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>Ei kiinnitetty</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>Vain ensimmäiset 100 valtuutusta näytetään.</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>Alkuperäinen sääntö ja hyväksyntähistoria</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Pakettikuvio</value>

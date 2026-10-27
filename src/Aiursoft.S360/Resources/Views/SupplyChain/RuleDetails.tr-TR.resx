@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Bir kural, paketlerin kullanılmasına izin verir. Ancak bir projenin bu paketleri kullandığını veya izin verilen sürümlerin güvenlik açıkları içermediğini kanıtlamaz.</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>Bu pakete ait tüm sürüm izinleri</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>Onaylandı</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>Son kullanma tarihi</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>Geçmişten kalma paket adı kalıbı. Bu kural artık erişim izni vermez.</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>Dahil</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>Aktarılan somut izinler</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>Kayıtlı hariç tutma yok.</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>Sabitlenmemiş</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>Yalnızca ilk 100 izin gösterilir.</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>Orijinal kural ve onay geçmişi</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Paket kalıbı</value>

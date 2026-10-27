@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Uzasadnienie zatwierdzenia</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Zatwierdź jedną dokładną nazwę pakietu. Nowe nazwy wymagają osobnego zatwierdzenia.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Zatwierdź regułę</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Zatwierdzone zakresy wersji nadal wymagają niezależnej weryfikacji archiwum i kontroli pod kątem podatności.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Ostatnio sprawdzono (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Starsze wzorce nazw pakietów nie przyznają już dostępu. Przed migracją przejrzyj konkretne pakiety.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Zarządzaj listą blokowanych</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Zarządzanie dostawcami i regułami zaufania</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Zarządzaj uprawnieniami wersji</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Sprawdź reguły</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Nazwa pakietu</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Nazwy pakietów muszą być dokładne. Zakres wersji może obejmować wyłącznie przyszłe wersje tego pakietu.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Wzorzec pakietu</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Zarejestrowane artefakty</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Przejrzyj starsze reguły</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Cofnij</value>

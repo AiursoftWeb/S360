@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Approved" xml:space="preserve">
+    <value>Disetujui</value>
+  </data>
+  <data name="Back to existing rule set" xml:space="preserve">
+    <value>Kembali ke kumpulan aturan yang ada</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Kedaluwarsa</value>
+  </data>
+  <data name="Only the first 50 projects are shown." xml:space="preserve">
+    <value>Hanya 50 proyek pertama yang ditampilkan.</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Menunggu</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Alasan</value>
+  </data>
+  <data name="Recorded project usage" xml:space="preserve">
+    <value>Penggunaan proyek yang tercatat</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Ditolak</value>
+  </data>
+  <data name="Revoke" xml:space="preserve">
+    <value>Cabut</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Dicabut</value>
+  </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="Supplier" xml:space="preserve">
+    <value>Pemasok</value>
+  </data>
+  <data name="These projects appear in recorded dependency reports, including history. This is not proof of current production use." xml:space="preserve">
+    <value>Proyek-proyek ini muncul dalam laporan dependensi yang tercatat, termasuk riwayat. Ini bukan bukti bahwa proyek-proyek tersebut saat ini digunakan di lingkungan produksi.</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>Versi</value>
+  </data>
+  <data name="Version grants are independent. Approval of this package does not approve other package names or registries." xml:space="preserve">
+    <value>Pemberian persetujuan untuk versi bersifat independen. Persetujuan untuk paket ini tidak berarti persetujuan untuk nama paket atau registri lainnya.</value>
+  </data>
+
+</root>

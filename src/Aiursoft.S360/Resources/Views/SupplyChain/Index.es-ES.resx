@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Motivo de la aprobación</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Aprueba un nombre exacto de paquete. Los nombres nuevos requieren una aprobación independiente.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Aprobar regla</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Los intervalos de versiones aprobados siguen requiriendo una verificación independiente del archivo y comprobaciones de vulnerabilidades.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Última comprobación (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Los patrones heredados de nombres de paquetes ya no conceden acceso. Revisa los paquetes concretos antes de migrar.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Gestionar la lista de bloqueo</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Gestionar proveedores y reglas de confianza</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Gestionar autorizaciones de versiones</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Aplicar reglas</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Nombre del paquete</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Los nombres de los paquetes son exactos. Un rango de versiones puede permitir únicamente versiones futuras de este paquete.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Patrón de paquete</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Artefactos registrados</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Revisar las reglas heredadas</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Revocar</value>

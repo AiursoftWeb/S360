@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>規則只會授權使用套件，並不能證明某個專案實際上有使用這些套件，也不能證明獲准使用的版本沒有漏洞。</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>此套件的所有版本授權</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>已批准</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>到期時間</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>歷史套件名稱模式。此規則已不再授予存取權限。</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>包括</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>已遷移的具體授權</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>沒有記錄任何排除項目。</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>未固定</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>只顯示首 100 項授權。</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>原有規則及審批記錄</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>套件模式</value>

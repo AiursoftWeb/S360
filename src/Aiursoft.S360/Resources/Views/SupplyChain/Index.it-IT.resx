@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Motivo dell’approvazione</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Approva un nome esatto del pacchetto. I nuovi nomi richiedono un’approvazione separata.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Approva regola</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Gli intervalli di versioni approvati richiedono comunque la verifica indipendente degli archivi e i controlli delle vulnerabilità.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Ultimo controllo (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>I pattern legacy dei nomi dei pacchetti non concedono più l&apos;accesso. Esamina i pacchetti specifici prima della migrazione.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Gestisci la blocklist</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Gestisci i fornitori e le regole di attendibilità</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Gestisci concessioni di versione</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Verifica le regole</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Nome del pacchetto</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>I nomi dei pacchetti sono esatti. Un intervallo di versioni può consentire solo versioni future di questo pacchetto.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Modello del pacchetto</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Artefatti registrati</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Esamina le regole legacy</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Revoca</value>

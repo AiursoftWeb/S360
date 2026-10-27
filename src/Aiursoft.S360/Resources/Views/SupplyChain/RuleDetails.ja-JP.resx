@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>ルールはパッケージの使用を許可します。ただし、プロジェクトがそれらを使用していることを証明するものではなく、許可されたバージョンが脆弱性がないことを保証するものでもありません。</value>
   </data>
+  <data name="All version grants for this package" xml:space="preserve">
+    <value>このパッケージのすべてのバージョンに対する許可</value>
+  </data>
   <data name="Approved" xml:space="preserve">
     <value>承認済み</value>
   </data>
@@ -45,8 +48,14 @@
   <data name="Expires" xml:space="preserve">
     <value>有効期限</value>
   </data>
+  <data name="Historical package-name pattern. This rule no longer grants access." xml:space="preserve">
+    <value>過去のパッケージ名パターンです。このルールでは、アクセス権が付与されなくなりました。</value>
+  </data>
   <data name="Included" xml:space="preserve">
     <value>含む</value>
+  </data>
+  <data name="Migrated concrete grants" xml:space="preserve">
+    <value>移行された具体的な許可</value>
   </data>
   <data name="No exclusions recorded." xml:space="preserve">
     <value>除外は記録されていません。</value>
@@ -62,6 +71,12 @@
   </data>
   <data name="Not pinned" xml:space="preserve">
     <value>固定されていません</value>
+  </data>
+  <data name="Only the first 100 grants are shown." xml:space="preserve">
+    <value>最初の100件の許可のみ表示されています。</value>
+  </data>
+  <data name="Original rule and approval history" xml:space="preserve">
+    <value>元のルールと承認履歴</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>パッケージのパターン</value>

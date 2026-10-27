@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>เหตุผลในการอนุมัติ</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>อนุมัติชื่อแพ็กเกจแบบตรงกันทุกประการเพียงชื่อเดียว ชื่อใหม่ต้องได้รับการอนุมัติแยกต่างหาก</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>อนุมัติกฎ</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>ช่วงเวอร์ชันที่อนุมัติยังต้องผ่านการตรวจสอบไฟล์เก็บถาวรโดยอิสระและการตรวจสอบช่องโหว่</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>ตรวจสอบล่าสุด (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>รูปแบบชื่อแพ็กเกจแบบเดิมไม่สามารถให้สิทธิ์เข้าถึงได้อีกต่อไป โปรดตรวจสอบแพ็กเกจที่ระบุอย่างชัดเจนก่อนย้ายข้อมูล</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>จัดการรายการบล็อก</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>จัดการซัพพลายเออร์และกฎความน่าเชื่อถือ</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>จัดการสิทธิ์การอนุมัติเวอร์ชัน</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>จับคู่กับกฎ</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>ชื่อแพ็กเกจ</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>ชื่อแพ็กเกจต้องตรงกันทุกประการ ช่วงเวอร์ชันอาจอนุญาตเฉพาะเวอร์ชันในอนาคตของแพ็กเกจนี้เท่านั้น</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>รูปแบบแพ็กเกจ</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>รายการอาร์ติแฟกต์ที่บันทึกไว้</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>ตรวจสอบกฎเดิม</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>เพิกถอน</value>

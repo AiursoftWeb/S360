@@ -168,6 +168,9 @@
   <data name="Overview" xml:space="preserve">
     <value>Overview</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>Package authorisation</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Permission Details</value>
   </data>
@@ -194,6 +197,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Request a new dependency</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>Review legacy package rules</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>Role Details</value>

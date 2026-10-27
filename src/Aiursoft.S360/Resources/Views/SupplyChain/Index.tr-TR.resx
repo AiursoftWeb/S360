@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Onay gerekçesi</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Tam bir paket adını onaylayın. Yeni adlar için ayrı bir onay gerekir.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Kuralı Onayla</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Onaylanmış sürüm aralıkları için yine de bağımsız arşiv doğrulaması ve güvenlik açığı kontrolleri gerekir.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Son kontrol (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Eski paket adı kalıpları artık erişim izni vermez. Geçişten önce belirli paketleri gözden geçirin.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Engellenenler listesini yönet</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Tedarikçileri ve güven kurallarını yönetin</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Sürüm yetkilerini yönet</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Kuralları eşleştir</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Paket adı</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Paket adları tam olarak eşleşmelidir. Sürüm aralığı yalnızca bu paketin gelecekteki sürümlerine izin verebilir.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Paket kalıbı</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Kaydedilen eserler</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Eski kuralları gözden geçir</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>İptal et</value>

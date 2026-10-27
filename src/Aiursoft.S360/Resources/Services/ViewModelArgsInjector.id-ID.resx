@@ -165,6 +165,9 @@
   <data name="Overview" xml:space="preserve">
     <value>Ringkasan</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>Otorisasi Paket</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Detail Izin</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Ajukan dependensi baru</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>Tinjau aturan paket lama</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>Detail Peran</value>

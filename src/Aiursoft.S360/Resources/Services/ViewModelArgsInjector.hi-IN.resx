@@ -165,6 +165,9 @@
   <data name="Overview" xml:space="preserve">
     <value>अवलोकन</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>पैकेज प्राधिकरण</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>अनुमति विवरण</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>नई निर्भरता का अनुरोध करें</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>विरासत में मिले पैकेज नियमों की समीक्षा करें</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>भूमिका विवरण</value>

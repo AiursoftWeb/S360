@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Hyväksynnän syy</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Hyväksy yksi tarkka pakettinimi. Uudet nimet vaativat erillisen hyväksynnän.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Hyväksy sääntö</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Hyväksytyt versiovalikoimat edellyttävät edelleen itsenäisen arkistivarmennuksen ja haavoittuvuuksien tarkistuksen.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Viimeksi tarkistettu (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Vanhat pakettinimikuviot eivät enää anna käyttöoikeutta. Tarkista yksittäiset paketit ennen siirtymistä.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Hallitse estolistaa</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Hallitse toimittajia ja luottamussääntöjä</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Hallinnoi version käyttöoikeuksia</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Tarkista säännöt</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Pakettinimi</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Pakettien nimet ovat täsmällisiä. Versioalue voi sallia vain tämän paketin tulevat versiot.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Pakettimalli</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Tallennetut artefaktit</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Tarkista vanhat säännöt</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Peruuta</value>

@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Motif de l’approbation</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Approuvez un nom de package précis. Tout nouveau nom doit faire l’objet d’une approbation distincte.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Approuver la règle</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Les plages de versions approuvées nécessitent toujours une vérification indépendante des archives et des contrôles de vulnérabilité.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Dernière vérification (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Les motifs hérités de noms de packages ne donnent plus accès. Vérifiez les packages concernés avant la migration.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Gérer la liste de blocage</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Gérer les fournisseurs et les règles de confiance</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Gérer les autorisations de version</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Vérifier les règles</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Nom du package</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Les noms des packages sont exacts. Une plage de versions peut autoriser uniquement les versions futures de ce package.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Motif de package</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Artefacts enregistrés</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Examiner les règles héritées</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Révoquer</value>

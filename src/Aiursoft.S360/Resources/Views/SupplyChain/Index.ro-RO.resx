@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Motivul aprobării</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Aprobați un singur nume exact de pachet. Numele noi necesită o aprobare separată.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Aprobă regula</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Intervalele de versiuni aprobate necesită în continuare verificarea independentă a arhivei și verificări privind vulnerabilitățile.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Ultima verificare (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Modelele vechi de nume de pachete nu mai acordă acces. Verificați pachetele concrete înainte de migrare.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Gestionează lista de blocare</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Gestionați furnizorii și regulile de încredere</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Gestionați aprobările pentru versiuni</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Verifică regulile</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Numele pachetului</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Numele pachetelor sunt exacte. Un interval de versiuni poate permite doar versiuni viitoare ale acestui pachet.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Model de pachet</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Artefacte înregistrate</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Revizuiți regulile vechi</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Revocă</value>

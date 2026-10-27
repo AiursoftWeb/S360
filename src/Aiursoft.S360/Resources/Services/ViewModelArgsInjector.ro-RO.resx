@@ -165,6 +165,9 @@
   <data name="Overview" xml:space="preserve">
     <value>Prezentare generală</value>
   </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>Autorizarea pachetului</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Detalii permisiuni</value>
   </data>
@@ -191,6 +194,9 @@
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Solicitați o nouă dependență</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>Revizuirea regulilor vechi pentru pachete</value>
   </data>
   <data name="Role Details" xml:space="preserve">
     <value>Detalii Rol</value>

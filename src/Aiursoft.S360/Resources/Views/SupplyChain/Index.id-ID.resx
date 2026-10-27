@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Alasan persetujuan</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Setujui satu nama paket yang persis. Nama baru memerlukan persetujuan terpisah.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Setujui aturan</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Rentang versi yang disetujui tetap memerlukan verifikasi arsip secara independen dan pemeriksaan kerentanan.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Terakhir diperiksa (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Pola nama paket lama tidak lagi memberikan akses. Tinjau paket tertentu sebelum migrasi.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Kelola daftar blokir</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Kelola pemasok dan aturan kepercayaan</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Kelola pemberian izin versi</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Cocokkan aturan</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Nama paket</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Nama paket harus persis. Rentang versi mungkin hanya mengizinkan versi mendatang dari paket ini.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Pola paket</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Artefak yang Tercatat</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Tinjau aturan lama</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Cabut</value>

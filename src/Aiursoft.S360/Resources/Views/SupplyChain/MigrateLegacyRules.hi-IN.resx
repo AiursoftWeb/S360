@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Approve selected migration" xml:space="preserve">
+    <value>चयनित माइग्रेशन को मंज़ूरी दें</value>
+  </data>
+  <data name="Legacy wildcard rejections require a separate review before this migration can proceed." xml:space="preserve">
+    <value>इस माइग्रेशन को आगे बढ़ाने से पहले पुराने वाइल्डकार्ड अस्वीकृतियों की अलग से समीक्षा करना आवश्यक है।</value>
+  </data>
+  <data name="Original rule" xml:space="preserve">
+    <value>मूल नियम</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>पैकेज</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>कारण</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>पुराने पैकेज नियमों की समीक्षा करें</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>चुनें</value>
+  </data>
+  <data name="Select verified, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
+    <value>प्रत्येक मूल संस्करण की अनुमति प्राप्त करने के लिए सत्यापित, स्पष्ट पैकेज नाम चुनें। मूल नियम और अनुमोदन पढ़ने योग्य इतिहास के रूप में बने रहेंगे। कुछ भी अपने आप नहीं चुना जाएगा।</value>
+  </data>
+  <data name="Source" xml:space="preserve">
+    <value>स्रोत</value>
+  </data>
+  <data name="Version" xml:space="preserve">
+    <value>संस्करण</value>
+  </data>
+
+</root>

@@ -45,8 +45,14 @@
   <data name="Approval reason" xml:space="preserve">
     <value>Reason for approval</value>
   </data>
+  <data name="Approve one exact package name. New names need a separate approval." xml:space="preserve">
+    <value>Approve a single exact package name. New names require separate approval.</value>
+  </data>
   <data name="Approve rule" xml:space="preserve">
     <value>Approve rule</value>
+  </data>
+  <data name="Approved version ranges still require independent archive verification and vulnerability checks." xml:space="preserve">
+    <value>Approved version ranges still require independent archive verification and vulnerability checks.</value>
   </data>
   <data name="Authorization" xml:space="preserve">
     <value>Authorization</value>
@@ -102,6 +108,9 @@
   <data name="Last checked (UTC)" xml:space="preserve">
     <value>Last checked (UTC)</value>
   </data>
+  <data name="Legacy package-name patterns no longer grant access. Review concrete packages before migration." xml:space="preserve">
+    <value>Legacy package name patterns no longer grant access. Review specific packages before migrating.</value>
+  </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Manage blocklist</value>
   </data>
@@ -110,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Manage suppliers and trust rules</value>
+  </data>
+  <data name="Manage version grants" xml:space="preserve">
+    <value>Manage version grants</value>
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Apply rules</value>
@@ -131,6 +143,9 @@
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Package name</value>
+  </data>
+  <data name="Package names are exact. A version range may allow future versions of this package only." xml:space="preserve">
+    <value>Package names are exact. A version range may allow future versions of this package only.</value>
   </data>
   <data name="Package pattern" xml:space="preserve">
     <value>Package pattern</value>
@@ -155,6 +170,9 @@
   </data>
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Recorded artefacts</value>
+  </data>
+  <data name="Review legacy rules" xml:space="preserve">
+    <value>Review legacy rules</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Revoke</value>

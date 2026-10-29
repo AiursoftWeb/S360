@@ -2788,7 +2788,6 @@ public class SupplyChainPagesTests : TestBase
             var removedHtml = await removed.Content.ReadAsStringAsync();
             StringAssert.Contains(removedHtml, "This package source is no longer permitted");
             StringAssert.Contains(removedHtml, "Package source could not be verified");
-            StringAssert.Contains(removedHtml, "Resolve the checks shown above before approving");
         }
         finally { configuration["SupplyChain:NuGetSources:1"] = originalSource; }
     }

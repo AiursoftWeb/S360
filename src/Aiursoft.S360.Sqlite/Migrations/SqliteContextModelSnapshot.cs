@@ -15,7 +15,7 @@ namespace Aiursoft.S360.Sqlite.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "10.0.13");
+            modelBuilder.HasAnnotation("ProductVersion", "10.0.14");
 
             modelBuilder.Entity("Aiursoft.S360.Entities.ApiKey", b =>
                 {
@@ -561,7 +561,7 @@ namespace Aiursoft.S360.Sqlite.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("SupplierId")
+                    b.Property<int?>("SupplierId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Version")
@@ -1132,9 +1132,7 @@ namespace Aiursoft.S360.Sqlite.Migrations
 
                     b.HasOne("Aiursoft.S360.Entities.Supplier", "Supplier")
                         .WithMany("Rules")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SupplierId");
 
                     b.Navigation("Application");
 

@@ -121,7 +121,7 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
     @foreach (var grants in Model.Rules.GroupBy(r => PackagePolicy.CalculateIdentityKey(r.Ecosystem, r.PackagePattern, r.Source)))
     {
         var rule = grants.First();
-        <tr><td>@string.Join(", ", grants.Select(r => r.Supplier.Name).Distinct())</td>
+        <tr><td>@string.Join(", ", grants.Select(r => r.Supplier?.Name ?? @Localizer["Not recorded"].Value).Distinct())</td>
             <td class="s360-catalog-package">
                 @if (rule.PackagePolicyId is { } policyId)
                 { <a asp-action="PackageDetails" asp-route-id="@policyId"><code>@rule.PackagePattern</code></a> }
@@ -159,7 +159,7 @@ else
         var method = rule.Sha256 != null ? Localizer["Pinned SHA-256"] :
             rule.PackagePattern.Contains('*') || rule.Version.Contains('*') ? Localizer["Wildcard rule"] : Localizer["Unpinned exact rule"];
         <tr><td class="s360-catalog-package"><a asp-action="Details" asp-route-id="@artifact.Id"><code>@artifact.Name</code></a></td>
-            <td>@artifact.Version</td><td>@rule.Supplier.Name</td>
+            <td>@artifact.Version</td><td>@(rule.Supplier?.Name ?? @Localizer["Not recorded"].Value)</td>
             <td><small>@method · #@rule.Id</small></td><td class="s360-catalog-date"><small><span data-utc-time="@rule.ExpiresAtUtc?.ToHtmlDateTime()"></span></small></td>
             <td><code title="@artifact.Sha256">@artifact.Sha256[..Math.Min(16, artifact.Sha256.Length)]…</code></td>
             <td class="s360-catalog-source">

@@ -17,7 +17,7 @@ namespace Aiursoft.S360.MySql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.13")
+                .HasAnnotation("ProductVersion", "10.0.14")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
@@ -588,7 +588,7 @@ namespace Aiursoft.S360.MySql.Migrations
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<int>("SupplierId")
+                    b.Property<int?>("SupplierId")
                         .HasColumnType("int");
 
                     b.Property<string>("Version")
@@ -1175,9 +1175,7 @@ namespace Aiursoft.S360.MySql.Migrations
 
                     b.HasOne("Aiursoft.S360.Entities.Supplier", "Supplier")
                         .WithMany("Rules")
-                        .HasForeignKey("SupplierId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SupplierId");
 
                     b.Navigation("Application");
 

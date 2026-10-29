@@ -492,7 +492,7 @@ public class SupplyChainPagesTests : TestBase
                      ("/SupplyChain/Index?tab=rules&ecosystem=nuget", "Exact versus wildcard"),
                      ("/SupplyChain/Blocklist?ecosystem=nuget", "How absolute blocking works"),
                      ("/DependencyRequests/Index", "Package source"),
-                     ("/DependencyReviews/Index", "Before you approve"),
+                     ("/DependencyReviews/Index", "Dependency approvals"),
                      ("/VulnerabilityAudit/Index?ecosystem=nuget", "Quick versus detailed audit"),
                      ("/BuildChecks/Index", "Accepted versus enforced")
                  })
@@ -500,7 +500,8 @@ public class SupplyChainPagesTests : TestBase
             using var response = await Http.GetAsync(path);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode, path);
             var html = await response.Content.ReadAsStringAsync();
-            StringAssert.Contains(html, "s360-concept-rail", path);
+            if (path != "/DependencyReviews/Index")
+                StringAssert.Contains(html, "s360-concept-rail", path);
             StringAssert.Contains(html, guideTitle, path);
             if (path.StartsWith("/SupplyChain/Index?tab=rules", StringComparison.Ordinal))
             {
@@ -2362,7 +2363,7 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
             artifactId = artifact.Id;
-            excludedSupplierId = excluded.SupplierId;
+            excludedSupplierId = excluded.SupplierId!.Value;
         }
         await LoginAsAdmin();
         using (var all = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
@@ -2768,12 +2769,14 @@ public class SupplyChainPagesTests : TestBase
         using var response = await Http.GetAsync("/DependencyReviews/Index?filter=pending");
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
-        StringAssert.Contains(html, "2 concrete package artifacts");
-        StringAssert.Contains(html, "1 match current authorization");
-        StringAssert.Contains(html, "1 need authorization");
-        StringAssert.Contains(html, "1 have an audit or policy hold");
-        StringAssert.Contains(html, newName + "@1.0.0");
-        StringAssert.Contains(html, approvedName + "@1.0.0");
+        StringAssert.Contains(html, "Already approved");
+        StringAssert.Contains(html, "Needs approval");
+        StringAssert.Contains(html, "Waiting for source verification");
+        StringAssert.Contains(html, "Waiting for an up-to-date vulnerability check");
+        StringAssert.Contains(html, newName);
+        StringAssert.Contains(html, approvedName);
+        Assert.IsFalse(html.Contains("name=\"supplierId\"", StringComparison.Ordinal));
+        Assert.IsFalse(html.Contains("s360-concept-rail", StringComparison.Ordinal));
 
         var configuration = GetService<IConfiguration>();
         var originalSource = configuration["SupplyChain:NuGetSources:1"];
@@ -2784,9 +2787,7 @@ public class SupplyChainPagesTests : TestBase
             removed.EnsureSuccessStatusCode();
             var removedHtml = await removed.Content.ReadAsStringAsync();
             StringAssert.Contains(removedHtml, "This package source is no longer permitted");
-            StringAssert.Contains(removedHtml, "0 match current authorization");
-            StringAssert.Contains(removedHtml, "0 need authorization");
-            StringAssert.Contains(removedHtml, "2 have a removed source");
+            StringAssert.Contains(removedHtml, "Package source could not be verified");
         }
         finally { configuration["SupplyChain:NuGetSources:1"] = originalSource; }
     }
@@ -3087,7 +3088,6 @@ public class SupplyChainPagesTests : TestBase
             new Dictionary<string, string>
             {
                 ["id"] = applicationId.ToString(), ["reportHash"] = hash,
-                ["supplierId"] = supplierId.ToString(),
                 ["expiresAtUtc"] = DateTime.UtcNow.AddDays(30).ToString("O"),
                 ["reason"] = "Reviewed the complete resolved package graph"
             }, tokenUrl: "/DependencyReviews/Index?filter=all");
@@ -3127,6 +3127,20 @@ public class SupplyChainPagesTests : TestBase
         using (var first = await Approve(reportHash))
             Assert.AreEqual(HttpStatusCode.Redirect, first.StatusCode,
                 await first.Content.ReadAsStringAsync());
+        Dictionary<int, int?> supplierAssignments;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var grants = await db.TrustRules.Where(r => r.ApplicationId == applicationId).OrderBy(r => r.Id).ToListAsync();
+            Assert.IsTrue(grants.All(r => r.SupplierId == null), "Approving a report must not invent a supplier.");
+            var otherSupplier = new Supplier { Name = "Independent dependency vendor " + suffix };
+            db.Suppliers.Add(otherSupplier);
+            await db.SaveChangesAsync();
+            grants[0].SupplierId = supplierId;
+            grants[1].SupplierId = otherSupplier.Id;
+            await db.SaveChangesAsync();
+            supplierAssignments = grants.ToDictionary(r => r.Id, r => r.SupplierId);
+        }
         using (var second = await Approve(reportHash))
             Assert.AreEqual(HttpStatusCode.Redirect, second.StatusCode);
 
@@ -3156,7 +3170,10 @@ public class SupplyChainPagesTests : TestBase
         Assert.IsTrue(reviews.All(r => r.ReportHash == reportHash));
         Assert.AreEqual(2, reviews.Select(r => r.DecisionBatchId).Distinct().Count());
         Assert.IsTrue(reviews.GroupBy(r => r.DecisionBatchId).All(group => group.Count() == 2));
-        Assert.AreEqual(2, verifyDb.TrustRules.Count(r => r.ApplicationId == applicationId));
+        var renewedGrants = verifyDb.TrustRules.Where(r => r.ApplicationId == applicationId).ToList();
+        Assert.AreEqual(2, renewedGrants.Count);
+        Assert.IsTrue(renewedGrants.All(r => r.SupplierId == supplierAssignments[r.Id]),
+            "Renewing mixed-publisher packages must preserve each existing supplier.");
     }
 
     [TestMethod]

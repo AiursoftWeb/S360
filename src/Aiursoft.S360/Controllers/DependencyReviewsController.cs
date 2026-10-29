@@ -57,8 +57,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             ExpiredCount = await expired.CountAsync(),
             Total = total,
             Applications = await filtered.OrderByDescending(a => a.CreatedAtUtc).ThenByDescending(a => a.Id)
-                .Skip((page - 1) * 50).Take(50).ToListAsync(),
-            Suppliers = await db.Suppliers.AsNoTracking().OrderBy(s => s.Name).ToListAsync()
+                .Skip((page - 1) * 50).Take(50).ToListAsync()
         };
         model.ApplicationsWithRemovedSources = model.Applications
             .Where(application => !AllowedPackageSources.Contains(configuration,
@@ -94,22 +93,24 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             }, currentRules, currentBlocks, now, currentExclusions).Trusted);
             var cleared = artifacts.Zip(decisions).ToDictionary(pair => pair.First.Id,
                 pair => sourcePermitted[pair.First.Id] && pair.Second.Trusted);
+            var audit = await db.VulnerabilitySyncStates.AsNoTracking()
+                .Select(s => new { s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc }).FirstOrDefaultAsync();
+            var artifactIds = artifacts.Select(a => a.Id).ToList();
+            var affectedIds = (await db.VulnerabilityMatches.AsNoTracking()
+                .Where(m => artifactIds.Contains(m.PackageArtifactId) && m.Active && !m.Vulnerability.Withdrawn)
+                .Select(m => m.PackageArtifactId).ToListAsync()).ToHashSet();
             foreach (var group in reportPackages.GroupBy(p => p.ApplicationId))
             {
                 var entries = group.ToList();
-                var sourceRemoved = entries.Count(p => !sourcePermitted.GetValueOrDefault(p.PackageArtifactId));
-                var needingReview = entries.Where(p => sourcePermitted.GetValueOrDefault(p.PackageArtifactId) &&
-                        !authorized.GetValueOrDefault(p.PackageArtifactId))
-                    .Select(p => $"{p.PackageArtifact.Name}@{p.PackageArtifact.Version}")
-                    .OrderBy(name => name, StringComparer.Ordinal).ToList();
-                var onHold = entries.Where(p => authorized.GetValueOrDefault(p.PackageArtifactId) &&
-                        !cleared.GetValueOrDefault(p.PackageArtifactId))
-                    .Select(p => $"{p.PackageArtifact.Name}@{p.PackageArtifact.Version}")
-                    .OrderBy(name => name, StringComparer.Ordinal).ToList();
-                model.ScopeByApplicationId[group.Key] = new ReviewApplicationScope(entries.Count,
-                    entries.Count - needingReview.Count - sourceRemoved,
-                    entries.Count - needingReview.Count - sourceRemoved - onHold.Count, sourceRemoved,
-                    needingReview.Take(5).ToList(), onHold.Take(5).ToList());
+                model.PackagesByApplicationId[group.Key] = entries
+                    .OrderByDescending(p => p.IsDirect).ThenBy(p => p.PackageArtifact.Name)
+                    .Select(p => new ReviewPackageLine(p.PackageArtifact, p.IsDirect,
+                        authorized.GetValueOrDefault(p.PackageArtifactId),
+                        sourcePermitted.GetValueOrDefault(p.PackageArtifactId),
+                        VulnerabilityAuditFreshness.IsCurrent(p.PackageArtifact.LastCheckedAtUtc,
+                            audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now),
+                        affectedIds.Contains(p.PackageArtifactId), cleared.GetValueOrDefault(p.PackageArtifactId)))
+                    .ToList();
             }
         }
         return this.StackView(model);
@@ -117,11 +118,11 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
 
     [Authorize(Policy = AppPermissionNames.CanReviewDependencyRequests)]
     [HttpPost, ValidateAntiForgeryToken]
-    public async Task<IActionResult> Approve(int id, string reportHash, int supplierId,
+    public async Task<IActionResult> Approve(int id, string reportHash,
         DateTime expiresAtUtc, string reason)
-        => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => ApproveSnapshotAsync(id, reportHash, supplierId, expiresAtUtc, reason));
+        => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => ApproveSnapshotAsync(id, reportHash, expiresAtUtc, reason));
 
-    private async Task<IActionResult> ApproveSnapshotAsync(int id, string reportHash, int supplierId,
+    private async Task<IActionResult> ApproveSnapshotAsync(int id, string reportHash,
         DateTime expiresAtUtc, string reason)
     {
         expiresAtUtc = UtcExpiry.Normalize(expiresAtUtc);
@@ -147,7 +148,6 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
         var userId = users.GetUserId(User);
         if (userId == null) return Unauthorized();
         if (userId == application.RequestedByUserId) return BadRequest("Applicants cannot approve their own requests.");
-        if (!await db.Suppliers.AnyAsync(s => s.Id == supplierId)) return BadRequest("Select an existing supplier.");
 
         var now = DateTime.UtcNow;
         var audit = await db.VulnerabilitySyncStates.AsNoTracking()
@@ -228,7 +228,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             {
                 existing = new TrustRule
                 {
-                    ApplicationId = application.Id, SupplierId = supplierId, Ecosystem = artifact.Ecosystem,
+                    ApplicationId = application.Id, Ecosystem = artifact.Ecosystem,
                     PackagePattern = artifact.Name, Version = artifact.Version, Source = artifact.Source,
                     Sha256 = artifact.Sha256, RequestedByUserId = application.RequestedByUserId,
                     Justification = application.Justification, Status = TrustRuleStatus.Approved,
@@ -240,7 +240,6 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             {
                 existing.Status = TrustRuleStatus.Approved;
                 existing.ExpiresAtUtc = expiresAtUtc;
-                existing.SupplierId = supplierId;
             }
             db.TrustRuleReviews.Add(new TrustRuleReview
             {

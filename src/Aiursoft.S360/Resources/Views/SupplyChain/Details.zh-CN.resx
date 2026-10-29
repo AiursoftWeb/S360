@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>已批准的请求报告中未记录父级关系。此软件包可能是直接请求的。</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>未记录</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>仅显示前 100 条关系。</value>
   </data>

@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>未固定</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>未记录</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>仅显示前 100 条授权。</value>
   </data>

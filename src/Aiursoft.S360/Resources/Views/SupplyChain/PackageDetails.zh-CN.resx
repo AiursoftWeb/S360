@@ -27,6 +27,9 @@
   <data name="Expires" xml:space="preserve">
     <value>到期时间</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>未记录</value>
+  </data>
   <data name="Only the first 50 projects are shown." xml:space="preserve">
     <value>仅显示前 50 个项目。</value>
   </data>

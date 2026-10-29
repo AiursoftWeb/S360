@@ -52,7 +52,7 @@
             <dt class="col-sm-3">@Localizer["Package pattern"]</dt><dd class="col-sm-9 text-break"><code>@rule.PackagePattern</code></dd>
             <dt class="col-sm-3">@Localizer["Version pattern"]</dt><dd class="col-sm-9"><code>@rule.Version</code></dd>
             <dt class="col-sm-3">@Localizer["Source"]</dt><dd class="col-sm-9 text-break">@rule.Source</dd>
-            <dt class="col-sm-3">@Localizer["Supplier"]</dt><dd class="col-sm-9">@rule.Supplier.Name</dd>
+            <dt class="col-sm-3">@Localizer["Supplier"]</dt><dd class="col-sm-9">@(rule.Supplier?.Name ?? @Localizer["Not recorded"].Value)</dd>
             <dt class="col-sm-3">@Localizer["Prerelease versions"]</dt><dd class="col-sm-9">@(rule.IncludePrerelease ? @Localizer["Included"] : @Localizer["Excluded"])</dd>
             <dt class="col-sm-3">@Localizer["SHA-256"]</dt><dd class="col-sm-9 text-break">@(rule.Sha256 ?? @Localizer["Not pinned"].Value)</dd>
             <dt class="col-sm-3">@Localizer["Expires"]</dt><dd class="col-sm-9">

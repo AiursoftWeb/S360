@@ -12,107 +12,147 @@
 }
 
 <div class="s360-workspace">
-<div class="s360-workspace-head">
-<h1>@Localizer["Dependency approvals"]</h1>
-<p>@Localizer["Review the complete report before making a batch decision. The action is bound to its report hash."]</p>
-</div>
-<div class="s360-workspace-layout">
-<div class="s360-workspace-main">
-<nav class="mb-3 d-flex gap-2 flex-wrap">
-    <a class="btn @(Model.Filter == "pending" ? "btn-primary" : "btn-outline-primary")" asp-action="Index" asp-route-filter="pending">@Localizer["Pending"] (@Model.PendingCount)</a>
-    <a class="btn @(Model.Filter == "expiring" ? "btn-warning" : "btn-outline-warning")" asp-action="Index" asp-route-filter="expiring">@Localizer["Expiring within 30 days"] (@Model.ExpiringCount)</a>
-    <a class="btn @(Model.Filter == "expired" ? "btn-danger" : "btn-outline-danger")" asp-action="Index" asp-route-filter="expired">@Localizer["Expired"] (@Model.ExpiredCount)</a>
-    <a class="btn @(Model.Filter == "all" ? "btn-secondary" : "btn-outline-secondary")" asp-action="Index" asp-route-filter="all">@Localizer["All review records"]</a>
-</nav>
-<p>@Model.Total @Localizer["records in this view"]</p>
-
-@foreach (var application in Model.Applications)
-{
-    <div class="card mb-3"><div class="card-header d-flex justify-content-between">
-        <strong>@Localizer["Request"] #@application.Id — @application.Ecosystem — @application.Status</strong>
-        <small><span data-utc-time="@application.CreatedAtUtc.ToHtmlDateTime()"></span></small>
-    </div><div class="card-body">
-        <p>@application.Justification</p>
-        <p>@Localizer["Project"]: @application.Project · @Localizer["Source"]: <code>@application.Source</code></p>
-        @if (Model.ApplicationsWithRemovedSources.Contains(application.Id))
-        {
-            <div class="alert alert-danger" role="alert"><div class="alert-message">@Localizer["This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source."]</div></div>
-        }
-        @if (Model.ScopeByApplicationId.TryGetValue(application.Id, out var scope))
-        {
-            <div class="alert alert-secondary" role="alert">
-                <div class="alert-message">
-                    <strong>@Localizer["Approval scope"]:</strong>
-                    @Localizer["{0} concrete package artifacts", scope.Total] ·
-                    @Localizer["{0} match current authorization", scope.AlreadyAuthorized] ·
-                    @Localizer["{0} need authorization", scope.NeedsReview] ·
-                    @Localizer["{0} have a removed source", scope.SourceNotPermitted] ·
-                    @Localizer["{0} have an audit or policy hold", scope.OnHold]
-                    @if (scope.NeedsReviewPreview.Count > 0)
-                    {
-                        <div class="small mt-2"><strong>@Localizer["Items needing authorization"]:</strong>
-                            @string.Join(", ", scope.NeedsReviewPreview)
-                            @if (scope.PreviewLimited) { <span>@Localizer["and more in the complete report"]</span> }
-                        </div>
-                    }
-                    @if (scope.OnHoldPreview.Count > 0)
-                    {
-                        <div class="small mt-2"><strong>@Localizer["Authorized items on hold"]:</strong>
-                            @string.Join(", ", scope.OnHoldPreview)
-                            @if (scope.OnHoldPreviewLimited) { <span>@Localizer["and more in the complete report"]</span> }
-                        </div>
-                    }
+    <div class="s360-workspace-head">
+        <h1>@Localizer["Dependency approvals"]</h1>
+        <p>@Localizer["Review the packages requested for a project and decide whether to allow them."]</p>
+    </div>
+    <nav class="mb-3 d-flex gap-2 flex-wrap" aria-label="@Localizer["Approval filters"]">
+        <a class="btn @(Model.Filter == "pending" ? "btn-primary" : "btn-outline-primary")" asp-action="Index" asp-route-filter="pending">@Localizer["Pending"] (@Model.PendingCount)</a>
+        <a class="btn @(Model.Filter == "expiring" ? "btn-warning" : "btn-outline-warning")" asp-action="Index" asp-route-filter="expiring">@Localizer["Expiring within 30 days"] (@Model.ExpiringCount)</a>
+        <a class="btn @(Model.Filter == "expired" ? "btn-danger" : "btn-outline-danger")" asp-action="Index" asp-route-filter="expired">@Localizer["Expired"] (@Model.ExpiredCount)</a>
+        <a class="btn @(Model.Filter == "all" ? "btn-secondary" : "btn-outline-secondary")" asp-action="Index" asp-route-filter="all">@Localizer["All review records"]</a>
+    </nav>
+    @if (Model.Applications.Count == 0)
+    {
+        <div class="card"><div class="card-body">@Localizer["No requests in this view."]</div></div>
+    }
+    @foreach (var application in Model.Applications)
+    {
+        var packages = Model.PackagesByApplicationId.GetValueOrDefault(application.Id) ?? [];
+        var sourceRemoved = Model.ApplicationsWithRemovedSources.Contains(application.Id);
+        var checksIncomplete = packages.Count == 0 || packages.Any(p => !p.SourcePermitted ||
+            p.Artifact.SourceVerifiedAtUtc == null || p.Artifact.SourceVerificationRejected ||
+            !p.AuditCurrent || p.HasKnownVulnerability || (p.AlreadyAuthorized && !p.CheckReady));
+        <section class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-start gap-2 flex-wrap">
+                <div>
+                    <h2 class="h4 mb-1 text-break">@(application.Project ?? @Localizer["Dependency request"].Value)</h2>
+                    <span class="text-muted">@Localizer["Request"] #@application.Id ·
+                        @switch (application.Status)
+                        {
+                            case ApplicationStatus.ReadyForReview: <span>@Localizer["Pending review"]</span> break;
+                            case ApplicationStatus.Approved: <span>@Localizer["Approved"]</span> break;
+                            case ApplicationStatus.Revoked: <span>@Localizer["Approval withdrawn"]</span> break;
+                        }
+                    </span>
                 </div>
+                <small class="text-muted"><span data-utc-time="@application.CreatedAtUtc.ToHtmlDateTime()"></span></small>
             </div>
-        }
-        else if (application.Status == ApplicationStatus.ReadyForReview)
-        {
-            <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["No complete dependency report is available for this request."]</div></div>
-        }
-        <p><a asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@application.Id">@Localizer["Open complete dependency report"]</a></p>
-        @if (canReview && application.ReportHash != null && application.Status is ApplicationStatus.ReadyForReview or ApplicationStatus.Approved or ApplicationStatus.Revoked)
-        {
-            <form asp-action="Approve" method="post" class="row g-2 mb-3">
-                <input type="hidden" name="id" value="@application.Id" />
-                <input type="hidden" name="reportHash" value="@application.ReportHash" />
-                <div class="col-md-3"><select name="supplierId" class="form-select" required>
-                    <option value="">@Localizer["Select supplier"]</option>
-                    @foreach (var supplier in Model.Suppliers) { <option value="@supplier.Id">@supplier.Name</option> }
-                </select></div>
-                <div class="col-md-3"><label for="s360-review-expiry-@application.Id" class="form-label">@Localizer["Expires at (UTC)"]</label><input id="s360-review-expiry-@application.Id" name="expiresAtUtc" type="datetime-local" class="form-control" required /></div>
-                <div class="col-md-4"><input name="reason" class="form-control" required maxlength="2000" placeholder="@Localizer["Approval reason"]" /></div>
-                <div class="col-md-2"><button class="btn btn-primary">@(application.Status == ApplicationStatus.Approved ? Localizer["Renew"] : Localizer["Approve batch"])</button></div>
-            </form>
-        }
-        @if (canReview && application.Status == ApplicationStatus.ReadyForReview)
-        {
-            <form asp-action="Reject" method="post" class="row g-2 mb-2">
-                <input type="hidden" name="id" value="@application.Id" />
-                <div class="col"><input name="reason" class="form-control" required maxlength="2000" placeholder="@Localizer["Rejection reason"]" /></div>
-                <div class="col-auto"><button class="btn btn-outline-danger">@Localizer["Reject"]</button></div>
-            </form>
-        }
-        @if (canReview && application.Status == ApplicationStatus.Approved)
-        {
-            <form asp-action="Revoke" method="post" class="row g-2">
-                <input type="hidden" name="id" value="@application.Id" />
-                <div class="col"><input name="reason" class="form-control" required maxlength="2000" placeholder="@Localizer["Revocation reason"]" /></div>
-                <div class="col-auto"><button class="btn btn-outline-warning">@Localizer["Revoke batch"]</button></div>
-            </form>
-        }
-    </div></div>
-}
-@await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
-</div>
-@await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
-    Localizer["Before you approve"].Value,
-    "clipboard-check",
-    [
-        new ConceptTerm(Localizer["Batch approval"].Value, Localizer["One decision covers the concrete dependency report, including every direct and transitive package in that snapshot."].Value),
-        new ConceptTerm(Localizer["Report hash"].Value, Localizer["The review is bound to a report fingerprint. A different resolved graph cannot silently reuse the old decision."].Value),
-        new ConceptTerm(Localizer["Expiry and renewal"].Value, Localizer["Enter expiry in UTC. An expired approval is not current authorization; renewal creates a new review decision without erasing the old one."].Value),
-        new ConceptTerm(Localizer["Revocation"].Value, Localizer["Withdraws this approval for future checks. Other independent effective rules may still need separate review."].Value)
-    ],
-    Localizer["Open the complete report before approving, and record why the decision is appropriate."].Value))
-</div>
+            <div class="card-body">
+                <h3 class="h6">@Localizer["Why these packages are needed"]</h3>
+                <p class="text-break">@application.Justification</p>
+                @if (sourceRemoved)
+                {
+                    <div class="alert alert-danger" role="alert"><div class="alert-message">@Localizer["This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source."]</div></div>
+                }
+                @if (packages.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table align-middle">
+                            <thead><tr><th>@Localizer["Package and version"]</th><th>@Localizer["Approval"]</th><th>@Localizer["Security checks"]</th></tr></thead>
+                            <tbody>
+                            @foreach (var package in packages)
+                            {
+                                <tr>
+                                    <td><span class="fw-semibold text-break">@package.Artifact.Name</span><br /><code>@package.Artifact.Version</code>
+                                        <div class="small text-muted">@if (package.IsDirect) { @Localizer["Requested by the project"] } else { @Localizer["Required by another package"] }</div>
+                                    </td>
+                                    <td>@if (package.AlreadyAuthorized) { <span class="badge bg-success">@Localizer["Already approved"]</span> } else { <span class="badge bg-warning text-dark">@Localizer["Needs approval"]</span> }</td>
+                                    <td>
+                                        @if (!package.SourcePermitted || package.Artifact.SourceVerificationRejected)
+                                        { <span class="text-danger">@Localizer["Package source could not be verified"]</span> }
+                                        else if (package.HasKnownVulnerability)
+                                        { <span class="text-danger">@Localizer["Known vulnerability found"]</span> }
+                                        else if (package.Artifact.SourceVerifiedAtUtc == null)
+                                        { <span class="text-warning-emphasis">@Localizer["Waiting for source verification"]</span> }
+                                        else if (!package.AuditCurrent)
+                                        { <span class="text-warning-emphasis">@Localizer["Waiting for an up-to-date vulnerability check"]</span> }
+                                        else if (package.AlreadyAuthorized && !package.CheckReady)
+                                        { <span class="text-danger">@Localizer["Blocked by another security check; see the report"]</span> }
+                                        else
+                                        { <span>@Localizer["Source verified; no known vulnerabilities found"]</span> }
+                                    </td>
+                                </tr>
+                            }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["No complete dependency report is available for this request."]</div></div>
+                }
+                <details class="mb-3">
+                    <summary>@Localizer["Full report and technical details"]</summary>
+                    <div class="mt-2">
+                        <p class="mb-1">@Localizer["Package source"]: <code class="text-break">@application.Source</code></p>
+                        <p class="mb-1">@Localizer["Report fingerprint"]: <code class="text-break">@application.ReportHash</code></p>
+                        <a asp-controller="DependencyRequests" asp-action="Details" asp-route-id="@application.Id">@Localizer["Open complete dependency report"]</a>
+                    </div>
+                </details>
+                @if (!string.IsNullOrWhiteSpace(application.DecisionReason))
+                { <p class="text-break"><strong>@Localizer["Previous decision"]:</strong> @application.DecisionReason</p> }
+                @if (canReview && application.ReportHash != null && application.Status is ApplicationStatus.ReadyForReview or ApplicationStatus.Approved or ApplicationStatus.Revoked)
+                {
+                    @if (checksIncomplete || sourceRemoved)
+                    { <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["Resolve the checks shown above before approving. Approving cannot bypass a security check."]</div></div> }
+                    <form asp-action="Approve" method="post" class="row g-3 mb-3">
+                        <input type="hidden" name="id" value="@application.Id" />
+                        <input type="hidden" name="reportHash" value="@application.ReportHash" />
+                        <div class="col-md-4">
+                            <label for="s360-review-expiry-@application.Id" class="form-label">@Localizer["Valid until (UTC)"]</label>
+                            <input id="s360-review-expiry-@application.Id" name="expiresAtUtc" type="datetime-local" class="form-control" required aria-describedby="s360-expiry-help-@application.Id" />
+                            <div id="s360-expiry-help-@application.Id" class="form-text">@Localizer["Choose a future date within two years. Approval must be renewed after it expires."]</div>
+                        </div>
+                        <div class="col-md-8">
+                            <label for="s360-review-reason-@application.Id" class="form-label">@Localizer["Why are you approving these packages?"]</label>
+                            <input id="s360-review-reason-@application.Id" name="reason" class="form-control" required maxlength="2000" />
+                        </div>
+                        <div class="col-12">
+                            <p class="small text-muted">@Localizer["Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks."]</p>
+                            <button class="btn btn-primary" disabled="@(checksIncomplete || sourceRemoved)">
+                                @if (application.Status == ApplicationStatus.Approved) { @Localizer["Renew approval"] } else { @Localizer["Approve these packages"] }
+                            </button>
+                        </div>
+                    </form>
+                }
+                @if (canReview && application.Status == ApplicationStatus.ReadyForReview)
+                {
+                    <details>
+                        <summary>@Localizer["Reject this request"]</summary>
+                        <form asp-action="Reject" method="post" class="mt-3">
+                            <input type="hidden" name="id" value="@application.Id" />
+                            <label for="s360-reject-reason-@application.Id" class="form-label">@Localizer["Why is this request being rejected?"]</label>
+                            <textarea id="s360-reject-reason-@application.Id" name="reason" class="form-control mb-2" required maxlength="2000" rows="2"></textarea>
+                            <button class="btn btn-outline-danger">@Localizer["Reject request"]</button>
+                        </form>
+                    </details>
+                }
+                @if (canReview && application.Status == ApplicationStatus.Approved)
+                {
+                    <details>
+                        <summary>@Localizer["Withdraw this approval"]</summary>
+                        <p class="small mt-2">@Localizer["This withdraws the rules created by this request. Other approvals for the same packages remain in effect."]</p>
+                        <form asp-action="Revoke" method="post">
+                            <input type="hidden" name="id" value="@application.Id" />
+                            <label for="s360-revoke-reason-@application.Id" class="form-label">@Localizer["Why is this approval being withdrawn?"]</label>
+                            <textarea id="s360-revoke-reason-@application.Id" name="reason" class="form-control mb-2" required maxlength="2000" rows="2"></textarea>
+                            <button class="btn btn-outline-warning">@Localizer["Withdraw approval"]</button>
+                        </form>
+                    </details>
+                }
+            </div>
+        </section>
+    }
+    @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
 </div>

@@ -28,10 +28,9 @@ public class TrustRule
     }
 
 
-    public required int SupplierId { get; set; }
+    public int? SupplierId { get; set; }
     [JsonIgnore]
     [ForeignKey(nameof(SupplierId))]
-    [NotNull]
     public Supplier? Supplier { get; set; }
     /// <summary>Null for a manually created rule without a dependency application.</summary>
     public required int? ApplicationId { get; set; }

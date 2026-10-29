@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>고정되지 않음</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>기록되지 않음</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>승인 항목은 처음 100개만 표시됩니다.</value>
   </data>

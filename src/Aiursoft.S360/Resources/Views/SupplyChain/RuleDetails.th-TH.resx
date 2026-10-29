@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>ไม่ถูกล็อก</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>ไม่ได้บันทึกไว้</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>แสดงเฉพาะรายการอนุมัติ 100 รายการแรกเท่านั้น</value>
   </data>

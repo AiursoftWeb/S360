@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Hyväksyttyjen pyyntöraporttien perusteella yläriippuvuussuhdetta ei ole kirjattu. Tämä paketti on saatettu pyytää suoraan.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Ei kirjattu</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Näytetään vain ensimmäiset 100 suhdetta.</value>
   </data>

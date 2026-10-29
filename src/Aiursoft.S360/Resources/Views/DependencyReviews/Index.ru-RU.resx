@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Все записи на рассмотрении</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Уже одобрено</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>и другие сведения в полном отчёте</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Одобрение</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Одобрение разрешает использовать именно эти версии пакетов из данного источника во всех проектах до указанной выше даты. При последующих сборках проверки безопасности по-прежнему выполняются.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Фильтры согласования</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Причина одобрения</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Объём утверждения</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Согласование отозвано</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Одобрить эти пакеты</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Одобрена</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Авторизованные элементы на удержании</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Заблокировано другой проверкой безопасности; см. отчёт</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Выберите будущую дату в пределах двух лет. По истечении срока одобрение необходимо продлить.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Согласование зависимостей</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Запрос на добавление зависимости</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Истекшие</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Истекают в течение 30 дней</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Полный отчёт и технические сведения</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Элементы, требующие авторизации</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Обнаружена известная уязвимость</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Требуется подтверждение</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Далее</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Для этого запроса нет полного отчёта о зависимостях.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>В этом представлении нет запросов.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Открыть полный отчёт о зависимостях</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Пакет и версия</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Источник пакета</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Источник пакета не удалось проверить</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Ожидают</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Ожидает рассмотрения</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Предыдущая</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Предыдущее решение</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Проект</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Отклонить</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Отклонить запрос</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Отклонить запрос</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Причина отклонения</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Продлить одобрение</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Отпечаток отчёта</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Запрос</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Запрошен проектом</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Требуется другому пакету</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Перед утверждением устраните проблемы, указанные выше. Утверждение не позволяет обойти проверку безопасности.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Проверьте отчёт целиком, прежде чем принимать решение по всей группе. Действие привязано к хешу отчёта.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Проверьте пакеты, запрошенные для проекта, и решите, разрешить ли их.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Причина отзыва</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Отозвать партию</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Проверки безопасности</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Выберите поставщика</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Источник</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Источник проверен; известных уязвимостей не обнаружено</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Этот источник пакетов больше не разрешён. Запрос нельзя одобрить, пока он не будет повторно обработан с использованием разрешённого источника.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Это отменяет правила, созданные в рамках данного запроса. Другие одобрения для тех же пакетов сохраняют свою силу.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Действительно до (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Ожидание актуальной проверки на уязвимости</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Ожидается проверка источника</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Почему вы одобряете эти пакеты?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Почему эта заявка на одобрение отзывается?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Почему этот запрос отклоняется?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Зачем нужны эти пакеты</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Отозвать одобрение</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Отозвать это одобрение</value>
   </data>
 
 </root>

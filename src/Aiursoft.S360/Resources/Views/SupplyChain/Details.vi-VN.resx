@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Không có mối quan hệ gói cha nào được ghi nhận trong các báo cáo yêu cầu đã được phê duyệt. Gói này có thể đã được yêu cầu trực tiếp.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Chưa được ghi nhận</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Chỉ hiển thị 100 mối quan hệ đầu tiên.</value>
   </data>

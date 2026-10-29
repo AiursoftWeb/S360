@@ -126,6 +126,9 @@
   <data name="Match rules" xml:space="preserve">
     <value>Έλεγχος κανόνων</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Δεν έχει καταγραφεί</value>
+  </data>
   <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
     <value>Εδώ εμφανίζονται μόνο τα τεχνουργήματα που περνούν επί του παρόντος τους ελέγχους S360. Ένας κανόνας που ταιριάζει σε ένα πακέτο που δεν έχει εμφανιστεί ακόμη προβάλλεται παραπάνω, αλλά δεν αποτελεί ακόμη ελεγμένο τεχνούργημα· κάθε μελλοντική έκδοση εξακολουθεί να ελέγχει ολόκληρο το γράφημα εξαρτήσεών της.</value>
   </data>

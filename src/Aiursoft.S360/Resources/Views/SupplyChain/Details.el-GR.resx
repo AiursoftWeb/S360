@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Δεν έχει καταγραφεί σχέση γονέα στις αναφορές εγκεκριμένων αιτημάτων. Αυτό το πακέτο ενδέχεται να ζητήθηκε απευθείας.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Δεν καταχωρήθηκε</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Εμφανίζονται μόνο οι πρώτες 100 σχέσεις.</value>
   </data>

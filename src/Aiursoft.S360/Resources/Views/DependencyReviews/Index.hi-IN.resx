@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>सभी समीक्षा रिकॉर्ड</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>पहले से स्वीकृत</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>और पूरी रिपोर्ट में और भी</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>अनुमोदन</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>मंज़ूरी मिलने पर, ऊपर दी गई तारीख तक सभी प्रोजेक्ट में इस स्रोत से पैकेज के इन सटीक संस्करणों का उपयोग किया जा सकता है। भविष्य के बिल्ड में भी सुरक्षा जाँच जारी रहेगी।</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>अनुमोदन फ़िल्टर</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>अनुमोदन का कारण</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>अनुमोदन का दायरा</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>अनुमोदन वापस लिया गया</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>इन पैकेजों को स्वीकृत करें</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>स्वीकृत</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>प्राधिकृत आइटम रोक पर</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>एक अन्य सुरक्षा जाँच के कारण अवरुद्ध; रिपोर्ट देखें</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>दो वर्ष के भीतर की कोई भविष्य की तारीख चुनें। इसकी समय-सीमा समाप्त होने के बाद अनुमोदन का नवीनीकरण करना होगा।</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>निर्भरताओं के अनुमोदन</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>निर्भरता अनुरोध</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>समाप्त</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>30 दिनों के भीतर समाप्त हो रहा है</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>पूर्ण रिपोर्ट और तकनीकी विवरण</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>प्राधिकरण की आवश्यकता वाली वस्तुएँ</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>ज्ञात सुरक्षा भेद्यता पाई गई</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>अनुमोदन आवश्यक</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>अगला</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>इस अनुरोध के लिए कोई पूर्ण निर्भरता रिपोर्ट उपलब्ध नहीं है।</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>इस दृश्य में कोई अनुरोध नहीं है।</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>पूरी निर्भरता रिपोर्ट खोलें</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>पैकेज और संस्करण</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>पैकेज स्रोत</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>पैकेज के स्रोत की पुष्टि नहीं हो सकी</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>लंबित</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>समीक्षा लंबित</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>पिछला</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>पिछला निर्णय</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>परियोजना</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>अस्वीकार करें</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>अनुरोध अस्वीकार करें</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>इस अनुरोध को अस्वीकार करें</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>अस्वीकृति का कारण</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>अनुमोदन नवीनीकृत करें</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>रिपोर्ट फ़िंगरप्रिंट</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>अनुरोध</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>प्रोजेक्ट द्वारा अनुरोधित</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>दूसरे पैकेज के लिए आवश्यक</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>स्वीकृति देने से पहले ऊपर दिखाए गए सभी जाँचों का समाधान करें। स्वीकृति देने से सुरक्षा जाँच को दरकिनार नहीं किया जा सकता।</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>बैच में निर्णय लेने से पहले पूरी रिपोर्ट की समीक्षा करें। यह कार्रवाई रिपोर्ट के हैश से जुड़ी है।</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>किसी प्रोजेक्ट के लिए अनुरोधित पैकेजों की समीक्षा करें और तय करें कि उन्हें अनुमति देनी है या नहीं।</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>निरस्तीकरण का कारण</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>बैच का अनुमोदन रद्द करें</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>सुरक्षा जाँच</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>आपूर्तिकर्ता चुनें</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>स्रोत</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>स्रोत सत्यापित; कोई ज्ञात सुरक्षा भेद्यता नहीं मिली</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>इस पैकेज स्रोत की अब अनुमति नहीं है। अनुरोध को तब तक स्वीकृत नहीं किया जा सकता, जब तक इसे फिर से किसी अनुमत स्रोत से हल न कर लिया जाए।</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>इससे इस अनुरोध द्वारा बनाए गए नियम वापस ले लिए जाते हैं। उन्हीं पैकेजों के लिए अन्य अनुमोदन प्रभावी रहते हैं।</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>इस तिथि तक मान्य (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>अद्यतन सुरक्षा-जाँच की प्रतीक्षा है</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>स्रोत के सत्यापन की प्रतीक्षा है</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>आप इन पैकेजों को मंज़ूरी क्यों दे रहे हैं?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>यह अनुमोदन वापस क्यों लिया जा रहा है?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>इस अनुरोध को अस्वीकार क्यों किया जा रहा है?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>इन पैकेजों की आवश्यकता क्यों है</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>अनुमोदन वापस लें</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>यह अनुमोदन वापस लें</value>
   </data>
 
 </root>

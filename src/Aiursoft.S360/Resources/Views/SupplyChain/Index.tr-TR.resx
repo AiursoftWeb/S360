@@ -126,6 +126,9 @@
   <data name="Match rules" xml:space="preserve">
     <value>Kuralları eşleştir</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Kaydedilmemiş</value>
+  </data>
   <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
     <value>Burada yalnızca şu anda S360 denetimlerinden geçen bileşenler görünür. Görünmeyen bir pakete uyan bir kural yukarıda gösterilir, ancak bu paket henüz denetlenmiş bir bileşen değildir; gelecekteki her derlemede bağımlılık grafiğinin tamamı yine denetlenir.</value>
   </data>

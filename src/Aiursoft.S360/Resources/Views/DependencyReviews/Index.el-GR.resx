@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Όλες οι εγγραφές αξιολόγησης</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Έχει ήδη εγκριθεί</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>και περισσότερα στην πλήρη αναφορά</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Έγκριση</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Η έγκριση επιτρέπει τη χρήση αυτών ακριβώς των εκδόσεων των πακέτων από αυτήν την πηγή σε όλα τα έργα έως την παραπάνω ημερομηνία. Οι μελλοντικές εκδόσεις εξακολουθούν να υποβάλλονται σε ελέγχους ασφαλείας.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Φίλτρα εγκρίσεων</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Αιτιολογία έγκρισης</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Πεδίο έγκρισης</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Η έγκριση ανακλήθηκε</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Εγκρίνετε αυτά τα πακέτα</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Εγκρίθηκε</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Εγκεκριμένα στοιχεία σε αναμονή</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Αποκλείστηκε από άλλον έλεγχο ασφαλείας· δείτε την αναφορά</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Επιλέξτε μια μελλοντική ημερομηνία εντός των επόμενων δύο ετών. Η έγκριση πρέπει να ανανεωθεί μετά τη λήξη της.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Εγκρίσεις εξαρτήσεων</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Αίτημα εξάρτησης</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Έληξε</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Λήγουν εντός 30 ημερών</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Πλήρες αρχείο και τεχνικά στοιχεία</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Αντικείμενα που χρειάζονται εξουσιοδότηση</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Εντοπίστηκε γνωστή ευπάθεια</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Χρειάζεται έγκριση</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Επόμενο</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Δεν υπάρχει πλήρης αναφορά εξαρτήσεων για αυτό το αίτημα.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Δεν υπάρχουν αιτήματα σε αυτήν την προβολή.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Άνοιγμα πλήρους αναφοράς εξαρτήσεων</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Πακέτο και έκδοση</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Πηγή πακέτου</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Δεν ήταν δυνατή η επαλήθευση της πηγής του πακέτου</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Σε εκκρεμότητα</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Εκκρεμεί έλεγχος</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Προηγούμενο</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Προηγούμενη απόφαση</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Έργο</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Απόρριψη</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Απόρριψη αιτήματος</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Απόρριψη αυτού του αιτήματος</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Αιτιολογία απόρριψης</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Ανανέωση έγκρισης</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Αποτύπωμα αναφοράς</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Αίτημα</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Ζητήθηκε από το έργο</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Απαιτείται από άλλο πακέτο</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Επιλύστε τους ελέγχους που εμφανίζονται παραπάνω πριν από την έγκριση. Η έγκριση δεν μπορεί να παρακάμψει έναν έλεγχο ασφαλείας.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Εξετάστε ολόκληρη την αναφορά πριν λάβετε μια μαζική απόφαση. Η ενέργεια συνδέεται με το hash της αναφοράς.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Εξετάστε τα πακέτα που ζητήθηκαν για ένα έργο και αποφασίστε αν θα τα εγκρίνετε.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Αιτιολογία ανάκλησης</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Ανάκληση παρτίδας</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Έλεγχοι ασφαλείας</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Επιλέξτε προμηθευτή</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Πηγή</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Η πηγή επαληθεύτηκε· δεν εντοπίστηκαν γνωστά τρωτά σημεία</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Αυτή η πηγή πακέτων δεν επιτρέπεται πλέον. Το αίτημα δεν μπορεί να εγκριθεί μέχρι να επιλυθεί ξανά από επιτρεπόμενη πηγή.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Αυτό ανακαλεί τους κανόνες που δημιουργήθηκαν από αυτό το αίτημα. Οι άλλες εγκρίσεις για τα ίδια πακέτα παραμένουν σε ισχύ.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Ισχύει έως (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Αναμονή για ενημερωμένο έλεγχο ευπαθειών</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Αναμονή για επαλήθευση της προέλευσης</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Γιατί εγκρίνετε αυτά τα πακέτα;</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Γιατί ανακαλείται αυτή η έγκριση;</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Γιατί απορρίπτεται αυτό το αίτημα;</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Γιατί χρειάζονται αυτά τα πακέτα</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Ανάκληση έγκρισης</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Ανάκληση αυτής της έγκρισης</value>
   </data>
 
 </root>

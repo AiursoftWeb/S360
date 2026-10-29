@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Alla granskningsposter</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Redan godkänd</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>och mer i den fullständiga rapporten</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Godkännande</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Godkännandet gäller dessa exakta paketversioner från den här källan i alla projekt fram till datumet ovan. Säkerhetskontroller körs fortfarande vid framtida byggen.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Godkännandefilter</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Skäl för godkännande</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Omfattning av godkännandet</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Godkännandet har återkallats</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Godkänn dessa paket</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Godkänd</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Auktoriserade objekt som är pausade</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Blockerad av en annan säkerhetskontroll; se rapporten</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Välj ett framtida datum inom två år. Godkännandet måste förnyas när det löper ut.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Godkännanden av beroenden</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Beroendebegäran</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Utgånget</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Förfaller inom 30 dagar</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Fullständig rapport och tekniska detaljer</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Objekt som kräver godkännande</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Känd sårbarhet har hittats</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Behöver godkännas</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Nästa</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Ingen fullständig beroenderapport är tillgänglig för den här begäran.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Inga förfrågningar i den här vyn.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Öppna den fullständiga beroenderapporten</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Paket och version</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Paketkälla</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Paketkällan kunde inte verifieras</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Väntande</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Väntar på granskning</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Föregående</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Tidigare beslut</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Projekt</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Avslå</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Avvisa begäran</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Avslå den här begäran</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Orsak till avslag</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Förnya godkännandet</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Rapportens fingeravtryck</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Begäran</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Begärt av projektet</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Krävs av ett annat paket</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Åtgärda kontrollerna ovan innan du godkänner. Det går inte att kringgå en säkerhetskontroll genom att godkänna.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Granska hela rapporten innan du fattar ett beslut för hela batchen. Åtgärden är knuten till rapportens hash.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Granska paketen som har begärts för ett projekt och avgör om de ska godkännas.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Orsak till återkallelse</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Återkalla batchen</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Säkerhetskontroller</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Välj leverantör</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Källa</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Källan har verifierats; inga kända sårbarheter har hittats</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Den här paketkällan är inte längre tillåten. Begäran kan inte godkännas förrän den har lösts på nytt från en tillåten källa.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Detta återkallar reglerna som skapats genom den här begäran. Andra godkännanden för samma paket fortsätter att gälla.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Giltig till (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Väntar på en aktuell sårbarhetskontroll</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Väntar på verifiering av källan</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Varför godkänner du de här paketen?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Varför återkallas detta godkännande?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Varför avslås denna begäran?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Varför dessa paket behövs</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Återkalla godkännandet</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Återkalla det här godkännandet</value>
   </data>
 
 </root>

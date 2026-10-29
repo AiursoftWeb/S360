@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Der er ikke registreret nogen overordnet relation i rapporter over godkendte anmodninger. Denne pakke kan være blevet anmodet om direkte.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Ikke registreret</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Kun de første 100 relationer vises.</value>
   </data>

@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>Не зафиксирован</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>Показаны только первые 100 разрешений.</value>
   </data>

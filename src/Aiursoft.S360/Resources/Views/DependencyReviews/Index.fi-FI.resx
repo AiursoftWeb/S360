@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Kaikki tarkastustietueet</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Hyväksytty jo</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>ja lisää täydellisessä raportissa</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Hyväksyntä</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Hyväksyntä sallii näiden täsmällisten pakettiversioiden käytön tästä lähteestä eri projekteissa yllä mainittuun päivämäärään asti. Tulevissa koontiversioissa suoritetaan silti tietoturvatarkistukset.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Hyväksyntäsuodattimet</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Hyväksynnän syy</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Hyväksynnän laajuus</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Hyväksyntä peruttu</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Hyväksy nämä paketit</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Hyväksytty</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Valtuutetut kohteet käyttökiellossa</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Estetty toisen tietoturvatarkistuksen vuoksi; katso raportti</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Valitse tuleva päivämäärä enintään kahden vuoden päähän. Hyväksyntä on uusittava sen voimassaolon päätyttyä.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Riippuvuuksien hyväksynnät</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Riippuvuuspyyntö</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Vanhentuneet</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Vanhentumassa 30 päivän kuluessa</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Koko raportti ja tekniset tiedot</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Käyttöoikeutta vaativat kohteet</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Tunnettu haavoittuvuus havaittu</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Odottaa hyväksyntää</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Seuraava</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Tälle pyynnölle ei ole saatavilla täydellistä riippuvuusraporttia.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Tässä näkymässä ei ole pyyntöjä.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Avaa koko riippuvuusraportti</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Paketti ja versio</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Pakettien lähde</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Paketin lähdettä ei voitu vahvistaa</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Odottaa</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Odottaa tarkistusta</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Edellinen</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Aiempi päätös</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Projekti</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Hylkää</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Hylkää pyyntö</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Hylkää tämä pyyntö</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Hylkäyksen syy</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Uusi hyväksyntä</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Raportin sormenjälki</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Pyyntö</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Projektin pyytämä</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Toisen paketin edellyttämä</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Selvitä yllä näkyvät tarkistukset ennen hyväksymistä. Hyväksymisellä ei voi ohittaa tietoturvatarkistusta.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Tarkista koko raportti ennen eräpäätöksen tekemistä. Toiminto on sidottu raportin tiivisteeseen.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Tarkista projektin pyytämät paketit ja päättää, salliako ne.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Peruuttamisen syy</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Peruuta erä</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Tietoturvatarkistukset</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Valitse toimittaja</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Lähde</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Lähde vahvistettu; tunnettuja haavoittuvuuksia ei löytynyt</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Tätä pakettien lähdettä ei enää sallita. Pyyntöä ei voida hyväksyä, ennen kuin se ratkaistaan uudelleen sallitusta lähteestä.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Tämä peruuttaa tämän pyynnön perusteella luodut säännöt. Muut samoja paketteja koskevat hyväksynnät pysyvät voimassa.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Voimassa asti (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Odotetaan ajantasaista haavoittuvuustarkistusta</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Odotetaan lähteen varmennusta</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Miksi hyväksyt nämä paketit?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Miksi tämä hyväksyntä perutaan?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Miksi tämä pyyntö hylätään?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Miksi näitä paketteja tarvitaan</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Peru hyväksyntä</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Peru tämä hyväksyntä</value>
   </data>
 
 </root>

@@ -126,6 +126,9 @@
   <data name="Match rules" xml:space="preserve">
     <value>符合規則</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>未記錄</value>
+  </data>
   <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
     <value>此處僅顯示目前通過 S360 檢查的成品。上方會顯示符合條件的規則，即使尚未出現的套件也適用；但該套件尚未成為經檢查的成品。未來每次建置仍會檢查完整的相依性圖。</value>
   </data>

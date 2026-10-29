@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>У звітах про схвалені запити не зафіксовано жодного батьківського зв’язку. Можливо, цей пакет було запитано безпосередньо.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Не зазначено</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Показано лише перші 100 зв’язків.</value>
   </data>

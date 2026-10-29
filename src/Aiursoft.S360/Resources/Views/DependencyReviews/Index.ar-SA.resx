@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>جميع سجلات المراجعة</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>تمت الموافقة مسبقًا</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>والمزيد في التقرير الكامل</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>موافقة</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>تتيح الموافقة استخدام إصدارات الحزم المحددة هذه من هذا المصدر عبر المشاريع حتى التاريخ المذكور أعلاه. وستظل عمليات البناء المستقبلية تُجري فحوصات الأمان.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>مرشحات الموافقات</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>سبب الموافقة</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>نطاق الموافقة</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>تم سحب الموافقة</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>الموافقة على هذه الحزم</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>تمت الموافقة</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>العناصر المصرح بها والمعلّقة</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>محظور بسبب فحص أمني آخر؛ راجع التقرير</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>اختر تاريخًا مستقبليًا خلال العامين المقبلين. يجب تجديد الموافقة بعد انتهاء صلاحيتها.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>الموافقة على التبعيات</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>طلب تبعية</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>منتهية الصلاحية</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>تنتهي صلاحيتها خلال 30 يومًا</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>التقرير الكامل والتفاصيل التقنية</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>عناصر تحتاج إلى تفويض</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>تم العثور على ثغرة أمنية معروفة</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>يتطلب الموافقة</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>التالي</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>لا يتوفر تقرير كامل للتبعيات لهذا الطلب.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>لا توجد طلبات في هذا العرض.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>فتح تقرير التبعيات الكامل</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>الحزمة والإصدار</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>مصدر الحزمة</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>تعذّر التحقق من مصدر الحزمة</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>قيد الانتظار</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>قيد المراجعة</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>السابق</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>القرار السابق</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>المشروع</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>رفض</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>رفض الطلب</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>ارفض هذا الطلب</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>سبب الرفض</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>تجديد الموافقة</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>بصمة التقرير</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>طلب</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>طلبه المشروع</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>مطلوب من حزمة أخرى</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>عالج عمليات التحقق الموضحة أعلاه قبل الموافقة. لا يمكن تجاوز أي فحص أمني بالموافقة.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>راجع التقرير كاملًا قبل اتخاذ قرار جماعي. ويرتبط الإجراء ببصمة التقرير.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>راجع الحزم المطلوبة لمشروع، وحدد ما إذا كان ينبغي السماح بها.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>سبب الإلغاء</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>إلغاء الدفعة</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>فحوصات الأمان</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>اختر المورّد</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>المصدر</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>تم التحقق من المصدر؛ لم يتم العثور على أي ثغرات معروفة</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>لم يعد مصدر هذه الحزمة مسموحًا به. لا يمكن الموافقة على الطلب إلى أن يُعاد حله باستخدام مصدر مسموح به.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>يؤدي ذلك إلى إلغاء القواعد التي أنشأها هذا الطلب. وتظل الموافقات الأخرى على الحزم نفسها سارية المفعول.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>صالح حتى (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>بانتظار إجراء فحص محدّث للثغرات الأمنية</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>بانتظار التحقق من المصدر</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>لماذا توافقون على هذه الحزم؟</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>لماذا يتم سحب هذه الموافقة؟</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>لماذا يتم رفض هذا الطلب؟</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>سبب الحاجة إلى هذه الحزم</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>سحب الموافقة</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>سحب هذه الموافقة</value>
   </data>
 
 </root>

@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>Ei kiinnitetty</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Ei tallennettu</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>Vain ensimmäiset 100 valtuutusta näytetään.</value>
   </data>

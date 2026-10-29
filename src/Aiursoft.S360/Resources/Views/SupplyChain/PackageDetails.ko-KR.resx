@@ -27,6 +27,9 @@
   <data name="Expires" xml:space="preserve">
     <value>만료일</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>기록되지 않음</value>
+  </data>
   <data name="Only the first 50 projects are shown." xml:space="preserve">
     <value>처음 50개의 프로젝트만 표시됩니다.</value>
   </data>

@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Alle beoordelingsverzoeken</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Al goedgekeurd</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>en meer in het volledige rapport</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Goedkeuring</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Goedkeuring staat deze exacte pakketversies van deze bron toe voor alle projecten tot de hierboven vermelde datum. Ook toekomstige builds worden nog steeds op beveiligingsproblemen gecontroleerd.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Goedkeuringsfilters</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Reden voor goedkeuring</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Goedkeuringsbereik</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Goedkeuring ingetrokken</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Deze pakketten goedkeuren</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Goedgekeurd</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Geautoriseerde items in de wacht</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Geblokkeerd door een andere beveiligingscontrole; zie het rapport</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Kies een toekomstige datum binnen twee jaar. De goedkeuring moet worden verlengd nadat deze is verlopen.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Goedkeuringen van afhankelijkheden</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Aanvraag voor afhankelijkheden</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Verlopen</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Verloopt binnen 30 dagen</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Volledig rapport en technische details</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Artikelen waarvoor autorisatie nodig is</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Bekende kwetsbaarheid gevonden</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Goedkeuring vereist</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Volgende</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Er is geen volledig afhankelijkheidsrapport beschikbaar voor dit verzoek.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Geen aanvragen in deze weergave.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Volledig afhankelijkheidsrapport openen</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Pakket en versie</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Pakketbron</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>De pakketbron kon niet worden geverifieerd</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>In behandeling</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>In afwachting van beoordeling</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Vorige</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Vorige beslissing</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Project</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Afwijzen</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Verzoek afwijzen</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Afwijzen van dit verzoek</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Reden van afwijzing</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Goedkeuring verlengen</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Rapportvingerafdruk</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Verzoek</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Aangevraagd door het project</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Vereist door een ander pakket</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Los de hierboven vermelde controles op voordat u goedkeuring verleent. Goedkeuring kan een beveiligingscontrole niet omzeilen.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Bekijk het volledige rapport voordat u een besluit neemt over de hele batch. De actie is gekoppeld aan de hash van het rapport.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Beoordeel de pakketten die voor een project zijn aangevraagd en beslis of ze worden toegestaan.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Reden voor intrekking</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Batch intrekken</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Beveiligingscontroles</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Selecteer leverancier</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Bron</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Bron geverifieerd; geen bekende kwetsbaarheden gevonden</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Deze pakketbron is niet langer toegestaan. De aanvraag kan pas worden goedgekeurd nadat deze opnieuw is opgelost met een toegestane bron.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Hiermee worden de regels die door dit verzoek zijn aangemaakt ingetrokken. Andere goedkeuringen voor dezelfde pakketten blijven van kracht.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Geldig tot (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Wachten op een actuele controle op kwetsbaarheden</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Wachten op verificatie van de bron</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Waarom keurt u deze pakketten goed?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Waarom wordt deze goedkeuring ingetrokken?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Waarom wordt dit verzoek afgewezen?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Waarom deze pakketten nodig zijn</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Goedkeuring intrekken</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Deze goedkeuring intrekken</value>
   </data>
 
 </root>

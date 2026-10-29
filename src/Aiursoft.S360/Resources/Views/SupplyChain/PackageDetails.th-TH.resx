@@ -27,6 +27,9 @@
   <data name="Expires" xml:space="preserve">
     <value>หมดอายุ</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>ไม่ได้บันทึก</value>
+  </data>
   <data name="Only the first 50 projects are shown." xml:space="preserve">
     <value>แสดงเฉพาะ 50 โครงการแรกเท่านั้น</value>
   </data>

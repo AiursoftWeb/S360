@@ -27,6 +27,9 @@
   <data name="Expires" xml:space="preserve">
     <value>Ngày hết hạn</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Chưa được ghi nhận</value>
+  </data>
   <data name="Only the first 50 projects are shown." xml:space="preserve">
     <value>Chỉ hiển thị 50 dự án đầu tiên.</value>
   </data>

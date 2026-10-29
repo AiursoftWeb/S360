@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>บันทึกการตรวจสอบทั้งหมด</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>อนุมัติแล้ว</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>และรายการอื่น ๆ ในรายงานฉบับเต็ม</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>การอนุมัติ</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>การอนุมัติจะอนุญาตให้ใช้แพ็กเกจเวอร์ชันที่ระบุไว้อย่างเจาะจงจากแหล่งนี้ในทุกโปรเจกต์ได้จนถึงวันที่ข้างต้น การบิลด์ในอนาคตยังคงมีการตรวจสอบความปลอดภัย</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>ตัวกรองการอนุมัติ</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>เหตุผลในการอนุมัติ</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>ขอบเขตการอนุมัติ</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>การอนุมัติถูกเพิกถอน</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>อนุมัติแพ็กเกจเหล่านี้</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>อนุมัติ</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>รายการที่ได้รับอนุมัติแต่ถูกระงับไว้</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>ถูกบล็อกโดยการตรวจสอบความปลอดภัยอื่น โปรดดูรายงาน</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>เลือกวันที่ในอนาคตภายในสองปี การอนุมัติต้องได้รับการต่ออายุหลังจากหมดอายุ</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>การอนุมัติการพึ่งพา</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>คำขอเกี่ยวกับการพึ่งพา</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>หมดอายุ</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>จะหมดอายุภายใน 30 วัน</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>รายงานฉบับเต็มและรายละเอียดทางเทคนิค</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>รายการที่ต้องได้รับอนุมัติ</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>พบช่องโหว่ที่ทราบแล้ว</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>ต้องได้รับการอนุมัติ</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>ถัดไป</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>ไม่มีรายงานการพึ่งพาฉบับสมบูรณ์สำหรับคำขอนี้</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>ไม่มีคำขอในมุมมองนี้</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>เปิดรายงานการพึ่งพาฉบับสมบูรณ์</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>แพ็กเกจและเวอร์ชัน</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>แหล่งที่มาของแพ็กเกจ</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>ไม่สามารถตรวจสอบแหล่งที่มาของแพ็กเกจได้</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>รอดำเนินการ</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>รอการตรวจสอบ</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>ก่อนหน้า</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>การตัดสินใจก่อนหน้า</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>โครงการ</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>ปฏิเสธ</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>ปฏิเสธคำขอ</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>ปฏิเสธคำขอนี้</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>เหตุผลในการปฏิเสธ</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>ต่ออายุการอนุมัติ</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>ลายนิ้วมือของรายงาน</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>คำขอ</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>ร้องขอโดยโปรเจกต์</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>จำเป็นต้องใช้โดยแพ็กเกจอื่น</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>แก้ไขรายการตรวจสอบที่แสดงไว้ข้างต้นให้เรียบร้อยก่อนอนุมัติ การอนุมัติไม่สามารถข้ามการตรวจสอบความปลอดภัยได้</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>โปรดตรวจสอบรายงานฉบับสมบูรณ์ก่อนตัดสินใจเป็นชุด การดำเนินการนี้จะผูกกับแฮชของรายงาน</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>ตรวจสอบแพ็กเกจที่ร้องขอสำหรับโปรเจกต์ และตัดสินใจว่าจะอนุญาตหรือไม่</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>เหตุผลในการเพิกถอน</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>เพิกถอนชุด</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>การตรวจสอบความปลอดภัย</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>เลือกผู้จำหน่าย</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>แหล่งที่มา</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>ตรวจสอบแหล่งที่มาแล้ว; ไม่พบช่องโหว่ที่ทราบ</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>แหล่งที่มาของแพ็กเกจนี้ไม่ได้รับอนุญาตอีกต่อไป ไม่สามารถอนุมัติคำขอนี้ได้จนกว่าจะดำเนินการแก้ไขโดยใช้แหล่งที่มาที่ได้รับอนุญาตอีกครั้ง</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>การดำเนินการนี้จะยกเลิกกฎที่สร้างขึ้นจากคำขอนี้ การอนุมัติอื่น ๆ สำหรับแพ็กเกจเดียวกันยังคงมีผลอยู่</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>ใช้ได้จนถึง (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>กำลังรอการตรวจสอบช่องโหว่ให้เป็นปัจจุบัน</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>กำลังรอการตรวจสอบแหล่งที่มา</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>เพราะเหตุใดคุณจึงอนุมัติแพ็กเกจเหล่านี้?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>เหตุใดจึงถอนการอนุมัตินี้?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>เหตุใดคำขอนี้จึงถูกปฏิเสธ?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>เหตุใดจึงต้องใช้แพ็กเกจเหล่านี้</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>ถอนการอนุมัติ</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>ถอนการอนุมัตินี้</value>
   </data>
 
 </root>

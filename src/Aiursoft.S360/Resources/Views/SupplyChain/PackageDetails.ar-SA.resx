@@ -27,6 +27,9 @@
   <data name="Expires" xml:space="preserve">
     <value>تاريخ الانتهاء</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>غير مسجّل</value>
+  </data>
   <data name="Only the first 50 projects are shown." xml:space="preserve">
     <value>يتم عرض أول 50 مشروعًا فقط.</value>
   </data>

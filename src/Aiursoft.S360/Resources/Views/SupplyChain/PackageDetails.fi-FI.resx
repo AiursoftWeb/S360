@@ -27,6 +27,9 @@
   <data name="Expires" xml:space="preserve">
     <value>Vanhenee</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Ei kirjattu</value>
+  </data>
   <data name="Only the first 50 projects are shown." xml:space="preserve">
     <value>Vain ensimmäiset 50 projektia näytetään.</value>
   </data>

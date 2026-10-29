@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>Inte låst till en specifik version</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Inte angivet</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>Endast de första 100 beviljandena visas.</value>
   </data>

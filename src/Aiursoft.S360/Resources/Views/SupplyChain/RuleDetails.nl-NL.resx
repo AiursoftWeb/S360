@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>Niet vastgelegd</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Niet vastgelegd</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>Alleen de eerste 100 toekenningen worden weergegeven.</value>
   </data>

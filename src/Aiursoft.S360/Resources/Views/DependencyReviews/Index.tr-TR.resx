@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Tüm inceleme kayıtları</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Zaten onaylandı</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>ve tam raporda daha fazlası</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Onay</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Onay, yukarıdaki tarihe kadar bu kaynaktaki tam olarak bu paket sürümlerinin projeler genelinde kullanılmasına izin verir. Gelecekteki derlemelerde güvenlik denetimleri yine çalıştırılır.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Onay filtreleri</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Onay gerekçesi</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Onay kapsamı</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Onay geri çekildi</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Bu paketleri onayla</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Onaylandı</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Yetkilendirilmiş beklemedeki öğeler</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Başka bir güvenlik denetimi nedeniyle engellendi; rapora bakın</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>İki yıl içinde gelecekteki bir tarihi seçin. Onay süresi dolduktan sonra yenilenmelidir.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Bağımlılık onayları</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Bağımlılık talebi</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Süresi dolmuş</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>30 gün içinde süresi dolacak</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Raporun tamamı ve teknik ayrıntılar</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Yetkilendirilmesi gereken öğeler</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Bilinen bir güvenlik açığı bulundu</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Onay gerekiyor</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Sonraki</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Bu istek için eksiksiz bir bağımlılık raporu mevcut değil.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Bu görünümde istek yok.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Tam bağımlılık raporunu aç</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Paket ve sürüm</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Paket kaynağı</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Paket kaynağı doğrulanamadı</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Beklemede</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>İnceleme bekleniyor</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Önceki</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Önceki karar</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Proje</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Reddet</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>İsteği Reddet</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Bu isteği reddet</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Ret retme nedeni</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Onayı yenile</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Rapor parmak izi</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>İstek</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Proje tarafından talep edildi</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Başka bir paket tarafından gerekli kılınıyor</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Onay vermeden önce yukarıda gösterilen kontrolleri tamamlayın. Onay vermek, bir güvenlik kontrolünü atlamanızı sağlamaz.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Toplu karar vermeden önce raporun tamamını inceleyin. İşlem, raporun karmasına bağlıdır.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Bir proje için talep edilen paketleri inceleyin ve bunlara izin verip vermeyeceğinize karar verin.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>İptal nedeni</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Toplu işlemi iptal et</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Güvenlik kontrolleri</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Tedarikçi seçin</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Kaynak</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Kaynak doğrulandı; bilinen bir güvenlik açığı bulunamadı</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Bu paket kaynağına artık izin verilmiyor. İstek, izin verilen bir kaynaktan yeniden çözümlenene kadar onaylanamaz.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Bu işlem, bu talebin oluşturduğu kuralları geri çeker. Aynı paketler için verilen diğer onaylar yürürlükte kalır.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>(UTC) tarihine kadar geçerli</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Güncel bir güvenlik açığı kontrolü bekleniyor</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Kaynak doğrulaması bekleniyor</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Bu paketleri neden onaylıyorsunuz?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Bu onay neden geri çekiliyor?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Bu istek neden reddediliyor?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Bu paketlere neden ihtiyaç duyuluyor</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Onayı geri çek</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Bu onayı geri çek</value>
   </data>
 
 </root>

@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Tất cả hồ sơ đánh giá</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Đã được phê duyệt</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>và nhiều mục khác trong báo cáo đầy đủ</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Phê duyệt</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Việc phê duyệt cho phép sử dụng chính xác các phiên bản gói này từ nguồn này trên các dự án cho đến ngày nêu trên. Các bản dựng trong tương lai vẫn sẽ chạy kiểm tra bảo mật.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Bộ lọc phê duyệt</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Lý do phê duyệt</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Phạm vi phê duyệt</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Đã thu hồi phê duyệt</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Phê duyệt các gói này</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Đã phê duyệt</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Các mục đã được cấp phép nhưng đang bị tạm giữ</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Bị chặn bởi một bước kiểm tra bảo mật khác; xem báo cáo</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Chọn một ngày trong tương lai, không quá hai năm kể từ hiện tại. Cần gia hạn phê duyệt sau khi hết hạn.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Phê duyệt các phụ thuộc</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Yêu cầu về gói phụ thuộc</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Đã hết hạn</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Sắp hết hạn trong 30 ngày</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Báo cáo đầy đủ và chi tiết kỹ thuật</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Các mục cần được cấp quyền</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Phát hiện lỗ hổng đã biết</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Cần phê duyệt</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Tiếp theo</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Không có báo cáo phụ thuộc đầy đủ cho yêu cầu này.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Không có yêu cầu nào trong chế độ xem này.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Mở báo cáo phụ thuộc đầy đủ</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Gói và phiên bản</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Nguồn gói</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Không thể xác minh nguồn gói</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Đang chờ</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Đang chờ xét duyệt</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Trước</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Quyết định trước đó</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Dự án</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Từ chối</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Từ chối yêu cầu</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Từ chối yêu cầu này</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Lý do từ chối</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Gia hạn phê duyệt</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Dấu vân tay báo cáo</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Yêu cầu</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Do dự án yêu cầu</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Bắt buộc bởi một gói khác</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Hãy xử lý các mục kiểm tra được hiển thị ở trên trước khi phê duyệt. Việc phê duyệt không thể bỏ qua bước kiểm tra bảo mật.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Hãy xem xét toàn bộ báo cáo trước khi đưa ra quyết định hàng loạt. Thao tác này được ràng buộc với mã băm của báo cáo.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Xem xét các gói được yêu cầu cho dự án và quyết định có cho phép chúng hay không.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Lý do thu hồi</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Thu hồi lô</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Kiểm tra bảo mật</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Chọn nhà cung cấp</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Nguồn</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Nguồn đã được xác minh; không phát hiện lỗ hổng đã biết</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Nguồn gói này không còn được phép sử dụng. Không thể phê duyệt yêu cầu cho đến khi giải quyết lại yêu cầu này bằng một nguồn được phép.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Thao tác này sẽ thu hồi các quy tắc được tạo từ yêu cầu này. Các phê duyệt khác đối với cùng các gói vẫn có hiệu lực.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Có hiệu lực đến (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Đang chờ kiểm tra lỗ hổng bảo mật với dữ liệu cập nhật</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Đang chờ xác minh nguồn</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Tại sao bạn phê duyệt các gói này?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Vì sao phê duyệt này bị thu hồi?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Vì sao yêu cầu này bị từ chối?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Lý do cần những gói này</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Rút lại phê duyệt</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Thu hồi phê duyệt này</value>
   </data>
 
 </root>

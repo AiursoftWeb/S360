@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Усі записи на розгляд</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Уже схвалено</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>та більше — у повному звіті</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Схвалення</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Схвалення дозволяє використовувати ці конкретні версії пакетів із цього джерела в усіх проєктах до зазначеної вище дати. Під час майбутніх збірок перевірки безпеки й надалі виконуватимуться.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Фільтри погодження</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Причина схвалення</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Обсяг затвердження</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Схвалення відкликано</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Схвалити ці пакунки</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Схвалено</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Авторизовані елементи призупинено</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Заблоковано іншою перевіркою безпеки; див. звіт</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Виберіть майбутню дату в межах двох років. Після завершення строку дії схвалення його потрібно поновити.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Затвердження залежностей</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Запит на залежність</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Прострочені</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Закінчується протягом 30 днів</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Повний звіт і технічні подробиці</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Елементи, що потребують авторизації</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Виявлено відому вразливість</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Потребує схвалення</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Далі</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Для цього запиту немає повного звіту про залежності.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>У цьому поданні немає запитів.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Відкрити повний звіт про залежності</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Пакет і версія</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Джерело пакета</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Не вдалося перевірити джерело пакета</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Очікують</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Очікує на розгляд</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Попередня</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Попереднє рішення</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Проєкт</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Відхилити</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Відхилити запит</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Відхилити цей запит</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Причина відхилення</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Поновити схвалення</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Відбиток звіту</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Запит</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Замовлено проєктом</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Потрібен іншому пакету</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Усуньте наведені вище проблеми, перш ніж схвалювати. Схвалення не дає змоги обійти перевірку безпеки.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Перегляньте повний звіт, перш ніж ухвалювати пакетне рішення. Дію прив’язано до хешу звіту.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Перевірте пакети, запитані для проєкту, і вирішіть, чи дозволити їх.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Причина відкликання</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Відкликати пакет</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Перевірки безпеки</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Виберіть постачальника</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Джерело</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Джерело перевірено; відомих вразливостей не виявлено</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Це джерело пакунків більше не дозволене. Запит не можна схвалити, доки його не буде повторно сформовано з дозволеного джерела.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Це скасовує правила, створені за цим запитом. Інші схвалення тих самих пакетів залишаються чинними.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Дійсне до (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Очікується актуальна перевірка на вразливості</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Очікується перевірка джерела</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Чому ви схвалюєте ці пакунки?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Чому це схвалення відкликається?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Чому цей запит відхиляють?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Чому потрібні ці пакунки</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Відкликати схвалення</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Відкликати це схвалення</value>
   </data>
 
 </root>

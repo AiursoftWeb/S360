@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Todos os registos de revisão</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Já aprovado</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>e mais no relatório completo</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Aprovação</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>A aprovação permite utilizar estas versões exatas dos pacotes desta origem em todos os projetos até à data indicada acima. As compilações futuras continuam a executar verificações de segurança.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Filtros de aprovação</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Motivo da aprovação</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Âmbito da aprovação</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Aprovação revogada</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Aprovar estes pacotes</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Aprovado</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Itens autorizados em espera</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Bloqueado por outra verificação de segurança; consulte o relatório</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Escolha uma data futura dentro de dois anos. A aprovação deve ser renovada após o seu vencimento.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Aprovações de dependências</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Pedido de dependência</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Expirado</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>A expirar nos próximos 30 dias</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Relatório completo e detalhes técnicos</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Itens que necessitam de autorização</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Foi encontrada uma vulnerabilidade conhecida</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Requer aprovação</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Seguinte</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Não está disponível nenhum relatório completo de dependências para este pedido.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Não existem pedidos nesta vista.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Abrir relatório completo de dependências</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Pacote e versão</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Origem do pacote</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>A origem do pacote não pôde ser verificada</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Pendente</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Pendente de revisão</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Anterior</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Decisão anterior</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Projeto</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Rejeitar</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Rejeitar pedido</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Rejeitar este pedido</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Motivo da rejeição</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Renovar aprovação</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Impressão digital do relatório</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Pedido</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Solicitado pelo projeto</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Necessário para outro pacote</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Resolva as verificações apresentadas acima antes de aprovar. A aprovação não pode contornar uma verificação de segurança.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Consulte o relatório completo antes de tomar uma decisão em lote. A ação está associada ao hash do relatório.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Analise os pacotes solicitados para um projeto e decida se os deve autorizar.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Motivo da revogação</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Revogar lote</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Verificações de segurança</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Selecionar fornecedor</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Origem</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Origem verificada; não foram encontradas vulnerabilidades conhecidas</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Esta origem do pacote já não é permitida. O pedido não pode ser aprovado até ser novamente resolvido a partir de uma origem permitida.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Esta ação revoga as regras criadas por este pedido. As restantes aprovações para os mesmos pacotes mantêm-se em vigor.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Válido até (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>A aguardar uma análise de vulnerabilidades atualizada</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>A aguardar pela verificação da origem</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Porque está a aprovar estes pacotes?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Porque está a ser retirada esta aprovação?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Porque está este pedido a ser rejeitado?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Porque são necessários estes pacotes</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Retirar aprovação</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Retirar esta aprovação</value>
   </data>
 
 </root>

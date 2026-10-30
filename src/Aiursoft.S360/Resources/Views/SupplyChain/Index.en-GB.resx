@@ -126,6 +126,9 @@
   <data name="Match rules" xml:space="preserve">
     <value>Apply rules</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Not recorded</value>
+  </data>
   <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
     <value>Only artefacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but it is not yet a checked artefact; every future build still checks its full dependency graph.</value>
   </data>

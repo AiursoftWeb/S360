@@ -27,6 +27,9 @@
   <data name="Expires" xml:space="preserve">
     <value>समाप्ति तिथि</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>दर्ज नहीं है</value>
+  </data>
   <data name="Only the first 50 projects are shown." xml:space="preserve">
     <value>केवल पहले 50 प्रोजेक्ट दिखाए गए हैं।</value>
   </data>

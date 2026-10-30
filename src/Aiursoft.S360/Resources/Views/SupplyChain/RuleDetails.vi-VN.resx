@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>Chưa được cố định</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Chưa được ghi nhận</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>Chỉ hiển thị 100 quyền cấp đầu tiên.</value>
   </data>

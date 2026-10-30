@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>Não fixado</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Não registado</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>Apenas são apresentadas as primeiras 100 autorizações.</value>
   </data>

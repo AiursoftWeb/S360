@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Nu este înregistrată nicio relație cu un pachet părinte în rapoartele cererilor aprobate. Este posibil ca acest pachet să fi fost solicitat direct.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Neînregistrat</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Sunt afișate doar primele 100 de relații.</value>
   </data>

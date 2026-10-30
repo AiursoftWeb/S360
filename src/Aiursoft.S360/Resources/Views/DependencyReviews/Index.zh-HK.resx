@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>所有審核記錄</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>已獲批准</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>及完整報告中的其他項目</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>批核</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>批准後，在上述日期前，所有專案均可使用來自此來源的這些指定套件版本。日後的建置仍會進行安全檢查。</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>審批篩選條件</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>批准原因</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>批准範圍</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>已撤回批准</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>批准這些套件</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>已批准</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>已獲授權但暫緩處理的項目</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>被另一項安全檢查阻擋；請參閱報告</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>請選擇兩年內的未來日期。批核到期後必須續期。</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>相依性批核</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>依賴項申請</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>已過期</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>30 天內到期</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>完整報告及技術詳情</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>需要授權的項目</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>發現已知安全漏洞</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>需要審批</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>下一頁</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>此請求目前未有完整的依賴項報告。</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>此檢視中沒有請求。</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>開啟完整相依性報告</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>套件及版本</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>套件來源</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>無法驗證套件來源</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>待處理</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>待審核</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>上一頁</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>先前決定</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>專案</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>拒絕</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>拒絕請求</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>拒絕此請求</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>拒絕原因</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>續期批准</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>報告指紋</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>申請</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>由專案提出申請</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>由另一個套件所需</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>請先處理上方顯示的檢查項目，然後再批准。批准程序不能繞過安全檢查。</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>作出批次決定前，請先審閱完整報告。此操作會綁定至該報告的雜湊值。</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>審核專案所申請的套件，並決定是否批准。</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>撤銷原因</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>撤銷批次</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>安全檢查</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>選擇供應商</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>來源</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>來源已核實；未發現已知漏洞</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>此套件來源已不再獲准使用。必須先從允許的來源重新解析此請求，才能批准。</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>此操作將撤銷由此請求所建立的規則。相同封裝的其他核准仍然有效。</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>有效期限（UTC）</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>正在等待最新的漏洞檢查</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>等待來源驗證</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>你為甚麼批准這些套件？</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>為甚麼要撤回這項批准？</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>為甚麼要拒絕此項申請？</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>為何需要這些套件</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>撤回批准</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>撤回此項批准</value>
   </data>
 
 </root>

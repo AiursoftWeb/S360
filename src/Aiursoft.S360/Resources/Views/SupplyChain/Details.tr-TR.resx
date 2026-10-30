@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Onaylanmış istek raporlarında herhangi bir üst paket ilişkisi kaydedilmemiş. Bu paket doğrudan istenmiş olabilir.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Kaydedilmemiş</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Yalnızca ilk 100 ilişki gösteriliyor.</value>
   </data>

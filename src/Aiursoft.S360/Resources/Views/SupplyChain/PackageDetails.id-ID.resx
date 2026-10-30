@@ -27,6 +27,9 @@
   <data name="Expires" xml:space="preserve">
     <value>Kedaluwarsa</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Belum tercatat</value>
+  </data>
   <data name="Only the first 50 projects are shown." xml:space="preserve">
     <value>Hanya 50 proyek pertama yang ditampilkan.</value>
   </data>

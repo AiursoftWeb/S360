@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>すべてのレビュー記録</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>承認済み</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>詳細レポートにはさらに多くの項目があります</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>承認</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>承認すると、上記の日付まで、これらの正確なパッケージバージョンをこのソースからプロジェクト間で使用できます。今後のビルドでも引き続きセキュリティチェックが実行されます。</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>承認フィルター</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>承認理由</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>承認範囲</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>承認が取り消されました</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>これらのパッケージを承認</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>承認済み</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>承認済みの保留項目</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>別のセキュリティチェックによりブロックされています。レポートを確認してください</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>2年以内の未来の日付を選択してください。期限が切れた後は、承認を更新する必要があります。</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>依存関係の承認</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>依存関係の申請</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>期限切れ</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>30日以内に期限切れ</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>レポート全文と技術的な詳細</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>認可が必要な項目</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>既知の脆弱性が見つかりました</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>承認が必要</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>次へ</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>このリクエストに関する完全な依存関係レポートはありません。</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>このビューにはリクエストがありません。</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>完全な依存関係レポートを開く</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>パッケージとバージョン</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>パッケージソース</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>パッケージソースを検証できませんでした</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>審査待ち</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>審査待ち</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>前へ</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>以前の決定</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>プロジェクト</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>拒否</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>リクエストを却下</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>この申請を却下する</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>却下理由</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>承認を更新</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>レポートの指紋</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>申請</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>プロジェクトによるリクエスト</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>別のパッケージが必要としています</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>承認する前に、上記のチェックを解消してください。承認してもセキュリティチェックを回避することはできません。</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>一括で判断する前に、レポート全体を確認してください。この操作はレポートのハッシュに紐付けられています。</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>プロジェクトで要求されたパッケージを確認し、許可するかどうかを決定してください。</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>取り消し理由</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>一括承認を取り消す</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>セキュリティチェック</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>仕入先を選択</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>ソース</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>ソースの検証が完了しました。既知の脆弱性は見つかりませんでした</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>このパッケージソースは許可されなくなりました。許可されたソースから再度解決されるまで、このリクエストは承認できません。</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>この操作により、この申請で作成されたルールが取り消されます。同じパッケージに対する他の承認は引き続き有効です。</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>有効期限（UTC）</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>最新の脆弱性チェックを待っています</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>ソースの確認待ち</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>これらのパッケージを承認する理由を入力してください。</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>この承認を取り消す理由を教えてください。</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>このリクエストが却下される理由は何ですか？</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>これらのパッケージが必要な理由</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>承認を取り消す</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>この承認を取り消す</value>
   </data>
 
 </root>

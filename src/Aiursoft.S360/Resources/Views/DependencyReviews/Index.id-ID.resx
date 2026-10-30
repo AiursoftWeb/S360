@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Semua catatan peninjauan</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Sudah disetujui</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>dan selengkapnya dalam laporan lengkap</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Persetujuan</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Persetujuan mengizinkan versi paket yang persis ini dari sumber ini digunakan di berbagai proyek hingga tanggal di atas. Proses build berikutnya tetap menjalankan pemeriksaan keamanan.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Filter persetujuan</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Alasan persetujuan</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Cakupan persetujuan</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Persetujuan dicabut</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Setujui paket-paket ini</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Disetujui</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Item yang telah diotorisasi tetapi ditangguhkan</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Diblokir oleh pemeriksaan keamanan lain; lihat laporan</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Pilih tanggal di masa mendatang dalam jangka waktu dua tahun. Persetujuan harus diperbarui setelah masa berlakunya habis.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Persetujuan dependensi</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Permintaan dependensi</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Kedaluwarsa</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Akan kedaluwarsa dalam 30 hari</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Laporan lengkap dan detail teknis</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Item yang memerlukan otorisasi</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Ditemukan kerentanan yang diketahui</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Perlu persetujuan</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Berikutnya</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Laporan dependensi lengkap tidak tersedia untuk permintaan ini.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Tidak ada permintaan dalam tampilan ini.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Buka laporan dependensi lengkap</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Paket dan versi</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Sumber paket</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Sumber paket tidak dapat diverifikasi</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Menunggu</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Menunggu peninjauan</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Sebelumnya</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Keputusan sebelumnya</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Proyek</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Tolak</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Tolak permintaan</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Tolak permintaan ini</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Alasan penolakan</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Perbarui persetujuan</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Sidik jari laporan</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Permintaan</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Diminta oleh proyek</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Diperlukan oleh paket lain</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Selesaikan pemeriksaan yang ditampilkan di atas sebelum menyetujui. Persetujuan tidak dapat melewati pemeriksaan keamanan.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Tinjau laporan lengkap sebelum mengambil keputusan secara massal. Tindakan ini terikat pada hash laporan tersebut.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Tinjau paket yang diminta untuk suatu proyek dan putuskan apakah paket tersebut boleh disetujui.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Alasan pencabutan</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Cabut persetujuan batch</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Pemeriksaan keamanan</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Pilih pemasok</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Sumber</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Sumber terverifikasi; tidak ditemukan kerentanan yang diketahui</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Sumber paket ini tidak lagi diizinkan. Permintaan ini tidak dapat disetujui hingga diselesaikan kembali dari sumber yang diizinkan.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Ini mencabut aturan yang dibuat oleh permintaan ini. Persetujuan lain untuk paket yang sama tetap berlaku.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Berlaku hingga (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Menunggu pemeriksaan kerentanan terbaru</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Menunggu verifikasi sumber</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Mengapa Anda menyetujui paket-paket ini?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Mengapa persetujuan ini ditarik?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Mengapa permintaan ini ditolak?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Mengapa paket-paket ini diperlukan</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Cabut persetujuan</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Cabut persetujuan ini</value>
   </data>
 
 </root>

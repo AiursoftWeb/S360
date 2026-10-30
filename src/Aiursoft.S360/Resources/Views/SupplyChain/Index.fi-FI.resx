@@ -126,6 +126,9 @@
   <data name="Match rules" xml:space="preserve">
     <value>Tarkista säännöt</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Ei kirjattu</value>
+  </data>
   <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
     <value>Tässä näkyvät vain artefaktit, jotka läpäisevät tällä hetkellä S360-tarkistukset. Yllä näytetään sääntö, joka vastaa pakettia, jota ei ole vielä havaittu, mutta se ei ole vielä tarkistettu artefakti; jokainen tuleva koontiversio tarkistaa silti koko riippuvuusgraafinsa.</value>
   </data>

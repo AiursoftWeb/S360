@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>لا توجد علاقة بحزمة أصلية مسجلة في تقارير الطلبات المعتمدة. ربما تم طلب هذه الحزمة مباشرةً.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>غير مسجل</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>يتم عرض أول 100 علاقة فقط.</value>
   </data>

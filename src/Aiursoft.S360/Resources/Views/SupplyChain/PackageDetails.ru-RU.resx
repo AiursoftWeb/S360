@@ -27,6 +27,9 @@
   <data name="Expires" xml:space="preserve">
     <value>Истекает</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Не указано</value>
+  </data>
   <data name="Only the first 50 projects are shown." xml:space="preserve">
     <value>Показаны только первые 50 проектов.</value>
   </data>

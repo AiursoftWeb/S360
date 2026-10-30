@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Alle gennemgangsregistreringer</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Allerede godkendt</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>og mere i den fuldstændige rapport</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Godkendelse</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Godkendelsen gælder præcis disse pakkeversioner fra denne kilde på tværs af projekter indtil datoen ovenfor. Fremtidige builds gennemgår stadig sikkerhedskontroller.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Filtre for godkendelser</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Begrundelse for godkendelse</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Godkendelsesomfang</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Godkendelse trukket tilbage</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Godkend disse pakker</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Godkendt</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Godkendte elementer på hold</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Blokeret af et andet sikkerhedstjek; se rapporten</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Vælg en dato i fremtiden inden for de næste to år. Godkendelsen skal fornyes, når den udløber.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Godkendelse af afhængigheder</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Afhængighedsanmodning</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Udløbet</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Udløber inden for 30 dage</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Fuld rapport og tekniske detaljer</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Elementer, der kræver godkendelse</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Kendt sårbarhed fundet</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Kræver godkendelse</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Næste</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Der er ingen fuldstændig afhængighedsrapport tilgængelig for denne anmodning.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Ingen anmodninger i denne visning.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Åbn den fuldstændige afhængighedsrapport</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Pakke og version</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Pakkekilde</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Pakkekilden kunne ikke verificeres</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Afventer</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Afventer gennemgang</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Forrige</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Tidligere afgørelse</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Projekt</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Afvis</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Afvis anmodning</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Afvis denne anmodning</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Afvisningsårsag</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Forny godkendelsen</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Rapportens fingeraftryk</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Anmodning</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Anmodet af projektet</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Påkrævet af en anden pakke</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Afhjælp de ovenstående kontroller, før du godkender. En godkendelse kan ikke omgå et sikkerhedstjek.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Gennemgå den fulde rapport, før du træffer en samlet beslutning. Handlingen er knyttet til rapportens hash.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Gennemgå de pakker, der er anmodet om til et projekt, og afgør, om de skal tillades.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Tilbagekaldelsesgrund</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Tilbagekald batch</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Sikkerhedstjek</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Vælg leverandør</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Kilde</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Kilden er verificeret; ingen kendte sårbarheder fundet</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Denne pakkekilde er ikke længere tilladt. Anmodningen kan ikke godkendes, før den igen er løst fra en tilladt kilde.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Dette tilbagekalder reglerne, der er oprettet af denne anmodning. Andre godkendelser af de samme pakker forbliver gældende.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Gyldig indtil (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Afventer et opdateret sårbarhedstjek</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Venter på kildeverificering</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>Hvorfor godkender du disse pakker?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>Hvorfor trækkes denne godkendelse tilbage?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>Hvorfor bliver denne anmodning afvist?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>Hvorfor er der brug for disse pakker?</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Tilbagekald godkendelse</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Træk denne godkendelse tilbage</value>
   </data>
 
 </root>

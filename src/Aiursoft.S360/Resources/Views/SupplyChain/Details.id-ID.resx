@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Tidak ada hubungan induk yang tercatat dalam laporan permintaan yang disetujui. Paket ini mungkin diminta secara langsung.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Tidak tercatat</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Hanya 100 hubungan pertama yang ditampilkan.</value>
   </data>

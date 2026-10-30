@@ -21,8 +21,20 @@
       <data name="All review records" xml:space="preserve">
     <value>Toate înregistrările pentru revizuire</value>
   </data>
+  <data name="Already approved" xml:space="preserve">
+    <value>Deja aprobat</value>
+  </data>
   <data name="and more in the complete report" xml:space="preserve">
     <value>și multe altele în raportul complet</value>
+  </data>
+  <data name="Approval" xml:space="preserve">
+    <value>Aprobare</value>
+  </data>
+  <data name="Approval allows these exact package versions from this source across projects until the date above. Future builds still run security checks." xml:space="preserve">
+    <value>Aprobarea permite exact aceste versiuni de pachete din această sursă în toate proiectele până la data menționată mai sus. Construcțiile viitoare rulează în continuare verificări de securitate.</value>
+  </data>
+  <data name="Approval filters" xml:space="preserve">
+    <value>Filtre de aprobare</value>
   </data>
   <data name="Approval reason" xml:space="preserve">
     <value>Motivul aprobării</value>
@@ -30,11 +42,29 @@
   <data name="Approval scope" xml:space="preserve">
     <value>Domeniul de aprobare</value>
   </data>
+  <data name="Approval withdrawn" xml:space="preserve">
+    <value>Aprobare retrasă</value>
+  </data>
+  <data name="Approve these packages" xml:space="preserve">
+    <value>Aprobă aceste pachete</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Aprobat</value>
+  </data>
   <data name="Authorized items on hold" xml:space="preserve">
     <value>Elemente autorizate aflate în așteptare</value>
   </data>
+  <data name="Blocked by another security check; see the report" xml:space="preserve">
+    <value>Blocat de o altă verificare de securitate; consultați raportul</value>
+  </data>
+  <data name="Choose a future date within two years. Approval must be renewed after it expires." xml:space="preserve">
+    <value>Alegeți o dată viitoare în următorii doi ani. Aprobarea trebuie reînnoită după expirare.</value>
+  </data>
   <data name="Dependency approvals" xml:space="preserve">
     <value>Aprobări ale dependențelor</value>
+  </data>
+  <data name="Dependency request" xml:space="preserve">
+    <value>Solicitare de dependență</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Expirate</value>
@@ -45,8 +75,17 @@
   <data name="Expiring within 30 days" xml:space="preserve">
     <value>Expiră în următoarele 30 de zile</value>
   </data>
+  <data name="Full report and technical details" xml:space="preserve">
+    <value>Raport complet și detalii tehnice</value>
+  </data>
   <data name="Items needing authorization" xml:space="preserve">
     <value>Elemente care necesită autorizare</value>
+  </data>
+  <data name="Known vulnerability found" xml:space="preserve">
+    <value>Vulnerabilitate cunoscută identificată</value>
+  </data>
+  <data name="Needs approval" xml:space="preserve">
+    <value>Necesită aprobare</value>
   </data>
   <data name="Next" xml:space="preserve">
     <value>Următoarea</value>
@@ -54,14 +93,32 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Nu este disponibil niciun raport complet al dependențelor pentru această solicitare.</value>
   </data>
+  <data name="No requests in this view." xml:space="preserve">
+    <value>Nu există solicitări în această vizualizare.</value>
+  </data>
   <data name="Open complete dependency report" xml:space="preserve">
     <value>Deschideți raportul complet al dependențelor</value>
+  </data>
+  <data name="Package and version" xml:space="preserve">
+    <value>Pachet și versiune</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Sursa pachetului</value>
+  </data>
+  <data name="Package source could not be verified" xml:space="preserve">
+    <value>Sursa pachetului nu a putut fi verificată</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>În așteptare</value>
   </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>În așteptarea evaluării</value>
+  </data>
   <data name="Previous" xml:space="preserve">
     <value>Anterior</value>
+  </data>
+  <data name="Previous decision" xml:space="preserve">
+    <value>Decizia anterioară</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Proiect</value>
@@ -72,14 +129,38 @@
   <data name="Reject" xml:space="preserve">
     <value>Respinge</value>
   </data>
+  <data name="Reject request" xml:space="preserve">
+    <value>Respinge solicitarea</value>
+  </data>
+  <data name="Reject this request" xml:space="preserve">
+    <value>Respingeți această solicitare</value>
+  </data>
   <data name="Rejection reason" xml:space="preserve">
     <value>Motivul respingerii</value>
+  </data>
+  <data name="Renew approval" xml:space="preserve">
+    <value>Reînnoiți aprobarea</value>
+  </data>
+  <data name="Report fingerprint" xml:space="preserve">
+    <value>Amprenta raportului</value>
   </data>
   <data name="Request" xml:space="preserve">
     <value>Cerere</value>
   </data>
+  <data name="Requested by the project" xml:space="preserve">
+    <value>Solicitat de proiect</value>
+  </data>
+  <data name="Required by another package" xml:space="preserve">
+    <value>Necesar pentru un alt pachet</value>
+  </data>
+  <data name="Resolve the checks shown above before approving. Approving cannot bypass a security check." xml:space="preserve">
+    <value>Rezolvați verificările afișate mai sus înainte de a aproba. Aprobarea nu poate ocoli o verificare de securitate.</value>
+  </data>
   <data name="Review the complete report before making a batch decision. The action is bound to its report hash." xml:space="preserve">
     <value>Consultați raportul complet înainte de a lua o decizie în bloc. Acțiunea este asociată cu hash-ul raportului.</value>
+  </data>
+  <data name="Review the packages requested for a project and decide whether to allow them." xml:space="preserve">
+    <value>Verificați pachetele solicitate pentru un proiect și decideți dacă să le aprobați.</value>
   </data>
   <data name="Revocation reason" xml:space="preserve">
     <value>Motivul revocării</value>
@@ -87,14 +168,50 @@
   <data name="Revoke batch" xml:space="preserve">
     <value>Revocă lotul</value>
   </data>
+  <data name="Security checks" xml:space="preserve">
+    <value>Verificări de securitate</value>
+  </data>
   <data name="Select supplier" xml:space="preserve">
     <value>Selectați furnizorul</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Sursă</value>
   </data>
+  <data name="Source verified; no known vulnerabilities found" xml:space="preserve">
+    <value>Sursa a fost verificată; nu au fost găsite vulnerabilități cunoscute</value>
+  </data>
   <data name="This package source is no longer permitted. The request cannot be approved until it is resolved again from an allowed source." xml:space="preserve">
     <value>Această sursă de pachete nu mai este permisă. Cererea nu poate fi aprobată până când nu este rezolvată din nou folosind o sursă permisă.</value>
+  </data>
+  <data name="This withdraws the rules created by this request. Other approvals for the same packages remain in effect." xml:space="preserve">
+    <value>Aceasta retrage regulile create prin această solicitare. Celelalte aprobări pentru aceleași pachete rămân valabile.</value>
+  </data>
+  <data name="Valid until (UTC)" xml:space="preserve">
+    <value>Valabil până la (UTC)</value>
+  </data>
+  <data name="Waiting for an up-to-date vulnerability check" xml:space="preserve">
+    <value>Se așteaptă efectuarea unei verificări actualizate a vulnerabilităților</value>
+  </data>
+  <data name="Waiting for source verification" xml:space="preserve">
+    <value>Se așteaptă verificarea sursei</value>
+  </data>
+  <data name="Why are you approving these packages?" xml:space="preserve">
+    <value>De ce aprobați aceste pachete?</value>
+  </data>
+  <data name="Why is this approval being withdrawn?" xml:space="preserve">
+    <value>De ce se retrage această aprobare?</value>
+  </data>
+  <data name="Why is this request being rejected?" xml:space="preserve">
+    <value>De ce este respinsă această solicitare?</value>
+  </data>
+  <data name="Why these packages are needed" xml:space="preserve">
+    <value>De ce sunt necesare aceste pachete</value>
+  </data>
+  <data name="Withdraw approval" xml:space="preserve">
+    <value>Retragere aprobare</value>
+  </data>
+  <data name="Withdraw this approval" xml:space="preserve">
+    <value>Retrage această aprobare</value>
   </data>
 
 </root>

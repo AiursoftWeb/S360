@@ -72,6 +72,9 @@
   <data name="Not pinned" xml:space="preserve">
     <value>固定されていません</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>未記録</value>
+  </data>
   <data name="Only the first 100 grants are shown." xml:space="preserve">
     <value>最初の100件の許可のみ表示されています。</value>
   </data>

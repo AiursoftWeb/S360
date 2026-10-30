@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Nenhuma relação com um pacote pai foi registrada nos relatórios de solicitações aprovadas. Este pacote pode ter sido solicitado diretamente.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Não informado</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Apenas as primeiras 100 relações são exibidas.</value>
   </data>

@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Er is geen bovenliggende relatie vastgelegd in rapporten van goedgekeurde aanvragen. Dit pakket is mogelijk rechtstreeks aangevraagd.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Niet vastgelegd</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Alleen de eerste 100 relaties worden weergegeven.</value>
   </data>

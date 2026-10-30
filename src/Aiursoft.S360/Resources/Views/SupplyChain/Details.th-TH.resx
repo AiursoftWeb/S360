@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>ไม่มีการบันทึกความสัมพันธ์กับแพ็กเกจต้นทางในรายงานคำขอที่ได้รับอนุมัติ แพ็กเกจนี้อาจถูกร้องขอโดยตรง</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>ไม่ได้บันทึก</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>แสดงความสัมพันธ์ 100 รายการแรกเท่านั้น</value>
   </data>

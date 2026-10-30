@@ -126,6 +126,9 @@
   <data name="Match rules" xml:space="preserve">
     <value>Aplicar reglas</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>No consta</value>
+  </data>
   <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
     <value>Aquí solo aparecen los artefactos que superan actualmente las comprobaciones de S360. Encima se muestra una regla coincidente para un paquete que aún no se ha visto, pero todavía no es un artefacto comprobado; cada compilación futura seguirá comprobando todo su grafo de dependencias.</value>
   </data>

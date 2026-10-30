@@ -126,6 +126,9 @@
   <data name="Match rules" xml:space="preserve">
     <value>Áp dụng quy tắc</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Chưa ghi nhận</value>
+  </data>
   <data name="Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph." xml:space="preserve">
     <value>Chỉ những tạo tác hiện vượt qua các bước kiểm tra S360 mới xuất hiện ở đây. Quy tắc khớp với một gói chưa xuất hiện được hiển thị ở trên, nhưng gói đó chưa phải là tạo tác đã được kiểm tra; mỗi lần dựng trong tương lai vẫn kiểm tra toàn bộ đồ thị phụ thuộc của gói.</value>
   </data>

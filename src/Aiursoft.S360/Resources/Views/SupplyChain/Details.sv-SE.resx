@@ -48,6 +48,9 @@
   <data name="No parent relationship is recorded in approved request reports. This package may have been requested directly." xml:space="preserve">
     <value>Inga föräldrarelationer har registrerats i godkända begäranderapporter. Paketet kan ha begärts direkt.</value>
   </data>
+  <data name="Not recorded" xml:space="preserve">
+    <value>Inte registrerat</value>
+  </data>
   <data name="Only the first 100 relationships are shown." xml:space="preserve">
     <value>Endast de första 100 relationerna visas.</value>
   </data>

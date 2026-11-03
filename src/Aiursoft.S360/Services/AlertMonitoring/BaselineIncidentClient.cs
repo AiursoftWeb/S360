@@ -14,7 +14,8 @@ public interface IBaselineIncidentClient
     Task<PatchIncidentMetadataResponse> PatchAsync(Guid id, PatchIncidentMetadataRequest request);
 }
 
-public sealed class BaselineIncidentClient(AiurProtocolClient http, AlertCenterSettingsProvider settingsProvider) : IBaselineIncidentClient
+public sealed class BaselineIncidentClient(AiurProtocolClient http, AlertCenterSettingsProvider settingsProvider,
+    ILogger<AlertCenterApiClient> logger) : IBaselineIncidentClient
 {
     private Task<AlertCenterApiClient>? _client;
     private Task<AlertCenterApiClient> GetAsync() => _client ??= CreateAsync();
@@ -24,7 +25,7 @@ public sealed class BaselineIncidentClient(AiurProtocolClient http, AlertCenterS
         var settings = await settingsProvider.GetAsync();
         settings.Validate();
         return new AlertCenterApiClient(http, Options.Create(new AlertCenterApiOptions { Endpoint = settings.Endpoint.TrimEnd('/') }),
-            new SnapshotKeyProvider(settings.ApiKey));
+            new SnapshotKeyProvider(settings.ApiKey), logger);
     }
 
     public async Task<QueryIncidentsResponse> QueryAsync(QueryIncidentsRequest request) => await (await GetAsync()).QueryIncidentsAsync(request);

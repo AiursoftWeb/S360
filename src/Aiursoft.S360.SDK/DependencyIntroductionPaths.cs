@@ -109,7 +109,8 @@ public static class DependencyIntroductionPaths
     }
 
     public static void AddNpm(string lockPath, IReadOnlyCollection<Dependency> dependencies,
-        string project, Dictionary<string, List<string>> paths, List<DependencyGraphNode>? graph = null)
+        string project, Dictionary<string, List<string>> paths, List<DependencyGraphNode>? graph = null,
+        bool requireInstalled = true)
     {
         using var document = JsonDocument.Parse(File.ReadAllText(lockPath));
         var projectDirectory = Path.GetDirectoryName(lockPath)!;
@@ -148,7 +149,7 @@ public static class DependencyIntroductionPaths
                 {
                     var childPath = ResolveNpmPath(current.LockPath, child.Name, nodes);
                     if (childPath == null || !nodes[childPath].TryGetProperty("version", out var versionElement)) continue;
-                    if (!Directory.Exists(Path.Combine(projectDirectory,
+                    if (requireInstalled && !Directory.Exists(Path.Combine(projectDirectory,
                             childPath.Replace('/', Path.DirectorySeparatorChar)))) continue;
                     var childNode = nodes[childPath];
                     var version = versionElement.GetString();

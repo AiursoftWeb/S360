@@ -14,7 +14,7 @@ public class CheckHandler : CommandHandlerBuilder
 
     private static readonly Option<string> PathOption = new("--path", aliases: ["-p"])
     {
-        Description = "Restored .sln file for NuGet/all checks; installed project directory for npm checks.",
+        Description = "Restored .sln file for NuGet/all checks; project directory for npm checks (install first unless --npm-lockfile-only).",
         DefaultValueFactory = _ => "."
     };
     private static readonly Option<string?> ServerOption = new("--server")
@@ -31,10 +31,14 @@ public class CheckHandler : CommandHandlerBuilder
         Description = "Dependency ecosystem to check: all, nuget or npm.",
         DefaultValueFactory = _ => "all"
     };
+    private static readonly Option<bool> NpmLockfileOnlyOption = new("--npm-lockfile-only")
+    {
+        Description = "Audit every locked npm archive before installation, including optional packages for other platforms."
+    };
     public override Command BuildAsCommand()
     {
         var command = base.BuildAsCommand();
-        foreach (var option in new Option[] { PathOption, ServerOption, PurposeOption, EcosystemOption })
+        foreach (var option in new Option[] { PathOption, ServerOption, PurposeOption, EcosystemOption, NpmLockfileOnlyOption })
             command.Options.Add(option);
         command.SetAction(Execute);
         return command;
@@ -48,6 +52,9 @@ public class CheckHandler : CommandHandlerBuilder
         var ecosystem = context.GetValue(EcosystemOption)!;
         if (ecosystem is not ("all" or "nuget" or "npm"))
             throw new InvalidOperationException("--ecosystem must be all, nuget or npm.");
+        var npmLockfileOnly = context.GetValue(NpmLockfileOnlyOption);
+        if (npmLockfileOnly && ecosystem == "nuget")
+            throw new InvalidOperationException("--npm-lockfile-only requires --ecosystem npm or all.");
         var selectedEcosystem = ecosystem == "all" ? null : ecosystem;
         var server = context.GetValue(ServerOption) ?? Environment.GetEnvironmentVariable("S360_SERVER");
         var key = Environment.GetEnvironmentVariable("S360_CHECK_KEY");
@@ -61,7 +68,7 @@ public class CheckHandler : CommandHandlerBuilder
         // A lockfile URL must not silently redirect the archive download to another source.
         using var http = new HttpClient(new HttpClientHandler { AllowAutoRedirect = false });
         http.Timeout = TimeSpan.FromMinutes(10);
-        var scan = await DependencyScanner.ScanDetailedAsync(path, http, ecosystem: selectedEcosystem);
+        var scan = await DependencyScanner.ScanDetailedAsync(path, http, ecosystem: selectedEcosystem, npmLockfileOnly: npmLockfileOnly);
         var dependencies = scan.Dependencies;
         foreach (var skipped in scan.SkippedOptional)
             Console.WriteLine($"SKIPPED {skipped}");

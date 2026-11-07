@@ -819,6 +819,137 @@ public class DependencyScannerTests
         finally { Directory.Delete(root, true); }
     }
 
+    [TestMethod]
+    [DataRow(2)]
+    [DataRow(3)]
+    public async Task NpmLockfileOnlyChecksDevelopmentAndOtherPlatformPackagesBeforeInstallation(int lockVersion)
+    {
+        var root = Directory.CreateTempSubdirectory("s360-npm-preinstall-").FullName;
+        try
+        {
+            var development = new Dictionary<string, string> { ["sample"] = "1.0.0" };
+            var optional = new Dictionary<string, string> { ["@example/arm64"] = "1.0.0" };
+            var manifest = JsonSerializer.Serialize(new
+            {
+                name = "app", version = "1.0.0", devDependencies = development, optionalDependencies = optional,
+                scripts = new { preinstall = "touch script-ran" }
+            });
+            await File.WriteAllTextAsync(Path.Combine(root, "package.json"), manifest);
+            var archives = new Dictionary<string, byte[]>
+            {
+                ["/sample.tgz"] = CreateNpmArchive("sample", "1.0.0"),
+                ["/arm64.tgz"] = CreateNpmArchive("@example/arm64", "1.0.0")
+            };
+            var lockJson = JsonSerializer.Serialize(new
+            {
+                lockfileVersion = lockVersion, packages = new Dictionary<string, object>
+                {
+                    [""] = new { name = "app", version = "1.0.0", devDependencies = development, optionalDependencies = optional },
+                    ["node_modules/sample"] = new
+                    {
+                        version = "1.0.0", dev = true, resolved = "https://registry.example/sample.tgz",
+                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(archives["/sample.tgz"]))
+                    },
+                    ["node_modules/@example/arm64"] = new
+                    {
+                        version = "1.0.0", optional = true, os = new[] { "darwin" }, cpu = new[] { "arm64" },
+                        resolved = "https://registry.example/arm64.tgz",
+                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(archives["/arm64.tgz"]))
+                    }
+                }
+            });
+            var lockPath = Path.Combine(root, "package-lock.json");
+            await File.WriteAllTextAsync(lockPath, lockJson);
+            using var client = new HttpClient(new ArchiveHandler(archives));
+            var report = await DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm", npmLockfileOnly: true);
+            Assert.HasCount(2, report.Dependencies);
+            Assert.HasCount(0, report.SkippedOptional);
+            Assert.AreEqual(1, report.ScannedProjectCount);
+            Assert.IsTrue(report.Dependencies.All(d => report.PathsFor(d).Count > 0));
+            Assert.HasCount(3, report.GraphNodes);
+            Assert.IsFalse(Directory.Exists(Path.Combine(root, "node_modules")));
+            Assert.IsFalse(File.Exists(Path.Combine(root, "script-ran")));
+            Assert.AreEqual(manifest, await File.ReadAllTextAsync(Path.Combine(root, "package.json")));
+            Assert.AreEqual(lockJson, await File.ReadAllTextAsync(lockPath));
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [TestMethod]
+    [DataRow("integrity")]
+    [DataRow("identity")]
+    [DataRow("redirect")]
+    public async Task NpmLockfileOnlyRejectsInvalidArchivesWithoutInstalling(string failure)
+    {
+        var root = Directory.CreateTempSubdirectory("s360-npm-preinstall-invalid-").FullName;
+        try
+        {
+            await File.WriteAllTextAsync(Path.Combine(root, "package.json"),
+                """{"dependencies":{"sample":"1.0.0"}}""");
+            var bytes = CreateNpmArchive(failure == "identity" ? "different" : "sample", "1.0.0");
+            await File.WriteAllTextAsync(Path.Combine(root, "package-lock.json"), JsonSerializer.Serialize(new
+            {
+                lockfileVersion = 3, packages = new Dictionary<string, object>
+                {
+                    [""] = new { dependencies = new Dictionary<string, string> { ["sample"] = "1.0.0" } },
+                    ["node_modules/sample"] = new
+                    {
+                        version = "1.0.0", resolved = "https://registry.example/sample.tgz",
+                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(bytes))
+                    }
+                }
+            }));
+            using var client = new HttpClient(failure == "redirect" ? new OtherOriginHandler(bytes) :
+                new FixedHandler(failure == "integrity" ? "changed"u8.ToArray() : bytes));
+            var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
+                DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm", npmLockfileOnly: true));
+            StringAssert.Contains(error.Message, failure switch
+            {
+                "integrity" => "integrity mismatch",
+                "identity" => "archive identity differs",
+                _ => "different source"
+            });
+            Assert.IsFalse(Directory.Exists(Path.Combine(root, "node_modules")));
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [TestMethod]
+    [DataRow(true)]
+    [DataRow(false)]
+    public async Task NpmLockfileOnlyStillRejectsIncompleteOrInconsistentLocks(bool missingPackage)
+    {
+        var root = Directory.CreateTempSubdirectory("s360-npm-preinstall-incomplete-").FullName;
+        try
+        {
+            await File.WriteAllTextAsync(Path.Combine(root, "package.json"),
+                """{"dependencies":{"sample":"1.0.0"}}""");
+            await File.WriteAllTextAsync(Path.Combine(root, "package-lock.json"), JsonSerializer.Serialize(new
+            {
+                lockfileVersion = 3, packages = new Dictionary<string, object>
+                {
+                    [""] = new { dependencies = new Dictionary<string, string> { ["sample"] = missingPackage ? "1.0.0" : "2.0.0" } }
+                }
+            }));
+            var handler = new FixedHandler([]);
+            using var client = new HttpClient(handler);
+            var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
+                DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm", npmLockfileOnly: true));
+            StringAssert.Contains(error.Message, missingPackage ? "missing from the lockfile" : "differs");
+            Assert.AreEqual(0, handler.Calls);
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    private sealed class ArchiveHandler(IReadOnlyDictionary<string, byte[]> archives) : HttpMessageHandler
+    {
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) =>
+            Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new ByteArrayContent(archives[request.RequestUri!.AbsolutePath])
+            });
+    }
+
     private sealed class FixedHandler(byte[] bytes) : HttpMessageHandler
     {
         public int Calls { get; private set; }

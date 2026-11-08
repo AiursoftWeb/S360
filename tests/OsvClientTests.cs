@@ -168,6 +168,120 @@ public class OsvClientTests
             OsvRangeMatcher.Intersects(advisory.AffectedJson, "npm", "lodash", "4.17.21"));
     }
 
+    [TestMethod]
+    public async Task VersionBatchesAreBoundedAndDoNotApplyOneVersionsFindingToAnother()
+    {
+        var requests = new List<int>();
+        var detail = new OsvAdvisory("KNOWN", [], "Known", "", DateTime.Parse("2026-09-23T00:00:00Z").ToUniversalTime(), false, "[]");
+        using var http = new HttpClient(new CallbackHandler(async request =>
+        {
+            Assert.AreEqual("/v1/querybatch", request.RequestUri!.AbsolutePath);
+            using var document = JsonDocument.Parse(await request.Content!.ReadAsStringAsync());
+            var queries = document.RootElement.GetProperty("queries");
+            requests.Add(queries.GetArrayLength());
+            var results = queries.EnumerateArray().Select(q => new
+            {
+                vulns = int.Parse(q.GetProperty("version").GetString()!.Split('.')[2]) % 2 == 0
+                    ? new object[] { new { id = detail.Id, modified = detail.ModifiedAtUtc } } : []
+            });
+            return new HttpResponseMessage(HttpStatusCode.OK)
+                { Content = new StringContent(JsonSerializer.Serialize(new { results })) };
+        }));
+        var versions = Enumerable.Range(0, 1001).Select(index => ("npm", "sample", $"1.0.{index}"));
+        var known = new Dictionary<(string, string), List<OsvAdvisory>> { [("npm", "sample")] = [detail] };
+
+        var results = await new OsvClient(http).QueryVersionsAsync(versions, known);
+
+        Assert.HasCount(1001, results);
+        Assert.HasCount(11, requests);
+        Assert.IsTrue(requests.All(count => count <= 100));
+        foreach (var (version, advisories) in results)
+            Assert.AreEqual(int.Parse(version.Version.Split('.')[2]) % 2 == 0 ? 1 : 0, advisories.Count);
+    }
+
+    [TestMethod]
+    public async Task VersionBatchesContinueOnlyUnfinishedQueriesAndRefreshChangedOrMissingDetails()
+    {
+        var batches = 0;
+        var lookups = new List<string>();
+        var old = DateTime.Parse("2026-09-23T00:00:00Z").ToUniversalTime();
+        var current = old.AddDays(1);
+        using var http = new HttpClient(new CallbackHandler(async request =>
+        {
+            if (request.Method == HttpMethod.Get)
+            {
+                var id = request.RequestUri!.Segments.Last();
+                lookups.Add(id);
+                return new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(JsonSerializer.Serialize(new
+                {
+                    id, modified = current, aliases = new[] { "CVE-test" }, summary = "Updated full advisory",
+                    affected = new[] { new { package = new { ecosystem = "npm", name = "sample" }, versions = new[] { "1.0.0", "3.0.0" } } }
+                })) };
+            }
+            batches++;
+            using var document = JsonDocument.Parse(await request.Content!.ReadAsStringAsync());
+            var queries = document.RootElement.GetProperty("queries");
+            if (batches == 1)
+            {
+                Assert.AreEqual(3, queries.GetArrayLength());
+                return new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("""
+                    {"results":[
+                      {"vulns":[{"id":"KNOWN","modified":"2026-09-23T00:00:00Z"}],"next_page_token":"next"},
+                      {},
+                      {"vulns":[{"id":"NEW","modified":"2026-09-24T00:00:00Z"}]}
+                    ]}
+                    """) };
+            }
+            Assert.AreEqual(1, queries.GetArrayLength());
+            Assert.AreEqual("1.0.0", queries[0].GetProperty("version").GetString());
+            Assert.AreEqual("next", queries[0].GetProperty("page_token").GetString());
+            return new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent("""
+                {"results":[{"vulns":[{"id":"UPDATED","modified":"2026-09-24T00:00:00Z"}]}]}
+                """) };
+        }));
+        var known = new Dictionary<(string, string), List<OsvAdvisory>>
+        {
+            [("npm", "sample")] = [new("KNOWN", [], "Known", "", old, false, "[]"),
+                new("UPDATED", [], "Stale", "", old, false, "[]")]
+        };
+
+        var result = await new OsvClient(http).QueryVersionsAsync(
+            [("npm", "sample", "1.0.0"), ("npm", "sample", "2.0.0"), ("npm", "sample", "3.0.0")], known);
+
+        Assert.AreEqual(2, batches);
+        CollectionAssert.AreEquivalent(new[] { "UPDATED", "NEW" }, lookups);
+        Assert.HasCount(2, result[("npm", "sample", "1.0.0")]);
+        Assert.IsEmpty(result[("npm", "sample", "2.0.0")]);
+        Assert.AreEqual("Updated full advisory", result[("npm", "sample", "3.0.0")].Single().Summary);
+        Assert.AreEqual(current, result[("npm", "sample", "1.0.0")].Single(a => a.Id == "UPDATED").ModifiedAtUtc);
+        StringAssert.Contains(result[("npm", "sample", "3.0.0")].Single().AffectedJson, "3.0.0");
+    }
+
+    [TestMethod]
+    [DataRow("{}")]
+    [DataRow("{\"results\":[]}")]
+    [DataRow("{\"results\":[{\"vulns\":{}}]}")]
+    [DataRow("{\"results\":[{\"vulns\":[{\"id\":\"\",\"modified\":\"2026-09-23T00:00:00Z\"}]}]}")]
+    [DataRow("{\"results\":[{\"next_page_token\":\"same\"}]}")]
+    public async Task IncompleteOrMalformedVersionBatchesFailClosed(string response)
+    {
+        using var http = new HttpClient(new CallbackHandler(_ => Task.FromResult(
+            new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(response) })));
+        await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => new OsvClient(http).QueryVersionsAsync(
+            [("npm", "sample", "1.0.0")], new Dictionary<(string, string), List<OsvAdvisory>>()));
+    }
+
+    [TestMethod]
+    public async Task OlderAdvisoryDetailsCannotSatisfyANewerBatchRevision()
+    {
+        using var http = new HttpClient(new CallbackHandler(request => Task.FromResult(
+            new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(request.Method == HttpMethod.Get
+                ? """{"id":"NEW","modified":"2026-09-23T00:00:00Z","affected":[]}"""
+                : """{"results":[{"vulns":[{"id":"NEW","modified":"2026-09-24T00:00:00Z"}]}]}""") })));
+        await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => new OsvClient(http).QueryVersionsAsync(
+            [("npm", "sample", "1.0.0")], new Dictionary<(string, string), List<OsvAdvisory>>()));
+    }
+
     private sealed class VersionedAdvisoryHandler : HttpMessageHandler
     {
         public bool QueriedExpectedVersion { get; private set; }

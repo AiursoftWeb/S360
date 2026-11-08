@@ -84,7 +84,18 @@ dotnet build App.sln --no-restore
 
 The solution's restore graph includes referenced projects even when they are not listed in the solution. Unrelated projects are excluded; missing or stale restore output inside the graph still fails. The check evaluates the graph without restoring packages. Restore with the default solution configuration; custom MSBuild command-line properties are not forwarded by the checker.
 
-For npm, run `npm ci` first, then `s360 check --ecosystem npm --path .`. The default ecosystem (`all`) requires a solution and also checks npm projects under its directory. From CLI 1.1.0, directory-only NuGet/all calls must pass the solution file instead.
+For an npm gate before installation, use CLI 1.4.0 or later:
+
+```bash
+s360 check --ecosystem npm --path . --npm-lockfile-only --purpose review
+# Continue only after a successful check; npm ci uses the same checked-in lockfile.
+npm ci
+npm run build
+```
+
+This mode downloads and verifies the locked archives without installing packages or running their scripts. It includes optional packages for other platforms, so a Linux check also covers packages later selected by an ARM64 or Windows build. It reports the locked dependency set, not an observed installation. Use `--purpose baseline` with the existing credential for production reports. Keep the manifest and lockfile unchanged between checking and building; subsequent builds must use `npm ci`, not `npm install`.
+
+Without `--npm-lockfile-only`, run `npm ci --ignore-scripts` first, then `s360 check --ecosystem npm --path .`; this existing mode validates the current installation and skips absent optional packages. The default ecosystem (`all`) requires a solution and also checks npm projects under its directory. From CLI 1.1.0, directory-only NuGet/all calls must pass the solution file instead.
 
 The CLI requires `S360_SERVER` and normally `S360_CHECK_KEY`. Create a personal key under **Personal → API Keys** with `CanManageApiKeys` permission; keep it out of source and logs.
 

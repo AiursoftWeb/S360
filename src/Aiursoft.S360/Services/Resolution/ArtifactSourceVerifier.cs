@@ -10,22 +10,40 @@ public interface IArtifactSourceVerifier
     Task<bool> VerifyAsync(PackageArtifact artifact, CancellationToken cancellationToken = default);
 }
 
-public class ArtifactSourceVerifier(PackageResolutionService resolver, IConfiguration configuration,
-    IHttpClientFactory clients) : IArtifactSourceVerifier
+public class ArtifactSourceVerifier(IConfiguration configuration, IHttpClientFactory clients) : IArtifactSourceVerifier
 {
     public async Task<bool> VerifyAsync(PackageArtifact artifact, CancellationToken cancellationToken = default)
     {
         if (!AllowedPackageSources.Contains(configuration, artifact.Ecosystem, artifact.Source)) return false;
         if (artifact.Ecosystem == "nuget") return await VerifyNuGetAsync(artifact, cancellationToken);
-        var report = await resolver.ResolveAsync(artifact.Ecosystem, artifact.Source,
-            [new DirectPackage(artifact.Name, artifact.Version)], cancellationToken);
-        var direct = report.Edges.Where(edge => edge.Parent == null).Select(edge => edge.Child).Single();
-        return direct.Ecosystem == artifact.Ecosystem &&
-               direct.Name.Equals(artifact.Name, artifact.Ecosystem == "nuget"
-                   ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
-               direct.Version.Equals(artifact.Version, StringComparison.OrdinalIgnoreCase) &&
-               direct.Source == artifact.Source &&
-               direct.Sha256.Equals(artifact.Sha256, StringComparison.OrdinalIgnoreCase);
+        return artifact.Ecosystem == "npm" && await VerifyNpmAsync(artifact, cancellationToken);
+    }
+
+    private async Task<bool> VerifyNpmAsync(PackageArtifact artifact, CancellationToken cancellationToken)
+    {
+        if (!TrustPattern.IsValidConcretePackage("npm", artifact.Name, artifact.Version)) return false;
+        using var deadline = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
+        deadline.CancelAfter(TimeSpan.FromMinutes(5));
+        var token = deadline.Token;
+        using var http = clients.CreateClient(PackageResolutionService.ArchiveClientName);
+        var source = new Uri(TrustPattern.NormalizeSource(artifact.Source) + "/");
+        var metadataUri = new Uri(source, Uri.EscapeDataString(artifact.Name) + "/" + Uri.EscapeDataString(artifact.Version));
+        await using var metadata = await DownloadAsync(http, metadataUri, 1024 * 1024, token, "npm");
+        using var document = await JsonDocument.ParseAsync(metadata, cancellationToken: token);
+        var package = document.RootElement;
+        if (package.GetProperty("name").GetString() != artifact.Name ||
+            package.GetProperty("version").GetString() != artifact.Version) return false;
+        if (!Uri.TryCreate(package.GetProperty("dist").GetProperty("tarball").GetString(), UriKind.Absolute, out var uri) ||
+            !SameOrigin(source, uri) || !string.IsNullOrEmpty(uri.UserInfo) || !string.IsNullOrEmpty(uri.Fragment)) return false;
+        // Verify this archive directly, like NuGet. Resolving its dependencies here
+        // would reject other-platform optional packages and repeatedly install entire trees.
+        await using var archive = await DownloadAsync(http, uri, 512L * 1024 * 1024, token, "npm");
+        var hash = Convert.ToHexStringLower(await SHA256.HashDataAsync(archive, token));
+        if (!hash.Equals(artifact.Sha256, StringComparison.OrdinalIgnoreCase)) return false;
+        archive.Position = 0;
+        await DependencyScanner.ValidateNpmArchiveIdentityAsync(archive, artifact.Name, artifact.Version,
+            $"{artifact.Name}@{artifact.Version}", token);
+        return true;
     }
 
     private async Task<bool> VerifyNuGetAsync(PackageArtifact artifact, CancellationToken cancellationToken)
@@ -70,15 +88,16 @@ public class ArtifactSourceVerifier(PackageResolutionService resolver, IConfigur
         first.GetLeftPart(UriPartial.Authority).Equals(second.GetLeftPart(UriPartial.Authority),
             StringComparison.OrdinalIgnoreCase);
 
-    private static async Task<FileStream> DownloadAsync(HttpClient http, Uri uri, long limit, CancellationToken token)
+    private static async Task<FileStream> DownloadAsync(HttpClient http, Uri uri, long limit, CancellationToken token,
+        string ecosystem = "NuGet")
     {
         using var response = await http.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, token);
         response.EnsureSuccessStatusCode();
         if (!SameOrigin(uri, response.RequestMessage?.RequestUri ?? uri))
-            throw new InvalidOperationException("NuGet content was served from a different source.");
+            throw new InvalidOperationException($"{ecosystem} content was served from a different source.");
         if (response.Content.Headers.ContentLength > limit)
-            throw new InvalidOperationException("NuGet content exceeds the download limit.");
-        var saved = new FileStream(Path.Combine(Path.GetTempPath(), "s360-nuget-" + Guid.NewGuid().ToString("N")),
+            throw new InvalidOperationException($"{ecosystem} content exceeds the download limit.");
+        var saved = new FileStream(Path.Combine(Path.GetTempPath(), "s360-archive-" + Guid.NewGuid().ToString("N")),
             FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None, 64 * 1024,
             FileOptions.Asynchronous | FileOptions.DeleteOnClose);
         try
@@ -90,7 +109,7 @@ public class ArtifactSourceVerifier(PackageResolutionService resolver, IConfigur
             while ((read = await content.ReadAsync(buffer, token)) != 0)
             {
                 size += read;
-                if (size > limit) throw new InvalidOperationException("NuGet content exceeds the download limit.");
+                if (size > limit) throw new InvalidOperationException($"{ecosystem} content exceeds the download limit.");
                 await saved.WriteAsync(buffer.AsMemory(0, read), token);
             }
             saved.Position = 0;

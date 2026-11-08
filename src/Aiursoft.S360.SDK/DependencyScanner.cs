@@ -15,7 +15,8 @@ public static class DependencyScanner
         (await ScanDetailedAsync(root, http, cancellationToken)).Dependencies;
 
     public static async Task<ScanReport> ScanDetailedAsync(string root, HttpClient http,
-        CancellationToken cancellationToken = default, string? expectedNpmSource = null, string? ecosystem = null)
+        CancellationToken cancellationToken = default, string? expectedNpmSource = null, string? ecosystem = null,
+        bool npmLockfileOnly = false)
     {
         if (ecosystem is not (null or "nuget" or "npm"))
             throw new ArgumentException("Unsupported dependency ecosystem.", nameof(ecosystem));
@@ -85,8 +86,8 @@ public static class DependencyScanner
             var lockFile = File.Exists(shrinkwrap) ? shrinkwrap : Path.Combine(folder, "package-lock.json");
             if (!File.Exists(lockFile)) throw new InvalidOperationException($"Missing npm lockfile: {lockFile}");
             await ValidateNpmManifestLockAsync(manifest, lockFile, cancellationToken);
-            var installed = await ReadNpmAsync(lockFile, folder, http, cancellationToken, skipped, expectedNpmSource);
-            DependencyIntroductionPaths.AddNpm(lockFile, installed, Path.GetRelativePath(root, manifest), introductionPaths, graphNodes);
+            var installed = await ReadNpmAsync(lockFile, folder, http, cancellationToken, skipped, expectedNpmSource, npmLockfileOnly);
+            DependencyIntroductionPaths.AddNpm(lockFile, installed, Path.GetRelativePath(root, manifest), introductionPaths, graphNodes, requireInstalled: !npmLockfileOnly);
             if (installed.Any(dependency => !introductionPaths.ContainsKey(DependencyIntroductionPaths.Identity(dependency))))
                 throw new InvalidOperationException($"npm installation graph has an installed package with no introduction path: {manifest}");
             result.AddRange(installed);
@@ -425,7 +426,7 @@ public static class DependencyScanner
 
     public static async Task<List<Dependency>> ReadNpmAsync(string lockPath, string projectPath, HttpClient http,
         CancellationToken cancellationToken = default, ICollection<string>? skippedOptional = null,
-        string? expectedSource = null)
+        string? expectedSource = null, bool lockfileOnly = false)
     {
         if (expectedSource != null)
             await ValidateNpmArchiveSourcesAsync(lockPath, expectedSource, cancellationToken);
@@ -434,10 +435,10 @@ public static class DependencyScanner
         if (!root.TryGetProperty("lockfileVersion", out var lockVersion) || lockVersion.GetInt32() is not (2 or 3) ||
             !root.TryGetProperty("packages", out var packages))
             throw new InvalidOperationException($"Only npm lockfile v2/v3 is supported: {lockPath}");
-        ValidateRequiredNpmInstallations(packages, projectPath);
+        ValidateRequiredNpmInstallations(packages, projectPath, requireInstalled: !lockfileOnly);
         var lockedPaths = packages.EnumerateObject().Where(item => item.Name != "")
             .Select(item => item.Name).ToHashSet(StringComparer.Ordinal);
-        foreach (var installedPath in EnumerateInstalledNpmPackages(projectPath))
+        foreach (var installedPath in lockfileOnly ? [] : EnumerateInstalledNpmPackages(projectPath))
             if (!lockedPaths.Contains(installedPath))
                 throw new InvalidOperationException($"Installed npm package is absent from the lockfile: {installedPath}");
         var found = new List<Dependency>();
@@ -466,26 +467,29 @@ public static class DependencyScanner
             if (algorithm is not ("sha512" or "sha256"))
                 throw new InvalidOperationException($"Unsupported npm integrity algorithm: {item.Name}");
             var expected = Convert.FromBase64String(integrity[(separator + 1)..]);
-            // npm install/ci must already have completed. This detects missing installation;
-            // archive integrity is separately checked against the lockfile below.
-            var installedPath = Path.Combine(projectPath, item.Name.Replace('/', Path.DirectorySeparatorChar));
-            if (!Directory.Exists(installedPath))
+            // Lockfile-only checks run before installation and include optional packages
+            // for every platform. Both modes verify the actual archive below.
+            if (!lockfileOnly)
             {
-                if (entry.TryGetProperty("optional", out var optional) && optional.ValueKind == JsonValueKind.True)
+                var installedPath = Path.Combine(projectPath, item.Name.Replace('/', Path.DirectorySeparatorChar));
+                if (!Directory.Exists(installedPath))
                 {
-                    skippedOptional?.Add($"{name}@{version}: optional package is not installed on this platform");
-                    continue;
+                    if (entry.TryGetProperty("optional", out var optional) && optional.ValueKind == JsonValueKind.True)
+                    {
+                        skippedOptional?.Add($"{name}@{version}: optional package is not installed on this platform");
+                        continue;
+                    }
+                    throw new InvalidOperationException($"npm package is not installed: {item.Name}");
                 }
-                throw new InvalidOperationException($"npm package is not installed: {item.Name}");
-            }
-            var installedManifest = Path.Combine(installedPath, "package.json");
-            if (!File.Exists(installedManifest))
-                throw new InvalidOperationException($"Installed npm package manifest is missing: {item.Name}");
-            using (var installed = JsonDocument.Parse(await File.ReadAllTextAsync(installedManifest, cancellationToken)))
-            {
-                if (RequiredString(installed.RootElement, "name", item.Name) != name ||
-                    RequiredString(installed.RootElement, "version", item.Name) != version)
-                    throw new InvalidOperationException($"Installed npm package identity differs from the lockfile: {item.Name}");
+                var installedManifest = Path.Combine(installedPath, "package.json");
+                if (!File.Exists(installedManifest))
+                    throw new InvalidOperationException($"Installed npm package manifest is missing: {item.Name}");
+                using (var installed = JsonDocument.Parse(await File.ReadAllTextAsync(installedManifest, cancellationToken)))
+                {
+                    if (RequiredString(installed.RootElement, "name", item.Name) != name ||
+                        RequiredString(installed.RootElement, "version", item.Name) != version)
+                        throw new InvalidOperationException($"Installed npm package identity differs from the lockfile: {item.Name}");
+                }
             }
             using var response = await http.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
             response.EnsureSuccessStatusCode();
@@ -537,7 +541,7 @@ public static class DependencyScanner
         return found;
     }
 
-    private static async Task ValidateNpmArchiveIdentityAsync(Stream archive, string name, string version,
+    public static async Task ValidateNpmArchiveIdentityAsync(Stream archive, string name, string version,
         string packagePath, CancellationToken cancellationToken)
     {
         try
@@ -582,7 +586,7 @@ public static class DependencyScanner
             throw new InvalidOperationException($"Unsupported npm workspace/local package path: {packagePath}");
     }
 
-    private static void ValidateRequiredNpmInstallations(JsonElement packages, string projectPath)
+    private static void ValidateRequiredNpmInstallations(JsonElement packages, string projectPath, bool requireInstalled)
     {
         if (packages.ValueKind != JsonValueKind.Object || !packages.TryGetProperty("", out _))
             throw new InvalidOperationException("npm lockfile root package is missing.");
@@ -618,7 +622,7 @@ public static class DependencyScanner
         {
             ValidateNpmPackagePath(path);
             var installed = Path.Combine(projectPath, path.Replace('/', Path.DirectorySeparatorChar));
-            if (!Directory.Exists(installed))
+            if (requireInstalled && !Directory.Exists(installed))
                 throw new InvalidOperationException($"Required npm dependency is not installed: {path}");
         }
     }

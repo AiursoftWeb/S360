@@ -71,7 +71,7 @@ public class RetryingTransactionTests
         Assert.AreEqual(1, await db.VulnerabilityMatches.CountAsync());
         Assert.IsNotNull((await db.VulnerabilitySyncStates.SingleAsync()).LastSuccessAtUtc);
         Assert.AreEqual(failOnce, failure.Thrown);
-        Assert.AreEqual(2, handler.Calls, "Database retries must not repeat network queries.");
+        Assert.AreEqual(3, handler.Calls, "Database retries must not repeat network queries.");
     }
 
     private static DbContextOptions<SqliteContext> Options(SqliteConnection connection, GraphFailure failure) =>
@@ -116,7 +116,9 @@ public class RetryingTransactionTests
         {
             Calls++;
             return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(
-                """{"vulns":[{"id":"TEST-1","modified":"2026-09-23T00:00:00Z","affected":[]}]}""") });
+                request.Method == HttpMethod.Get
+                    ? """{"id":"TEST-1","modified":"2026-09-23T00:00:00Z","affected":[]}"""
+                    : """{"results":[{"vulns":[{"id":"TEST-1","modified":"2026-09-23T00:00:00Z"}]}]}""") });
         }
     }
 }

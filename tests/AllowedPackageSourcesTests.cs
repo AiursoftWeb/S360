@@ -78,12 +78,19 @@ public class AllowedPackageSourcesTests
     }
 
     [TestMethod]
-    [DataRow("sample", "1.2.3")]
-    [DataRow("@example/arm64", "1.2.3")]
-    [DataRow("@example/arm64", "1.2.3-beta.1")]
-    public async Task NpmSourceVerificationChecksSingleArchiveWithoutInstallingOtherPlatformPackages(string name, string version)
+    [DataRow("sample", "1.2.3", false)]
+    [DataRow("@example/arm64", "1.2.3", false)]
+    [DataRow("@example/arm64", "1.2.3-beta.1", false)]
+    [DataRow("sample", "1.2.3", true)]
+    [DataRow("@example/arm64", "1.2.3-beta.1", true)]
+    public async Task NpmSourceVerificationChecksSingleArchiveWithoutInstallingOtherPlatformPackages(string name, string version, bool legacyPrefix)
     {
         using var handler = new NpmHandler(name, version);
+        if (legacyPrefix)
+        {
+            handler.Bytes = NpmArchive(name, "v" + version);
+            handler.MetadataVersion = "v" + version;
+        }
         Assert.IsTrue(await CreateVerifier(handler).VerifyAsync(handler.Artifact()));
         Assert.AreEqual(2, handler.Requests);
         StringAssert.Contains(handler.MetadataUri!.AbsoluteUri, Uri.EscapeDataString(name));

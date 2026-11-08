@@ -487,7 +487,7 @@ public static class DependencyScanner
                 using (var installed = JsonDocument.Parse(await File.ReadAllTextAsync(installedManifest, cancellationToken)))
                 {
                     if (RequiredString(installed.RootElement, "name", item.Name) != name ||
-                        RequiredString(installed.RootElement, "version", item.Name) != version)
+                        !NpmVersionsMatch(RequiredString(installed.RootElement, "version", item.Name), version))
                         throw new InvalidOperationException($"Installed npm package identity differs from the lockfile: {item.Name}");
                 }
             }
@@ -541,6 +541,11 @@ public static class DependencyScanner
         return found;
     }
 
+    // npm permits a legacy lowercase v prefix in package.json versions. Do not
+    // widen the comparison to another release, prerelease, or build identifier.
+    public static bool NpmVersionsMatch(string? manifestVersion, string lockedVersion) =>
+        manifestVersion == lockedVersion || manifestVersion == "v" + lockedVersion;
+
     public static async Task ValidateNpmArchiveIdentityAsync(Stream archive, string name, string version,
         string packagePath, CancellationToken cancellationToken)
     {
@@ -564,7 +569,7 @@ public static class DependencyScanner
                 found = true;
                 using var manifest = await JsonDocument.ParseAsync(entry.DataStream, cancellationToken: cancellationToken);
                 if (RequiredString(manifest.RootElement, "name", packagePath) != name ||
-                    RequiredString(manifest.RootElement, "version", packagePath) != version)
+                    !NpmVersionsMatch(RequiredString(manifest.RootElement, "version", packagePath), version))
                     throw new InvalidOperationException($"npm archive identity differs from the lockfile: {packagePath}");
             }
             if (!found)

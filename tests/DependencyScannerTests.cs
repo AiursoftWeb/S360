@@ -631,17 +631,20 @@ public class DependencyScannerTests
     }
 
     [TestMethod]
-    [DataRow("package")]
-    [DataRow("sample")]
-    public async Task NpmLockIntegrityIsVerified(string archiveRoot)
+    [DataRow("package", false)]
+    [DataRow("sample", false)]
+    [DataRow("package", true)]
+    [DataRow("sample", true)]
+    public async Task NpmLockIntegrityIsVerified(string archiveRoot, bool legacyPrefix)
     {
         var root = Path.Combine(Path.GetTempPath(), "s360-npm-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(Path.Combine(root, "node_modules", "sample"));
         try
         {
+            var manifestVersion = legacyPrefix ? "v1.0.0" : "1.0.0";
             await File.WriteAllTextAsync(Path.Combine(root, "node_modules", "sample", "package.json"),
-                """{"name":"sample","version":"1.0.0"}""");
-            var bytes = CreateNpmArchive("sample", "1.0.0", archiveRoot + "/package.json");
+                JsonSerializer.Serialize(new { name = "sample", version = manifestVersion }));
+            var bytes = CreateNpmArchive("sample", manifestVersion, archiveRoot + "/package.json");
             var integrity = Convert.ToBase64String(SHA512.HashData(bytes));
             var lockFile = Path.Combine(root, "package-lock.json");
             var lockJson = new
@@ -658,6 +661,8 @@ public class DependencyScannerTests
             var result = await DependencyScanner.ReadNpmAsync(lockFile, root, client);
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual(Convert.ToHexStringLower(SHA256.HashData(bytes)), result[0].Sha256);
+            var locked = await DependencyScanner.ReadNpmAsync(lockFile, root, client, lockfileOnly: true);
+            Assert.AreEqual(result[0].Sha256, locked.Single().Sha256);
             using var changed = new HttpClient(new FixedHandler("changed"u8.ToArray()));
             await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => DependencyScanner.ReadNpmAsync(lockFile, root, changed));
             using var redirected = new HttpClient(new OtherOriginHandler(bytes));
@@ -948,6 +953,20 @@ public class DependencyScannerTests
             {
                 Content = new ByteArrayContent(archives[request.RequestUri!.AbsolutePath])
             });
+    }
+
+    [TestMethod]
+    [DataRow("v1.2.3", "1.2.3", true)]
+    [DataRow("v1.2.3-beta.1", "1.2.3-beta.1", true)]
+    [DataRow("v1.2.3+build", "1.2.3+build", true)]
+    [DataRow("v1.2.4", "1.2.3", false)]
+    [DataRow("vv1.2.3", "1.2.3", false)]
+    [DataRow("V1.2.3", "1.2.3", false)]
+    [DataRow("v1.2.3-beta.1", "1.2.3", false)]
+    [DataRow("v1.2.3+other", "1.2.3+build", false)]
+    public void NpmVersionIdentityAllowsOnlyTheLegacyPrefix(string manifestVersion, string lockedVersion, bool matches)
+    {
+        Assert.AreEqual(matches, DependencyScanner.NpmVersionsMatch(manifestVersion, lockedVersion));
     }
 
     private sealed class FixedHandler(byte[] bytes) : HttpMessageHandler

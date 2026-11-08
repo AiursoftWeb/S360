@@ -32,7 +32,7 @@ public class ArtifactSourceVerifier(IConfiguration configuration, IHttpClientFac
         using var document = await JsonDocument.ParseAsync(metadata, cancellationToken: token);
         var package = document.RootElement;
         if (package.GetProperty("name").GetString() != artifact.Name ||
-            package.GetProperty("version").GetString() != artifact.Version) return false;
+            !DependencyScanner.NpmVersionsMatch(package.GetProperty("version").GetString(), artifact.Version)) return false;
         if (!Uri.TryCreate(package.GetProperty("dist").GetProperty("tarball").GetString(), UriKind.Absolute, out var uri) ||
             !SameOrigin(source, uri) || !string.IsNullOrEmpty(uri.UserInfo) || !string.IsNullOrEmpty(uri.Fragment)) return false;
         // Verify this archive directly, like NuGet. Resolving its dependencies here

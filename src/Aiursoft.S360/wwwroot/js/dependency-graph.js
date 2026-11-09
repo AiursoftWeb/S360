@@ -246,7 +246,7 @@ if (host) {
         for (const [from, to] of edges.slice(0, 400)) code.push(`${ids.get(from)} --> ${ids.get(to)}`);
         try {
             mermaid ??= (await import('/node_modules/mermaid/dist/mermaid.esm.mjs')).default;
-            mermaid.initialize({ startOnLoad: false, securityLevel: 'strict', theme: 'base', maxTextSize: 250000,
+            mermaid.initialize({ layout: 'dagre', startOnLoad: false, securityLevel: 'strict', theme: 'base', maxTextSize: 250000,
                 themeVariables: { fontFamily: 'inherit', fontSize: '14px', lineColor: '#a1adbf' },
                 flowchart: { htmlLabels: false, useMaxWidth: false, nodeSpacing: 28, rankSpacing: 55, curve: 'basis' } });
             const result = await mermaid.render(`s360_dependency_${ticket}`, code.join('\n'));
@@ -258,7 +258,7 @@ if (host) {
             fit();
             const bySvgId = new Map([...ids].map(([id, key]) => [key, id]));
             for (const group of svg.querySelectorAll('g.node')) {
-                const id = bySvgId.get(group.id.match(/^flowchart-(n\d+)-/)?.[1]);
+                const id = bySvgId.get(group.id.match(/(?:^|-)flowchart-(n\d+)-/)?.[1]);
                 if (!id) continue;
                 const node = nodes.get(id);
                 group.dataset.node = id; group.setAttribute('tabindex', '0'); group.setAttribute('role', 'button');

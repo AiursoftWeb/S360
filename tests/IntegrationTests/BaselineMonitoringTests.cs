@@ -38,19 +38,20 @@ public class BaselineMonitoringTests : TestBase
     private const string PackageSource = "https://nuget.aiursoft.com/v3/index.json";
 
     private static BuildCheck Report(string project, bool clean, string purpose = "baseline", int batches = 1,
-        string pipelineSource = "push") => new()
+        string pipelineSource = "push", string ecosystem = "nuget") => new()
     {
         Project = project, RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1, BatchCount = batches,
         ContextJson = JsonSerializer.Serialize(new CheckContext
         {
-            Purpose = purpose, Ecosystem = "nuget", Provider = "gitlab", Ref = "master", DefaultBranch = "master",
+            Purpose = purpose, Ecosystem = ecosystem, Provider = "gitlab", Ref = "master", DefaultBranch = "master",
             PipelineSource = pipelineSource
         }),
         Trusted = clean, Commit = "commit", Pipeline = "https://gitlab.aiursoft.com/aiursoft/test/-/pipelines/1",
         Dependencies = clean ? [] : [new BuildCheckDependency
         {
             BuildCheckId = 0, PackageArtifactId = null, Name = "Unapproved.Package", Version = "1.0.0",
-            Ecosystem = "nuget", Source = PackageSource, Sha256 = new string('a', 64), Trusted = false
+            Ecosystem = ecosystem, Source = ecosystem == "npm" ? "https://npm.aiursoft.com" : PackageSource,
+            Sha256 = new string('a', 64), Trusted = false
         }]
     };
 
@@ -96,30 +97,32 @@ public class BaselineMonitoringTests : TestBase
     }
 
     [TestMethod]
-    public async Task NewlyDisclosedCveUsesExistingBaselineWithoutAnotherBuild()
+    [DataRow("nuget", PackageSource)]
+    [DataRow("npm", "https://npm.aiursoft.com")]
+    public async Task NewlyDisclosedCveUsesExistingBaselineWithoutAnotherBuild(string ecosystem, string source)
     {
         using var scope = Server!.Services.CreateScope();
         var db = _db;
         FreshAudit(db);
         var artifact = new PackageArtifact
         {
-            Ecosystem = "nuget", Name = "Approved.Package", Version = "1.0.0", Source = PackageSource,
+            Ecosystem = ecosystem, Name = ecosystem == "npm" ? "approved-package" : "Approved.Package", Version = "1.0.0", Source = source,
             Sha256 = new string('b', 64), SourceVerifiedAtUtc = DateTime.UtcNow.AddHours(-1),
             FirstTrustedAtUtc = DateTime.UtcNow.AddHours(-1), LastCheckedAtUtc = DateTime.UtcNow.AddSeconds(-90)
         };
         db.TrustRules.Add(new TrustRule
         {
-            SupplierId = 0, ApplicationId = null, Supplier = new Supplier { Name = "Test supplier" }, Ecosystem = "nuget", Source = PackageSource,
+            SupplierId = 0, ApplicationId = null, Supplier = new Supplier { Name = "Test supplier" }, Ecosystem = ecosystem, Source = source,
             PackagePattern = artifact.Name, Version = "1.*", Status = TrustRuleStatus.Approved
         });
-        var report = Report(_repository, true);
+        var report = Report(_repository, true, ecosystem: ecosystem);
         report = new BuildCheck
         {
             Project = report.Project, RunId = report.RunId, ScannedProjectCount = report.ScannedProjectCount,
             ContextJson = report.ContextJson, Trusted = true, Dependencies = [new BuildCheckDependency
         {
-            BuildCheckId = 0, PackageArtifactId = 0, PackageArtifact = artifact, Ecosystem = "nuget",
-            Name = artifact.Name, Version = artifact.Version, Source = PackageSource, Sha256 = artifact.Sha256, Trusted = true
+            BuildCheckId = 0, PackageArtifactId = 0, PackageArtifact = artifact, Ecosystem = ecosystem,
+            Name = artifact.Name, Version = artifact.Version, Source = source, Sha256 = artifact.Sha256, Trusted = true
         }]
         };
         db.BuildChecks.Add(report);
@@ -132,7 +135,7 @@ public class BaselineMonitoringTests : TestBase
         db.VulnerabilityMatches.Add(new VulnerabilityMatch
         {
             VulnerabilityId = 0, PackageArtifact = artifact, PackageArtifactId = artifact.Id, Active = true,
-            Vulnerability = new Vulnerability { SourceId = "GHSA-test", Aliases = "[\"CVE-2099-1234\"]", Ecosystem = "nuget", PackageName = artifact.Name }
+            Vulnerability = new Vulnerability { SourceId = "GHSA-test", Aliases = "[\"CVE-2099-1234\"]", Ecosystem = ecosystem, PackageName = artifact.Name }
         });
         await db.SaveChangesAsync();
         await monitoring.SynchronizeAsync();
@@ -199,6 +202,31 @@ public class BaselineMonitoringTests : TestBase
         Assert.HasCount(1, client.Created);
         await monitoring.SynchronizeAsync();
         Assert.HasCount(0, client.Mitigated);
+    }
+
+    [TestMethod]
+    public async Task CleanNugetBaselineCannotClearAnNpmFinding()
+    {
+        using var scope = Server!.Services.CreateScope();
+        var db = _db;
+        FreshAudit(db);
+        db.BuildChecks.AddRange(Report(_repository, false, ecosystem: "npm"),
+            Report(_repository + "//App.sln", true));
+        await db.SaveChangesAsync();
+        var client = new FakeClient();
+        var monitoring = await Monitor(scope, client, new BaselineMonitorState());
+        await monitoring.SynchronizeAsync();
+        Assert.HasCount(1, client.Created);
+        Assert.AreEqual("sev2", client.Created[0].Level);
+        db.BuildChecks.Add(Report(_repository + "//App.sln", true));
+        await db.SaveChangesAsync();
+        await monitoring.SynchronizeAsync();
+        Assert.HasCount(1, client.Created);
+        Assert.HasCount(0, client.Mitigated);
+        db.BuildChecks.Add(Report(_repository, true, ecosystem: "npm"));
+        await db.SaveChangesAsync();
+        await monitoring.SynchronizeAsync();
+        Assert.HasCount(1, client.Mitigated);
     }
 
     [TestMethod]

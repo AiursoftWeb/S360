@@ -14,7 +14,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
 
     public async Task<List<InventoryProject>> ReadBaselineProjectsAsync()
     {
-        var model = new InventoryViewModel { Tab = "projects", Scope = "baseline", Ecosystem = "nuget" };
+        var model = new InventoryViewModel { Tab = "projects", Scope = "baseline", Ecosystem = "all" };
         await PopulateAsync(model, false, true);
         return model.Projects;
     }

@@ -1,5 +1,8 @@
 using System.Diagnostics;
 using System.Text.Json;
+using System.Net;
+using System.Net.Http.Headers;
+using Aiursoft.AiurProtocol.Exceptions;
 using Aiursoft.S360.Client;
 using Aiursoft.S360.SDK;
 using Aiursoft.AiurProtocol;
@@ -11,6 +14,85 @@ namespace Aiursoft.S360.Tests;
 [TestClass]
 public class CliCheckTests
 {
+    [TestMethod]
+    public async Task RateLimitedReviewWaitsForRetryAfterThenReturnsTheActualDenial()
+    {
+        var handler = new RateLimitHandler(HttpStatusCode.TooManyRequests, TimeSpan.Zero);
+        using var provider = CreateClientProvider(handler);
+        var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
+        var response = await client.CheckWhenReadyAsync("http://localhost", null,
+            new CheckRequest { ScannedProjectCount = 1 }, TimeSpan.FromSeconds(10));
+        Assert.IsFalse(response.Trusted);
+        Assert.AreEqual(2, handler.Calls);
+    }
+
+    [TestMethod]
+    [DataRow(false)]
+    [DataRow(true)]
+    public async Task RateLimitDelayRespectsTheTotalDeadline(bool hasRetryAfter)
+    {
+        var handler = new RateLimitHandler(HttpStatusCode.TooManyRequests,
+            hasRetryAfter ? TimeSpan.FromDays(1000) : null);
+        using var provider = CreateClientProvider(handler);
+        var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
+        await Assert.ThrowsExactlyAsync<TimeoutException>(() => client.CheckWhenReadyAsync("http://localhost", null,
+            new CheckRequest { ScannedProjectCount = 1 }, TimeSpan.FromMilliseconds(200)));
+        Assert.AreEqual(1, handler.Calls);
+    }
+
+    [TestMethod]
+    [DataRow(401)]
+    [DataRow(403)]
+    [DataRow(500)]
+    public async Task OtherHttpFailuresDoNotRetry(int status)
+    {
+        var handler = new RateLimitHandler((HttpStatusCode)status, TimeSpan.Zero);
+        using var provider = CreateClientProvider(handler);
+        var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
+        await Assert.ThrowsExactlyAsync<AiurHttpResponseException>(() => client.CheckWhenReadyAsync("http://localhost", null,
+            new CheckRequest { ScannedProjectCount = 1 }, TimeSpan.FromSeconds(10)));
+        Assert.AreEqual(1, handler.Calls);
+    }
+
+    [TestMethod]
+    public async Task RateLimitedBaselineSubmissionIsNeverRetried()
+    {
+        var handler = new RateLimitHandler(HttpStatusCode.TooManyRequests, TimeSpan.Zero);
+        using var provider = CreateClientProvider(handler);
+        var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
+        await Assert.ThrowsExactlyAsync<AiurHttpResponseException>(() => client.CheckAsync("http://localhost", "test-key",
+            new CheckRequest { ScannedProjectCount = 1, Context = new CheckContext { Purpose = "baseline" } }));
+        Assert.AreEqual(1, handler.Calls);
+    }
+
+    private static ServiceProvider CreateClientProvider(HttpMessageHandler handler)
+    {
+        var services = new ServiceCollection();
+        services.AddLogging();
+        services.AddAiurProtocolClient();
+        services.AddHttpClient(string.Empty).ConfigurePrimaryHttpMessageHandler(() => handler);
+        return services.BuildServiceProvider();
+    }
+
+    private sealed class RateLimitHandler(HttpStatusCode status, TimeSpan? retryAfter) : HttpMessageHandler
+    {
+        public int Calls { get; private set; }
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        {
+            Calls++;
+            if (Calls > 1)
+                return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+                {
+                    Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new CheckResponse
+                        { Code = Code.ResultShown, Message = "Dependency review rejected.", Trusted = false, Decisions = [] }, ProtocolSettings.JsonSettings),
+                        System.Text.Encoding.UTF8, "application/json")
+                });
+            var response = new HttpResponseMessage(status) { Content = new StringContent("<html>Busy</html>") };
+            if (retryAfter.HasValue) response.Headers.RetryAfter = new RetryConditionHeaderValue(retryAfter.Value);
+            return Task.FromResult(response);
+        }
+    }
+
     [TestMethod]
     public async Task SolutionReportRejectsServerThatSilentlyIgnoresItsGraph()
     {
@@ -164,7 +246,7 @@ public class CliCheckTests
         {
             Calls++;
             var trusted = pending && Calls > 1;
-            return Task.FromResult(new HttpResponseMessage(System.Net.HttpStatusCode.OK)
+            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new CheckResponse { Code = Code.ResultShown, Message = "Dependency review completed.", Trusted = trusted,
                     Decisions = [new DependencyDecision { Dependency = dependency, Trusted = trusted,

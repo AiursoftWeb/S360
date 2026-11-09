@@ -1,5 +1,7 @@
 using Aiursoft.AiurProtocol;
 using Aiursoft.AiurProtocol.Services;
+using Aiursoft.AiurProtocol.Exceptions;
+using System.Net;
 
 namespace Aiursoft.S360.SDK;
 
@@ -18,7 +20,26 @@ public class S360Client(AiurProtocolClient client)
         {
             while (true)
             {
-                var response = await CheckAsync(server, apiKey, request).WaitAsync(deadline.Token);
+                CheckResponse response;
+                try
+                {
+                    response = await CheckAsync(server, apiKey, request).WaitAsync(deadline.Token);
+                }
+                catch (AiurHttpResponseException ex) when (ex.StatusCode == HttpStatusCode.TooManyRequests)
+                {
+                    // Only the preflight review is retried. A baseline submission
+                    // must remain a single request, even after a transport error.
+                    var delay = ex.RetryAfter ?? TimeSpan.FromMinutes(1);
+                    if (delay < TimeSpan.FromSeconds(1)) delay = TimeSpan.FromSeconds(1);
+                    Console.WriteLine("S360 review is rate limited; waiting before retrying within the verification deadline.");
+                    // A Retry-After beyond the entire budget must end at the
+                    // deadline, never race it into another request.
+                    if (delay >= timeout)
+                        await Task.Delay(Timeout.InfiniteTimeSpan, deadline.Token);
+                    else
+                        await Task.Delay(delay + TimeSpan.FromMilliseconds(Random.Shared.Next(100, 1000)), deadline.Token);
+                    continue;
+                }
                 var denied = response.Decisions.Where(d => !d.Trusted).ToList();
                 if (response.Trusted || denied.Count == 0 || denied.Any(d => !d.PendingVerification))
                     return response;

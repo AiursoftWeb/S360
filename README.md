@@ -111,6 +111,15 @@ CLI 1.0.10 and later also report manifest-scoped dependency relationships. Open 
 
 Configure permitted registries through `SupplyChain:NuGetSources` and `SupplyChain:NpmSources`. Dependency resolution restores untrusted packages; run it in an isolated environment. The check does not prove installed files were unchanged by package scripts.
 
+## Package mirror admission
+
+Package servers can use the same personal `X-S360-Key` credential to read global artifact admission. Baseline permission is not required. Anonymous review never enables these endpoints.
+
+- `GET /api/artifacts/approved?ecosystem=nuget&source=<encoded-origin>&take=100` lists existing, independently verified artifacts that currently pass policy. Both NuGet and npm are supported. Follow `nextAfterId` with `afterId` and retain `upperId` until `nextAfterId` is null, including when a page contains no artifacts. `take` is limited to 500.
+- `POST /api/artifacts/assess` accepts `{ "dependencies": [...] }`, with 1–500 exact ecosystem/name/version/source/SHA256 identities, and returns ordered `decisions`. Reassess before serving cached archives; enumeration is not a lasting authorization.
+
+Both endpoints enforce permitted registries, approved version grants, independent source verification, current vulnerability audits, blocks and revocation. They do not observe new artifacts, queue work, pin hashes, or publish project reports. A globally approved archive does not authorize a project dependency graph. Keep the verified origin distinct from a mirror's distribution address.
+
 ## How to contribute
 
 Report bugs and suggestions through the issue tracker. Create a fork and a feature branch, then submit a merge request for review.

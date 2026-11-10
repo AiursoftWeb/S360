@@ -66,7 +66,11 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
             var ceiling = upperId ?? await query.Select(a => (int?)a.Id).MaxAsync(cancellationToken) ?? 0;
             var rows = await query.Where(a => a.Id > afterId && a.Id <= ceiling)
                 .OrderBy(a => a.Id).Take(take + 1).ToListAsync(cancellationToken);
-            var page = rows.Take(take).Select(a => new Dependency
+            // Database collations may ignore case (for example, MySQL defaults).
+            // Preserve npm's exact name semantics before evaluating candidate artifacts.
+            var page = rows.Take(take).Where(a => name == null || a.Name.Equals(name,
+                ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
+                .Select(a => new Dependency
             {
                 Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version,
                 Source = a.Source, Sha256 = a.Sha256

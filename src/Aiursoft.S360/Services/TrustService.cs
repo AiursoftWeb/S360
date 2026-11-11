@@ -96,7 +96,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
     private Task<Assessment> AssessCoreAsync(IEnumerable<Dependency> dependencies)
     {
         var requested = dependencies.ToList();
-        return VulnerabilityAuditSnapshot.ExecuteAsync(db, () => AssessSnapshotAsync(requested));
+        return VulnerabilityAuditSnapshot.ReadAsync(db, () => AssessSnapshotAsync(requested));
     }
 
     private async Task<Assessment> AssessSnapshotAsync(IReadOnlyCollection<Dependency> requested)

@@ -15,7 +15,7 @@ public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInven
 {
     public const string Source = "S360.ProductionBaseline";
 
-    public Task<List<BaselineRepository>> PreviewAsync() => VulnerabilityAuditSnapshot.ExecuteAsync(db, async () =>
+    public Task<List<BaselineRepository>> PreviewAsync() => VulnerabilityAuditSnapshot.ReadAsync(db, async () =>
     {
         var projects = await inventory.ReadBaselineProjectsAsync();
         var audit = await db.VulnerabilitySyncStates.AsNoTracking().FirstOrDefaultAsync();

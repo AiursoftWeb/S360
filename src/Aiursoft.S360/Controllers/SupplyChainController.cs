@@ -25,7 +25,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
     public async Task<IActionResult> Index(string ecosystem = "all", string? query = null, int? supplierId = null,
         string? lookupName = null, string? lookupVersion = null, string? lookupSource = null,
         string tab = "projects", string scope = "baseline", string filter = "all", string? project = null, int page = 1, int artifactPage = 1, string catalogView = "rules")
-        => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => IndexSnapshotAsync(ecosystem, query, supplierId,
+        => await VulnerabilityAuditSnapshot.ReadAsync(db, () => IndexSnapshotAsync(ecosystem, query, supplierId,
             lookupName, lookupVersion, lookupSource, tab, scope, filter, project, page, artifactPage, catalogView));
 
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
@@ -35,7 +35,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
 
     [Authorize(Policy = AppPermissionNames.CanReadSupplyChain)]
     public async Task<IActionResult> RuleDetails(int id)
-        => await VulnerabilityAuditSnapshot.ExecuteAsync<IActionResult>(db, async () =>
+        => await VulnerabilityAuditSnapshot.ReadAsync<IActionResult>(db, async () =>
         {
             var rule = await db.TrustRules.AsNoTracking().Include(r => r.Supplier)
                 .Include(r => r.Reviews).AsSplitQuery().SingleOrDefaultAsync(r => r.Id == id);
@@ -305,7 +305,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
 
     [HttpGet]
     public async Task<IActionResult> Details(int id)
-        => await VulnerabilityAuditSnapshot.ExecuteAsync(db, () => DetailsSnapshotAsync(id));
+        => await VulnerabilityAuditSnapshot.ReadAsync(db, () => DetailsSnapshotAsync(id));
 
     private async Task<IActionResult> DetailsSnapshotAsync(int id)
     {

@@ -47,7 +47,7 @@ public class DashboardController(TemplateDbContext db, UserManager<User> users,
         };
         if (model.CanReadSupplyChain)
         {
-            await VulnerabilityAuditSnapshot.ExecuteAsync(db, async () =>
+            await VulnerabilityAuditSnapshot.ReadAsync(db, async () =>
             {
                 var inventoryModel = new InventoryViewModel { Tab = "projects", CanRead = true };
                 await inventory.PopulateAsync(inventoryModel);

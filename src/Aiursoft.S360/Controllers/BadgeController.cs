@@ -15,7 +15,7 @@ public class BadgeController(TemplateDbContext db, CatalogInventoryService inven
     public async Task<IActionResult> Project(string? project)
     {
         if (string.IsNullOrWhiteSpace(project) || project.Length > 750) return BadRequest();
-        return await VulnerabilityAuditSnapshot.ExecuteAsync(db, async () =>
+        return await VulnerabilityAuditSnapshot.ReadAsync(db, async () =>
         {
             var model = new InventoryViewModel
             {

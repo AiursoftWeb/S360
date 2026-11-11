@@ -44,10 +44,11 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
 
     [HttpGet("approved")]
     public async Task<IActionResult> Approved(string ecosystem, string source, int afterId = 0,
-        int? upperId = null, int take = 100, CancellationToken cancellationToken = default)
+        int? upperId = null, int take = 100, string? name = null, CancellationToken cancellationToken = default)
     {
         if (ecosystem is not ("nuget" or "npm") || string.IsNullOrWhiteSpace(source) ||
-            afterId < 0 || upperId < afterId || take is < 1 or > 500)
+            afterId < 0 || upperId < afterId || take is < 1 or > 500 ||
+            (name != null && !TrustPattern.IsValidConcretePackage(ecosystem, name, "1.0.0")))
             return BadRequest();
         try
         {
@@ -56,10 +57,20 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
             source = TrustPattern.NormalizeSource(source);
             var query = db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == ecosystem &&
                 a.Source == source && a.SourceVerifiedAtUtc != null && !a.SourceVerificationRejected);
+            if (name != null)
+            {
+                var normalizedName = ecosystem == "nuget" ? name.ToLowerInvariant() : name;
+                query = ecosystem == "nuget" ? query.Where(a => a.Name.ToLower() == normalizedName)
+                    : query.Where(a => a.Name == normalizedName);
+            }
             var ceiling = upperId ?? await query.Select(a => (int?)a.Id).MaxAsync(cancellationToken) ?? 0;
             var rows = await query.Where(a => a.Id > afterId && a.Id <= ceiling)
                 .OrderBy(a => a.Id).Take(take + 1).ToListAsync(cancellationToken);
-            var page = rows.Take(take).Select(a => new Dependency
+            // Database collations may ignore case (for example, MySQL defaults).
+            // Preserve npm's exact name semantics before evaluating candidate artifacts.
+            var page = rows.Take(take).Where(a => name == null || a.Name.Equals(name,
+                ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
+                .Select(a => new Dependency
             {
                 Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version,
                 Source = a.Source, Sha256 = a.Sha256

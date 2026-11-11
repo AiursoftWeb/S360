@@ -120,6 +120,46 @@ public class ArtifactAdmissionTests : TestBase
     }
 
     [TestMethod]
+    public async Task NameFilterReturnsOnlyTheRequestedConcretePackage()
+    {
+        await AuthorizeAsync(); await SeedAsync();
+        var url = "/api/artifacts/approved?ecosystem=nuget&source=" + Uri.EscapeDataString(Source);
+        var page = await Http.GetFromJsonAsync<ApprovedArtifactPage>(url + "&name=mirror.approved");
+        Assert.IsNotNull(page);
+        Assert.AreEqual("Mirror.Approved", page.Artifacts.Single().Name);
+        var missing = await Http.GetFromJsonAsync<ApprovedArtifactPage>(url + "&name=Mirror.Missing");
+        Assert.IsNotNull(missing);
+        Assert.IsEmpty(missing.Artifacts);
+        Assert.IsNull(missing.NextAfterId);
+        Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.GetAsync(url + "&name=Mirror.*")).StatusCode);
+        GetService<IConfiguration>()["SupplyChain:NpmSources:1"] = Source;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            db.TrustRules.Add(new TrustRule
+            {
+                ApplicationId = null, SupplierId = null, Ecosystem = "npm", PackagePattern = "@fixture/ui",
+                Version = "1.0.0", Source = Source, Status = TrustRuleStatus.Approved,
+                ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
+            });
+            db.PackageArtifacts.Add(new PackageArtifact
+            {
+                Ecosystem = "npm", Name = "@fixture/ui", Version = "1.0.0", Source = Source,
+                Sha256 = new string('a', 64), SourceVerifiedAtUtc = DateTime.UtcNow,
+                LastCheckedAtUtc = (await db.VulnerabilitySyncStates.FirstAsync()).LastSuccessfulAttemptAtUtc
+            });
+            await db.SaveChangesAsync();
+        }
+        var npm = "/api/artifacts/approved?ecosystem=npm&source=" + Uri.EscapeDataString(Source);
+        var exact = await Http.GetFromJsonAsync<ApprovedArtifactPage>(npm + "&name=%40fixture%2Fui");
+        Assert.IsNotNull(exact);
+        Assert.AreEqual("@fixture/ui", exact.Artifacts.Single().Name);
+        var otherCase = await Http.GetFromJsonAsync<ApprovedArtifactPage>(npm + "&name=%40Fixture%2Fui");
+        Assert.IsNotNull(otherCase);
+        Assert.IsEmpty(otherCase.Artifacts);
+    }
+
+    [TestMethod]
     public async Task AdmissionRejectsUnpermittedSourcesAndUnboundedRequests()
     {
         await AuthorizeAsync();

@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net;
 using System.Diagnostics;
 using System.Net.Http.Headers;
@@ -172,7 +173,7 @@ public class OsvClientTests
     public async Task VersionBatchesAreBoundedAndDoNotApplyOneVersionsFindingToAnother()
     {
         var requests = new List<int>();
-        var detail = new OsvAdvisory("KNOWN", [], "Known", "", DateTime.Parse("2026-09-23T00:00:00Z").ToUniversalTime(), false, "[]");
+        var detail = new OsvAdvisory("KNOWN", [], "Known", "", DateTime.Parse("2026-09-23T00:00:00Z", CultureInfo.InvariantCulture).ToUniversalTime(), false, "[]");
         using var http = new HttpClient(new CallbackHandler(async request =>
         {
             Assert.AreEqual("/v1/querybatch", request.RequestUri!.AbsolutePath);
@@ -204,7 +205,7 @@ public class OsvClientTests
     {
         var batches = 0;
         var lookups = new List<string>();
-        var old = DateTime.Parse("2026-09-23T00:00:00Z").ToUniversalTime();
+        var old = DateTime.Parse("2026-09-23T00:00:00Z", CultureInfo.InvariantCulture).ToUniversalTime();
         var current = old.AddDays(1);
         using var http = new HttpClient(new CallbackHandler(async request =>
         {

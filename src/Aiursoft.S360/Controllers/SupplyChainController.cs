@@ -50,12 +50,12 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 .Select(v => new RuleAdvisoryRange(v, OsvRangeMatcher.Intersects(v.RawAffectedJson,
                     rule.Ecosystem, v.PackageName, rule.Version, rule.IncludePrerelease)))
                 .Where(r => r.Intersection != RangeRisk.NotAffected)
-                .OrderBy(r => r.Advisory.PackageName).ThenBy(r => r.Advisory.SourceId).ToList();
+                .OrderBy(r => r.Advisory.PackageName, StringComparer.Ordinal).ThenBy(r => r.Advisory.SourceId, StringComparer.Ordinal).ToList();
             return this.StackView(new RuleDetailsViewModel
             {
                 Rule = rule, Exclusions = exclusions, AdvisoryRanges = ranges,
                 DerivedRules = await db.TrustRules.AsNoTracking().Where(r => r.LegacySourceRuleId == id)
-                    .OrderBy(r => r.PackagePattern).ThenBy(r => r.Id).Take(101).ToListAsync()
+                    .OrderBy(r => r.PackagePattern, StringComparer.Ordinal).ThenBy(r => r.Id).Take(101).ToListAsync()
             });
         });
 
@@ -128,7 +128,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             .Where(r => r.Ecosystem == ecosystem && r.Status != TrustRuleStatus.Pending).ToListAsync();
         var activeApprovedRules = allRules.Where(r => allowedSources.Contains(r.Source) &&
             !r.IsLegacyTemplate && r.Status == TrustRuleStatus.Approved &&
-            (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)).OrderBy(r => r.PackagePattern).ThenBy(r => r.Id).ToList();
+            (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)).OrderBy(r => r.PackagePattern, StringComparer.Ordinal).ThenBy(r => r.Id).ToList();
         var audit = await db.VulnerabilitySyncStates.AsNoTracking()
             .Select(s => new { s.LastAttemptAtUtc, s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc, s.LastError }).FirstOrDefaultAsync();
         var auditStartedAtUtc = audit?.LastSuccessfulAttemptAtUtc;
@@ -155,7 +155,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 (a.SourceVerifiedAtUtc != null || a.FirstTrustedAtUtc != null)).ToListAsync());
         var selectedRules = supplierId == null ? null : activeApprovedRules.Where(r => r.SupplierId == supplierId).ToList();
         var available = new List<CatalogArtifactRow>();
-        await foreach (var artifact in artifactQuery.OrderBy(a => a.Name).ThenBy(a => a.Id).AsAsyncEnumerable())
+        await foreach (var artifact in artifactQuery.OrderBy(a => a.Name, StringComparer.Ordinal).ThenBy(a => a.Id).AsAsyncEnumerable())
         {
             if (!VulnerabilityAuditFreshness.IsCurrent(artifact.LastCheckedAtUtc,
                     auditStartedAtUtc, completedAuditAtUtc, now))
@@ -199,7 +199,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             Rules = packages.Skip((page - 1) * 50).Take(50).SelectMany(g => g).ToList(),
             LegacyRuleCount = allRules.Count(r => r.IsLegacyTemplate),
             Artifacts = available.Skip((artifactPage - 1) * 50).Take(50).ToList(),
-            Suppliers = await db.Suppliers.AsNoTracking().OrderBy(s => s.Name).ToListAsync()
+            Suppliers = await db.Suppliers.AsNoTracking().OrderBy(s => s.Name, StringComparer.Ordinal).ToListAsync()
         };
         foreach (var rule in model.Rules.Where(r => !r.PackagePattern.Contains('*') &&
                      !r.Version.Contains('*')))
@@ -328,12 +328,12 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         var children = await db.ApplicationEdges.AsNoTracking()
             .Where(e => e.ParentPackageId == id && e.Application.Status == ApplicationStatus.Approved)
             .Select(e => new { e.ChildPackage.Name, e.ChildPackage.Version, e.ChildPackage.Source })
-            .Distinct().OrderBy(e => e.Name).ThenBy(e => e.Version).Take(101).ToListAsync();
+            .Distinct().OrderBy(e => e.Name, StringComparer.Ordinal).ThenBy(e => e.Version, StringComparer.Ordinal).Take(101).ToListAsync();
         var parents = await db.ApplicationEdges.AsNoTracking()
             .Where(e => e.ChildPackageId == id && e.ParentPackageId != null &&
                 e.Application.Status == ApplicationStatus.Approved)
             .Select(e => new { e.ParentPackage!.Name, e.ParentPackage.Version, e.ParentPackage.Source })
-            .Distinct().OrderBy(e => e.Name).ThenBy(e => e.Version).Take(101).ToListAsync();
+            .Distinct().OrderBy(e => e.Name, StringComparer.Ordinal).ThenBy(e => e.Version, StringComparer.Ordinal).Take(101).ToListAsync();
         return this.StackView(new CatalogArtifactDetailsViewModel
         {
             Artifact = artifact, Rule = rule,
@@ -428,10 +428,10 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             ? recordedUses.Where(d => d.Name.ToLower() == policy.NormalizedName)
             : recordedUses.Where(d => d.Name == policy.Name);
         var projects = await recordedUses.Where(d => d.BuildCheck.Project != null)
-            .Select(d => d.BuildCheck.Project!).Distinct().OrderBy(name => name).Take(51).ToListAsync();
+            .Select(d => d.BuildCheck.Project!).Distinct().OrderBy(name => name, StringComparer.Ordinal).Take(51).ToListAsync();
         return this.StackView(new PackagePolicyViewModel
         {
-            Policy = policy, Grants = await grants.OrderBy(r => r.Version).ThenBy(r => r.Id)
+            Policy = policy, Grants = await grants.OrderBy(r => r.Version, StringComparer.Ordinal).ThenBy(r => r.Id)
                 .Skip((page - 1) * 50).Take(50).ToListAsync(), Page = page, Total = total,
             RecordedProjects = projects.Take(50).ToList(), ProjectsLimited = projects.Count > 50
         });
@@ -461,7 +461,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 ? candidates.Where(a => a.Version.StartsWith(versionPrefix))
                 : candidates.Where(a => a.Version == version);
         var known = await candidates.Select(a => new { a.Name, a.Version })
-            .Distinct().OrderBy(a => a.Name).ThenBy(a => a.Version).Take(1001).ToListAsync();
+            .Distinct().OrderBy(a => a.Name, StringComparer.Ordinal).ThenBy(a => a.Version, StringComparer.Ordinal).Take(1001).ToListAsync();
         var matches = known.Where(a => TrustPattern.Matches(packagePattern, a.Name, ecosystem) &&
             TrustPattern.VersionMatches(version, a.Version, ecosystem, includePrerelease))
             .Select(a => new RulePreviewMatch(a.Name, a.Version)).ToList();

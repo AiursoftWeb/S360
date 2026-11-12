@@ -103,7 +103,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             {
                 var entries = group.ToList();
                 model.PackagesByApplicationId[group.Key] = entries
-                    .OrderByDescending(p => p.IsDirect).ThenBy(p => p.PackageArtifact.Name)
+                    .OrderByDescending(p => p.IsDirect).ThenBy(p => p.PackageArtifact.Name, StringComparer.Ordinal)
                     .Select(p => new ReviewPackageLine(p.PackageArtifact, p.IsDirect,
                         authorized.GetValueOrDefault(p.PackageArtifactId),
                         sourcePermitted.GetValueOrDefault(p.PackageArtifactId),

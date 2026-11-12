@@ -184,7 +184,7 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
                 Path = paths.GetValueOrDefault(artifact.Id, artifact.Name)
             });
         }
-        model.Packages = model.Packages.OrderByDescending(p => p.IsDirect).ThenBy(p => p.Artifact.Name).ToList();
+        model.Packages = model.Packages.OrderByDescending(p => p.IsDirect).ThenBy(p => p.Artifact.Name, StringComparer.Ordinal).ToList();
         return this.StackView(model);
     }
 

@@ -317,9 +317,27 @@ public static class DependencyScanner
             if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps ||
                 !string.IsNullOrEmpty(uri.UserInfo) || !string.IsNullOrEmpty(uri.Fragment) ||
                 !string.Equals(uri.GetLeftPart(UriPartial.Authority), source.GetLeftPart(UriPartial.Authority), StringComparison.OrdinalIgnoreCase) ||
-                !uri.AbsolutePath.StartsWith(prefix, StringComparison.Ordinal))
+                HasPathTraversal(url) ||
+                (!uri.AbsolutePath.StartsWith(prefix, StringComparison.Ordinal) && !IsStandardRootNpmArchive(uri, item)))
                 throw new InvalidOperationException($"npm archive source is outside the selected registry: {item.Name}");
         }
+    }
+
+    private static bool HasPathTraversal(string url)
+    {
+        var pathStart = url.IndexOf('/', url.IndexOf("://", StringComparison.Ordinal) + 3);
+        if (pathStart < 0) return false;
+        var path = url[pathStart..].Split('?', '#')[0];
+        return Uri.UnescapeDataString(path).Split('/').Any(segment => segment is "." or "..");
+    }
+
+    private static bool IsStandardRootNpmArchive(Uri archive, JsonProperty item)
+    {
+        var name = item.Value.TryGetProperty("name", out var declared) && declared.ValueKind == JsonValueKind.String
+            ? declared.GetString()! : item.Name[(item.Name.LastIndexOf("node_modules/", StringComparison.Ordinal) + 13)..];
+        var version = RequiredString(item.Value, "version", item.Name);
+        return TrustPattern.IsValidConcretePackage("npm", name, version) &&
+            Uri.UnescapeDataString(archive.AbsolutePath) == "/" + name + "/-/" + name.Split('/')[^1] + "-" + version + ".tgz";
     }
 
     public static async Task<List<Dependency>> ReadNuGetAsync(string assetsPath, CancellationToken cancellationToken = default)

@@ -1030,7 +1030,10 @@ public class DependencyScannerTests
     [TestMethod]
     [DataRow("https://nopkg.example/npm/sample/-/sample-1.0.0.tgz", true)]
     [DataRow("https://nopkg.example/npm-evil/sample/-/sample-1.0.0.tgz", false)]
-    [DataRow("https://nopkg.example/sample/-/sample-1.0.0.tgz", false)]
+    [DataRow("https://nopkg.example/sample/-/sample-1.0.0.tgz", true)]
+    [DataRow("https://nopkg.example/sample/-/sample-2.0.0.tgz", false)]
+    [DataRow("https://nopkg.example/other/-/other-1.0.0.tgz", false)]
+    [DataRow("https://nopkg.example/download.tgz", false)]
     [DataRow("https://other.example/npm/sample/-/sample-1.0.0.tgz", false)]
     [DataRow("https://nopkg.example/npm/%2e%2e/sample/-/sample-1.0.0.tgz", false)]
     public async Task SelectedNpmRegistryValidatesTheExactPathPrefix(string resolved, bool permitted)
@@ -1044,7 +1047,7 @@ public class DependencyScannerTests
             {
                 lockfileVersion = 3, packages = new Dictionary<string, object>
                 {
-                    [""] = new { }, ["node_modules/sample"] = new { resolved }
+                    [""] = new { }, ["node_modules/sample"] = new { version = "1.0.0", resolved }
                 }
             }));
             if (permitted) await DependencyScanner.ValidateNpmArchiveSourcesAsync(path, "https://nopkg.example/npm/");

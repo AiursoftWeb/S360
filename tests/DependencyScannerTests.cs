@@ -946,6 +946,101 @@ public class DependencyScannerTests
         finally { Directory.Delete(root, true); }
     }
 
+    [TestMethod]
+    [DataRow("sample", 2, "success")]
+    [DataRow("@example/library", 3, "success")]
+    [DataRow("sample", 3, "integrity")]
+    [DataRow("sample", 3, "identity")]
+    [DataRow("sample", 3, "direct-url")]
+    [DataRow("sample", 3, "redirect")]
+    [DataRow("sample", 3, "denied")]
+    [DataRow("sample", 3, "unavailable")]
+    public async Task NpmRegistryOverrideAuditsTheActualRegistryWithoutChangingLockfiles(string name, int lockVersion, string failure)
+    {
+        var root = Path.Combine(Path.GetTempPath(), "s360-registry-audit-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            var bytes = CreateNpmArchive(name, "1.0.0");
+            var served = failure == "identity" ? CreateNpmArchive("different", "1.0.0") : bytes;
+            var standard = name + "/-/" + name.Split('/')[^1] + "-1.0.0.tgz";
+            var lockedUrl = failure == "direct-url" ? "https://cdn.example/custom.tgz" : "https://old.example/" + standard;
+            var manifest = JsonSerializer.Serialize(new { name = "app", version = "1.0.0", dependencies = new Dictionary<string, string> { [name] = "1.0.0" } });
+            await File.WriteAllTextAsync(Path.Combine(root, "package.json"), manifest);
+            var lockfile = JsonSerializer.Serialize(new
+            {
+                lockfileVersion = lockVersion, packages = new Dictionary<string, object>
+                {
+                    [""] = new { name = "app", version = "1.0.0", dependencies = new Dictionary<string, string> { [name] = "1.0.0" } },
+                    ["node_modules/" + name] = new { version = "1.0.0", resolved = lockedUrl,
+                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(failure == "integrity" ? [1, 2, 3] : served)) }
+                }
+            });
+            var path = Path.Combine(root, "package-lock.json");
+            await File.WriteAllTextAsync(path, lockfile);
+            var handler = new RegistryOverrideHandler(served, failure);
+            using var client = new HttpClient(handler);
+            if (failure == "success")
+            {
+                var report = await DependencyScanner.ScanDetailedWithNpmRegistryAsync(root, client,
+                    "https://nopkg.example/npm/", ecosystem: "npm", npmLockfileOnly: true);
+                var dependency = report.Dependencies.Single();
+                Assert.AreEqual("https://nopkg.example/npm", dependency.Source);
+                Assert.AreEqual(Convert.ToHexStringLower(SHA256.HashData(bytes)), dependency.Sha256);
+                Assert.IsNotEmpty(report.PathsFor(dependency));
+                Assert.IsTrue(report.GraphNodes.Any(n => n.Package == dependency));
+            }
+            else if (failure is "denied" or "unavailable")
+            {
+                await Assert.ThrowsExactlyAsync<HttpRequestException>(() => DependencyScanner.ScanDetailedWithNpmRegistryAsync(root, client,
+                    "https://nopkg.example/npm/", ecosystem: "npm", npmLockfileOnly: true));
+            }
+            else
+            {
+                await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => DependencyScanner.ScanDetailedWithNpmRegistryAsync(root, client,
+                    "https://nopkg.example/npm/", ecosystem: "npm", npmLockfileOnly: true));
+            }
+            Assert.AreEqual(failure == "direct-url" ? 0 : 1, handler.Urls.Count);
+            Assert.IsTrue(handler.Urls.All(u => u.Scheme == "https" && u.Host == "nopkg.example" &&
+                Uri.UnescapeDataString(u.AbsolutePath) == "/npm/" + standard));
+            Assert.AreEqual(lockfile, await File.ReadAllTextAsync(path));
+            Assert.AreEqual(manifest, await File.ReadAllTextAsync(Path.Combine(root, "package.json")));
+            Assert.IsFalse(Directory.Exists(Path.Combine(root, "node_modules")));
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [TestMethod]
+    [DataRow("http://nopkg.example/npm")]
+    [DataRow("https://user:password@nopkg.example/npm")]
+    [DataRow("https://nopkg.example/npm?token=invalid")]
+    [DataRow("https://nopkg.example/npm#fragment")]
+    public async Task NpmRegistryOverrideRejectsUnsafeRegistryUrls(string registry)
+    {
+        using var client = new HttpClient(new FixedHandler([]));
+        await Assert.ThrowsExactlyAsync<ArgumentException>(() => DependencyScanner.ScanDetailedWithNpmRegistryAsync(".", client,
+            registry, ecosystem: "npm", npmLockfileOnly: true));
+    }
+
+    private sealed class RegistryOverrideHandler(byte[] bytes, string failure) : HttpMessageHandler
+    {
+        public List<Uri> Urls { get; } = [];
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
+        {
+            Urls.Add(request.RequestUri!);
+            return Task.FromResult(new HttpResponseMessage(failure switch
+            {
+                "denied" => HttpStatusCode.Forbidden,
+                "unavailable" => HttpStatusCode.ServiceUnavailable,
+                _ => HttpStatusCode.OK
+            })
+            {
+                Content = new ByteArrayContent(bytes),
+                RequestMessage = failure == "redirect" ? new HttpRequestMessage(HttpMethod.Get, "https://other.example/sample.tgz") : request
+            });
+        }
+    }
+
     private sealed class ArchiveHandler(IReadOnlyDictionary<string, byte[]> archives) : HttpMessageHandler
     {
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) =>

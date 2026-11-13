@@ -98,6 +98,10 @@ public class ArtifactAdmissionTests : TestBase
             (await Http.GetAsync("/api/artifacts/approved?ecosystem=nuget&source=" + Uri.EscapeDataString(Source))).StatusCode);
         Assert.AreEqual(HttpStatusCode.Unauthorized,
             (await Http.PostAsJsonAsync("/api/artifacts/assess", new ArtifactAssessmentRequest { Dependencies = [Package("Mirror.Approved")] })).StatusCode);
+        Assert.AreEqual(HttpStatusCode.Unauthorized,
+            (await Http.PostAsJsonAsync("/api/artifacts/mirror/candidates", new MirrorCandidateRequest([new("nuget", "Mirror.Approved", "1.0.0", Source)]))).StatusCode);
+        Assert.AreEqual(HttpStatusCode.Unauthorized,
+            (await Http.PostAsJsonAsync("/api/artifacts/mirror/verify", Package("Mirror.Approved"))).StatusCode);
     }
 
     [TestMethod]
@@ -192,6 +196,7 @@ public class ArtifactAdmissionTests : TestBase
     public async Task AdmissionRejectsUnpermittedSourcesAndUnboundedRequests()
     {
         await AuthorizeAsync();
+        Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.PostAsJsonAsync("/api/artifacts/mirror/candidates", new MirrorCandidateRequest([null!]))).StatusCode);
         var package = Package("Mirror.Approved");
         package.Source = "https://unapproved.example/v3/index.json";
         var response = await Http.PostAsJsonAsync("/api/artifacts/assess", new ArtifactAssessmentRequest { Dependencies = [package] });

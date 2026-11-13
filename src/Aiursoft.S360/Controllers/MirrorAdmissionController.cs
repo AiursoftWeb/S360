@@ -20,7 +20,7 @@ public class MirrorAdmissionController(TemplateDbContext db, TrustService trust,
     public async Task<IActionResult> Candidates([FromBody] MirrorCandidateRequest? request)
     {
         if (request?.Candidates is not { Count: > 0 and <= 500 } || !ModelState.IsValid ||
-            request.Candidates.Any(c => c == null || !TrustPattern.IsValidConcretePackage(c.Ecosystem, c.Name, c.Version)))
+            request.Candidates.Cast<MirrorCandidate?>().Any(c => c == null || !TrustPattern.IsValidConcretePackage(c.Ecosystem, c.Name, c.Version)))
             return BadRequest();
         try
         {

@@ -108,7 +108,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
                         authorized.GetValueOrDefault(p.PackageArtifactId),
                         sourcePermitted.GetValueOrDefault(p.PackageArtifactId),
                         VulnerabilityAuditFreshness.IsCurrent(p.PackageArtifact.LastCheckedAtUtc,
-                            audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now),
+                            audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now, p.PackageArtifact.IndependentCheckAtUtc),
                         affectedIds.Contains(p.PackageArtifactId), cleared.GetValueOrDefault(p.PackageArtifactId)))
                     .ToList();
             }
@@ -191,7 +191,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             if (artifact.SourceVerifiedAtUtc == null)
                 return BadRequest($"Package archive has not been independently verified from its source: {artifact.Name}@{artifact.Version}.");
             if (!VulnerabilityAuditFreshness.IsCurrent(artifact.LastCheckedAtUtc,
-                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now))
+                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now, artifact.IndependentCheckAtUtc))
                 return BadRequest($"Vulnerability audit is missing or stale: {artifact.Name}@{artifact.Version}.");
             if (affectedIds.Contains(artifact.Id))
                 return BadRequest($"Known active vulnerability: {artifact.Name}@{artifact.Version}.");

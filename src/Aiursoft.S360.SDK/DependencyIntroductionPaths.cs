@@ -110,7 +110,12 @@ public static class DependencyIntroductionPaths
 
     public static void AddNpm(string lockPath, IReadOnlyCollection<Dependency> dependencies,
         string project, Dictionary<string, List<string>> paths, List<DependencyGraphNode>? graph = null,
-        bool requireInstalled = true)
+        bool requireInstalled = true) =>
+        AddNpm(lockPath, dependencies, project, paths, graph, requireInstalled, null);
+
+    internal static void AddNpm(string lockPath, IReadOnlyCollection<Dependency> dependencies,
+        string project, Dictionary<string, List<string>> paths, List<DependencyGraphNode>? graph,
+        bool requireInstalled, string? npmRegistry)
     {
         using var document = JsonDocument.Parse(File.ReadAllText(lockPath));
         var projectDirectory = Path.GetDirectoryName(lockPath)!;
@@ -156,6 +161,7 @@ public static class DependencyIntroductionPaths
                     var resolved = childNode.TryGetProperty("resolved", out var resolvedElement) &&
                                    Uri.TryCreate(resolvedElement.GetString(), UriKind.Absolute, out var uri)
                         ? TrustPattern.NormalizeSource(uri.GetLeftPart(UriPartial.Authority)) : null;
+                    resolved = npmRegistry ?? resolved;
                     var name = childNode.TryGetProperty("name", out var declaredName) &&
                                declaredName.ValueKind == JsonValueKind.String
                         ? declaredName.GetString()! : childPath[(childPath.LastIndexOf("node_modules/", StringComparison.Ordinal) + 13)..];

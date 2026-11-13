@@ -14,9 +14,18 @@ public static class DependencyScanner
     public static async Task<List<Dependency>> ScanAsync(string root, HttpClient http, CancellationToken cancellationToken = default) =>
         (await ScanDetailedAsync(root, http, cancellationToken)).Dependencies;
 
-    public static async Task<ScanReport> ScanDetailedAsync(string root, HttpClient http,
+    public static Task<ScanReport> ScanDetailedAsync(string root, HttpClient http,
         CancellationToken cancellationToken = default, string? expectedNpmSource = null, string? ecosystem = null,
-        bool npmLockfileOnly = false)
+        bool npmLockfileOnly = false) =>
+        ScanDetailedCoreAsync(root, http, cancellationToken, expectedNpmSource, ecosystem, npmLockfileOnly, null);
+
+    public static Task<ScanReport> ScanDetailedWithNpmRegistryAsync(string root, HttpClient http, string npmRegistry,
+        CancellationToken cancellationToken = default, string? ecosystem = null, bool npmLockfileOnly = false) =>
+        ScanDetailedCoreAsync(root, http, cancellationToken, null, ecosystem, npmLockfileOnly, NpmRegistrySource(npmRegistry));
+
+    private static async Task<ScanReport> ScanDetailedCoreAsync(string root, HttpClient http,
+        CancellationToken cancellationToken, string? expectedNpmSource, string? ecosystem,
+        bool npmLockfileOnly, string? npmRegistry)
     {
         if (ecosystem is not (null or "nuget" or "npm"))
             throw new ArgumentException("Unsupported dependency ecosystem.", nameof(ecosystem));
@@ -86,8 +95,9 @@ public static class DependencyScanner
             var lockFile = File.Exists(shrinkwrap) ? shrinkwrap : Path.Combine(folder, "package-lock.json");
             if (!File.Exists(lockFile)) throw new InvalidOperationException($"Missing npm lockfile: {lockFile}");
             await ValidateNpmManifestLockAsync(manifest, lockFile, cancellationToken);
-            var installed = await ReadNpmAsync(lockFile, folder, http, cancellationToken, skipped, expectedNpmSource, npmLockfileOnly);
-            DependencyIntroductionPaths.AddNpm(lockFile, installed, Path.GetRelativePath(root, manifest), introductionPaths, graphNodes, requireInstalled: !npmLockfileOnly);
+            var installed = await ReadNpmCoreAsync(lockFile, folder, http, cancellationToken, skipped, expectedNpmSource, npmLockfileOnly, npmRegistry);
+            DependencyIntroductionPaths.AddNpm(lockFile, installed, Path.GetRelativePath(root, manifest), introductionPaths,
+                graphNodes, !npmLockfileOnly, npmRegistry ?? (expectedNpmSource == null ? null : TrustPattern.NormalizeSource(expectedNpmSource)));
             if (installed.Any(dependency => !introductionPaths.ContainsKey(DependencyIntroductionPaths.Identity(dependency))))
                 throw new InvalidOperationException($"npm installation graph has an installed package with no introduction path: {manifest}");
             result.AddRange(installed);
@@ -290,7 +300,8 @@ public static class DependencyScanner
     public static async Task ValidateNpmArchiveSourcesAsync(string lockPath, string expectedSource,
         CancellationToken cancellationToken = default)
     {
-        var normalizedSource = TrustPattern.NormalizeSource(expectedSource);
+        var source = new Uri(NpmRegistrySource(expectedSource));
+        var prefix = source.AbsolutePath.TrimEnd('/') + "/";
         using var document = JsonDocument.Parse(await File.ReadAllTextAsync(lockPath, cancellationToken));
         if (!document.RootElement.TryGetProperty("lockfileVersion", out var version) ||
             version.GetInt32() is not (2 or 3) ||
@@ -305,10 +316,28 @@ public static class DependencyScanner
             var url = RequiredString(item.Value, "resolved", item.Name);
             if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps ||
                 !string.IsNullOrEmpty(uri.UserInfo) || !string.IsNullOrEmpty(uri.Fragment) ||
-                !string.Equals(TrustPattern.NormalizeSource(uri.GetLeftPart(UriPartial.Authority)),
-                    normalizedSource, StringComparison.OrdinalIgnoreCase))
+                !string.Equals(uri.GetLeftPart(UriPartial.Authority), source.GetLeftPart(UriPartial.Authority), StringComparison.OrdinalIgnoreCase) ||
+                HasPathTraversal(url) ||
+                (!uri.AbsolutePath.StartsWith(prefix, StringComparison.Ordinal) && !IsStandardRootNpmArchive(uri, item)))
                 throw new InvalidOperationException($"npm archive source is outside the selected registry: {item.Name}");
         }
+    }
+
+    private static bool HasPathTraversal(string url)
+    {
+        var pathStart = url.IndexOf('/', url.IndexOf("://", StringComparison.Ordinal) + 3);
+        if (pathStart < 0) return false;
+        var path = url[pathStart..].Split('?', '#')[0];
+        return Uri.UnescapeDataString(path).Split('/').Any(segment => segment is "." or "..");
+    }
+
+    private static bool IsStandardRootNpmArchive(Uri archive, JsonProperty item)
+    {
+        var name = item.Value.TryGetProperty("name", out var declared) && declared.ValueKind == JsonValueKind.String
+            ? declared.GetString()! : item.Name[(item.Name.LastIndexOf("node_modules/", StringComparison.Ordinal) + 13)..];
+        var version = RequiredString(item.Value, "version", item.Name);
+        return TrustPattern.IsValidConcretePackage("npm", name, version) &&
+            Uri.UnescapeDataString(archive.AbsolutePath) == "/" + name + "/-/" + name.Split('/')[^1] + "-" + version + ".tgz";
     }
 
     public static async Task<List<Dependency>> ReadNuGetAsync(string assetsPath, CancellationToken cancellationToken = default)
@@ -424,9 +453,36 @@ public static class DependencyScanner
             string.Equals(first.Prerelease, second.Prerelease, StringComparison.OrdinalIgnoreCase);
     }
 
-    public static async Task<List<Dependency>> ReadNpmAsync(string lockPath, string projectPath, HttpClient http,
+    public static Task<List<Dependency>> ReadNpmAsync(string lockPath, string projectPath, HttpClient http,
         CancellationToken cancellationToken = default, ICollection<string>? skippedOptional = null,
-        string? expectedSource = null, bool lockfileOnly = false)
+        string? expectedSource = null, bool lockfileOnly = false) =>
+        ReadNpmCoreAsync(lockPath, projectPath, http, cancellationToken, skippedOptional, expectedSource, lockfileOnly, null);
+
+    private static string NpmRegistrySource(string registry)
+    {
+        if (!Uri.TryCreate(registry, UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps ||
+            !string.IsNullOrEmpty(uri.UserInfo) || !string.IsNullOrEmpty(uri.Query) || !string.IsNullOrEmpty(uri.Fragment))
+            throw new ArgumentException("The npm registry must be an HTTPS URL without credentials, query or fragment.", nameof(registry));
+        return TrustPattern.NormalizeSource(uri.AbsoluteUri);
+    }
+
+    private static Uri NpmArchiveUri(Uri original, string name, string version, string registry)
+    {
+        // Match npm's replace-registry-host=always for standard registry archives.
+        // Direct URLs and Git dependencies must not silently become registry dependencies.
+        if (!TrustPattern.IsValidConcretePackage("npm", name, version))
+            throw new InvalidOperationException($"Invalid npm registry package identity: {name}@{version}");
+        var filename = name.Split('/')[^1] + "-" + version + ".tgz";
+        var relative = name + "/-/" + filename;
+        if (!Uri.UnescapeDataString(original.AbsolutePath).EndsWith("/" + relative, StringComparison.Ordinal))
+            throw new InvalidOperationException($"The npm registry override requires a standard registry tarball URL: {name}@{version}");
+        var escaped = string.Join('/', relative.Split('/').Select(Uri.EscapeDataString));
+        return new Uri(registry.TrimEnd('/') + "/" + escaped);
+    }
+
+    private static async Task<List<Dependency>> ReadNpmCoreAsync(string lockPath, string projectPath, HttpClient http,
+        CancellationToken cancellationToken, ICollection<string>? skippedOptional,
+        string? expectedSource, bool lockfileOnly, string? npmRegistry)
     {
         if (expectedSource != null)
             await ValidateNpmArchiveSourcesAsync(lockPath, expectedSource, cancellationToken);
@@ -460,6 +516,7 @@ public static class DependencyScanner
             if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps ||
                 !string.IsNullOrEmpty(uri.UserInfo) || !string.IsNullOrEmpty(uri.Fragment))
                 throw new InvalidOperationException($"Unsupported npm archive URL: {item.Name}");
+            if (npmRegistry != null) uri = NpmArchiveUri(uri, name, version, npmRegistry);
             var separator = integrity.IndexOf('-');
             if (separator < 1 || separator == integrity.Length - 1 || integrity.Contains(' '))
                 throw new InvalidOperationException($"Unsupported npm integrity: {item.Name}");
@@ -534,7 +591,7 @@ public static class DependencyScanner
             found.Add(new Dependency
             {
                 Ecosystem = "npm", Name = name, Version = version,
-                Source = TrustPattern.NormalizeSource(uri.GetLeftPart(UriPartial.Authority)),
+                Source = npmRegistry ?? TrustPattern.NormalizeSource(expectedSource ?? uri.GetLeftPart(UriPartial.Authority)),
                 Sha256 = Convert.ToHexStringLower(packageHash.GetHashAndReset())
             });
         }

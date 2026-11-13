@@ -949,6 +949,7 @@ public class DependencyScannerTests
     [TestMethod]
     [DataRow("sample", 2, "success")]
     [DataRow("@example/library", 3, "success")]
+    [DataRow("sample", 3, "selected-prefix")]
     [DataRow("sample", 3, "integrity")]
     [DataRow("sample", 3, "identity")]
     [DataRow("sample", 3, "direct-url")]
@@ -964,7 +965,8 @@ public class DependencyScannerTests
             var bytes = CreateNpmArchive(name, "1.0.0");
             var served = failure == "identity" ? CreateNpmArchive("different", "1.0.0") : bytes;
             var standard = name + "/-/" + name.Split('/')[^1] + "-1.0.0.tgz";
-            var lockedUrl = failure == "direct-url" ? "https://cdn.example/custom.tgz" : "https://old.example/" + standard;
+            var lockedUrl = failure == "direct-url" ? "https://cdn.example/custom.tgz" :
+                (failure == "selected-prefix" ? "https://nopkg.example/npm/" : "https://old.example/") + standard;
             var manifest = JsonSerializer.Serialize(new { name = "app", version = "1.0.0", dependencies = new Dictionary<string, string> { [name] = "1.0.0" } });
             await File.WriteAllTextAsync(Path.Combine(root, "package.json"), manifest);
             var lockfile = JsonSerializer.Serialize(new
@@ -980,10 +982,13 @@ public class DependencyScannerTests
             await File.WriteAllTextAsync(path, lockfile);
             var handler = new RegistryOverrideHandler(served, failure);
             using var client = new HttpClient(handler);
-            if (failure == "success")
+            if (failure is "success" or "selected-prefix")
             {
-                var report = await DependencyScanner.ScanDetailedWithNpmRegistryAsync(root, client,
-                    "https://nopkg.example/npm/", ecosystem: "npm", npmLockfileOnly: true);
+                var report = failure == "selected-prefix"
+                    ? await DependencyScanner.ScanDetailedAsync(root, client, expectedNpmSource: "https://nopkg.example/npm/",
+                        ecosystem: "npm", npmLockfileOnly: true)
+                    : await DependencyScanner.ScanDetailedWithNpmRegistryAsync(root, client,
+                        "https://nopkg.example/npm/", ecosystem: "npm", npmLockfileOnly: true);
                 var dependency = report.Dependencies.Single();
                 Assert.AreEqual("https://nopkg.example/npm", dependency.Source);
                 Assert.AreEqual(Convert.ToHexStringLower(SHA256.HashData(bytes)), dependency.Sha256);
@@ -1020,6 +1025,33 @@ public class DependencyScannerTests
         using var client = new HttpClient(new FixedHandler([]));
         await Assert.ThrowsExactlyAsync<ArgumentException>(() => DependencyScanner.ScanDetailedWithNpmRegistryAsync(".", client,
             registry, ecosystem: "npm", npmLockfileOnly: true));
+    }
+
+    [TestMethod]
+    [DataRow("https://nopkg.example/npm/sample/-/sample-1.0.0.tgz", true)]
+    [DataRow("https://nopkg.example/npm-evil/sample/-/sample-1.0.0.tgz", false)]
+    [DataRow("https://nopkg.example/sample/-/sample-1.0.0.tgz", false)]
+    [DataRow("https://other.example/npm/sample/-/sample-1.0.0.tgz", false)]
+    [DataRow("https://nopkg.example/npm/%2e%2e/sample/-/sample-1.0.0.tgz", false)]
+    public async Task SelectedNpmRegistryValidatesTheExactPathPrefix(string resolved, bool permitted)
+    {
+        var root = Path.Combine(Path.GetTempPath(), "s360-registry-prefix-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            var path = Path.Combine(root, "package-lock.json");
+            await File.WriteAllTextAsync(path, JsonSerializer.Serialize(new
+            {
+                lockfileVersion = 3, packages = new Dictionary<string, object>
+                {
+                    [""] = new { }, ["node_modules/sample"] = new { resolved }
+                }
+            }));
+            if (permitted) await DependencyScanner.ValidateNpmArchiveSourcesAsync(path, "https://nopkg.example/npm/");
+            else await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
+                DependencyScanner.ValidateNpmArchiveSourcesAsync(path, "https://nopkg.example/npm/"));
+        }
+        finally { Directory.Delete(root, true); }
     }
 
     private sealed class RegistryOverrideHandler(byte[] bytes, string failure) : HttpMessageHandler

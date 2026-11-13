@@ -50,7 +50,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 .Select(v => new RuleAdvisoryRange(v, OsvRangeMatcher.Intersects(v.RawAffectedJson,
                     rule.Ecosystem, v.PackageName, rule.Version, rule.IncludePrerelease)))
                 .Where(r => r.Intersection != RangeRisk.NotAffected)
-                .OrderBy(r => r.Advisory.PackageName).ThenBy(r => r.Advisory.SourceId).ToList();
+                .OrderBy(r => r.Advisory.PackageName, StringComparer.Ordinal).ThenBy(r => r.Advisory.SourceId, StringComparer.Ordinal).ToList();
             return this.StackView(new RuleDetailsViewModel
             {
                 Rule = rule, Exclusions = exclusions, AdvisoryRanges = ranges,
@@ -128,7 +128,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             .Where(r => r.Ecosystem == ecosystem && r.Status != TrustRuleStatus.Pending).ToListAsync();
         var activeApprovedRules = allRules.Where(r => allowedSources.Contains(r.Source) &&
             !r.IsLegacyTemplate && r.Status == TrustRuleStatus.Approved &&
-            (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)).OrderBy(r => r.PackagePattern).ThenBy(r => r.Id).ToList();
+            (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)).OrderBy(r => r.PackagePattern, StringComparer.Ordinal).ThenBy(r => r.Id).ToList();
         var audit = await db.VulnerabilitySyncStates.AsNoTracking()
             .Select(s => new { s.LastAttemptAtUtc, s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc, s.LastError }).FirstOrDefaultAsync();
         var auditStartedAtUtc = audit?.LastSuccessfulAttemptAtUtc;

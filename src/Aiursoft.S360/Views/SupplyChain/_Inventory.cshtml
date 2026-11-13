@@ -174,7 +174,7 @@
                             var packages = versions.GroupBy(v => (v.Dependency.Name, v.Dependency.Source))
                                 .Select(g => new InventoryPackage { Name = g.Key.Name, Source = g.Key.Source, Ecosystem = ecosystem, Versions = g.ToList() })
                                 .OrderByDescending(p => p.Versions.Any(v => v.Advisories.Count > 0))
-                                .ThenByDescending(p => p.Status).ThenBy(p => p.Name).ThenBy(p => p.Source).ToList();
+                                .ThenByDescending(p => p.Status).ThenBy(p => p.Name, StringComparer.Ordinal).ThenBy(p => p.Source, StringComparer.Ordinal).ToList();
                             <section class="s360-inventory-ecosystem">
                                 <h3>@(ecosystem == "nuget" ? "NuGet" : "npm") <small>@versions.Count</small></h3>
                                 @if (reports.Count == 0) { <p class="text-muted">@Localizer["No complete report for this ecosystem. Its compliance is unknown."]</p> }

@@ -79,7 +79,7 @@
                 <th>@Localizer["Status"]</th><th>@Localizer["Package"]</th><th>@Localizer["Version"]</th>
                 <th>@Localizer["Source"]</th><th>@Localizer["SHA-256"]</th><th>@Localizer["Reason"]</th>
             </tr></thead><tbody>
-            @foreach (var item in check.Dependencies.OrderBy(d => d.Ecosystem).ThenBy(d => d.Name))
+            @foreach (var item in check.Dependencies.OrderBy(d => d.Ecosystem, StringComparer.Ordinal).ThenBy(d => d.Name, StringComparer.Ordinal))
             {
                 <tr><td>@(item.Trusted ? @Localizer["Accepted"] : @Localizer["Rejected"])</td>
                     <td>@item.Ecosystem: <code>@item.Name</code></td><td>@item.Version</td><td><small>@item.Source</small></td>

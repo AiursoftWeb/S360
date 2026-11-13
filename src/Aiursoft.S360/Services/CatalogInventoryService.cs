@@ -184,7 +184,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
         var packages = versions.GroupBy(v => (v.Dependency.Ecosystem,
                 Name: v.Dependency.Ecosystem == "nuget" ? v.Dependency.Name.ToLowerInvariant() : v.Dependency.Name, v.Dependency.Source))
             .Select(g => new InventoryPackage { Name = g.First().Dependency.Name, Ecosystem = g.Key.Ecosystem,
-                Source = g.Key.Source, Versions = g.OrderBy(v => v.Dependency.Version).ToList() }).OrderBy(p => p.Name).ToList();
+                Source = g.Key.Source, Versions = g.OrderBy(v => v.Dependency.Version, StringComparer.Ordinal).ToList() }).OrderBy(p => p.Name, StringComparer.Ordinal).ToList();
         model.Summary = new InventorySummary
         {
             ProjectCount = projects.Count, PackageCount = packages.Count,
@@ -195,11 +195,11 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
             LatestReportUtc = projects.Values.SelectMany(p => p.Reports).Select(r => (DateTime?)r.CheckedAtUtc).Max(),
             PriorityPackages = packages.Where(p => p.Status != InventoryStatus.Compliant)
                 .OrderByDescending(p => p.Versions.Any(v => v.Advisories.Count > 0))
-                .ThenByDescending(p => p.Status).ThenByDescending(p => p.AffectedProjectCount).ThenBy(p => p.Name).Take(5).ToList(),
+                .ThenByDescending(p => p.Status).ThenByDescending(p => p.AffectedProjectCount).ThenBy(p => p.Name, StringComparer.Ordinal).Take(5).ToList(),
             PriorityProjects = projects.Values.Where(p => p.Status != InventoryStatus.Compliant)
                 .OrderByDescending(p => p.Versions.Any(v => v.Advisories.Count > 0))
                 .ThenByDescending(p => p.Status).ThenByDescending(p => p.Versions.Count(v => v.Status != InventoryStatus.Compliant))
-                .ThenBy(p => p.Name).Take(5).ToList()
+                .ThenBy(p => p.Name, StringComparer.Ordinal).Take(5).ToList()
         };
         model.PackageCount = packages.Count;
         model.ProjectCount = projects.Count;
@@ -225,7 +225,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 .Where(p => Contains(p.Name, model.Query) || p.Versions.Any(v =>
                     Contains(v.Dependency.Name, model.Query) || v.Rules.Any(r => Contains(r.Justification, model.Query)) ||
                     v.Requests.Any(r => Contains(r.Justification, model.Query))))
-                .OrderByDescending(p => p.Status).ThenBy(p => p.Name).ToList();
+                .OrderByDescending(p => p.Status).ThenBy(p => p.Name, StringComparer.Ordinal).ToList();
             model.Total = filtered.Count;
             model.Page = Math.Min(model.Page, model.PageCount);
             model.Projects = allProjects ? filtered : filtered.Skip((model.Page - 1) * InventoryViewModel.PageSize).Take(InventoryViewModel.PageSize).ToList();

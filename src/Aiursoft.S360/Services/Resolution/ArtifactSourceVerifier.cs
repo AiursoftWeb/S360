@@ -15,18 +15,23 @@ public class ArtifactSourceVerifier(IConfiguration configuration, IHttpClientFac
     public async Task<bool> VerifyAsync(PackageArtifact artifact, CancellationToken cancellationToken = default)
     {
         if (!AllowedPackageSources.Contains(configuration, artifact.Ecosystem, artifact.Source)) return false;
-        if (artifact.VerificationSource != null)
+        var upstream = MirrorPackageSources.Upstream(configuration, artifact.Ecosystem, artifact.Source);
+        if (artifact.VerificationSource != null && artifact.VerificationSource != upstream) return false;
+        var observed = artifact;
+        if (upstream != null)
         {
-            var upstream = MirrorPackageSources.Upstream(configuration, artifact.Ecosystem, artifact.Source);
-            if (upstream == null || upstream != artifact.VerificationSource) return false;
+            // Internal distribution is not independent evidence of upstream bytes.
             artifact = new PackageArtifact
             {
-                Ecosystem = artifact.Ecosystem, Name = artifact.Name, Version = artifact.Version,
-                Source = upstream, Sha256 = artifact.Sha256
+                Ecosystem = observed.Ecosystem, Name = observed.Name, Version = observed.Version,
+                Source = upstream, Sha256 = observed.Sha256
             };
         }
-        if (artifact.Ecosystem == "nuget") return await VerifyNuGetAsync(artifact, cancellationToken);
-        return artifact.Ecosystem == "npm" && await VerifyNpmAsync(artifact, cancellationToken);
+        var verified = artifact.Ecosystem == "nuget"
+            ? await VerifyNuGetAsync(artifact, cancellationToken)
+            : artifact.Ecosystem == "npm" && await VerifyNpmAsync(artifact, cancellationToken);
+        if (verified) observed.VerificationSource = upstream;
+        return verified;
     }
 
     private async Task<bool> VerifyNpmAsync(PackageArtifact artifact, CancellationToken cancellationToken)

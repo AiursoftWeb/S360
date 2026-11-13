@@ -413,6 +413,65 @@ public class SupplyChainPolicyTests
     }
 
     [TestMethod]
+    [DataRow("nuget", null, true)]
+    [DataRow("npm", null, true)]
+    [DataRow("nuget", "https://previous-upstream.example", true)]
+    [DataRow("npm", "https://previous-upstream.example", true)]
+    [DataRow("nuget", "https://official.example", false)]
+    [DataRow("npm", "https://official.example", false)]
+    public async Task MappedRegistryUsesOnlyProofsFromItsCurrentUpstream(
+        string ecosystem, string? previousProofSource, bool expectedTrusted)
+    {
+        await using var db = new InMemoryContext(new DbContextOptionsBuilder<InMemoryContext>()
+            .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options);
+        const string source = "https://internal.example";
+        const string upstream = "https://official.example";
+        var configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
+        {
+            [$"SupplyChain:{(ecosystem == "nuget" ? "NuGet" : "Npm")}Sources:0"] = source,
+            ["SupplyChain:Mirrors:0:Ecosystem"] = ecosystem,
+            ["SupplyChain:Mirrors:0:Source"] = source,
+            ["SupplyChain:Mirrors:0:Upstream"] = upstream
+        }).Build();
+        var dependency = new Dependency { Ecosystem = ecosystem, Name = "sample", Version = "1.0.0",
+            Source = source, Sha256 = new string('a', 64) };
+        var rule = new TrustRule { ApplicationId = null, Ecosystem = ecosystem, PackagePattern = "sample", Version = "*",
+            Source = source, Status = TrustRuleStatus.Approved };
+        db.TrustRules.Add(rule);
+        var historical = new PackageArtifact { Ecosystem = ecosystem, Name = "sample", Version = "1.0.0",
+            Source = source, Sha256 = new string('b', 64), VerificationSource = previousProofSource,
+            SourceVerifiedAtUtc = DateTime.UtcNow, FirstTrustedAtUtc = DateTime.UtcNow,
+            LastCheckedAtUtc = DateTime.UtcNow, IndependentCheckAtUtc = DateTime.UtcNow };
+        db.PackageArtifacts.Add(historical);
+        await db.SaveChangesAsync();
+        var trust = new TrustService(db, configuration);
+        var pending = (await trust.ReviewAsync([dependency])).Single();
+        Assert.IsFalse(pending.Trusted);
+        Assert.AreEqual(expectedTrusted, pending.PendingVerification);
+        if (!expectedTrusted) return;
+        var current = await db.PackageArtifacts.SingleAsync(a => a.Sha256 == dependency.Sha256);
+        current.SourceVerifiedAtUtc = current.LastCheckedAtUtc = current.IndependentCheckAtUtc = DateTime.UtcNow;
+        await db.SaveChangesAsync();
+        // A verified but unbound archive must still wait for independent upstream verification.
+        Assert.IsTrue((await trust.AssessAsync([dependency])).Single().PendingVerification);
+        current.VerificationSource = upstream;
+        await db.SaveChangesAsync();
+        Assert.IsTrue((await trust.AssessAsync([dependency])).Single().Trusted);
+        // A second hash independently verified from the same upstream still fails closed.
+        historical.VerificationSource = upstream;
+        await db.SaveChangesAsync();
+        var conflict = (await trust.AssessAsync([dependency])).Single();
+        Assert.IsFalse(conflict.Trusted);
+        StringAssert.Contains(conflict.Reason, "Conflicting previously verified");
+        historical.VerificationSource = previousProofSource;
+        rule.Status = TrustRuleStatus.Revoked;
+        await db.SaveChangesAsync();
+        Assert.IsFalse((await trust.AssessAsync([dependency])).Single().Trusted);
+        Assert.AreEqual(2, await db.PackageArtifacts.CountAsync());
+        Assert.AreEqual(new string('b', 64), historical.Sha256);
+    }
+
+    [TestMethod]
     public async Task ConflictingTrustedHashesForOnePackageIdentityFailClosed()
     {
         var options = new DbContextOptionsBuilder<InMemoryContext>()

@@ -13,9 +13,11 @@ namespace Aiursoft.S360.Tests;
 public class AllowedPackageSourcesTests
 {
     [TestMethod]
-    [DataRow("nuget")]
-    [DataRow("npm")]
-    public async Task InternalDistributionVerificationUsesOnlyTheConfiguredUpstream(string ecosystem)
+    [DataRow("nuget", true)]
+    [DataRow("npm", true)]
+    [DataRow("nuget", false)]
+    [DataRow("npm", false)]
+    public async Task InternalDistributionVerificationUsesOnlyTheConfiguredUpstream(string ecosystem, bool explicitSource)
     {
         var source = "https://internal.example/index.json";
         var upstream = ecosystem == "nuget" ? "https://nuget.example.com/index.json" : "https://npm.example.com";
@@ -32,8 +34,13 @@ public class AllowedPackageSourcesTests
         var verifier = new ArtifactSourceVerifier(configuration, new ArchiveClientFactory(ecosystem == "nuget" ? nuget : npm));
         var artifact = new PackageArtifact { Ecosystem = ecosystem,
             Name = ecosystem == "nuget" ? "Android.Widget" : "@example/arm64", Version = "1.2.3",
-            Source = source, Sha256 = Convert.ToHexStringLower(SHA256.HashData(bytes)), VerificationSource = upstream };
+            Source = source, Sha256 = Convert.ToHexStringLower(SHA256.HashData(bytes)), VerificationSource = explicitSource ? upstream : null };
         Assert.IsTrue(await verifier.VerifyAsync(artifact));
+        Assert.AreEqual(upstream, artifact.VerificationSource);
+        artifact.VerificationSource = null;
+        artifact.Sha256 = new string('0', 64);
+        Assert.IsFalse(await verifier.VerifyAsync(artifact));
+        Assert.IsNull(artifact.VerificationSource, "A failed download verification must not bind its source.");
         artifact.VerificationSource = "https://caller-selected.example";
         Assert.IsFalse(await verifier.VerifyAsync(artifact));
         configuration["SupplyChain:Mirrors:0:Upstream"] = "http://untrusted.example";

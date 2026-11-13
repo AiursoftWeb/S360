@@ -3,10 +3,11 @@ using Aiursoft.S360.SDK;
 using Aiursoft.Scanner.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Aiursoft.S360.Services.Vulnerability;
+using Aiursoft.S360.Services.Resolution;
 
 namespace Aiursoft.S360.Services;
 
-public class TrustService(TemplateDbContext db) : IScopedDependency
+public class TrustService(TemplateDbContext db, IConfiguration? configuration = null) : IScopedDependency
 {
     public static bool IsValidPackageName(string ecosystem, string name) =>
         ecosystem is "nuget" or "npm" && TrustPattern.IsValid(name) && !name.Contains('*') &&
@@ -134,7 +135,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
         var known = artifacts.ToLookup(a => Identity(a.Ecosystem, a.Name, a.Version, a.Source));
-        var conflictingVerified = ConflictingVerifiedIdentities(artifacts);
+        var conflictingVerified = ConflictingVerifiedIdentities(artifacts.Where(HasCurrentSourceProof));
         var affectedIds = new HashSet<int>();
         foreach (var ids in artifacts.Select(a => a.Id).Chunk(500))
         {
@@ -158,20 +159,23 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
             if (!decision.Trusted) return decision;
             var matchingArtifacts = known[Identity(dependency.Ecosystem, dependency.Name, dependency.Version,
                 TrustPattern.NormalizeSource(dependency.Source))].ToList();
-            var trustedArtifacts = matchingArtifacts.Where(a => a.FirstTrustedAtUtc != null).ToList();
+            var currentProofs = matchingArtifacts.Where(HasCurrentSourceProof).ToList();
+            var trustedArtifacts = currentProofs.Where(a => a.FirstTrustedAtUtc != null).ToList();
             if (conflictingVerified.Contains(identity))
                 return Reject(dependency, "Conflicting previously verified package hashes; manual review required.");
             if (trustedArtifacts.Count > 0 && !trustedArtifacts.Any(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase)))
                 return Reject(dependency, "Previously recorded package bytes changed.");
-            var sameHash = matchingArtifacts.Where(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase)).ToList();
-            if (sameHash.Count == 0)
-            {
-                newlyAdmitted.Add(dependency);
-                return Pending(dependency, "Package archive verification and vulnerability audit are pending.");
-            }
+            var sameHash = currentProofs.Where(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase)).ToList();
             if (matchingArtifacts.Any(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase) &&
                                           affectedIds.Contains(a.Id)))
                 return Reject(dependency, "This version has a known active vulnerability.");
+            if (sameHash.Count == 0)
+            {
+                if (matchingArtifacts.Any(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase)))
+                    pendingExisting.Add(dependency);
+                else newlyAdmitted.Add(dependency);
+                return Pending(dependency, "Package archive verification and vulnerability audit are pending.");
+            }
             if (sameHash.Any(a => a.SourceVerificationRejected))
                 return Reject(dependency, "Package archive does not match its approved source or the source is no longer permitted.");
             if (sameHash.All(a => a.SourceVerifiedAtUtc == null))
@@ -185,6 +189,13 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
             return decision;
         }).ToList();
         return new Assessment(decisions, newlyAdmitted, pendingExisting, known);
+    }
+
+    internal bool HasCurrentSourceProof(PackageArtifact artifact)
+    {
+        var upstream = configuration == null ? null : MirrorPackageSources.Upstream(configuration,
+            artifact.Ecosystem, artifact.Source);
+        return upstream == null || artifact.VerificationSource == upstream;
     }
 
     private sealed record Assessment(List<DependencyDecision> Decisions, List<Dependency> NewlyAdmitted,

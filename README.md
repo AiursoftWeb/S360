@@ -123,3 +123,21 @@ Both endpoints enforce permitted registries, approved version grants, independen
 ## How to contribute
 
 Report bugs and suggestions through the issue tracker. Create a fork and a feature branch, then submit a merge request for review.
+
+### One policy for an internal registry
+
+A registry can use its own distribution URL as the S360 policy source and fetch from an operator-configured upstream. Allow the internal source in `SupplyChain:NuGetSources` or `SupplyChain:NpmSources`, then configure `SupplyChain:Mirrors`:
+
+```json
+[
+  { "Ecosystem": "nuget", "Source": "https://nupkg.aiursoft.com/v3/index.json", "Upstream": "https://api.nuget.org/v3/index.json" },
+  { "Ecosystem": "npm", "Source": "https://nopkg.aiursoft.com/npm", "Upstream": "https://registry.npmjs.org" }
+]
+```
+
+Approve package names and version ranges only for the internal source. No duplicate upstream approval is required. The mapping is server configuration, not a URL supplied by callers.
+
+- `POST /api/artifacts/mirror/candidates` accepts `{ "candidates": [{ "ecosystem": "npm", "name": "example", "version": "1.0.0", "source": "https://nopkg.aiursoft.com/npm" }] }` (1–500 entries). Ordered decisions contain `candidate` and `canFetch`; fetching eligibility never certifies archive bytes.
+- `POST /api/artifacts/mirror/verify` accepts one exact dependency including its raw archive SHA256. It observes the candidate under the internal source, independently downloads and validates the configured upstream archive, and completes its OSV check before returning an artifact decision. It never creates a trust rule or project baseline. A failed upstream or incomplete audit returns 503; mismatched or denied artifacts are not trusted.
+
+Both endpoints require the existing check key. Exact verification shares four concurrent slots and the existing server observation budget. Per-artifact evidence records the verified upstream and check time without declaring the entire vulnerability catalog refreshed. Ordinary assessment, cached downloads, blocks, revocation and the 12-hour audit lifetime remain enforced.

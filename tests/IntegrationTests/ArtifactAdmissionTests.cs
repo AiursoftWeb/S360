@@ -63,12 +63,45 @@ public class ArtifactAdmissionTests : TestBase
     }
 
     [TestMethod]
+    public async Task OneInternalRulePermitsColdCandidatesButNeverClaimsTheyAreVerified()
+    {
+        await AuthorizeAsync(); await SeedAsync();
+        GetService<IConfiguration>()["SupplyChain:Mirrors:0:Ecosystem"] = "nuget";
+        GetService<IConfiguration>()["SupplyChain:Mirrors:0:Source"] = Source;
+        GetService<IConfiguration>()["SupplyChain:Mirrors:0:Upstream"] = "https://api.nuget.org/v3/index.json";
+        var request = new MirrorCandidateRequest([
+            new("nuget", "Mirror.Approved", "1.9.0", Source),
+            new("nuget", "Mirror.Approved", "1.9.0-beta", Source),
+            new("nuget", "Mirror.Blocked", "1.0.0", Source),
+            new("nuget", "Mirror.Unknown", "1.0.0", Source),
+            new("nuget", "Mirror.Approved", "1.9.0", "https://api.nuget.org/v3/index.json")]);
+        var response = await Http.PostAsJsonAsync("/api/artifacts/mirror/candidates", request);
+        Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        var result = await response.Content.ReadFromJsonAsync<MirrorCandidateResponse>();
+        Assert.IsNotNull(result);
+        CollectionAssert.AreEqual(new[] { true, false, false, false, false }, result.Decisions.Select(d => d.CanFetch).ToArray());
+        using var scope = Server!.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+        Assert.AreEqual(3, await db.PackageArtifacts.CountAsync(a => a.Source == Source));
+        Assert.IsFalse(await db.TrustRules.AnyAsync(r => r.Source == "https://api.nuget.org/v3/index.json"));
+        (await db.TrustRules.SingleAsync(r => r.PackagePattern == "Mirror.Approved" && r.Source == Source)).Status = TrustRuleStatus.Revoked;
+        await db.SaveChangesAsync();
+        var revoked = await (await Http.PostAsJsonAsync("/api/artifacts/mirror/candidates", request)).Content.ReadFromJsonAsync<MirrorCandidateResponse>();
+        Assert.IsNotNull(revoked);
+        Assert.IsFalse(revoked.Decisions[0].CanFetch);
+    }
+
+    [TestMethod]
     public async Task EndpointsRequireMachineAuthenticationEvenWhenAnonymousReviewIsEnabled()
     {
         Assert.AreEqual(HttpStatusCode.Unauthorized,
             (await Http.GetAsync("/api/artifacts/approved?ecosystem=nuget&source=" + Uri.EscapeDataString(Source))).StatusCode);
         Assert.AreEqual(HttpStatusCode.Unauthorized,
             (await Http.PostAsJsonAsync("/api/artifacts/assess", new ArtifactAssessmentRequest { Dependencies = [Package("Mirror.Approved")] })).StatusCode);
+        Assert.AreEqual(HttpStatusCode.Unauthorized,
+            (await Http.PostAsJsonAsync("/api/artifacts/mirror/candidates", new MirrorCandidateRequest([new("nuget", "Mirror.Approved", "1.0.0", Source)]))).StatusCode);
+        Assert.AreEqual(HttpStatusCode.Unauthorized,
+            (await Http.PostAsJsonAsync("/api/artifacts/mirror/verify", Package("Mirror.Approved"))).StatusCode);
     }
 
     [TestMethod]
@@ -163,6 +196,7 @@ public class ArtifactAdmissionTests : TestBase
     public async Task AdmissionRejectsUnpermittedSourcesAndUnboundedRequests()
     {
         await AuthorizeAsync();
+        Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.PostAsJsonAsync("/api/artifacts/mirror/candidates", new MirrorCandidateRequest([null!]))).StatusCode);
         var package = Package("Mirror.Approved");
         package.Source = "https://unapproved.example/v3/index.json";
         var response = await Http.PostAsJsonAsync("/api/artifacts/assess", new ArtifactAssessmentRequest { Dependencies = [package] });

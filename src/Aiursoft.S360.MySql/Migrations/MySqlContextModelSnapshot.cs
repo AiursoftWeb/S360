@@ -17,7 +17,7 @@ namespace Aiursoft.S360.MySql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "10.0.14")
+                .HasAnnotation("ProductVersion", "10.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
@@ -429,6 +429,9 @@ namespace Aiursoft.S360.MySql.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("varchar(64)");
 
+                    b.Property<DateTime?>("IndependentCheckAtUtc")
+                        .HasColumnType("datetime(6)");
+
                     b.Property<DateTime?>("LastCheckedAtUtc")
                         .HasColumnType("datetime(6)");
 
@@ -452,6 +455,10 @@ namespace Aiursoft.S360.MySql.Migrations
 
                     b.Property<DateTime?>("SourceVerifiedAtUtc")
                         .HasColumnType("datetime(6)");
+
+                    b.Property<string>("VerificationSource")
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                     b.Property<string>("Version")
                         .IsRequired()

@@ -13,6 +13,34 @@ namespace Aiursoft.S360.Tests;
 public class AllowedPackageSourcesTests
 {
     [TestMethod]
+    [DataRow("nuget")]
+    [DataRow("npm")]
+    public async Task InternalDistributionVerificationUsesOnlyTheConfiguredUpstream(string ecosystem)
+    {
+        var source = "https://internal.example/index.json";
+        var upstream = ecosystem == "nuget" ? "https://nuget.example.com/index.json" : "https://npm.example.com";
+        using var nuget = new NuGetHandler(Archive("Android.Widget", "1.2.3"));
+        using var npm = new NpmHandler("@example/arm64", "1.2.3");
+        var bytes = ecosystem == "nuget" ? nuget.ArchiveBytes : npm.Bytes;
+        var configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
+        {
+            [$"SupplyChain:{(ecosystem == "nuget" ? "NuGet" : "Npm")}Sources:0"] = source,
+            ["SupplyChain:Mirrors:0:Ecosystem"] = ecosystem,
+            ["SupplyChain:Mirrors:0:Source"] = source,
+            ["SupplyChain:Mirrors:0:Upstream"] = upstream
+        }).Build();
+        var verifier = new ArtifactSourceVerifier(configuration, new ArchiveClientFactory(ecosystem == "nuget" ? nuget : npm));
+        var artifact = new PackageArtifact { Ecosystem = ecosystem,
+            Name = ecosystem == "nuget" ? "Android.Widget" : "@example/arm64", Version = "1.2.3",
+            Source = source, Sha256 = Convert.ToHexStringLower(SHA256.HashData(bytes)), VerificationSource = upstream };
+        Assert.IsTrue(await verifier.VerifyAsync(artifact));
+        artifact.VerificationSource = "https://caller-selected.example";
+        Assert.IsFalse(await verifier.VerifyAsync(artifact));
+        configuration["SupplyChain:Mirrors:0:Upstream"] = "http://untrusted.example";
+        Assert.IsFalse(await verifier.VerifyAsync(artifact));
+    }
+
+    [TestMethod]
     public void OnlyConfiguredEcosystemSourcesAreAllowed()
     {
         var configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>

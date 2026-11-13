@@ -140,11 +140,11 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 : CatalogAuditStatus.Current;
         var artifactQuery = db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == ecosystem &&
             allowedSources.Contains(a.Source) &&
-            a.FirstTrustedAtUtc != null && a.SourceVerifiedAtUtc != null && a.LastCheckedAtUtc != null &&
-            a.LastCheckedAtUtc >= auditStartedAtUtc && a.LastCheckedAtUtc <= completedAuditAtUtc &&
+            a.FirstTrustedAtUtc != null && a.SourceVerifiedAtUtc != null && !a.SourceVerificationRejected &&
+            ((auditStatus == CatalogAuditStatus.Current && a.LastCheckedAtUtc >= auditStartedAtUtc && a.LastCheckedAtUtc <= completedAuditAtUtc) ||
+             (a.IndependentCheckAtUtc > now.AddHours(-12) && a.IndependentCheckAtUtc <= now)) &&
             !db.VulnerabilityMatches.Any(m => m.PackageArtifactId == a.Id && m.Active &&
                 !m.Vulnerability.Withdrawn));
-        if (auditStatus != CatalogAuditStatus.Current) artifactQuery = artifactQuery.Where(_ => false);
         if (!string.IsNullOrEmpty(query)) artifactQuery = artifactQuery.Where(a => a.Name.Contains(query));
         var blocks = await db.BlockRules.AsNoTracking()
             .Where(b => b.Ecosystem == ecosystem && b.Active).ToListAsync();
@@ -158,7 +158,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         await foreach (var artifact in artifactQuery.OrderBy(a => a.Name).ThenBy(a => a.Id).AsAsyncEnumerable())
         {
             if (!VulnerabilityAuditFreshness.IsCurrent(artifact.LastCheckedAtUtc,
-                    auditStartedAtUtc, completedAuditAtUtc, now))
+                    auditStartedAtUtc, completedAuditAtUtc, now, artifact.IndependentCheckAtUtc))
                 continue;
             if (conflictingVerified.Contains(TrustService.Identity(artifact.Ecosystem, artifact.Name,
                     artifact.Version, artifact.Source))) continue;

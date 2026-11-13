@@ -27,4 +27,7 @@ public class PackageArtifact
     public DateTime? SourceVerifiedAtUtc { get; set; }
     public DateTime? FirstTrustedAtUtc { get; set; }
     public DateTime? LastCheckedAtUtc { get; set; }
+    // A complete per-artifact check does not advance the global audit snapshot.
+    public DateTime? IndependentCheckAtUtc { get; set; }
+    [MaxLength(500)] public string? VerificationSource { get; set; }
 }

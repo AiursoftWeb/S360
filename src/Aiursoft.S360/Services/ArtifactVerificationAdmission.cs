@@ -8,6 +8,7 @@ public sealed class ArtifactVerificationAdmission : IDisposable
     private DateTime _nextAudit;
     private int _admitted;
     private int _anonymousAdmitted;
+    public SemaphoreSlim MirrorVerifications { get; } = new(4, 4);
     public SemaphoreSlim AnonymousReviews { get; } = new(4, 4);
 
     public bool TryAdmit(bool anonymous)
@@ -36,5 +37,9 @@ public sealed class ArtifactVerificationAdmission : IDisposable
         }
     }
 
-    public void Dispose() => AnonymousReviews.Dispose();
+    public void Dispose()
+    {
+        AnonymousReviews.Dispose();
+        MirrorVerifications.Dispose();
+    }
 }

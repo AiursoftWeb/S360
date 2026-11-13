@@ -12,6 +12,30 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         ecosystem is "nuget" or "npm" && TrustPattern.IsValid(name) && !name.Contains('*') &&
         name is not ("." or "..") && (ecosystem != "nuget" || !name.Contains('/'));
 
+    public async Task<List<MirrorCandidateDecision>> EvaluateCandidatesAsync(IReadOnlyList<MirrorCandidate> candidates)
+    {
+        var rules = await db.TrustRules.AsNoTracking().Include(r => r.PackagePolicy).ToListAsync();
+        var blocks = await db.BlockRules.AsNoTracking().Where(r => r.Active).ToListAsync();
+        var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking().Include(e => e.Vulnerability).ToListAsync();
+        var advisories = await db.Vulnerabilities.AsNoTracking().Where(v => !v.Withdrawn).ToListAsync();
+        return candidates.Select(candidate =>
+        {
+            var source = TrustPattern.NormalizeSource(candidate.Source);
+            var hashes = rules.Where(r => r.Ecosystem == candidate.Ecosystem && r.Source == source &&
+                    r.MatchesPackage(candidate.Name) && r.Version == candidate.Version && r.Sha256 != null)
+                .Select(r => r.Sha256!).Append(new string('0', 64)).Distinct(StringComparer.OrdinalIgnoreCase);
+            var eligible = hashes.Any(hash => Evaluate(new Dependency
+            {
+                Ecosystem = candidate.Ecosystem, Name = candidate.Name, Version = candidate.Version,
+                Source = source, Sha256 = hash
+            }, rules, blocks, DateTime.UtcNow, exclusions).Trusted);
+            var affected = advisories.Any(v => v.Ecosystem == candidate.Ecosystem &&
+                v.PackageName.Equals(candidate.Name, candidate.Ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
+                OsvRangeMatcher.Intersects(v.RawAffectedJson, candidate.Ecosystem, candidate.Name, candidate.Version) != RangeRisk.NotAffected);
+            return new MirrorCandidateDecision(candidate, eligible && !affected);
+        }).ToList();
+    }
+
     public async Task<List<DependencyDecision>> AssessAsync(IEnumerable<Dependency> dependencies) =>
         (await AssessCoreAsync(dependencies)).Decisions;
 
@@ -153,7 +177,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
             if (sameHash.All(a => a.SourceVerifiedAtUtc == null))
                 return Pending(dependency, "Package archive has not been independently verified from its source.");
             if (sameHash.All(a => !VulnerabilityAuditFreshness.IsCurrent(a.LastCheckedAtUtc,
-                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now)))
+                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now, a.IndependentCheckAtUtc)))
             {
                 pendingExisting.Add(dependency);
                 return Pending(dependency, "Vulnerability audit has not completed for this package within 12 hours.");

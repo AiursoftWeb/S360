@@ -40,6 +40,10 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
             });
         }
         catch (ArgumentException) { return BadRequest("Invalid package source."); }
+        catch (Exception ex) when (ex is HttpRequestException or IOException or InvalidOperationException or System.Text.Json.JsonException or TaskCanceledException)
+        {
+            return StatusCode(StatusCodes.Status503ServiceUnavailable, new { error = "Package origin verification is temporarily unavailable." });
+        }
     }
 
     [HttpGet("approved")]
@@ -85,5 +89,9 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
             });
         }
         catch (ArgumentException) { return BadRequest("Invalid package source."); }
+        catch (Exception ex) when (ex is HttpRequestException or IOException or InvalidOperationException or System.Text.Json.JsonException or TaskCanceledException)
+        {
+            return StatusCode(StatusCodes.Status503ServiceUnavailable, new { error = "Package origin verification is temporarily unavailable." });
+        }
     }
 }

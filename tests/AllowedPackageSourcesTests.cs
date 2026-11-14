@@ -163,6 +163,89 @@ public class AllowedPackageSourcesTests
         if (failure == "tarball-source") Assert.AreEqual(1, handler.Requests);
     }
 
+    [TestMethod]
+    [DataRow("nuget")]
+    [DataRow("npm")]
+    public async Task LocalOriginVerifiesInternalBytesInsteadOfTheOfficialMirror(string ecosystem)
+    {
+        using var handler = new LocalOriginHandler(ecosystem);
+        var configuration = LocalOriginConfiguration(ecosystem);
+        var factory = new ArchiveClientFactory(handler);
+        var verifier = new ArtifactSourceVerifier(configuration, factory);
+        var artifact = handler.Artifact();
+        artifact.VerificationSource = "https://official.example";
+        Assert.IsTrue(await verifier.VerifyAsync(artifact));
+        Assert.AreEqual("https://internal.example", artifact.VerificationSource);
+        Assert.AreEqual(1, handler.ArchiveRequests);
+        Assert.AreEqual(2, handler.OriginRequests, "Origin must be checked again after the download.");
+
+    }
+
+    [TestMethod]
+    [DataRow("nuget", "hash")]
+    [DataRow("npm", "hash")]
+    [DataRow("nuget", "identity")]
+    [DataRow("npm", "identity")]
+    [DataRow("nuget", "missing")]
+    [DataRow("npm", "missing")]
+    [DataRow("nuget", "redirect")]
+    [DataRow("npm", "redirect")]
+    [DataRow("nuget", "changed-mode")]
+    [DataRow("npm", "changed-mode")]
+    [DataRow("nuget", "unavailable")]
+    [DataRow("npm", "unavailable")]
+    public async Task LocalOriginRejectsInvalidOrChangedEvidence(string ecosystem, string failure)
+    {
+        using var handler = new LocalOriginHandler(ecosystem) { Failure = failure };
+        var configuration = LocalOriginConfiguration(ecosystem);
+        var verifier = new ArtifactSourceVerifier(configuration, new ArchiveClientFactory(handler));
+        var artifact = handler.Artifact();
+        if (failure is "redirect" or "identity")
+            await Assert.ThrowsExactlyAsync<InvalidDataException>(() => verifier.VerifyAsync(artifact));
+        else if (failure == "unavailable")
+            await Assert.ThrowsExactlyAsync<HttpRequestException>(() => verifier.VerifyAsync(artifact));
+        else Assert.IsFalse(await verifier.VerifyAsync(artifact));
+        Assert.IsNull(artifact.VerificationSource);
+    }
+
+    private static IConfiguration LocalOriginConfiguration(string ecosystem) => new ConfigurationBuilder()
+        .AddInMemoryCollection(new Dictionary<string, string?>
+        {
+            [$"SupplyChain:{(ecosystem == "nuget" ? "NuGet" : "Npm")}Sources:0"] = "https://internal.example",
+            ["SupplyChain:Mirrors:0:Ecosystem"] = ecosystem,
+            ["SupplyChain:Mirrors:0:Source"] = "https://internal.example",
+            ["SupplyChain:Mirrors:0:Upstream"] = "https://official.example",
+            ["SupplyChain:Mirrors:0:OriginEndpoint"] = "https://internal.example/api/package-origins"
+        }).Build();
+
+    private sealed class LocalOriginHandler(string ecosystem) : HttpMessageHandler
+    {
+        private readonly byte[] _bytes = ecosystem == "nuget" ? Archive("sample", "1.0.0") : NpmArchive("sample", "1.0.0");
+        public string? Failure { get; init; }
+        public int ArchiveRequests { get; private set; }
+        public int OriginRequests { get; private set; }
+        public PackageArtifact Artifact() => new() { Ecosystem = ecosystem, Name = "sample", Version = "1.0.0",
+            Source = "https://internal.example", Sha256 = Convert.ToHexStringLower(SHA256.HashData(_bytes)) };
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
+        {
+            Assert.AreEqual("internal.example", request.RequestUri!.Host, "Locally owned packages must never contact upstream.");
+            if (request.RequestUri.AbsolutePath == "/api/package-origins")
+            {
+                OriginRequests++;
+                var missing = Failure == "missing";
+                var changed = Failure == "changed-mode" && OriginRequests > 1;
+                var proof = new PackageSourceOrigin(ecosystem, Failure == "identity" ? "different" : "sample", "1.0.0",
+                    changed ? "mirror" : "local", missing || changed ? null : Artifact().Sha256,
+                    missing || changed ? null : Failure == "redirect" ? "https://other.example/archive" : "/archive");
+                return Task.FromResult(new HttpResponseMessage(Failure == "unavailable" ? HttpStatusCode.ServiceUnavailable : HttpStatusCode.OK)
+                    { RequestMessage = request, Content = JsonContent.Create(proof) });
+            }
+            ArchiveRequests++;
+            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) { RequestMessage = request,
+                Content = new ByteArrayContent(Failure == "hash" ? [1, 2, 3] : _bytes) });
+        }
+    }
+
     private static byte[] NpmArchive(string name, string version)
     {
         using var output = new MemoryStream();

@@ -7,7 +7,7 @@ using Aiursoft.S360.Services.Resolution;
 
 namespace Aiursoft.S360.Services;
 
-public class TrustService(TemplateDbContext db, IConfiguration? configuration = null) : IScopedDependency
+public class TrustService(TemplateDbContext db, IConfiguration? configuration = null, PackageOriginClient? origins = null) : IScopedDependency
 {
     public static bool IsValidPackageName(string ecosystem, string name) =>
         ecosystem is "nuget" or "npm" && TrustPattern.IsValid(name) && !name.Contains('*') &&
@@ -135,7 +135,8 @@ public class TrustService(TemplateDbContext db, IConfiguration? configuration = 
         var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
         var known = artifacts.ToLookup(a => Identity(a.Ecosystem, a.Name, a.Version, a.Source));
-        var conflictingVerified = ConflictingVerifiedIdentities(artifacts.Where(HasCurrentSourceProof));
+        var currentArtifactIds = (await WithCurrentSourceProofAsync(artifacts)).Select(a => a.Id).ToHashSet();
+        var conflictingVerified = ConflictingVerifiedIdentities(artifacts.Where(a => currentArtifactIds.Contains(a.Id)));
         var affectedIds = new HashSet<int>();
         foreach (var ids in artifacts.Select(a => a.Id).Chunk(500))
         {
@@ -159,7 +160,7 @@ public class TrustService(TemplateDbContext db, IConfiguration? configuration = 
             if (!decision.Trusted) return decision;
             var matchingArtifacts = known[Identity(dependency.Ecosystem, dependency.Name, dependency.Version,
                 TrustPattern.NormalizeSource(dependency.Source))].ToList();
-            var currentProofs = matchingArtifacts.Where(HasCurrentSourceProof).ToList();
+            var currentProofs = matchingArtifacts.Where(a => currentArtifactIds.Contains(a.Id)).ToList();
             var trustedArtifacts = currentProofs.Where(a => a.FirstTrustedAtUtc != null).ToList();
             if (conflictingVerified.Contains(identity))
                 return Reject(dependency, "Conflicting previously verified package hashes; manual review required.");
@@ -191,11 +192,19 @@ public class TrustService(TemplateDbContext db, IConfiguration? configuration = 
         return new Assessment(decisions, newlyAdmitted, pendingExisting, known);
     }
 
-    internal bool HasCurrentSourceProof(PackageArtifact artifact)
+    internal async Task<List<PackageArtifact>> WithCurrentSourceProofAsync(IEnumerable<PackageArtifact> artifacts)
     {
-        var upstream = configuration == null ? null : MirrorPackageSources.Upstream(configuration,
-            artifact.Ecosystem, artifact.Source);
-        return upstream == null || artifact.VerificationSource == upstream;
+        var result = new List<PackageArtifact>();
+        foreach (var family in artifacts.GroupBy(a => (a.Ecosystem,
+                     Name: a.Ecosystem == "nuget" ? a.Name.ToLowerInvariant() : a.Name, a.Source)))
+        {
+            var first = family.First();
+            var upstream = configuration == null ? null : MirrorPackageSources.Upstream(configuration, first.Ecosystem, first.Source);
+            var origin = origins == null ? null : await origins.GetAsync(first.Ecosystem, first.Name, first.Version, first.Source);
+            var expected = origin?.Mode == "local" ? TrustPattern.NormalizeSource(first.Source) : upstream;
+            result.AddRange(family.Where(a => upstream == null || a.VerificationSource == expected));
+        }
+        return result;
     }
 
     private sealed record Assessment(List<DependencyDecision> Decisions, List<Dependency> NewlyAdmitted,

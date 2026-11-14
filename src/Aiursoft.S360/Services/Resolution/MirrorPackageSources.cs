@@ -7,7 +7,6 @@ public class MirrorPackageSource
     public string Ecosystem { get; set; } = "";
     public string Source { get; set; } = "";
     public string Upstream { get; set; } = "";
-    public string? OriginEndpoint { get; set; }
 }
 
 public static class MirrorPackageSources

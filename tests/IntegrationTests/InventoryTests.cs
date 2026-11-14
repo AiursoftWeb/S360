@@ -16,33 +16,46 @@ public class InventoryTests : TestBase
     private const string Source = "https://nuget.aiursoft.com/v3/index.json";
 
     private BuildCheck Report(string project, string? purpose, string? ecosystem,
-        DateTime time, params PackageArtifact[] artifacts) => new()
-    {
-        Project = _prefix + project, RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1,
-        CreatedAtUtc = time, Trusted = true,
-        ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = purpose, Ecosystem = ecosystem }),
-        Dependencies = artifacts.Select(a => new BuildCheckDependency
+        DateTime time, params PackageVersion[] artifacts) => new()
         {
-            BuildCheckId = 0, PackageArtifactId = a.Id, PackageArtifact = a,
-            Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version, Source = a.Source,
-            Sha256 = a.Sha256, Trusted = true
-        }).ToList()
-    };
+            Project = _prefix + project,
+            RunId = Guid.NewGuid().ToString("N"),
+            ScannedProjectCount = 1,
+            CreatedAtUtc = time,
+            Trusted = true,
+            ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = purpose, Ecosystem = ecosystem }),
+            Dependencies = artifacts.Select(a => new BuildCheckDependency
+            {
+                BuildCheckId = 0,
+                PackageVersionId = a.Id,
+                PackageVersion = a,
+                Ecosystem = a.Ecosystem,
+                Name = a.Name,
+                Version = a.Version,
+                Source = a.Source,
+                Trusted = true
+            }).ToList()
+        };
 
-    private static PackageArtifact Artifact(string name, string ecosystem = "nuget") => new()
+    private static PackageVersion Artifact(string name, string ecosystem = "nuget") => new()
     {
-        Name = name, Ecosystem = ecosystem, Version = "1.0.0",
+        Name = name,
+        Ecosystem = ecosystem,
+        Version = "1.0.0",
         Source = ecosystem == "nuget" ? Source : "https://registry.npmjs.org",
-        Sha256 = new string('a', 64), FirstTrustedAtUtc = DateTime.UtcNow.AddHours(-1),
-        SourceVerifiedAtUtc = DateTime.UtcNow.AddHours(-1), LastCheckedAtUtc = DateTime.UtcNow
+        LastCheckedAtUtc = DateTime.UtcNow
     };
 
-    private static TrustRule Approve(PackageArtifact artifact) => new()
+    private static PackageRule Approve(PackageVersion artifact) => new()
     {
         RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-        ApplicationId = null, SupplierId = 0, Supplier = new Supplier { Name = "Inventory supplier" },
-        Ecosystem = artifact.Ecosystem, Source = artifact.Source, PackagePattern = artifact.Name,
-        Version = "1.*", Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1),
+        ApplicationId = null,
+        Ecosystem = artifact.Ecosystem,
+        Source = artifact.Source,
+        PackagePattern = artifact.Name,
+        Version = "1.*",
+        Status = RuleStatus.Approved,
+        ExpiresAtUtc = DateTime.UtcNow.AddDays(1),
         Justification = "Approved to parse employee-provided documents."
     };
 
@@ -110,7 +123,10 @@ public class InventoryTests : TestBase
                 var report = Report("repository//" + path, "baseline", "nuget", now);
                 report.ContextJson = JsonSerializer.Serialize(new CheckContext
                 {
-                    Purpose = "baseline", Ecosystem = "nuget", Repository = _prefix + "repository", SolutionPath = path
+                    Purpose = "baseline",
+                    Ecosystem = "nuget",
+                    Repository = _prefix + "repository",
+                    SolutionPath = path
                 });
                 db.BuildChecks.Add(report);
             }
@@ -127,7 +143,10 @@ public class InventoryTests : TestBase
                 Artifact("Unapproved." + Guid.NewGuid().ToString("N")));
             bad.ContextJson = JsonSerializer.Serialize(new CheckContext
             {
-                Purpose = "baseline", Ecosystem = "nuget", Repository = _prefix + "repository", SolutionPath = "Second.sln"
+                Purpose = "baseline",
+                Ecosystem = "nuget",
+                Repository = _prefix + "repository",
+                SolutionPath = "Second.sln"
             });
             db.BuildChecks.Add(bad);
             // A NuGet solution report does not discard a separately reported npm baseline.
@@ -147,7 +166,10 @@ public class InventoryTests : TestBase
         var solution = Report("repository//Product.sln", "baseline", "nuget", DateTime.UtcNow);
         solution.ContextJson = JsonSerializer.Serialize(new CheckContext
         {
-            Purpose = "baseline", Ecosystem = "nuget", Repository = _prefix + "repository", SolutionPath = "Product.sln"
+            Purpose = "baseline",
+            Ecosystem = "nuget",
+            Repository = _prefix + "repository",
+            SolutionPath = "Product.sln"
         });
         solution.BatchCount = 2;
         Assert.HasCount(2, BuildCheckRun.ForEcosystem([legacy, solution], "nuget"));
@@ -164,7 +186,7 @@ public class InventoryTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var artifact = Artifact("Badge." + Guid.NewGuid().ToString("N"));
             var rule = Approve(artifact);
-            db.TrustRules.Add(rule);
+            db.Rules.Add(rule);
             db.BuildChecks.Add(Report("policy", "baseline", "nuget", DateTime.UtcNow, artifact));
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
@@ -179,7 +201,8 @@ public class InventoryTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.VulnerabilityMatches.Add(new VulnerabilityMatch
             {
-                VulnerabilityId = 0, PackageArtifactId = artifactId,
+                VulnerabilityId = 0,
+                PackageVersionId = artifactId,
                 Vulnerability = new Vulnerability { SourceId = "CVE-2099-1234", Ecosystem = "nuget", PackageName = "Badge" }
             });
             await db.SaveChangesAsync();
@@ -188,16 +211,16 @@ public class InventoryTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            (await db.VulnerabilityMatches.Include(m => m.Vulnerability).SingleAsync(m => m.PackageArtifactId == artifactId)).Vulnerability.Withdrawn = true;
-            (await db.TrustRules.SingleAsync(r => r.Id == ruleId)).Status = TrustRuleStatus.Revoked;
+            (await db.VulnerabilityMatches.Include(m => m.Vulnerability).SingleAsync(m => m.PackageVersionId == artifactId)).Vulnerability.Withdrawn = true;
+            (await db.Rules.Where(r => r.Kind == RuleKind.Approval).SingleAsync(r => r.Id == ruleId)).Status = RuleStatus.Revoked;
             await db.SaveChangesAsync();
         }
         await ReadBadge("policy", "non-compliant");
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            (await db.TrustRules.SingleAsync(r => r.Id == ruleId)).Status = TrustRuleStatus.Approved;
-            (await db.PackageArtifacts.SingleAsync(a => a.Id == artifactId)).LastCheckedAtUtc = DateTime.UtcNow.AddDays(-1);
+            (await db.Rules.Where(r => r.Kind == RuleKind.Approval).SingleAsync(r => r.Id == ruleId)).Status = RuleStatus.Approved;
+            (await db.PackageVersions.SingleAsync(a => a.Id == artifactId)).LastCheckedAtUtc = DateTime.UtcNow.AddDays(-1);
             (await db.VulnerabilitySyncStates.SingleAsync()).LastSuccessAtUtc = DateTime.UtcNow.AddDays(-1);
             await db.SaveChangesAsync();
         }
@@ -206,7 +229,7 @@ public class InventoryTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             Assert.AreEqual(1, await db.BuildChecks.CountAsync(c => c.Project == _prefix + "policy"));
-            Assert.IsTrue((await db.PackageArtifacts.SingleAsync(a => a.Id == artifactId)).LastCheckedAtUtc < DateTime.UtcNow.AddHours(-12));
+            Assert.IsTrue((await db.PackageVersions.SingleAsync(a => a.Id == artifactId)).LastCheckedAtUtc < DateTime.UtcNow.AddHours(-12));
         }
     }
 
@@ -220,10 +243,15 @@ public class InventoryTests : TestBase
             var artifact = Artifact("Graph.Policy." + Guid.NewGuid().ToString("N"));
             var rule = Approve(artifact);
             rule.Justification = "Read structured project configuration.";
-            db.TrustRules.Add(rule);
+            db.Rules.Add(rule);
             var report = Report("graph", "baseline", "nuget", DateTime.UtcNow, artifact);
-            var dependency = new Dependency { Ecosystem = artifact.Ecosystem, Name = artifact.Name,
-                Version = artifact.Version, Source = artifact.Source, Sha256 = artifact.Sha256 };
+            var dependency = new Dependency
+            {
+                Ecosystem = artifact.Ecosystem,
+                Name = artifact.Name,
+                Version = artifact.Version,
+                Source = artifact.Source
+            };
             var packageId = SolutionDependencyGraph.PackageId(dependency);
             report.GraphJson = JsonSerializer.Serialize(new DependencyReportGraph
             {
@@ -257,7 +285,7 @@ public class InventoryTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            (await db.TrustRules.SingleAsync(r => r.Id == ruleId)).Status = TrustRuleStatus.Revoked;
+            (await db.Rules.Where(r => r.Kind == RuleKind.Approval).SingleAsync(r => r.Id == ruleId)).Status = RuleStatus.Revoked;
             await db.SaveChangesAsync();
         }
         opened = (await Read("projects", project: _prefix + "graph")).Projects.Single();
@@ -323,7 +351,7 @@ public class InventoryTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var nuget = Artifact(nugetName);
             var npm = Artifact("npm-unapproved-" + Guid.NewGuid().ToString("N"), "npm");
-            db.TrustRules.Add(Approve(nuget));
+            db.Rules.Add(Approve(nuget));
             db.BuildChecks.AddRange(Report("backend", "baseline", "nuget", DateTime.UtcNow, nuget),
                 Report("mixed", "baseline", "nuget", DateTime.UtcNow, nuget),
                 Report("mixed", "baseline", "npm", DateTime.UtcNow, npm));
@@ -347,12 +375,17 @@ public class InventoryTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifact = await db.PackageArtifacts.SingleAsync(a => a.Name == nugetName);
+            var artifact = await db.PackageVersions.SingleAsync(a => a.Name == nugetName);
             db.VulnerabilityMatches.Add(new VulnerabilityMatch
             {
-                PackageArtifactId = artifact.Id, VulnerabilityId = 0,
-                Vulnerability = new Vulnerability { Ecosystem = "nuget", PackageName = artifact.Name,
-                    SourceId = "GHSA-inventory-scope-" + Guid.NewGuid().ToString("N") }
+                PackageVersionId = artifact.Id,
+                VulnerabilityId = 0,
+                Vulnerability = new Vulnerability
+                {
+                    Ecosystem = "nuget",
+                    PackageName = artifact.Name,
+                    SourceId = "GHSA-inventory-scope-" + Guid.NewGuid().ToString("N")
+                }
             });
             await db.SaveChangesAsync();
         }
@@ -407,7 +440,7 @@ public class InventoryTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var artifact = Artifact("Current.Policy");
             var rule = Approve(artifact);
-            db.TrustRules.Add(rule);
+            db.Rules.Add(rule);
             db.BuildChecks.Add(Report("backend", "baseline", null, DateTime.UtcNow, artifact));
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
@@ -420,7 +453,7 @@ public class InventoryTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var rule = await db.TrustRules.SingleAsync(r => r.Id == ruleId);
+            var rule = await db.Rules.Where(r => r.Kind == RuleKind.Approval).SingleAsync(r => r.Id == ruleId);
             rule.ExpiresAtUtc = DateTime.UtcNow.AddSeconds(-1);
             await db.SaveChangesAsync();
         }
@@ -428,16 +461,16 @@ public class InventoryTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var rule = await db.TrustRules.SingleAsync(r => r.Id == ruleId);
+            var rule = await db.Rules.Where(r => r.Kind == RuleKind.Approval).SingleAsync(r => r.Id == ruleId);
             rule.ExpiresAtUtc = DateTime.UtcNow.AddDays(1);
-            rule.Status = TrustRuleStatus.Revoked;
+            rule.Status = RuleStatus.Revoked;
             await db.SaveChangesAsync();
         }
         Assert.AreEqual(InventoryStatus.NonCompliant, (await Read()).Packages.Single().Status);
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            (await db.TrustRules.SingleAsync(r => r.Id == ruleId)).Status = TrustRuleStatus.Approved;
+            (await db.Rules.Where(r => r.Kind == RuleKind.Approval).SingleAsync(r => r.Id == ruleId)).Status = RuleStatus.Approved;
             var audit = await db.VulnerabilitySyncStates.SingleAsync();
             audit.LastAttemptAtUtc = DateTime.UtcNow.AddDays(-1);
             audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddDays(-1);
@@ -450,7 +483,9 @@ public class InventoryTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.VulnerabilityMatches.Add(new VulnerabilityMatch
             {
-                PackageArtifactId = artifactId, VulnerabilityId = 0, Active = true,
+                PackageVersionId = artifactId,
+                VulnerabilityId = 0,
+                Active = true,
                 Vulnerability = new Vulnerability { Ecosystem = "nuget", PackageName = "Current.Policy", SourceId = "GHSA-inventory-test", Aliases = "[\"CVE-2099-10001\"]" }
             });
             await db.SaveChangesAsync();
@@ -476,7 +511,7 @@ public class InventoryTests : TestBase
                 var artifact = Artifact($"Catalog.Package{i:00}");
                 var rule = Approve(artifact);
                 rule.Justification = "Pagination purpose: parse employee-provided documents.";
-                db.TrustRules.Add(rule);
+                db.Rules.Add(rule);
                 db.BuildChecks.Add(Report("Project-" + i, "baseline", null, DateTime.UtcNow, artifact));
             }
             await db.SaveChangesAsync();
@@ -531,12 +566,16 @@ public class InventoryTests : TestBase
         var unknown = Artifact("Company.Unknown");
         var reviewOnly = Artifact("Company.ReviewOnly");
         var removed = Artifact("Company.Removed");
-        var newlyRequested = Approve(unknown);
-        newlyRequested = new TrustRule { ApplicationId = null, SupplierId = newlyRequested.SupplierId,
-            Supplier = newlyRequested.Supplier, Ecosystem = unknown.Ecosystem, PackagePattern = unknown.Name,
-            Version = "1.*", Source = unknown.Source, Status = TrustRuleStatus.Approved };
-        db.TrustRules.AddRange(Approve(safe), Approve(vulnerable), newlyRequested);
-        unknown.SourceVerifiedAtUtc = null;
+        var newlyRequested = new PackageRule
+        {
+            ApplicationId = null,
+            Ecosystem = unknown.Ecosystem,
+            PackagePattern = unknown.Name,
+            Version = "1.*",
+            Source = unknown.Source,
+            Status = RuleStatus.Approved
+        };
+        db.Rules.AddRange(Approve(safe), Approve(vulnerable), newlyRequested);
         db.BuildChecks.Add(Report("safe", "baseline", "nuget", now, safe));
         db.BuildChecks.Add(Report("affected", "baseline", "nuget", now, safe, vulnerable));
         db.BuildChecks.Add(Report("unknown", "baseline", "nuget", now, unknown));
@@ -547,9 +586,17 @@ public class InventoryTests : TestBase
         db.BuildChecks.Add(incomplete);
         db.VulnerabilityMatches.Add(new VulnerabilityMatch
         {
-            PackageArtifactId = 0, PackageArtifact = vulnerable, VulnerabilityId = 0, Active = true,
-            Vulnerability = new Vulnerability { Ecosystem = "nuget", PackageName = vulnerable.Name,
-                SourceId = "GHSA-company-test", Aliases = "[\"CVE-2099-10002\"]" }
+            PackageVersionId = 0,
+            PackageVersion = vulnerable,
+            VulnerabilityId = 0,
+            Active = true,
+            Vulnerability = new Vulnerability
+            {
+                Ecosystem = "nuget",
+                PackageName = vulnerable.Name,
+                SourceId = "GHSA-company-test",
+                Aliases = "[\"CVE-2099-10002\"]"
+            }
         });
         var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
         if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
@@ -580,7 +627,7 @@ public class InventoryTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var artifact = Artifact("Confidential.Package");
-            db.TrustRules.Add(Approve(artifact));
+            db.Rules.Add(Approve(artifact));
             db.BuildChecks.Add(Report("Confidential-Project", "baseline", null, DateTime.UtcNow, artifact));
             await db.SaveChangesAsync();
         }

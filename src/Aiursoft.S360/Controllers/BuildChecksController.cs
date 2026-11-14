@@ -43,13 +43,13 @@ public class BuildChecksController(TemplateDbContext db) : Controller
             var complete = BuildCheckRun.IsComplete(g.ToList());
             return new BuildRunStatus(complete, complete && g.All(c => c.Trusted));
         });
-        var blocks = await db.BlockRules.AsNoTracking().Where(b => b.Active).ToListAsync();
+        var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(b => b.Status == RuleStatus.Approved).ToListAsync();
         foreach (var dependency in model.Checks.SelectMany(c => c.Dependencies))
         {
             var block = blocks.FirstOrDefault(b => b.Ecosystem == dependency.Ecosystem &&
                 TrustPattern.Matches(b.PackagePattern, dependency.Name, dependency.Ecosystem) &&
                 TrustPattern.VersionMatches(b.Version, dependency.Version, dependency.Ecosystem, true));
-            if (block != null) model.CurrentBlockReasons[dependency.Id] = $"{block.PackagePattern} @ {block.Version}: {block.Reason}";
+            if (block != null) model.CurrentBlockReasons[dependency.Id] = $"{block.PackagePattern} @ {block.Version}: {block.Justification}";
         }
         return this.StackView(model);
     }

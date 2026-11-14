@@ -84,7 +84,7 @@ public class CliCheckTests
                 return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
                 {
                     Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new CheckResponse
-                        { Code = Code.ResultShown, Message = "Dependency review rejected.", Trusted = false, Decisions = [] }, ProtocolSettings.JsonSettings),
+                    { Code = Code.ResultShown, Message = "Dependency review rejected.", Trusted = false, Decisions = [] }, ProtocolSettings.JsonSettings),
                         System.Text.Encoding.UTF8, "application/json")
                 });
             var response = new HttpResponseMessage(status) { Content = new StringContent("<html>Busy</html>") };
@@ -96,8 +96,13 @@ public class CliCheckTests
     [TestMethod]
     public async Task SolutionReportRejectsServerThatSilentlyIgnoresItsGraph()
     {
-        var dependency = new Dependency { Ecosystem = "nuget", Name = "Example", Version = "1.0.0",
-            Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64) };
+        var dependency = new Dependency
+        {
+            Ecosystem = "nuget",
+            Name = "Example",
+            Version = "1.0.0",
+            Source = "https://api.nuget.org/v3/index.json"
+        };
         var handler = new VerificationHandler(dependency, false);
         var services = new ServiceCollection();
         services.AddLogging();
@@ -107,7 +112,9 @@ public class CliCheckTests
         var client = new S360Client(provider.GetRequiredService<AiurProtocolClient>());
         var request = new CheckRequest
         {
-            ScannedProjectCount = 1, Dependencies = [dependency], BatchCount = 2,
+            ScannedProjectCount = 1,
+            Dependencies = [dependency],
+            BatchCount = 2,
             SolutionGraph = new SolutionDependencyGraph { SolutionPath = "App.sln" },
             Context = new CheckContext { Purpose = "review", Repository = "company/example", SolutionPath = "App.sln" }
         };
@@ -129,8 +136,13 @@ public class CliCheckTests
     [DataRow(true)]
     public async Task PendingVerificationWaitsForAuditButPermanentDenialDoesNotRetry(bool pending)
     {
-        var dependency = new Dependency { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
-            Source = "https://registry.npmjs.org", Sha256 = new string('a', 64) };
+        var dependency = new Dependency
+        {
+            Ecosystem = "npm",
+            Name = "sample",
+            Version = "1.0.0",
+            Source = "https://registry.npmjs.org"
+        };
         var handler = new VerificationHandler(dependency, pending);
         var services = new ServiceCollection();
         services.AddLogging();
@@ -147,8 +159,13 @@ public class CliCheckTests
     [TestMethod]
     public async Task PendingVerificationTimesOutWithoutApprovingOrRetryingABaseline()
     {
-        var dependency = new Dependency { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
-            Source = "https://registry.npmjs.org", Sha256 = new string('a', 64) };
+        var dependency = new Dependency
+        {
+            Ecosystem = "npm",
+            Name = "sample",
+            Version = "1.0.0",
+            Source = "https://registry.npmjs.org"
+        };
         var handler = new VerificationHandler(dependency, true);
         var services = new ServiceCollection();
         services.AddLogging();
@@ -169,10 +186,20 @@ public class CliCheckTests
     [TestMethod]
     public void DenialsShowExactDependencyChainsAndApprovalEntryWithoutTreatingPendingAsUnapproved()
     {
-        var missing = new Dependency { Ecosystem = "nuget", Name = "Microsoft.Bcl.AsyncInterfaces", Version = "9.0.4",
-            Source = "https://nuget.example.test/v3/index.json", Sha256 = new string('a', 64) };
-        var pending = new Dependency { Ecosystem = "nuget", Name = "Aiursoft.WebTools", Version = "10.0.19",
-            Source = missing.Source, Sha256 = new string('b', 64) };
+        var missing = new Dependency
+        {
+            Ecosystem = "nuget",
+            Name = "Microsoft.Bcl.AsyncInterfaces",
+            Version = "9.0.4",
+            Source = "https://nuget.example.test/v3/index.json"
+        };
+        var pending = new Dependency
+        {
+            Ecosystem = "nuget",
+            Name = "Aiursoft.WebTools",
+            Version = "10.0.19",
+            Source = missing.Source
+        };
         var scan = new ScanReport([missing, pending], [], 2);
         scan.IntroductionPaths[DependencyIntroductionPaths.Identity(missing)] =
         [
@@ -211,8 +238,13 @@ public class CliCheckTests
     [DataRow("Package source is not permitted for S360 checks.", "policy rejection")]
     public void SecurityDenialsDoNotSuggestRequestingApproval(string reason, string action)
     {
-        var dependency = new Dependency { Ecosystem = "nuget", Name = "Example", Version = "1.2.3",
-            Source = "https://nuget.example.test", Sha256 = new string('a', 64) };
+        var dependency = new Dependency
+        {
+            Ecosystem = "nuget",
+            Name = "Example",
+            Version = "1.2.3",
+            Source = "https://nuget.example.test"
+        };
         using var output = new StringWriter();
         CheckHandler.WriteDenials(output, [new DependencyDecision { Dependency = dependency, Reason = reason }],
             new ScanReport([dependency], [], 1), "https://s360.example.test", "baseline", []);
@@ -248,10 +280,15 @@ public class CliCheckTests
             var trusted = pending && Calls > 1;
             return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
             {
-                Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new CheckResponse { Code = Code.ResultShown, Message = "Dependency review completed.", Trusted = trusted,
+                Content = new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(new CheckResponse
+                {
+                    Code = Code.ResultShown,
+                    Message = "Dependency review completed.",
+                    Trusted = trusted,
                     Decisions = [new DependencyDecision { Dependency = dependency, Trusted = trusted,
                         PendingVerification = pending && !trusted,
-                        Reason = trusted ? "Approved" : pending ? "Audit pending" : "No approved trust rule." }] },
+                        Reason = trusted ? "Approved" : pending ? "Audit pending" : "No approved trust rule." }]
+                },
                     ProtocolSettings.JsonSettings), System.Text.Encoding.UTF8, "application/json")
             });
         }
@@ -262,8 +299,10 @@ public class CliCheckTests
     {
         var environment = new Dictionary<string, string?>
         {
-            ["GITLAB_CI"] = "true", ["CI_PIPELINE_SOURCE"] = "merge_request_event",
-            ["CI_COMMIT_REF_NAME"] = "refs/merge-requests/42/head", ["CI_DEFAULT_BRANCH"] = "master",
+            ["GITLAB_CI"] = "true",
+            ["CI_PIPELINE_SOURCE"] = "merge_request_event",
+            ["CI_COMMIT_REF_NAME"] = "refs/merge-requests/42/head",
+            ["CI_DEFAULT_BRANCH"] = "master",
             ["CI_MERGE_REQUEST_IID"] = "42"
         };
         var context = CheckHandler.ReadContext(key => environment.GetValueOrDefault(key));
@@ -299,7 +338,8 @@ public class CliCheckTests
                 JsonSerializer.Serialize(new
                 {
                     targets = new Dictionary<string, object> { ["net10.0"] = new { } },
-                    packageFolders = new { }, libraries = new { },
+                    packageFolders = new { },
+                    libraries = new { },
                     project = new { restore = new { projectPath = project } }
                 }));
             var solution = await DependencyScannerTests.WriteSolutionAsync(root, project);
@@ -307,8 +347,10 @@ public class CliCheckTests
                 "../../../../src/Aiursoft.S360.Client/Aiursoft.S360.Client.csproj"));
             var start = new ProcessStartInfo("dotnet")
             {
-                RedirectStandardOutput = true, RedirectStandardError = true,
-                UseShellExecute = false, WorkingDirectory = root
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                WorkingDirectory = root
             };
             foreach (var argument in new[]
                      {

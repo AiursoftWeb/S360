@@ -27,14 +27,14 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
             {
                 var direct = JsonSerializer.Deserialize<List<DirectPackage>>(application.DirectPackages)
                     ?? throw new InvalidOperationException("Direct dependencies are missing.");
-                var requestBlocks = await db.BlockRules.AsNoTracking()
-                    .Where(b => b.Active && b.Ecosystem == application.Ecosystem).ToListAsync();
+                var requestBlocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking()
+                    .Where(b => b.Status == RuleStatus.Approved && b.Ecosystem == application.Ecosystem).ToListAsync();
                 RequestResolutionPolicy.ValidateRequest(application.Ecosystem, application.Source,
                     direct, configuration, requestBlocks);
                 var report = await resolver.ResolveAsync(application.Ecosystem, application.Source, direct);
                 if (!AllowedPackageSources.Contains(configuration, application.Ecosystem, application.Source))
                     throw new InvalidOperationException("Package source was removed while resolving the request.");
-                var blocks = await db.BlockRules.AsNoTracking().Where(b => b.Active && b.Ecosystem == application.Ecosystem)
+                var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(b => b.Status == RuleStatus.Approved && b.Ecosystem == application.Ecosystem)
                     .ToListAsync();
                 foreach (var dependency in report.Dependencies)
                 {
@@ -67,22 +67,26 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
             await using var transaction = db.Database.IsRelational()
                 ? await db.Database.BeginTransactionAsync() : null;
 
-            var map = new Dictionary<string, PackageArtifact>(StringComparer.Ordinal);
+            var map = new Dictionary<string, PackageVersion>(StringComparer.Ordinal);
             foreach (var dependency in report.Dependencies)
             {
                 var source = TrustPattern.NormalizeSource(dependency.Source);
                 var key = Key(dependency);
-                var identityKey = PackageArtifact.CalculateIdentityKey(dependency.Ecosystem,
-                    dependency.Name, dependency.Version, source, dependency.Sha256);
-                var artifact = await db.PackageArtifacts.FirstOrDefaultAsync(a => a.IdentityKey == identityKey);
+                var candidates = await db.PackageVersions.Where(a => a.Ecosystem == dependency.Ecosystem &&
+                    a.Name.ToLower() == dependency.Name.ToLower() && a.Version == dependency.Version && a.Source == source)
+                    .OrderBy(a => a.Id).ToListAsync();
+                var artifact = candidates.FirstOrDefault(a => a.Name.Equals(dependency.Name,
+                    dependency.Ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal));
                 if (artifact == null)
                 {
-                    artifact = new PackageArtifact
+                    artifact = new PackageVersion
                     {
-                        Ecosystem = dependency.Ecosystem, Name = dependency.Name,
-                        Version = dependency.Version, Source = source, Sha256 = dependency.Sha256
+                        Ecosystem = dependency.Ecosystem,
+                        Name = dependency.Name,
+                        Version = dependency.Version,
+                        Source = source
                     };
-                    db.PackageArtifacts.Add(artifact);
+                    db.PackageVersions.Add(artifact);
                 }
                 map[key] = artifact;
             }
@@ -92,15 +96,9 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
             db.ApplicationPackages.AddRange(report.Dependencies.Select(d => new ApplicationPackage
             {
                 ApplicationId = application.Id,
-                PackageArtifactId = map[Key(d)].Id,
+                PackageVersionId = map[Key(d)].Id,
                 IsDirect = directKeys.Contains(Key(d))
-            }).DistinctBy(p => p.PackageArtifactId));
-            db.ApplicationEdges.AddRange(report.Edges.Select(e => new ApplicationEdge
-            {
-                ApplicationId = application.Id,
-                ParentPackageId = e.Parent == null ? null : map[Key(e.Parent)].Id,
-                ChildPackageId = map[Key(e.Child)].Id
-            }).DistinctBy(e => $"{e.ParentPackageId}/{e.ChildPackageId}"));
+            }).DistinctBy(p => p.PackageVersionId));
             application.ResolutionContext = report.Context;
             application.ReportHash = ReportFingerprint.Compute(application, report);
             application.ResolvedAtUtc = DateTime.UtcNow;
@@ -161,7 +159,7 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
     }
 
     private static string Key(Dependency d) =>
-        $"{d.Ecosystem}\n{(d.Ecosystem == "nuget" ? d.Name.ToLowerInvariant() : d.Name)}\n{d.Version}\n{d.Source}\n{d.Sha256.ToLowerInvariant()}";
+        $"{d.Ecosystem}\n{(d.Ecosystem == "nuget" ? d.Name.ToLowerInvariant() : d.Name)}\n{d.Version}\n{d.Source}";
 
     private static string FindPath(ResolutionReport report, Dependency target)
     {

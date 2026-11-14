@@ -28,10 +28,17 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 (c.Project == model.Repository || c.Project!.StartsWith(model.Repository + "//"))).OrderByDescending(c => c.CreatedAtUtc)
             .ThenByDescending(c => c.Id).Select(c => new BuildCheck
             {
-                Id = c.Id, Project = c.Project, Commit = c.Commit, Pipeline = c.Pipeline,
-                ContextJson = c.ContextJson, RunId = c.RunId, BatchIndex = c.BatchIndex,
-                BatchCount = c.BatchCount, ScannedProjectCount = c.ScannedProjectCount,
-                CreatedAtUtc = c.CreatedAtUtc, GraphJson = c.GraphJson == null ? null : "[]"
+                Id = c.Id,
+                Project = c.Project,
+                Commit = c.Commit,
+                Pipeline = c.Pipeline,
+                ContextJson = c.ContextJson,
+                RunId = c.RunId,
+                BatchIndex = c.BatchIndex,
+                BatchCount = c.BatchCount,
+                ScannedProjectCount = c.ScannedProjectCount,
+                CreatedAtUtc = c.CreatedAtUtc,
+                GraphJson = c.GraphJson == null ? null : "[]"
             }).ToListAsync();
         var runs = checks.Where(c => !string.IsNullOrWhiteSpace(c.Project) &&
                 BuildCheckRun.Purpose(c.ContextJson) != "review")
@@ -70,28 +77,31 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
         var groupsByArtifact = observations.GroupBy(o => ArtifactKey(o.Dependency)).ToList();
         var requested = groupsByArtifact.Select(g => g.First().Dependency).Select(d => new Dependency
         {
-            Ecosystem = d.Ecosystem, Name = d.Name, Version = d.Version, Source = d.Source, Sha256 = d.Sha256
+            Ecosystem = d.Ecosystem,
+            Name = d.Name,
+            Version = d.Version,
+            Source = d.Source
         }).ToList();
         var decisions = requested.Count == 0 ? [] : await trust.AssessAsync(requested);
-        var rules = await db.TrustRules.AsNoTracking().Where(r => r.Status != TrustRuleStatus.Pending).ToListAsync();
-        var blocks = await db.BlockRules.AsNoTracking().Where(b => b.Active).ToListAsync();
-        var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking().Include(e => e.Vulnerability).ToListAsync();
+        var rules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).AsNoTracking().Where(r => r.Status != RuleStatus.Pending).ToListAsync();
+        var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(b => b.Status == RuleStatus.Approved).ToListAsync();
+        var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking().Include(e => e.Vulnerability).ToListAsync();
         var matches = new List<VulnerabilityMatch>();
         var requests = new List<ApplicationPackage>();
-        foreach (var ids in dependencies.Where(d => d.PackageArtifactId != null).Select(d => d.PackageArtifactId!.Value).Distinct().Chunk(500))
+        foreach (var ids in dependencies.Where(d => d.PackageVersionId != null).Select(d => d.PackageVersionId!.Value).Distinct().Chunk(500))
         {
             matches.AddRange(await db.VulnerabilityMatches.AsNoTracking().Include(m => m.Vulnerability)
-                .Where(m => ids.Contains(m.PackageArtifactId) && m.Active && !m.Vulnerability.Withdrawn).ToListAsync());
+                .Where(m => ids.Contains(m.PackageVersionId) && m.Active && !m.Vulnerability.Withdrawn).ToListAsync());
             requests.AddRange(await db.ApplicationPackages.AsNoTracking().Include(p => p.Application)
-                .Where(p => ids.Contains(p.PackageArtifactId) && p.Application.Status == ApplicationStatus.Approved).ToListAsync());
+                .Where(p => ids.Contains(p.PackageVersionId) && p.Application.Status == ApplicationStatus.Approved).ToListAsync());
         }
         var versions = new List<InventoryVersion>();
         for (var i = 0; i < requested.Count; i++)
         {
             var dependency = requested[i];
             var observed = groupsByArtifact[i].ToList();
-            var artifactIds = observed.Select(o => o.Dependency.PackageArtifactId).ToHashSet();
-            var advisories = matches.Where(m => artifactIds.Contains(m.PackageArtifactId))
+            var artifactIds = observed.Select(o => o.Dependency.PackageVersionId).ToHashSet();
+            var advisories = matches.Where(m => artifactIds.Contains(m.PackageVersionId))
                 .SelectMany(m => AdvisoryNames(m.Vulnerability)).Distinct().Order().ToList();
             var policy = TrustService.Evaluate(dependency, rules, blocks, DateTime.UtcNow, exclusions);
             var sourceAllowed = AllowedPackageSources.Contains(configuration, dependency.Ecosystem, dependency.Source);
@@ -100,7 +110,8 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 : decisions[i].Trusted ? InventoryStatus.Compliant : InventoryStatus.Pending;
             var version = new InventoryVersion
             {
-                Dependency = dependency, Status = status,
+                Dependency = dependency,
+                Status = status,
                 Reason = !sourceAllowed ? "Package source is no longer permitted."
                     : advisories.Count > 0 ? "Known active vulnerability: " + string.Join(", ", advisories)
                     : decisions[i].Reason,
@@ -108,7 +119,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 Rules = rules.Where(r => r.Ecosystem == dependency.Ecosystem && r.Source == dependency.Source &&
                     r.MatchesPackage(dependency.Name) &&
                     TrustPattern.VersionMatches(r.Version, dependency.Version, dependency.Ecosystem, r.IncludePrerelease)).ToList(),
-                Requests = requests.Where(p => artifactIds.Contains(p.PackageArtifactId))
+                Requests = requests.Where(p => artifactIds.Contains(p.PackageVersionId))
                     .Select(p => p.Application).DistinctBy(a => a.Id).ToList(),
                 Uses = observed.Select(o => new InventoryUse(o.Check.Project!, o.Check.Id,
                     o.Check.CreatedAtUtc, o.Check.Commit, o.Check.Pipeline)).Distinct().ToList()
@@ -165,7 +176,9 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
                 {
                     opened.Graphs.Add(new InventoryGraph
                     {
-                        Project = graph.Key.Project, Ecosystem = graph.Key.Ecosystem, Target = graph.Key.Target,
+                        Project = graph.Key.Project,
+                        Ecosystem = graph.Key.Ecosystem,
+                        Target = graph.Key.Target,
                         CheckId = selection.Checks.OrderByDescending(c => c.CreatedAtUtc).First().Id,
                         Nodes = graph.Select(n =>
                         {
@@ -183,11 +196,17 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
         }
         var packages = versions.GroupBy(v => (v.Dependency.Ecosystem,
                 Name: v.Dependency.Ecosystem == "nuget" ? v.Dependency.Name.ToLowerInvariant() : v.Dependency.Name, v.Dependency.Source))
-            .Select(g => new InventoryPackage { Name = g.First().Dependency.Name, Ecosystem = g.Key.Ecosystem,
-                Source = g.Key.Source, Versions = g.OrderBy(v => v.Dependency.Version, StringComparer.Ordinal).ToList() }).OrderBy(p => p.Name, StringComparer.Ordinal).ToList();
+            .Select(g => new InventoryPackage
+            {
+                Name = g.First().Dependency.Name,
+                Ecosystem = g.Key.Ecosystem,
+                Source = g.Key.Source,
+                Versions = g.OrderBy(v => v.Dependency.Version, StringComparer.Ordinal).ToList()
+            }).OrderBy(p => p.Name, StringComparer.Ordinal).ToList();
         model.Summary = new InventorySummary
         {
-            ProjectCount = projects.Count, PackageCount = packages.Count,
+            ProjectCount = projects.Count,
+            PackageCount = packages.Count,
             VulnerablePackageCount = packages.Count(p => p.Versions.Any(v => v.Advisories.Count > 0)),
             VulnerableProjectCount = projects.Values.Count(p => p.Versions.Any(v => v.Advisories.Count > 0)),
             ProjectStatuses = projects.Values.GroupBy(p => p.Status).ToDictionary(g => g.Key, g => g.Count()),
@@ -236,7 +255,7 @@ public class CatalogInventoryService(TemplateDbContext db, TrustService trust, I
         ? BuildCheckRun.Purpose(check.ContextJson) == null : BuildCheckRun.Purpose(check.ContextJson) == scope;
 
     private static string ArtifactKey(BuildCheckDependency d) =>
-        TrustService.Identity(d.Ecosystem, d.Name, d.Version, d.Source) + "\n" + d.Sha256.ToLowerInvariant();
+        TrustService.Identity(d.Ecosystem, d.Name, d.Version, d.Source);
 
     private static bool Contains(string? value, string? query) => string.IsNullOrEmpty(query) ||
         value?.Contains(query, StringComparison.OrdinalIgnoreCase) == true;

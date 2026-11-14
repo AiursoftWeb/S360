@@ -13,21 +13,27 @@ public class SupplyChainPolicyTests
 {
     private static Dependency Package(string name = "Microsoft.Extensions.Logging", string version = "10.0.8") => new()
     {
-        Ecosystem = "nuget", Name = name, Version = version,
-        Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
+        Ecosystem = "nuget",
+        Name = name,
+        Version = version,
+        Source = "https://api.nuget.org/v3/index.json"
     };
 
-    private static TrustRule Rule(string pattern = "Microsoft.Extensions.Logging", string version = "10.0.*", int id = 1) => new()
+    private static PackageRule Rule(string pattern = "Microsoft.Extensions.Logging", string version = "10.0.*", int id = 1) => new()
     {
-        ApplicationId = null, SupplierId = 0,
+        ApplicationId = null,
         RequestedAtUtc = DateTime.UtcNow.AddHours(-2),
-        Id = id, Ecosystem = "nuget", PackagePattern = pattern, Version = version,
-        Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
+        Id = id,
+        Ecosystem = "nuget",
+        PackagePattern = pattern,
+        Version = version,
+        Source = "https://api.nuget.org/v3/index.json",
+        Status = RuleStatus.Approved,
         ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
     };
 
     [TestMethod]
-    public void SupplierMayHaveIndependentPackages()
+    public void ApprovalsForDifferentPackagesRemainIndependent()
     {
         var rules = new[] { Rule(), Rule("System.Text.Json") };
         Assert.IsTrue(TrustService.Evaluate(Package(), rules, [], DateTime.UtcNow).Trusted);
@@ -44,7 +50,7 @@ public class SupplyChainPolicyTests
     [TestMethod]
     public void AbsoluteBlockOverridesApproval()
     {
-        var block = new BlockRule { Active = true, Ecosystem = "nuget", PackagePattern = "Microsoft.*", Version = "*", Reason = "Incident" };
+        var block = new PackageRule { Kind = RuleKind.Block, Status = RuleStatus.Approved, Ecosystem = "nuget", PackagePattern = "Microsoft.*", Version = "*", Justification = "Incident" };
         var result = TrustService.Evaluate(Package(), [Rule()], [block], DateTime.UtcNow);
         Assert.IsFalse(result.Trusted);
         StringAssert.Contains(result.Reason, "Incident");
@@ -56,7 +62,7 @@ public class SupplyChainPolicyTests
     public void HistoricalFileHashIsNotAPackagePolicyCondition()
     {
         var pinned = Rule("Microsoft.Extensions.Logging", "10.0.8");
-        pinned.Sha256 = new string('b', 64);
+
         Assert.IsTrue(TrustService.Evaluate(Package(), [pinned, Rule()], [], DateTime.UtcNow).Trusted);
     }
 
@@ -115,31 +121,35 @@ public class SupplyChainPolicyTests
         await db.Database.EnsureCreatedAsync();
         var now = DateTime.UtcNow;
         var rule = Rule();
-        rule.Supplier = new Supplier { Name = "SQLite test supplier" };
-        db.TrustRules.Add(rule);
-        db.PackageArtifacts.AddRange(
-            new PackageArtifact
+        db.Rules.Add(rule);
+        db.PackageVersions.AddRange(
+            new PackageVersion
             {
-                Ecosystem = "nuget", Name = "MICROSOFT.EXTENSIONS.LOGGING", Version = "10.0.8",
-                Source = Package().Source, Sha256 = Package().Sha256,
-                SourceVerifiedAtUtc = now.AddMinutes(-1),
-                FirstTrustedAtUtc = now.AddMinutes(-1), LastCheckedAtUtc = now
+                Ecosystem = "nuget",
+                Name = "MICROSOFT.EXTENSIONS.LOGGING",
+                Version = "10.0.8",
+                Source = Package().Source,
+                LastCheckedAtUtc = now
             },
-            new PackageArtifact
+            new PackageVersion
             {
-                Ecosystem = "nuget", Name = "Unrelated.Package", Version = "10.0.8",
-                Source = Package().Source, Sha256 = new string('b', 64)
+                Ecosystem = "nuget",
+                Name = "Unrelated.Package",
+                Version = "10.0.8",
+                Source = Package().Source
             });
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
-            LastAttemptAtUtc = now.AddSeconds(-1), LastSuccessfulAttemptAtUtc = now.AddSeconds(-1), LastSuccessAtUtc = now
+            LastAttemptAtUtc = now.AddSeconds(-1),
+            LastSuccessfulAttemptAtUtc = now.AddSeconds(-1),
+            LastSuccessAtUtc = now
         });
         await db.SaveChangesAsync();
 
         var dependency = Package("microsoft.extensions.logging");
         var decisions = await new TrustService(db).CheckAsync([dependency]);
         Assert.IsTrue(decisions.Single().Trusted, decisions.Single().Reason);
-        Assert.AreEqual(2, await db.PackageArtifacts.CountAsync());
+        Assert.AreEqual(2, await db.PackageVersions.CountAsync());
     }
 
     [TestMethod]
@@ -151,17 +161,20 @@ public class SupplyChainPolicyTests
         var package = Package();
         var previousSuccess = DateTime.UtcNow.AddMinutes(-30);
         var partialCheck = DateTime.UtcNow;
-        db.TrustRules.Add(Rule());
-        db.PackageArtifacts.Add(new PackageArtifact
+        db.Rules.Add(Rule());
+        db.PackageVersions.Add(new PackageVersion
         {
-            Ecosystem = package.Ecosystem, Name = package.Name, Version = package.Version,
-            Source = package.Source, Sha256 = package.Sha256,
-            SourceVerifiedAtUtc = previousSuccess,
-            FirstTrustedAtUtc = previousSuccess, LastCheckedAtUtc = partialCheck
+            Ecosystem = package.Ecosystem,
+            Name = package.Name,
+            Version = package.Version,
+            Source = package.Source,
+            LastCheckedAtUtc = partialCheck
         });
         var audit = new VulnerabilitySyncState
         {
-            LastAttemptAtUtc = previousSuccess.AddSeconds(-1), LastSuccessfulAttemptAtUtc = previousSuccess.AddSeconds(-1), LastSuccessAtUtc = previousSuccess
+            LastAttemptAtUtc = previousSuccess.AddSeconds(-1),
+            LastSuccessfulAttemptAtUtc = previousSuccess.AddSeconds(-1),
+            LastSuccessAtUtc = previousSuccess
         };
         db.VulnerabilitySyncStates.Add(audit);
         await db.SaveChangesAsync();
@@ -185,17 +198,20 @@ public class SupplyChainPolicyTests
         await using var db = new InMemoryContext(options);
         var package = Package();
         var lastCheck = DateTime.UtcNow.AddMinutes(-10);
-        db.TrustRules.Add(Rule());
-        db.PackageArtifacts.Add(new PackageArtifact
+        db.Rules.Add(Rule());
+        db.PackageVersions.Add(new PackageVersion
         {
-            Ecosystem = package.Ecosystem, Name = package.Name, Version = package.Version,
-            Source = package.Source, Sha256 = package.Sha256,
-            SourceVerifiedAtUtc = lastCheck,
-            FirstTrustedAtUtc = lastCheck, LastCheckedAtUtc = lastCheck
+            Ecosystem = package.Ecosystem,
+            Name = package.Name,
+            Version = package.Version,
+            Source = package.Source,
+            LastCheckedAtUtc = lastCheck
         });
         var audit = new VulnerabilitySyncState
         {
-            LastAttemptAtUtc = lastCheck.AddSeconds(-1), LastSuccessfulAttemptAtUtc = lastCheck.AddSeconds(-1), LastSuccessAtUtc = lastCheck.AddSeconds(1)
+            LastAttemptAtUtc = lastCheck.AddSeconds(-1),
+            LastSuccessfulAttemptAtUtc = lastCheck.AddSeconds(-1),
+            LastSuccessAtUtc = lastCheck.AddSeconds(1)
         };
         db.VulnerabilitySyncStates.Add(audit);
         await db.SaveChangesAsync();
@@ -215,7 +231,7 @@ public class SupplyChainPolicyTests
         audit.LastSuccessAtUtc = DateTime.UtcNow;
         await db.SaveChangesAsync();
         Assert.IsTrue((await service.AssessAsync([package])).Single().Trusted);
-        var artifact = await db.PackageArtifacts.SingleAsync();
+        var artifact = await db.PackageVersions.SingleAsync();
         artifact.LastCheckedAtUtc = audit.LastAttemptAtUtc.Value.AddTicks(1);
         await db.SaveChangesAsync();
         Assert.IsTrue((await service.AssessAsync([package])).Single().Trusted);
@@ -227,12 +243,12 @@ public class SupplyChainPolicyTests
         var options = new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase("s360-assess-" + Guid.NewGuid()).Options;
         await using var db = new InMemoryContext(options);
-        db.TrustRules.Add(Rule());
+        db.Rules.Add(Rule());
         await db.SaveChangesAsync();
         var result = (await new TrustService(db).AssessAsync([Package()])).Single();
         Assert.IsFalse(result.Trusted);
         StringAssert.Contains(result.Reason, "vulnerability data is unavailable");
-        Assert.AreEqual(0, await db.PackageArtifacts.CountAsync());
+        Assert.AreEqual(0, await db.PackageVersions.CountAsync());
     }
 
     [TestMethod]
@@ -244,34 +260,54 @@ public class SupplyChainPolicyTests
             .UseInMemoryDatabase("s360-exclusion-" + Guid.NewGuid()).Options;
         await using var db = new InMemoryContext(options);
         var rule = Rule();
-        db.TrustRules.Add(rule);
+        db.Rules.Add(rule);
         var advisory = new Vulnerability
         {
-            SourceId = "GHSA-test", Ecosystem = "nuget", PackageName = "microsoft.extensions.logging",
+            SourceId = "GHSA-test",
+            Ecosystem = "nuget",
+            PackageName = "microsoft.extensions.logging",
             RawAffectedJson = $$"""
                 [{"package":{"ecosystem":"NuGet","name":"Microsoft.Extensions.Logging"},"ranges":[{"type":"SEMVER","events":[{"introduced":"{{introduced}}"},{"fixed":"10.0.8"}]}]}]
                 """
         };
         db.Vulnerabilities.Add(advisory);
         await db.SaveChangesAsync();
-        db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+        db.Rules.Add(new PackageRule
         {
-            TrustRuleId = rule.Id, VulnerabilityId = advisory.Id, Reason = "Use fixed versions"
+            Kind = RuleKind.VulnerabilityExclusion,
+            ParentRuleId = rule.Id,
+            VulnerabilityId = advisory.Id,
+            Justification = "Use fixed versions"
         });
         var vulnerable = Package(version: "10.0.2");
         var fixedPackage = Package(version: "10.0.8");
         var siblingPackage = Package(name: "Microsoft.Extensions.Configuration", version: "10.0.2");
-        db.TrustRules.Add(Rule("Microsoft.Extensions.Configuration", id: 2));
-        db.PackageArtifacts.AddRange(
-            new PackageArtifact { Ecosystem = "nuget", Name = vulnerable.Name, Version = vulnerable.Version,
-                Source = vulnerable.Source, Sha256 = vulnerable.Sha256, LastCheckedAtUtc = DateTime.UtcNow,
-                SourceVerifiedAtUtc = DateTime.UtcNow, FirstTrustedAtUtc = DateTime.UtcNow },
-            new PackageArtifact { Ecosystem = "nuget", Name = fixedPackage.Name, Version = fixedPackage.Version,
-                Source = fixedPackage.Source, Sha256 = fixedPackage.Sha256, LastCheckedAtUtc = DateTime.UtcNow,
-                SourceVerifiedAtUtc = DateTime.UtcNow, FirstTrustedAtUtc = DateTime.UtcNow },
-            new PackageArtifact { Ecosystem = "nuget", Name = siblingPackage.Name, Version = siblingPackage.Version,
-                Source = siblingPackage.Source, Sha256 = siblingPackage.Sha256, LastCheckedAtUtc = DateTime.UtcNow,
-                SourceVerifiedAtUtc = DateTime.UtcNow, FirstTrustedAtUtc = DateTime.UtcNow });
+        db.Rules.Add(Rule("Microsoft.Extensions.Configuration", id: 3));
+        db.PackageVersions.AddRange(
+            new PackageVersion
+            {
+                Ecosystem = "nuget",
+                Name = vulnerable.Name,
+                Version = vulnerable.Version,
+                Source = vulnerable.Source,
+                LastCheckedAtUtc = DateTime.UtcNow
+            },
+            new PackageVersion
+            {
+                Ecosystem = "nuget",
+                Name = fixedPackage.Name,
+                Version = fixedPackage.Version,
+                Source = fixedPackage.Source,
+                LastCheckedAtUtc = DateTime.UtcNow
+            },
+            new PackageVersion
+            {
+                Ecosystem = "nuget",
+                Name = siblingPackage.Name,
+                Version = siblingPackage.Version,
+                Source = siblingPackage.Source,
+                LastCheckedAtUtc = DateTime.UtcNow
+            });
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
             LastAttemptAtUtc = DateTime.UtcNow.AddSeconds(-1),
@@ -292,14 +328,16 @@ public class SupplyChainPolicyTests
         var alternateRule = Rule(id: 2);
         var vulnerability = new Vulnerability
         {
-            SourceId = "GHSA-overlap", Ecosystem = "nuget", PackageName = "Microsoft.Extensions.Logging",
+            SourceId = "GHSA-overlap",
+            Ecosystem = "nuget",
+            PackageName = "Microsoft.Extensions.Logging",
             RawAffectedJson = """
                 [{"package":{"ecosystem":"NuGet","name":"Microsoft.Extensions.Logging"},"ranges":[{"type":"SEMVER","events":[{"introduced":"10.0.2"},{"fixed":"10.0.8"}]}]}]
                 """
         };
         var exclusions = new[]
         {
-            new TrustRuleVulnerabilityExclusion { VulnerabilityId = 0, TrustRuleId = excludedRule.Id, Vulnerability = vulnerability }
+            new PackageRule { Kind = RuleKind.VulnerabilityExclusion,  VulnerabilityId = 0, ParentRuleId = excludedRule.Id, Vulnerability = vulnerability }
         };
         var vulnerable = Package(version: "10.0.2");
         var firstOrder = TrustService.Evaluate(vulnerable, [excludedRule, alternateRule], [],
@@ -313,7 +351,6 @@ public class SupplyChainPolicyTests
 
         alternateRule.PackagePattern = vulnerable.Name;
         alternateRule.Version = vulnerable.Version;
-        alternateRule.Sha256 = vulnerable.Sha256;
         var pinned = TrustService.Evaluate(vulnerable, [excludedRule, alternateRule], [],
             DateTime.UtcNow, exclusions);
         Assert.IsFalse(pinned.Trusted);
@@ -344,28 +381,31 @@ public class SupplyChainPolicyTests
         await using var db = new InMemoryContext(new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options);
         var rule = Rule();
-        db.TrustRules.Add(rule);
+        db.Rules.Add(rule);
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
             LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-2),
-            LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-2), LastSuccessAtUtc = DateTime.UtcNow.AddMinutes(-1)
+            LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-2),
+            LastSuccessAtUtc = DateTime.UtcNow.AddMinutes(-1)
         });
         if (conflictingHistory)
-            foreach (var hash in new[] { new string('a', 64), new string('b', 64) })
-                db.PackageArtifacts.Add(new PackageArtifact { Ecosystem = "nuget", Name = Package().Name,
-                    Version = Package().Version, Source = Package().Source, Sha256 = hash,
-                    SourceVerificationRejected = true, VerificationSource = "https://retired.invalid" });
+            for (var i = 0; i < 2; i++)
+                db.PackageVersions.Add(new PackageVersion
+                {
+                    Ecosystem = "nuget",
+                    Name = Package().Name,
+                    Version = Package().Version,
+                    Source = Package().Source
+                });
         await db.SaveChangesAsync();
-        var count = await db.PackageArtifacts.CountAsync();
+        var count = await db.PackageVersions.CountAsync();
         var dependency = Package();
-        foreach (var hash in new[] { "", new string('a', 64), new string('c', 64) })
         {
-            dependency.Sha256 = hash;
             var decision = (await new TrustService(db).AssessAsync([dependency])).Single();
             Assert.IsTrue(decision.Trusted, decision.Reason);
         }
-        Assert.AreEqual(count, await db.PackageArtifacts.CountAsync());
-        rule.Status = TrustRuleStatus.Revoked;
+        Assert.AreEqual(count, await db.PackageVersions.CountAsync());
+        rule.Status = RuleStatus.Revoked;
         await db.SaveChangesAsync();
         Assert.IsFalse((await new TrustService(db).AssessAsync([dependency])).Single().Trusted);
     }
@@ -377,7 +417,7 @@ public class SupplyChainPolicyTests
         var exact = Rule();
         Assert.IsFalse(TrustService.Evaluate(Package(), [legacy], [], DateTime.UtcNow).Trusted);
         Assert.IsTrue(TrustService.Evaluate(Package(), [legacy, exact], [], DateTime.UtcNow).Trusted);
-        legacy.Status = TrustRuleStatus.Revoked;
+        legacy.Status = RuleStatus.Revoked;
         Assert.IsFalse(TrustService.Evaluate(Package(), [legacy, exact], [], DateTime.UtcNow).Trusted);
         Assert.IsFalse(TrustService.Evaluate(Package("Microsoft.NewFake"), [exact], [], DateTime.UtcNow).Trusted);
     }
@@ -391,11 +431,8 @@ public class SupplyChainPolicyTests
         var current = Rule(pattern: "microsoft.extensions.logging", version: "10.*", id: 2);
         var otherSource = Rule(id: 3);
         otherSource.Source = "https://nuget.aiursoft.com/v3/index.json";
-        db.TrustRules.AddRange(old, current, otherSource);
+        db.Rules.AddRange(old, current, otherSource);
         await db.SaveChangesAsync();
-        Assert.AreEqual(2, await db.PackagePolicies.CountAsync());
-        Assert.AreEqual(old.PackagePolicyId, current.PackagePolicyId);
-        Assert.AreNotEqual(old.PackagePolicyId, otherSource.PackagePolicyId);
         Assert.IsTrue(TrustService.Evaluate(Package(version: "9.1.0"), [old, current], [], DateTime.UtcNow).Trusted);
         Assert.IsTrue(TrustService.Evaluate(Package(version: "10.1.0"), [old, current], [], DateTime.UtcNow).Trusted);
         Assert.IsFalse(TrustService.Evaluate(Package(version: "8.1.0"), [old, current], [], DateTime.UtcNow).Trusted);
@@ -409,20 +446,40 @@ public class SupplyChainPolicyTests
         await connection.OpenAsync();
         await using var db = new SqliteContext(new DbContextOptionsBuilder<SqliteContext>().UseSqlite(connection).Options);
         await db.Database.EnsureCreatedAsync();
-        var supplier = new Supplier { Name = "Migration vendor" };
+
         var original = Rule("Microsoft.*", "10.*");
-        original.Supplier = supplier;
-        db.TrustRuleReviews.Add(new TrustRuleReview { TrustRule = original, TrustRuleId = original.Id,
-            ReviewerId = "original-reviewer", Decision = TrustRuleStatus.Approved, Reason = "Original scope" });
-        db.TrustRules.Add(original);
-        db.PackageArtifacts.Add(new PackageArtifact { Ecosystem = "nuget", Name = "Microsoft.Extensions.Logging",
-            Version = "10.0.8", Source = original.Source, Sha256 = new string('a', 64), SourceVerifiedAtUtc = DateTime.UtcNow });
-        var advisory = new Vulnerability { Ecosystem = "nuget", PackageName = "Microsoft.Extensions.Logging",
-            SourceId = "GHSA-migration", RawAffectedJson = "[]" };
-        db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+        db.RuleChanges.Add(new RuleChange
         {
-            TrustRule = original, TrustRuleId = original.Id, Vulnerability = advisory,
-            VulnerabilityId = advisory.Id, Reason = "Original exclusion", CreatedByUserId = "original-reviewer"
+            Rule = original,
+            RuleId = original.Id,
+            ReviewerId = "original-reviewer",
+            Decision = RuleStatus.Approved,
+            Reason = "Original scope"
+        });
+        db.Rules.Add(original);
+        db.PackageVersions.Add(new PackageVersion
+        {
+            Ecosystem = "nuget",
+            Name = "Microsoft.Extensions.Logging",
+            Version = "10.0.8",
+            Source = original.Source
+        });
+        var advisory = new Vulnerability
+        {
+            Ecosystem = "nuget",
+            PackageName = "Microsoft.Extensions.Logging",
+            SourceId = "GHSA-migration",
+            RawAffectedJson = "[]"
+        };
+        db.Rules.Add(new PackageRule
+        {
+            Kind = RuleKind.VulnerabilityExclusion,
+            ParentRule = original,
+            ParentRuleId = original.Id,
+            Vulnerability = advisory,
+            VulnerabilityId = advisory.Id,
+            Justification = "Original exclusion",
+            RequestedByUserId = "original-reviewer"
         });
         await db.SaveChangesAsync();
         var migration = new LegacyRuleMigration(db);
@@ -430,7 +487,7 @@ public class SupplyChainPolicyTests
         Assert.AreEqual(1, plan.Rows.Count);
         await migration.ApplyAsync(plan.Fingerprint, [plan.Rows.Single().Key], "migration-reviewer", "Reviewed concrete package list");
         db.ChangeTracker.Clear();
-        var grants = await db.TrustRules.Include(r => r.PackagePolicy).Include(r => r.Reviews).OrderBy(r => r.Id).ToListAsync();
+        var grants = await db.Rules.Where(r => r.Kind == RuleKind.Approval).Include(r => r.Reviews).OrderBy(r => r.Id).ToListAsync();
         Assert.AreEqual(2, grants.Count);
         var migrated = grants.Single(r => r.LegacySourceRuleId == original.Id);
         Assert.AreEqual("10.*", migrated.Version);
@@ -438,13 +495,13 @@ public class SupplyChainPolicyTests
         Assert.AreEqual(original.RequestedAtUtc, migrated.RequestedAtUtc);
         Assert.AreEqual("original-reviewer", grants[0].Reviews.Single().ReviewerId);
         Assert.AreEqual("migration-reviewer", migrated.Reviews.Single().ReviewerId);
-        Assert.AreEqual(2, await db.TrustRuleVulnerabilityExclusions.CountAsync());
+        Assert.AreEqual(2, await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).CountAsync());
         Assert.IsTrue(TrustService.Evaluate(Package(), grants, [], DateTime.UtcNow).Trusted);
         Assert.IsFalse(TrustService.Evaluate(Package("Microsoft.NewFake"), grants, [], DateTime.UtcNow).Trusted);
         var repeated = await migration.PreviewAsync();
         Assert.AreEqual(0, repeated.Rows.Count);
         await migration.ApplyAsync(repeated.Fingerprint, [], "migration-reviewer", "No duplicate grants");
-        Assert.AreEqual(2, await db.TrustRules.CountAsync());
+        Assert.AreEqual(2, await db.Rules.Where(r => r.Kind == RuleKind.Approval).CountAsync());
     }
 
     [TestMethod]
@@ -453,20 +510,20 @@ public class SupplyChainPolicyTests
         await using var db = new InMemoryContext(new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options);
         var original = Rule("Microsoft.*");
-        db.TrustRules.Add(original);
+        db.Rules.Add(original);
         await db.SaveChangesAsync();
         var service = new LegacyRuleMigration(db);
         var plan = await service.PreviewAsync();
         await Assert.ThrowsExactlyAsync<ArgumentException>(() => service.ApplyAsync(plan.Fingerprint,
             ["1:Microsoft.Fake"], "reviewer", "No invented names"));
-        original.Status = TrustRuleStatus.Revoked;
+        original.Status = RuleStatus.Revoked;
         await db.SaveChangesAsync();
         await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => service.ApplyAsync(plan.Fingerprint,
             [], "reviewer", "No stale decisions"));
         plan = await service.PreviewAsync();
         await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => service.ApplyAsync(plan.Fingerprint,
             [], "reviewer", "Do not drop legacy denial"));
-        Assert.AreEqual(1, await db.TrustRules.CountAsync());
+        Assert.AreEqual(1, await db.Rules.Where(r => r.Kind == RuleKind.Approval).CountAsync());
     }
 
 }

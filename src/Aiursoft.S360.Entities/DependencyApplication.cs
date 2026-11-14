@@ -28,8 +28,6 @@ public class DependencyApplication
     [MaxLength(2000)] public string? DecisionReason { get; set; }
     [InverseProperty(nameof(ApplicationPackage.Application))]
     public IEnumerable<ApplicationPackage> Packages { get; init; } = new List<ApplicationPackage>();
-    [InverseProperty(nameof(ApplicationEdge.Application))]
-    public IEnumerable<ApplicationEdge> Edges { get; init; } = new List<ApplicationEdge>();
 }
 
 public class ApplicationPackage
@@ -41,31 +39,10 @@ public class ApplicationPackage
     [ForeignKey(nameof(ApplicationId))]
     [NotNull]
     public DependencyApplication? Application { get; set; }
-    public required int PackageArtifactId { get; set; }
+    public required int PackageVersionId { get; set; }
     [JsonIgnore]
-    [ForeignKey(nameof(PackageArtifactId))]
+    [ForeignKey(nameof(PackageVersionId))]
     [NotNull]
-    public PackageArtifact? PackageArtifact { get; set; }
+    public PackageVersion? PackageVersion { get; set; }
     public bool IsDirect { get; set; }
-}
-
-public class ApplicationEdge
-{
-    [Key]
-    public int Id { get; init; }
-    public required int ApplicationId { get; set; }
-    [JsonIgnore]
-    [ForeignKey(nameof(ApplicationId))]
-    [NotNull]
-    public DependencyApplication? Application { get; set; }
-    /// <summary>Null for a direct dependency at the root of the resolved graph.</summary>
-    public required int? ParentPackageId { get; set; }
-    [JsonIgnore]
-    [ForeignKey(nameof(ParentPackageId))]
-    public PackageArtifact? ParentPackage { get; set; }
-    public required int ChildPackageId { get; set; }
-    [JsonIgnore]
-    [ForeignKey(nameof(ChildPackageId))]
-    [NotNull]
-    public PackageArtifact? ChildPackage { get; set; }
 }

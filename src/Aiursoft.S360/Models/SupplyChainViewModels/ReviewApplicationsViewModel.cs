@@ -17,5 +17,5 @@ public class ReviewApplicationsViewModel : UiStackLayoutViewModel
     public int ExpiredCount { get; set; }
 }
 
-public record ReviewPackageLine(PackageArtifact Artifact, bool IsDirect, bool AlreadyAuthorized,
+public record ReviewPackageLine(PackageVersion Artifact, bool IsDirect, bool AlreadyAuthorized,
     bool SourcePermitted, bool AuditCurrent, bool HasKnownVulnerability, bool CheckReady);

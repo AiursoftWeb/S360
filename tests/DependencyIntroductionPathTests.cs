@@ -400,6 +400,9 @@ public class DependencyIntroductionPathTests
 
     private static Dependency Package(string ecosystem, string name, string version, string source) => new()
     {
-        Ecosystem = ecosystem, Name = name, Version = version, Source = source, Sha256 = new string('a', 64)
+        Ecosystem = ecosystem,
+        Name = name,
+        Version = version,
+        Source = source
     };
 }

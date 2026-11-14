@@ -72,17 +72,17 @@
                     {
                         var ruleStatus = rule.Status switch
                         {
-                            TrustRuleStatus.Pending => @Localizer["Pending"].Value,
-                            TrustRuleStatus.Approved => @Localizer["Approved"].Value,
-                            TrustRuleStatus.Rejected => @Localizer["Rejected"].Value,
-                            TrustRuleStatus.Revoked => @Localizer["Revoked"].Value,
+                            RuleStatus.Pending => @Localizer["Pending"].Value,
+                            RuleStatus.Approved => @Localizer["Approved"].Value,
+                            RuleStatus.Rejected => @Localizer["Rejected"].Value,
+                            RuleStatus.Revoked => @Localizer["Revoked"].Value,
                             _ => rule.Status.ToString()
                         };
                         <div class="s360-inventory-rule">
                             <div><strong>#@rule.Id · @rule.PackagePattern</strong> <code>@rule.Version</code>
                                 <small>@ruleStatus · @Localizer["Expires"]: <span data-utc-time="@rule.ExpiresAtUtc?.ToHtmlDateTime()">@(rule.ExpiresAtUtc == null ? Localizer["No expiry recorded"].Value : "")</span></small>
                             </div>
-                            @if (canManage && rule.Status == TrustRuleStatus.Approved)
+                            @if (canManage && rule.Status == RuleStatus.Approved)
                             {
                                 <details class="s360-inventory-revoke">
                                     <summary>@Localizer["Revoke rule"]</summary>

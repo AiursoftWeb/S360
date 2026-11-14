@@ -34,16 +34,15 @@ public class BuildCheckDependency
     [ForeignKey(nameof(BuildCheckId))]
     [NotNull]
     public BuildCheck? BuildCheck { get; set; }
-    /// <summary>Null when the package source was not permitted and no artifact was fetched.</summary>
-    public required int? PackageArtifactId { get; set; }
+    /// <summary>Null when the package source was not permitted and no version was recorded.</summary>
+    public required int? PackageVersionId { get; set; }
     [JsonIgnore]
-    [ForeignKey(nameof(PackageArtifactId))]
-    public PackageArtifact? PackageArtifact { get; set; }
+    [ForeignKey(nameof(PackageVersionId))]
+    public PackageVersion? PackageVersion { get; set; }
     [MaxLength(10)] public string Ecosystem { get; set; } = string.Empty;
     [MaxLength(214)] public string Name { get; set; } = string.Empty;
     [MaxLength(128)] public string Version { get; set; } = string.Empty;
     [MaxLength(500)] public string Source { get; set; } = string.Empty;
-    [MaxLength(64)] public string Sha256 { get; set; } = string.Empty;
     public bool Trusted { get; set; }
     [MaxLength(1000)] public string Reason { get; set; } = string.Empty;
 }

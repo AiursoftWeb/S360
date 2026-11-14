@@ -6,7 +6,7 @@ public static class RequestResolutionPolicy
 {
     public static void ValidateRequest(string ecosystem, string source,
         IReadOnlyCollection<DirectPackage> direct, IConfiguration configuration,
-        IReadOnlyCollection<BlockRule> blocks)
+        IReadOnlyCollection<PackageRule> blocks)
     {
         if (!AllowedPackageSources.Contains(configuration, ecosystem, source))
             throw new InvalidOperationException("Package source is no longer permitted for employee resolution.");

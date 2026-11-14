@@ -45,7 +45,7 @@ public class InventoryVersion
     public InventoryStatus Status { get; init; }
     public required string Reason { get; init; }
     public List<string> Advisories { get; init; } = [];
-    public List<TrustRule> Rules { get; init; } = [];
+    public List<PackageRule> Rules { get; init; } = [];
     public List<DependencyApplication> Requests { get; init; } = [];
     public List<InventoryUse> Uses { get; init; } = [];
 }

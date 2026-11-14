@@ -52,7 +52,8 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
             ShowCreateForm = showForm,
             ShowHistory = showHistory,
             PageTitle = showHistory ? "My dependency requests" : "Request a new dependency",
-            Page = page, Total = total,
+            Page = page,
+            Total = total,
             Applications = showHistory ? await query
                 .OrderByDescending(a => a.CreatedAtUtc).ThenByDescending(a => a.Id)
                 .Skip((page - 1) * 50).Take(50).ToListAsync() : [],
@@ -67,24 +68,18 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
         if (visibleIds.Count > 0)
         {
             var reportPackages = await db.ApplicationPackages.AsNoTracking()
-                .Include(p => p.PackageArtifact)
+                .Include(p => p.PackageVersion)
                 .Where(p => visibleIds.Contains(p.ApplicationId))
                 .ToListAsync();
-            var reportEdges = await db.ApplicationEdges.AsNoTracking()
-                .Where(e => visibleIds.Contains(e.ApplicationId)).ToListAsync();
-            var pathsByApplication = reportPackages.GroupBy(p => p.ApplicationId).ToDictionary(
-                group => group.Key,
-                group => ApplicationPaths.Build(reportEdges.Where(e => e.ApplicationId == group.Key),
-                    group.ToDictionary(p => p.PackageArtifactId, p => p.PackageArtifact)));
-            var blocks = await db.BlockRules.AsNoTracking().Where(b => b.Active).ToListAsync();
+            var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(b => b.Status == RuleStatus.Approved).ToListAsync();
             foreach (var package in reportPackages)
             {
-                var artifact = package.PackageArtifact;
+                var artifact = package.PackageVersion;
                 var block = BlockRulePolicy.Match(blocks, artifact.Ecosystem, artifact.Name, artifact.Version);
                 if (block != null && !model.CurrentBlockReasons.ContainsKey(package.ApplicationId))
                     model.CurrentBlockReasons[package.ApplicationId] =
                         BlockRulePolicy.Explain(block, artifact.Name, artifact.Version,
-                            pathsByApplication[package.ApplicationId].GetValueOrDefault(artifact.Id, artifact.Name));
+                            artifact.Name);
             }
         }
         return this.StackView(model, nameof(Index));
@@ -104,7 +99,7 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
             return BadRequest("Package source is not permitted for employee resolution.");
         var direct = ParseDirectPackages(directPackages, ecosystem);
         if (direct == null) return BadRequest("Enter 1-20 exact dependencies, one name@version per line.");
-        var blocks = await db.BlockRules.AsNoTracking().Where(b => b.Active && b.Ecosystem == ecosystem).ToListAsync();
+        var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(b => b.Status == RuleStatus.Approved && b.Ecosystem == ecosystem).ToListAsync();
         foreach (var package in direct)
         {
             var block = BlockRulePolicy.Match(blocks, ecosystem, package.Name, package.Version);
@@ -115,9 +110,13 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
         if (userId == null) return Unauthorized();
         var application = new DependencyApplication
         {
-            RequestedByUserId = userId, Ecosystem = ecosystem, Source = normalized,
-            DirectPackages = JsonSerializer.Serialize(direct), Justification = justification,
-            Project = project, ResolutionContext = ecosystem == "nuget" ? "net10.0; pending" : "npm; pending",
+            RequestedByUserId = userId,
+            Ecosystem = ecosystem,
+            Source = normalized,
+            DirectPackages = JsonSerializer.Serialize(direct),
+            Justification = justification,
+            Project = project,
+            ResolutionContext = ecosystem == "nuget" ? "net10.0; pending" : "npm; pending",
             Status = ApplicationStatus.Resolving
         };
         db.DependencyApplications.Add(application);
@@ -130,15 +129,12 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
     public async Task<IActionResult> Details(int id)
     {
         var application = await db.DependencyApplications.AsNoTracking()
-            .Include(a => a.Packages).ThenInclude(p => p.PackageArtifact)
-            .Include(a => a.Edges).FirstOrDefaultAsync(a => a.Id == id);
+            .Include(a => a.Packages).ThenInclude(p => p.PackageVersion)
+            .FirstOrDefaultAsync(a => a.Id == id);
         if (application == null) return NotFound();
         var isOwner = application.RequestedByUserId == users.GetUserId(User);
         var canReadAll = (await authorization.AuthorizeAsync(User, AppPermissionNames.CanReadSupplyChain)).Succeeded;
         if (!isOwner && !canReadAll) return Forbid();
-        var artifacts = application.Packages
-            .Select(p => p.PackageArtifact).ToDictionary(a => a.Id);
-        var paths = ApplicationPaths.Build(application.Edges, artifacts);
         var model = new RequestDetailsViewModel { Application = application };
         if (isOwner && application.Status == ApplicationStatus.Failed &&
             (await authorization.AuthorizeAsync(User, AppPermissionNames.CanSubmitDependencyRequests)).Succeeded)
@@ -157,31 +153,35 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
         var packages = application.Packages.ToList();
         var dependencies = packages.Select(package => new Dependency
         {
-            Ecosystem = package.PackageArtifact.Ecosystem, Name = package.PackageArtifact.Name,
-            Version = package.PackageArtifact.Version, Source = package.PackageArtifact.Source,
-            Sha256 = package.PackageArtifact.Sha256
+            Ecosystem = package.PackageVersion.Ecosystem,
+            Name = package.PackageVersion.Name,
+            Version = package.PackageVersion.Version,
+            Source = package.PackageVersion.Source,
+
         }).ToList();
         var decisions = await trust.AssessAsync(dependencies);
-        var rules = await db.TrustRules.AsNoTracking().Where(r => r.Status != TrustRuleStatus.Pending).ToListAsync();
-        var blocks = await db.BlockRules.AsNoTracking().Where(b => b.Active).ToListAsync();
-        var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
+        var rules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).AsNoTracking().Where(r => r.Status != RuleStatus.Pending).ToListAsync();
+        var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(b => b.Status == RuleStatus.Approved).ToListAsync();
+        var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
         var now = DateTime.UtcNow;
         for (var i = 0; i < packages.Count; i++)
         {
             var package = packages[i];
-            var artifact = package.PackageArtifact;
+            var artifact = package.PackageVersion;
             var authorizationDecision = TrustService.Evaluate(dependencies[i], rules, blocks, now, exclusions);
             var sourcePermitted = AllowedPackageSources.Contains(configuration, artifact.Ecosystem, artifact.Source);
             var sourceReason = "Package source is no longer permitted for S360 checks.";
             model.Packages.Add(new RequestPackageLine
             {
-                Artifact = artifact, IsDirect = package.IsDirect, SourcePermitted = sourcePermitted,
+                Artifact = artifact,
+                IsDirect = package.IsDirect,
+                SourcePermitted = sourcePermitted,
                 AlreadyAuthorized = sourcePermitted && authorizationDecision.Trusted,
                 AuthorizationReason = sourcePermitted ? authorizationDecision.Reason : sourceReason,
                 CheckReady = sourcePermitted && decisions[i].Trusted,
                 CheckReason = sourcePermitted ? decisions[i].Reason : sourceReason,
-                Path = paths.GetValueOrDefault(artifact.Id, artifact.Name)
+                Path = artifact.Name
             });
         }
         model.Packages = model.Packages.OrderByDescending(p => p.IsDirect).ThenBy(p => p.Artifact.Name, StringComparer.Ordinal).ToList();

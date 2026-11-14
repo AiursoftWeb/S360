@@ -16,7 +16,7 @@ public class HomeControllerTests : TestBase
         Assert.DoesNotContain("S360 resolves transitive packages", html);
         Assert.DoesNotContain("tarball integrity evidence", html);
         StringAssert.Contains(html, "The words behind the workflow");
-        StringAssert.Contains(html, "Supplier and source");
+        StringAssert.Contains(html, "Rules and vulnerability checks");
         StringAssert.Contains(html, "S360 Web and review");
         Assert.DoesNotContain("template-docs.aiursoft.com", html);
     }

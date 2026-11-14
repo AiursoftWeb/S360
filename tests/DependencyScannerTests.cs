@@ -47,7 +47,8 @@ public class DependencyScannerTests
             await File.WriteAllTextAsync(assets, JsonSerializer.Serialize(new
             {
                 targets = new Dictionary<string, object> { ["net10.0"] = new { } },
-                packageFolders = new { }, libraries = new { },
+                packageFolders = new { },
+                libraries = new { },
                 project = new { restore = new { projectPath = project } }
             }));
             await File.WriteAllTextAsync(Path.Combine(root, "package.json"), """{"name":"sample"}""");
@@ -89,7 +90,8 @@ public class DependencyScannerTests
             await File.WriteAllTextAsync(assets, JsonSerializer.Serialize(new
             {
                 targets = new Dictionary<string, object> { ["net10.0"] = new { } },
-                packageFolders = new { }, libraries = new { },
+                packageFolders = new { },
+                libraries = new { },
                 project = new { restore = new { projectPath = project } }
             }));
             using var client = new HttpClient(new FixedHandler([]));
@@ -169,7 +171,8 @@ public class DependencyScannerTests
                 JsonSerializer.Serialize(new
                 {
                     targets = new Dictionary<string, object> { ["net10.0"] = new { } },
-                    packageFolders = new { }, libraries = new { },
+                    packageFolders = new { },
+                    libraries = new { },
                     project = new { restore = new { projectPath = Path.Combine(root, "Sample" + extension) } }
                 }));
             using var client = new HttpClient(new FixedHandler([]));
@@ -197,8 +200,11 @@ public class DependencyScannerTests
             await File.WriteAllTextAsync(Path.Combine(main, "obj", "project.assets.json"),
                 JsonSerializer.Serialize(new
                 {
-                    targets = new Dictionary<string, object> { ["net10.0"] = new Dictionary<string, object>
-                    { ["Lib/1.0.0"] = new { type = "project", framework = "net10.0" } } },
+                    targets = new Dictionary<string, object>
+                    {
+                        ["net10.0"] = new Dictionary<string, object>
+                        { ["Lib/1.0.0"] = new { type = "project", framework = "net10.0" } }
+                    },
                     packageFolders = new { },
                     libraries = new Dictionary<string, object>
                     {
@@ -212,8 +218,11 @@ public class DependencyScannerTests
                             projectPath = mainProject,
                             frameworks = new Dictionary<string, object>
                             {
-                                ["net10.0"] = new { projectReferences = new Dictionary<string, object>
-                                { [libraryProject] = new { projectPath = libraryProject } } }
+                                ["net10.0"] = new
+                                {
+                                    projectReferences = new Dictionary<string, object>
+                                    { [libraryProject] = new { projectPath = libraryProject } }
+                                }
                             }
                         }
                     }
@@ -222,7 +231,8 @@ public class DependencyScannerTests
                 JsonSerializer.Serialize(new
                 {
                     targets = new Dictionary<string, object> { ["net10.0"] = new { } },
-                    packageFolders = new { }, libraries = new { },
+                    packageFolders = new { },
+                    libraries = new { },
                     project = new { restore = new { projectPath = libraryProject } }
                 }));
             using var client = new HttpClient(new FixedHandler([]));
@@ -447,20 +457,27 @@ public class DependencyScannerTests
         {
             var packages = new Dictionary<string, object>
             {
-                [""] = new { dependencies = new Dictionary<string, string>
-                    { [transitive ? "parent" : "hidden"] = "1.0.0" } },
+                [""] = new
+                {
+                    dependencies = new Dictionary<string, string>
+                    { [transitive ? "parent" : "hidden"] = "1.0.0" }
+                },
                 ["node_modules/hidden"] = new
                 {
-                    version = "1.0.0", optional = true,
-                    resolved = "https://registry.example/hidden-1.0.0.tgz", integrity = "sha512-AA=="
+                    version = "1.0.0",
+                    optional = true,
+                    resolved = "https://registry.example/hidden-1.0.0.tgz",
+                    integrity = "sha512-AA=="
                 }
             };
             if (transitive)
             {
                 packages["node_modules/parent"] = new
                 {
-                    version = "1.0.0", dependencies = new { hidden = "1.0.0" },
-                    resolved = "https://registry.example/parent-1.0.0.tgz", integrity = "sha512-AA=="
+                    version = "1.0.0",
+                    dependencies = new { hidden = "1.0.0" },
+                    resolved = "https://registry.example/parent-1.0.0.tgz",
+                    integrity = "sha512-AA=="
                 };
                 Directory.CreateDirectory(Path.Combine(root, "node_modules", "parent"));
             }
@@ -547,7 +564,8 @@ public class DependencyScannerTests
                     [""] = new { dependencies = new Dictionary<string, string> { ["@example/package"] = "1.0.0" } },
                     ["node_modules/@example/package"] = new
                     {
-                        version = "1.0.0", resolved = "https://registry.example.com/@example/package/-/package-1.0.0.tgz",
+                        version = "1.0.0",
+                        resolved = "https://registry.example.com/@example/package/-/package-1.0.0.tgz",
                         integrity
                     }
                 }
@@ -577,20 +595,23 @@ public class DependencyScannerTests
             var expected512 = Convert.ToBase64String(SHA512.HashData("unsigned package content"u8.ToArray()));
             await File.WriteAllTextAsync(Path.Combine(package, ".nupkg.metadata"), JsonSerializer.Serialize(new
             {
-                source = "https://api.nuget.org/v3/index.json", contentHash = expected512
+                source = "https://api.nuget.org/v3/index.json",
+                contentHash = expected512
             }));
             var assets = Path.Combine(root, "project.assets.json");
             var assetsJson = new Dictionary<string, object>
             {
-                ["targets"] = new Dictionary<string, object> { ["net10.0"] = new Dictionary<string, object>
-                    { ["Example/1.2.3"] = new { type = "package" } } },
+                ["targets"] = new Dictionary<string, object>
+                {
+                    ["net10.0"] = new Dictionary<string, object>
+                    { ["Example/1.2.3"] = new { type = "package" } }
+                },
                 ["packageFolders"] = new Dictionary<string, object> { [Path.Combine(root, "cache") + Path.DirectorySeparatorChar] = new { } },
                 ["libraries"] = new Dictionary<string, object> { ["Example/1.2.3"] = new { sha512 = expected512 } }
             };
             await File.WriteAllTextAsync(assets, JsonSerializer.Serialize(assetsJson));
             var result = await DependencyScanner.ReadNuGetAsync(assets);
             Assert.AreEqual(1, result.Count);
-            Assert.AreEqual("", result[0].Sha256);
             Assert.AreEqual("https://api.nuget.org/v3/index.json", result[0].Source);
             File.Delete(Path.Combine(package, "example.1.2.3.nupkg"));
             File.Delete(Path.Combine(package, "example.1.2.3.nupkg.sha512"));
@@ -678,7 +699,8 @@ public class DependencyScannerTests
                     [""] = new { },
                     [packagePath] = new
                     {
-                        version = "1.0.0", resolved = "https://registry.example.com/sample.tgz",
+                        version = "1.0.0",
+                        resolved = "https://registry.example.com/sample.tgz",
                         integrity = "sha512-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=="
                     }
                 }
@@ -725,7 +747,10 @@ public class DependencyScannerTests
             var optional = new Dictionary<string, string> { ["@example/arm64"] = "1.0.0" };
             var manifest = JsonSerializer.Serialize(new
             {
-                name = "app", version = "1.0.0", devDependencies = development, optionalDependencies = optional,
+                name = "app",
+                version = "1.0.0",
+                devDependencies = development,
+                optionalDependencies = optional,
                 scripts = new { preinstall = "touch script-ran" }
             });
             await File.WriteAllTextAsync(Path.Combine(root, "package.json"), manifest);
@@ -736,17 +761,23 @@ public class DependencyScannerTests
             };
             var lockJson = JsonSerializer.Serialize(new
             {
-                lockfileVersion = lockVersion, packages = new Dictionary<string, object>
+                lockfileVersion = lockVersion,
+                packages = new Dictionary<string, object>
                 {
                     [""] = new { name = "app", version = "1.0.0", devDependencies = development, optionalDependencies = optional },
                     ["node_modules/sample"] = new
                     {
-                        version = "1.0.0", dev = true, resolved = "https://registry.example/sample.tgz",
+                        version = "1.0.0",
+                        dev = true,
+                        resolved = "https://registry.example/sample.tgz",
                         integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(archives["/sample.tgz"]))
                     },
                     ["node_modules/@example/arm64"] = new
                     {
-                        version = "1.0.0", optional = true, os = new[] { "darwin" }, cpu = new[] { "arm64" },
+                        version = "1.0.0",
+                        optional = true,
+                        os = new[] { "darwin" },
+                        cpu = new[] { "arm64" },
                         resolved = "https://registry.example/arm64.tgz",
                         integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(archives["/arm64.tgz"]))
                     }
@@ -783,7 +814,8 @@ public class DependencyScannerTests
                 """{"dependencies":{"sample":"1.0.0"}}""");
             await File.WriteAllTextAsync(Path.Combine(root, "package-lock.json"), JsonSerializer.Serialize(new
             {
-                lockfileVersion = 3, packages = new Dictionary<string, object>
+                lockfileVersion = 3,
+                packages = new Dictionary<string, object>
                 {
                     [""] = new { dependencies = new Dictionary<string, string> { ["sample"] = missingPackage ? "1.0.0" : "2.0.0" } }
                 }
@@ -823,11 +855,16 @@ public class DependencyScannerTests
             await File.WriteAllTextAsync(Path.Combine(root, "package.json"), manifest);
             var lockfile = JsonSerializer.Serialize(new
             {
-                lockfileVersion = lockVersion, packages = new Dictionary<string, object>
+                lockfileVersion = lockVersion,
+                packages = new Dictionary<string, object>
                 {
                     [""] = new { name = "app", version = "1.0.0", dependencies = new Dictionary<string, string> { [name] = "1.0.0" } },
-                    ["node_modules/" + name] = new { version = "1.0.0", resolved = lockedUrl,
-                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(failure == "integrity" ? [1, 2, 3] : served)) }
+                    ["node_modules/" + name] = new
+                    {
+                        version = "1.0.0",
+                        resolved = lockedUrl,
+                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(failure == "integrity" ? [1, 2, 3] : served))
+                    }
                 }
             });
             var path = Path.Combine(root, "package-lock.json");
@@ -843,7 +880,6 @@ public class DependencyScannerTests
                         "https://nopkg.example/npm/", ecosystem: "npm", npmLockfileOnly: true);
                 var dependency = report.Dependencies.Single();
                 Assert.AreEqual("https://nopkg.example/npm", dependency.Source);
-                Assert.AreEqual("", dependency.Sha256);
                 Assert.IsNotEmpty(report.PathsFor(dependency));
                 Assert.IsTrue(report.GraphNodes.Any(n => n.Package == dependency));
             }
@@ -892,9 +928,11 @@ public class DependencyScannerTests
             var path = Path.Combine(root, "package-lock.json");
             await File.WriteAllTextAsync(path, JsonSerializer.Serialize(new
             {
-                lockfileVersion = 3, packages = new Dictionary<string, object>
+                lockfileVersion = 3,
+                packages = new Dictionary<string, object>
                 {
-                    [""] = new { }, ["node_modules/sample"] = new { version = "1.0.0", resolved }
+                    [""] = new { },
+                    ["node_modules/sample"] = new { version = "1.0.0", resolved }
                 }
             }));
             if (permitted) await DependencyScanner.ValidateNpmArchiveSourcesAsync(path, "https://nopkg.example/npm/");

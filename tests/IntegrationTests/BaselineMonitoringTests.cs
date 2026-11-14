@@ -39,21 +39,29 @@ public class BaselineMonitoringTests : TestBase
 
     private static BuildCheck Report(string project, bool clean, string purpose = "baseline", int batches = 1,
         string pipelineSource = "push", string ecosystem = "nuget") => new()
-    {
-        Project = project, RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1, BatchCount = batches,
-        ContextJson = JsonSerializer.Serialize(new CheckContext
         {
-            Purpose = purpose, Ecosystem = ecosystem, Provider = "gitlab", Ref = "master", DefaultBranch = "master",
-            PipelineSource = pipelineSource
-        }),
-        Trusted = clean, Commit = "commit", Pipeline = "https://gitlab.aiursoft.com/aiursoft/test/-/pipelines/1",
-        Dependencies = clean ? [] : [new BuildCheckDependency
+            Project = project,
+            RunId = Guid.NewGuid().ToString("N"),
+            ScannedProjectCount = 1,
+            BatchCount = batches,
+            ContextJson = JsonSerializer.Serialize(new CheckContext
+            {
+                Purpose = purpose,
+                Ecosystem = ecosystem,
+                Provider = "gitlab",
+                Ref = "master",
+                DefaultBranch = "master",
+                PipelineSource = pipelineSource
+            }),
+            Trusted = clean,
+            Commit = "commit",
+            Pipeline = "https://gitlab.aiursoft.com/aiursoft/test/-/pipelines/1",
+            Dependencies = clean ? [] : [new BuildCheckDependency
         {
-            BuildCheckId = 0, PackageArtifactId = null, Name = "Unapproved.Package", Version = "1.0.0",
-            Ecosystem = ecosystem, Source = ecosystem == "npm" ? "https://npm.aiursoft.com" : PackageSource,
-            Sha256 = new string('a', 64), Trusted = false
+            BuildCheckId = 0, PackageVersionId = null, Name = "Unapproved.Package", Version = "1.0.0",
+            Ecosystem = ecosystem, Source = ecosystem == "npm" ? "https://npm.aiursoft.com" : PackageSource, Trusted = false
         }]
-    };
+        };
 
     private async Task<BaselineMonitoringService> Monitor(IServiceScope scope, FakeClient client, BaselineMonitorState state,
         bool enabled = true, bool autoMitigate = true)
@@ -72,7 +80,8 @@ public class BaselineMonitoringTests : TestBase
     {
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
-            LastAttemptAtUtc = failed ? DateTime.UtcNow : DateTime.UtcNow.AddMinutes(-2), LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-2),
+            LastAttemptAtUtc = failed ? DateTime.UtcNow : DateTime.UtcNow.AddMinutes(-2),
+            LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-2),
             LastSuccessAtUtc = DateTime.UtcNow.AddMinutes(-1).AddHours(stale ? -13 : 0),
             LastError = failed ? "Unavailable" : null
         });
@@ -104,26 +113,36 @@ public class BaselineMonitoringTests : TestBase
         using var scope = Server!.Services.CreateScope();
         var db = _db;
         FreshAudit(db);
-        var artifact = new PackageArtifact
+        var artifact = new PackageVersion
         {
-            Ecosystem = ecosystem, Name = ecosystem == "npm" ? "approved-package" : "Approved.Package", Version = "1.0.0", Source = source,
-            Sha256 = new string('b', 64), SourceVerifiedAtUtc = DateTime.UtcNow.AddHours(-1),
-            FirstTrustedAtUtc = DateTime.UtcNow.AddHours(-1), LastCheckedAtUtc = DateTime.UtcNow.AddSeconds(-90)
+            Ecosystem = ecosystem,
+            Name = ecosystem == "npm" ? "approved-package" : "Approved.Package",
+            Version = "1.0.0",
+            Source = source,
+            LastCheckedAtUtc = DateTime.UtcNow.AddSeconds(-90)
         };
-        db.TrustRules.Add(new TrustRule
+        db.Rules.Add(new PackageRule
         {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-            SupplierId = 0, ApplicationId = null, Supplier = new Supplier { Name = "Test supplier" }, Ecosystem = ecosystem, Source = source,
-            PackagePattern = artifact.Name, Version = "1.*", Status = TrustRuleStatus.Approved
+            RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+            ApplicationId = null,
+            Ecosystem = ecosystem,
+            Source = source,
+            PackagePattern = artifact.Name,
+            Version = "1.*",
+            Status = RuleStatus.Approved
         });
         var report = Report(_repository, true, ecosystem: ecosystem);
         report = new BuildCheck
         {
-            Project = report.Project, RunId = report.RunId, ScannedProjectCount = report.ScannedProjectCount,
-            ContextJson = report.ContextJson, Trusted = true, Dependencies = [new BuildCheckDependency
+            Project = report.Project,
+            RunId = report.RunId,
+            ScannedProjectCount = report.ScannedProjectCount,
+            ContextJson = report.ContextJson,
+            Trusted = true,
+            Dependencies = [new BuildCheckDependency
         {
-            BuildCheckId = 0, PackageArtifactId = 0, PackageArtifact = artifact, Ecosystem = ecosystem,
-            Name = artifact.Name, Version = artifact.Version, Source = source, Sha256 = artifact.Sha256, Trusted = true
+            BuildCheckId = 0, PackageVersionId = 0, PackageVersion = artifact, Ecosystem = ecosystem,
+            Name = artifact.Name, Version = artifact.Version, Source = source, Trusted = true
         }]
         };
         db.BuildChecks.Add(report);
@@ -135,7 +154,10 @@ public class BaselineMonitoringTests : TestBase
         Assert.HasCount(0, client.Created);
         db.VulnerabilityMatches.Add(new VulnerabilityMatch
         {
-            VulnerabilityId = 0, PackageArtifact = artifact, PackageArtifactId = artifact.Id, Active = true,
+            VulnerabilityId = 0,
+            PackageVersion = artifact,
+            PackageVersionId = artifact.Id,
+            Active = true,
             Vulnerability = new Vulnerability { SourceId = "GHSA-test", Aliases = "[\"CVE-2099-1234\"]", Ecosystem = ecosystem, PackageName = artifact.Name }
         });
         await db.SaveChangesAsync();
@@ -267,7 +289,7 @@ public class BaselineMonitoringTests : TestBase
         using var scope = Server!.Services.CreateScope();
         var db = _db;
         FreshAudit(db); db.BuildChecks.Add(Report(_repository, true)); await db.SaveChangesAsync();
-        var client = new FakeClient();client.Add(_repository);
+        var client = new FakeClient(); client.Add(_repository);
         await (await Monitor(scope, client, new BaselineMonitorState(), autoMitigate: false)).SynchronizeAsync();
         Assert.HasCount(0, client.Mitigated);
     }
@@ -277,14 +299,14 @@ public class BaselineMonitoringTests : TestBase
     {
         using var scope = Server!.Services.CreateScope();
         var db = _db;
-        FreshAudit(db);db.BuildChecks.Add(Report(_repository, true));await db.SaveChangesAsync();
-        var client = new FakeClient { BadPage = true };client.Add(_repository);
+        FreshAudit(db); db.BuildChecks.Add(Report(_repository, true)); await db.SaveChangesAsync();
+        var client = new FakeClient { BadPage = true }; client.Add(_repository);
         var state = new BaselineMonitorState();
         await (await Monitor(scope, client, state)).SynchronizeAsync();
-        Assert.HasCount(0, client.Mitigated);Assert.IsFalse(state.LastRun!.Succeeded);
-        client.BadPage = false;client.ThrowOnQuery = true;
+        Assert.HasCount(0, client.Mitigated); Assert.IsFalse(state.LastRun!.Succeeded);
+        client.BadPage = false; client.ThrowOnQuery = true;
         await (await Monitor(scope, client, state)).SynchronizeAsync();
-        Assert.HasCount(0, client.Mitigated);Assert.IsFalse(state.LastRun!.Succeeded);
+        Assert.HasCount(0, client.Mitigated); Assert.IsFalse(state.LastRun!.Succeeded);
     }
 
     [TestMethod]
@@ -292,15 +314,15 @@ public class BaselineMonitoringTests : TestBase
     {
         using var scope = Server!.Services.CreateScope();
         var db = _db;
-        db.BuildChecks.Add(Report(_repository, false));await db.SaveChangesAsync();
+        db.BuildChecks.Add(Report(_repository, false)); await db.SaveChangesAsync();
         var client = new FakeClient(); var state = new BaselineMonitorState();
         var monitoring = await Monitor(scope, client, state);
         await monitoring.SynchronizeAsync();
-        db.BuildChecks.Add(Report(_repository, false));await db.SaveChangesAsync();
-        client.ThrowOnPatch = true;await monitoring.SynchronizeAsync();
-        Assert.IsFalse(state.LastRun!.Succeeded);Assert.HasCount(1, client.Created);
-        client.ThrowOnPatch = false;await monitoring.SynchronizeAsync();
-        Assert.IsTrue(state.LastRun!.Succeeded);Assert.AreEqual(1, client.Patches);Assert.HasCount(1, client.Created);
+        db.BuildChecks.Add(Report(_repository, false)); await db.SaveChangesAsync();
+        client.ThrowOnPatch = true; await monitoring.SynchronizeAsync();
+        Assert.IsFalse(state.LastRun!.Succeeded); Assert.HasCount(1, client.Created);
+        client.ThrowOnPatch = false; await monitoring.SynchronizeAsync();
+        Assert.IsTrue(state.LastRun!.Succeeded); Assert.AreEqual(1, client.Patches); Assert.HasCount(1, client.Created);
     }
 
     [TestMethod]
@@ -325,7 +347,7 @@ public class BaselineMonitoringTests : TestBase
         var response = await Http.GetAsync("/AlertMonitoring");
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         Assert.Contains("Two incidents, independent recovery", await response.Content.ReadAsStringAsync());
-        Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.PostAsync("/AlertMonitoring/SaveRecovery", new FormUrlEncodedContent(new Dictionary<string,string>()))).StatusCode);
+        Assert.AreEqual(HttpStatusCode.BadRequest, (await Http.PostAsync("/AlertMonitoring/SaveRecovery", new FormUrlEncodedContent(new Dictionary<string, string>()))).StatusCode);
     }
 
     [TestMethod]
@@ -364,11 +386,22 @@ public class BaselineMonitoringTests : TestBase
         await settings.UpdateSettingAsync(SettingsMap.AlertCenterEndpoint, endpoint.Urls.Single());
         await settings.UpdateSettingAsync(SettingsMap.AlertCenterApiKey, "isolated-sdk-key");
         var client = ActivatorUtilities.CreateInstance<BaselineIncidentClient>(scope.ServiceProvider, new AlertCenterSettingsProvider(settings));
-        var result = await client.QueryAsync(new QueryIncidentsRequest { Page = 1, PageSize = 100,
-            MetadataKey = "source", MetadataValue = BaselineMonitoringService.Source, ActiveOnly = true });
+        var result = await client.QueryAsync(new QueryIncidentsRequest
+        {
+            Page = 1,
+            PageSize = 100,
+            MetadataKey = "source",
+            MetadataValue = BaselineMonitoringService.Source,
+            ActiveOnly = true
+        });
         Assert.AreEqual(0, result.TotalCount);
-        var created = await client.CreateAsync(new CreateIncidentRequest { ReportId = Guid.NewGuid(), Title = "SDK protocol test",
-            Level = "sev2", OccurredAtUtc = DateTimeOffset.UtcNow });
+        var created = await client.CreateAsync(new CreateIncidentRequest
+        {
+            ReportId = Guid.NewGuid(),
+            Title = "SDK protocol test",
+            Level = "sev2",
+            OccurredAtUtc = DateTimeOffset.UtcNow
+        });
         Assert.AreNotEqual(Guid.Empty, created.IncidentId);
         Assert.AreEqual(2, requests);
         await endpoint.StopAsync();
@@ -386,32 +419,42 @@ public class BaselineMonitoringTests : TestBase
         public bool ThrowOnPatch { get; set; }
         public IncidentDetails Add(string repository, string source = BaselineMonitoringService.Source)
         {
-            var item = new IncidentDetails { IncidentId = Guid.NewGuid(), Version = Guid.NewGuid(), Status = "new",
-                Metadata = new JObject { ["source"] = source, ["repository"] = repository } };
-            Items.Add(item);return item;
+            var item = new IncidentDetails
+            {
+                IncidentId = Guid.NewGuid(),
+                Version = Guid.NewGuid(),
+                Status = "new",
+                Metadata = new JObject { ["source"] = source, ["repository"] = repository }
+            };
+            Items.Add(item); return item;
         }
         public Task<QueryIncidentsResponse> QueryAsync(QueryIncidentsRequest request)
         {
             Queries++;
             if (ThrowOnQuery) throw new HttpRequestException("Isolated failure");
             var active = Items.Where(i => i.Status == "new").ToList();
-            return Task.FromResult(new QueryIncidentsResponse { Items = active.Skip((request.Page - 1) * 100).Take(100).ToList(),
-                TotalCount = active.Count, PageSize = 100, Page = BadPage ? 0 : request.Page });
+            return Task.FromResult(new QueryIncidentsResponse
+            {
+                Items = active.Skip((request.Page - 1) * 100).Take(100).ToList(),
+                TotalCount = active.Count,
+                PageSize = 100,
+                Page = BadPage ? 0 : request.Page
+            });
         }
         public Task<CreateIncidentResponse> CreateAsync(CreateIncidentRequest request)
         {
-            Created.Add(request);var item = Add(request.Metadata!.Value<string>("repository")!);item.Metadata = (JObject)request.Metadata.DeepClone();
+            Created.Add(request); var item = Add(request.Metadata!.Value<string>("repository")!); item.Metadata = (JObject)request.Metadata.DeepClone();
             return Task.FromResult(new CreateIncidentResponse { IncidentId = item.IncidentId });
         }
         public Task<MitigateIncidentResponse> MitigateAsync(Guid id, MitigateIncidentRequest request)
         {
-            Mitigated.Add(id);Items.Single(i => i.IncidentId == id).Status = "mitigated";
+            Mitigated.Add(id); Items.Single(i => i.IncidentId == id).Status = "mitigated";
             return Task.FromResult(new MitigateIncidentResponse());
         }
         public Task<PatchIncidentMetadataResponse> PatchAsync(Guid id, PatchIncidentMetadataRequest request)
         {
             if (ThrowOnPatch) throw new InvalidOperationException("Version conflict");
-            Patches++;Items.Single(i => i.IncidentId == id).Metadata[request.Property] = request.Value;
+            Patches++; Items.Single(i => i.IncidentId == id).Metadata[request.Property] = request.Value;
             return Task.FromResult(new PatchIncidentMetadataResponse());
         }
     }

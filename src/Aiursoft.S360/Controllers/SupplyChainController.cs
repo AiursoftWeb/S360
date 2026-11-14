@@ -154,8 +154,6 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             allowedSources.Contains(a.Source));
         if (!string.IsNullOrEmpty(query)) artifactQuery = artifactQuery.Where(a => a.Name.Contains(query));
         var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(b => b.Ecosystem == ecosystem && b.Status == RuleStatus.Approved).ToListAsync();
-        var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking()
-            .Include(e => e.Vulnerability).ToListAsync();
         var observed = (await artifactQuery.OrderBy(a => a.Name).ThenBy(a => a.Id).ToListAsync())
             .DistinctBy(a => TrustService.Identity(a.Ecosystem, a.Name, a.Version, a.Source)).ToList();
         var decisions = await trust.AssessAsync(observed.Select(a => new Dependency

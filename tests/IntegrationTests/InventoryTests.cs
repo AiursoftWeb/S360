@@ -566,8 +566,7 @@ public class InventoryTests : TestBase
         var unknown = Artifact("Company.Unknown");
         var reviewOnly = Artifact("Company.ReviewOnly");
         var removed = Artifact("Company.Removed");
-        var newlyRequested = Approve(unknown);
-        newlyRequested = new PackageRule
+        var newlyRequested = new PackageRule
         {
             ApplicationId = null,
             Ecosystem = unknown.Ecosystem,

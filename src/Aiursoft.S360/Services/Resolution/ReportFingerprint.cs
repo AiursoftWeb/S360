@@ -20,6 +20,8 @@ public static class ReportFingerprint
     public static string ComputePersisted(DependencyApplication application)
     {
         if (!application.Packages.Any() ||
+            // Validate persisted input even when a caller did not load its required navigation.
+            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
             application.Packages.Any(p => p.PackageVersion == null || p.PackageVersion.Id != p.PackageVersionId) ||
             application.Packages.Select(p => p.PackageVersionId).Distinct().Count() != application.Packages.Count())
             throw new InvalidOperationException("The saved dependency report is incomplete.");

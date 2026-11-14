@@ -2419,7 +2419,6 @@ public class SupplyChainPagesTests : TestBase
     {
         await LoginAsAdmin();
         var packageName = "Example.AuditFailure." + Guid.NewGuid().ToString("N");
-        var sha256 = new string('f', 64);
         var now = DateTime.UtcNow;
         int artifactId;
         using (var scope = Server!.Services.CreateScope())
@@ -2756,7 +2755,6 @@ public class SupplyChainPagesTests : TestBase
     {
         const string source = "https://api.nuget.org/v3/index.json";
         var approvedName = "Z.Approved." + Guid.NewGuid().ToString("N");
-        var approvedHash = new string('f', 64);
         var now = DateTime.UtcNow;
         using (var scope = Server!.Services.CreateScope())
         {
@@ -2819,7 +2817,6 @@ public class SupplyChainPagesTests : TestBase
     {
         const string source = "https://api.nuget.org/v3/index.json";
         var name = "Example.PartialAudit." + Guid.NewGuid().ToString("N");
-        var hash = new string('e', 64);
         var checkedAtUtc = DateTime.UtcNow;
         await LoginAsAdmin();
         using (var scope = Server!.Services.CreateScope())
@@ -2876,13 +2873,11 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task CatalogIgnoresHistoricalArchiveHashConflicts()
+    public async Task CatalogGroupsRepeatedVersionObservations()
     {
         const string source = "https://api.nuget.org/v3/index.json";
         var name = "Example.Conflicting." + Guid.NewGuid().ToString("N");
         var now = DateTime.UtcNow;
-        var firstHash = new string('c', 64);
-        var secondHash = new string('d', 64);
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
@@ -2897,7 +2892,7 @@ public class SupplyChainPagesTests : TestBase
                 Status = RuleStatus.Approved,
                 ExpiresAtUtc = now.AddDays(1)
             });
-            foreach (var hash in new[] { firstHash, secondHash })
+            for (var i = 0; i < 2; i++)
                 db.PackageVersions.Add(new PackageVersion
                 {
                     Ecosystem = "nuget",
@@ -2906,6 +2901,11 @@ public class SupplyChainPagesTests : TestBase
                     Source = source,
                     LastCheckedAtUtc = now
                 });
+            var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
+            if (audit == null) db.VulnerabilitySyncStates.Add(audit = new VulnerabilitySyncState());
+            audit.LastAttemptAtUtc = now.AddMinutes(-1);
+            audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
+            audit.LastSuccessAtUtc = now;
             await db.SaveChangesAsync();
         }
 
@@ -2913,8 +2913,7 @@ public class SupplyChainPagesTests : TestBase
         using var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + name);
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
-        Assert.DoesNotContain("title=\"" + firstHash + "\"", html);
-        Assert.DoesNotContain("title=\"" + secondHash + "\"", html);
+        Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(html, "<a href=\"/SupplyChain/Details/").Count);
         using var lookup = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + name +
             "&lookupVersion=1.0.0&lookupSource=" + Uri.EscapeDataString(source));
         lookup.EnsureSuccessStatusCode();
@@ -2926,7 +2925,6 @@ public class SupplyChainPagesTests : TestBase
     {
         const string source = "https://api.nuget.org/v3/index.json";
         var name = "Example.Excluded." + Guid.NewGuid().ToString("N");
-        var hash = new string('e', 64);
         var now = DateTime.UtcNow;
         using (var scope = Server!.Services.CreateScope())
         {
@@ -3006,7 +3004,7 @@ public class SupplyChainPagesTests : TestBase
         using var response = await Http.GetAsync(url);
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
-        Assert.DoesNotContain("title=\"" + hash + "\"", html);
+        Assert.DoesNotContain("Pinned SHA-256", html);
         StringAssert.Contains(html, "Excluded vulnerable or uncertain version");
         StringAssert.Contains(html, "GHSA-excluded-test");
     }
@@ -3379,8 +3377,6 @@ public class SupplyChainPagesTests : TestBase
             db.DependencyApplications.Add(application);
             await db.SaveChangesAsync();
             applicationId = application.Id;
-            var rootId = application.Packages.Single(p => p.IsDirect).PackageVersionId;
-            var childId = application.Packages.Single(p => !p.IsDirect).PackageVersionId;
 
             await db.SaveChangesAsync();
             reportHash = application.ReportHash = ReportFingerprint.ComputePersisted(application);
@@ -3429,7 +3425,6 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifact = await db.PackageVersions.SingleAsync(a => a.Name == "Example.Batch.Child." + suffix);
             var audit = await db.VulnerabilitySyncStates.SingleAsync();
             audit.LastAttemptAtUtc = DateTime.UtcNow;
             audit.LastError = "OSV temporarily unavailable";
@@ -3445,7 +3440,6 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var application = db.DependencyApplications.Include(a => a.Packages).Single(a => a.Id == applicationId);
-            var rootId = application.Packages.Single(p => p.IsDirect).PackageVersionId;
             var added = new PackageVersion
             {
                 Ecosystem = "nuget",

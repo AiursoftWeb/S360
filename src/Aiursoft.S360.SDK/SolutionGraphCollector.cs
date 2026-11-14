@@ -2,7 +2,7 @@ using System.Text.Json;
 
 namespace Aiursoft.S360.SDK;
 
-/// <summary>Collects identities and resolved edges from the same assets used for archive verification.</summary>
+/// <summary>Collects identities and resolved edges from the resolved assets used for building.</summary>
 public static class SolutionGraphCollector
 {
     public static void AddProject(SolutionDependencyGraph graph, string assetsPath,

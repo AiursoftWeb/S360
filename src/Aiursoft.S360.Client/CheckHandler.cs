@@ -33,11 +33,11 @@ public class CheckHandler : CommandHandlerBuilder
     };
     private static readonly Option<bool> NpmLockfileOnlyOption = new("--npm-lockfile-only")
     {
-        Description = "Audit every locked npm archive before installation, including optional packages for other platforms."
+        Description = "Check every locked npm package version before installation, including optional packages for other platforms."
     };
     private static readonly Option<string?> NpmRegistryOption = new("--npm-registry")
     {
-        Description = "Audit standard npm tarballs from this HTTPS registry, matching npm replace-registry-host=always without changing the lockfile."
+        Description = "Check npm dependencies using this registry identity, matching npm replace-registry-host=always without changing the lockfile."
     };
     public override Command BuildAsCommand()
     {
@@ -124,8 +124,8 @@ public class CheckHandler : CommandHandlerBuilder
             catch (Exception ex) when (ex is TimeoutException ||
                                        ex is OperationCanceledException && verificationDeadline.IsCancellationRequested)
             {
-                const string message = "S360 package verification did not complete within 10 minutes. " +
-                    "The build remains blocked; check source verification and vulnerability audit job results, then retry.";
+                const string message = "S360 vulnerability refresh did not complete within 10 minutes. " +
+                    "The build remains blocked; check vulnerability audit job results, then retry.";
                 if (purpose != "baseline")
                 {
                     Console.Error.WriteLine(message);
@@ -212,7 +212,7 @@ public class CheckHandler : CommandHandlerBuilder
                     "This version has a known active vulnerability." => $"Upgrade or remove the affected dependency; inspect findings: {root}/VulnerabilityAudit/Index",
                     _ when decision.Reason.StartsWith("Excluded vulnerable or uncertain version:", StringComparison.Ordinal) =>
                         $"Use a version outside the excluded range; inspect findings: {root}/VulnerabilityAudit/Index",
-                    _ => $"Review this policy/source/hash rejection with your security reviewer: {root}. An approval request does not bypass it."
+                    _ => $"Review this policy rejection with your security reviewer: {root}. An approval request does not bypass it."
                 };
             output.WriteLine($"  Next: {next}");
         }

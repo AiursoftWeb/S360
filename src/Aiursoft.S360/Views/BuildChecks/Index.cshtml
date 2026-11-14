@@ -77,7 +77,7 @@
             }
             <div class="table-responsive mt-2"><table class="table table-sm"><thead><tr>
                 <th>@Localizer["Status"]</th><th>@Localizer["Package"]</th><th>@Localizer["Version"]</th>
-                <th>@Localizer["Source"]</th><th>@Localizer["SHA-256"]</th><th>@Localizer["Reason"]</th>
+                <th>@Localizer["Source"]</th><th>@Localizer["Reason"]</th>
             </tr></thead><tbody>
             @foreach (var item in check.Dependencies.OrderBy(d => d.Ecosystem, StringComparer.Ordinal).ThenBy(d => d.Name, StringComparer.Ordinal))
             {

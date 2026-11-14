@@ -108,7 +108,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
                         authorized.GetValueOrDefault(p.PackageArtifactId),
                         sourcePermitted.GetValueOrDefault(p.PackageArtifactId),
                         VulnerabilityAuditFreshness.IsCurrent(p.PackageArtifact.LastCheckedAtUtc,
-                            audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now, p.PackageArtifact.IndependentCheckAtUtc),
+                            audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now),
                         affectedIds.Contains(p.PackageArtifactId), cleared.GetValueOrDefault(p.PackageArtifactId)))
                     .ToList();
             }
@@ -159,8 +159,6 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
         var affectedIds = (await db.VulnerabilityMatches.AsNoTracking()
             .Where(m => m.Active && !m.Vulnerability.Withdrawn)
             .Select(m => m.PackageArtifactId).ToListAsync()).ToHashSet();
-        var sameIdentity = await db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == application.Ecosystem)
-            .ToListAsync();
         var artifacts = application.Packages.ToDictionary(p => p.PackageArtifactId, p => p.PackageArtifact);
         var paths = ApplicationPaths.Build(application.Edges, artifacts);
 
@@ -188,32 +186,18 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
                 return BadRequest($"Excluded version: {artifact.Name}@{artifact.Version} " +
                     $"({excluded.Vulnerability.SourceId}). {excluded.Reason} " +
                     $"Introduction path: {paths.GetValueOrDefault(artifact.Id, artifact.Name)}");
-            if (artifact.SourceVerifiedAtUtc == null)
-                return BadRequest($"Package archive has not been independently verified from its source: {artifact.Name}@{artifact.Version}.");
             if (!VulnerabilityAuditFreshness.IsCurrent(artifact.LastCheckedAtUtc,
-                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now, artifact.IndependentCheckAtUtc))
+                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now))
                 return BadRequest($"Vulnerability audit is missing or stale: {artifact.Name}@{artifact.Version}.");
             if (affectedIds.Contains(artifact.Id))
                 return BadRequest($"Known active vulnerability: {artifact.Name}@{artifact.Version}.");
-            if (sameIdentity.Any(a => a.Id != artifact.Id &&
-                (a.SourceVerifiedAtUtc != null || a.FirstTrustedAtUtc != null) &&
-                a.Name.Equals(artifact.Name, artifact.Ecosystem == "nuget" ?
-                    StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
-                a.Version == artifact.Version && a.Source == artifact.Source &&
-                !a.Sha256.Equals(artifact.Sha256, StringComparison.OrdinalIgnoreCase)))
-                return BadRequest($"Previously verified package bytes differ: {artifact.Name}@{artifact.Version}.");
             if (rules.Any(r => r.ApplicationId != application.Id &&
                 r.Status is TrustRuleStatus.Rejected or TrustRuleStatus.Revoked &&
                 r.Source == artifact.Source &&
                 r.MatchesPackage(artifact.Name) &&
                 TrustPattern.VersionMatches(r.Version, artifact.Version, artifact.Ecosystem, r.IncludePrerelease)))
                 return BadRequest($"A separate rejection/revocation blocks {artifact.Name}@{artifact.Version}.");
-            if (rules.Any(r => r.ApplicationId != application.Id && r.Status == TrustRuleStatus.Approved &&
-                r.Sha256 != null && r.Source == artifact.Source && r.Version == artifact.Version &&
-                r.PackagePattern.Equals(artifact.Name, artifact.Ecosystem == "nuget" ?
-                    StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
-                !r.Sha256.Equals(artifact.Sha256, StringComparison.OrdinalIgnoreCase)))
-                return BadRequest($"A separate pinned approval has different package bytes: {artifact.Name}@{artifact.Version}.");
+
         }
 
         var decisionBatchId = Guid.NewGuid().ToString("N");
@@ -223,14 +207,14 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             var existing = rules.FirstOrDefault(r => r.ApplicationId == application.Id &&
                 r.PackagePattern.Equals(artifact.Name, artifact.Ecosystem == "nuget" ?
                     StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
-                r.Version == artifact.Version && r.Source == artifact.Source && r.Sha256 == artifact.Sha256);
+                r.Version == artifact.Version && r.Source == artifact.Source);
             if (existing == null)
             {
                 existing = new TrustRule
                 {
                     ApplicationId = application.Id, Ecosystem = artifact.Ecosystem,
                     PackagePattern = artifact.Name, Version = artifact.Version, Source = artifact.Source,
-                    Sha256 = artifact.Sha256, RequestedByUserId = application.RequestedByUserId,
+                    Sha256 = null, RequestedByUserId = application.RequestedByUserId,
                     Justification = application.Justification, Status = TrustRuleStatus.Approved,
                     ExpiresAtUtc = expiresAtUtc
                 };

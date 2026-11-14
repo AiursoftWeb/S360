@@ -39,6 +39,7 @@ public class InventoryTests : TestBase
 
     private static TrustRule Approve(PackageArtifact artifact) => new()
     {
+        RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
         ApplicationId = null, SupplierId = 0, Supplier = new Supplier { Name = "Inventory supplier" },
         Ecosystem = artifact.Ecosystem, Source = artifact.Source, PackagePattern = artifact.Name,
         Version = "1.*", Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1),
@@ -197,6 +198,7 @@ public class InventoryTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             (await db.TrustRules.SingleAsync(r => r.Id == ruleId)).Status = TrustRuleStatus.Approved;
             (await db.PackageArtifacts.SingleAsync(a => a.Id == artifactId)).LastCheckedAtUtc = DateTime.UtcNow.AddDays(-1);
+            (await db.VulnerabilitySyncStates.SingleAsync()).LastSuccessAtUtc = DateTime.UtcNow.AddDays(-1);
             await db.SaveChangesAsync();
         }
         await ReadBadge("policy", "pending");
@@ -240,7 +242,7 @@ public class InventoryTests : TestBase
             if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
             audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
             audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
-            audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastError = null;
             await db.SaveChangesAsync(); ruleId = rule.Id;
         }
@@ -331,7 +333,7 @@ public class InventoryTests : TestBase
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
             audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
-            audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             await db.SaveChangesAsync();
         }
         var all = await Read("projects");
@@ -411,7 +413,7 @@ public class InventoryTests : TestBase
             if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
             audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
             audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
-            audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             await db.SaveChangesAsync(); ruleId = rule.Id; artifactId = artifact.Id;
         }
         Assert.AreEqual(InventoryStatus.Compliant, (await Read()).Packages.Single().Status);
@@ -529,7 +531,11 @@ public class InventoryTests : TestBase
         var unknown = Artifact("Company.Unknown");
         var reviewOnly = Artifact("Company.ReviewOnly");
         var removed = Artifact("Company.Removed");
-        db.TrustRules.AddRange(Approve(safe), Approve(vulnerable), Approve(unknown));
+        var newlyRequested = Approve(unknown);
+        newlyRequested = new TrustRule { ApplicationId = null, SupplierId = newlyRequested.SupplierId,
+            Supplier = newlyRequested.Supplier, Ecosystem = unknown.Ecosystem, PackagePattern = unknown.Name,
+            Version = "1.*", Source = unknown.Source, Status = TrustRuleStatus.Approved };
+        db.TrustRules.AddRange(Approve(safe), Approve(vulnerable), newlyRequested);
         unknown.SourceVerifiedAtUtc = null;
         db.BuildChecks.Add(Report("safe", "baseline", "nuget", now, safe));
         db.BuildChecks.Add(Report("affected", "baseline", "nuget", now, safe, vulnerable));
@@ -548,7 +554,7 @@ public class InventoryTests : TestBase
         var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
         if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
         audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
-        audit.LastSuccessAtUtc = now.AddSeconds(1);
+        audit.LastSuccessAtUtc = DateTime.UtcNow;
         await db.SaveChangesAsync();
         var model = new InventoryViewModel();
         await service.PopulateAsync(model);

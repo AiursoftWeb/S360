@@ -11,7 +11,10 @@ public class HomeControllerTests : TestBase
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         StringAssert.Contains(html, "Know every dependency.");
-        StringAssert.Contains(html, "The entire dependency graph");
+        StringAssert.Contains(html, "Project dependency records");
+        StringAssert.Contains(html, "S360 uses it to identify projects affected by a vulnerability.");
+        Assert.DoesNotContain("S360 resolves transitive packages", html);
+        Assert.DoesNotContain("tarball integrity evidence", html);
         StringAssert.Contains(html, "The words behind the workflow");
         StringAssert.Contains(html, "Supplier and source");
         StringAssert.Contains(html, "S360 Web and review");

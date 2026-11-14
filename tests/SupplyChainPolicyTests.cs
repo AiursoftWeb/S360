@@ -20,6 +20,7 @@ public class SupplyChainPolicyTests
     private static TrustRule Rule(string pattern = "Microsoft.Extensions.Logging", string version = "10.0.*", int id = 1) => new()
     {
         ApplicationId = null, SupplierId = 0,
+        RequestedAtUtc = DateTime.UtcNow.AddHours(-2),
         Id = id, Ecosystem = "nuget", PackagePattern = pattern, Version = version,
         Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
         ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
@@ -52,11 +53,11 @@ public class SupplyChainPolicyTests
     }
 
     [TestMethod]
-    public void PinnedHashCannotBeBypassedByWildcard()
+    public void HistoricalFileHashIsNotAPackagePolicyCondition()
     {
         var pinned = Rule("Microsoft.Extensions.Logging", "10.0.8");
         pinned.Sha256 = new string('b', 64);
-        Assert.IsFalse(TrustService.Evaluate(Package(), [pinned, Rule()], [], DateTime.UtcNow).Trusted);
+        Assert.IsTrue(TrustService.Evaluate(Package(), [pinned, Rule()], [], DateTime.UtcNow).Trusted);
     }
 
     [TestMethod]
@@ -100,68 +101,9 @@ public class SupplyChainPolicyTests
         Assert.IsFalse(TrustPattern.VersionPatternCovers("10.*", "11.0.*", "nuget"));
     }
 
-    [TestMethod]
-    public async Task FirstApprovedWildcardHashIsPinnedForFutureChecks()
-    {
-        var options = new DbContextOptionsBuilder<InMemoryContext>()
-            .UseInMemoryDatabase("s360-hash-" + Guid.NewGuid()).Options;
-        await using var db = new InMemoryContext(options);
-        db.TrustRules.Add(Rule());
-        await db.SaveChangesAsync();
-        var service = new TrustService(db);
-        var first = await service.CheckAsync([Package()]);
-        Assert.IsFalse(first.Single().Trusted);
-        StringAssert.Contains(first.Single().Reason, "verification and vulnerability audit are pending");
-        Assert.AreEqual(1, await db.PackageArtifacts.CountAsync());
-        var artifact = await db.PackageArtifacts.SingleAsync();
-        Assert.IsNull(artifact.FirstTrustedAtUtc);
-        artifact.SourceVerifiedAtUtc = DateTime.UtcNow;
-        artifact.LastCheckedAtUtc = DateTime.UtcNow;
-        db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
-        {
-            LastAttemptAtUtc = artifact.LastCheckedAtUtc.Value.AddSeconds(-1),
-            LastSuccessfulAttemptAtUtc = artifact.LastCheckedAtUtc.Value.AddSeconds(-1),
-            LastSuccessAtUtc = artifact.LastCheckedAtUtc.Value.AddSeconds(1)
-        });
-        await db.SaveChangesAsync();
-        var approved = await service.CheckAsync([Package()]);
-        Assert.IsTrue(approved.Single().Trusted);
-        var changed = Package();
-        changed.Sha256 = new string('b', 64);
-        var second = await service.CheckAsync([changed]);
-        Assert.IsFalse(second.Single().Trusted);
-        Assert.AreEqual(1, await db.PackageArtifacts.CountAsync());
-    }
 
-    [TestMethod]
-    public async Task VulnerabilityAuditAloneCannotTrustAClientReportedArchiveHash()
-    {
-        var options = new DbContextOptionsBuilder<InMemoryContext>()
-            .UseInMemoryDatabase("s360-unverified-archive-" + Guid.NewGuid()).Options;
-        await using var db = new InMemoryContext(options);
-        var dependency = Package();
-        var checkedAt = DateTime.UtcNow;
-        db.TrustRules.Add(Rule());
-        db.PackageArtifacts.Add(new PackageArtifact
-        {
-            Ecosystem = dependency.Ecosystem, Name = dependency.Name, Version = dependency.Version,
-            Source = dependency.Source, Sha256 = dependency.Sha256,
-            LastCheckedAtUtc = checkedAt
-        });
-        db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
-        {
-            LastAttemptAtUtc = checkedAt.AddSeconds(-1),
-            LastSuccessfulAttemptAtUtc = checkedAt.AddSeconds(-1),
-            LastSuccessAtUtc = checkedAt.AddSeconds(1)
-        });
-        await db.SaveChangesAsync();
 
-        var result = (await new TrustService(db).CheckAsync([dependency])).Single();
 
-        Assert.IsFalse(result.Trusted);
-        StringAssert.Contains(result.Reason, "has not been independently verified");
-        Assert.IsNull((await db.PackageArtifacts.SingleAsync()).FirstTrustedAtUtc);
-    }
 
     [TestMethod]
     public async Task SqliteCheckFindsOnlyRequestedArtifactWithNuGetCaseInsensitiveName()
@@ -190,7 +132,7 @@ public class SupplyChainPolicyTests
             });
         db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
         {
-            LastAttemptAtUtc = now.AddSeconds(-1), LastSuccessfulAttemptAtUtc = now.AddSeconds(-1), LastSuccessAtUtc = now.AddSeconds(1)
+            LastAttemptAtUtc = now.AddSeconds(-1), LastSuccessfulAttemptAtUtc = now.AddSeconds(-1), LastSuccessAtUtc = now
         });
         await db.SaveChangesAsync();
 
@@ -201,7 +143,7 @@ public class SupplyChainPolicyTests
     }
 
     [TestMethod]
-    public async Task PartialVulnerabilitySyncCannotMakeAReportedPackageTrusted()
+    public async Task InventoryCheckTimestampsDoNotChangePublishedPolicyVerdict()
     {
         var options = new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase("s360-partial-audit-" + Guid.NewGuid()).Options;
@@ -226,12 +168,11 @@ public class SupplyChainPolicyTests
 
         var service = new TrustService(db);
         var beforeCompletion = (await service.AssessAsync([package])).Single();
-        Assert.IsFalse(beforeCompletion.Trusted);
-        StringAssert.Contains(beforeCompletion.Reason, "has not completed");
+        Assert.IsTrue(beforeCompletion.Trusted);
 
         audit.LastAttemptAtUtc = partialCheck.AddSeconds(-1);
         audit.LastSuccessfulAttemptAtUtc = partialCheck.AddSeconds(-1);
-        audit.LastSuccessAtUtc = partialCheck.AddSeconds(1);
+        audit.LastSuccessAtUtc = partialCheck;
         await db.SaveChangesAsync();
         Assert.IsTrue((await service.AssessAsync([package])).Single().Trusted);
     }
@@ -273,7 +214,7 @@ public class SupplyChainPolicyTests
         audit.LastSuccessfulAttemptAtUtc = audit.LastAttemptAtUtc;
         audit.LastSuccessAtUtc = DateTime.UtcNow;
         await db.SaveChangesAsync();
-        Assert.IsFalse((await service.AssessAsync([package])).Single().Trusted);
+        Assert.IsTrue((await service.AssessAsync([package])).Single().Trusted);
         var artifact = await db.PackageArtifacts.SingleAsync();
         artifact.LastCheckedAtUtc = audit.LastAttemptAtUtc.Value.AddTicks(1);
         await db.SaveChangesAsync();
@@ -290,7 +231,7 @@ public class SupplyChainPolicyTests
         await db.SaveChangesAsync();
         var result = (await new TrustService(db).AssessAsync([Package()])).Single();
         Assert.IsFalse(result.Trusted);
-        StringAssert.Contains(result.Reason, "verification and vulnerability audit are pending");
+        StringAssert.Contains(result.Reason, "vulnerability data is unavailable");
         Assert.AreEqual(0, await db.PackageArtifacts.CountAsync());
     }
 
@@ -335,7 +276,7 @@ public class SupplyChainPolicyTests
         {
             LastAttemptAtUtc = DateTime.UtcNow.AddSeconds(-1),
             LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddSeconds(-1),
-            LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
+            LastSuccessAtUtc = DateTime.UtcNow
         });
         await db.SaveChangesAsync();
         var decisions = await new TrustService(db).CheckAsync([vulnerable, fixedPackage, siblingPackage]);
@@ -390,121 +331,45 @@ public class SupplyChainPolicyTests
         StringAssert.Contains(excluded.Reason, "GHSA-overlap");
     }
 
-    [TestMethod]
-    public async Task UnapprovedObservationCannotPinTheTrustedHash()
-    {
-        var options = new DbContextOptionsBuilder<InMemoryContext>()
-            .UseInMemoryDatabase("s360-observation-" + Guid.NewGuid()).Options;
-        await using var db = new InMemoryContext(options);
-        db.TrustRules.Add(Rule());
-        var observed = Package();
-        db.PackageArtifacts.Add(new PackageArtifact
-        {
-            Ecosystem = observed.Ecosystem, Name = observed.Name, Version = observed.Version,
-            Source = observed.Source, Sha256 = new string('b', 64)
-        });
-        await db.SaveChangesAsync();
-        var decision = (await new TrustService(db).CheckAsync([observed])).Single();
-        Assert.IsFalse(decision.Trusted);
-        StringAssert.Contains(decision.Reason, "verification and vulnerability audit are pending");
-        Assert.AreEqual(2, await db.PackageArtifacts.CountAsync());
-        Assert.IsNull((await db.PackageArtifacts.SingleAsync(a => a.Sha256 == new string('b', 64))).FirstTrustedAtUtc);
-        Assert.IsNull((await db.PackageArtifacts.SingleAsync(a => a.Sha256 == observed.Sha256)).FirstTrustedAtUtc);
-    }
+
+
+
+
 
     [TestMethod]
-    [DataRow("nuget", null, true)]
-    [DataRow("npm", null, true)]
-    [DataRow("nuget", "https://previous-upstream.example", true)]
-    [DataRow("npm", "https://previous-upstream.example", true)]
-    [DataRow("nuget", "https://official.example", false)]
-    [DataRow("npm", "https://official.example", false)]
-    public async Task MappedRegistryUsesOnlyProofsFromItsCurrentUpstream(
-        string ecosystem, string? previousProofSource, bool expectedTrusted)
+    [DataRow(false)]
+    [DataRow(true)]
+    public async Task HistoricalArchiveRecordsAndHashesCannotChangePolicyVerdict(bool conflictingHistory)
     {
         await using var db = new InMemoryContext(new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options);
-        const string source = "https://internal.example";
-        const string upstream = "https://official.example";
-        var configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
-        {
-            [$"SupplyChain:{(ecosystem == "nuget" ? "NuGet" : "Npm")}Sources:0"] = source,
-            ["SupplyChain:Mirrors:0:Ecosystem"] = ecosystem,
-            ["SupplyChain:Mirrors:0:Source"] = source,
-            ["SupplyChain:Mirrors:0:Upstream"] = upstream
-        }).Build();
-        var dependency = new Dependency { Ecosystem = ecosystem, Name = "sample", Version = "1.0.0",
-            Source = source, Sha256 = new string('a', 64) };
-        var rule = new TrustRule { ApplicationId = null, Ecosystem = ecosystem, PackagePattern = "sample", Version = "*",
-            Source = source, Status = TrustRuleStatus.Approved };
+        var rule = Rule();
         db.TrustRules.Add(rule);
-        var historical = new PackageArtifact { Ecosystem = ecosystem, Name = "sample", Version = "1.0.0",
-            Source = source, Sha256 = new string('b', 64), VerificationSource = previousProofSource,
-            SourceVerifiedAtUtc = DateTime.UtcNow, FirstTrustedAtUtc = DateTime.UtcNow,
-            LastCheckedAtUtc = DateTime.UtcNow, IndependentCheckAtUtc = DateTime.UtcNow };
-        db.PackageArtifacts.Add(historical);
+        db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
+        {
+            LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-2),
+            LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-2), LastSuccessAtUtc = DateTime.UtcNow.AddMinutes(-1)
+        });
+        if (conflictingHistory)
+            foreach (var hash in new[] { new string('a', 64), new string('b', 64) })
+                db.PackageArtifacts.Add(new PackageArtifact { Ecosystem = "nuget", Name = Package().Name,
+                    Version = Package().Version, Source = Package().Source, Sha256 = hash,
+                    SourceVerificationRejected = true, VerificationSource = "https://retired.invalid" });
         await db.SaveChangesAsync();
-        var trust = new TrustService(db, configuration);
-        var pending = (await trust.ReviewAsync([dependency])).Single();
-        Assert.IsFalse(pending.Trusted);
-        Assert.AreEqual(expectedTrusted, pending.PendingVerification);
-        if (!expectedTrusted) return;
-        var current = await db.PackageArtifacts.SingleAsync(a => a.Sha256 == dependency.Sha256);
-        current.SourceVerifiedAtUtc = current.LastCheckedAtUtc = current.IndependentCheckAtUtc = DateTime.UtcNow;
-        await db.SaveChangesAsync();
-        // A verified but unbound archive must still wait for independent upstream verification.
-        Assert.IsTrue((await trust.AssessAsync([dependency])).Single().PendingVerification);
-        current.VerificationSource = upstream;
-        await db.SaveChangesAsync();
-        Assert.IsTrue((await trust.AssessAsync([dependency])).Single().Trusted);
-        // A second hash independently verified from the same upstream still fails closed.
-        historical.VerificationSource = upstream;
-        await db.SaveChangesAsync();
-        var conflict = (await trust.AssessAsync([dependency])).Single();
-        Assert.IsFalse(conflict.Trusted);
-        StringAssert.Contains(conflict.Reason, "Conflicting previously verified");
-        historical.VerificationSource = previousProofSource;
+        var count = await db.PackageArtifacts.CountAsync();
+        var dependency = Package();
+        foreach (var hash in new[] { "", new string('a', 64), new string('c', 64) })
+        {
+            dependency.Sha256 = hash;
+            var decision = (await new TrustService(db).AssessAsync([dependency])).Single();
+            Assert.IsTrue(decision.Trusted, decision.Reason);
+        }
+        Assert.AreEqual(count, await db.PackageArtifacts.CountAsync());
         rule.Status = TrustRuleStatus.Revoked;
         await db.SaveChangesAsync();
-        Assert.IsFalse((await trust.AssessAsync([dependency])).Single().Trusted);
-        Assert.AreEqual(2, await db.PackageArtifacts.CountAsync());
-        Assert.AreEqual(new string('b', 64), historical.Sha256);
+        Assert.IsFalse((await new TrustService(db).AssessAsync([dependency])).Single().Trusted);
     }
 
-    [TestMethod]
-    public async Task ConflictingTrustedHashesForOnePackageIdentityFailClosed()
-    {
-        var options = new DbContextOptionsBuilder<InMemoryContext>()
-            .UseInMemoryDatabase("s360-conflicting-trust-" + Guid.NewGuid()).Options;
-        await using var db = new InMemoryContext(options);
-        db.TrustRules.Add(Rule());
-        var package = Package();
-        var now = DateTime.UtcNow;
-        db.PackageArtifacts.AddRange(
-            new PackageArtifact
-            {
-                Ecosystem = package.Ecosystem, Name = package.Name, Version = package.Version,
-                Source = package.Source, Sha256 = package.Sha256,
-                SourceVerifiedAtUtc = now, FirstTrustedAtUtc = now, LastCheckedAtUtc = now
-            },
-            new PackageArtifact
-            {
-                Ecosystem = package.Ecosystem, Name = package.Name, Version = package.Version,
-                Source = package.Source, Sha256 = new string('b', 64),
-                SourceVerifiedAtUtc = now, FirstTrustedAtUtc = now, LastCheckedAtUtc = now
-            });
-        await db.SaveChangesAsync();
-
-        var service = new TrustService(db);
-        foreach (var hash in new[] { package.Sha256, new string('b', 64) })
-        {
-            var attempted = Package();
-            attempted.Sha256 = hash;
-            var decision = (await service.CheckAsync([attempted])).Single();
-            Assert.IsFalse(decision.Trusted);
-            StringAssert.Contains(decision.Reason, "Conflicting previously verified package hashes");
-        }
-    }
     [TestMethod]
     public void ANewNameCannotInheritLegacyPrefixApprovalOrBypassLegacyDenial()
     {

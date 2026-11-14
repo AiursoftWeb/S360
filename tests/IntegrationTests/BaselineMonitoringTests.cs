@@ -112,6 +112,7 @@ public class BaselineMonitoringTests : TestBase
         };
         db.TrustRules.Add(new TrustRule
         {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
             SupplierId = 0, ApplicationId = null, Supplier = new Supplier { Name = "Test supplier" }, Ecosystem = ecosystem, Source = source,
             PackagePattern = artifact.Name, Version = "1.*", Status = TrustRuleStatus.Approved
         });

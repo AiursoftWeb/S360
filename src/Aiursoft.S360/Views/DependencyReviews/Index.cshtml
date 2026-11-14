@@ -31,7 +31,6 @@
         var packages = Model.PackagesByApplicationId.GetValueOrDefault(application.Id) ?? [];
         var sourceRemoved = Model.ApplicationsWithRemovedSources.Contains(application.Id);
         var checksIncomplete = packages.Count == 0 || packages.Any(p => !p.SourcePermitted ||
-            p.Artifact.SourceVerifiedAtUtc == null || p.Artifact.SourceVerificationRejected ||
             !p.AuditCurrent || p.HasKnownVulnerability || (p.AlreadyAuthorized && !p.CheckReady));
         <section class="card mb-4">
             <div class="card-header d-flex justify-content-between align-items-start gap-2 flex-wrap">
@@ -69,18 +68,16 @@
                                     </td>
                                     <td>@if (package.AlreadyAuthorized) { <span class="badge bg-success">@Localizer["Already approved"]</span> } else { <span class="badge bg-warning text-dark">@Localizer["Needs approval"]</span> }</td>
                                     <td>
-                                        @if (!package.SourcePermitted || package.Artifact.SourceVerificationRejected)
-                                        { <span class="text-danger">@Localizer["Package source could not be verified"]</span> }
+                                        @if (!package.SourcePermitted)
+                                        { <span class="text-danger">@Localizer["Package source is not permitted"]</span> }
                                         else if (package.HasKnownVulnerability)
                                         { <span class="text-danger">@Localizer["Known vulnerability found"]</span> }
-                                        else if (package.Artifact.SourceVerifiedAtUtc == null)
-                                        { <span class="text-warning-emphasis">@Localizer["Waiting for source verification"]</span> }
                                         else if (!package.AuditCurrent)
                                         { <span class="text-warning-emphasis">@Localizer["Waiting for an up-to-date vulnerability check"]</span> }
                                         else if (package.AlreadyAuthorized && !package.CheckReady)
                                         { <span class="text-danger">@Localizer["Blocked by another security check; see the report"]</span> }
                                         else
-                                        { <span>@Localizer["Source verified; no known vulnerabilities found"]</span> }
+                                        { <span>@Localizer["No known vulnerabilities found"]</span> }
                                     </td>
                                 </tr>
                             }

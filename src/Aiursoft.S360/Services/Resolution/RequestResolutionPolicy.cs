@@ -4,7 +4,7 @@ namespace Aiursoft.S360.Services.Resolution;
 
 public static class RequestResolutionPolicy
 {
-    public static void ValidateBeforeDownload(string ecosystem, string source,
+    public static void ValidateRequest(string ecosystem, string source,
         IReadOnlyCollection<DirectPackage> direct, IConfiguration configuration,
         IReadOnlyCollection<BlockRule> blocks)
     {

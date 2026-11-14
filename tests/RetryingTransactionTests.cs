@@ -63,7 +63,7 @@ public class RetryingTransactionTests
         using var handler = new AdvisoryHandler();
         using var http = new HttpClient(handler);
         var job = new VulnerabilityAuditJob(db, new OsvClient(http),
-            new AcceptingVerifier(), NullLogger<VulnerabilityAuditJob>.Instance);
+            NullLogger<VulnerabilityAuditJob>.Instance);
         await job.ExecuteAsync();
         db.ChangeTracker.Clear();
         Assert.AreEqual(1, await db.Vulnerabilities.CountAsync());
@@ -105,10 +105,7 @@ public class RetryingTransactionTests
             return base.SavingChangesAsync(eventData, result, cancellationToken);
         }
     }
-    private sealed class AcceptingVerifier : IArtifactSourceVerifier
-    {
-        public Task<bool> VerifyAsync(PackageArtifact artifact, CancellationToken cancellationToken = default) => Task.FromResult(true);
-    }
+
     private sealed class AdvisoryHandler : HttpMessageHandler
     {
         public int Calls { get; private set; }

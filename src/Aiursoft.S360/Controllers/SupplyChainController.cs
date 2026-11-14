@@ -139,47 +139,28 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 ? CatalogAuditStatus.Stale
                 : CatalogAuditStatus.Current;
         var artifactQuery = db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == ecosystem &&
-            allowedSources.Contains(a.Source) &&
-            a.FirstTrustedAtUtc != null && a.SourceVerifiedAtUtc != null && !a.SourceVerificationRejected &&
-            ((auditStatus == CatalogAuditStatus.Current && a.LastCheckedAtUtc >= auditStartedAtUtc && a.LastCheckedAtUtc <= completedAuditAtUtc) ||
-             (a.IndependentCheckAtUtc > now.AddHours(-12) && a.IndependentCheckAtUtc <= now)) &&
-            !db.VulnerabilityMatches.Any(m => m.PackageArtifactId == a.Id && m.Active &&
-                !m.Vulnerability.Withdrawn));
+            allowedSources.Contains(a.Source));
         if (!string.IsNullOrEmpty(query)) artifactQuery = artifactQuery.Where(a => a.Name.Contains(query));
-        var blocks = await db.BlockRules.AsNoTracking()
-            .Where(b => b.Ecosystem == ecosystem && b.Active).ToListAsync();
+        var blocks = await db.BlockRules.AsNoTracking().Where(b => b.Ecosystem == ecosystem && b.Active).ToListAsync();
         var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
-        var verifiedArtifacts = await db.PackageArtifacts.AsNoTracking()
-            .Where(a => a.Ecosystem == ecosystem &&
-                (a.SourceVerifiedAtUtc != null || a.FirstTrustedAtUtc != null)).ToListAsync();
-        var conflictingVerified = TrustService.ConflictingVerifiedIdentities(verifiedArtifacts.Where(trust.HasCurrentSourceProof));
         var selectedRules = supplierId == null ? null : activeApprovedRules.Where(r => r.SupplierId == supplierId).ToList();
+        var observed = (await artifactQuery.OrderBy(a => a.Name).ThenBy(a => a.Id).ToListAsync())
+            .DistinctBy(a => TrustService.Identity(a.Ecosystem, a.Name, a.Version, a.Source)).ToList();
+        var decisions = await trust.AssessAsync(observed.Select(a => new Dependency
+            { Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version, Source = a.Source }));
         var available = new List<CatalogArtifactRow>();
-        await foreach (var artifact in artifactQuery.OrderBy(a => a.Name).ThenBy(a => a.Id).AsAsyncEnumerable())
+        foreach (var (artifact, decision) in observed.Zip(decisions))
         {
-            if (!trust.HasCurrentSourceProof(artifact)) continue;
-            if (!VulnerabilityAuditFreshness.IsCurrent(artifact.LastCheckedAtUtc,
-                    auditStartedAtUtc, completedAuditAtUtc, now, artifact.IndependentCheckAtUtc))
-                continue;
-            if (conflictingVerified.Contains(TrustService.Identity(artifact.Ecosystem, artifact.Name,
-                    artifact.Version, artifact.Source))) continue;
-            var dependency = new Dependency
-            {
-                Ecosystem = artifact.Ecosystem, Name = artifact.Name, Version = artifact.Version,
-                Source = artifact.Source, Sha256 = artifact.Sha256
-            };
-            var decision = TrustService.Evaluate(dependency, allRules, blocks, now, exclusions);
             if (!decision.Trusted) continue;
             var authorizingRule = allRules.FirstOrDefault(r => r.Id == decision.RuleId);
             if (authorizingRule == null) continue;
+            var dependency = decision.Dependency;
             var displayRule = selectedRules?.FirstOrDefault(r =>
                 r.Source == artifact.Source && r.MatchesPackage(artifact.Name) &&
                 TrustPattern.VersionMatches(r.Version, artifact.Version, ecosystem, r.IncludePrerelease) &&
-                (r.Sha256 == null || r.Sha256.Equals(artifact.Sha256, StringComparison.OrdinalIgnoreCase)) &&
                 TrustService.MatchingExclusion(r, dependency, exclusions) == null) ?? authorizingRule;
-            if (selectedRules != null && displayRule == authorizingRule &&
-                !selectedRules.Contains(authorizingRule)) continue;
+            if (selectedRules != null && displayRule == authorizingRule && !selectedRules.Contains(authorizingRule)) continue;
             available.Add(new CatalogArtifactRow(artifact, displayRule));
         }
         var selectedCatalogRules = activeApprovedRules.Where(r => (supplierId == null || r.SupplierId == supplierId) &&
@@ -228,80 +209,18 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
                 model.LookupStatus = "Source not permitted";
                 model.LookupReason = "This package registry is no longer configured for S360 checks.";
             }
-            else if (conflictingVerified.Contains(TrustService.Identity(ecosystem, selectedName,
-                         selectedVersion, selectedSource)))
-            {
-                model.LookupStatus = "Conflicting package hashes";
-                model.LookupReason = "Previously verified package files for this name, version and source have different SHA-256 values. Checks are refused until an administrator investigates.";
-            }
             else
             {
-                var matching = await db.TrustRules.AsNoTracking()
-                    .Where(r => r.Ecosystem == ecosystem && r.Source == selectedSource).ToListAsync();
-                matching = matching.Where(r => r.MatchesPackage(selectedName) &&
-                    TrustPattern.VersionMatches(r.Version, selectedVersion, ecosystem, r.IncludePrerelease)).ToList();
-                var denied = matching.FirstOrDefault(r => r.Status is TrustRuleStatus.Rejected or TrustRuleStatus.Revoked);
-                var activeApproved = matching.Where(r => r.Status == TrustRuleStatus.Approved &&
-                    (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)).ToList();
-                var lookupDependency = new Dependency
+                var decision = (await trust.AssessAsync([new Dependency
                 {
                     Ecosystem = ecosystem, Name = selectedName, Version = selectedVersion, Source = selectedSource
-                };
-                var excluded = activeApproved.Select(r => TrustService.MatchingExclusion(r, lookupDependency, exclusions))
-                    .FirstOrDefault(e => e != null);
-                if (denied != null)
-                {
-                    model.LookupStatus = "Denied";
-                    model.LookupReason = "An explicit rejection or revocation matches this dependency.";
-                }
-                else if (excluded != null)
-                {
-                    model.LookupStatus = "Excluded version";
-                    model.LookupReason = $"An active rule excludes this version because of {excluded.Vulnerability.SourceId}. Other overlapping approvals cannot override the exclusion.";
-                }
-                else if (activeApproved.Count > 0)
-                {
-                    var knownArtifacts = await db.PackageArtifacts.AsNoTracking()
-                        .Where(a => a.Ecosystem == ecosystem && a.Version == selectedVersion &&
-                            a.Source == selectedSource && a.FirstTrustedAtUtc != null &&
-                            (ecosystem == "nuget" ? a.Name.ToLower() == selectedName.ToLower() :
-                                a.Name == selectedName))
-                        .ToListAsync();
-                    var knownDecisions = knownArtifacts.Count == 0 ? [] : await trust.AssessAsync(
-                        knownArtifacts.Select(a => new Dependency
-                        {
-                            Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version,
-                            Source = a.Source, Sha256 = a.Sha256
-                        }));
-                    var availableArtifact = knownArtifacts.Zip(knownDecisions)
-                        .FirstOrDefault(pair => pair.Second.Trusted).First;
-                    if (availableArtifact != null)
-                    {
-                        model.LookupStatus = "Checked artifact available";
-                        model.LookupReason = $"Recorded SHA-256: {availableArtifact.Sha256}. " +
-                            "This result covers this package file, not its future dependency graph.";
-                    }
-                    else if (knownDecisions.Count > 0)
-                    {
-                        model.LookupStatus = "Recorded artifact not currently available";
-                        model.LookupReason = knownDecisions[0].Reason;
-                    }
-                    else
-                    {
-                        var approved = activeApproved[0];
-                        model.LookupStatus = "Rule match — pending artifact and vulnerability check";
-                        model.LookupReason = approved.Sha256 == null
-                            ? $"Rule #{approved.Id} matches. This does not approve an unseen package file or its dependencies."
-                            : $"Pinned rule #{approved.Id} matches the name and version; the package SHA-256 must also match.";
-                    }
-                }
-                else
-                {
-                    model.LookupStatus = "No active authorization";
-                    model.LookupReason = "Submit a dependency request or ask an administrator to review the rule.";
-                }
+                }])).Single();
+                model.LookupStatus = decision.Trusted ? "Allowed" :
+                    decision.PendingVerification ? "Vulnerability data unavailable" : "Not allowed";
+                model.LookupReason = decision.Reason;
             }
         }
+
         return this.StackView(model);
     }
 
@@ -313,12 +232,12 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
     {
         if (id < 1) return BadRequest();
         var artifact = await db.PackageArtifacts.AsNoTracking().SingleOrDefaultAsync(a => a.Id == id);
-        if (artifact?.FirstTrustedAtUtc == null) return NotFound();
+        if (artifact == null) return NotFound();
         if (!AllowedPackageSources.Contains(configuration, artifact.Ecosystem, artifact.Source)) return NotFound();
         var decision = (await trust.AssessAsync([new Dependency
         {
             Ecosystem = artifact.Ecosystem, Name = artifact.Name, Version = artifact.Version,
-            Source = artifact.Source, Sha256 = artifact.Sha256
+            Source = artifact.Source
         }])).Single();
         if (!decision.Trusted || decision.RuleId == null) return NotFound();
         var rule = await db.TrustRules.AsNoTracking().Include(r => r.Supplier).Include(r => r.Reviews)

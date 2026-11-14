@@ -562,7 +562,7 @@ public class DependencyScannerTests
     }
 
     [TestMethod]
-    public async Task NuGetArchiveHashAndSourceAreVerified()
+    public async Task NuGetReportsAssetsAndSourceWithoutReadingArchives()
     {
         var root = Path.Combine(Path.GetTempPath(), "s360-scanner-" + Guid.NewGuid().ToString("N"));
         var package = Path.Combine(root, "cache", "example", "1.2.3");
@@ -590,33 +590,13 @@ public class DependencyScannerTests
             await File.WriteAllTextAsync(assets, JsonSerializer.Serialize(assetsJson));
             var result = await DependencyScanner.ReadNuGetAsync(assets);
             Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(Convert.ToHexStringLower(SHA256.HashData(bytes)), result[0].Sha256);
+            Assert.AreEqual("", result[0].Sha256);
             Assert.AreEqual("https://api.nuget.org/v3/index.json", result[0].Source);
-            await File.WriteAllTextAsync(Path.Combine(package, ".nupkg.metadata"), JsonSerializer.Serialize(new
-            {
-                source = "https://api.nuget.org/v3/index.json", contentHash = "unexpected-content-hash"
-            }));
-            await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => DependencyScanner.ReadNuGetAsync(assets));
-            await File.WriteAllTextAsync(Path.Combine(package, ".nupkg.metadata"), JsonSerializer.Serialize(new
-            {
-                source = "https://api.nuget.org/v3/index.json", contentHash = expected512
-            }));
-            var wrongIdentity = CreateNuGetArchive("Different", "1.2.3");
-            await File.WriteAllBytesAsync(Path.Combine(package, "example.1.2.3.nupkg"), wrongIdentity);
-            await File.WriteAllTextAsync(Path.Combine(package, "example.1.2.3.nupkg.sha512"),
-                Convert.ToBase64String(SHA512.HashData(wrongIdentity)));
-            var identityError = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ReadNuGetAsync(assets));
-            StringAssert.Contains(identityError.Message, "archive identity differs");
-            var wrongVersion = CreateNuGetArchive("Example", "2.0.0");
-            await File.WriteAllBytesAsync(Path.Combine(package, "example.1.2.3.nupkg"), wrongVersion);
-            await File.WriteAllTextAsync(Path.Combine(package, "example.1.2.3.nupkg.sha512"),
-                Convert.ToBase64String(SHA512.HashData(wrongVersion)));
-            var versionError = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ReadNuGetAsync(assets));
-            StringAssert.Contains(versionError.Message, "archive identity differs");
-            await File.WriteAllBytesAsync(Path.Combine(package, "example.1.2.3.nupkg"), "tampered"u8.ToArray());
-            await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => DependencyScanner.ReadNuGetAsync(assets));
+            File.Delete(Path.Combine(package, "example.1.2.3.nupkg"));
+            File.Delete(Path.Combine(package, "example.1.2.3.nupkg.sha512"));
+            var withoutArchive = await DependencyScanner.ReadNuGetAsync(assets);
+            Assert.AreEqual("Example", withoutArchive.Single().Name);
+            Assert.AreEqual("1.2.3", withoutArchive.Single().Version);
         }
         finally { Directory.Delete(root, true); }
     }
@@ -630,100 +610,9 @@ public class DependencyScannerTests
         return output.ToArray();
     }
 
-    [TestMethod]
-    [DataRow("package", false)]
-    [DataRow("sample", false)]
-    [DataRow("package", true)]
-    [DataRow("sample", true)]
-    public async Task NpmLockIntegrityIsVerified(string archiveRoot, bool legacyPrefix)
-    {
-        var root = Path.Combine(Path.GetTempPath(), "s360-npm-" + Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "node_modules", "sample"));
-        try
-        {
-            var manifestVersion = legacyPrefix ? "v1.0.0" : "1.0.0";
-            await File.WriteAllTextAsync(Path.Combine(root, "node_modules", "sample", "package.json"),
-                JsonSerializer.Serialize(new { name = "sample", version = manifestVersion }));
-            var bytes = CreateNpmArchive("sample", manifestVersion, archiveRoot + "/package.json");
-            var integrity = Convert.ToBase64String(SHA512.HashData(bytes));
-            var lockFile = Path.Combine(root, "package-lock.json");
-            var lockJson = new
-            {
-                lockfileVersion = 3,
-                packages = new Dictionary<string, object>
-                {
-                    [""] = new { },
-                    ["node_modules/sample"] = new { version = "1.0.0", resolved = "https://registry.npmjs.org/sample/-/sample-1.0.0.tgz", integrity = "sha512-" + integrity }
-                }
-            };
-            await File.WriteAllTextAsync(lockFile, JsonSerializer.Serialize(lockJson));
-            using var client = new HttpClient(new FixedHandler(bytes));
-            var result = await DependencyScanner.ReadNpmAsync(lockFile, root, client);
-            Assert.AreEqual(1, result.Count);
-            Assert.AreEqual(Convert.ToHexStringLower(SHA256.HashData(bytes)), result[0].Sha256);
-            var locked = await DependencyScanner.ReadNpmAsync(lockFile, root, client, lockfileOnly: true);
-            Assert.AreEqual(result[0].Sha256, locked.Single().Sha256);
-            using var changed = new HttpClient(new FixedHandler("changed"u8.ToArray()));
-            await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => DependencyScanner.ReadNpmAsync(lockFile, root, changed));
-            using var redirected = new HttpClient(new OtherOriginHandler(bytes));
-            var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ReadNpmAsync(lockFile, root, redirected));
-            StringAssert.Contains(error.Message, "different source");
 
-            var wrongIdentity = CreateNpmArchive("different", "1.0.0", archiveRoot + "/package.json");
-            var wrongLockJson = new
-            {
-                lockfileVersion = 3,
-                packages = new Dictionary<string, object>
-                {
-                    [""] = new { },
-                    ["node_modules/sample"] = new
-                    {
-                        version = "1.0.0", resolved = "https://registry.npmjs.org/sample/-/sample-1.0.0.tgz",
-                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(wrongIdentity))
-                    }
-                }
-            };
-            await File.WriteAllTextAsync(lockFile, JsonSerializer.Serialize(wrongLockJson));
-            using var wrongClient = new HttpClient(new FixedHandler(wrongIdentity));
-            var identityError = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ReadNpmAsync(lockFile, root, wrongClient));
-            StringAssert.Contains(identityError.Message, "archive identity differs");
-        }
-        finally { Directory.Delete(root, true); }
-    }
 
-    [TestMethod]
-    [DataRow("../package.json")]
-    [DataRow("nested/package/package.json")]
-    [DataRow("first/package.json|second/package.json")]
-    public async Task NpmAmbiguousOrMisplacedArchiveManifestsAreRejected(string manifestPaths)
-    {
-        var root = Path.Combine(Path.GetTempPath(), "s360-npm-manifest-" + Guid.NewGuid().ToString("N"));
-        Directory.CreateDirectory(Path.Combine(root, "node_modules/sample"));
-        try
-        {
-            await File.WriteAllTextAsync(Path.Combine(root, "node_modules/sample/package.json"),
-                """{"name":"sample","version":"1.0.0"}""");
-            var archive = CreateNpmArchive("sample", "1.0.0", manifestPaths.Split('|'));
-            var lockFile = Path.Combine(root, "package-lock.json");
-            await File.WriteAllTextAsync(lockFile, JsonSerializer.Serialize(new
-            {
-                lockfileVersion = 3, packages = new Dictionary<string, object>
-                {
-                    [""] = new { }, ["node_modules/sample"] = new
-                    {
-                        version = "1.0.0", resolved = "https://registry.npmjs.org/sample/-/sample-1.0.0.tgz",
-                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(archive))
-                    }
-                }
-            }));
-            using var client = new HttpClient(new FixedHandler(archive));
-            await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ReadNpmAsync(lockFile, root, client));
-        }
-        finally { Directory.Delete(root, true); }
-    }
+
 
     private static byte[] CreateNpmArchive(string name, string version, params string[] manifestPaths)
     {
@@ -880,44 +769,7 @@ public class DependencyScannerTests
         finally { Directory.Delete(root, true); }
     }
 
-    [TestMethod]
-    [DataRow("integrity")]
-    [DataRow("identity")]
-    [DataRow("redirect")]
-    public async Task NpmLockfileOnlyRejectsInvalidArchivesWithoutInstalling(string failure)
-    {
-        var root = Directory.CreateTempSubdirectory("s360-npm-preinstall-invalid-").FullName;
-        try
-        {
-            await File.WriteAllTextAsync(Path.Combine(root, "package.json"),
-                """{"dependencies":{"sample":"1.0.0"}}""");
-            var bytes = CreateNpmArchive(failure == "identity" ? "different" : "sample", "1.0.0");
-            await File.WriteAllTextAsync(Path.Combine(root, "package-lock.json"), JsonSerializer.Serialize(new
-            {
-                lockfileVersion = 3, packages = new Dictionary<string, object>
-                {
-                    [""] = new { dependencies = new Dictionary<string, string> { ["sample"] = "1.0.0" } },
-                    ["node_modules/sample"] = new
-                    {
-                        version = "1.0.0", resolved = "https://registry.example/sample.tgz",
-                        integrity = "sha512-" + Convert.ToBase64String(SHA512.HashData(bytes))
-                    }
-                }
-            }));
-            using var client = new HttpClient(failure == "redirect" ? new OtherOriginHandler(bytes) :
-                new FixedHandler(failure == "integrity" ? "changed"u8.ToArray() : bytes));
-            var error = await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
-                DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm", npmLockfileOnly: true));
-            StringAssert.Contains(error.Message, failure switch
-            {
-                "integrity" => "integrity mismatch",
-                "identity" => "archive identity differs",
-                _ => "different source"
-            });
-            Assert.IsFalse(Directory.Exists(Path.Combine(root, "node_modules")));
-        }
-        finally { Directory.Delete(root, true); }
-    }
+
 
     [TestMethod]
     [DataRow(true)]
@@ -956,7 +808,7 @@ public class DependencyScannerTests
     [DataRow("sample", 3, "redirect")]
     [DataRow("sample", 3, "denied")]
     [DataRow("sample", 3, "unavailable")]
-    public async Task NpmRegistryOverrideAuditsTheActualRegistryWithoutChangingLockfiles(string name, int lockVersion, string failure)
+    public async Task NpmRegistryOverrideReportsPolicySourceWithoutRegistryRequests(string name, int lockVersion, string failure)
     {
         var root = Path.Combine(Path.GetTempPath(), "s360-registry-audit-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(root);
@@ -982,7 +834,7 @@ public class DependencyScannerTests
             await File.WriteAllTextAsync(path, lockfile);
             var handler = new RegistryOverrideHandler(served, failure);
             using var client = new HttpClient(handler);
-            if (failure is "success" or "selected-prefix")
+            if (failure != "direct-url")
             {
                 var report = failure == "selected-prefix"
                     ? await DependencyScanner.ScanDetailedAsync(root, client, expectedNpmSource: "https://nopkg.example/npm/",
@@ -991,21 +843,16 @@ public class DependencyScannerTests
                         "https://nopkg.example/npm/", ecosystem: "npm", npmLockfileOnly: true);
                 var dependency = report.Dependencies.Single();
                 Assert.AreEqual("https://nopkg.example/npm", dependency.Source);
-                Assert.AreEqual(Convert.ToHexStringLower(SHA256.HashData(bytes)), dependency.Sha256);
+                Assert.AreEqual("", dependency.Sha256);
                 Assert.IsNotEmpty(report.PathsFor(dependency));
                 Assert.IsTrue(report.GraphNodes.Any(n => n.Package == dependency));
-            }
-            else if (failure is "denied" or "unavailable")
-            {
-                await Assert.ThrowsExactlyAsync<HttpRequestException>(() => DependencyScanner.ScanDetailedWithNpmRegistryAsync(root, client,
-                    "https://nopkg.example/npm/", ecosystem: "npm", npmLockfileOnly: true));
             }
             else
             {
                 await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => DependencyScanner.ScanDetailedWithNpmRegistryAsync(root, client,
                     "https://nopkg.example/npm/", ecosystem: "npm", npmLockfileOnly: true));
             }
-            Assert.AreEqual(failure == "direct-url" ? 0 : 1, handler.Urls.Count);
+            Assert.AreEqual(0, handler.Urls.Count, "The checker must not contact any package registry.");
             Assert.IsTrue(handler.Urls.All(u => u.Scheme == "https" && u.Host == "nopkg.example" &&
                 Uri.UnescapeDataString(u.AbsolutePath) == "/npm/" + standard));
             Assert.AreEqual(lockfile, await File.ReadAllTextAsync(path));
@@ -1113,13 +960,4 @@ public class DependencyScannerTests
         }
     }
 
-    private sealed class OtherOriginHandler(byte[] bytes) : HttpMessageHandler
-    {
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken) =>
-            Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
-            {
-                RequestMessage = new HttpRequestMessage(HttpMethod.Get, "https://other-registry.example/sample-1.0.0.tgz"),
-                Content = new ByteArrayContent(bytes)
-            });
-    }
 }

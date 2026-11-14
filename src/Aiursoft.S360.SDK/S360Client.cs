@@ -8,7 +8,7 @@ namespace Aiursoft.S360.SDK;
 public class S360Client(AiurProtocolClient client)
 {
     public bool SupportsSolutionGraphs { get; private set; }
-    /// <summary>Wait only for independent verification of policy-approved review dependencies.</summary>
+    /// <summary>Wait only for vulnerability data for policy-approved review dependencies.</summary>
     public async Task<CheckResponse> CheckWhenReadyAsync(string server, string? apiKey, CheckRequest request,
         TimeSpan timeout, CancellationToken cancellationToken = default)
     {
@@ -43,14 +43,14 @@ public class S360Client(AiurProtocolClient client)
                 var denied = response.Decisions.Where(d => !d.Trusted).ToList();
                 if (response.Trusted || denied.Count == 0 || denied.Any(d => !d.PendingVerification))
                     return response;
-                Console.WriteLine($"S360 is independently verifying and auditing {denied.Count} approved package versions; waiting.");
+                Console.WriteLine($"S360 is refreshing vulnerability data for {denied.Count} approved package versions; waiting.");
                 await Task.Delay(TimeSpan.FromSeconds(15), deadline.Token);
             }
         }
         catch (OperationCanceledException) when (!cancellationToken.IsCancellationRequested)
         {
-            throw new TimeoutException("S360 package verification did not complete within the wait limit. " +
-                "The build remains blocked; check source verification and vulnerability audit job results, then retry.");
+            throw new TimeoutException("S360 vulnerability refresh did not complete within the wait limit. " +
+                "The build remains blocked; check vulnerability audit job results, then retry.");
         }
     }
 

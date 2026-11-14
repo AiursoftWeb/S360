@@ -206,9 +206,9 @@ public class CliCheckTests
     [TestMethod]
     [DataRow("This version has a known active vulnerability.", "Upgrade or remove")]
     [DataRow("Excluded vulnerable or uncertain version: GHSA-example.", "outside the excluded range")]
-    [DataRow("Previously recorded package bytes changed.", "policy/source/hash rejection")]
-    [DataRow("Explicitly rejected or revoked.", "policy/source/hash rejection")]
-    [DataRow("Package source is not permitted for S360 checks.", "policy/source/hash rejection")]
+    [DataRow("Previously recorded package bytes changed.", "policy rejection")]
+    [DataRow("Explicitly rejected or revoked.", "policy rejection")]
+    [DataRow("Package source is not permitted for S360 checks.", "policy rejection")]
     public void SecurityDenialsDoNotSuggestRequestingApproval(string reason, string action)
     {
         var dependency = new Dependency { Ecosystem = "nuget", Name = "Example", Version = "1.2.3",

@@ -17,7 +17,7 @@ public class Dependency
     [Required, StringLength(500)]
     public string Source { get; set; } = string.Empty;
 
-    [Required, RegularExpression("^[a-fA-F0-9]{64}$")]
+    [RegularExpression("^[a-fA-F0-9]{64}$")]
     public string Sha256 { get; set; } = string.Empty;
 }
 
@@ -46,7 +46,7 @@ public class DependencyDecision
 {
     public Dependency Dependency { get; set; } = new();
     public bool Trusted { get; set; }
-    /// <summary>Policy permits this package, but independent verification or audit is still pending.</summary>
+    /// <summary>Policy permits this package, but current vulnerability data is unavailable. The property name is retained for existing clients.</summary>
     public bool PendingVerification { get; set; }
     public string Reason { get; set; } = string.Empty;
     public int? RuleId { get; set; }

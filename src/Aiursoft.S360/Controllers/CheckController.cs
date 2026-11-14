@@ -25,7 +25,7 @@ namespace Aiursoft.S360.Controllers;
 [Route("api/check")]
 public class CheckController(TrustService trust, TemplateDbContext db,
     BackgroundJobRegistry jobs, IMemoryCache cache, IConfiguration configuration,
-    GlobalSettingsService settings, IAuthorizationService authorization, ArtifactVerificationAdmission admission, ServiceTaskQueue taskQueue) : ControllerBase
+    GlobalSettingsService settings, IAuthorizationService authorization, ReviewAdmission admission, ServiceTaskQueue taskQueue) : ControllerBase
 {
     [HttpPost, AllowAnonymous, LimitPerMin(120)]
     [RequestSizeLimit(4 * 1024 * 1024)]
@@ -83,8 +83,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             return BadRequest("Dependencies must belong to the declared ecosystem.");
         if (purpose == "review")
         {
-            // Reviews may queue globally approved artifacts for independent verification,
-            // but never store project reports or change production inventory.
+            // Reviews query policy and vulnerability data without saving project inventory.
             if (anonymous && !admission.AnonymousReviews.Wait(0))
             {
                 Response.Headers.RetryAfter = "15";
@@ -94,7 +93,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             {
                 var graphError = DependencyReportGraph.Validate(request, [], request.Dependencies, request.BatchCount == 1);
                 if (graphError != null) return BadRequest(graphError);
-                var decisions = await CheckDependenciesAsync(request.Dependencies, persist: false, anonymous);
+                var decisions = await CheckDependenciesAsync(request.Dependencies, persist: false);
                 QueueAudit(decisions);
                 return Ok(new CheckResponse
                 {
@@ -255,9 +254,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             }
             db.BuildChecks.Add(check);
             await db.SaveChangesAsync();
-            QueueAudit(decisions, check.Dependencies.Any(d =>
-                d.PackageArtifact is { SourceVerifiedAtUtc: null, SourceVerificationRejected: false } ||
-                d.PackageArtifact is { LastCheckedAtUtc: null, SourceVerificationRejected: false }));
+            QueueAudit(decisions, check.Dependencies.Any(d => d.PackageArtifact is { LastCheckedAtUtc: null }));
             return Ok(new CheckResponse
             {
                 SolutionGraphVersion = request.SolutionGraph == null ? 0 : 1,
@@ -274,13 +271,13 @@ public class CheckController(TrustService trust, TemplateDbContext db,
         }
     }
 
-    private async Task<List<DependencyDecision>> CheckDependenciesAsync(List<Dependency> dependencies, bool persist, bool anonymous = false)
+    private async Task<List<DependencyDecision>> CheckDependenciesAsync(List<Dependency> dependencies, bool persist)
     {
         var sourceAllowed = dependencies.Select(dependency =>
             AllowedPackageSources.Contains(configuration, dependency.Ecosystem, dependency.Source)).ToArray();
         var permitted = dependencies.Where((_, index) => sourceAllowed[index]).ToList();
         var assessed = permitted.Count == 0 ? [] : persist
-            ? await trust.CheckAsync(permitted) : await trust.ReviewAsync(permitted, () => admission.TryAdmit(anonymous));
+            ? await trust.CheckAsync(permitted) : await trust.ReviewAsync(permitted);
         var index = 0;
         return dependencies.Select((dependency, position) => sourceAllowed[position]
             ? assessed[index++]

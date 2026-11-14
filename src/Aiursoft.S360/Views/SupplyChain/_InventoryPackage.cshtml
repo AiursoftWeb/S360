@@ -66,7 +66,7 @@
                 </ul>
                 <details class="s360-inventory-policy">
                     <summary>@Localizer["Approval scope and package identity"]</summary>
-                    <p class="small mt-3">@Localizer["Source"]: @Model.Source<br />SHA-256: <code>@version.Dependency.Sha256</code></p>
+                    <p class="small mt-3">@Localizer["Source"]: @Model.Source</p>
                     @if (version.Rules.Count == 0) { <p>@Localizer["No matching approval rule is recorded."]</p> }
                     @foreach (var rule in version.Rules)
                     {

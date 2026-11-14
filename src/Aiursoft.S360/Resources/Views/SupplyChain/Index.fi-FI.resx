@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>Etsi paketteja</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>Katalogin lukutapa</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>HTTPS-pakettivarasto</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Katalogin lukutapa</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Sisällytä esiversiot</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Hallitse toimittajia ja luottamussääntöjä</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Hallitse luottamus sääntöjä</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>Hallinnoi version käyttöoikeuksia</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>Paketti</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>Pakettien saatavuus noudattaa hyväksyttyjä sääntöjä ja ajantasoisia haavoittuvuusvalvontia.</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>Pakettitiedostot ladataan ja tarkistetaan rekisteröintisi kautta. Tämä päätös kattaa pakettisäännöstön ja tunnetut haavoittuvuudet.</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Pakettinimi</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Tallennetut artefaktit</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>Rapportoidut versiot</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>Tässä näytetään raportoidut versiot, jotka tällä hetkellä täyttävät kriteerit. Säännöt voivat myöntää käyttöoikeuden myös versioille, joita ei ole vielä raportoitu.</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>Tarkista vanhat säännöt</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Peruuta</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Hae</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Hae</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>Näytä tunnetut pakettiversiot, joihin tämä ehdotettu sääntö täsmäisi. Tämä on esikatselu säännön kattavuudesta, ei luottamuspäätös.</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Viimeisin haavoittuvuuksien synkronointi epäonnistui. Tallennetut artefaktit pysyvät piilotettuina, kunnes auditointi onnistuu.</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>Uusin haavoittuvuuksien synkronointi epäonnistui. Edelliset valmiit tulokset ovat edelleen käytettävissä, kunnes ne vanhenevat.</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>Luottamussäännöt</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>Haavoittuvuustarkastus ei ole vielä valmistunut. Tallennettuja artefakteja ei voida luetella saatavilla olevina.</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>Haavoittuvuuksien tarkistus ei ole vielä valmis. Raportoituja versioita ei voida listata käytettävissä olevina.</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>Haavoittuvuustarkastus on vanhentunut. Tallennetut artefaktit ovat piilotettuina, kunnes uusi tarkastus on valmis.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>Haavoittuvuudentarkistus on vanhentunut. Raportoituja versioita ei näytetä, kunnes uusi tarkistus on valmis.</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>Jokerisäännöt sallivat automaattisesti tulevat versiot; ensimmäisellä kerralla havaitut tiivisteet tallennetaan silti.</value>

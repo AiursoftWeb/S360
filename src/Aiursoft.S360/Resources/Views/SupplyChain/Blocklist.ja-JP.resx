@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+      <data name="A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>一致するパッケージは、ソース、承認の有無、直接依存または推移的依存として到着したかに関わらず拒否されます。過去の承認とチェックは監査証跡として保持されます。</value>
+  </data>
+  <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
     <value>一致するパッケージは、提供元、取得元、承認の有無、または直接依存か推移的依存として到達したかにかかわらず、拒否されます。過去の承認と確認の記録は、監査証跡として保持されます。</value>
   </data>
   <data name="Absolute blocklist" xml:space="preserve">
@@ -26,12 +29,6 @@
   </data>
   <data name="Add absolute block" xml:space="preserve">
     <value>絶対ブロックを追加</value>
-  </data>
-  <data name="applications" xml:space="preserve">
-    <value>アプリケーション</value>
-  </data>
-  <data name="artifacts" xml:space="preserve">
-    <value>成果物</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>利用可能な依存関係</value>
@@ -104,6 +101,12 @@
   </data>
   <data name="Why disable this block?" xml:space="preserve">
     <value>このブロックを無効にする理由</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>アプリケーション</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>成果物</value>
   </data>
 
 </root>

@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>API को भेजी गई निर्भरता सूची का एक सीमित हिस्सा। स्वीकृत बैच, पूर्ण रूप से स्वीकृत रन के समान नहीं होता।</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>एपीआई कुंजी आईडी</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>स्वीकृत</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>गुमनाम समीक्षा</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>एपीआई कुंजी आईडी</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>ऑडिट का उद्देश्य</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>बैच</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>बैच रिकॉर्ड</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>बिल्ड जाँच रिकॉर्ड</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>रन</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>स्कैन किए गए प्रोजेक्ट</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>खोजें</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>स्रोत</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>इस निर्णय के आधार में मौजूद सलाहकारी डेटा की पिछली जाँच कब हुई थी; खाली मान का अर्थ यह नहीं है कि सब कुछ ठीक है।</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>बैच रिकॉर्ड</value>
   </data>
 
 </root>

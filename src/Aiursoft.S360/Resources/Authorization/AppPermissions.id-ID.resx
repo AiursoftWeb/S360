@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>Konfigurasikan dan sinkronkan pemantauan insiden keamanan untuk garis dasar produksi.</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>Buat dan kelola kunci API pribadi, lalu gunakan kunci tersebut untuk meninjau permintaan dependensi.</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>Buat kunci API dan panggil S360</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Buat dan kelola kunci API pribadi, lalu gunakan kunci tersebut untuk meninjau permintaan dependensi.</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>Buat kunci API pribadi yang mendukung baseline dan nyatakan inventaris dependensi produksi.</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>Identitas mesin dapat menjalankan pemeriksaan dependensi dari CI; login melalui browser saja tidak dapat menggunakan API pemeriksaan.</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>Kelola pemblokiran paket secara mutlak.</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>Kelola integrasi AlertCenter</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>Kelola Pengaturan Global</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Kelola pemblokiran paket secara mutlak.</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Kelola daftar blokir</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>Kelola Pengaturan Global</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>Kelola aturan persetujuan dependensi.</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>Kelola pemasok dan aturan kepercayaan dependensi wildcard.</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>Publikasikan baseline produksi</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>Baca semua permintaan, pemeriksaan build, dan catatan audit kerentanan.</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Izin Membaca</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>Lihat Peran</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>Baca Rantai Pasok</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Membaca Pengguna</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Baca semua permintaan, pemeriksaan build, dan catatan audit kerentanan.</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Baca Rantai Pasok</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Mulai Ulang Aplikasi Ini</value>

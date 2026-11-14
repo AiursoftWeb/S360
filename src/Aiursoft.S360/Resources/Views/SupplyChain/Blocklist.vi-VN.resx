@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+      <data name="A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Bất kỳ gói nào khớp đều bị từ chối bất kể nguồn gốc, tình trạng phê duyệt hay việc nó được đưa vào dưới dạng phụ thuộc trực tiếp hay gián tiếp. Các phê duyệt và kiểm tra trước đó vẫn được giữ lại như bằng chứng kiểm toán.</value>
+  </data>
+  <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
     <value>Gói khớp với quy tắc sẽ bị từ chối bất kể nhà cung cấp, nguồn gốc, trạng thái phê duyệt hoặc việc gói đó được đưa vào dưới dạng phụ thuộc trực tiếp hay phụ thuộc bắc cầu. Các phê duyệt và kiểm tra trước đây vẫn được lưu giữ làm bằng chứng kiểm toán.</value>
   </data>
   <data name="Absolute blocklist" xml:space="preserve">
@@ -26,12 +29,6 @@
   </data>
   <data name="Add absolute block" xml:space="preserve">
     <value>Thêm chặn tuyệt đối</value>
-  </data>
-  <data name="applications" xml:space="preserve">
-    <value>ứng dụng</value>
-  </data>
-  <data name="artifacts" xml:space="preserve">
-    <value>gói phần mềm</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Các gói phụ thuộc hiện có</value>
@@ -104,6 +101,12 @@
   </data>
   <data name="Why disable this block?" xml:space="preserve">
     <value>Tại sao vô hiệu hóa quy tắc chặn này?</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>ứng dụng</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>gói phần mềm</value>
   </data>
 
 </root>

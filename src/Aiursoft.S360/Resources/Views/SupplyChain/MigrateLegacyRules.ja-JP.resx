@@ -39,6 +39,9 @@
   <data name="Select" xml:space="preserve">
     <value>選択</value>
   </data>
+  <data name="Select observed, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
+    <value>元のバージョン権限を継承する対象として、確認された具体的なパッケージ名を選択してください。元のルールと承認は参照可能な履歴として保持されます。自動的に選択されることはありません。</value>
+  </data>
   <data name="Select verified, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
     <value>各オリジナルのバージョン付与を引き継ぐ、検証済みの具体的なパッケージ名を選択してください。元のルールと承認内容は、後から確認できる履歴として残ります。自動的に選択されるものはありません。</value>
   </data>

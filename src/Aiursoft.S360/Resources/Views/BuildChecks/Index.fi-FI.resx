@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>Rajoitettu osa riippuvuuslistasta, joka lähetetään API:lle. Hyväksytty erä ei ole sama kuin täysin hyväksytty ajanto.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API-avainten tunniste</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Hyväksytty</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Anonyymi arviointi</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>API-avainten tunniste</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Tarkastuksen tarkoitus</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Erä</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>erätietuetta</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Koontiversion tarkistustiedot</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Ajo</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Skannatut projektit</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Hae</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Lähde</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Milloin tämän päätöksen taustalla olevat neuvoa antavat tiedot tarkistettiin viimeksi; tyhjä arvo ei ole merkki terveydestä.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>erätietuetta</value>
   </data>
 
 </root>

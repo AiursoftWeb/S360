@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>「即發即忘」支援長時間執行的工作（如電子郵件或人工智慧），具備圖形使用者介面以管理佇列、平行處理及取消作業。</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} 個受影響的專案</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} 個需要注意的套件版本</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} 總計 · {1} 進行中 · {2} 已核准</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>日期空白表示尚未成功完成任何弱點同步作業。時間皆為 UTC。</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>可允許符合條件套件的政策；若有絕對封鎖規則或缺少套件檔案佐證，仍會拒絕這些套件。</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>AI 驅動翻譯</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>優先於信任規則與核准的絕對排除項目。</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>啟用中的封鎖規則</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>AI 驅動翻譯</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>所有相依元件都會自動註冊，並始終可透過建構函式注入使用。</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>工作一目瞭然，無須猜測。</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} 個受影響的專案</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} 個需要注意的套件版本</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} 總計 · {1} 進行中 · {2} 已核准</value>
   </data>
 
 </root>

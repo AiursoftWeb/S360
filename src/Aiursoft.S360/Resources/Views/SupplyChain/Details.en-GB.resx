@@ -60,6 +60,9 @@
   <data name="Package file and current authorization" xml:space="preserve">
     <value>Package file and current authorisation</value>
   </data>
+  <data name="Package version and current authorization" xml:space="preserve">
+    <value>Package version and current authorisation</value>
+  </data>
   <data name="Packages that brought this artifact in" xml:space="preserve">
     <value>Packages that brought this artefact in</value>
   </data>
@@ -77,6 +80,9 @@
   </data>
   <data name="This concrete package file currently passes S360&apos;s authorization and stored vulnerability checks. A future build must still check its own complete dependency graph." xml:space="preserve">
     <value>This specific package file currently passes S360&apos;s authorisation and stored vulnerability checks. A future build must still check its own complete dependency graph.</value>
+  </data>
+  <data name="This package version currently passes authorization and vulnerability checks." xml:space="preserve">
+    <value>This package version currently passes authorisation and vulnerability checks.</value>
   </data>
 
 </root>

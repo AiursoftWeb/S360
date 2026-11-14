@@ -18,16 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
-    <value>{0} gói hiện vật · {1} cần được chú ý</value>
-  </data>
-  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
-    <value>{0} kết quả · Trang {1} trên {2}</value>
-  </data>
-  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
-    <value>{0} gói dễ bị tấn công · {1} gói khác cần được chú ý</value>
-  </data>
-  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+      <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
     <value>Bản đồ giải pháp hoàn chỉnh chưa được ghi lại trong báo cáo này. Chạy CLI mới nhất để điền thông tin; danh sách gói vẫn khả dụng.</value>
   </data>
   <data name="A newer report is incomplete." xml:space="preserve">
@@ -120,9 +111,6 @@
   <data name="Not verified" xml:space="preserve">
     <value>Chưa được xác minh</value>
   </data>
-  <data name="npm: not included in this audit." xml:space="preserve">
-    <value>npm: không được bao gồm trong cuộc kiểm tra này.</value>
-  </data>
   <data name="NuGet and npm" xml:space="preserve">
     <value>NuGet và npm</value>
   </data>
@@ -156,11 +144,11 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Dự án có báo cáo</value>
   </data>
-  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
-    <value>Việc đọc danh mục dự án yêu cầu quyền đọc chuỗi cung ứng. Bạn vẫn có thể xem các quy tắc phê duyệt.</value>
-  </data>
   <data name="README badge" xml:space="preserve">
     <value>Biểu tượng README</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Việc đọc danh mục dự án yêu cầu quyền đọc chuỗi cung ứng. Bạn vẫn có thể xem các quy tắc phê duyệt.</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>Báo cáo</value>
@@ -212,6 +200,18 @@
   </data>
   <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
     <value>Cập nhật báo cáo CLI để xem các mối quan hệ phụ thuộc.</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: không được bao gồm trong cuộc kiểm tra này.</value>
+  </data>
+  <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} gói hiện vật · {1} cần được chú ý</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} kết quả · Trang {1} trên {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} gói dễ bị tấn công · {1} gói khác cần được chú ý</value>
   </data>
 
 </root>

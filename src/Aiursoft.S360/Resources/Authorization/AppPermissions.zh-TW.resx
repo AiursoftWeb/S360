@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>設定並同步生產基準的資安事件監控。</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>建立及管理個人 API 金鑰，並將其用於相依性審查。</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>建立 API 金鑰並呼叫 S360</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>建立及管理個人 API 金鑰，並將其用於相依性審查。</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>建立支援基線的個人 API 金鑰，並宣告生產環境的相依套件清單。</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>機器身分可從 CI 執行相依性檢查；僅透過瀏覽器登入無法使用檢查 API。</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>管理絕對封鎖套件。</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>管理 AlertCenter 整合</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>管理全域設定</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>管理絕對封鎖套件。</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>管理封鎖清單</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>管理全域設定</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>管理依賴核准規則。</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>管理供應商及萬用字元相依性信任規則。</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>發布生產環境基準線</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>讀取所有請求、建置檢查和弱點稽核記錄。</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>讀取權限</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>讀取角色</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>讀取供應鏈</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>讀取使用者</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>讀取所有請求、建置檢查和弱點稽核記錄。</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>讀取供應鏈</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>重新啟動此應用程式</value>

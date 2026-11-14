@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>Una porzione limitata dell&apos;elenco delle dipendenze inviata all&apos;API. Un lotto accettato non equivale a un&apos;esecuzione completamente accettata.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID chiave API</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Accettato</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Revisione anonima</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>ID chiave API</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Finalità dell&apos;audit</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Lotto</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>record di batch</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Registri dei controlli di compilazione</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Esecuzione</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Progetti analizzati</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Cerca</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Fonte</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Quando sono stati verificati l’ultima volta i dati sugli avvisi alla base di questa decisione; un valore vuoto non significa che sia tutto a posto.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>record di batch</value>
   </data>
 
 </root>

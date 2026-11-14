@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>دعم &quot;إطلاق ونسي&quot; للمهام الطويلة (مثل البريد الإلكتروني أو الذكاء الاصطناعي)، يشمل واجهة رسومية لإدارة الطابور، والمعالجة المتوازية، والإلغاء.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} مشاريع متأثرة</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>هناك {0} إصدارًا من الحزم بحاجة إلى اهتمام</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>الإجمالي {0} · قيد التنفيذ {1} · تمت الموافقة على {2}</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>يعني ترك التاريخ فارغًا أنه لم تنجح بعد أي مزامنة كاملة للثغرات الأمنية. الأوقات بالتوقيت العالمي المنسق (UTC).</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>سياسة قد تسمح بالحزم المطابقة؛ لكن الحظر المطلق أو عدم توفر دليل على الأثر البرمجي يظل سببًا لرفضها.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>الترجمات المدعومة بالذكاء الاصطناعي</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>استبعادات نهائية لها الأولوية على قواعد الثقة والموافقات.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>قواعد الحظر النشطة</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>الترجمات المدعومة بالذكاء الاصطناعي</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>يتم تسجيل جميع التبعيات تلقائيًا وهي متاحة دائمًا عبر حقن المُنشئ.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>عملك، بلا تخمين.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} مشاريع متأثرة</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>هناك {0} إصدارًا من الحزم بحاجة إلى اهتمام</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>الإجمالي {0} · قيد التنفيذ {1} · تمت الموافقة على {2}</value>
   </data>
 
 </root>

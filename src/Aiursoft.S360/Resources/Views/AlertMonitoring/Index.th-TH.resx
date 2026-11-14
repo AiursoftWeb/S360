@@ -63,11 +63,11 @@
   <data name="Last synchronization" xml:space="preserve">
     <value>การซิงค์ครั้งล่าสุด</value>
   </data>
-  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
-    <value>การตรวจสอบระบบจะดำเนินการทุก 1 นาที การค้นพบช่องโหว่จะปฏิบัติตามตารางการตรวจสอบทุก 6 ชั่วโมงที่มีอยู่ การจัดการข้อมูลรับรองและสถานะการใช้งานจะใช้การตั้งค่าระดับระบบ (Global Settings) และรองรับการกำหนดค่าระดับสภาพแวดล้อม (Environment Overrides)</value>
-  </data>
   <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
     <value>การตรวจสอบ MR ข้อมูลช่องโหว่ที่ล้าสมัย การสแกนที่ล้มเหลว และรายงานที่ไม่สมบูรณ์ จะไม่ล้างเหตุการณ์ด้านความปลอดภัยโดยอัตโนมัติ การแก้ไขขั้นสุดท้ายยังคงต้องดำเนินการโดยมือ</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>การตรวจสอบระบบจะดำเนินการทุก 1 นาที การค้นพบช่องโหว่จะปฏิบัติตามตารางการตรวจสอบทุก 6 ชั่วโมงที่มีอยู่ การจัดการข้อมูลรับรองและสถานะการใช้งานจะใช้การตั้งค่าระดับระบบ (Global Settings) และรองรับการกำหนดค่าระดับสภาพแวดล้อม (Environment Overrides)</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>ไม่</value>

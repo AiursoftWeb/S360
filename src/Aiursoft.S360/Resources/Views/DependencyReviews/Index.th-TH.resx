@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>อนุมัติแล้ว</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>และรายการอื่น ๆ ในรายงานฉบับเต็ม</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>การอนุมัติ</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>ไม่มีรายงานการพึ่งพาฉบับสมบูรณ์สำหรับคำขอนี้</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>ไม่พบช่องโหว่ที่ทราบ</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>ไม่มีคำขอในมุมมองนี้</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>ไม่สามารถตรวจสอบแหล่งที่มาของแพ็กเกจได้</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>แหล่งที่มาของแพ็กเกจไม่ได้รับอนุญาต</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>รอดำเนินการ</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>โครงการ</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>รายการในมุมมองนี้</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>ปฏิเสธ</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>ถอนการอนุมัตินี้</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>และรายการอื่น ๆ ในรายงานฉบับเต็ม</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>รายการในมุมมองนี้</value>
   </data>
 
 </root>

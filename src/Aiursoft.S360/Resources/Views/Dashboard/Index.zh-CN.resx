@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>“火速发送”支持长时间运行的任务（如邮件或AI），配备用于队列管理、并行处理和取消的图形化界面。</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>受影响的项目数：{0}</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} 个需要关注的包版本</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} 总计 · {1} 进行中 · {2} 已批准</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>日期为空表示尚未成功完成任何漏洞同步。时间均为 UTC。</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>一种可能允许符合条件的软件包的策略；但绝对禁止规则或缺失的软件包制品证据仍会导致其被拒绝。</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>AI驱动翻译</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>优先于信任规则和审批的绝对禁用项。</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>生效中的封禁规则</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>AI驱动翻译</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>所有依赖项都会自动注册，并始终可通过构造函数注入方式使用。</value>
@@ -518,6 +509,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>工作尽在掌握，无需猜测。</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>受影响的项目数：{0}</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} 个需要关注的包版本</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} 总计 · {1} 进行中 · {2} 已批准</value>
   </data>
 
 </root>

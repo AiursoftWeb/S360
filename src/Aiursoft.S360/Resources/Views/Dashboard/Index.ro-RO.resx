@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Suport „fire-and-forget” pentru sarcini de lungă durată (cum ar fi emailurile sau AI), cu o interfață grafică pentru gestionarea cozii, procesare paralelă și anulare.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} de proiecte afectate</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} versiuni de pachete care necesită atenție</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} total · {1} în curs · {2} aprobate</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>O dată goală înseamnă că nu a fost încă finalizată cu succes nicio sincronizare completă a vulnerabilităților. Orele sunt în UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>O politică poate permite pachetele care corespund criteriilor; o blocare absolută sau lipsa dovezilor privind artefactul le respinge în continuare.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>Traduceri alimentate de Inteligență Artificială</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Excluderi absolute, care au prioritate față de regulile de încredere și aprobări.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Reguli de blocare active</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>Traduceri alimentate de Inteligență Artificială</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Toate dependențele sunt înregistrate automat și sunt întotdeauna disponibile prin injectare în constructor.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Munca ta, fără presupuneri.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} de proiecte afectate</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} versiuni de pachete care necesită atenție</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} total · {1} în curs · {2} aprobate</value>
   </data>
 
 </root>

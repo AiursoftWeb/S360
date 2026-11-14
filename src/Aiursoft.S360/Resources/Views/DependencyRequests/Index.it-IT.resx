@@ -39,8 +39,14 @@
   <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
     <value>Inserisci le versioni esatte delle dipendenze dirette. S360 risolve e analizza l’intero grafo; in futuro, l’integrazione con CI verificherà il grafo di build effettivo dopo la distribuzione.</value>
   </data>
+  <data name="Enter exact names and versions. CI reports transitive dependencies; S360 does not restore them." xml:space="preserve">
+    <value>Inserire nomi e versioni esatti. CI segnala le dipendenze transitive; S360 non le ripristina.</value>
+  </data>
   <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
     <value>Inserisci solo i pacchetti che scegli direttamente; S360 individuerà le relative dipendenze transitive. Usa una versione esatta, non un carattere jolly.</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval." xml:space="preserve">
+    <value>Ad esempio: Microsoft.EntityFrameworkCore@10.0.12. Inserisci ciascun pacchetto che necessita di approvazione.</value>
   </data>
   <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
     <value>Ad esempio: Microsoft.EntityFrameworkCore@10.0.12. Inserisci i pacchetti che hai selezionato tu; S360 individua i pacchetti da essi inclusi.</value>
@@ -59,6 +65,9 @@
   </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>L&apos;origine del pacchetto non è più consentita per i controlli S360.</value>
+  </data>
+  <data name="Packages, one name@version per line" xml:space="preserve">
+    <value>Pacchetti, un nome@versione per riga</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Progetto</value>

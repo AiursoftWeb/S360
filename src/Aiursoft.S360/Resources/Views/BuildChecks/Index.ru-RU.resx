@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>Ограниченная часть списка зависимостей, отправленная в API. Принятая партия не является тем же самым, что и полностью принятый прогон.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>Идентификатор API-ключа</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Принято</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Анонимная проверка</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>Идентификатор API-ключа</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Цель аудита</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Пакет</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>записи о пакетах</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Записи проверок сборки</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Запуск</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Просканировано проектов</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Найти</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Источник</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Когда данные рекомендаций, на которых основано это решение, проверялись в последний раз; пустое значение не означает, что всё в порядке.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>записи о пакетах</value>
   </data>
 
 </root>

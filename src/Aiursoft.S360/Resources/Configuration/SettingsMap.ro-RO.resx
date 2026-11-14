@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>Punctul de acces al AlertCenter</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>Permite utilizatorului să-și ajusteze nickname-ul</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Permiteți recenzii anonime</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>Permiteți evaluările dependențelor fără o cheie API. Evaluările anonime sunt înregistrate ca rapoarte neverificate și nu actualizează niciodată utilizarea în producție. Rapoartele de referință necesită întotdeauna acreditarea protejată corespunzătoare.</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>Permite utilizatorului să-și ajusteze nickname-ul</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Permite utilizatorilor să-și ajusteze nickname-ul în pagina de gestionare a profilului.</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>URL de bază public al S360</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>Numele mărcii afișat în subsol.</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>Numărul de înregistrare ICP pentru utilizatorii din China continentală. Lăsați gol pentru a ascunde.</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>Numele mărcii afișat în subsol.</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>Logoul proiectului afișat în bara de navigare și în subsol. Suportă jpg, png, svg.</value>

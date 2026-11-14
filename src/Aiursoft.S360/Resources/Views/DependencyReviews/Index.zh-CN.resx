@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>已批准</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>完整报告中还有更多内容</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>审批</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>此请求没有可用的完整依赖项报告。</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>未发现已知漏洞</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>此视图中没有请求。</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>无法验证软件包来源</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>软件包来源未获许可</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>待审核</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>项目</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>此视图中的记录</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>拒绝</value>
@@ -215,6 +215,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>撤销此项批准</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>完整报告中还有更多内容</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>此视图中的记录</value>
   </data>
 
 </root>

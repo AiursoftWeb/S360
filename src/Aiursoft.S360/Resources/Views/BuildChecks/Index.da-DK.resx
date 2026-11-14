@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>En afgrænset del af afhængighedslisten, der sendes til API&apos;en. En accepteret batch er ikke det samme som en fuldstændigt accepteret kørsel.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API-nøgle-id</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Accepteret</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Anonym review</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>API-nøgle-id</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Formål med revision</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Batch</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>batchregistreringer</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Byggekontrolregistreringer</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Kørsel</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Scannede projekter</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Søg</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Kilde</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Hvornår rådgivningsdataene bag denne beslutning sidst blev kontrolleret; en tom værdi er ikke ensbetydende med, at alt er i orden.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>batchregistreringer</value>
   </data>
 
 </root>

@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>AlertCenter uç noktası</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>Kullanıcı Adını Ayarlamaya İzin Ver</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Anonim incelemelere izin ver</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>API anahtarı olmadan bağımlılık incelemelerine izin verin. Anonim incelemeler doğrulanmamış raporlar olarak kaydedilir ve asla üretim kullanımını güncellemez. Baz raporlar her zaman korunan kimlik bilgilerini gerektirir.</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>Kullanıcı Adını Ayarlamaya İzin Ver</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Kullanıcıların profil yönetimi sayfasında takma isimlerini ayarlamasına izin ver.</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>S360 herkese açık temel URL</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>Footer&apos;da gösterilen marka adı.</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>Çin ana karasında kullanıcılar için ICP lisans numarası. Gizlemek için boş bırakın.</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>Footer&apos;da gösterilen marka adı.</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>Projenin logosu navbar ve footer&apos;da gösterilir. jpg, png, svg desteklenir.</value>

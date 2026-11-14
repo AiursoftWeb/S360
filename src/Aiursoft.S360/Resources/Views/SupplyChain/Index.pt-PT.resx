@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>Encontrar pacotes</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>Como ler o catálogo</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>Fonte HTTPS do pacote</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Como ler o catálogo</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Incluir versões de pré-lançamento</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Gerir fornecedores e regras de confiança</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Gerir regras de confiança</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>Gerir autorizações de versões</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>Pacote</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>A disponibilidade dos pacotes segue as regras aprovadas e as verificações de vulnerabilidades atuais.</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>Os ficheiros do pacote são transferidos e verificados pelo seu registo. Esta decisão abrange a política do pacote e as vulnerabilidades conhecidas.</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Nome do pacote</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Artefactos registados</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>Versões reportadas</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>As versões reportadas que atualmente cumprem a política aparecem aqui. As regras também podem permitir versões ainda não reportadas.</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>Rever as regras antigas</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Revogar</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Pesquisar</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Pesquisar</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>Mostrar as versões de pacotes conhecidas que seriam abrangidas por esta regra proposta. Esta é uma pré-visualização do âmbito, não uma decisão de confiança.</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>A sincronização de vulnerabilidades mais recente falhou. Os artefactos registados estão ocultos até à conclusão bem-sucedida de uma auditoria.</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>A sincronização mais recente de vulnerabilidades falhou. Os resultados anteriores concluídos permanecem utilizáveis até expirarem.</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>Regras de confiança</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>A auditoria de vulnerabilidades ainda não foi concluída. Os artefactos registados não podem ser apresentados como disponíveis.</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>A auditoria de vulnerabilidades ainda não foi concluída. As versões reportadas não podem ser listadas como disponíveis.</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>A auditoria de vulnerabilidades está desatualizada. Os artefactos registados estão ocultos até à conclusão de uma nova auditoria.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>A auditoria de vulnerabilidades está desatualizada. As versões reportadas ficam ocultas até que uma nova auditoria seja concluída.</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>As regras com caráter universal permitem automaticamente versões futuras; os hashes registados pela primeira vez continuam a ser guardados.</value>

@@ -18,13 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} of {1} nodes shown" xml:space="preserve">
-    <value>{0} de {1} nós apresentados</value>
-  </data>
-  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
-    <value>{0} pacotes vulneráveis neste diagrama, incluindo {1} ocultos devido à profundidade ou aos filtros.</value>
-  </data>
-  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+      <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
     <value>0 mostra apenas as referências do projeto; 1 inclui pacotes referenciados diretamente.</value>
   </data>
   <data name="Collapse dependencies" xml:space="preserve">
@@ -215,6 +209,12 @@
   </data>
   <data name="Zoom out" xml:space="preserve">
     <value>Reduzir zoom</value>
+  </data>
+  <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{0} de {1} nós apresentados</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>{0} pacotes vulneráveis neste diagrama, incluindo {1} ocultos devido à profundidade ou aos filtros.</value>
   </data>
 
 </root>

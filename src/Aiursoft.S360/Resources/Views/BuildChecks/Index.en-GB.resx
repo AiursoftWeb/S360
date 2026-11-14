@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>A limited portion of the dependency list sent to the API. An accepted batch is not the same as a fully accepted run.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API Key ID</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Accepted</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Anonymous review</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>API Key ID</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Audit purpose</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Batch</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>batch records</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Build check records</value>
@@ -132,14 +129,14 @@
   <data name="Run" xml:space="preserve">
     <value>Run</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Scanned projects</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Source</value>
@@ -179,6 +176,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>When the advisory data underpinning this decision was last checked; a blank value does not mean that everything is clear.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>batch records</value>
   </data>
 
 </root>

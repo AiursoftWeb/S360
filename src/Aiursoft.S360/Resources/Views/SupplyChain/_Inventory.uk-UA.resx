@@ -18,16 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
-    <value>{0} артефактів пакетів · {1} потребують уваги</value>
-  </data>
-  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
-    <value>{0} результатів · Сторінка {1} з {2}</value>
-  </data>
-  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
-    <value>Уразливі пакети: {0} · інші пакети, що потребують уваги: {1}</value>
-  </data>
-  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+      <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
     <value>Повний граф розв&apos;язку не був записаний у цьому звіті. Запустіть останню версію CLI, щоб його заповнити; список пакетів залишається доступним.</value>
   </data>
   <data name="A newer report is incomplete." xml:space="preserve">
@@ -117,9 +108,6 @@
   <data name="Not verified" xml:space="preserve">
     <value>Не перевірено</value>
   </data>
-  <data name="npm: not included in this audit." xml:space="preserve">
-    <value>npm: не включено до цього аудиту.</value>
-  </data>
   <data name="NuGet and npm" xml:space="preserve">
     <value>NuGet і npm</value>
   </data>
@@ -153,11 +141,11 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Проєкти зі звітами</value>
   </data>
-  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
-    <value>Читання інвентаризації проєкту вимагає права на читання ланцюга постачання. Ви все ще можете переглядати правила схвалення.</value>
-  </data>
   <data name="README badge" xml:space="preserve">
     <value>Значок README</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Читання інвентаризації проєкту вимагає права на читання ланцюга постачання. Ви все ще можете переглядати правила схвалення.</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>Звіти</value>
@@ -209,6 +197,18 @@
   </data>
   <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
     <value>Оновіть звіт CLI, щоб побачити залежності.</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: не включено до цього аудиту.</value>
+  </data>
+  <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} артефактів пакетів · {1} потребують уваги</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} результатів · Сторінка {1} з {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>Уразливі пакети: {0} · інші пакети, що потребують уваги: {1}</value>
   </data>
 
 </root>

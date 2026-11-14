@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+      <data name="A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>无论来源、审批状态或该包是直接依赖还是传递依赖，匹配的包均将被拒绝。历史审批和检查记录将保留作为审计证据。</value>
+  </data>
+  <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
     <value>无论供应商、来源、审批情况如何，也无论该软件包是作为直接依赖还是传递依赖引入，只要匹配规则，就会被拒绝。历史审批和检查记录仍会保留，作为审计证据。</value>
   </data>
   <data name="Absolute blocklist" xml:space="preserve">
@@ -26,12 +29,6 @@
   </data>
   <data name="Add absolute block" xml:space="preserve">
     <value>添加绝对屏蔽</value>
-  </data>
-  <data name="applications" xml:space="preserve">
-    <value>应用程序</value>
-  </data>
-  <data name="artifacts" xml:space="preserve">
-    <value>制品</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>可用依赖项</value>
@@ -104,6 +101,12 @@
   </data>
   <data name="Why disable this block?" xml:space="preserve">
     <value>为什么要禁用此屏蔽规则？</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>应用程序</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>制品</value>
   </data>
 
 </root>

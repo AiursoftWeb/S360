@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>Tìm gói</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>Cách đọc danh mục</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>Nguồn gói HTTPS</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Cách đọc danh mục</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Bao gồm phiên bản tiền phát hành</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Quản lý nhà cung cấp và quy tắc tin cậy</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Quản lý quy tắc tin cậy</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>Quản lý các quyền cấp cho phiên bản</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>Gói</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>Sự khả dụng của gói tuân theo các quy tắc đã được phê duyệt và kiểm tra lỗ hổng bảo mật hiện tại.</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>Các tệp gói được tải xuống và kiểm tra bởi registry của bạn. Quyết định này bao gồm chính sách gói và các lỗ hổng bảo mật đã biết.</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Tên gói</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Tạo phẩm đã ghi nhận</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>Phiên bản đã báo cáo</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>Các phiên bản đã được báo cáo và hiện tại đáp ứng chính sách sẽ hiển thị ở đây. Các quy tắc cũng có thể cho phép các phiên bản chưa được báo cáo.</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>Xem xét các quy tắc cũ</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Thu hồi</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Tìm kiếm</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Tìm kiếm</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>Hiển thị các phiên bản gói đã biết mà quy tắc được đề xuất này sẽ khớp. Đây là bản xem trước phạm vi, không phải quyết định về độ tin cậy.</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Lần đồng bộ lỗ hổng bảo mật gần nhất không thành công. Các cấu phần đã ghi nhận sẽ bị ẩn cho đến khi cuộc kiểm tra hoàn tất thành công.</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>Đồng bộ hóa lỗ hổng bảo mật gần đây đã thất bại. Kết quả hoàn thành trước đó vẫn có thể sử dụng cho đến khi hết hạn.</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>Quy tắc tin cậy</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>Việc kiểm tra lỗ hổng bảo mật vẫn chưa hoàn tất. Không thể liệt kê các cấu phần đã ghi nhận là sẵn có.</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>Việc kiểm tra lỗ hổng bảo mật chưa hoàn tất. Các phiên bản được báo cáo không thể được liệt kê là khả dụng.</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>Việc kiểm tra lỗ hổng bảo mật đã quá hạn. Các hiện vật đã ghi nhận sẽ bị ẩn cho đến khi hoàn tất đợt kiểm tra mới.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>Kiểm tra lỗ hổng bảo mật đã hết hạn. Các phiên bản được báo cáo sẽ bị ẩn cho đến khi hoàn tất một lần kiểm tra mới.</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>Các quy tắc dùng ký tự đại diện tự động chấp nhận các phiên bản trong tương lai; các mã băm được ghi nhận ngay từ lần đầu xuất hiện.</value>

@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>API로 전송되는 종속 항목 목록의 제한된 일부입니다. 승인된 배치가 전체 실행의 승인을 의미하는 것은 아닙니다.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API 키 ID</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>승인됨</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>익명 검토</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>API 키 ID</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>감사 목적</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>배치</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>배치 기록</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>빌드 검사 기록</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>실행</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>스캔한 프로젝트</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>검색</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>출처</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>해당 결정의 근거가 된 보안 공지(어드바이저리) 데이터가 마지막으로 확인된 시점입니다. 값이 비어 있는 것은 문제가 없음을 의미하지 않습니다.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>배치 기록</value>
   </data>
 
 </root>

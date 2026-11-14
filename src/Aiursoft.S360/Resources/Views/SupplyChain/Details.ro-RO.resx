@@ -60,6 +60,9 @@
   <data name="Package file and current authorization" xml:space="preserve">
     <value>Fișierul pachetului și autorizarea curentă</value>
   </data>
+  <data name="Package version and current authorization" xml:space="preserve">
+    <value>Versiunea pachetului și autorizarea curentă</value>
+  </data>
   <data name="Packages that brought this artifact in" xml:space="preserve">
     <value>Pachetele care au adus acest artefact</value>
   </data>
@@ -77,6 +80,9 @@
   </data>
   <data name="This concrete package file currently passes S360&apos;s authorization and stored vulnerability checks. A future build must still check its own complete dependency graph." xml:space="preserve">
     <value>Acest fișier concret al pachetului trece în prezent verificările S360 privind autorizarea și vulnerabilitățile înregistrate. O versiune viitoare trebuie totuși să verifice întregul său graf de dependențe.</value>
+  </data>
+  <data name="This package version currently passes authorization and vulnerability checks." xml:space="preserve">
+    <value>Această versiune a pachetului trece în prezent verificările de autorizare și vulnerabilități.</value>
   </data>
 
 </root>

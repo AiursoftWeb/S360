@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>การสนับสนุนแบบ &quot;Fire-and-forget&quot; สำหรับงานที่ใช้เวลานาน (เช่น อีเมลหรือปัญญาประดิษฐ์) พร้อมด้วยอินเทอร์เฟซกราฟิกสำหรับการจัดการคิว การประมวลผลแบบขนาน และการยกเลิก</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} โปรเจกต์ที่ได้รับผลกระทบ</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>แพ็กเกจ {0} เวอร์ชันที่ต้องตรวจสอบ</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>ทั้งหมด {0} · กำลังดำเนินการ {1} · อนุมัติแล้ว {2}</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>วันที่ว่างหมายความว่ายังไม่มีการซิงค์ข้อมูลช่องโหว่ที่เสร็จสมบูรณ์สำเร็จ เวลาเป็น UTC</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>นโยบายที่อาจอนุญาตแพ็กเกจที่ตรงตามเงื่อนไข แต่หากมีการบล็อกแบบเด็ดขาดหรือไม่มีหลักฐานยืนยันอาร์ติแฟกต์ ก็ยังคงปฏิเสธแพ็กเกจเหล่านั้น</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>การแปลด้วยพลังปัญญาประดิษฐ์</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>รายการยกเว้นโดยเด็ดขาด ซึ่งมีผลเหนือกว่ากฎความน่าเชื่อถือและการอนุมัติ</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>กฎการบล็อกที่ใช้งานอยู่</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>การแปลด้วยพลังปัญญาประดิษฐ์</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>การอ้างอิงทั้งหมดจะถูกลงทะเบียนโดยอัตโนมัติและพร้อมใช้งานเสมอผ่านการฉีดคอนสตรัคเตอร์</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>จัดการงานของคุณได้อย่างมั่นใจ ไม่ต้องคาดเดา</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} โปรเจกต์ที่ได้รับผลกระทบ</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>แพ็กเกจ {0} เวอร์ชันที่ต้องตรวจสอบ</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>ทั้งหมด {0} · กำลังดำเนินการ {1} · อนุมัติแล้ว {2}</value>
   </data>
 
 </root>

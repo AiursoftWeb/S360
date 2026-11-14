@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+      <data name="A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>출처, 승인 여부, 직접 의존성 또는 전이적 의존성으로 도착했는지에 관계없이 일치하는 패키지는 거부됩니다. 과거의 승인 및 체크는 감사 증거로 유지됩니다.</value>
+  </data>
+  <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
     <value>일치하는 패키지는 공급업체, 출처, 승인 여부와 관계없이, 직접 또는 전이적 종속성으로 유입되었는지 여부와 관계없이 거부됩니다. 과거의 승인 및 검사는 감사 증거로 보존됩니다.</value>
   </data>
   <data name="Absolute blocklist" xml:space="preserve">
@@ -26,12 +29,6 @@
   </data>
   <data name="Add absolute block" xml:space="preserve">
     <value>절대 차단 추가</value>
-  </data>
-  <data name="applications" xml:space="preserve">
-    <value>애플리케이션</value>
-  </data>
-  <data name="artifacts" xml:space="preserve">
-    <value>아티팩트</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>사용 가능한 종속성</value>
@@ -104,6 +101,12 @@
   </data>
   <data name="Why disable this block?" xml:space="preserve">
     <value>이 차단을 비활성화하는 이유는 무엇인가요?</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>애플리케이션</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>아티팩트</value>
   </data>
 
 </root>

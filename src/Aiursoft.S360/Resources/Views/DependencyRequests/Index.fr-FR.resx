@@ -39,8 +39,14 @@
   <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
     <value>Saisissez les versions exactes des dépendances directes. S360 résout et examine l’ensemble du graphe ; une future intégration à la CI vérifiera le graphe de compilation réel après le déploiement.</value>
   </data>
+  <data name="Enter exact names and versions. CI reports transitive dependencies; S360 does not restore them." xml:space="preserve">
+    <value>Saisissez les noms et versions exacts. L&apos;IC signale les dépendances transitives ; S360 ne les restaure pas.</value>
+  </data>
   <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
     <value>Saisissez uniquement les packages que vous choisissez directement ; S360 découvrira leurs dépendances transitives. Utilisez une version exacte, et non un joker.</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval." xml:space="preserve">
+    <value>Par exemple : Microsoft.EntityFrameworkCore@10.0.12. Saisissez chaque package nécessitant une approbation.</value>
   </data>
   <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
     <value>Par exemple : Microsoft.EntityFrameworkCore@10.0.12. Saisissez les packages que vous avez choisis vous-même ; S360 détecte les packages dont ils dépendent.</value>
@@ -59,6 +65,9 @@
   </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>La source du package n’est plus autorisée pour les contrôles S360.</value>
+  </data>
+  <data name="Packages, one name@version per line" xml:space="preserve">
+    <value>Paquets, un nom@version par ligne</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Projet</value>

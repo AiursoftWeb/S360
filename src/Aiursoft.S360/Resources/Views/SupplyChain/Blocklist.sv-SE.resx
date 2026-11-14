@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+      <data name="A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>En matchande pakete förvägras oavsett källa, godkännande eller om den kom som ett direkt eller transitivt beroende. Historiska godkännanden och kontroller kvarstår som revisionsbevis.</value>
+  </data>
+  <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
     <value>Ett paket som matchar nekas oavsett leverantör, källa, godkännande eller om det anlände som ett direkt eller transitivt beroende. Tidigare godkännanden och kontroller finns kvar som revisionsunderlag.</value>
   </data>
   <data name="Absolute blocklist" xml:space="preserve">
@@ -26,12 +29,6 @@
   </data>
   <data name="Add absolute block" xml:space="preserve">
     <value>Lägg till absolut blockering</value>
-  </data>
-  <data name="applications" xml:space="preserve">
-    <value>applikationer</value>
-  </data>
-  <data name="artifacts" xml:space="preserve">
-    <value>artefakter</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Tillgängliga beroenden</value>
@@ -104,6 +101,12 @@
   </data>
   <data name="Why disable this block?" xml:space="preserve">
     <value>Varför inaktivera det här blocket?</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>applikationer</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>artefakter</value>
   </data>
 
 </root>

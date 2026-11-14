@@ -18,16 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
-    <value>{0} แพ็กเกจอาร์ทิแฟกต์ · {1} ต้องการการดำเนินการ</value>
-  </data>
-  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
-    <value>ผลลัพธ์ {0} รายการ · หน้า {1} จาก {2}</value>
-  </data>
-  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
-    <value>แพ็กเกจที่มีช่องโหว่ {0} รายการ · แพ็กเกจอื่นที่ต้องดำเนินการ {1} รายการ</value>
-  </data>
-  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+      <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
     <value>ไม่มีการบันทึกกราฟโซลูชันฉบับสมบูรณ์ไว้ในรายงานนี้ ให้เรียกใช้ CLI เวอร์ชันล่าสุดเพื่อสร้างกราฟดังกล่าว โดยยังสามารถดูรายการแพ็กเกจได้</value>
   </data>
   <data name="A newer report is incomplete." xml:space="preserve">
@@ -120,9 +111,6 @@
   <data name="Not verified" xml:space="preserve">
     <value>ยังไม่ตรวจสอบ</value>
   </data>
-  <data name="npm: not included in this audit." xml:space="preserve">
-    <value>npm: ไม่ถูกรวมอยู่ใน此次การตรวจสอบ</value>
-  </data>
   <data name="NuGet and npm" xml:space="preserve">
     <value>NuGet และ npm</value>
   </data>
@@ -156,11 +144,11 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>โครงการที่มีรายงาน</value>
   </data>
-  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
-    <value>การอ่านรายการสินค้าคงเหลือของโปรเจกต์ต้องได้รับสิทธิ์การอ่านในสายโซ่อุปทาน คุณยังสามารถดูกฎการอนุมัติได้</value>
-  </data>
   <data name="README badge" xml:space="preserve">
     <value>README badge</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>การอ่านรายการสินค้าคงเหลือของโปรเจกต์ต้องได้รับสิทธิ์การอ่านในสายโซ่อุปทาน คุณยังสามารถดูกฎการอนุมัติได้</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>รายงาน</value>
@@ -212,6 +200,18 @@
   </data>
   <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
     <value>อัปเดตรายงาน CLI เพื่อแสดงความสัมพันธ์ของ dependency</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: ไม่ถูกรวมอยู่ใน此次การตรวจสอบ</value>
+  </data>
+  <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} แพ็กเกจอาร์ทิแฟกต์ · {1} ต้องการการดำเนินการ</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>ผลลัพธ์ {0} รายการ · หน้า {1} จาก {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>แพ็กเกจที่มีช่องโหว่ {0} รายการ · แพ็กเกจอื่นที่ต้องดำเนินการ {1} รายการ</value>
   </data>
 
 </root>

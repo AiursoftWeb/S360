@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>кінцева точка AlertCenter</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>Дозволити користувачеві змінювати прізвисько</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Дозволити анонімне рецензування</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>Дозволити перегляд залежностей без API-ключа. Анонімні перегляди записуються як незверифіковані звіти та ніколи не оновлюють статистику використання у продакшн-середовищі. Базові звіти завжди вимагають захищені облікові дані.</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>Дозволити користувачеві змінювати прізвисько</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Дозволити користувачам змінювати свій прізвисько на сторінці керування профілем.</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>Загальнодоступна базова URL-адреса S360</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>Назва бренду, що відображається в підвалі.</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>Номер ліцензії ICP для користувачів материкового Китаю. Залиште порожнім, щоб приховати.</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>Назва бренду, що відображається в підвалі.</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>Логотип проекту, який відображається в навбарі та футері. Підтримується jpg, png, svg.</value>

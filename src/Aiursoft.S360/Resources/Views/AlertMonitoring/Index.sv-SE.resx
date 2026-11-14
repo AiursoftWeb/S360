@@ -63,11 +63,11 @@
   <data name="Last synchronization" xml:space="preserve">
     <value>Senkronisering senast</value>
   </data>
-  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
-    <value>Övervakningen kontrolleras varje minut. Sårbarhetsupptäckt följer den befintliga sex timmars revisionsplan. Autentiseringsuppgifter och aktivering använder Globala inställningar, med stöd för miljööverstyrningar.</value>
-  </data>
   <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
     <value>MR-granskningar, inaktuell sårbarhetsdata, misslyckade skanningar och delvisa rapporter rensar aldrig automatiskt säkerhetsincidenter. Slutlig upplösning förblir manuell.</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>Övervakningen kontrolleras varje minut. Sårbarhetsupptäckt följer den befintliga sex timmars revisionsplan. Autentiseringsuppgifter och aktivering använder Globala inställningar, med stöd för miljööverstyrningar.</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Nej</value>

@@ -18,10 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} projects" xml:space="preserve">
-    <value>{0} 个项目</value>
-  </data>
-  <data name="Approval scope and package identity" xml:space="preserve">
+      <data name="Approval scope and package identity" xml:space="preserve">
     <value>审批范围和软件包标识</value>
   </data>
   <data name="Approved" xml:space="preserve">
@@ -98,6 +95,9 @@
   </data>
   <data name="Why was it approved?" xml:space="preserve">
     <value>为什么它会被批准？</value>
+  </data>
+  <data name="{0} projects" xml:space="preserve">
+    <value>{0} 个项目</value>
   </data>
 
 </root>

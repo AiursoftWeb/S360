@@ -18,7 +18,13 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Absolute blocklist" xml:space="preserve">
+      <data name="API Key" xml:space="preserve">
+    <value>Clave API</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>Claves API</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
     <value>Lista de bloqueo absoluta</value>
   </data>
   <data name="Access Denied" xml:space="preserve">
@@ -41,12 +47,6 @@
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anónimo</value>
-  </data>
-  <data name="API Key" xml:space="preserve">
-    <value>Clave API</value>
-  </data>
-  <data name="API Keys" xml:space="preserve">
-    <value>Claves API</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Dependencias disponibles</value>

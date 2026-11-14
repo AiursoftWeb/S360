@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>Sudah disetujui</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>dan selengkapnya dalam laporan lengkap</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>Persetujuan</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Laporan dependensi lengkap tidak tersedia untuk permintaan ini.</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>Tidak ditemukan kerentanan yang diketahui</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>Tidak ada permintaan dalam tampilan ini.</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>Sumber paket tidak dapat diverifikasi</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>Sumber paket tidak diizinkan</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>Menunggu</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>Proyek</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>catatan dalam tampilan ini</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>Tolak</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>Cabut persetujuan ini</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>dan selengkapnya dalam laporan lengkap</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>catatan dalam tampilan ini</value>
   </data>
 
 </root>

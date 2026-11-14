@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>Configure and synchronise security incident monitoring for production baselines.</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>Create and manage personal API keys and use them for dependency reviews.</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>Create API keys and call S360</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Create and manage personal API keys and use them for dependency reviews.</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>Create baseline-enabled personal API keys and declare production dependency inventories.</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>A machine identity can run dependency checks from CI; browser login alone cannot use the check API.</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>Manage absolute package blocks.</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>Manage AlertCenter integration</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>Manage Global Settings</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Manage absolute package blocks.</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Manage blocklist</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>Manage Global Settings</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>Manage dependency approval rules.</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>Manage suppliers and wildcard dependency trust rules.</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>Publish production baselines</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>Read all requests, build checks and vulnerability audit records.</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Read Permissions</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>View Roles</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>View supply chain</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>View Users</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Read all requests, build checks and vulnerability audit records.</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>View supply chain</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Restart This Application</value>

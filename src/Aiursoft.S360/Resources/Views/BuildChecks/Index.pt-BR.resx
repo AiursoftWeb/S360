@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>Uma porção delimitada da lista de dependências enviada à API. Um lote aceito não é o mesmo que uma execução completa aceita.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID da chave de API</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Aceito</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Revisão anônima</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>ID da chave de API</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Finalidade da auditoria</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Lote</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>registros de lotes</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Registros de verificações de compilação</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Execução</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Projetos verificados</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Pesquisar</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Origem</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Quando os dados de avisos que embasam esta decisão foram verificados pela última vez; um campo em branco não significa que está tudo em ordem.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>registros de lotes</value>
   </data>
 
 </root>

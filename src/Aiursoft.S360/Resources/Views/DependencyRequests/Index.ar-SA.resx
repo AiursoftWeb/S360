@@ -39,8 +39,14 @@
   <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
     <value>أدخل الإصدارات المباشرة الدقيقة. يحلّل S360 الرسم البياني بأكمله ويراجعه؛ وسيتحقق تكامل CI مستقبلًا من رسم البناء الفعلي بعد النشر.</value>
   </data>
+  <data name="Enter exact names and versions. CI reports transitive dependencies; S360 does not restore them." xml:space="preserve">
+    <value>أدخل الأسماء والإصدارات الدقيقة. تُبلغ أنظمة التكامل المستمر عن التبعيات غير المباشرة، لكن S360 لا يستعيدها.</value>
+  </data>
   <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
     <value>أدخل الحزم التي تختارها مباشرةً فقط؛ وسيكتشف S360 تبعياتها غير المباشرة. استخدم إصدارًا محددًا، وليس حرفًا بدلًا من أي إصدار.</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval." xml:space="preserve">
+    <value>على سبيل المثال: Microsoft.EntityFrameworkCore@10.0.12. أدخل كل حزمة تتطلب موافقة.</value>
   </data>
   <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
     <value>على سبيل المثال: Microsoft.EntityFrameworkCore@10.0.12. أدخل الحزم التي اخترتها بنفسك؛ يكتشف S360 الحزم التي تعتمد عليها هذه الحزم.</value>
@@ -59,6 +65,9 @@
   </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>لم يعد مسموحًا باستخدام مصدر الحزمة لإجراء فحوصات S360.</value>
+  </data>
+  <data name="Packages, one name@version per line" xml:space="preserve">
+    <value>الحزم، اسم@الإصدار واحد في كل سطر</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>المشروع</value>

@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>Konfiguruj i synchronizuj monitorowanie incydentów bezpieczeństwa dla baz linii produkcyjnych.</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>Twórz osobiste klucze API, zarządzaj nimi i używaj ich do przeglądów zależności.</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>Twórz klucze API i wywołuj S360</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Twórz osobiste klucze API, zarządzaj nimi i używaj ich do przeglądów zależności.</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>Twórz osobiste klucze API z obsługą bazowych wersji i deklaruj wykazy zależności dla środowiska produkcyjnego.</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>Tożsamość maszyny może wykonywać kontrole zależności z poziomu CI; samo logowanie w przeglądarce nie umożliwia korzystania z API kontroli.</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>Zarządzanie bezwzględnymi blokadami pakietów.</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>Zarządzaj integracją AlertCenter</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>Zarządzaj ustawieniami globalnymi</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Zarządzanie bezwzględnymi blokadami pakietów.</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Zarządzanie listą blokowanych pakietów</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>Zarządzaj ustawieniami globalnymi</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>Zarządzaj zasadami zatwierdzania zależności.</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>Zarządzaj dostawcami i regułami zaufania dla zależności z symbolami wieloznacznymi.</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>Opublikuj wersje bazowe dla środowiska produkcyjnego</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>Wyświetlanie wszystkich zgłoszeń, wyników kontroli kompilacji i rejestrów audytów podatności.</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Odczytaj Uprawnienia</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>Wyświetlanie ról</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>Czytaj łańcuch dostaw</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Czytaj użytkowników</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Wyświetlanie wszystkich zgłoszeń, wyników kontroli kompilacji i rejestrów audytów podatności.</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Czytaj łańcuch dostaw</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Uruchom ponownie tę aplikację</value>

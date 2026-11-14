@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>Paketleri bul</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>Kataloğu nasıl okuyacağınız</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>HTTPS paket kaynağı</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Kataloğu nasıl okuyacağınız</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Ön sürümleri dahil et</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Tedarikçileri ve güven kurallarını yönetin</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Güven kurallarını yönet</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>Sürüm yetkilerini yönet</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>Paket</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>Paket kullanılabilirliği, onaylanmış kurallara ve güncel açıklık kontrollerine göre belirlenir.</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>Paket dosyaları kayıtlı adresiniz (registry) tarafından indirilir ve denetlenir. Bu karar, paket politikasını ve bilinen güvenlik açıklarını kapsar.</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Paket adı</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Kaydedilen eserler</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>Raporlanan sürümler</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>Şu anda politikayı geçen raporlanan sürümler burada görüntülenir. Kurallar, henüz raporlanmamış sürümlere de izin verebilir.</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>Eski kuralları gözden geçir</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>İptal et</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Ara</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Ara</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>Önerilen bu kuralın eşleştireceği bilinen paket sürümlerini gösterir. Bu, kapsamın önizlemesidir; bir güven kararı değildir.</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>En son güvenlik açığı eşitlemesi başarısız oldu. Kaydedilen bileşenler, denetim başarıyla tamamlanana kadar gizlenir.</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>Son açıklık senkronizasyonu başarısız oldu. Önceki tamamlanmış sonuçlar, süreleri dolana kadar kullanılabilir durumda kalmaktadır.</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>Güven kuralları</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>Güvenlik açığı denetimi henüz tamamlanmadı. Kaydedilen yapıtlar kullanılabilir olarak listelenemez.</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>Zararlı güvenlik açığı denetimi henüz tamamlanmadı. Bildirilen sürümler mevcut olarak listelenemez.</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>Güvenlik açığı denetiminin güncelliği geçmiş. Yeni bir denetim tamamlanana kadar kaydedilen yapıtlar gizlenir.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>Zararluluk denetimi güncel değil. Yeni bir denetim tamamlanana kadar bildirilen sürümler gizli tutulur.</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>Joker karakterli kurallar gelecekteki sürümlere otomatik olarak izin verir; ilk kez görülen karma değerleri yine de kaydedilir.</value>

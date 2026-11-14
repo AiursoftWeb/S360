@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>Ograniczona część listy zależności wysłana do API. Akceptowana partia nie jest równoznaczna z kompletnym, zaakceptowanym przebiegiem.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID klucza API</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Zaakceptowano</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Anonimowa recenzja</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>ID klucza API</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Cel audytu</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Partia</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>rekordów partii</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Rejestr kontroli kompilacji</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Przebieg</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Zeskanowane projekty</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Szukaj</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Źródło</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Moment, w którym po raz ostatni sprawdzono dane o podatnościach stanowiące podstawę tej decyzji; pusta wartość nie oznacza braku problemów.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>rekordów partii</value>
   </data>
 
 </root>

@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>Punkt końcowy AlertCenter</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>Zezwól użytkownikowi na zmianę pseudonimu</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Zezwól na anonimową recenzję</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>Zezwalaj na przeglądy zależności bez klucza API. Anonimowe przeglądy są rejestrowane jako zweryfikowane raporty i nigdy nie aktualizują użycia w środowisku produkcyjnym. Raporty bazowe zawsze wymagają ich chronionych poświadczeń.</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>Zezwól użytkownikowi na zmianę pseudonimu</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Zezwól użytkownikom na dostosowanie swojej nazwy użytkownika na stronie zarządzania profilu.</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>Publiczny podstawowy adres URL S360</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>Nazwa marki wyświetlana w stopce.</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>Numer licencji ICP dla użytkowników z Chin. Pozostaw puste, aby ukryć.</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>Nazwa marki wyświetlana w stopce.</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>Logo projektu wyświetlany w pasku nawigacyjnym i stopce. Obsługiwane formaty: jpg, png, svg.</value>

@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>AlertCenter-slutpunkt</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>Tillåt Användare Ändra Smeknamn</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Tillåt anonym granskning</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>Tillåt beroendegranskningar utan API-nyckel. Anonyma granskningar registreras som o verifierade rapporter och uppdaterar aldrig produktionsanvändning. Baslinjerapporter kräver alltid sitt skyddade kreditiv.</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>Tillåt Användare Ändra Smeknamn</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Tillåt användare att ändra sitt smeknamn på sidan för profilhantering.</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>S360 offentlig bas-URL</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>Det varumärke som visas i sidfoten.</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>ICP-licensnummer för användare i Kina. Lämna tomt för att dölja.</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>Det varumärke som visas i sidfoten.</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>Logotypen för projektet som visas i navigeringsfältet och sidfoten. Stöd för jpg, png, svg.</value>

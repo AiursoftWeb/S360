@@ -39,8 +39,14 @@
   <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
     <value>सटीक प्रत्यक्ष संस्करण दर्ज करें। S360 पूरे निर्भरता ग्राफ़ का समाधान करके उसकी समीक्षा करता है; भविष्य में CI एकीकरण, परिनियोजन के बाद वास्तविक बिल्ड ग्राफ़ की जाँच करेगा।</value>
   </data>
+  <data name="Enter exact names and versions. CI reports transitive dependencies; S360 does not restore them." xml:space="preserve">
+    <value>सटीक नाम और संस्करण दर्ज करें। CI अप्रत्यक्ष निर्भरताओं की रिपोर्ट करता है; S360 उन्हें पुनर्स्थापित नहीं करता है।</value>
+  </data>
   <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
     <value>केवल उन्हीं पैकेजों के नाम दर्ज करें जिन्हें आपने सीधे चुना है; S360 उनकी पारगमनशील निर्भरताओं का पता लगा लेगा। वाइल्डकार्ड के बजाय सटीक संस्करण दर्ज करें।</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval." xml:space="preserve">
+    <value>उदाहरण के लिए: Microsoft.EntityFrameworkCore@10.0.12. प्रत्येक पैकेज दर्ज करें जिसकी मंजूरी आवश्यक है।</value>
   </data>
   <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
     <value>उदाहरण के लिए: Microsoft.EntityFrameworkCore@10.0.12। वे पैकेज दर्ज करें जिन्हें आपने स्वयं चुना है; S360 उनके द्वारा शामिल किए गए पैकेजों का पता लगाता है।</value>
@@ -59,6 +65,9 @@
   </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>S360 जाँचों के लिए पैकेज स्रोत की अब अनुमति नहीं है।</value>
+  </data>
+  <data name="Packages, one name@version per line" xml:space="preserve">
+    <value>पैकेज, एक लाइन में एक नाम@वर्शन</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>प्रोजेक्ट</value>

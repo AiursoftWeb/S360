@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>Găsiți pachete</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>Cum să citiți catalogul</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>Sursa pachetului HTTPS</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Cum să citiți catalogul</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Include versiuni preliminare</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Gestionați furnizorii și regulile de încredere</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Gestiona regulile de încredere</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>Gestionați aprobările pentru versiuni</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>Pachet</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>Disponibilitatea pachetelor urmează regulile aprobate și verificările actuale de vulnerabilități.</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>Fișierele de pachet sunt descărcate și verificate de registrul dumneavoastră. Această decizie acoperă politica de pachete și vulnerabilitățile cunoscute.</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Numele pachetului</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Artefacte înregistrate</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>Versiuni raportate</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>Versiunile raportate care în prezent respectă politica sunt afișate aici. Regulile pot permite și versiuni care nu au fost încă raportate.</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>Revizuiți regulile vechi</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Revocă</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Caută</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Caută</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>Afișați versiunile cunoscute ale pachetelor care s-ar potrivi cu această regulă propusă. Aceasta este o previzualizare a domeniului de aplicare, nu o decizie de încredere.</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Cea mai recentă sincronizare a vulnerabilităților a eșuat. Artefactele înregistrate sunt ascunse până la finalizarea cu succes a unui audit.</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>Sincronizarea cea mai recentă a vulnerabilităților a eșuat. Rezultatele anterioare finalizate rămân utilizabile până expiră.</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>Reguli de încredere</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>Auditul vulnerabilităților nu a fost finalizat încă. Artefactele înregistrate nu pot fi afișate ca disponibile.</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>Auditul vulnerabilităților nu s-a finalizat încă. Versiunile raportate nu pot fi listate ca disponibile.</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>Auditul vulnerabilităților este învechit. Artefactele înregistrate sunt ascunse până la finalizarea unui nou audit.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>Auditarea vulnerabilităților este învechită. Versiunile raportate sunt ascunse până când se completează un nou audit.</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>Regulile cu metacaractere permit automat versiunile viitoare; hash-urile întâlnite pentru prima dată sunt în continuare înregistrate.</value>

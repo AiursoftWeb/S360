@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>Üretim ortamı temel yapılandırmaları için güvenlik olaylarının izlenmesini yapılandırın ve eşitleyin.</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>Kişisel API anahtarları oluşturun ve yönetin, bunları bağımlılık incelemeleri için kullanın.</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>API anahtarları oluşturun ve S360&apos;ı çağırın</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Kişisel API anahtarları oluşturun ve yönetin, bunları bağımlılık incelemeleri için kullanın.</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>Çevrimdışı etkin kişisel API anahtarları oluşturun ve üretim bağımlılık envanterlerini bildirin.</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>Makine kimliği, CI üzerinden bağımlılık denetimleri gerçekleştirebilir; yalnızca tarayıcıda oturum açmak, denetim API’sini kullanmaya yetmez.</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>Mutlak paket engellemelerini yönetin.</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>AlertCenter entegrasyonunu yönet</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>Genel Ayarları Yönet</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Mutlak paket engellemelerini yönetin.</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Engelleme listesini yönet</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>Genel Ayarları Yönet</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>Bağımlılık onay kurallarını yönetin.</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>Tedarikçileri ve joker karakterli bağımlılık güven kurallarını yönetin.</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>Üretim temel çizgilerini yayımla</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>Tüm istekleri, derleme kontrollerini ve güvenlik açığı denetim kayıtlarını görüntüler.</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>İzinleri Oku</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>Rolleri Oku</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>Tedarik zincirini görüntüle</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Kullanıcıları Oku</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Tüm istekleri, derleme kontrollerini ve güvenlik açığı denetim kayıtlarını görüntüler.</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Tedarik zincirini görüntüle</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Bu Uygulamayı Yeniden Başlat</value>

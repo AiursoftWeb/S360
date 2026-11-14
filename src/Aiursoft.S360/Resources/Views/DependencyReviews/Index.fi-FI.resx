@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>Hyväksytty jo</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>ja lisää täydellisessä raportissa</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>Hyväksyntä</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Tälle pyynnölle ei ole saatavilla täydellistä riippuvuusraporttia.</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>Tunnettuja haavoittuvuuksia ei löytynyt</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>Tässä näkymässä ei ole pyyntöjä.</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>Paketin lähdettä ei voitu vahvistaa</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>Pakkeen lähde ei ole sallittu</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>Odottaa</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>Projekti</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>tietuetta tässä näkymässä</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>Hylkää</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>Peru tämä hyväksyntä</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>ja lisää täydellisessä raportissa</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>tietuetta tässä näkymässä</value>
   </data>
 
 </root>

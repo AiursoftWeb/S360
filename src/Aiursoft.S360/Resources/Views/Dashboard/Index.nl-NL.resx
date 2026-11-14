@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Ondersteuning voor &quot;fire-and-forget&quot; bij langlopende taken (zoals e-mails of AI), met een GUI voor wachtrijbeheer, parallelle verwerking en annulering.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} getroffen projecten</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} pakketversies die aandacht nodig hebben</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} totaal · {1} in behandeling · {2} goedgekeurd</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Een lege datum betekent dat er nog geen volledige synchronisatie van kwetsbaarheden is geslaagd. Tijden zijn in UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Een beleidsregel die overeenkomende pakketten kan toestaan; een absoluut blokkeringsbesluit of ontbrekend bewijs van het artefact leidt alsnog tot afwijzing.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>AI-gestuurde vertalingen</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Absolute uitsluitingen die voorrang hebben op vertrouwensregels en goedkeuringen.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Actieve blokkeringsregels</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>AI-gestuurde vertalingen</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Alle afhankelijkheden worden automatisch geregistreerd en zijn altijd beschikbaar via constructorinjectie.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Jouw werk, zonder giswerk.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} getroffen projecten</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} pakketversies die aandacht nodig hebben</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} totaal · {1} in behandeling · {2} goedgekeurd</value>
   </data>
 
 </root>

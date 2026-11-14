@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>Уже схвалено</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>та більше — у повному звіті</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>Схвалення</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Для цього запиту немає повного звіту про залежності.</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>Відомих вразливостей не виявлено</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>У цьому поданні немає запитів.</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>Не вдалося перевірити джерело пакета</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>Джерело пакета не дозволено</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>Очікують</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>Проєкт</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>записів у цьому поданні</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>Відхилити</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>Відкликати це схвалення</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>та більше — у повному звіті</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>записів у цьому поданні</value>
   </data>
 
 </root>

@@ -18,16 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
-    <value>{0} من عناصر الحزمة · {1} تحتاج إلى الانتباه</value>
-  </data>
-  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
-    <value>{0} نتيجة · الصفحة {1} من {2}</value>
-  </data>
-  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
-    <value>{0} حزم معرضة للخطر · {1} حزم أخرى تتطلب الانتباه</value>
-  </data>
-  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+      <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
     <value>لم يُسجَّل مخطط الحل الكامل في هذا التقرير. شغّل أحدث إصدار من واجهة سطر الأوامر (CLI) لإنشائه؛ وستظل قائمة الحزم متاحة.</value>
   </data>
   <data name="A newer report is incomplete." xml:space="preserve">
@@ -120,9 +111,6 @@
   <data name="Not verified" xml:space="preserve">
     <value>غير موثّق</value>
   </data>
-  <data name="npm: not included in this audit." xml:space="preserve">
-    <value>npm: غير مشمول في هذا التدقيق.</value>
-  </data>
   <data name="NuGet and npm" xml:space="preserve">
     <value>NuGet و npm</value>
   </data>
@@ -156,11 +144,11 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>المشاريع التي لديها تقارير</value>
   </data>
-  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
-    <value>يتطلب قراءة قائمة جرد المشروع إذن قراءة سلاسل التوريد. يمكنك الاطلاع على قواعد الاعتماد.</value>
-  </data>
   <data name="README badge" xml:space="preserve">
     <value>شارة README</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>يتطلب قراءة قائمة جرد المشروع إذن قراءة سلاسل التوريد. يمكنك الاطلاع على قواعد الاعتماد.</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>التقارير</value>
@@ -212,6 +200,18 @@
   </data>
   <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
     <value>قم بتحديث تقرير CLI لعرض علاقات الاعتماد.</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: غير مشمول في هذا التدقيق.</value>
+  </data>
+  <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} من عناصر الحزمة · {1} تحتاج إلى الانتباه</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} نتيجة · الصفحة {1} من {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} حزم معرضة للخطر · {1} حزم أخرى تتطلب الانتباه</value>
   </data>
 
 </root>

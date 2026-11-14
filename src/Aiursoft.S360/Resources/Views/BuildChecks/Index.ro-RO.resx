@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>O porțiune limitată din lista de dependențe trimisă către API. Un lot acceptat nu este același lucru cu o execuție completă acceptată.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID-ul cheii API</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Acceptat</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Evaluare anonimă</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>ID-ul cheii API</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Scopul auditului</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Lot</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>înregistrări de lot</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Înregistrări ale verificărilor de compilare</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Rulare</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Proiecte scanate</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Caută</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Sursă</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Momentul ultimei verificări a datelor de avertizare care stau la baza acestei decizii; o valoare goală nu înseamnă o stare de sănătate.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>înregistrări de lot</value>
   </data>
 
 </root>

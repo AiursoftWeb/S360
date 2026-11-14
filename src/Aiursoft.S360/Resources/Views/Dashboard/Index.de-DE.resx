@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>&quot;Fire-and-forget&quot;-Unterstützung für langlaufende Aufgaben (z. B. E-Mails oder KI), mit einer GUI zur Warteschlangenverwaltung, paralleler Verarbeitung und Abbruchfunktion.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} betroffene Projekte</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} Paketversionen, die Aufmerksamkeit erfordern</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} insgesamt · {1} in Bearbeitung · {2} genehmigt</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Ein leeres Datumsfeld bedeutet, dass noch keine vollständige Synchronisierung der Sicherheitslücken erfolgreich abgeschlossen wurde. Alle Zeitangaben sind in UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Eine Richtlinie, die passende Pakete zulassen kann; eine absolute Sperre oder fehlende Artefaktnachweise führen dennoch zur Ablehnung.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>KI-gestützte Übersetzungen</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Absolute Ausschlüsse, die Vorrang vor Vertrauensregeln und Genehmigungen haben.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Aktive Sperrregeln</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>KI-gestützte Übersetzungen</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Alle Abhängigkeiten werden automatisch registriert und sind stets über Constructor Injection verfügbar.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Ihre Arbeit – ohne Rätselraten.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} betroffene Projekte</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} Paketversionen, die Aufmerksamkeit erfordern</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} insgesamt · {1} in Bearbeitung · {2} genehmigt</value>
   </data>
 
 </root>

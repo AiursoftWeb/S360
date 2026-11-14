@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>Configurează și sincronizează monitorizarea incidentelor de securitate pentru configurațiile de bază de producție.</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>Creați și gestionați chei API personale și folosiți-le pentru revizuirile dependențelor.</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>Creați chei API și apelați S360</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Creați și gestionați chei API personale și folosiți-le pentru revizuirile dependențelor.</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>Creați chei API personale cu activare de bază și declarați inventarele de dependențe de producție.</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>Identitatea mașinii poate efectua verificări ale dependențelor din CI; autentificarea doar prin browser nu poate utiliza API-ul de verificare.</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>Gestionați blocările absolute ale pachetelor.</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>Gestionați integrarea AlertCenter</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>Gestionare setări globale</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Gestionați blocările absolute ale pachetelor.</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Gestionează lista de blocare</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>Gestionare setări globale</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>Gestionează regulile de aprobare a dependențelor.</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>Gestionați furnizorii și regulile de încredere pentru dependențe cu caractere wildcard.</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>Publicare linii de bază de producție</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>Citiți toate solicitările, verificările procesului de compilare și înregistrările auditurilor de vulnerabilități.</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Citește Permisiuni</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>Citește Roluri</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>Citește lanțul de aprovizionare</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Citește Utilizatori</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Citiți toate solicitările, verificările procesului de compilare și înregistrările auditurilor de vulnerabilități.</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Citește lanțul de aprovizionare</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Repornește această aplicație</value>

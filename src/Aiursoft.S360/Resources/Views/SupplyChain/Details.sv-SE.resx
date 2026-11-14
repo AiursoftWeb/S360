@@ -60,6 +60,9 @@
   <data name="Package file and current authorization" xml:space="preserve">
     <value>Paketfil och aktuell behörighet</value>
   </data>
+  <data name="Package version and current authorization" xml:space="preserve">
+    <value>Paketversion och aktuell auktorisation</value>
+  </data>
   <data name="Packages that brought this artifact in" xml:space="preserve">
     <value>Paket som tog med sig den här artefakten</value>
   </data>
@@ -77,6 +80,9 @@
   </data>
   <data name="This concrete package file currently passes S360&apos;s authorization and stored vulnerability checks. A future build must still check its own complete dependency graph." xml:space="preserve">
     <value>Den här specifika paketfilen klarar för närvarande S360:s kontroller av behörighet och registrerade sårbarheter. En framtida build måste fortfarande kontrollera hela sitt eget beroendeträd.</value>
+  </data>
+  <data name="This package version currently passes authorization and vulnerability checks." xml:space="preserve">
+    <value>Den här paketversionen uppfyller för närvarande auktorisations- och sårbarhetskontrollerna.</value>
   </data>
 
 </root>

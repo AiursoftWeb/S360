@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>ส่วนหนึ่งของรายการ dependency ที่แบ่งเป็นชุดตามขนาดและส่งไปยัง API การยอมรับชุดหนึ่งไม่ได้หมายความว่ารันทั้งหมดได้รับการยอมรับ</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API Key ID</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>ยอมรับแล้ว</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>การตรวจสอบแบบไม่ระบุตัวตน</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>API Key ID</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>วัตถุประสงค์ของการตรวจสอบ</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>ชุด</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>บันทึกรายการชุดข้อมูล</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>บันทึกการตรวจสอบบิลด์</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>รอบการทำงาน</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>โปรเจกต์ที่สแกน</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>ค้นหา</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>แหล่งที่มา</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>ระบุเวลาที่ตรวจสอบข้อมูลคำแนะนำประกอบการตัดสินใจนี้ครั้งล่าสุด ค่าว่างไม่ได้หมายความว่าผลตรวจสอบไม่มีปัญหา</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>บันทึกรายการชุดข้อมูล</value>
   </data>
 
 </root>

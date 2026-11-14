@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+      <data name="A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Dopasowany pakiet jest odrzucany niezależnie od źródła, zatwierdzenia lub tego, czy dotarł jako zależność bezpośrednia, czy pośrednia. Historyczne zatwierdzenia i kontrole pozostają jako dowody audytowe.</value>
+  </data>
+  <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
     <value>Pasujący pakiet jest odrzucany niezależnie od dostawcy, źródła, zatwierdzenia ani tego, czy został dodany jako zależność bezpośrednia, czy przechodnia. Historyczne zatwierdzenia i kontrole są zachowywane jako dowody audytowe.</value>
   </data>
   <data name="Absolute blocklist" xml:space="preserve">
@@ -26,12 +29,6 @@
   </data>
   <data name="Add absolute block" xml:space="preserve">
     <value>Dodaj bezwzględną blokadę</value>
-  </data>
-  <data name="applications" xml:space="preserve">
-    <value>aplikacje</value>
-  </data>
-  <data name="artifacts" xml:space="preserve">
-    <value>artefakty</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Dostępne zależności</value>
@@ -104,6 +101,12 @@
   </data>
   <data name="Why disable this block?" xml:space="preserve">
     <value>Dlaczego wyłączyć tę blokadę?</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>aplikacje</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>artefakty</value>
   </data>
 
 </root>

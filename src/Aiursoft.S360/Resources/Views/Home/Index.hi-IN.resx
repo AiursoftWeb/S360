@@ -18,11 +18,11 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name=".NET packages" xml:space="preserve">
-    <value>.NET पैकेज</value>
-  </data>
-  <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
+      <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>लंबे समय तक चलने वाले कार्यों (जैसे ईमेल या AI) के लिए &quot;Fire-and-forget&quot; समर्थन, जिसमें कतार प्रबंधन, समानांतर प्रसंस्करण और रद्द करने के लिए GUI शामिल है।</value>
+  </data>
+  <data name=".NET packages" xml:space="preserve">
+    <value>.NET पैकेज</value>
   </data>
   <data name="A blocked package stays blocked even when it appears only as a transitive dependency or matches a broader trust rule." xml:space="preserve">
     <value>अवरुद्ध पैकेज अवरुद्ध ही रहता है, भले ही वह केवल एक ट्रांज़िटिव डिपेंडेंसी के रूप में दिखाई दे या किसी व्यापक ट्रस्ट नियम से मेल खाता हो।</value>
@@ -51,15 +51,6 @@
   <data name="A searchable allowed catalog" xml:space="preserve">
     <value>खोजने योग्य अनुमोदित कैटलॉग</value>
   </data>
-  <data name="Achieve more with Aiursoft Template" xml:space="preserve">
-    <value>Aiursoft टेम्पलेट के साथ और अधिक हासिल करें</value>
-  </data>
-  <data name="Actuator health endpoints built-in" xml:space="preserve">
-    <value>एक्टुएटर स्वास्थ्य एंडपॉइंट्स इनबिल्ट</value>
-  </data>
-  <data name="Admin site included" xml:space="preserve">
-    <value>प्रशासनिक साइट शामिल है</value>
-  </data>
   <data name="AI Driven Translation" xml:space="preserve">
     <value>AI संचालित अनुवाद</value>
   </data>
@@ -68,6 +59,15 @@
   </data>
   <data name="AI-Powered Translations" xml:space="preserve">
     <value>AI-संचालित अनुवाद</value>
+  </data>
+  <data name="Achieve more with Aiursoft Template" xml:space="preserve">
+    <value>Aiursoft टेम्पलेट के साथ और अधिक हासिल करें</value>
+  </data>
+  <data name="Actuator health endpoints built-in" xml:space="preserve">
+    <value>एक्टुएटर स्वास्थ्य एंडपॉइंट्स इनबिल्ट</value>
+  </data>
+  <data name="Admin site included" xml:space="preserve">
+    <value>प्रशासनिक साइट शामिल है</value>
   </data>
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Template</value>
@@ -90,6 +90,12 @@
   <data name="Approve a report-backed batch while retaining the individual package decisions and their review history." xml:space="preserve">
     <value>रिपोर्ट के आधार पर बैच को स्वीकृति दें, साथ ही अलग-अलग पैकेजों के निर्णय और उनकी समीक्षा का इतिहास भी सुरक्षित रखें।</value>
   </data>
+  <data name="Approve package names and version ranges. S360 checks vulnerability data; package servers download and cache files." xml:space="preserve">
+    <value>पैकेज नामों और संस्करण सीमाओं को स्वीकृत करें। S360 कमज़ोरी डेटा की जाँच करता है; पैकेज सर्वर फ़ाइलों को डाउनलोड और कैश करते हैं।</value>
+  </data>
+  <data name="Approved package" xml:space="preserve">
+    <value>स्वीकृत पैकेज</value>
+  </data>
   <data name="Artificial Intelligence Translation" xml:space="preserve">
     <value>कृत्रिम बुद्धिमत्ता अनुवाद</value>
   </data>
@@ -102,11 +108,11 @@
   <data name="Authorized mirrors" xml:space="preserve">
     <value>अधिकृत मिरर</value>
   </data>
-  <data name="Auto compression and privacy" xml:space="preserve">
-    <value>स्वचालित संपीड़न और गोपनीयता</value>
-  </data>
   <data name="Auto Deployment" xml:space="preserve">
     <value>स्वचालित डेप्लॉयमेंट</value>
+  </data>
+  <data name="Auto compression and privacy" xml:space="preserve">
+    <value>स्वचालित संपीड़न और गोपनीयता</value>
   </data>
   <data name="Automatic AI translation into 28 languages." xml:space="preserve">
     <value>28 भाषाओं में स्वचालित AI अनुवाद।</value>
@@ -177,17 +183,11 @@
   <data name="Built-in" xml:space="preserve">
     <value>निर्मित-अंदर</value>
   </data>
-  <data name="Built-in administration panel" xml:space="preserve">
-    <value>निर्मित प्रशासनिक पैनल</value>
-  </data>
   <data name="Built-in Auth" xml:space="preserve">
     <value>एम्बेडेड प्रमाणीकरण</value>
   </data>
   <data name="Built-in Job Queue GUI" xml:space="preserve">
     <value>निर्मित नौकरी कतार GUI</value>
-  </data>
-  <data name="Built-in method-level security" xml:space="preserve">
-    <value>बिल्ट-इन विधि-स्तर सुरक्षा</value>
   </data>
   <data name="Built-in OAuth2/OIDC client support" xml:space="preserve">
     <value>बिल्ट-इन OAuth2/OIDC क्लाइंट समर्थन</value>
@@ -201,14 +201,26 @@
   <data name="Built-in Roslyn Analyzers" xml:space="preserve">
     <value>बिल्ट-इन रोस्लिन विश्लेषक</value>
   </data>
+  <data name="Built-in User Management" xml:space="preserve">
+    <value>अंतर्निहित उपयोगकर्ता प्रबंधन</value>
+  </data>
+  <data name="Built-in administration panel" xml:space="preserve">
+    <value>निर्मित प्रशासनिक पैनल</value>
+  </data>
+  <data name="Built-in method-level security" xml:space="preserve">
+    <value>बिल्ट-इन विधि-स्तर सुरक्षा</value>
+  </data>
   <data name="Built-in timezone configuration" xml:space="preserve">
     <value>बिल्ट-इन टाइमज़ोन कॉन्फ़िगरेशन</value>
   </data>
   <data name="Built-in timezone support with USE_TZ" xml:space="preserve">
     <value>USE_TZ के साथ अंतर्निहित टाइमज़ोन समर्थन</value>
   </data>
-  <data name="Built-in User Management" xml:space="preserve">
-    <value>अंतर्निहित उपयोगकर्ता प्रबंधन</value>
+  <data name="CI reports its dependency list. S360 uses it to identify projects affected by a vulnerability." xml:space="preserve">
+    <value>CI अपनी निर्भरता सूची की रिपोर्ट करता है। S360 इसे एक कमजोरी से प्रभावित प्रोजेक्ट्स की पहचान करने के लिए उपयोग करता है।</value>
+  </data>
+  <data name="Check CVEs" xml:space="preserve">
+    <value>CVE जाँचें</value>
   </data>
   <data name="Checkstyle or similar needed" xml:space="preserve">
     <value>Checkstyle या इसी तरह का उपकरण आवश्यक है</value>
@@ -258,14 +270,14 @@
   <data name="Custom development required" xml:space="preserve">
     <value>कस्टम विकास आवश्यक है</value>
   </data>
+  <data name="Dashboard Website" xml:space="preserve">
+    <value>डैशबोर्ड वेबसाइट</value>
+  </data>
   <data name="Dashboard for background and scheduled tasks" xml:space="preserve">
     <value>पृष्ठभूमि और नियोजित कार्यों के लिए डैशबोर्ड</value>
   </data>
   <data name="Dashboard for background tasks" xml:space="preserve">
     <value>पृष्ठभूमि कार्यों के लिए डैशबोर्ड</value>
-  </data>
-  <data name="Dashboard Website" xml:space="preserve">
-    <value>डैशबोर्ड वेबसाइट</value>
   </data>
   <data name="Day 1 Compliance &amp; Security." xml:space="preserve">
     <value>दिन 1 सुरक्षा एवं सुसंगतता।</value>
@@ -294,14 +306,14 @@
   <data name="Dev &amp; Prod" xml:space="preserve">
     <value>डेव एंड प्रॉड</value>
   </data>
+  <data name="DevOps Native" xml:space="preserve">
+    <value>डेवोप्स नेटिव</value>
+  </data>
   <data name="Develop exclusively in UTC while the system automatically converts and displays dates in the user&apos;s local time zone." xml:space="preserve">
     <value>UTC में विकास केवल करें, जबकि सिस्टम स्वचालित रूप से तारीखों को उपयोगकर्ता के स्थानीय समय क्षेत्र में परिवर्तित और प्रदर्शित करता है।</value>
   </data>
   <data name="Developer Experience" xml:space="preserve">
     <value>विकासकर्मी अनुभव</value>
-  </data>
-  <data name="DevOps Native" xml:space="preserve">
-    <value>डेवोप्स नेटिव</value>
   </data>
   <data name="Direct request" xml:space="preserve">
     <value>सीधा अनुरोध</value>
@@ -321,6 +333,9 @@
   <data name="Dynamic Navigation Bar" xml:space="preserve">
     <value>डायनामिक नेविगेशन बार</value>
   </data>
+  <data name="Each package is checked against approval rules and known vulnerabilities." xml:space="preserve">
+    <value>प्रत्येक पैकेज को स्वीकृति नियमों और ज्ञात कमजोरियों के विरुद्ध जाँचा जाता है।</value>
+  </data>
   <data name="Easily switch between database providers, including SQLite, MySQL, SQL Server, and an in-memory database for testing." xml:space="preserve">
     <value>परीक्षण के लिए आसानी से डेटाबेस प्रदाताओं के बीच स्विच करें, जिसमें SQLite, MySQL, SQL Server और एक इन-मेमोरी डेटाबेस शामिल हैं।</value>
   </data>
@@ -329,6 +344,9 @@
   </data>
   <data name="Effortlessly write integration tests using in-memory databases, temporary file systems, built-in mocking, and real-world HTTP request simulation." xml:space="preserve">
     <value>आसानी से इंटीग्रेशन टेस्ट लिखें इन-मेमोरी डेटाबेस, अस्थायी फाइल सिस्टम, बिल्ट-इन मॉकिंग, और वास्तविक दुनिया के HTTP रिक्वेस्ट सिमुलेशन का उपयोग करके।</value>
+  </data>
+  <data name="Employees can discover current approvals and matching rules before starting another request." xml:space="preserve">
+    <value>कर्मचारी किसी अन्य अनुरोध शुरू करने से पहले वर्तमान अनुमोदनों और मेल खाते नियमों को खोज सकते हैं।</value>
   </data>
   <data name="Employees can discover current approvals, suppliers, and matching rules before starting another request." xml:space="preserve">
     <value>कर्मचारी नया अनुरोध शुरू करने से पहले मौजूदा स्वीकृतियों, आपूर्तिकर्ताओं और लागू नियमों की जानकारी पा सकते हैं।</value>
@@ -354,11 +372,11 @@
   <data name="Entity Framework Core included" xml:space="preserve">
     <value>Entity Framework Core शामिल है</value>
   </data>
-  <data name="Exact artifact evidence" xml:space="preserve">
-    <value>सटीक आर्टिफ़ैक्ट साक्ष्य</value>
-  </data>
   <data name="Exact SHA-256 evidence" xml:space="preserve">
     <value>सटीक SHA-256 प्रमाण</value>
+  </data>
+  <data name="Exact artifact evidence" xml:space="preserve">
+    <value>सटीक आर्टिफ़ैक्ट साक्ष्य</value>
   </data>
   <data name="Existing package access continues." xml:space="preserve">
     <value>मौजूदा पैकेजों तक पहुँच जारी रहती है।</value>
@@ -371,9 +389,6 @@
   </data>
   <data name="FAQ" xml:space="preserve">
     <value>अक्सर पूछे जाने वाले प्रश्न</value>
-  </data>
-  <data name="faster" xml:space="preserve">
-    <value>तेज़</value>
   </data>
   <data name="Feature tests available" xml:space="preserve">
     <value>फीचर टेस्ट उपलब्ध हैं</value>
@@ -402,9 +417,6 @@
   <data name="Flexible API" xml:space="preserve">
     <value>लचीला API</value>
   </data>
-  <data name="for any inquiries or to report issues." xml:space="preserve">
-    <value>किसी भी जानकारी के लिए या समस्याओं की रिपोर्ट करने के लिए।</value>
-  </data>
   <data name="Founder &amp; Architect at Aiursoft" xml:space="preserve">
     <value>संस्थापक और वास्तुकार, Aiursoft में</value>
   </data>
@@ -414,11 +426,11 @@
   <data name="Free" xml:space="preserve">
     <value>मुफ़्त</value>
   </data>
-  <data name="Free for Commercial Use" xml:space="preserve">
-    <value>वाणिज्यिक उपयोग के लिए मुफ्त</value>
-  </data>
   <data name="Free Software" xml:space="preserve">
     <value>मुक्त सॉफ्टवेयर</value>
+  </data>
+  <data name="Free for Commercial Use" xml:space="preserve">
+    <value>वाणिज्यिक उपयोग के लिए मुफ्त</value>
   </data>
   <data name="Frequently asked questions" xml:space="preserve">
     <value>अक्सर पूछे जाने वाले प्रश्न</value>
@@ -441,11 +453,11 @@
   <data name="Fully Offline" xml:space="preserve">
     <value>पूरी तरह से ऑफलाइन</value>
   </data>
-  <data name="Generic configuration" xml:space="preserve">
-    <value>सामान्य कॉन्फ़िगरेशन</value>
-  </data>
   <data name="Generic Dockerfile only" xml:space="preserve">
     <value>केवल सामान्य Dockerfile</value>
+  </data>
+  <data name="Generic configuration" xml:space="preserve">
+    <value>सामान्य कॉन्फ़िगरेशन</value>
   </data>
   <data name="GitLab CI" xml:space="preserve">
     <value>GitLab CI</value>
@@ -471,14 +483,14 @@
   <data name="Handwritten based on Policies" xml:space="preserve">
     <value>नीतियों के आधार पर हस्तलिखित</value>
   </data>
-  <data name="Health check package available" xml:space="preserve">
-    <value>हेल्थ चेक पैकेज उपलब्ध है</value>
-  </data>
   <data name="Health Checks &amp; Probes" xml:space="preserve">
     <value>स्वास्थ्य जाँच और प्रोब</value>
   </data>
   <data name="Health Checks middleware available" xml:space="preserve">
     <value>Health Checks middleware उपलब्ध है</value>
+  </data>
+  <data name="Health check package available" xml:space="preserve">
+    <value>हेल्थ चेक पैकेज उपलब्ध है</value>
   </data>
   <data name="Hello World!" xml:space="preserve">
     <value>नमस्ते दुनिया!</value>
@@ -522,11 +534,11 @@
   <data name="Included" xml:space="preserve">
     <value>शामिल</value>
   </data>
-  <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
-    <value>विस्तृत दस्तावेज़ीकरण और व्यावहारिक उदाहरण शामिल हैं ताकि आप जल्दी शुरुआत कर सकें।</value>
-  </data>
   <data name="Includes Tutorials" xml:space="preserve">
     <value>ट्यूटोरियल्स शामिल हैं</value>
+  </data>
+  <data name="Includes extensive documentation and practical examples to get you started quickly." xml:space="preserve">
+    <value>विस्तृत दस्तावेज़ीकरण और व्यावहारिक उदाहरण शामिल हैं ताकि आप जल्दी शुरुआत कर सकें।</value>
   </data>
   <data name="Integrated File Management" xml:space="preserve">
     <value>एकीकृत फ़ाइल प्रबंधन</value>
@@ -540,14 +552,8 @@
   <data name="Interoperability" xml:space="preserve">
     <value>अंतरक्रियाशीलता</value>
   </data>
-  <data name="is Free Software" xml:space="preserve">
-    <value>मुक्त सॉफ्टवेयर है</value>
-  </data>
   <data name="Is it free to use Aiursoft Template?" xml:space="preserve">
     <value>क्या Aiursoft Template का उपयोग करना मुफ़्त है?</value>
-  </data>
-  <data name="java.time API available" xml:space="preserve">
-    <value>java.time API उपलब्ध है</value>
   </data>
   <data name="JavaScript packages" xml:space="preserve">
     <value>JavaScript पैकेज</value>
@@ -579,6 +585,12 @@
   <data name="Lint Check" xml:space="preserve">
     <value>लिंट चेक</value>
   </data>
+  <data name="MIT Licence" xml:space="preserve">
+    <value>एमआईटी लाइसेंस</value>
+  </data>
+  <data name="MIT License" xml:space="preserve">
+    <value>MIT लाइसेंस</value>
+  </data>
   <data name="Made for the dependencies your teams actually use." xml:space="preserve">
     <value>आपकी टीमों द्वारा वास्तव में उपयोग की जाने वाली निर्भरताओं के लिए बनाया गया।</value>
   </data>
@@ -593,12 +605,6 @@
   </data>
   <data name="Markdown To HTML" xml:space="preserve">
     <value>मार्कडाउन से एचटीएमएल</value>
-  </data>
-  <data name="MIT Licence" xml:space="preserve">
-    <value>एमआईटी लाइसेंस</value>
-  </data>
-  <data name="MIT License" xml:space="preserve">
-    <value>MIT लाइसेंस</value>
   </data>
   <data name="Models are validated on both client and server sides based on data annotations." xml:space="preserve">
     <value>मॉडल्स को डेटा एनोटेशन्स के आधार पर क्लाइंट और सर्वर दोनों तरफ मान्यता दी जाती है।</value>
@@ -624,15 +630,6 @@
   <data name="Needs Celery + Flower" xml:space="preserve">
     <value>सेलरी + फ्लॉवर की आवश्यकता है</value>
   </data>
-  <data name="Needs complex authentication logic" xml:space="preserve">
-    <value>जटिल प्रमाणीकरण तर्क की आवश्यकता है</value>
-  </data>
-  <data name="Needs config/plugins" xml:space="preserve">
-    <value>कॉन्फ़िग/प्लगइन्स की आवश्यकता है</value>
-  </data>
-  <data name="Needs django-health-check package" xml:space="preserve">
-    <value>django-health-check पैकेज की आवश्यकता है</value>
-  </data>
   <data name="Needs ESLint/Prettier setup" xml:space="preserve">
     <value>ESLint/Prettier सेटअप की आवश्यकता है</value>
   </data>
@@ -642,17 +639,11 @@
   <data name="Needs Laravel Sail" xml:space="preserve">
     <value>लारवेल सेल की आवश्यकता है</value>
   </data>
-  <data name="Needs manual configuration" xml:space="preserve">
-    <value>मैनुअल कॉन्फ़िगरेशन की आवश्यकता है</value>
-  </data>
   <data name="Needs Medialibrary" xml:space="preserve">
     <value>मीडिया लाइब्रेरी की आवश्यकता है</value>
   </data>
   <data name="Needs Passport or similar" xml:space="preserve">
     <value>पासपोर्ट या समान की आवश्यकता है</value>
-  </data>
-  <data name="Needs review" xml:space="preserve">
-    <value>समीक्षा आवश्यक है</value>
   </data>
   <data name="Needs Spatie or similar" xml:space="preserve">
     <value>Spatie या समान की आवश्यकता है</value>
@@ -660,11 +651,26 @@
   <data name="Needs Spring Security config" xml:space="preserve">
     <value>Spring Security कॉन्फ़िगरेशन की आवश्यकता है</value>
   </data>
-  <data name="Needs third-party plugins" xml:space="preserve">
-    <value>तीसरे पक्ष के प्लग-इन की आवश्यकता है</value>
-  </data>
   <data name="Needs TypeORM or similar" xml:space="preserve">
     <value>टाइपओआरएम या समान की आवश्यकता है</value>
+  </data>
+  <data name="Needs complex authentication logic" xml:space="preserve">
+    <value>जटिल प्रमाणीकरण तर्क की आवश्यकता है</value>
+  </data>
+  <data name="Needs config/plugins" xml:space="preserve">
+    <value>कॉन्फ़िग/प्लगइन्स की आवश्यकता है</value>
+  </data>
+  <data name="Needs django-health-check package" xml:space="preserve">
+    <value>django-health-check पैकेज की आवश्यकता है</value>
+  </data>
+  <data name="Needs manual configuration" xml:space="preserve">
+    <value>मैनुअल कॉन्फ़िगरेशन की आवश्यकता है</value>
+  </data>
+  <data name="Needs review" xml:space="preserve">
+    <value>समीक्षा आवश्यक है</value>
+  </data>
+  <data name="Needs third-party plugins" xml:space="preserve">
+    <value>तीसरे पक्ष के प्लग-इन की आवश्यकता है</value>
   </data>
   <data name="No dependency on any cloud vendor. Run anywhere, any time." xml:space="preserve">
     <value>किसी भी क्लाउड वेंडर पर निर्भरता नहीं। कहीं भी, कभी भी चलाएं।</value>
@@ -675,14 +681,17 @@
   <data name="NuGet and npm have different version and installation rules. S360 keeps their package identities distinct while presenting one consistent approval experience." xml:space="preserve">
     <value>NuGet और npm के संस्करण और इंस्टॉलेशन के नियम अलग-अलग हैं। S360 उनके पैकेज की पहचान को अलग रखते हुए अनुमोदन का एक समान अनुभव प्रदान करता है।</value>
   </data>
-  <data name="Offline builds" xml:space="preserve">
-    <value>ऑफ़लाइन बिल्ड</value>
+  <data name="OIDC &amp; SSO" xml:space="preserve">
+    <value>OIDC &amp; SSO</value>
+  </data>
+  <data name="ORM &amp; Migrations" xml:space="preserve">
+    <value>ORM और माइग्रेशन</value>
   </data>
   <data name="Offline Capable" xml:space="preserve">
     <value>ऑफलाइन कैपेबल</value>
   </data>
-  <data name="OIDC &amp; SSO" xml:space="preserve">
-    <value>OIDC &amp; SSO</value>
+  <data name="Offline builds" xml:space="preserve">
+    <value>ऑफ़लाइन बिल्ड</value>
   </data>
   <data name="One Click Start" xml:space="preserve">
     <value>एक क्लिक से शुरू करें</value>
@@ -711,11 +720,11 @@
   <data name="Optimized Docker &amp; K8s config" xml:space="preserve">
     <value>कृषित Docker &amp; K8s कॉन्फ़िगरेशन</value>
   </data>
-  <data name="ORM &amp; Migrations" xml:space="preserve">
-    <value>ORM और माइग्रेशन</value>
-  </data>
   <data name="Out-of-the-box" xml:space="preserve">
     <value>बिना किसी सेटअप के तैयार</value>
+  </data>
+  <data name="Package rules and CVE alerts" xml:space="preserve">
+    <value>पैकेज नियम और CVE अलर्ट</value>
   </data>
   <data name="Permission discovery and sync" xml:space="preserve">
     <value>अनुमति खोज और समन्वय</value>
@@ -726,14 +735,17 @@
   <data name="Pre-configured /healthz and readiness probes" xml:space="preserve">
     <value>प्री-कॉन्फ़िगर /healthz और रेडिनेस प्रोब्स</value>
   </data>
-  <data name="Pre-configured and tested" xml:space="preserve">
-    <value>पूर्व-कॉन्फ़िगर और परीक्षण किया गया</value>
-  </data>
   <data name="Pre-configured CI/CD pipelines specifically for GitLab." xml:space="preserve">
     <value>गिटलैब के लिए विशेष रूप से पूर्व-संरचित CI/CD पाइपलाइन</value>
   </data>
+  <data name="Pre-configured and tested" xml:space="preserve">
+    <value>पूर्व-कॉन्फ़िगर और परीक्षण किया गया</value>
+  </data>
   <data name="Pre-configured pipelines for dev/prod" xml:space="preserve">
     <value>dev/prod के लिए पूर्व-विन्यस्त पाइपलाइन्स</value>
+  </data>
+  <data name="Project dependency records" xml:space="preserve">
+    <value>प्रोजेक्ट निर्भरता रिकॉर्ड्स</value>
   </data>
   <data name="Quality Gate" xml:space="preserve">
     <value>गुणवत्ता गेट</value>
@@ -780,8 +792,20 @@
   <data name="Review" xml:space="preserve">
     <value>समीक्षा</value>
   </data>
+  <data name="Review and approve" xml:space="preserve">
+    <value>समीक्षा करें और स्वीकृत करें</value>
+  </data>
+  <data name="Review locked package versions and known vulnerabilities from CI dependency reports." xml:space="preserve">
+    <value>CI निर्भरता रिपोर्टों से लॉक्ड पैकेज संस्करणों और ज्ञात सुरक्षा दोषों की समीक्षा करें।</value>
+  </data>
+  <data name="Review package versions used by your applications and track known vulnerabilities." xml:space="preserve">
+    <value>अपने ऐप्लिकेशन में उपयोग किए जाने वाले पैकेज संस्करणों की समीक्षा करें और ज्ञात कमजोरियों को ट्रैक करें।</value>
+  </data>
   <data name="Review restored versions and the original .nupkg files behind your applications." xml:space="preserve">
     <value>अपने एप्लिकेशन के लिए पुनर्स्थापित किए गए संस्करणों और मूल .nupkg फ़ाइलों की समीक्षा करें।</value>
+  </data>
+  <data name="Review the requested package names and versions. CI reports dependency relationships for project alerts." xml:space="preserve">
+    <value>अनुरोधित पैकेज नामों और संस्करणों की समीक्षा करें। CI परियोजना अलर्ट के लिए निर्भरता संबंधों की रिपोर्ट करता है।</value>
   </data>
   <data name="Review with guardrails" xml:space="preserve">
     <value>सुरक्षा सीमाओं के साथ समीक्षा करें</value>
@@ -798,8 +822,14 @@
   <data name="Robust Integration Testing" xml:space="preserve">
     <value>रॉबस्ट इंटीग्रेशन टेस्टिंग</value>
   </data>
+  <data name="Rules and vulnerability checks" xml:space="preserve">
+    <value>नियम और कमज़ोरी जाँच</value>
+  </data>
   <data name="Runs without any internet connection required." xml:space="preserve">
     <value>कोई इंटरनेट कनेक्शन की आवश्यकता के बिना चलता है।</value>
+  </data>
+  <data name="S360 Web and review" xml:space="preserve">
+    <value>S360 वेब और समीक्षा</value>
   </data>
   <data name="S360 connects the people approving dependencies with the exact packages, versions, sources, and risks behind each decision." xml:space="preserve">
     <value>S360 निर्भरता को मंज़ूरी देने वाले लोगों को हर निर्णय के पीछे मौजूद सटीक पैकेजों, संस्करणों, स्रोतों और जोखिमों से जोड़ता है।</value>
@@ -810,8 +840,8 @@
   <data name="S360 is being prepared as the Web approval center. Runner enforcement, authorization-only package mirrors, and fully offline builds are later rollout stages—not guarantees of this deployment." xml:space="preserve">
     <value>S360 को वेब अनुमोदन केंद्र के रूप में तैयार किया जा रहा है। रनर प्रवर्तन, केवल अधिकृत पैकेज मिरर और पूरी तरह ऑफ़लाइन बिल्ड बाद के चरणों में लागू किए जाएंगे—इस परिनियोजन में इनकी गारंटी नहीं है।</value>
   </data>
-  <data name="S360 Web and review" xml:space="preserve">
-    <value>S360 वेब और समीक्षा</value>
+  <data name="S360 records allowed NuGet and npm packages, checks known vulnerabilities, and alerts affected projects." xml:space="preserve">
+    <value>S360 अनुमत NuGet और npm पैकेज को दर्ज करता है, ज्ञात कमजोरियों की जाँच करता है, और प्रभावित परियोजनाओं को अलर्ट करता है।</value>
   </data>
   <data name="Scheduled Task Management" xml:space="preserve">
     <value>योजना बनाई गई कार्य प्रबंधन</value>
@@ -849,17 +879,17 @@
   <data name="Software supply chain, in focus" xml:space="preserve">
     <value>सॉफ़्टवेयर आपूर्ति शृंखला पर विशेष ध्यान</value>
   </data>
-  <data name="Standard implementation. Switch providers without compilation." xml:space="preserve">
-    <value>मानक कार्यान्वयन। संकलन के बिना प्रदाताओं को स्विच करें।</value>
-  </data>
   <data name="Standard OpenID" xml:space="preserve">
     <value>मानक OpenID</value>
   </data>
-  <data name="Start a new project" xml:space="preserve">
-    <value>एक नया प्रोजेक्ट शुरू करें</value>
+  <data name="Standard implementation. Switch providers without compilation." xml:space="preserve">
+    <value>मानक कार्यान्वयन। संकलन के बिना प्रदाताओं को स्विच करें।</value>
   </data>
   <data name="Start Shipping Value." xml:space="preserve">
     <value>मूल्य शिपिंग शुरू करें।</value>
+  </data>
+  <data name="Start a new project" xml:space="preserve">
+    <value>एक नया प्रोजेक्ट शुरू करें</value>
   </data>
   <data name="Start with a single &apos;docker run&apos; command." xml:space="preserve">
     <value>एकल &apos;docker run&apos; कमांड के साथ शुरुआत करें।</value>
@@ -876,14 +906,14 @@
   <data name="Strict Lint Rules" xml:space="preserve">
     <value>कठोर लिंट नियम</value>
   </data>
+  <data name="Strict Unit Testing" xml:space="preserve">
+    <value>कठोर यूनिट परीक्षण</value>
+  </data>
   <data name="Strict linting rules and zero warnings by default." xml:space="preserve">
     <value>डिफ़ॉल्ट रूप से सख्त लिंटिंग नियम और शून्य चेतावनियाँ</value>
   </data>
   <data name="Strict linting rules with 0 warnings in the default project." xml:space="preserve">
     <value>डिफ़ॉल्ट प्रोजेक्ट में 0 चेतावनियाँ के साथ सख्त लिंटिंग नियम।</value>
-  </data>
-  <data name="Strict Unit Testing" xml:space="preserve">
-    <value>कठोर यूनिट परीक्षण</value>
   </data>
   <data name="Strongly Consistent Linting" xml:space="preserve">
     <value>तीव्र और सुसंगत लिंटिंग</value>
@@ -891,11 +921,11 @@
   <data name="Submit direct dependencies once. S360 resolves transitive packages and records how each one enters the request." xml:space="preserve">
     <value>सीधी निर्भरताएँ एक बार सबमिट करें। S360 ट्रांज़िटिव पैकेजों को हल करता है और दर्ज करता है कि हर पैकेज अनुरोध में कैसे शामिल हुआ।</value>
   </data>
-  <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
-    <value>पर्यावरण चर और डेटाबेस-आधारित सेटिंग्स दोनों का समर्थन करता है, जिसमें पर्यावरण चरों को बिना किसी दिक्कत के अपडेट करने के लिए स्वचालित प्राथमिकता दी जाती है।</value>
-  </data>
   <data name="Supports JetBrains Rider for easy code style fixes." xml:space="preserve">
     <value>जेटब्रेन्स राइडर का समर्थन करता है आसान कोड स्टाइल फिक्स के लिए।</value>
+  </data>
+  <data name="Supports both environment variables and database-backed settings, with automatic priority given to environment variables for seamless overrides." xml:space="preserve">
+    <value>पर्यावरण चर और डेटाबेस-आधारित सेटिंग्स दोनों का समर्थन करता है, जिसमें पर्यावरण चरों को बिना किसी दिक्कत के अपडेट करने के लिए स्वचालित प्राथमिकता दी जाती है।</value>
   </data>
   <data name="Task Runner" xml:space="preserve">
     <value>टास्क रनर</value>
@@ -915,6 +945,9 @@
   <data name="Testing module available" xml:space="preserve">
     <value>परीक्षण मॉड्यूल उपलब्ध है</value>
   </data>
+  <data name="The Philosophy" xml:space="preserve">
+    <value>द फिलॉसफी</value>
+  </data>
   <data name="The background resolver records exact versions, package archives, hashes, source, and introduction paths." xml:space="preserve">
     <value>बैकग्राउंड रिज़ॉल्वर सटीक संस्करणों, पैकेज आर्काइव, हैश, स्रोत और शामिल होने के पथों का रिकॉर्ड रखता है।</value>
   </data>
@@ -927,9 +960,6 @@
   <data name="The navigation bar automatically adjusts based on user roles and permissions." xml:space="preserve">
     <value>नेविगेशन बार स्वचालित रूप से उपयोगकर्ता की भूमिकाओं और अनुमतियों के आधार पर समायोजित होता है।</value>
   </data>
-  <data name="The Philosophy" xml:space="preserve">
-    <value>द फिलॉसफी</value>
-  </data>
   <data name="The template is built for easy deployment. It includes full Docker support, so you can containerize your app and run it anywhere. You can also deploy it directly to IIS, Azure App Service, or any server that supports ASP.NET Core." xml:space="preserve">
     <value>यह टेम्पलेट आसान डेप्लॉयमेंट के लिए बनाया गया है। इसमें पूर्ण Docker सपोर्ट शामिल है, जिससे आप अपने ऐप को कंटेनराइज़ करके कहीं भी चला सकते हैं। आप इसे सीधे IIS, Azure App Service, या किसी भी सर्वर पर डेप्लॉय कर सकते हैं जो ASP.NET Core को सपोर्ट करता है।</value>
   </data>
@@ -939,11 +969,11 @@
   <data name="This is a template project, where we start the voyager..." xml:space="preserve">
     <value>यह एक टेम्पलेट प्रोजेक्ट है, जहाँ से हम वॉयजर की शुरुआत करते हैं...</value>
   </data>
-  <data name="Timezone-aware fields" xml:space="preserve">
-    <value>समय क्षेत्र-जागरूक क्षेत्र</value>
-  </data>
   <data name="TimeZoneInfo API available" xml:space="preserve">
     <value>TimeZoneInfo API उपलब्ध है</value>
+  </data>
+  <data name="Timezone-aware fields" xml:space="preserve">
+    <value>समय क्षेत्र-जागरूक क्षेत्र</value>
   </data>
   <data name="Transitive dependency" xml:space="preserve">
     <value>परोक्ष निर्भरता</value>
@@ -1019,6 +1049,18 @@
   </data>
   <data name="Zero Tolerance Lint" xml:space="preserve">
     <value>शून्य सहनशीलता लींट</value>
+  </data>
+  <data name="faster" xml:space="preserve">
+    <value>तेज़</value>
+  </data>
+  <data name="for any inquiries or to report issues." xml:space="preserve">
+    <value>किसी भी जानकारी के लिए या समस्याओं की रिपोर्ट करने के लिए।</value>
+  </data>
+  <data name="is Free Software" xml:space="preserve">
+    <value>मुक्त सॉफ्टवेयर है</value>
+  </data>
+  <data name="java.time API available" xml:space="preserve">
+    <value>java.time API उपलब्ध है</value>
   </data>
 
 </root>

@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Υποστήριξη &quot;Fire-and-forget&quot; για μακροχρόνιες εργασίες (όπως email ή ΤΝ), με GUI για διαχείριση ουράς, παράλληλη επεξεργασία και ακύρωση.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} επηρεαζόμενα έργα</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} εκδόσεις πακέτων που απαιτούν προσοχή</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} σύνολο · {1} σε εξέλιξη · {2} ενέκριναν</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Μια κενή ημερομηνία σημαίνει ότι δεν έχει ολοκληρωθεί ακόμη επιτυχώς κανένας συγχρονισμός ευπαθειών. Οι ώρες είναι σε UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Μια πολιτική που μπορεί να επιτρέπει πακέτα που πληρούν τα κριτήρια· ένας απόλυτος αποκλεισμός ή η απουσία στοιχείων για το τεχνούργημα εξακολουθεί να τα απορρίπτει.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>Μεταφράσεις με Τεχνητή Νοημοσύνη</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Απόλυτοι αποκλεισμοί που υπερισχύουν των κανόνων εμπιστοσύνης και των εγκρίσεων.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Ενεργοί κανόνες αποκλεισμού</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>Μεταφράσεις με Τεχνητή Νοημοσύνη</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Όλες οι εξαρτήσεις καταχωρούνται αυτόματα και είναι πάντα διαθέσιμες μέσω της εισαγωγής στον κατασκευαστή.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Η δουλειά σας, χωρίς αμφιβολίες.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} επηρεαζόμενα έργα</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} εκδόσεις πακέτων που απαιτούν προσοχή</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} σύνολο · {1} σε εξέλιξη · {2} ενέκριναν</value>
   </data>
 
 </root>

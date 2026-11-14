@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>&quot;फायर-एंड-फॉरगेट&quot; समर्थन लंबे समय तक चलने वाले कार्यों (जैसे ईमेल या एआई) के लिए, जिसमें कतार प्रबंधन, समानांतर प्रसंस्करण और रद्द करने के लिए एक GUI शामिल है।</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} प्रभावित परियोजनाएँ</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} पैकेज संस्करणों को ध्यान देने की आवश्यकता है</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>कुल {0} · प्रगति पर {1} · स्वीकृत {2}</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>खाली तारीख का अर्थ है कि अब तक कोई पूर्ण भेद्यता सिंक सफल नहीं हुआ है। समय UTC के अनुसार हैं।</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>एक नीति मेल खाने वाले पैकेजों को अनुमति दे सकती है; लेकिन पूर्ण प्रतिबंध या आर्टिफ़ैक्ट के प्रमाण की कमी उन्हें फिर भी अस्वीकार कर देती है।</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>AI-संचालित अनुवाद</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>ऐसे पूर्ण प्रतिबंध जिन्हें भरोसे के नियमों और स्वीकृतियों पर प्राथमिकता दी जाती है।</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>सक्रिय ब्लॉक नियम</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>AI-संचालित अनुवाद</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>सभी निर्भरताएँ स्वचालित रूप से पंजीकृत होती हैं और कंस्ट्रक्टर इंजेक्शन के माध्यम से हमेशा उपलब्ध रहती हैं।</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>आपका काम, अब बिना किसी अंदाज़े के।</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} प्रभावित परियोजनाएँ</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} पैकेज संस्करणों को ध्यान देने की आवश्यकता है</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>कुल {0} · प्रगति पर {1} · स्वीकृत {2}</value>
   </data>
 
 </root>

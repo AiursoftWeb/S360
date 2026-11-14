@@ -65,7 +65,7 @@ public class MirrorAdmissionController(TemplateDbContext db, TrustService trust,
         {
             return Ok(new DependencyDecision { Dependency = dependency, Reason = "Archive differs from the configured upstream." });
         }
-        catch (Exception ex) when (ex is HttpRequestException or IOException or InvalidOperationException or System.Text.Json.JsonException)
+        catch (Exception ex) when (ex is HttpRequestException or IOException or InvalidOperationException or System.Text.Json.JsonException or TaskCanceledException)
         {
             return StatusCode(StatusCodes.Status503ServiceUnavailable, new { error = "Independent mirror verification is unavailable." });
         }

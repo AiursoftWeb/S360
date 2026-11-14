@@ -54,7 +54,6 @@
             <dt class="col-sm-3">@Localizer["Source"]</dt><dd class="col-sm-9 text-break">@rule.Source</dd>
             <dt class="col-sm-3">@Localizer["Supplier"]</dt><dd class="col-sm-9">@(rule.Supplier?.Name ?? @Localizer["Not recorded"].Value)</dd>
             <dt class="col-sm-3">@Localizer["Prerelease versions"]</dt><dd class="col-sm-9">@(rule.IncludePrerelease ? @Localizer["Included"] : @Localizer["Excluded"])</dd>
-            <dt class="col-sm-3">@Localizer["SHA-256"]</dt><dd class="col-sm-9 text-break">@(rule.Sha256 ?? @Localizer["Not pinned"].Value)</dd>
             <dt class="col-sm-3">@Localizer["Expires"]</dt><dd class="col-sm-9">
                 @if (rule.ExpiresAtUtc is { } expiry) { <span data-utc-time="@expiry.ToHtmlDateTime()"></span> }
                 else { @Localizer["No expiry"] }

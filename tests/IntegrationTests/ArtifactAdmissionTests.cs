@@ -42,7 +42,7 @@ public class ArtifactAdmissionTests : TestBase
             {
                 ApplicationId = null, SupplierId = null,
                 Ecosystem = "nuget", PackagePattern = name, Version = "1.*", Source = Source,
-                Status = TrustRuleStatus.Approved, ExpiresAtUtc = now.AddDays(1)
+                Status = TrustRuleStatus.Approved, RequestedAtUtc = now.AddHours(-1), ExpiresAtUtc = now.AddDays(1)
             });
             db.PackageArtifacts.Add(new PackageArtifact
             {
@@ -58,17 +58,48 @@ public class ArtifactAdmissionTests : TestBase
         var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
         if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
         audit.LastSuccessfulAttemptAtUtc = now.AddSeconds(-1);
-        audit.LastSuccessAtUtc = now.AddSeconds(1);
+        audit.LastSuccessAtUtc = now;
         await db.SaveChangesAsync();
     }
 
     [TestMethod]
-    public async Task OneInternalRulePermitsColdCandidatesButNeverClaimsTheyAreVerified()
+    public async Task ColdPolicyQueryNeedsNeitherFileProofBaselinePermissionNorAlertCenter()
     {
         await AuthorizeAsync(); await SeedAsync();
-        GetService<IConfiguration>()["SupplyChain:Mirrors:0:Ecosystem"] = "nuget";
-        GetService<IConfiguration>()["SupplyChain:Mirrors:0:Source"] = Source;
-        GetService<IConfiguration>()["SupplyChain:Mirrors:0:Upstream"] = "https://api.nuget.org/v3/index.json";
+        var settings = GetService<Services.GlobalSettingsService>();
+        await settings.UpdateSettingAsync(Configuration.SettingsMap.AlertCenterEnabled, "True");
+        await settings.UpdateSettingAsync(Configuration.SettingsMap.AlertCenterEndpoint, "http://127.0.0.1:1");
+        try
+        {
+            var input = new { dependencies = new[] { new
+            {
+                ecosystem = "nuget", name = "Mirror.Approved", version = "1.9.0", source = Source
+            } } };
+            using var deniedBaseline = await Http.PostAsJsonAsync("/api/check", new CheckRequest
+            {
+                Context = new CheckContext { Purpose = "baseline" }, Project = "isolated/no-permission",
+                ScannedProjectCount = 1, Dependencies = [Package("Mirror.Approved")]
+            });
+            Assert.AreEqual(HttpStatusCode.Forbidden, deniedBaseline.StatusCode);
+            using var response = await Http.PostAsJsonAsync("/api/artifacts/assess", input);
+            response.EnsureSuccessStatusCode();
+            var result = await response.Content.ReadFromJsonAsync<ArtifactAssessmentResponse>();
+            Assert.IsTrue(result!.Decisions.Single().Trusted);
+            using var scope = Server!.Services.CreateScope();
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Source == Source && a.Version == "1.9.0"));
+            Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.Project == "isolated/no-permission"));
+        }
+        finally
+        {
+            await settings.UpdateSettingAsync(Configuration.SettingsMap.AlertCenterEnabled, "False");
+        }
+    }
+
+    [TestMethod]
+    public async Task OneInternalRulePermitsColdCandidatesWithoutAnyFileProof()
+    {
+        await AuthorizeAsync(); await SeedAsync();
         var request = new MirrorCandidateRequest([
             new("nuget", "Mirror.Approved", "1.9.0", Source),
             new("nuget", "Mirror.Approved", "1.9.0-beta", Source),
@@ -79,6 +110,7 @@ public class ArtifactAdmissionTests : TestBase
         Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         var result = await response.Content.ReadFromJsonAsync<MirrorCandidateResponse>();
         Assert.IsNotNull(result);
+        CollectionAssert.AreEqual(request.Candidates, result.Decisions.Select(d => d.Candidate).ToList());
         CollectionAssert.AreEqual(new[] { true, false, false, false, false }, result.Decisions.Select(d => d.CanFetch).ToArray());
         using var scope = Server!.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
@@ -105,7 +137,7 @@ public class ArtifactAdmissionTests : TestBase
     }
 
     [TestMethod]
-    public async Task EmptyApprovedPageRetainsCursorAndEnumeratesOnlyVerifiedAllowedArtifacts()
+    public async Task EmptyApprovedPageRetainsCursorAndEnumeratesAllowedVersionsWithoutFileProof()
     {
         await AuthorizeAsync(); await SeedAsync();
         var url = "/api/artifacts/approved?ecosystem=nuget&source=" + Uri.EscapeDataString(Source) + "&take=1";
@@ -116,7 +148,10 @@ public class ArtifactAdmissionTests : TestBase
         var second = await Http.GetFromJsonAsync<ApprovedArtifactPage>(url + $"&afterId={first.NextAfterId}&upperId={first.UpperId}");
         Assert.IsNotNull(second);
         Assert.AreEqual("Mirror.Approved", second.Artifacts.Single().Name);
-        Assert.IsNull(second.NextAfterId);
+        Assert.IsNotNull(second.NextAfterId);
+        var third = await Http.GetFromJsonAsync<ApprovedArtifactPage>(url + $"&afterId={second.NextAfterId}&upperId={first.UpperId}");
+        Assert.AreEqual("Mirror.Unverified", third!.Artifacts.Single().Name);
+        Assert.IsNull(third.NextAfterId);
     }
 
     [TestMethod]
@@ -131,7 +166,7 @@ public class ArtifactAdmissionTests : TestBase
             .Content.ReadFromJsonAsync<ArtifactAssessmentResponse>();
         Assert.IsNotNull(result);
         Assert.IsTrue(result.Decisions[0].Trusted);
-        Assert.IsTrue(result.Decisions[1].PendingVerification);
+        Assert.IsTrue(result.Decisions[1].Trusted);
         Assert.IsFalse(result.Decisions[2].Trusted);
         using (var scope = Server!.Services.CreateScope())
         {
@@ -149,7 +184,7 @@ public class ArtifactAdmissionTests : TestBase
         StringAssert.Contains(revoked.Decisions[0].Reason, "revoked");
         var page = await Http.GetFromJsonAsync<ApprovedArtifactPage>("/api/artifacts/approved?ecosystem=nuget&source=" + Uri.EscapeDataString(Source));
         Assert.IsNotNull(page);
-        Assert.IsEmpty(page.Artifacts);
+        Assert.AreEqual("Mirror.Unverified", page.Artifacts.Single().Name);
     }
 
     [TestMethod]
@@ -173,7 +208,7 @@ public class ArtifactAdmissionTests : TestBase
             {
                 ApplicationId = null, SupplierId = null, Ecosystem = "npm", PackagePattern = "@fixture/ui",
                 Version = "1.0.0", Source = Source, Status = TrustRuleStatus.Approved,
-                ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
+                ExpiresAtUtc = DateTime.UtcNow.AddDays(1), RequestedAtUtc = DateTime.UtcNow.AddHours(-1)
             });
             db.PackageArtifacts.Add(new PackageArtifact
             {

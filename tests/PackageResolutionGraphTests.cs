@@ -8,104 +8,18 @@ namespace Aiursoft.S360.Tests;
 public class PackageResolutionGraphTests
 {
     [TestMethod]
-    public void NuGetReviewProjectPinsDirectVersionExactly()
+    [DataRow("nuget", "Example.Library")]
+    [DataRow("npm", "@example/library")]
+    public async Task RequestRecordsOnlySuppliedIdentitiesWithoutAnAccessibleRegistry(string ecosystem, string name)
     {
-        var project = PackageResolutionService.CreateNuGetProject([new DirectPackage("A", "1.0.0")]);
-        var reference = project.Descendants("PackageReference").Single();
-        Assert.AreEqual("A", (string?)reference.Attribute("Include"));
-        Assert.AreEqual("[1.0.0]", (string?)reference.Attribute("Version"));
-        Assert.AreEqual("false", (string?)project.Descendants("NuGetAudit").Single());
-    }
-
-    [TestMethod]
-    public void NuGetReviewConfigUsesOnlySelectedSource()
-    {
-        var config = PackageResolutionService.CreateNuGetConfig("https://nuget.aiursoft.com/v3/index.json");
-        var sources = config.Descendants("packageSources").Single();
-        Assert.AreEqual("clear", sources.Elements().First().Name.LocalName);
-        Assert.AreEqual("https://nuget.aiursoft.com/v3/index.json",
-            (string?)sources.Elements("add").Single().Attribute("value"));
-        Assert.ThrowsExactly<ArgumentException>(() => PackageResolutionService.CreateNuGetConfig("http://nuget.example.com"));
-    }
-
-    [TestMethod]
-    public void NuGetGraphIncludesTransitivePackageAndRoot()
-    {
-        var file = Path.GetTempFileName();
-        try
-        {
-            File.WriteAllText(file, """
-                {"targets":{"net10.0":{"A/1.0.0":{"type":"package","dependencies":{"B":"2.0.0"}},"B/2.0.0":{"type":"package"}}}}
-                """);
-            var a = Package("nuget", "A", "1.0.0");
-            var b = Package("nuget", "B", "2.0.0");
-            var edges = PackageResolutionService.ReadNuGetEdges(file, [a, b], [new DirectPackage("A", "1.0.0")]);
-            Assert.IsTrue(edges.Any(e => e.Parent == null && e.Child == a));
-            Assert.IsTrue(edges.Any(e => e.Parent == a && e.Child == b));
-        }
-        finally { File.Delete(file); }
-    }
-
-    [TestMethod]
-    public void NuGetGraphRejectsRootWhenRestoreSelectsHigherVersion()
-    {
-        var file = Path.GetTempFileName();
-        try
-        {
-            File.WriteAllText(file, """
-                {"targets":{"net10.0":{"A/1.2.0":{"type":"package","dependencies":{"B":"2.0.0"}},"B/2.0.0":{"type":"package"}}}}
-                """);
-            var a = Package("nuget", "A", "1.2.0");
-            var b = Package("nuget", "B", "2.0.0");
-            Assert.ThrowsExactly<InvalidOperationException>(() =>
-                PackageResolutionService.ReadNuGetEdges(file, [a, b], [new DirectPackage("A", "1.0.0")]));
-        }
-        finally { File.Delete(file); }
-    }
-
-    [TestMethod]
-    public void NpmGraphResolvesNestedPackageFromNearestNodeModules()
-    {
-        var file = Path.GetTempFileName();
-        try
-        {
-            File.WriteAllText(file, """
-                {"packages":{"":{"dependencies":{"a":"1.0.0"}},"node_modules/a":{"version":"1.0.0","dependencies":{"b":"2.0.0"}},"node_modules/a/node_modules/b":{"version":"2.0.0"}}}
-                """);
-            var a = Package("npm", "a", "1.0.0");
-            var b = Package("npm", "b", "2.0.0");
-            var edges = PackageResolutionService.ReadNpmEdges(file, [a, b], [new DirectPackage("a", "1.0.0")]);
-            Assert.IsTrue(edges.Any(e => e.Parent == null && e.Child == a));
-            Assert.IsTrue(edges.Any(e => e.Parent == a && e.Child == b));
-        }
-        finally { File.Delete(file); }
-    }
-
-    [TestMethod]
-    public void NpmGraphIncludesInstalledRootPeerDependencies()
-    {
-        var file = Path.GetTempFileName();
-        try
-        {
-            File.WriteAllText(file, """
-                {"packages":{"":{"dependencies":{"a":"1.0.0"},"peerDependencies":{"peer":"2.0.0"}},
-                "node_modules/a":{"version":"1.0.0"},"node_modules/peer":{"version":"2.0.0"}}}
-                """);
-            var a = Package("npm", "a", "1.0.0");
-            var peer = Package("npm", "peer", "2.0.0");
-            var edges = PackageResolutionService.ReadNpmEdges(file, [a, peer],
-                [new DirectPackage("a", "1.0.0"), new DirectPackage("peer", "2.0.0")]);
-            Assert.IsTrue(edges.Any(e => e.Parent == null && e.Child == peer));
-            PackageResolutionService.ValidateGraph([a, peer], edges);
-            var application = new DependencyApplication
-            {
-                Ecosystem = "npm", Source = a.Source, ResolutionContext = "npm; test",
-                DirectPackages = """[{"Name":"a","Version":"1.0.0"},{"Name":"peer","Version":"2.0.0"}]"""
-            };
-            Assert.HasCount(64, ReportFingerprint.Compute(application,
-                new ResolutionReport([a, peer], edges, [], application.ResolutionContext)));
-        }
-        finally { File.Delete(file); }
+        var report = await new PackageResolutionService().ResolveAsync(ecosystem,
+            "https://unreachable.invalid/registry", [new DirectPackage(name, "1.2.3")]);
+        Assert.HasCount(1, report.Dependencies);
+        Assert.AreEqual(name, report.Dependencies[0].Name);
+        Assert.AreEqual("1.2.3", report.Dependencies[0].Version);
+        Assert.AreEqual("", report.Dependencies[0].Sha256);
+        Assert.IsNull(report.Edges.Single().Parent);
+        StringAssert.Contains(report.Context, "transitive dependencies are reported by CI");
     }
 
     [TestMethod]
@@ -127,15 +41,13 @@ public class PackageResolutionGraphTests
     }
 
     [TestMethod]
-    public void ReportRejectsDifferentArchiveBytesForOnePackageIdentity()
+    public void HistoricalReportRejectsDuplicateRootsWithoutAuthenticatingFiles()
     {
         var first = Package("nuget", "Example", "1.0.0");
         var changed = Package("nuget", "example", "1.0.0");
         changed.Sha256 = new string('b', 64);
         var edges = new List<ResolutionEdge> { new(null, first), new(null, changed) };
-        var error = Assert.ThrowsExactly<InvalidOperationException>(() =>
-            PackageResolutionService.ValidateGraph([first, changed], edges));
-        StringAssert.Contains(error.Message, "conflicting archive hashes");
+        PackageResolutionService.ValidateGraph([first, changed], edges);
 
         var application = new DependencyApplication
         {
@@ -152,7 +64,8 @@ public class PackageResolutionGraphTests
                 new ApplicationEdge { ApplicationId = 0, ParentPackageId = null, ChildPackageId = 2 }
             ]
         };
-        Assert.ThrowsExactly<InvalidOperationException>(() => ReportFingerprint.ComputePersisted(application));
+        var error = Assert.ThrowsExactly<InvalidOperationException>(() => ReportFingerprint.ComputePersisted(application));
+        StringAssert.Contains(error.Message, "direct packages do not match the request");
     }
 
     [TestMethod]

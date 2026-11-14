@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aiursoft.S360.Controllers;
 
-/// <summary>Read-only global artifact admission. This never grants project build permission.</summary>
+/// <summary>Read-only package policy and vulnerability assessment. Project inventory is independent.</summary>
 [Authorize(AuthenticationSchemes = S360CheckKeyHandler.SchemeName,
     Policy = AppPermissionNames.CanCheckDependencies)]
 [Route("api/artifacts")]
@@ -35,7 +35,7 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
                 Decisions = request.Dependencies.Select((dependency, i) => permitted[i]
                     ? assessed[index++] : new DependencyDecision
                     {
-                        Dependency = dependency, Reason = "Package source is not permitted for verification."
+                        Dependency = dependency, Reason = "Package source is not permitted."
                     }).ToList()
             });
         }
@@ -53,10 +53,10 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
         try
         {
             if (!AllowedPackageSources.Contains(configuration, ecosystem, source))
-                return BadRequest("Package source is not permitted for verification.");
+                return BadRequest("Package source is not permitted.");
             source = TrustPattern.NormalizeSource(source);
             var query = db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == ecosystem &&
-                a.Source == source && a.SourceVerifiedAtUtc != null && !a.SourceVerificationRejected);
+                a.Source == source);
             if (name != null)
             {
                 var normalizedName = ecosystem == "nuget" ? name.ToLowerInvariant() : name;
@@ -73,7 +73,7 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
                 .Select(a => new Dependency
             {
                 Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version,
-                Source = a.Source, Sha256 = a.Sha256
+                Source = a.Source
             }).ToList();
             var decisions = await trust.AssessAsync(page);
             return Ok(new ApprovedArtifactPage

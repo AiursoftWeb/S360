@@ -1,7 +1,7 @@
 @model Aiursoft.S360.Models.SupplyChainViewModels.LegacyMigrationViewModel
 <div class="container-fluid">
     <h1>@Localizer["Review legacy package rules"]</h1>
-    <p>@Localizer["Select verified, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically."]</p>
+    <p>@Localizer["Select observed, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically."]</p>
     @if (Model.Plan.BlockingRuleIds.Count > 0)
     {
         <div class="alert alert-danger" role="alert"><div class="alert-message">@Localizer["Legacy wildcard rejections require a separate review before this migration can proceed."] @string.Join(", ", Model.Plan.BlockingRuleIds)</div></div>

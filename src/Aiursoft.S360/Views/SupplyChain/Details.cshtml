@@ -7,20 +7,19 @@
 <div class="s360-workspace">
     <div class="s360-workspace-head">
         <h1>@Model.Artifact.Name <small>@Model.Artifact.Version</small></h1>
-        <p>@Localizer["This concrete package file currently passes S360's authorization and stored vulnerability checks. A future build must still check its own complete dependency graph."]</p>
+        <p>@Localizer["This package version currently passes authorization and vulnerability checks."]</p>
         <a asp-action="Index" asp-route-ecosystem="@Model.Artifact.Ecosystem">← @Localizer["Back to available dependencies"]</a>
     </div>
     <div class="s360-workspace-layout">
         <div class="s360-workspace-main">
             <section class="card mb-4">
-                <div class="card-header"><h2 class="h5 mb-0">@Localizer["Package file and current authorization"]</h2></div>
+                <div class="card-header"><h2 class="h5 mb-0">@Localizer["Package version and current authorization"]</h2></div>
                 <div class="card-body">
                     <dl class="row mb-0">
                         <dt class="col-sm-3">@Localizer["Ecosystem"]</dt><dd class="col-sm-9">@Model.Artifact.Ecosystem</dd>
                         <dt class="col-sm-3">@Localizer["Package"]</dt><dd class="col-sm-9"><code>@Model.Artifact.Name</code></dd>
                         <dt class="col-sm-3">@Localizer["Exact version"]</dt><dd class="col-sm-9"><code>@Model.Artifact.Version</code></dd>
                         <dt class="col-sm-3">@Localizer["Source"]</dt><dd class="col-sm-9"><code>@Model.Artifact.Source</code></dd>
-                        <dt class="col-sm-3">@Localizer["Archive SHA-256"]</dt><dd class="col-sm-9"><code class="text-break">@Model.Artifact.Sha256</code></dd>
                         <dt class="col-sm-3">@Localizer["Last vulnerability check"]</dt><dd class="col-sm-9"><span data-utc-time="@Model.Artifact.LastCheckedAtUtc?.ToHtmlDateTime()"></span></dd>
                         <dt class="col-sm-3">@Localizer["Supplier label"]</dt><dd class="col-sm-9">@(Model.Rule.Supplier?.Name ?? @Localizer["Not recorded"].Value)</dd>
                         <dt class="col-sm-3">@Localizer["Matching authorization"]</dt><dd class="col-sm-9"><code>@Model.Rule.PackagePattern @Model.Rule.Version</code></dd>
@@ -77,8 +76,8 @@
             Localizer["Read this package record"].Value,
             "package-check",
             [
-                new ConceptTerm(Localizer["Package artifact"].Value, Localizer["One exact archive, version, and source. Its SHA-256 identifies the bytes S360 recorded."].Value),
-                new ConceptTerm(Localizer["Current authorization"].Value, Localizer["An active rule, no applicable block, and a completed recent vulnerability check allow this file now. Expiry or new findings can change that answer."].Value),
+                new ConceptTerm(Localizer["Package artifact"].Value, Localizer["A reported package name, version and policy source. Package files belong to your registry."].Value),
+                new ConceptTerm(Localizer["Current authorization"].Value, Localizer["An active rule and current vulnerability data allow this version. Expiry, revocation, or new findings can change that answer."].Value),
                 new ConceptTerm(Localizer["Recorded relationship"].Value, Localizer["A direct edge from an approved request's resolved graph. It does not prove all future installations use the same graph."].Value)
             ],
             Localizer["Check the complete resolved graph for every actual build, even when this package appears in the catalog."].Value))

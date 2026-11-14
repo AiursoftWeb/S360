@@ -27,28 +27,28 @@ else
 <div class="s360-workspace s360-catalog-page">
 <p><a asp-action="Index">← @Localizer["Back to dependency inventory"]</a></p>
 <div class="s360-workspace-head"><div class="row mb-3"><div class="col"><h1>@Localizer["Dependency catalog"]</h1>
-    <p class="text-muted">@Localizer["A matching rule is not a completed artifact or vulnerability check. Future CI integration will verify every resolved dependency."]</p>
+    <p class="text-muted">@Localizer["Package availability follows approved rules and current vulnerability checks."]</p>
     @if (canRequest) { <p><a asp-controller="DependencyRequests" asp-action="Create">@Localizer["Can't find a package? Submit a request"]</a></p> }
 </div></div></div>
 
 <nav class="s360-inventory-tabs" aria-label="@Localizer["Page sections"]">
     <a class="@(Model.CatalogView == "rules" ? "active" : "")" aria-current="@(Model.CatalogView == "rules" ? "page" : null)" asp-action="Index" asp-all-route-data="ruleTabRoutes"><i data-lucide="shield-check" aria-hidden="true"></i>@Localizer["Trust rules"]</a>
-    <a class="@(Model.CatalogView == "artifacts" ? "active" : "")" aria-current="@(Model.CatalogView == "artifacts" ? "page" : null)" asp-action="Index" asp-all-route-data="artifactTabRoutes"><i data-lucide="package" aria-hidden="true"></i>@Localizer["Recorded artifacts"]</a>
+    <a class="@(Model.CatalogView == "artifacts" ? "active" : "")" aria-current="@(Model.CatalogView == "artifacts" ? "page" : null)" asp-action="Index" asp-all-route-data="artifactTabRoutes"><i data-lucide="package" aria-hidden="true"></i>@Localizer["Reported versions"]</a>
 </nav>
 
 <div class="s360-workspace-layout">
 <div class="s360-workspace-main">
 @if (Model.LatestAuditFailed)
 {
-    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["The latest vulnerability synchronization failed. Previously published results remain usable until their original expiry."]</div></div>
+    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["The latest vulnerability synchronization failed. The previous completed results remain usable until they expire."]</div></div>
 }
 @if (Model.AuditStatus == CatalogAuditStatus.Missing)
 {
-    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available."]</div></div>
+    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["Vulnerability auditing has not completed yet. Reported versions cannot be listed as available."]</div></div>
 }
 else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 {
-    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes."]</div></div>
+    <div class="alert alert-warning" role="status"><div class="alert-message">@Localizer["Vulnerability auditing is stale. Reported versions are hidden until a new audit completes."]</div></div>
 }
 <nav class="s360-workspace-jumps" aria-label="@Localizer["Page sections"]">
     <a href="#s360-catalog-search"><i data-lucide="search"></i>@Localizer["Find packages"]</a>
@@ -64,9 +64,9 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
     [
         new ConceptTerm(Localizer["Supplier"].Value, Localizer["A label used to group related rules. It does not prove who published a package."].Value),
         new ConceptTerm(Localizer["Package source"].Value, Localizer["The registry URL from which the archive was obtained. It is part of the authorization and is different from the supplier label."].Value),
-        new ConceptTerm(Localizer["Trust rule"].Value, Localizer["A condition on package name, version, source, and UTC expiry. Matching a rule alone does not mean an archive or its vulnerability data has been checked."].Value),
+        new ConceptTerm(Localizer["Trust rule"].Value, Localizer["A condition on package name, version, source, and expiry. Known vulnerabilities and blocks override approval."].Value),
         new ConceptTerm(Localizer["Exact versus wildcard"].Value, Localizer["An exact rule names one package version. A trailing * covers a prefix, potentially including future versions that are not listed in this catalog."].Value),
-        new ConceptTerm(Localizer["Recorded artifact"].Value, Localizer["A concrete NuGet .nupkg or npm tarball with an exact version, source, and SHA-256 fingerprint."].Value),
+        new ConceptTerm(Localizer["Recorded artifact"].Value, Localizer["A package version reported by CI or included in a request."].Value),
         new ConceptTerm(Localizer["Absolute blocklist"].Value, Localizer["A forbidden name or version. It takes precedence over every approval and trust rule, including for indirect dependencies."].Value),
         new ConceptTerm(Localizer["Prerelease"].Value, Localizer["Preview, alpha, beta, and release-candidate versions are normally outside a rule unless explicitly included."].Value)
     ],
@@ -146,22 +146,20 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
 }
 else
 {
-<div id="s360-catalog-artifacts" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recorded artifacts"]</h2></div>
+<div id="s360-catalog-artifacts" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Reported versions"]</h2></div>
     <div class="table-responsive"><table class="table table-hover mb-0"><thead><tr>
         <th>@Localizer["Package"]</th><th>@Localizer["Version"]</th><th>@Localizer["Supplier"]</th>
         <th>@Localizer["Authorization"]</th><th>@Localizer["Expires"]</th>
-        <th>@Localizer["SHA-256"]</th><th>@Localizer["Source"]</th><th>@Localizer["Last checked"]</th>
+        <th>@Localizer["Source"]</th><th>@Localizer["Last checked"]</th>
     </tr></thead><tbody>
     @foreach (var row in Model.Artifacts)
     {
         var artifact = row.Artifact;
         var rule = row.AuthorizingRule;
-        var method = rule.Sha256 != null ? Localizer["Pinned SHA-256"] :
-            rule.PackagePattern.Contains('*') || rule.Version.Contains('*') ? Localizer["Wildcard rule"] : Localizer["Unpinned exact rule"];
+        var method = rule.PackagePattern.Contains('*') || rule.Version.Contains('*') ? Localizer["Wildcard rule"] : Localizer["Exact version rule"];
         <tr><td class="s360-catalog-package"><a asp-action="Details" asp-route-id="@artifact.Id"><code>@artifact.Name</code></a></td>
             <td>@artifact.Version</td><td>@(rule.Supplier?.Name ?? @Localizer["Not recorded"].Value)</td>
             <td><small>@method · #@rule.Id</small></td><td class="s360-catalog-date"><small><span data-utc-time="@rule.ExpiresAtUtc?.ToHtmlDateTime()"></span></small></td>
-            <td><code title="@artifact.Sha256">@artifact.Sha256[..Math.Min(16, artifact.Sha256.Length)]…</code></td>
             <td class="s360-catalog-source">
                 <details class="s360-catalog-source-details">
                     <summary title="@artifact.Source">@(Uri.TryCreate(artifact.Source, UriKind.Absolute, out var artifactSourceUri) ? artifactSourceUri.Host : artifact.Source)</summary>
@@ -171,7 +169,7 @@ else
     }
     </tbody></table></div>
     @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.ArtifactPage, 50, Model.TotalArtifacts, "artifactPage", "s360-catalog-artifacts"))
-    <div class="card-footer small text-muted">@Localizer["Only artifacts that currently pass S360 checks appear here. A matching rule for an unseen package is shown above, but is not yet a checked artifact; every future build still checks its full dependency graph."]</div>
+    <div class="card-footer small text-muted">@Localizer["Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported."]</div>
 </div>
 
 }
@@ -203,7 +201,7 @@ else
             <div class="col-md-4"><label for="s360-rule-expiry" class="form-label">@Localizer["Expires at (UTC)"]</label><input id="s360-rule-expiry" class="form-control" name="expiresAtUtc" type="datetime-local" required /><div class="form-text">@Localizer["Enter the UTC time; this field does not convert your device's local time."]</div></div>
             <div class="col-md-3"><label class="form-check-label"><input type="checkbox" name="includePrerelease" value="true" /> @Localizer["Include prerelease"]</label></div>
             <div class="col-12"><button class="btn btn-primary">@Localizer["Approve rule"]</button>
-                <small class="text-warning ms-2">@Localizer["Approved version ranges still require independent archive verification and vulnerability checks."]</small></div>
+                <small class="text-warning ms-2">@Localizer["Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities."]</small></div>
         </form>
         <div class="border-top mt-4 pt-3">
             <h3 class="h6">@Localizer["Preview a rule before approval"]</h3>

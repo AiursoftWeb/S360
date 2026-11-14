@@ -31,9 +31,9 @@ else
                 @foreach (var source in Model.NuGetSources) { <option value="@source" data-ecosystem="nuget">NuGet — @source</option> }
                 @foreach (var source in Model.NpmSources) { <option value="@source" data-ecosystem="npm">npm — @source</option> }
             </select><div class="form-text">@Localizer["Choose a registry for the selected ecosystem. The source is part of the review evidence."]</div></div>
-        <div class="col-md-7"><label class="form-label">@Localizer["Direct dependencies, one name@version per line"] <span class="s360-field-help" title="@Localizer["For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in."]" aria-label="@Localizer["For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in."]" tabindex="0">?</span></label>
+        <div class="col-md-7"><label class="form-label">@Localizer["Packages, one name@version per line"] <span class="s360-field-help" title="@Localizer["For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval."]" aria-label="@Localizer["For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval."]" tabindex="0">?</span></label>
             <textarea name="directPackages" class="form-control" rows="5" maxlength="2000" required placeholder="Microsoft.EntityFrameworkCore@10.0.12"></textarea>
-            <div class="form-text">@Localizer["Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard."]</div></div>
+            <div class="form-text">@Localizer["Enter exact names and versions. CI reports transitive dependencies; S360 does not restore them."]</div></div>
         <div class="col-md-5"><label class="form-label">@Localizer["Project (optional)"]</label>
             <input name="project" class="form-control mb-3" maxlength="200" />
             <label class="form-label">@Localizer["Why is this dependency needed?"]</label>
@@ -72,11 +72,11 @@ else
     "package-search",
     [
         new ConceptTerm(Localizer["Direct dependency"].Value, Localizer["The package and exact version you enter yourself. Add one name@version per line."].Value),
-        new ConceptTerm(Localizer["Transitive dependency"].Value, Localizer["A package brought in by another package. S360 discovers it during resolution; you do not enter it separately."].Value),
+        new ConceptTerm(Localizer["Transitive dependency"].Value, Localizer["A package brought in by another package. CI reports these relationships from the build dependency list."].Value),
         new ConceptTerm(Localizer["Package source"].Value, Localizer["The registry selected for this request. An identical name and version from a different source is a different review input."].Value),
-        new ConceptTerm(Localizer["Resolution context"].Value, Localizer["The framework, platform, and source can change which versions are selected. This request records its own resolution, not every future build."].Value),
-        new ConceptTerm(Localizer["Ready for review"].Value, Localizer["The dependency report is complete enough to inspect. It does not mean the request is approved."].Value),
-        new ConceptTerm(Localizer["Exact version"].Value, Localizer["A single published version such as 10.0.12. Do not request 10.*, latest, or a version range; the resolved graph must be reproducible."].Value)
+        new ConceptTerm(Localizer["Resolution context"].Value, Localizer["CI reports which versions were selected for each build. This request contains only the packages entered above."].Value),
+        new ConceptTerm(Localizer["Ready for review"].Value, Localizer["The requested package list is ready to inspect. It does not mean the request is approved."].Value),
+        new ConceptTerm(Localizer["Exact version"].Value, Localizer["A single published version such as 10.0.12. Do not request 10.*, latest, or a version range in this form."].Value)
     ],
     Localizer["Start with the exact packages your project needs. Check the resulting report before relying on an approval."].Value))
 </div>

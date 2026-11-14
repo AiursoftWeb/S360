@@ -12,7 +12,7 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
     ILogger<DependencyResolutionJob> logger, IConfiguration configuration) : IBackgroundJob
 {
     public string Name => "S360 dependency resolution";
-    public string Description => "Resolves pending employee requests without running package install scripts.";
+    public string Description => "Registers requested package names and versions for review; no package files are fetched.";
 
     public async Task ExecuteAsync()
     {
@@ -27,10 +27,10 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
             {
                 var direct = JsonSerializer.Deserialize<List<DirectPackage>>(application.DirectPackages)
                     ?? throw new InvalidOperationException("Direct dependencies are missing.");
-                var blocksBeforeDownload = await db.BlockRules.AsNoTracking()
+                var requestBlocks = await db.BlockRules.AsNoTracking()
                     .Where(b => b.Active && b.Ecosystem == application.Ecosystem).ToListAsync();
-                RequestResolutionPolicy.ValidateBeforeDownload(application.Ecosystem, application.Source,
-                    direct, configuration, blocksBeforeDownload);
+                RequestResolutionPolicy.ValidateRequest(application.Ecosystem, application.Source,
+                    direct, configuration, requestBlocks);
                 var report = await resolver.ResolveAsync(application.Ecosystem, application.Source, direct);
                 if (!AllowedPackageSources.Contains(configuration, application.Ecosystem, application.Source))
                     throw new InvalidOperationException("Package source was removed while resolving the request.");
@@ -80,13 +80,10 @@ public class DependencyResolutionJob(TemplateDbContext db, PackageResolutionServ
                     artifact = new PackageArtifact
                     {
                         Ecosystem = dependency.Ecosystem, Name = dependency.Name,
-                        Version = dependency.Version, Source = source, Sha256 = dependency.Sha256,
-                        SourceVerifiedAtUtc = DateTime.UtcNow
+                        Version = dependency.Version, Source = source, Sha256 = dependency.Sha256
                     };
                     db.PackageArtifacts.Add(artifact);
                 }
-                else artifact.SourceVerifiedAtUtc ??= DateTime.UtcNow;
-                artifact.SourceVerificationRejected = false;
                 map[key] = artifact;
             }
             await db.SaveChangesAsync();

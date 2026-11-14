@@ -8,14 +8,14 @@
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fs360.aiursoft.com)](https://s360.aiursoft.com)
 [![Docker](https://img.shields.io/docker/pulls/aiursoft/s360.svg)](https://hub.docker.com/r/aiursoft/s360)
 
-S360 manages NuGet and npm dependencies: employees request packages, reviewers approve dependency graphs, and teams track package files, trust rules, blocklists, and vulnerabilities.
+S360 records which NuGet and npm packages your team may use, checks known vulnerabilities, and alerts affected projects. Package servers handle downloading, integrity checks, and caching.
 
 ## CLI & SDK
 
 Install the CLI with the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0):
 
 ```bash
-dotnet tool install --global Aiursoft.S360.Client --add-source https://nuget.aiursoft.com/v3/index.json
+dotnet tool install --global Aiursoft.S360.Client
 ```
 
 Run `s360 --help` to explore commands. See [Dependency checks](#dependency-checks) for configuration and examples.
@@ -26,7 +26,7 @@ The [SDK source](src/Aiursoft.S360.SDK) is included in this repository; it is no
 
 ## Try
 
-Try the S360 Web pilot [here](https://s360.aiursoft.com) with your company account. Runner integration and CI enforcement have not been enabled.
+Try [S360](https://s360.aiursoft.com) with your company account.
 
 ## Install with Docker
 
@@ -93,17 +93,17 @@ npm ci
 npm run build
 ```
 
-This mode downloads and verifies the locked archives without installing packages or running their scripts. It includes optional packages for other platforms, so a Linux check also covers packages later selected by an ARM64 or Windows build. It reports the locked dependency set, not an observed installation. Use `--purpose baseline` with the existing credential for production reports. Keep the manifest and lockfile unchanged between checking and building; subsequent builds must use `npm ci`, not `npm install`.
+This mode reads the locked package names, versions, and sources without downloading archives or running package scripts. It includes optional packages for other platforms, so a Linux check also covers packages later selected by an ARM64 or Windows build. It reports the locked dependency set, not an observed installation. Use `--purpose baseline` with the existing credential for production reports. Keep the manifest and lockfile unchanged between checking and building; subsequent builds must use `npm ci`, not `npm install`.
 
-When CI uses `replace-registry-host=always`, pass `--npm-registry https://nopkg.aiursoft.com/npm/` to audit the same registry used by npm. Standard locked tarball paths are fetched from that registry; lockfiles stay unchanged and their integrity, package identity and dependency paths remain checked. Direct archive URLs are rejected in this mode. Omit the option to retain the original lockfile-source checks. Selected registries with path prefixes (such as `/npm`) are validated and reported with that full prefix.
+When CI uses `replace-registry-host=always`, pass `--npm-registry https://nopkg.aiursoft.com/npm/` to audit the same registry used by npm. The selected registry is reported as the package source; the lockfile stays unchanged. npm remains responsible for archive integrity and installation. Direct archive URLs are rejected in this mode. Omit the option to retain the original lockfile-source checks. Selected registries with path prefixes (such as `/npm`) are validated and reported with that full prefix.
 
 Without `--npm-lockfile-only`, run `npm ci --ignore-scripts` first, then `s360 check --ecosystem npm --path .`; this existing mode validates the current installation and skips absent optional packages. The default ecosystem (`all`) requires a solution and also checks npm projects under its directory. From CLI 1.1.0, directory-only NuGet/all calls must pass the solution file instead.
 
 The CLI requires `S360_SERVER` and normally `S360_CHECK_KEY`. Create a personal key under **Personal → API Keys** with `CanManageApiKeys` permission; keep it out of source and logs.
 
-By default, `--purpose review` checks policy without saving project reports or changing production inventory. New versions within approved rules are automatically queued for independent source verification and vulnerability auditing. The CLI polls every 15 seconds for up to 10 minutes; missing approval, source/hash conflicts and known vulnerabilities remain blocking. Use `--purpose baseline` only to declare dependencies already in production; it requires a baseline-enabled personal key and the owner’s current `CanPublishBaselines` permission, supplied as `S360_CHECK_KEY`. Keep that key restricted to trusted release jobs. Only a complete baseline replaces the project inventory, including when its dependencies are rejected.
+By default, `--purpose review` checks policy without saving project reports or changing production inventory. Approved version ranges cover new versions without file verification. If vulnerability data needs refreshing, the existing background audit is queued. The CLI polls every 15 seconds for up to 10 minutes; missing approval, revoked rules and known vulnerabilities remain blocking. Use `--purpose baseline` only to declare dependencies already in production; it requires a baseline-enabled personal key and the owner’s current `CanPublishBaselines` permission, supplied as `S360_CHECK_KEY`. Keep that key restricted to trusted release jobs. Only a complete baseline replaces the project inventory, including when its dependencies are rejected.
 
-Administrators can enable **Allow anonymous review** in Global Settings (default: disabled). Then review checks may omit the key; results are returned only to the caller. Baseline always requires an authorized key. Checks are limited to 120 requests per minute per client IP. Anonymous reviews also share four concurrent slots and a budget of 20 new artifacts per minute per server process (100 total across all reviews); repeated checks reuse existing artifacts and audit triggers are coalesced.
+Administrators can enable **Allow anonymous review** in Global Settings (default: disabled). Then review checks may omit the key; results are returned only to the caller. Baseline always requires an authorized key. Checks are limited to 120 requests per minute per client IP. Anonymous reviews also share four concurrent slots; repeated requests coalesce vulnerability refreshes.
 
 Rotate keys by creating a second key, switching the caller and verifying it, then deleting the old key. Keys expire and can be disabled independently; removing the owner’s API permission or locking the account revokes access. Legacy configured check/baseline keys are no longer accepted.
 
@@ -111,35 +111,18 @@ Use `--ecosystem nuget` for a NuGet-only gate, or `--ecosystem npm` for npm; the
 
 CLI 1.0.10 and later also report manifest-scoped dependency relationships. Open a project in **Supply chain → Projects** to explore its NuGet/npm graphs and current compliance; older reports retain their package lists until a new check is submitted.
 
-Configure permitted registries through `SupplyChain:NuGetSources` and `SupplyChain:NpmSources`. Dependency resolution restores untrusted packages; run it in an isolated environment. The check does not prove installed files were unchanged by package scripts.
+Configure permitted registries through `SupplyChain:NuGetSources` and `SupplyChain:NpmSources`. S360 treats these URLs as policy identities; it does not contact them. Requests contain package names and versions, and CI reports resolved dependency lists. S360 never restores dependencies or downloads package archives.
 
-## Package mirror admission
+## Package server integration
 
-Package servers can use the same personal `X-S360-Key` credential to read global artifact admission. Baseline permission is not required. Anonymous review never enables these endpoints.
+Package servers query the existing `POST /api/artifacts/assess` endpoint with a personal `X-S360-Key`. Each dependency contains `ecosystem`, `name`, `version`, and `source`; no package file or hash is required. The response reports whether current rules and vulnerability data allow that version. Baseline permission is not required.
 
-- `GET /api/artifacts/approved?ecosystem=nuget&source=<encoded-origin>&take=100` lists existing, independently verified artifacts that currently pass policy. Both NuGet and npm are supported. Optional `name=<encoded-exact-name>` restricts discovery to one concrete package for on-demand mirrors (NuGet names are case-insensitive; npm names are case-sensitive). Follow `nextAfterId` with `afterId` and retain `upperId` until `nextAfterId` is null, including when a page contains no artifacts. `take` is limited to 500.
-- `POST /api/artifacts/assess` accepts `{ "dependencies": [...] }`, with 1–500 exact ecosystem/name/version/source/SHA256 identities, and returns ordered `decisions`. Reassess before serving cached archives; enumeration is not a lasting authorization.
+A registry can use its internal distribution URL as the policy source. Approve the package once for that source; the registry chooses and contacts its upstream. S360 requires no upstream mapping and never calls a registry.
 
-Both endpoints enforce permitted registries, approved version grants, independent source verification, current vulnerability audits, blocks and revocation. They do not observe new artifacts, queue work, pin hashes, or publish project reports. A globally approved archive does not authorize a project dependency graph. Keep the verified origin distinct from a mirror's distribution address.
+Recheck before serving cached packages so revocation and new vulnerabilities take effect. Unavailable or stale vulnerability data is reported as pending, not as a clean result. Project inventory and AlertCenter delivery are separate from these read-only queries.
+
+`GET /api/artifacts/approved` retains pagination for observed versions that currently pass policy. It is not an exhaustive list of versions covered by wildcard grants; assess exact candidate versions before use. The previous mirror routes remain read-only compatibility aliases during client upgrades; they no longer download or verify files.
 
 ## How to contribute
 
 Report bugs and suggestions through the issue tracker. Create a fork and a feature branch, then submit a merge request for review.
-
-### One policy for an internal registry
-
-A registry can use its own distribution URL as the S360 policy source and fetch from an operator-configured upstream. Allow the internal source in `SupplyChain:NuGetSources` or `SupplyChain:NpmSources`, then configure `SupplyChain:Mirrors`:
-
-```json
-[
-  { "Ecosystem": "nuget", "Source": "https://nupkg.aiursoft.com/v3/index.json", "Upstream": "https://api.nuget.org/v3/index.json" },
-  { "Ecosystem": "npm", "Source": "https://nopkg.aiursoft.com/npm", "Upstream": "https://registry.npmjs.org" }
-]
-```
-
-Approve package names and version ranges only for the internal source. No duplicate upstream approval is required. The mapping is server configuration, not a URL supplied by callers.
-
-- `POST /api/artifacts/mirror/candidates` accepts `{ "candidates": [{ "ecosystem": "npm", "name": "example", "version": "1.0.0", "source": "https://nopkg.aiursoft.com/npm" }] }` (1–500 entries). Ordered decisions contain `candidate` and `canFetch`; fetching eligibility never certifies archive bytes.
-- `POST /api/artifacts/mirror/verify` accepts one exact dependency including its raw archive SHA256. It observes the candidate under the internal source, independently downloads and validates the configured upstream archive, and completes its OSV check before returning an artifact decision. It never creates a trust rule or project baseline. A failed upstream or incomplete audit returns 503; mismatched or denied artifacts are not trusted.
-
-Both endpoints require the existing check key. Exact verification shares four concurrent slots and the existing server observation budget. Per-artifact evidence records the verified upstream and check time without declaring the entire vulnerability catalog refreshed. Ordinary assessment, cached downloads, blocks, revocation and the 12-hour audit lifetime remain enforced.

@@ -19,7 +19,7 @@ public class LegacyRuleMigration(TemplateDbContext db) : IScopedDependency
         var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking().OrderBy(e => e.Id).ToListAsync();
         var rows = rules.Where(r => r.IsLegacyTemplate && r.Status == TrustRuleStatus.Approved)
             .SelectMany(rule => artifacts.Where(a => a.Ecosystem == rule.Ecosystem && a.Source == rule.Source &&
-                    a.SourceVerifiedAtUtc != null && !a.SourceVerificationRejected &&
+
                     TrustPattern.Matches(rule.PackagePattern, a.Name, rule.Ecosystem) &&
                     TrustPattern.VersionMatches(rule.Version, a.Version, rule.Ecosystem, rule.IncludePrerelease))
                 .DistinctBy(a => PackagePolicy.NormalizeName(a.Ecosystem, a.Name))
@@ -61,7 +61,7 @@ public class LegacyRuleMigration(TemplateDbContext db) : IScopedDependency
             {
                 ApplicationId = original.ApplicationId, SupplierId = original.SupplierId,
                 Ecosystem = original.Ecosystem, PackagePattern = row.Name, Version = original.Version,
-                Source = original.Source, Sha256 = original.Sha256, IncludePrerelease = original.IncludePrerelease,
+                Source = original.Source, Sha256 = null, IncludePrerelease = original.IncludePrerelease,
                 Justification = original.Justification, RequestedByUserId = original.RequestedByUserId,
                 RequestedAtUtc = original.RequestedAtUtc, ExpiresAtUtc = original.ExpiresAtUtc,
                 Status = original.Status, LegacySourceRuleId = original.Id

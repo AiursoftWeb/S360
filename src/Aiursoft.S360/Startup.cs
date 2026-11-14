@@ -60,21 +60,18 @@ public class Startup : IWebStartup
 
         // Services
         services.AddMemoryCache();
-        services.AddSingleton<Services.ArtifactVerificationAdmission>();
+        services.AddSingleton<Services.ReviewAdmission>();
         services.AddHttpClient();
         services.AddAiurProtocolClient();
         services.AddScoped<AlertCenterSettingsProvider>();
         services.AddScoped<IBaselineIncidentClient, BaselineIncidentClient>();
         services.AddScoped<BaselineMonitoringService>();
         services.AddSingleton<BaselineMonitorState>();
-        services.AddHttpClient(PackageResolutionService.ArchiveClientName)
-            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
         services.AddSingleton<OsvRequestThrottle>();
         services.AddTransient<OsvRequestHandler>();
         services.AddHttpClient<OsvClient>(client => client.Timeout = TimeSpan.FromMinutes(2))
             .AddHttpMessageHandler<OsvRequestHandler>();
         services.AddScoped<PackageResolutionService>();
-        services.AddScoped<IArtifactSourceVerifier, ArtifactSourceVerifier>();
         services.AddAssemblyDependencies(typeof(Startup).Assembly);
         services.AddSingleton<NavigationState<Startup>>();
 

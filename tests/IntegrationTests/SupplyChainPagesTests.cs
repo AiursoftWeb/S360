@@ -464,7 +464,7 @@ public class SupplyChainPagesTests : TestBase
             StringAssert.Contains(output, "Package source is not permitted");
             StringAssert.Contains(output, $"S360 BLOCKED ({purpose}): 1 package artifact(s)");
             StringAssert.Contains(output, "Project: Sample.csproj");
-            StringAssert.Contains(output, "policy/source/hash rejection");
+            StringAssert.Contains(output, "policy rejection");
             Assert.DoesNotContain("Unhandled exception", output);
             Assert.DoesNotContain("InvalidOperationException", output);
             Assert.DoesNotContain("S360 approved", output);
@@ -535,7 +535,7 @@ public class SupplyChainPagesTests : TestBase
         Assert.AreEqual(HttpStatusCode.OK, details.StatusCode);
         var detailsHtml = await details.Content.ReadAsStringAsync();
         StringAssert.Contains(detailsHtml, "Reading this report");
-        StringAssert.Contains(detailsHtml, "Artifact SHA-256");
+        Assert.DoesNotContain("Artifact SHA-256", detailsHtml);
         StringAssert.Contains(detailsHtml, "Approved versus checked");
     }
 
@@ -557,6 +557,7 @@ public class SupplyChainPagesTests : TestBase
             };
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Audit pending supplier" },
                 Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
@@ -586,7 +587,7 @@ public class SupplyChainPagesTests : TestBase
         StringAssert.Contains(html, "New review items: 0");
         StringAssert.Contains(html, "Authorized but not check-ready: 1");
         StringAssert.Contains(html, "Current check blocked");
-        StringAssert.Contains(html, "Vulnerability audit has not completed");
+        StringAssert.Contains(html, "Current vulnerability data is unavailable");
 
         var configuration = GetService<IConfiguration>();
         var originalSource = configuration["SupplyChain:NuGetSources:1"];
@@ -811,6 +812,7 @@ public class SupplyChainPagesTests : TestBase
                 Name = "Correlated supplier " + Guid.NewGuid().ToString("N"),
                 Rules = [new TrustRule
                 {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                     ApplicationId = null, SupplierId = 0,
                     Ecosystem = "nuget", PackagePattern = package, Version = "10.0.*",
                     Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved
@@ -910,6 +912,7 @@ public class SupplyChainPagesTests : TestBase
                 [
                     new TrustRule
                     {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                         ApplicationId = null, SupplierId = 0,
                         Ecosystem = "nuget", PackagePattern = permittedPackage, Version = "1.*",
                         Source = "https://nuget.aiursoft.com/v3/index.json",
@@ -917,6 +920,7 @@ public class SupplyChainPagesTests : TestBase
                     },
                     new TrustRule
                     {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                         ApplicationId = null, SupplierId = 0,
                         Ecosystem = "nuget", PackagePattern = removedPackage, Version = "1.*",
                         Source = "https://packages.example.invalid/v3/index.json",
@@ -1569,6 +1573,7 @@ public class SupplyChainPagesTests : TestBase
             {
                 db.TrustRules.Add(new TrustRule
                 {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                     ApplicationId = null, SupplierId = supplier.Id,
                     Supplier = supplier, Ecosystem = dependency.Ecosystem, PackagePattern = dependency.Name,
                     Version = dependency.Version, Source = dependency.Source, Sha256 = dependency.Sha256,
@@ -1590,7 +1595,7 @@ public class SupplyChainPagesTests : TestBase
             }
             audit.LastAttemptAtUtc = checkedAtUtc.AddMinutes(-1);
             audit.LastSuccessfulAttemptAtUtc = checkedAtUtc.AddMinutes(-1);
-            audit.LastSuccessAtUtc = checkedAtUtc.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastError = null;
             await db.SaveChangesAsync();
         }
@@ -1665,6 +1670,7 @@ public class SupplyChainPagesTests : TestBase
             {
                 db.TrustRules.Add(new TrustRule
                 {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                     ApplicationId = null, SupplierId = supplier.Id,
                     Supplier = supplier, Ecosystem = dependency.Ecosystem,
                     PackagePattern = dependency.Name, Version = dependency.Version,
@@ -1687,7 +1693,7 @@ public class SupplyChainPagesTests : TestBase
             }
             audit.LastAttemptAtUtc = checkedAt.AddMinutes(-1);
             audit.LastSuccessfulAttemptAtUtc = checkedAt.AddMinutes(-1);
-            audit.LastSuccessAtUtc = checkedAt.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastError = null;
             await db.SaveChangesAsync();
         }
@@ -1766,7 +1772,7 @@ public class SupplyChainPagesTests : TestBase
     [TestMethod]
     [DataRow(false)]
     [DataRow(true)]
-    public async Task ReviewQueuesOnlyApprovedPackagesWithoutProjectReports(bool anonymous)
+    public async Task ReviewQueriesRulesWithoutCreatingPackageOrProjectRecords(bool anonymous)
     {
         var suffix = Guid.NewGuid().ToString("N");
         var project = "review-only-" + suffix;
@@ -1775,9 +1781,11 @@ public class SupplyChainPagesTests : TestBase
         using var scope = Server!.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
         var supplier = new Supplier { Name = "Review-only vendor " + suffix };
-        db.TrustRules.Add(new TrustRule { ApplicationId = null, SupplierId = supplier.Id, Supplier = supplier, Ecosystem = dependency.Ecosystem,
+        db.TrustRules.Add(new TrustRule {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1), ApplicationId = null, SupplierId = supplier.Id, Supplier = supplier, Ecosystem = dependency.Ecosystem,
             PackagePattern = dependency.Name + ".Approved", Version = "1.*", Source = dependency.Source,
             Status = TrustRuleStatus.Approved });
+        (await db.VulnerabilitySyncStates.SingleAsync()).LastSuccessAtUtc = null;
         await db.SaveChangesAsync();
         var settings = scope.ServiceProvider.GetRequiredService<GlobalSettingsService>();
         if (anonymous) await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "True");
@@ -1810,11 +1818,7 @@ public class SupplyChainPagesTests : TestBase
             using var graphBatch = await Http.PostAsJsonAsync("/api/check", request);
             graphBatch.EnsureSuccessStatusCode();
             Assert.IsTrue((await graphBatch.Content.ReadFromJsonAsync<CheckResponse>())!.Trusted);
-            var artifact = await db.PackageArtifacts.SingleAsync(a => a.Name.StartsWith(dependency.Name));
-            Assert.AreEqual(dependency.Name + ".Approved", artifact.Name);
-            Assert.IsNull(artifact.SourceVerifiedAtUtc);
-            Assert.IsNull(artifact.LastCheckedAtUtc);
-            Assert.IsNull(artifact.FirstTrustedAtUtc);
+            Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name.StartsWith(dependency.Name)));
             Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.RunId == request.RunId));
             Assert.IsFalse(await db.BuildCheckDependencies.AnyAsync(d => d.Name.StartsWith(dependency.Name)));
             Assert.IsTrue(GetService<Microsoft.Extensions.Caching.Memory.IMemoryCache>()
@@ -1832,7 +1836,7 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task AnonymousReviewBoundsNewVersionWorkAndConcurrentRequestsWithoutProjectImpact()
+    public async Task AnonymousReviewDoesNotQueueVersionsAndBoundsConcurrentRequests()
     {
         using var scope = Server!.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
@@ -1840,9 +1844,13 @@ public class SupplyChainPagesTests : TestBase
         await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "True");
         var name = "Example.Admission." + Guid.NewGuid().ToString("N");
         var supplier = new Supplier { Name = name };
-        db.TrustRules.Add(new TrustRule { ApplicationId = null, SupplierId = supplier.Id, Supplier = supplier,
+        db.TrustRules.Add(new TrustRule {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1), ApplicationId = null, SupplierId = supplier.Id, Supplier = supplier,
             Ecosystem = "nuget", PackagePattern = name, Version = "1.*", Source = "https://api.nuget.org/v3/index.json",
             Status = TrustRuleStatus.Approved });
+        var completedAudit = await db.VulnerabilitySyncStates.SingleAsync();
+        completedAudit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
+        completedAudit.LastSuccessAtUtc = DateTime.UtcNow;
         await db.SaveChangesAsync();
         var request = new CheckRequest { Project = name, ScannedProjectCount = 1,
             Dependencies = Enumerable.Range(0, 21).Select(i => new Dependency { Ecosystem = "nuget",
@@ -1856,11 +1864,11 @@ public class SupplyChainPagesTests : TestBase
                 response.EnsureSuccessStatusCode();
                 var result = await response.Content.ReadFromJsonAsync<CheckResponse>();
                 Assert.IsNotNull(result);
-                Assert.IsFalse(result.Trusted);
-                Assert.IsTrue(result.Decisions.All(d => d.PendingVerification));
-                Assert.AreEqual(20, await db.PackageArtifacts.CountAsync(a => a.Name == name));
+                Assert.IsTrue(result.Trusted, string.Join("; ", result.Decisions.Select(d => d.Reason)));
+                Assert.IsTrue(result.Decisions.All(d => d.Trusted && !d.PendingVerification));
+                Assert.AreEqual(0, await db.PackageArtifacts.CountAsync(a => a.Name == name));
             }
-            var admission = scope.ServiceProvider.GetRequiredService<ArtifactVerificationAdmission>();
+            var admission = scope.ServiceProvider.GetRequiredService<ReviewAdmission>();
             for (var i = 0; i < 4; i++) Assert.IsTrue(admission.AnonymousReviews.Wait(0));
             try
             {
@@ -1888,6 +1896,7 @@ public class SupplyChainPagesTests : TestBase
             db.Suppliers.Add(supplier);
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName, Version = "1.0.0",
                 Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64),
@@ -1906,13 +1915,13 @@ public class SupplyChainPagesTests : TestBase
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
-                    LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
+                    LastSuccessAtUtc = DateTime.UtcNow
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
-                audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+                audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
         }
@@ -2062,6 +2071,7 @@ public class SupplyChainPagesTests : TestBase
             db.Suppliers.AddRange(supplier, unrelated);
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = rulePattern, Version = "1.*",
                 Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
@@ -2080,13 +2090,13 @@ public class SupplyChainPagesTests : TestBase
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
-                    LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
+                    LastSuccessAtUtc = DateTime.UtcNow
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
-                audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+                audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
             supplierId = supplier.Id;
@@ -2100,19 +2110,19 @@ public class SupplyChainPagesTests : TestBase
         using (var response = await Http.GetAsync($"/SupplyChain/Index?tab=rules&catalogView=artifacts&query={packageName}&supplierId={supplierId}"))
         {
             response.EnsureSuccessStatusCode();
-            StringAssert.Contains(await response.Content.ReadAsStringAsync(), "title=\"" + new string('a', 64) + "\"");
+            StringAssert.Contains(await response.Content.ReadAsStringAsync(), "<code>" + packageName + "</code>");
         }
         using (var response = await Http.GetAsync($"/SupplyChain/Index?tab=rules&catalogView=artifacts&query={packageName}&supplierId={unrelatedSupplierId}"))
         {
             response.EnsureSuccessStatusCode();
-            Assert.DoesNotContain("title=\"" + new string('a', 64) + "\"", await response.Content.ReadAsStringAsync());
+            Assert.DoesNotContain("<code>" + packageName + "</code>", await response.Content.ReadAsStringAsync());
         }
         var lookupUrl = "/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + packageName + "&lookupVersion=1.1.0&lookupSource=" +
                         Uri.EscapeDataString("https://api.nuget.org/v3/index.json");
         using (var response = await Http.GetAsync(lookupUrl))
         {
             response.EnsureSuccessStatusCode();
-            StringAssert.Contains(await response.Content.ReadAsStringAsync(), "pending artifact and vulnerability check");
+            StringAssert.Contains(await response.Content.ReadAsStringAsync(), "Allowed");
         }
         var knownLookupUrl = "/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + packageName +
                              "&lookupVersion=1.0.0&lookupSource=" +
@@ -2121,15 +2131,16 @@ public class SupplyChainPagesTests : TestBase
         {
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
-            StringAssert.Contains(html, "Checked artifact available");
-            StringAssert.Contains(html, "Recorded SHA-256: " + new string('a', 64));
-            StringAssert.Contains(html, "not its future dependency graph");
+            StringAssert.Contains(html, "Allowed");
+            Assert.DoesNotContain("Recorded SHA-256", html);
+            StringAssert.Contains(html, "Package files are downloaded and checked by your registry");
         }
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null,
                 SupplierId = supplierId, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json",
@@ -2140,7 +2151,7 @@ public class SupplyChainPagesTests : TestBase
         using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
         {
             response.EnsureSuccessStatusCode();
-            Assert.DoesNotContain("title=\"" + new string('a', 64) + "\"", await response.Content.ReadAsStringAsync());
+            Assert.DoesNotContain("<code>" + packageName + "</code>", await response.Content.ReadAsStringAsync());
         }
         using (var scope = Server!.Services.CreateScope())
         {
@@ -2162,7 +2173,7 @@ public class SupplyChainPagesTests : TestBase
         {
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
-            Assert.DoesNotContain("title=\"" + new string('a', 64) + "\"", html);
+            Assert.DoesNotContain("<code>" + packageName + "</code>", html);
             var rulesHtml = await Http.GetStringAsync("/SupplyChain/Index?tab=rules&query=" + packageName);
             StringAssert.Contains(rulesHtml, "Overridden by blocklist");
             StringAssert.Contains(rulesHtml, "Blocked for regression test");
@@ -2178,7 +2189,7 @@ public class SupplyChainPagesTests : TestBase
         {
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
-            Assert.DoesNotContain("title=\"" + new string('a', 64) + "\"", html);
+            Assert.DoesNotContain("<code>" + packageName + "</code>", html);
         }
     }
 
@@ -2202,6 +2213,7 @@ public class SupplyChainPagesTests : TestBase
             db.PackageArtifacts.Add(artifact);
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Audit test vendor" }, Ecosystem = "nuget",
                 PackagePattern = packageName, Version = "1.0.0",
@@ -2214,7 +2226,7 @@ public class SupplyChainPagesTests : TestBase
                 audit = new VulnerabilitySyncState();
                 db.VulnerabilitySyncStates.Add(audit);
             }
-            audit.LastSuccessAtUtc = now.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastAttemptAtUtc = now;
             audit.LastSuccessfulAttemptAtUtc = now;
             audit.LastError = null;
@@ -2226,7 +2238,7 @@ public class SupplyChainPagesTests : TestBase
         using (var response = await Http.GetAsync(url))
         {
             response.EnsureSuccessStatusCode();
-            StringAssert.Contains(await response.Content.ReadAsStringAsync(), "title=\"" + sha256 + "\"");
+            StringAssert.Contains(await response.Content.ReadAsStringAsync(), "<code>" + packageName + "</code>");
         }
 
         using (var scope = Server!.Services.CreateScope())
@@ -2245,7 +2257,7 @@ public class SupplyChainPagesTests : TestBase
                 response.EnsureSuccessStatusCode();
                 var html = await response.Content.ReadAsStringAsync();
                 StringAssert.Contains(html, "latest vulnerability synchronization failed");
-                StringAssert.Contains(html, "title=\"" + sha256 + "\"");
+                StringAssert.Contains(html, "<code>" + packageName + "</code>");
             }
             using var details = await Http.GetAsync($"/SupplyChain/Details/{artifactId}");
             Assert.AreEqual(HttpStatusCode.OK, details.StatusCode);
@@ -2265,7 +2277,7 @@ public class SupplyChainPagesTests : TestBase
                 stale.EnsureSuccessStatusCode();
                 var html = await stale.Content.ReadAsStringAsync();
                 StringAssert.Contains(html, "Vulnerability auditing is stale");
-                Assert.DoesNotContain("title=\"" + sha256 + "\"", html);
+                Assert.DoesNotContain("<code>" + packageName + "</code>", html);
             }
 
             using (var scope = Server!.Services.CreateScope())
@@ -2282,7 +2294,7 @@ public class SupplyChainPagesTests : TestBase
                 missing.EnsureSuccessStatusCode();
                 var html = await missing.Content.ReadAsStringAsync();
                 StringAssert.Contains(html, "Vulnerability auditing has not completed yet");
-                Assert.DoesNotContain("title=\"" + sha256 + "\"", html);
+                Assert.DoesNotContain("<code>" + packageName + "</code>", html);
             }
         }
         finally
@@ -2290,7 +2302,7 @@ public class SupplyChainPagesTests : TestBase
             using var scope = Server!.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var audit = await db.VulnerabilitySyncStates.FirstAsync();
-            audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastAttemptAtUtc = DateTime.UtcNow;
             audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow;
             audit.LastError = null;
@@ -2316,6 +2328,7 @@ public class SupplyChainPagesTests : TestBase
             };
             var allowed = new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Allowed supplier " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = packageName, Version = "1.0.0",
@@ -2324,6 +2337,7 @@ public class SupplyChainPagesTests : TestBase
             };
             var excluded = new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Excluded supplier " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = packageName, Version = "*",
@@ -2347,13 +2361,13 @@ public class SupplyChainPagesTests : TestBase
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
-                    LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
+                    LastSuccessAtUtc = DateTime.UtcNow
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
-                audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+                audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
             db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
@@ -2402,12 +2416,13 @@ public class SupplyChainPagesTests : TestBase
             };
             var rule = new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Detail supplier " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = packageName, Version = "1.0.0",
                 Source = artifact.Source, Sha256 = artifact.Sha256, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1),
-                Reviews = [new TrustRuleReview { TrustRuleId = 0, Decision = TrustRuleStatus.Approved }]
+                Reviews = [new TrustRuleReview { TrustRuleId = 0, Decision = TrustRuleStatus.Approved, ReviewedAtUtc = DateTime.UtcNow.AddDays(-1) }]
             };
             db.TrustRules.Add(rule);
             db.DependencyApplications.Add(new DependencyApplication
@@ -2422,13 +2437,13 @@ public class SupplyChainPagesTests : TestBase
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
-                    LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
+                    LastSuccessAtUtc = DateTime.UtcNow
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
-                audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+                audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
             artifactId = artifact.Id;
@@ -2439,7 +2454,7 @@ public class SupplyChainPagesTests : TestBase
             catalog.EnsureSuccessStatusCode();
             var html = await catalog.Content.ReadAsStringAsync();
             StringAssert.Contains(html, $"/SupplyChain/Details/{artifactId}");
-            StringAssert.Contains(html, "Pinned SHA-256");
+            Assert.DoesNotContain("Pinned SHA-256", html);
             StringAssert.Contains(html, "Last checked");
             StringAssert.Contains(html, "data-utc-time=");
             Assert.IsFalse(html.Contains("Last checked (UTC)"));
@@ -2449,7 +2464,7 @@ public class SupplyChainPagesTests : TestBase
         {
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
-            StringAssert.Contains(html, new string('d', 64));
+            Assert.DoesNotContain(new string('d', 64), html);
             StringAssert.Contains(html, childName);
             StringAssert.Contains(html, "Matching authorization");
             StringAssert.Contains(html, "s360-concept-rail");
@@ -2516,6 +2531,7 @@ public class SupplyChainPagesTests : TestBase
             });
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Catalog vendor " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = approvedName, Version = "1.0.0",
@@ -2528,13 +2544,13 @@ public class SupplyChainPagesTests : TestBase
                 {
                     LastAttemptAtUtc = now.AddMinutes(-1),
                     LastSuccessfulAttemptAtUtc = now.AddMinutes(-1),
-                    LastSuccessAtUtc = now.AddSeconds(1)
+                    LastSuccessAtUtc = DateTime.UtcNow
                 });
             else
             {
                 audit.LastAttemptAtUtc = now.AddMinutes(-1);
                 audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
-                audit.LastSuccessAtUtc = now.AddSeconds(1);
+                audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
         }
@@ -2543,13 +2559,13 @@ public class SupplyChainPagesTests : TestBase
         using var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&ecosystem=nuget");
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
-        StringAssert.Contains(html, "title=\"" + approvedHash + "\"");
+        StringAssert.Contains(html, "<code>" + approvedName + "</code>");
         Assert.DoesNotContain("A.Unapproved.0000</code>", html);
         Assert.DoesNotContain("Only the first 500 results are shown", html);
     }
 
     [TestMethod]
-    public async Task CatalogWaitsForCompletedAuditBeforeListingARecentlyCheckedArtifact()
+    public async Task CatalogIgnoresHistoricalFileCheckTimesWhenPolicyAuditIsCurrent()
     {
         const string source = "https://api.nuget.org/v3/index.json";
         var name = "Example.PartialAudit." + Guid.NewGuid().ToString("N");
@@ -2561,6 +2577,7 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Partial audit vendor " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0", Source = source,
@@ -2589,23 +2606,23 @@ public class SupplyChainPagesTests : TestBase
         using (var pending = await Http.GetAsync(url))
         {
             pending.EnsureSuccessStatusCode();
-            Assert.DoesNotContain("title=\"" + hash + "\"", await pending.Content.ReadAsStringAsync());
+            StringAssert.Contains(await pending.Content.ReadAsStringAsync(), "<code>" + name + "</code>");
         }
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var audit = await db.VulnerabilitySyncStates.FirstAsync();
-            audit.LastSuccessAtUtc = checkedAtUtc.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastError = null;
             await db.SaveChangesAsync();
         }
         using var completed = await Http.GetAsync(url);
         completed.EnsureSuccessStatusCode();
-        StringAssert.Contains(await completed.Content.ReadAsStringAsync(), "title=\"" + hash + "\"");
+        StringAssert.Contains(await completed.Content.ReadAsStringAsync(), "<code>" + name + "</code>");
     }
 
     [TestMethod]
-    public async Task CatalogDoesNotAdvertiseConflictingTrustedHashes()
+    public async Task CatalogIgnoresHistoricalArchiveHashConflicts()
     {
         const string source = "https://api.nuget.org/v3/index.json";
         var name = "Example.Conflicting." + Guid.NewGuid().ToString("N");
@@ -2617,6 +2634,7 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Conflict vendor " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
@@ -2641,7 +2659,7 @@ public class SupplyChainPagesTests : TestBase
         using var lookup = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + name +
             "&lookupVersion=1.0.0&lookupSource=" + Uri.EscapeDataString(source));
         lookup.EnsureSuccessStatusCode();
-        StringAssert.Contains(await lookup.Content.ReadAsStringAsync(), "Conflicting package hashes");
+        Assert.DoesNotContain("Conflicting package hashes", await lookup.Content.ReadAsStringAsync());
     }
 
     [TestMethod]
@@ -2657,12 +2675,14 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Exclusion vendor " + Guid.NewGuid().ToString("N") };
             var excludedRule = new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name, Version = "1.*",
                 Source = source, Status = TrustRuleStatus.Approved, ExpiresAtUtc = now.AddDays(1)
             };
             var alternateRule = new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
                 Source = source, Sha256 = hash, Status = TrustRuleStatus.Approved,
@@ -2689,13 +2709,13 @@ public class SupplyChainPagesTests : TestBase
                 db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
                 {
                     LastAttemptAtUtc = now.AddMinutes(-1), LastSuccessfulAttemptAtUtc = now.AddMinutes(-1),
-                    LastSuccessAtUtc = now.AddSeconds(1)
+                    LastSuccessAtUtc = DateTime.UtcNow
                 });
             else
             {
                 audit.LastAttemptAtUtc = now.AddMinutes(-1);
                 audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
-                audit.LastSuccessAtUtc = now.AddSeconds(1);
+                audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
             db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
@@ -2714,7 +2734,7 @@ public class SupplyChainPagesTests : TestBase
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         Assert.DoesNotContain("title=\"" + hash + "\"", html);
-        StringAssert.Contains(html, "Excluded version");
+        StringAssert.Contains(html, "Excluded vulnerable or uncertain version");
         StringAssert.Contains(html, "GHSA-excluded-test");
     }
 
@@ -2747,6 +2767,7 @@ public class SupplyChainPagesTests : TestBase
             };
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0,
                 Supplier = new Supplier { Name = "Review scope supplier " + Guid.NewGuid().ToString("N") },
                 Ecosystem = "nuget", PackagePattern = approvedName, Version = "1.0.0",
@@ -2771,7 +2792,7 @@ public class SupplyChainPagesTests : TestBase
         var html = await response.Content.ReadAsStringAsync();
         StringAssert.Contains(html, "Already approved");
         StringAssert.Contains(html, "Needs approval");
-        StringAssert.Contains(html, "Waiting for source verification");
+        Assert.DoesNotContain("Waiting for source verification", html);
         StringAssert.Contains(html, "Waiting for an up-to-date vulnerability check");
         StringAssert.Contains(html, newName);
         StringAssert.Contains(html, approvedName);
@@ -2787,13 +2808,13 @@ public class SupplyChainPagesTests : TestBase
             removed.EnsureSuccessStatusCode();
             var removedHtml = await removed.Content.ReadAsStringAsync();
             StringAssert.Contains(removedHtml, "This package source is no longer permitted");
-            StringAssert.Contains(removedHtml, "Package source could not be verified");
+            Assert.DoesNotContain("Package source could not be verified", removedHtml);
         }
         finally { configuration["SupplyChain:NuGetSources:1"] = originalSource; }
     }
 
     [TestMethod]
-    public async Task ApprovalRejectsConflictingVerifiedArchivesBeforeEitherWasTrusted()
+    public async Task ApprovalDoesNotAuthenticateOrRejectHistoricalArchiveHashes()
     {
         const string source = "https://api.nuget.org/v3/index.json";
         var name = "Example.VerifiedConflict." + Guid.NewGuid().ToString("N");
@@ -2834,7 +2855,7 @@ public class SupplyChainPagesTests : TestBase
             }
             audit.LastAttemptAtUtc = checkedAt.AddSeconds(-1);
             audit.LastSuccessfulAttemptAtUtc = checkedAt.AddSeconds(-1);
-            audit.LastSuccessAtUtc = checkedAt.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastError = null;
             await db.SaveChangesAsync();
             applicationId = application.Id;
@@ -2853,17 +2874,17 @@ public class SupplyChainPagesTests : TestBase
             ["expiresAtUtc"] = DateTime.UtcNow.AddDays(1).ToString("O"),
             ["reason"] = "Attempt to approve conflicting verified archives"
         }, tokenUrl: "/DependencyReviews/Index?filter=all");
-        Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode);
-        StringAssert.Contains(await response.Content.ReadAsStringAsync(), "Previously verified package bytes differ");
+        Assert.AreEqual(HttpStatusCode.Redirect, response.StatusCode);
         using var verifyScope = Server!.Services.CreateScope();
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-        Assert.AreEqual(ApplicationStatus.ReadyForReview,
+        Assert.AreEqual(ApplicationStatus.Approved,
             verifyDb.DependencyApplications.Single(a => a.Id == applicationId).Status);
-        Assert.IsFalse(verifyDb.TrustRules.Any(r => r.ApplicationId == applicationId));
+        Assert.IsTrue(verifyDb.TrustRules.Any(r => r.ApplicationId == applicationId));
+        Assert.IsTrue(verifyDb.TrustRules.Where(r => r.ApplicationId == applicationId).All(r => r.Sha256 == null));
     }
 
     [TestMethod]
-    public async Task ApprovalRechecksNewBlockRevocationPinnedHashAndVersionExclusion()
+    public async Task ApprovalRechecksNewBlockRevocationAndVersionExclusion()
     {
         const string source = "https://api.nuget.org/v3/index.json";
         var name = "Example.Review." + Guid.NewGuid().ToString("N");
@@ -2947,12 +2968,14 @@ public class SupplyChainPagesTests : TestBase
             db.TrustRules.AddRange(
                 new TrustRule
                 {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                     ApplicationId = applicationId, SupplierId = supplierId, Ecosystem = "nuget",
                     PackagePattern = name, Version = "1.0.0", Source = source,
                     Sha256 = new string('a', 64), Status = TrustRuleStatus.Revoked
                 },
                 new TrustRule
                 {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                     ApplicationId = null,
                     SupplierId = supplierId, Ecosystem = "nuget", PackagePattern = name,
                     Version = "1.0.0", Source = source, Status = TrustRuleStatus.Revoked
@@ -2970,8 +2993,6 @@ public class SupplyChainPagesTests : TestBase
             external.Sha256 = new string('b', 64);
             await db.SaveChangesAsync();
         }
-        using (var pinnedConflict = await SubmitApproval())
-            Assert.AreEqual(HttpStatusCode.BadRequest, pinnedConflict.StatusCode);
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
@@ -3001,7 +3022,7 @@ public class SupplyChainPagesTests : TestBase
             }
             audit.LastAttemptAtUtc = checkedAtUtc.AddMinutes(-1);
             audit.LastSuccessfulAttemptAtUtc = checkedAtUtc.AddMinutes(-1);
-            audit.LastSuccessAtUtc = checkedAtUtc.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastError = null;
             await db.SaveChangesAsync();
         }
@@ -3072,13 +3093,13 @@ public class SupplyChainPagesTests : TestBase
                 {
                     LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
                     LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1),
-                    LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1)
+                    LastSuccessAtUtc = DateTime.UtcNow
                 });
             else
             {
                 audit.LastAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
                 audit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
-                audit.LastSuccessAtUtc = DateTime.UtcNow.AddSeconds(1);
+                audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
         }
@@ -3108,17 +3129,11 @@ public class SupplyChainPagesTests : TestBase
             application.Packages.Single(p => !p.IsDirect).PackageArtifact.SourceVerifiedAtUtc = null;
             await db.SaveChangesAsync();
         }
-        using (var unverified = await Approve(reportHash))
-        {
-            Assert.AreEqual(HttpStatusCode.BadRequest, unverified.StatusCode);
-            StringAssert.Contains(await unverified.Content.ReadAsStringAsync(),
-                "has not been independently verified");
-        }
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var artifact = await db.PackageArtifacts.SingleAsync(a => a.Name == "Example.Batch.Child." + suffix);
-            artifact.SourceVerifiedAtUtc = DateTime.UtcNow;
+            Assert.IsNull(artifact.SourceVerifiedAtUtc);
             var audit = await db.VulnerabilitySyncStates.SingleAsync();
             audit.LastAttemptAtUtc = DateTime.UtcNow;
             audit.LastError = "OSV temporarily unavailable";
@@ -3441,6 +3456,7 @@ public class SupplyChainPagesTests : TestBase
             };
             var rules = new[] { "1.*", "1.0.*" }.Select(version => new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0, Supplier = supplier, Ecosystem = "nuget",
                 PackagePattern = artifact.Name, Version = version, Source = artifact.Source,
                 Status = TrustRuleStatus.Approved
@@ -3501,6 +3517,7 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var rule = new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = 0, Supplier = new Supplier { Name = "Imported vendor" },
                 Ecosystem = "nuget", PackagePattern = "Example.Details", Version = "1.*",
                 Source = "https://nuget.aiursoft.com/v3/index.json", Justification = "Needed for document export",
@@ -3574,6 +3591,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Vendor " + Guid.NewGuid().ToString("N") };
             var rule = new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName, Version = "10.0.*",
                 Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
@@ -3633,6 +3651,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Overlap vendor " + Guid.NewGuid().ToString("N") };
             var broad = new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.*", Source = source, Status = TrustRuleStatus.Approved,
@@ -3640,12 +3659,14 @@ public class SupplyChainPagesTests : TestBase
             };
             db.TrustRules.AddRange(broad, new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.0.*", Source = source, Status = TrustRuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             }, new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.0.2", Source = source, Status = TrustRuleStatus.Approved,
@@ -3689,6 +3710,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Narrow exclusion vendor " + Guid.NewGuid().ToString("N") };
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.*", Source = source, Status = TrustRuleStatus.Approved,
@@ -3696,6 +3718,7 @@ public class SupplyChainPagesTests : TestBase
             });
             var narrow = new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
                 Version = "10.0.*", Source = source, Status = TrustRuleStatus.Approved,
@@ -3820,6 +3843,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Range block vendor " + Guid.NewGuid().ToString("N") };
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "10.0.*", Source = "https://api.nuget.org/v3/index.json",
@@ -3876,6 +3900,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Revoked range vendor " + Guid.NewGuid().ToString("N") };
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "10.0.*", Source = source, Status = TrustRuleStatus.Approved,
@@ -3893,6 +3918,7 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null,
                 SupplierId = supplier.Id, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "10.0.*", Source = "https://nuget.aiursoft.com/v3/index.json",
@@ -3912,6 +3938,7 @@ public class SupplyChainPagesTests : TestBase
                 .Select(r => r.SupplierId).FirstAsync();
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null,
                 SupplierId = supplierId, Ecosystem = "nuget", PackagePattern = packageName,
                 Version = "10.0.*", Source = source, Status = TrustRuleStatus.Revoked
@@ -3937,6 +3964,7 @@ public class SupplyChainPagesTests : TestBase
             var supplier = new Supplier { Name = "Historical vendor " + Guid.NewGuid().ToString("N") };
             db.TrustRules.Add(new TrustRule
             {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null, SupplierId = supplier.Id,
                 Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName, Version = "10.0.*",
                 Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
@@ -3981,6 +4009,7 @@ public class SupplyChainPagesTests : TestBase
             db.TrustRules.AddRange(
                 new TrustRule
                 {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                     ApplicationId = null, SupplierId = supplier.Id,
                     Supplier = supplier,
                     Application = new DependencyApplication
@@ -3994,6 +4023,7 @@ public class SupplyChainPagesTests : TestBase
                 },
                 new TrustRule
                 {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                     ApplicationId = null, SupplierId = supplier.Id,
                     Supplier = supplier,
                     Application = new DependencyApplication
@@ -4120,6 +4150,7 @@ public class SupplyChainPagesTests : TestBase
                 var name = $"Pagination.Catalog{i:000}";
                 db.TrustRules.Add(new TrustRule
                 {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                     ApplicationId = null, SupplierId = 0, Supplier = supplier,
                     Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
                     Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved
@@ -4139,7 +4170,7 @@ public class SupplyChainPagesTests : TestBase
             }
             audit.LastAttemptAtUtc = now.AddMinutes(-1);
             audit.LastSuccessfulAttemptAtUtc = now.AddMinutes(-1);
-            audit.LastSuccessAtUtc = now.AddSeconds(1);
+            audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastError = null;
             await db.SaveChangesAsync();
             supplierId = supplier.Id;
@@ -4165,7 +4196,7 @@ public class SupplyChainPagesTests : TestBase
         AssertOneList(last, "rules", "artifacts");
         Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(last, @"<code>Pagination.Catalog500</code>").Count);
         StringAssert.Contains(WebUtility.HtmlDecode(last), "501 results · Page 11 of 11");
-        var artifactUrl = TabUrl(last, "Recorded artifacts");
+        var artifactUrl = TabUrl(last, "Reported versions");
         StringAssert.Contains(artifactUrl, "catalogView=artifacts");
         StringAssert.Contains(artifactUrl, "query=Pagination.Catalog");
         StringAssert.Contains(artifactUrl, $"supplierId={supplierId}");
@@ -4304,7 +4335,8 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var supplier = new Supplier { Name = name };
-            var rule = new TrustRule { SupplierId = 0, Supplier = supplier, ApplicationId = null,
+            var rule = new TrustRule {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1), SupplierId = 0, Supplier = supplier, ApplicationId = null,
                 Ecosystem = "nuget", PackagePattern = name + "*", Version = "1.*",
                 Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved };
             db.TrustRules.Add(rule);

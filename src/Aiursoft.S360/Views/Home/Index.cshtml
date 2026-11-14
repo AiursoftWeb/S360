@@ -15,7 +15,7 @@
             <div class="s360-hero-copy">
                 <span class="s360-eyebrow"><span class="s360-pulse"></span> @Localizer["Software supply chain, in focus"]</span>
                 <h1>@Localizer["Know every dependency."] <span>@Localizer["Trust every decision."]</span></h1>
-                <p class="s360-lead">@Localizer["S360 gives your team one place to request NuGet and npm packages, review their complete dependency trees, and track which exact package files are allowed."]</p>
+                <p class="s360-lead">@Localizer["S360 records allowed NuGet and npm packages, checks known vulnerabilities, and alerts affected projects."]</p>
                 <div class="s360-hero-actions">
                     <a asp-controller="SupplyChain" asp-action="Index" class="btn btn-primary btn-lg">
                         @Localizer["Open your workspace"] <i data-lucide="arrow-up-right"></i>
@@ -26,7 +26,7 @@
                 </div>
                 <div class="s360-hero-footnote">
                     <span><i data-lucide="package-check"></i> @Localizer["NuGet and npm"]</span>
-                    <span><i data-lucide="fingerprint"></i> @Localizer["Exact SHA-256 evidence"]</span>
+                    <span><i data-lucide="fingerprint"></i> @Localizer["Package rules and CVE alerts"]</span>
                     <span><i data-lucide="shield-alert"></i> @Localizer["Blocklist first"]</span>
                 </div>
             </div>
@@ -40,10 +40,10 @@
                         <span class="s360-mini-pill">npm</span>
                     </div>
                     <div class="s360-graph-branch">
-                        <div class="s360-graph-node"><span class="s360-node-icon blue"><i data-lucide="package"></i></span><span><strong>package-a</strong><small>@Localizer["Reviewed artifact"]</small></span><i data-lucide="check" class="s360-node-ok"></i></div>
+                        <div class="s360-graph-node"><span class="s360-node-icon blue"><i data-lucide="package"></i></span><span><strong>package-a</strong><small>@Localizer["Approved package"]</small></span><i data-lucide="check" class="s360-node-ok"></i></div>
                         <div class="s360-graph-node"><span class="s360-node-icon violet"><i data-lucide="git-branch"></i></span><span><strong>package-b</strong><small>@Localizer["Transitive dependency"]</small></span><span class="s360-mini-pill amber">@Localizer["Needs review"]</span></div>
                     </div>
-                    <div class="s360-console-result"><i data-lucide="shield-check"></i><span>@Localizer["A decision covers the complete resolved graph, not only the package you typed."]</span></div>
+                    <div class="s360-console-result"><i data-lucide="shield-check"></i><span>@Localizer["Each package is checked against approval rules and known vulnerabilities."]</span></div>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
         <div class="container">
             <span>@Localizer["One coherent workflow"]</span>
             <strong>@Localizer["Request"]</strong><i data-lucide="arrow-right"></i>
-            <strong>@Localizer["Resolve"]</strong><i data-lucide="arrow-right"></i>
+            <strong>@Localizer["Check CVEs"]</strong><i data-lucide="arrow-right"></i>
             <strong>@Localizer["Review"]</strong><i data-lucide="arrow-right"></i>
             <strong>@Localizer["Audit"]</strong>
         </div>
@@ -67,8 +67,8 @@
                 <p>@Localizer["S360 connects the people approving dependencies with the exact packages, versions, sources, and risks behind each decision."]</p>
             </div>
             <div class="s360-feature-grid">
-                <article class="s360-feature"><span class="s360-feature-icon"><i data-lucide="network"></i></span><h3>@Localizer["The entire dependency graph"]</h3><p>@Localizer["Submit direct dependencies once. S360 resolves transitive packages and records how each one enters the request."]</p></article>
-                <article class="s360-feature"><span class="s360-feature-icon"><i data-lucide="fingerprint"></i></span><h3>@Localizer["Exact artifact evidence"]</h3><p>@Localizer["Record the package source and SHA-256 of each NuGet archive or npm tarball, not just a familiar package name."]</p></article>
+                <article class="s360-feature"><span class="s360-feature-icon"><i data-lucide="network"></i></span><h3>@Localizer["Project dependency records"]</h3><p>@Localizer["CI reports its dependency list. S360 uses it to identify projects affected by a vulnerability."]</p></article>
+                <article class="s360-feature"><span class="s360-feature-icon"><i data-lucide="fingerprint"></i></span><h3>@Localizer["Rules and vulnerability checks"]</h3><p>@Localizer["Approve package names and version ranges. S360 checks vulnerability data; package servers download and cache files."]</p></article>
                 <article class="s360-feature"><span class="s360-feature-icon"><i data-lucide="clipboard-check"></i></span><h3>@Localizer["Human review at the right scale"]</h3><p>@Localizer["Approve a report-backed batch while retaining the individual package decisions and their review history."]</p></article>
                 <article class="s360-feature"><span class="s360-feature-icon"><i data-lucide="shield-ban"></i></span><h3>@Localizer["An absolute blocklist"]</h3><p>@Localizer["A blocked package stays blocked even when it appears only as a transitive dependency or matches a broader trust rule."]</p></article>
                 <article class="s360-feature"><span class="s360-feature-icon"><i data-lucide="scan-search"></i></span><h3>@Localizer["Ongoing vulnerability visibility"]</h3><p>@Localizer["See known advisories for used versions and for vulnerable versions still permitted by a wildcard rule."]</p></article>
@@ -86,7 +86,7 @@
             <div class="s360-home-learning-layout">
                 <div class="s360-step-grid">
                     <article><span>01</span><h3>@Localizer["Request in the browser"]</h3><p>@Localizer["Choose NuGet or npm, list the direct packages, and explain the intended use. No separate request command is needed."]</p></article>
-                    <article><span>02</span><h3>@Localizer["Resolve and inspect"]</h3><p>@Localizer["The background resolver records exact versions, package archives, hashes, source, and introduction paths."]</p></article>
+                    <article><span>02</span><h3>@Localizer["Review and approve"]</h3><p>@Localizer["Review the requested package names and versions. CI reports dependency relationships for project alerts."]</p></article>
                     <article><span>03</span><h3>@Localizer["Review with guardrails"]</h3><p>@Localizer["Reviewers see what is already trusted and what is new. Blacklist and vulnerability checks cannot be hidden by a root approval."]</p></article>
                     <article><span>04</span><h3>@Localizer["Keep watch"]</h3><p>@Localizer["Expiry, revocation, and newly published advisories remain visible after the original approval."]</p></article>
                 </div>
@@ -94,10 +94,10 @@
                     Localizer["The words behind the workflow"].Value,
                     "book-open-text",
                     [
-                        new ConceptTerm(Localizer["Direct and transitive"].Value, Localizer["You request the packages you choose; those packages can bring in others. Every package in the resolved graph needs its own decision."].Value),
+                        new ConceptTerm(Localizer["Direct and transitive"].Value, Localizer["CI reports both direct and transitive dependencies. S360 checks each reported package against the rules."].Value),
                         new ConceptTerm(Localizer["Supplier and source"].Value, Localizer["A supplier groups policy rules. A source is the registry that served the archive; a supplier label does not prove who published it."].Value),
-                        new ConceptTerm(Localizer["Artifact SHA-256"].Value, Localizer["A fingerprint of the downloaded .nupkg or npm tarball. It is not a hash of the extracted files or finished app."].Value),
-                        new ConceptTerm(Localizer["Wildcard rule"].Value, Localizer["A rule can cover matching future versions, but a match alone is not a completed archive or vulnerability check."].Value),
+                        new ConceptTerm(Localizer["Package policy"].Value, Localizer["Approval covers a package name and version range; package servers validate and cache the files."].Value),
+                        new ConceptTerm(Localizer["Wildcard rule"].Value, Localizer["A rule can cover future versions. Blocks, revocation, and known vulnerabilities still apply."].Value),
                         new ConceptTerm(Localizer["Security advisory"].Value, Localizer["A published vulnerability notice. Some use CVE identifiers; others use GHSA or another identifier."].Value)
                     ],
                     Localizer["Open a workspace page for explanations specific to each task."].Value))
@@ -114,8 +114,8 @@
                 <a asp-controller="SupplyChain" asp-action="Index" class="s360-text-link">@Localizer["Explore available dependencies"] <i data-lucide="arrow-up-right"></i></a>
             </div>
             <div class="s360-ecosystem-cards">
-                <article><span class="s360-ecosystem-tag">NuGet</span><h3>@Localizer[".NET packages"]</h3><p>@Localizer["Review restored versions and the original .nupkg files behind your applications."]</p><code>Microsoft.* &nbsp; System.*</code></article>
-                <article><span class="s360-ecosystem-tag npm">npm</span><h3>@Localizer["JavaScript packages"]</h3><p>@Localizer["See installed transitive packages and the tarball integrity evidence in one report."]</p><code>@@example/* &nbsp; 10.0.*</code></article>
+                <article><span class="s360-ecosystem-tag">NuGet</span><h3>@Localizer[".NET packages"]</h3><p>@Localizer["Review package versions used by your applications and track known vulnerabilities."]</p><code>Microsoft.* &nbsp; System.*</code></article>
+                <article><span class="s360-ecosystem-tag npm">npm</span><h3>@Localizer["JavaScript packages"]</h3><p>@Localizer["Review locked package versions and known vulnerabilities from CI dependency reports."]</p><code>@@example/* &nbsp; 10.0.*</code></article>
             </div>
         </div>
     </section>

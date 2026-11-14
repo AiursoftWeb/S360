@@ -1,11 +1,5 @@
-using System.Buffers;
 using System.Diagnostics;
-using System.Formats.Tar;
-using System.IO.Compression;
-using System.Security.Cryptography;
 using System.Text.Json;
-using System.Xml;
-using System.Xml.Linq;
 
 namespace Aiursoft.S360.SDK;
 
@@ -40,7 +34,7 @@ public static class DependencyScanner
         if (!Directory.Exists(root)) throw new DirectoryNotFoundException(root);
         var result = new List<Dependency>();
         var skipped = new List<string>();
-        // Directory scanning remains available to the server's isolated package resolver.
+        // Directory scanning reads local build manifests and lockfiles.
         // The CLI requires an explicit solution for NuGet checks.
         var projectFiles = solution != null && ecosystem == "nuget" ? [] : DiscoverProjectFiles(root).ToList();
         var solutionMembers = new HashSet<string>(OperatingSystem.IsWindows() ? StringComparer.OrdinalIgnoreCase : StringComparer.Ordinal);
@@ -95,7 +89,7 @@ public static class DependencyScanner
             var lockFile = File.Exists(shrinkwrap) ? shrinkwrap : Path.Combine(folder, "package-lock.json");
             if (!File.Exists(lockFile)) throw new InvalidOperationException($"Missing npm lockfile: {lockFile}");
             await ValidateNpmManifestLockAsync(manifest, lockFile, cancellationToken);
-            var installed = await ReadNpmCoreAsync(lockFile, folder, http, cancellationToken, skipped, expectedNpmSource, npmLockfileOnly, npmRegistry);
+            var installed = await ReadNpmCoreAsync(lockFile, folder, cancellationToken, skipped, expectedNpmSource, npmLockfileOnly, npmRegistry);
             DependencyIntroductionPaths.AddNpm(lockFile, installed, Path.GetRelativePath(root, manifest), introductionPaths,
                 graphNodes, !npmLockfileOnly, npmRegistry ?? (expectedNpmSource == null ? null : TrustPattern.NormalizeSource(expectedNpmSource)));
             if (installed.Any(dependency => !introductionPaths.ContainsKey(DependencyIntroductionPaths.Identity(dependency))))
@@ -362,35 +356,14 @@ public static class DependencyScanner
             if (found.ContainsKey(key)) continue;
             var packagePath = folders.Select(f => Path.Combine(f, name.ToLowerInvariant(), version.ToLowerInvariant()))
                 .FirstOrDefault(Directory.Exists) ?? throw new InvalidOperationException($"Package cache missing: {item.Name}");
-            var archive = Path.Combine(packagePath, $"{name.ToLowerInvariant()}.{version.ToLowerInvariant()}.nupkg");
             var metadata = Path.Combine(packagePath, ".nupkg.metadata");
-            var sha512File = Path.Combine(packagePath, $"{name.ToLowerInvariant()}.{version.ToLowerInvariant()}.nupkg.sha512");
-            if (!File.Exists(archive) || !File.Exists(metadata) || !File.Exists(sha512File))
-                throw new InvalidOperationException($"Package archive or restore evidence missing: {item.Name}");
+            if (!File.Exists(metadata))
+                throw new InvalidOperationException($"NuGet restore metadata is missing: {item.Name}");
             using var meta = JsonDocument.Parse(await File.ReadAllTextAsync(metadata, cancellationToken));
             if (!meta.RootElement.TryGetProperty("source", out var sourceElement))
                 throw new InvalidOperationException($"NuGet package source missing: {item.Name}");
             var source = TrustPattern.NormalizeSource(sourceElement.GetString() ?? "");
-            // NuGet's contentHash excludes package signature metadata, while the
-            // .nupkg.sha512 sidecar hashes the exact archive bytes. A signed package
-            // can legitimately have different values for these two SHA-512 hashes.
-            var archiveSha512 = (await File.ReadAllTextAsync(sha512File, cancellationToken)).Trim();
-            if (!root.TryGetProperty("libraries", out var libraries) ||
-                !libraries.TryGetProperty(item.Name, out var library) ||
-                !library.TryGetProperty("sha512", out var libraryHash) ||
-                !meta.RootElement.TryGetProperty("contentHash", out var restoredHash) ||
-                libraryHash.GetString() != restoredHash.GetString())
-                throw new InvalidOperationException($"NuGet restore hash evidence is inconsistent: {item.Name}");
-            await using var stream = File.OpenRead(archive);
-            var actual512 = Convert.ToBase64String(await SHA512.HashDataAsync(stream, cancellationToken));
-            if (!CryptographicOperations.FixedTimeEquals(Convert.FromBase64String(archiveSha512),
-                    Convert.FromBase64String(actual512)))
-                throw new InvalidOperationException($"NuGet archive integrity mismatch: {item.Name}");
-            stream.Position = 0;
-            ValidateNuGetArchiveIdentity(stream, name, version, item.Name);
-            stream.Position = 0;
-            var sha256 = Convert.ToHexStringLower(await SHA256.HashDataAsync(stream, cancellationToken));
-            found.Add(key, new Dependency { Ecosystem = "nuget", Name = name, Version = version, Source = source, Sha256 = sha256 });
+            found.Add(key, new Dependency { Ecosystem = "nuget", Name = name, Version = version, Source = source });
         }
         return found.Values.ToList();
     }
@@ -399,64 +372,10 @@ public static class DependencyScanner
         !string.IsNullOrWhiteSpace(value) && value is not ("." or "..") &&
         !value.Any(character => character is '/' or '\\' or ':' || char.IsControl(character));
 
-    public static void ValidateNuGetArchiveIdentity(Stream archive, string name, string version, string packageKey)
-    {
-        try
-        {
-            using var zip = new ZipArchive(archive, ZipArchiveMode.Read, leaveOpen: true);
-            var manifests = zip.Entries.Where(entry =>
-                !entry.FullName.Contains('/') && entry.FullName.EndsWith(".nuspec", StringComparison.OrdinalIgnoreCase)).ToList();
-            if (manifests.Count != 1 || manifests[0].Length > 1024 * 1024)
-                throw new InvalidOperationException($"NuGet archive must contain one root nuspec manifest: {packageKey}");
-            using var contents = manifests[0].Open();
-            using var reader = XmlReader.Create(contents, new XmlReaderSettings
-            {
-                DtdProcessing = DtdProcessing.Prohibit, XmlResolver = null
-            });
-            var document = XDocument.Load(reader);
-            var metadata = document.Root?.Name.LocalName == "package"
-                ? document.Root.Elements().SingleOrDefault(element => element.Name.LocalName == "metadata")
-                : null;
-            var archiveName = metadata?.Elements().SingleOrDefault(element => element.Name.LocalName == "id")?.Value;
-            var archiveVersion = metadata?.Elements().SingleOrDefault(element => element.Name.LocalName == "version")?.Value;
-            if (!string.Equals(archiveName, name, StringComparison.OrdinalIgnoreCase) ||
-                !NuGetVersionsMatch(archiveVersion, version))
-                throw new InvalidOperationException($"NuGet archive identity differs from restore output: {packageKey}");
-        }
-        catch (Exception exception) when (exception is InvalidDataException or XmlException)
-        {
-            throw new InvalidOperationException($"Invalid NuGet archive: {packageKey}", exception);
-        }
-    }
-
-    private static bool NuGetVersionsMatch(string? archiveVersion, string restoredVersion)
-    {
-        static (Version? Numeric, string Prerelease) Parse(string? input)
-        {
-            if (string.IsNullOrWhiteSpace(input)) return (null, "");
-            var withoutMetadata = input.Split('+', 2)[0];
-            var dash = withoutMetadata.IndexOf('-');
-            var numeric = dash < 0 ? withoutMetadata : withoutMetadata[..dash];
-            var prerelease = dash < 0 ? "" : withoutMetadata[dash..];
-            var parts = numeric.Split('.');
-            if (parts.Length is < 2 or > 4 || parts.Any(part => !int.TryParse(part, out var value) || value < 0))
-                return (null, "");
-            if (parts.Length == 2) numeric += ".0";
-            if (!Version.TryParse(numeric, out var parsed)) return (null, "");
-            return (new Version(parsed.Major, parsed.Minor, parsed.Build,
-                parsed.Revision < 0 ? 0 : parsed.Revision), prerelease);
-        }
-
-        var first = Parse(archiveVersion);
-        var second = Parse(restoredVersion);
-        return first.Numeric != null && first.Numeric == second.Numeric &&
-            string.Equals(first.Prerelease, second.Prerelease, StringComparison.OrdinalIgnoreCase);
-    }
-
     public static Task<List<Dependency>> ReadNpmAsync(string lockPath, string projectPath, HttpClient http,
         CancellationToken cancellationToken = default, ICollection<string>? skippedOptional = null,
         string? expectedSource = null, bool lockfileOnly = false) =>
-        ReadNpmCoreAsync(lockPath, projectPath, http, cancellationToken, skippedOptional, expectedSource, lockfileOnly, null);
+        ReadNpmCoreAsync(lockPath, projectPath, cancellationToken, skippedOptional, expectedSource, lockfileOnly, null);
 
     private static string NpmRegistrySource(string registry)
     {
@@ -480,7 +399,7 @@ public static class DependencyScanner
         return new Uri(registry.TrimEnd('/') + "/" + escaped);
     }
 
-    private static async Task<List<Dependency>> ReadNpmCoreAsync(string lockPath, string projectPath, HttpClient http,
+    private static async Task<List<Dependency>> ReadNpmCoreAsync(string lockPath, string projectPath,
         CancellationToken cancellationToken, ICollection<string>? skippedOptional,
         string? expectedSource, bool lockfileOnly, string? npmRegistry)
     {
@@ -512,20 +431,11 @@ public static class DependencyScanner
                 ? declaredName.GetString()! : installationName;
             var version = RequiredString(entry, "version", item.Name);
             var url = RequiredString(entry, "resolved", item.Name);
-            var integrity = RequiredString(entry, "integrity", item.Name);
             if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps ||
                 !string.IsNullOrEmpty(uri.UserInfo) || !string.IsNullOrEmpty(uri.Fragment))
                 throw new InvalidOperationException($"Unsupported npm archive URL: {item.Name}");
             if (npmRegistry != null) uri = NpmArchiveUri(uri, name, version, npmRegistry);
-            var separator = integrity.IndexOf('-');
-            if (separator < 1 || separator == integrity.Length - 1 || integrity.Contains(' '))
-                throw new InvalidOperationException($"Unsupported npm integrity: {item.Name}");
-            var algorithm = integrity[..separator];
-            if (algorithm is not ("sha512" or "sha256"))
-                throw new InvalidOperationException($"Unsupported npm integrity algorithm: {item.Name}");
-            var expected = Convert.FromBase64String(integrity[(separator + 1)..]);
-            // Lockfile-only checks run before installation and include optional packages
-            // for every platform. Both modes verify the actual archive below.
+            // The package manager checks archive integrity; S360 reads dependency metadata only.
             if (!lockfileOnly)
             {
                 var installedPath = Path.Combine(projectPath, item.Name.Replace('/', Path.DirectorySeparatorChar));
@@ -548,51 +458,10 @@ public static class DependencyScanner
                         throw new InvalidOperationException($"Installed npm package identity differs from the lockfile: {item.Name}");
                 }
             }
-            using var response = await http.GetAsync(uri, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
-            response.EnsureSuccessStatusCode();
-            var responseUri = response.RequestMessage?.RequestUri ?? uri;
-            if (responseUri.Scheme != Uri.UriSchemeHttps ||
-                !string.Equals(responseUri.GetLeftPart(UriPartial.Authority), uri.GetLeftPart(UriPartial.Authority),
-                    StringComparison.OrdinalIgnoreCase))
-                throw new InvalidOperationException($"npm archive was served from a different source: {item.Name}");
-            if (response.Content.Headers.ContentLength > 512L * 1024 * 1024)
-                throw new InvalidOperationException($"npm archive exceeds 512 MiB: {item.Name}");
-            await using var archive = await response.Content.ReadAsStreamAsync(cancellationToken);
-            await using var savedArchive = new FileStream(
-                Path.Combine(Path.GetTempPath(), "s360-npm-" + Guid.NewGuid().ToString("N")),
-                FileMode.CreateNew, FileAccess.ReadWrite, FileShare.None, 64 * 1024,
-                FileOptions.Asynchronous | FileOptions.DeleteOnClose);
-            using var integrityHash = IncrementalHash.CreateHash(algorithm == "sha512" ? HashAlgorithmName.SHA512 : HashAlgorithmName.SHA256);
-            using var packageHash = IncrementalHash.CreateHash(HashAlgorithmName.SHA256);
-            var buffer = ArrayPool<byte>.Shared.Rent(64 * 1024);
-            try
-            {
-                long size = 0;
-                int read;
-                while ((read = await archive.ReadAsync(buffer, cancellationToken)) != 0)
-                {
-                    size += read;
-                    if (size > 512L * 1024 * 1024)
-                        throw new InvalidOperationException($"npm archive exceeds 512 MiB: {item.Name}");
-                    integrityHash.AppendData(buffer, 0, read);
-                    packageHash.AppendData(buffer, 0, read);
-                    await savedArchive.WriteAsync(buffer.AsMemory(0, read), cancellationToken);
-                }
-            }
-            finally
-            {
-                ArrayPool<byte>.Shared.Return(buffer);
-            }
-            var actual = integrityHash.GetHashAndReset();
-            if (!CryptographicOperations.FixedTimeEquals(expected, actual))
-                throw new InvalidOperationException($"npm archive integrity mismatch: {item.Name}");
-            savedArchive.Position = 0;
-            await ValidateNpmArchiveIdentityAsync(savedArchive, name, version, item.Name, cancellationToken);
             found.Add(new Dependency
             {
                 Ecosystem = "npm", Name = name, Version = version,
-                Source = npmRegistry ?? TrustPattern.NormalizeSource(expectedSource ?? uri.GetLeftPart(UriPartial.Authority)),
-                Sha256 = Convert.ToHexStringLower(packageHash.GetHashAndReset())
+                Source = npmRegistry ?? TrustPattern.NormalizeSource(expectedSource ?? uri.GetLeftPart(UriPartial.Authority))
             });
         }
         return found;
@@ -602,41 +471,6 @@ public static class DependencyScanner
     // widen the comparison to another release, prerelease, or build identifier.
     public static bool NpmVersionsMatch(string? manifestVersion, string lockedVersion) =>
         manifestVersion == lockedVersion || manifestVersion == "v" + lockedVersion;
-
-    public static async Task ValidateNpmArchiveIdentityAsync(Stream archive, string name, string version,
-        string packagePath, CancellationToken cancellationToken)
-    {
-        try
-        {
-            using var gzip = new GZipStream(archive, CompressionMode.Decompress, leaveOpen: true);
-            using var tar = new TarReader(gzip, leaveOpen: true);
-            var found = false;
-            TarEntry? entry;
-            while ((entry = await tar.GetNextEntryAsync(cancellationToken: cancellationToken)) != null)
-            {
-                // npm strips one directory layer; DefinitelyTyped archives use the
-                // package name as that directory instead of the usual "package".
-                var parts = entry.Name.Split('/');
-                if (parts.Length != 2 || parts[1] != "package.json") continue;
-                if (parts[0] is "" or "." or ".." || parts[0].Contains('\\') || parts[0].Contains(':'))
-                    throw new InvalidOperationException($"Invalid npm archive package manifest: {packagePath}");
-                if (found || entry.EntryType != TarEntryType.RegularFile || entry.DataStream == null ||
-                    entry.Length > 1024 * 1024)
-                    throw new InvalidOperationException($"Invalid npm archive package manifest: {packagePath}");
-                found = true;
-                using var manifest = await JsonDocument.ParseAsync(entry.DataStream, cancellationToken: cancellationToken);
-                if (RequiredString(manifest.RootElement, "name", packagePath) != name ||
-                    !NpmVersionsMatch(RequiredString(manifest.RootElement, "version", packagePath), version))
-                    throw new InvalidOperationException($"npm archive identity differs from the lockfile: {packagePath}");
-            }
-            if (!found)
-                throw new InvalidOperationException($"npm archive package manifest is missing: {packagePath}");
-        }
-        catch (Exception exception) when (exception is InvalidDataException or JsonException)
-        {
-            throw new InvalidOperationException($"Invalid npm archive: {packagePath}", exception);
-        }
-    }
 
     private static void ValidateNpmPackagePath(string packagePath)
     {

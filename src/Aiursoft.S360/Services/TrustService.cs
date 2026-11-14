@@ -1,243 +1,89 @@
+using Aiursoft.Scanner.Abstractions;
 using Aiursoft.S360.Entities;
 using Aiursoft.S360.SDK;
-using Aiursoft.Scanner.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Aiursoft.S360.Services.Vulnerability;
-using Aiursoft.S360.Services.Resolution;
 
 namespace Aiursoft.S360.Services;
 
-public class TrustService(TemplateDbContext db, IConfiguration? configuration = null) : IScopedDependency
+/// <summary>Evaluates authorization and known vulnerability ranges. Package bytes are the registry's responsibility.</summary>
+public class TrustService(TemplateDbContext db) : IScopedDependency
 {
+    internal static string Identity(string ecosystem, string name, string version, string source) =>
+        $"{ecosystem}\n{(ecosystem == "nuget" ? name.ToLowerInvariant() : name)}\n{version}\n{source}";
+
     public static bool IsValidPackageName(string ecosystem, string name) =>
         ecosystem is "nuget" or "npm" && TrustPattern.IsValid(name) && !name.Contains('*') &&
         name is not ("." or "..") && (ecosystem != "nuget" || !name.Contains('/'));
 
     public async Task<List<MirrorCandidateDecision>> EvaluateCandidatesAsync(IReadOnlyList<MirrorCandidate> candidates)
     {
-        var rules = await db.TrustRules.AsNoTracking().Include(r => r.PackagePolicy).ToListAsync();
-        var blocks = await db.BlockRules.AsNoTracking().Where(r => r.Active).ToListAsync();
-        var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking().Include(e => e.Vulnerability).ToListAsync();
-        var advisories = await db.Vulnerabilities.AsNoTracking().Where(v => !v.Withdrawn).ToListAsync();
-        return candidates.Select(candidate =>
+        var decisions = await AssessAsync(candidates.Select(c => new Dependency
         {
-            var source = TrustPattern.NormalizeSource(candidate.Source);
-            var hashes = rules.Where(r => r.Ecosystem == candidate.Ecosystem && r.Source == source &&
-                    r.MatchesPackage(candidate.Name) && r.Version == candidate.Version && r.Sha256 != null)
-                .Select(r => r.Sha256!).Append(new string('0', 64)).Distinct(StringComparer.OrdinalIgnoreCase);
-            var eligible = hashes.Any(hash => Evaluate(new Dependency
-            {
-                Ecosystem = candidate.Ecosystem, Name = candidate.Name, Version = candidate.Version,
-                Source = source, Sha256 = hash
-            }, rules, blocks, DateTime.UtcNow, exclusions).Trusted);
-            var affected = advisories.Any(v => v.Ecosystem == candidate.Ecosystem &&
-                v.PackageName.Equals(candidate.Name, candidate.Ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
-                OsvRangeMatcher.Intersects(v.RawAffectedJson, candidate.Ecosystem, candidate.Name, candidate.Version) != RangeRisk.NotAffected);
-            return new MirrorCandidateDecision(candidate, eligible && !affected);
-        }).ToList();
+            Ecosystem = c.Ecosystem, Name = c.Name, Version = c.Version, Source = c.Source
+        }));
+        return decisions.Select((d, i) => new MirrorCandidateDecision(candidates[i], d.Trusted)).ToList();
     }
 
-    public async Task<List<DependencyDecision>> AssessAsync(IEnumerable<Dependency> dependencies) =>
-        (await AssessCoreAsync(dependencies)).Decisions;
+    public Task<List<DependencyDecision>> CheckAsync(IEnumerable<Dependency> dependencies) => AssessAsync(dependencies);
 
-    public async Task<List<DependencyDecision>> CheckAsync(IEnumerable<Dependency> dependencies)
-    {
-        var assessment = await AssessCoreAsync(dependencies);
-        var decisions = assessment.Decisions;
-        var now = DateTime.UtcNow;
-        var existingIds = decisions.Where(d => d.Trusted).Select(d => d.Dependency)
-            .Concat(assessment.PendingExisting)
-            .Select(dependency =>
-            {
-                var identity = Identity(dependency.Ecosystem, dependency.Name, dependency.Version,
-                    TrustPattern.NormalizeSource(dependency.Source));
-                return assessment.Known[identity].Single(artifact =>
-                    artifact.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase)).Id;
-            }).Distinct().ToList();
-        foreach (var ids in existingIds.Chunk(500))
-        {
-            var artifacts = await db.PackageArtifacts.Where(a => ids.Contains(a.Id)).ToListAsync();
-            foreach (var artifact in artifacts) artifact.FirstTrustedAtUtc ??= now;
-        }
-        foreach (var dependency in assessment.NewlyAdmitted)
-        {
-            var source = TrustPattern.NormalizeSource(dependency.Source);
-            var identity = Identity(dependency.Ecosystem, dependency.Name, dependency.Version, source);
-            if (assessment.Known[identity].Any(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase)) ||
-                db.PackageArtifacts.Local.Any(a => Identity(a.Ecosystem, a.Name, a.Version, a.Source) == identity &&
-                    a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase))) continue;
-            db.PackageArtifacts.Add(new PackageArtifact
-            {
-                Ecosystem = dependency.Ecosystem, Name = dependency.Name, Version = dependency.Version,
-                Source = source, Sha256 = dependency.Sha256.ToLowerInvariant()
-            });
-        }
-        await db.SaveChangesAsync();
-        return decisions;
-    }
+    public Task<List<DependencyDecision>> ReviewAsync(IEnumerable<Dependency> dependencies) =>
+        AssessAsync(dependencies);
 
-    public async Task<List<DependencyDecision>> ReviewAsync(IEnumerable<Dependency> dependencies, Func<bool>? admitNewArtifact = null)
-    {
-        var assessment = await AssessCoreAsync(dependencies);
-        var added = new List<PackageArtifact>();
-        foreach (var dependency in assessment.NewlyAdmitted)
-        {
-            var source = TrustPattern.NormalizeSource(dependency.Source);
-            var key = PackageArtifact.CalculateIdentityKey(dependency.Ecosystem, dependency.Name,
-                dependency.Version, source, dependency.Sha256);
-            if (added.Any(a => a.IdentityKey == key)) continue;
-            if (admitNewArtifact != null && !admitNewArtifact()) continue;
-            var artifact = new PackageArtifact
-            {
-                Ecosystem = dependency.Ecosystem, Name = dependency.Name, Version = dependency.Version,
-                Source = source, Sha256 = dependency.Sha256.ToLowerInvariant(), IdentityKey = key
-            };
-            // An observation only queues independent verification. It never grants trust
-            // or declares production use, even when a wildcard rule already permits it.
-            db.PackageArtifacts.Add(artifact);
-            added.Add(artifact);
-        }
-        for (var attempt = 0; added.Count > 0; attempt++)
-        {
-            try { await db.SaveChangesAsync(); break; }
-            catch (DbUpdateException) when (attempt < 2)
-            {
-                // Concurrent reviews can overlap partially. Remove only identities
-                // registered elsewhere and retry the remaining observations.
-                var keys = added.Select(a => a.IdentityKey).ToList();
-                var existing = new HashSet<string>(StringComparer.Ordinal);
-                foreach (var batch in keys.Chunk(500))
-                    existing.UnionWith(await db.PackageArtifacts.AsNoTracking()
-                        .Where(a => batch.Contains(a.IdentityKey)).Select(a => a.IdentityKey).ToListAsync());
-                if (existing.Count == 0) throw;
-                foreach (var artifact in added.Where(a => existing.Contains(a.IdentityKey)))
-                    db.Entry(artifact).State = EntityState.Detached;
-                added.RemoveAll(a => existing.Contains(a.IdentityKey));
-            }
-        }
-        return assessment.Decisions;
-    }
-
-    private Task<Assessment> AssessCoreAsync(IEnumerable<Dependency> dependencies)
+    public Task<List<DependencyDecision>> AssessAsync(IEnumerable<Dependency> dependencies)
     {
         var requested = dependencies.ToList();
         return VulnerabilityAuditSnapshot.ReadAsync(db, () => AssessSnapshotAsync(requested));
     }
 
-    private async Task<Assessment> AssessSnapshotAsync(IReadOnlyCollection<Dependency> requested)
+    private async Task<List<DependencyDecision>> AssessSnapshotAsync(IReadOnlyCollection<Dependency> requested)
     {
-        var conflicting = requested.GroupBy(d => Identity(d.Ecosystem, d.Name, d.Version, TrustPattern.NormalizeSource(d.Source)))
-            .Where(g => g.Select(d => d.Sha256.ToLowerInvariant()).Distinct().Skip(1).Any())
-            .Select(g => g.Key).ToHashSet();
-        var rules = await db.TrustRules.AsNoTracking().Include(r => r.PackagePolicy).Where(r => r.Status != TrustRuleStatus.Pending).ToListAsync();
+        var rules = await db.TrustRules.AsNoTracking().Include(r => r.PackagePolicy)
+            .Where(r => r.Status != TrustRuleStatus.Pending).ToListAsync();
         var blocks = await db.BlockRules.AsNoTracking().Where(r => r.Active).ToListAsync();
-        var artifacts = await LoadMatchingArtifactsAsync(requested);
         var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
-        var known = artifacts.ToLookup(a => Identity(a.Ecosystem, a.Name, a.Version, a.Source));
-        var conflictingVerified = ConflictingVerifiedIdentities(artifacts.Where(HasCurrentSourceProof));
-        var affectedIds = new HashSet<int>();
-        foreach (var ids in artifacts.Select(a => a.Id).Chunk(500))
-        {
-            var affected = await db.VulnerabilityMatches.AsNoTracking()
-                .Where(m => ids.Contains(m.PackageArtifactId) && m.Active &&
-                    !m.Vulnerability.Withdrawn)
-                .Select(m => m.PackageArtifactId).ToListAsync();
-            affectedIds.UnionWith(affected);
-        }
+        var advisories = await db.Vulnerabilities.AsNoTracking().Where(v => !v.Withdrawn).ToListAsync();
+        var audit = await db.VulnerabilitySyncStates.AsNoTracking().FirstOrDefaultAsync();
+        var approvals = await db.TrustRuleReviews.AsNoTracking()
+            .Where(r => r.Decision == TrustRuleStatus.Approved)
+            .GroupBy(r => r.TrustRuleId).Select(g => new { Id = g.Key, At = g.Max(r => r.ReviewedAtUtc) })
+            .ToDictionaryAsync(r => r.Id, r => r.At);
+        var versionFindings = await db.VulnerabilityMatches.AsNoTracking()
+            .Where(m => m.Active && !m.Vulnerability.Withdrawn)
+            .Select(m => new { m.PackageArtifact.Ecosystem, m.PackageArtifact.Name,
+                m.PackageArtifact.Version, m.Vulnerability.SourceId }).ToListAsync();
         var now = DateTime.UtcNow;
-        var audit = await db.VulnerabilitySyncStates.AsNoTracking()
-            .Select(s => new { s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc }).FirstOrDefaultAsync();
-        var newlyAdmitted = new List<Dependency>();
-        var pendingExisting = new List<Dependency>();
-        var decisions = requested.Select(dependency =>
+        var fresh = audit?.LastSuccessAtUtc > now.AddHours(-12) && audit.LastSuccessAtUtc <= now;
+        return requested.Select(dependency =>
         {
-            var identity = Identity(dependency.Ecosystem, dependency.Name, dependency.Version,
-                TrustPattern.NormalizeSource(dependency.Source));
-            if (conflicting.Contains(identity)) return Reject(dependency, "The same package identity has conflicting hashes in this build.");
             var decision = Evaluate(dependency, rules, blocks, now, exclusions);
             if (!decision.Trusted) return decision;
-            var matchingArtifacts = known[Identity(dependency.Ecosystem, dependency.Name, dependency.Version,
-                TrustPattern.NormalizeSource(dependency.Source))].ToList();
-            var currentProofs = matchingArtifacts.Where(HasCurrentSourceProof).ToList();
-            var trustedArtifacts = currentProofs.Where(a => a.FirstTrustedAtUtc != null).ToList();
-            if (conflictingVerified.Contains(identity))
-                return Reject(dependency, "Conflicting previously verified package hashes; manual review required.");
-            if (trustedArtifacts.Count > 0 && !trustedArtifacts.Any(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase)))
-                return Reject(dependency, "Previously recorded package bytes changed.");
-            var sameHash = currentProofs.Where(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase)).ToList();
-            if (matchingArtifacts.Any(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase) &&
-                                          affectedIds.Contains(a.Id)))
-                return Reject(dependency, "This version has a known active vulnerability.");
-            if (sameHash.Count == 0)
+            var finding = versionFindings.FirstOrDefault(v => v.Ecosystem == dependency.Ecosystem &&
+                v.Name.Equals(dependency.Name, dependency.Ecosystem == "nuget"
+                    ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) && v.Version == dependency.Version);
+            if (finding != null)
+                return new DependencyDecision { Dependency = dependency, Reason = $"This version has a known active vulnerability: {finding.SourceId}." };
+            var affected = advisories.FirstOrDefault(v => v.Ecosystem == dependency.Ecosystem &&
+                v.PackageName.Equals(dependency.Name, dependency.Ecosystem == "nuget"
+                    ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
+                OsvRangeMatcher.Intersects(v.RawAffectedJson, dependency.Ecosystem, dependency.Name, dependency.Version) != RangeRisk.NotAffected);
+            if (affected != null)
+                return new DependencyDecision { Dependency = dependency, Reason = $"This version has a known active vulnerability: {affected.SourceId}." };
+            // A successful package-level OSV query covers new versions too. Newly approved
+            // package names must enter the next audit before absence of findings means clean.
+            var covered = rules.Any(r => r.Status == TrustRuleStatus.Approved && r.Ecosystem == dependency.Ecosystem &&
+                r.MatchesPackage(dependency.Name) && !r.IsLegacyTemplate &&
+                (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now) &&
+                r.RequestedAtUtc <= audit?.LastSuccessfulAttemptAtUtc &&
+                (!approvals.TryGetValue(r.Id, out var at) || at <= audit.LastSuccessfulAttemptAtUtc));
+            return fresh && covered ? decision : new DependencyDecision
             {
-                if (matchingArtifacts.Any(a => a.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase)))
-                    pendingExisting.Add(dependency);
-                else newlyAdmitted.Add(dependency);
-                return Pending(dependency, "Package archive verification and vulnerability audit are pending.");
-            }
-            if (sameHash.Any(a => a.SourceVerificationRejected))
-                return Reject(dependency, "Package archive does not match its approved source or the source is no longer permitted.");
-            if (sameHash.All(a => a.SourceVerifiedAtUtc == null))
-                return Pending(dependency, "Package archive has not been independently verified from its source.");
-            if (sameHash.All(a => !VulnerabilityAuditFreshness.IsCurrent(a.LastCheckedAtUtc,
-                    audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now, a.IndependentCheckAtUtc)))
-            {
-                pendingExisting.Add(dependency);
-                return Pending(dependency, "Vulnerability audit has not completed for this package within 12 hours.");
-            }
-            return decision;
+                Dependency = dependency, PendingVerification = true,
+                Reason = "Current vulnerability data is unavailable for this package. A vulnerability refresh is required."
+            };
         }).ToList();
-        return new Assessment(decisions, newlyAdmitted, pendingExisting, known);
     }
-
-    internal bool HasCurrentSourceProof(PackageArtifact artifact)
-    {
-        var upstream = configuration == null ? null : MirrorPackageSources.Upstream(configuration,
-            artifact.Ecosystem, artifact.Source);
-        return upstream == null || artifact.VerificationSource == upstream;
-    }
-
-    private sealed record Assessment(List<DependencyDecision> Decisions, List<Dependency> NewlyAdmitted,
-        List<Dependency> PendingExisting, ILookup<string, PackageArtifact> Known);
-
-    private async Task<List<PackageArtifact>> LoadMatchingArtifactsAsync(IReadOnlyCollection<Dependency> requested)
-    {
-        var identities = requested.Select(d => Identity(d.Ecosystem, d.Name, d.Version,
-            TrustPattern.NormalizeSource(d.Source))).ToHashSet(StringComparer.Ordinal);
-        var result = new List<PackageArtifact>();
-        foreach (var ecosystem in requested.GroupBy(d => d.Ecosystem))
-        foreach (var names in ecosystem.Select(d => ecosystem.Key == "nuget" ? d.Name.ToLowerInvariant() : d.Name)
-                     .Distinct(StringComparer.Ordinal).Chunk(250))
-        {
-            var versions = ecosystem.Where(d => names.Contains(ecosystem.Key == "nuget"
-                    ? d.Name.ToLowerInvariant() : d.Name))
-                .Select(d => d.Version).Distinct(StringComparer.Ordinal).ToArray();
-            var candidates = ecosystem.Key == "nuget"
-                ? await db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == "nuget" &&
-                    names.Contains(a.Name.ToLower()) && versions.Contains(a.Version)).ToListAsync()
-                : await db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == "npm" &&
-                    names.Contains(a.Name) && versions.Contains(a.Version)).ToListAsync();
-            result.AddRange(candidates.Where(a => identities.Contains(Identity(a.Ecosystem,
-                a.Name, a.Version, a.Source))));
-        }
-        return result;
-    }
-
-    internal static string Identity(string ecosystem, string name, string version, string source) =>
-        $"{ecosystem}\n{(ecosystem == "nuget" ? name.ToLowerInvariant() : name)}\n{version}\n{source}";
-
-    internal static HashSet<string> ConflictingVerifiedIdentities(IEnumerable<PackageArtifact> artifacts) =>
-        artifacts.Where(a => a.SourceVerifiedAtUtc != null || a.FirstTrustedAtUtc != null)
-            .GroupBy(a => Identity(a.Ecosystem, a.Name, a.Version, a.Source))
-            .Where(group => group.Select(a => a.Sha256).Distinct(StringComparer.OrdinalIgnoreCase).Skip(1).Any())
-            .Select(group => group.Key).ToHashSet();
-
-    private static DependencyDecision Reject(Dependency dependency, string reason) =>
-        new() { Dependency = dependency, Trusted = false, Reason = reason };
-
-    private static DependencyDecision Pending(Dependency dependency, string reason) =>
-        new() { Dependency = dependency, Trusted = false, PendingVerification = true, Reason = reason };
 
     public static DependencyDecision Evaluate(Dependency dependency, IEnumerable<TrustRule> rules,
         IEnumerable<BlockRule> blocks, DateTime now,
@@ -261,19 +107,10 @@ public class TrustService(TemplateDbContext db, IConfiguration? configuration = 
             .FirstOrDefault(e => e != null);
         if (excluded != null)
             return Decision(false, $"Excluded vulnerable or uncertain version: {excluded.Vulnerability.SourceId}.", null);
-        // A pinned approval cannot be bypassed by a wider wildcard rule.
-        var pinned = approved.Where(r => r.Sha256 != null && r.Version == dependency.Version &&
-            r.PackagePattern.Equals(dependency.Name, dependency.Ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal)).ToList();
-        if (pinned.Count > 0 && !pinned.Any(r => string.Equals(r.Sha256, dependency.Sha256, StringComparison.OrdinalIgnoreCase)))
-            return Decision(false, "SHA-256 does not match the pinned approval.", pinned[0]);
-
-        var candidates = pinned.Count > 0 ? pinned : approved;
-        var eligible = candidates.Where(r => (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now) &&
-            (r.Sha256 == null || r.Sha256.Equals(dependency.Sha256, StringComparison.OrdinalIgnoreCase))).ToList();
-        var allowed = eligible.FirstOrDefault();
+        var allowed = approved.FirstOrDefault(r => r.ExpiresAtUtc == null || r.ExpiresAtUtc > now);
         return allowed == null
-            ? Decision(false, candidates.Count > 0 ? "Approval expired; review required." : "No approved trust rule.", null)
-            : Decision(true, allowed.Sha256 == null ? "Approved by an unpinned trust rule." : "Approved SHA-256.", allowed);
+            ? Decision(false, approved.Count > 0 ? "Approval expired; review required." : "No approved trust rule.", null)
+            : Decision(true, "Approved by package policy.", allowed);
 
         DependencyDecision Decision(bool trusted, string reason, TrustRule? rule) => new()
         {

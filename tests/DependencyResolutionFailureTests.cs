@@ -14,7 +14,7 @@ namespace Aiursoft.S360.Tests;
 public class DependencyResolutionFailureTests
 {
     [TestMethod]
-    public async Task IndependentlyResolvedArchiveClearsPriorSourceRejectionButStillRequiresAudit()
+    public async Task RequestPreparationPreservesHistoricalProofFieldsWithoutPerformingFileVerification()
     {
         var options = new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase("s360-source-recovery-" + Guid.NewGuid()).Options;
@@ -35,8 +35,8 @@ public class DependencyResolutionFailureTests
         Assert.IsTrue(await job.SaveResolutionAsync(application.Id,
             new ResolutionReport([dependency], [new ResolutionEdge(null, dependency)], [], "npm")));
         var artifact = await db.PackageArtifacts.SingleAsync();
-        Assert.IsFalse(artifact.SourceVerificationRejected);
-        Assert.IsNotNull(artifact.SourceVerifiedAtUtc);
+        Assert.IsTrue(artifact.SourceVerificationRejected);
+        Assert.IsNull(artifact.SourceVerifiedAtUtc);
         Assert.IsNull(artifact.LastCheckedAtUtc);
         Assert.IsNull(artifact.FirstTrustedAtUtc);
         var decision = (await new TrustService(db).AssessAsync([dependency])).Single();

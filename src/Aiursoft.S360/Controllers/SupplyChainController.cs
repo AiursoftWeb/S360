@@ -153,13 +153,12 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         var verifiedArtifacts = await db.PackageArtifacts.AsNoTracking()
             .Where(a => a.Ecosystem == ecosystem &&
                 (a.SourceVerifiedAtUtc != null || a.FirstTrustedAtUtc != null)).ToListAsync();
-        var currentArtifactIds = (await trust.WithCurrentSourceProofAsync(verifiedArtifacts)).Select(a => a.Id).ToHashSet();
-        var conflictingVerified = TrustService.ConflictingVerifiedIdentities(verifiedArtifacts.Where(a => currentArtifactIds.Contains(a.Id)));
+        var conflictingVerified = TrustService.ConflictingVerifiedIdentities(verifiedArtifacts.Where(trust.HasCurrentSourceProof));
         var selectedRules = supplierId == null ? null : activeApprovedRules.Where(r => r.SupplierId == supplierId).ToList();
         var available = new List<CatalogArtifactRow>();
         await foreach (var artifact in artifactQuery.OrderBy(a => a.Name).ThenBy(a => a.Id).AsAsyncEnumerable())
         {
-            if (!currentArtifactIds.Contains(artifact.Id)) continue;
+            if (!trust.HasCurrentSourceProof(artifact)) continue;
             if (!VulnerabilityAuditFreshness.IsCurrent(artifact.LastCheckedAtUtc,
                     auditStartedAtUtc, completedAuditAtUtc, now, artifact.IndependentCheckAtUtc))
                 continue;

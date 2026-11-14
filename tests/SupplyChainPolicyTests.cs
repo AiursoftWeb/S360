@@ -1,5 +1,3 @@
-using System.Net;
-using Aiursoft.S360.Services.Resolution;
 using Aiursoft.S360.Entities;
 using Aiursoft.S360.SDK;
 using Aiursoft.S360.Services;
@@ -26,68 +24,6 @@ public class SupplyChainPolicyTests
         Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
         ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
     };
-
-    [TestMethod]
-    [DataRow("nuget")]
-    [DataRow("npm")]
-    public async Task LocalAuthorityChangesTheProofSourceWithoutErasingHistoryOrWeakeningRevocation(string ecosystem)
-    {
-        await using var db = new InMemoryContext(new DbContextOptionsBuilder<InMemoryContext>()
-            .UseInMemoryDatabase(Guid.NewGuid().ToString()).Options);
-        const string source = "https://internal.example";
-        const string upstream = "https://official.example";
-        var configuration = new ConfigurationBuilder().AddInMemoryCollection(new Dictionary<string, string?>
-        {
-            [$"SupplyChain:{(ecosystem == "nuget" ? "NuGet" : "Npm")}Sources:0"] = source,
-            ["SupplyChain:Mirrors:0:Ecosystem"] = ecosystem,
-            ["SupplyChain:Mirrors:0:Source"] = source,
-            ["SupplyChain:Mirrors:0:Upstream"] = upstream,
-            ["SupplyChain:Mirrors:0:OriginEndpoint"] = source + "/api/package-origins"
-        }).Build();
-        using var handler = new AuthorityHandler(ecosystem);
-        var origins = new PackageOriginClient(configuration, new AuthorityClientFactory(handler));
-        var dependency = new Dependency { Ecosystem = ecosystem, Name = "sample", Version = "1.0.0", Source = source, Sha256 = new string('a', 64) };
-        var rule = new TrustRule { ApplicationId = null, Ecosystem = ecosystem, PackagePattern = "sample", Version = "*", Source = source, Status = TrustRuleStatus.Approved };
-        db.TrustRules.Add(rule);
-        var historical = new PackageArtifact { Ecosystem = ecosystem, Name = "sample", Version = "1.0.0", Source = source,
-            Sha256 = new string('b', 64), VerificationSource = upstream, SourceVerifiedAtUtc = DateTime.UtcNow,
-            FirstTrustedAtUtc = DateTime.UtcNow, LastCheckedAtUtc = DateTime.UtcNow, IndependentCheckAtUtc = DateTime.UtcNow };
-        db.PackageArtifacts.Add(historical);
-        await db.SaveChangesAsync();
-        var trust = new TrustService(db, configuration, origins);
-        Assert.IsTrue((await trust.ReviewAsync([dependency])).Single().PendingVerification);
-        var current = await db.PackageArtifacts.SingleAsync(a => a.Sha256 == dependency.Sha256);
-        current.SourceVerifiedAtUtc = current.LastCheckedAtUtc = current.IndependentCheckAtUtc = DateTime.UtcNow;
-        current.VerificationSource = source;
-        await db.SaveChangesAsync();
-        Assert.IsTrue((await trust.AssessAsync([dependency])).Single().Trusted);
-        Assert.AreEqual(upstream, historical.VerificationSource);
-        historical.VerificationSource = source;
-        await db.SaveChangesAsync();
-        StringAssert.Contains((await trust.AssessAsync([dependency])).Single().Reason, "Conflicting previously verified");
-        historical.VerificationSource = upstream;
-        rule.Status = TrustRuleStatus.Revoked;
-        await db.SaveChangesAsync();
-        Assert.IsFalse((await trust.AssessAsync([dependency])).Single().Trusted);
-        Assert.AreEqual(2, await db.PackageArtifacts.CountAsync());
-        handler.Unavailable = true;
-        await Assert.ThrowsExactlyAsync<HttpRequestException>(() => trust.AssessAsync([dependency]));
-    }
-
-    private sealed class AuthorityHandler(string ecosystem) : HttpMessageHandler
-    {
-        public bool Unavailable { get; set; }
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token) =>
-            Task.FromResult(new HttpResponseMessage(Unavailable ? HttpStatusCode.ServiceUnavailable : HttpStatusCode.OK)
-            {
-                RequestMessage = request,
-                Content = JsonContent.Create(new PackageSourceOrigin(ecosystem, "sample", "1.0.0", "local", new string('a', 64), "/archive"))
-            });
-    }
-    private sealed class AuthorityClientFactory(HttpMessageHandler handler) : IHttpClientFactory
-    {
-        public HttpClient CreateClient(string name) => new(handler, disposeHandler: false);
-    }
 
     [TestMethod]
     public void SupplierMayHaveIndependentPackages()

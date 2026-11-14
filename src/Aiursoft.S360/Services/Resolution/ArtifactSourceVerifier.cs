@@ -16,30 +16,7 @@ public class ArtifactSourceVerifier(IConfiguration configuration, IHttpClientFac
     {
         if (!AllowedPackageSources.Contains(configuration, artifact.Ecosystem, artifact.Source)) return false;
         var upstream = MirrorPackageSources.Upstream(configuration, artifact.Ecosystem, artifact.Source);
-        var origins = new PackageOriginClient(configuration, clients);
-        var origin = await origins.GetAsync(artifact.Ecosystem, artifact.Name, artifact.Version, artifact.Source, cancellationToken);
-        var verificationSource = origin?.Mode == "local" ? TrustPattern.NormalizeSource(artifact.Source) : upstream;
-        if (artifact.VerificationSource != null && artifact.VerificationSource != verificationSource &&
-            artifact.VerificationSource != upstream) return false;
-        if (origin?.Mode == "local")
-        {
-            if (origin.Archive == null || !string.Equals(origin.Sha256, artifact.Sha256, StringComparison.OrdinalIgnoreCase)) return false;
-            using var http = clients.CreateClient(PackageResolutionService.ArchiveClientName);
-            using var deadline = CancellationTokenSource.CreateLinkedTokenSource(cancellationToken);
-            deadline.CancelAfter(TimeSpan.FromMinutes(5));
-            await using var archive = await DownloadAsync(http, new Uri(new Uri(artifact.Source), origin.Archive),
-                512L * 1024 * 1024, deadline.Token, artifact.Ecosystem);
-            if (!Convert.ToHexStringLower(await SHA256.HashDataAsync(archive, deadline.Token))
-                    .Equals(artifact.Sha256, StringComparison.OrdinalIgnoreCase)) return false;
-            archive.Position = 0;
-            if (artifact.Ecosystem == "nuget")
-                DependencyScanner.ValidateNuGetArchiveIdentity(archive, artifact.Name, artifact.Version, $"{artifact.Name}/{artifact.Version}");
-            else await DependencyScanner.ValidateNpmArchiveIdentityAsync(archive, artifact.Name, artifact.Version,
-                $"{artifact.Name}@{artifact.Version}", deadline.Token);
-            if (origin != await origins.GetAsync(artifact.Ecosystem, artifact.Name, artifact.Version, artifact.Source, deadline.Token)) return false;
-            artifact.VerificationSource = verificationSource;
-            return true;
-        }
+        if (artifact.VerificationSource != null && artifact.VerificationSource != upstream) return false;
         var observed = artifact;
         if (upstream != null)
         {
@@ -112,7 +89,7 @@ public class ArtifactSourceVerifier(IConfiguration configuration, IHttpClientFac
         return true;
     }
 
-    internal static string NormalizeVersion(string version)
+    private static string NormalizeVersion(string version)
     {
         var parts = version.Split('+', 2)[0].ToLowerInvariant().Split('-', 2);
         var numbers = parts[0].Split('.').Select(int.Parse).ToList();

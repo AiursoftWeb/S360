@@ -62,8 +62,7 @@ s360:
     stage: s360
     script:
         - dotnet restore "$SOLUTION_FILE" --use-lock-file --disable-parallel --no-cache --configfile nuget.config --packages "$CI_PROJECT_DIR/obj/s360-packages"
-        # Exercise the client shipped by this repository against the existing policy API.
-        - dotnet run --project src/Aiursoft.S360.Client/Aiursoft.S360.Client.csproj --configuration Release --no-restore -- check --path "$SOLUTION_FILE" --ecosystem nuget --purpose "$S360_PURPOSE"
+        - s360 check --path "$SOLUTION_FILE" --ecosystem nuget --purpose "$S360_PURPOSE"
     artifacts:
         expire_in: 1 day
         paths:

@@ -20,47 +20,46 @@ public class SqliteMigrationTests
             await using (var db = new SqliteContext(options))
             {
                 await db.Database.MigrateAsync();
-                var supplier = new Supplier { Name = "Migration test supplier" };
-                db.Suppliers.Add(supplier);
-                db.TrustRules.Add(new TrustRule
+
+
+                db.Rules.Add(new PackageRule
                 {
-                    ApplicationId = null, SupplierId = supplier.Id,
-                    Supplier = supplier, Ecosystem = "nuget", PackagePattern = "Example.*", Version = "1.*",
-                    Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
-                    Reviews = [new TrustRuleReview
-                    {
-                        TrustRuleId = 0,
-                        Decision = TrustRuleStatus.Approved, ReportHash = new string('b', 64),
+                    ApplicationId = null,
+                    Ecosystem = "nuget",
+                    PackagePattern = "Example.*",
+                    Version = "1.*",
+                    Source = "https://api.nuget.org/v3/index.json",
+                    Status = RuleStatus.Approved,
+                    Reviews = [new RuleChange {
+                        RuleId = 0,
+                        Decision = RuleStatus.Approved, ReportHash = new string('b', 64),
                         DecisionBatchId = new string('c', 32)
                     }]
                 });
-                db.PackageArtifacts.Add(new PackageArtifact
+                db.PackageVersions.Add(new PackageVersion
                 {
-                    Ecosystem = "nuget", Name = "Example.Package", Version = "1.0.0",
-                    Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
+                    Ecosystem = "nuget",
+                    Name = "Example.Package",
+                    Version = "1.0.0",
+                    Source = "https://api.nuget.org/v3/index.json"
                 });
                 db.BuildChecks.Add(new BuildCheck
                 {
-                    RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 2,
-                    Trusted = true, GraphJson = "[]"
+                    RunId = Guid.NewGuid().ToString("N"),
+                    ScannedProjectCount = 2,
+                    Trusted = true,
+                    GraphJson = "[]"
                 });
                 await db.SaveChangesAsync();
             }
             await using (var db = new SqliteContext(options))
             {
-                Assert.AreEqual(1, await db.TrustRules.CountAsync());
-                Assert.AreEqual(1, await db.PackageArtifacts.CountAsync());
-                var storedArtifact = await db.PackageArtifacts.SingleAsync();
-                Assert.AreEqual(64, storedArtifact.IdentityKey.Length);
-                var caseVariantKey = PackageArtifact.CalculateIdentityKey("nuget", "example.package",
-                    "1.0.0", "https://api.nuget.org/v3/index.json", new string('A', 64));
-                Assert.AreEqual(storedArtifact.Id,
-                    (await db.PackageArtifacts.SingleAsync(a => a.IdentityKey == caseVariantKey)).Id);
-                Assert.AreNotEqual(PackageArtifact.CalculateIdentityKey("npm", "Example.Package",
-                    "1.0.0", "https://registry.npmjs.org", new string('a', 64)),
-                    PackageArtifact.CalculateIdentityKey("npm", "example.package",
-                        "1.0.0", "https://registry.npmjs.org", new string('a', 64)));
-                var review = await db.TrustRuleReviews.SingleAsync();
+                Assert.AreEqual(1, await db.Rules.Where(r => r.Kind == RuleKind.Approval).CountAsync());
+                Assert.AreEqual(1, await db.PackageVersions.CountAsync());
+                var storedArtifact = await db.PackageVersions.SingleAsync();
+                Assert.AreEqual("Example.Package", storedArtifact.Name);
+                Assert.AreEqual("1.0.0", storedArtifact.Version);
+                var review = await db.RuleChanges.SingleAsync();
                 Assert.AreEqual(new string('b', 64), review.ReportHash);
                 Assert.AreEqual(new string('c', 32), review.DecisionBatchId);
                 Assert.AreEqual(2, (await db.BuildChecks.SingleAsync()).ScannedProjectCount);
@@ -87,8 +86,12 @@ public class SqliteMigrationTests
                 await db.GetService<IMigrator>().MigrateAsync("20260923132803_RecordScannedProjectCount");
                 db.Vulnerabilities.Add(new Vulnerability
                 {
-                    Ecosystem = "npm", PackageName = "sample", SourceId = "GHSA-test-1111-2222",
-                    Aliases = "[\"CVE-2026-0001\"]", Summary = "Original finding", Severity = "HIGH",
+                    Ecosystem = "npm",
+                    PackageName = "sample",
+                    SourceId = "GHSA-test-1111-2222",
+                    Aliases = "[\"CVE-2026-0001\"]",
+                    Summary = "Original finding",
+                    Severity = "HIGH",
                     ModifiedAtUtc = new DateTime(2026, 9, 23, 0, 0, 0, DateTimeKind.Utc),
                     FetchedAtUtc = new DateTime(2026, 9, 23, 1, 0, 0, DateTimeKind.Utc),
                     RawAffectedJson = "[]"

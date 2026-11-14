@@ -83,7 +83,6 @@
             {
                 <tr><td>@(item.Trusted ? @Localizer["Accepted"] : @Localizer["Rejected"])</td>
                     <td>@item.Ecosystem: <code>@item.Name</code></td><td>@item.Version</td><td><small>@item.Source</small></td>
-                    <td><code title="@item.Sha256">@item.Sha256[..Math.Min(item.Sha256.Length, 16)]</code></td>
                     <td>@item.Reason
                         @if (Model.CurrentBlockReasons.TryGetValue(item.Id, out var blockReason))
                         {

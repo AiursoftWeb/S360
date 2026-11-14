@@ -13,7 +13,10 @@ public class ArtifactAdmissionTests : TestBase
     private readonly string Source = "https://registry.example/" + Guid.NewGuid().ToString("N") + "/index.json";
     private Dependency Package(string name) => new()
     {
-        Ecosystem = "nuget", Name = name, Version = "1.0.0", Source = Source, Sha256 = new string('a', 64)
+        Ecosystem = "nuget",
+        Name = name,
+        Version = "1.0.0",
+        Source = Source
     };
 
     private async Task AuthorizeAsync()
@@ -24,8 +27,12 @@ public class ArtifactAdmissionTests : TestBase
         var user = await db.Users.SingleAsync(u => u.Email == "admin@default.com");
         db.ApiKeys.Add(new ApiKey
         {
-            Name = "Mirror fixture", UserId = user.Id, SecretHash = ApiKeyPermissions.Hash(_secret),
-            IsEnabled = true, CanPublishBaselines = false, ExpirationTime = DateTime.UtcNow.AddDays(1)
+            Name = "Mirror fixture",
+            UserId = user.Id,
+            SecretHash = ApiKeyPermissions.Hash(_secret),
+            IsEnabled = true,
+            CanPublishBaselines = false,
+            ExpirationTime = DateTime.UtcNow.AddDays(1)
         });
         await db.SaveChangesAsync();
         Http.DefaultRequestHeaders.Add("X-S360-Key", _secret);
@@ -38,22 +45,34 @@ public class ArtifactAdmissionTests : TestBase
         var now = DateTime.UtcNow;
         foreach (var name in new[] { "Mirror.Blocked", "Mirror.Approved", "Mirror.Unverified" })
         {
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
-                ApplicationId = null, SupplierId = null,
-                Ecosystem = "nuget", PackagePattern = name, Version = "1.*", Source = Source,
-                Status = TrustRuleStatus.Approved, RequestedAtUtc = now.AddHours(-1), ExpiresAtUtc = now.AddDays(1)
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "1.*",
+                Source = Source,
+                Status = RuleStatus.Approved,
+                RequestedAtUtc = now.AddHours(-1),
+                ExpiresAtUtc = now.AddDays(1)
             });
-            db.PackageArtifacts.Add(new PackageArtifact
+            db.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0", Source = Source,
-                Sha256 = new string('a', 64), SourceVerifiedAtUtc = name == "Mirror.Unverified" ? null : now,
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = Source,
                 LastCheckedAtUtc = now
             });
         }
-        db.BlockRules.Add(new BlockRule
+        db.Rules.Add(new PackageRule
         {
-            Ecosystem = "nuget", PackagePattern = "Mirror.Blocked", Version = "*", Active = true, Reason = "Incident"
+            Kind = RuleKind.Block,
+            Ecosystem = "nuget",
+            PackagePattern = "Mirror.Blocked",
+            Version = "*",
+            Status = RuleStatus.Approved,
+            Justification = "Incident"
         });
         var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
         if (audit == null) { audit = new VulnerabilitySyncState(); db.VulnerabilitySyncStates.Add(audit); }
@@ -71,14 +90,19 @@ public class ArtifactAdmissionTests : TestBase
         await settings.UpdateSettingAsync(Configuration.SettingsMap.AlertCenterEndpoint, "http://127.0.0.1:1");
         try
         {
-            var input = new { dependencies = new[] { new
+            var input = new
+            {
+                dependencies = new[] { new
             {
                 ecosystem = "nuget", name = "Mirror.Approved", version = "1.9.0", source = Source
-            } } };
+            } }
+            };
             using var deniedBaseline = await Http.PostAsJsonAsync("/api/check", new CheckRequest
             {
-                Context = new CheckContext { Purpose = "baseline" }, Project = "isolated/no-permission",
-                ScannedProjectCount = 1, Dependencies = [Package("Mirror.Approved")]
+                Context = new CheckContext { Purpose = "baseline" },
+                Project = "isolated/no-permission",
+                ScannedProjectCount = 1,
+                Dependencies = [Package("Mirror.Approved")]
             });
             Assert.AreEqual(HttpStatusCode.Forbidden, deniedBaseline.StatusCode);
             using var response = await Http.PostAsJsonAsync("/api/artifacts/assess", input);
@@ -87,7 +111,7 @@ public class ArtifactAdmissionTests : TestBase
             Assert.IsTrue(result!.Decisions.Single().Trusted);
             using var scope = Server!.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Source == Source && a.Version == "1.9.0"));
+            Assert.IsFalse(await db.PackageVersions.AnyAsync(a => a.Source == Source && a.Version == "1.9.0"));
             Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.Project == "isolated/no-permission"));
         }
         finally
@@ -114,9 +138,9 @@ public class ArtifactAdmissionTests : TestBase
         CollectionAssert.AreEqual(new[] { true, false, false, false, false }, result.Decisions.Select(d => d.CanFetch).ToArray());
         using var scope = Server!.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-        Assert.AreEqual(3, await db.PackageArtifacts.CountAsync(a => a.Source == Source));
-        Assert.IsFalse(await db.TrustRules.AnyAsync(r => r.Source == "https://api.nuget.org/v3/index.json"));
-        (await db.TrustRules.SingleAsync(r => r.PackagePattern == "Mirror.Approved" && r.Source == Source)).Status = TrustRuleStatus.Revoked;
+        Assert.AreEqual(3, await db.PackageVersions.CountAsync(a => a.Source == Source));
+        Assert.IsFalse(await db.Rules.Where(r => r.Kind == RuleKind.Approval).AnyAsync(r => r.Source == "https://api.nuget.org/v3/index.json"));
+        (await db.Rules.Where(r => r.Kind == RuleKind.Approval).SingleAsync(r => r.PackagePattern == "Mirror.Approved" && r.Source == Source)).Status = RuleStatus.Revoked;
         await db.SaveChangesAsync();
         var revoked = await (await Http.PostAsJsonAsync("/api/artifacts/mirror/candidates", request)).Content.ReadFromJsonAsync<MirrorCandidateResponse>();
         Assert.IsNotNull(revoked);
@@ -171,10 +195,9 @@ public class ArtifactAdmissionTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            Assert.AreEqual(3, await db.PackageArtifacts.CountAsync(a => a.Source == Source));
+            Assert.AreEqual(3, await db.PackageVersions.CountAsync(a => a.Source == Source));
             Assert.AreEqual(beforeChecks, await db.BuildChecks.CountAsync());
-            Assert.IsTrue(await db.PackageArtifacts.Where(a => a.Source == Source).AllAsync(a => a.FirstTrustedAtUtc == null));
-            (await db.TrustRules.SingleAsync(r => r.PackagePattern == "Mirror.Approved" && r.Source == Source)).Status = TrustRuleStatus.Revoked;
+            (await db.Rules.Where(r => r.Kind == RuleKind.Approval).SingleAsync(r => r.PackagePattern == "Mirror.Approved" && r.Source == Source)).Status = RuleStatus.Revoked;
             await db.SaveChangesAsync();
         }
         var revoked = await (await Http.PostAsJsonAsync("/api/artifacts/assess", input))
@@ -204,16 +227,23 @@ public class ArtifactAdmissionTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
-                ApplicationId = null, SupplierId = null, Ecosystem = "npm", PackagePattern = "@fixture/ui",
-                Version = "1.0.0", Source = Source, Status = TrustRuleStatus.Approved,
-                ExpiresAtUtc = DateTime.UtcNow.AddDays(1), RequestedAtUtc = DateTime.UtcNow.AddHours(-1)
+                ApplicationId = null,
+                Ecosystem = "npm",
+                PackagePattern = "@fixture/ui",
+                Version = "1.0.0",
+                Source = Source,
+                Status = RuleStatus.Approved,
+                ExpiresAtUtc = DateTime.UtcNow.AddDays(1),
+                RequestedAtUtc = DateTime.UtcNow.AddHours(-1)
             });
-            db.PackageArtifacts.Add(new PackageArtifact
+            db.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "npm", Name = "@fixture/ui", Version = "1.0.0", Source = Source,
-                Sha256 = new string('a', 64), SourceVerifiedAtUtc = DateTime.UtcNow,
+                Ecosystem = "npm",
+                Name = "@fixture/ui",
+                Version = "1.0.0",
+                Source = Source,
                 LastCheckedAtUtc = (await db.VulnerabilitySyncStates.FirstAsync()).LastSuccessfulAttemptAtUtc
             });
             await db.SaveChangesAsync();

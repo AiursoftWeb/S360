@@ -21,7 +21,7 @@
                         <dt class="col-sm-3">@Localizer["Exact version"]</dt><dd class="col-sm-9"><code>@Model.Artifact.Version</code></dd>
                         <dt class="col-sm-3">@Localizer["Source"]</dt><dd class="col-sm-9"><code>@Model.Artifact.Source</code></dd>
                         <dt class="col-sm-3">@Localizer["Last vulnerability check"]</dt><dd class="col-sm-9"><span data-utc-time="@Model.Artifact.LastCheckedAtUtc?.ToHtmlDateTime()"></span></dd>
-                        <dt class="col-sm-3">@Localizer["Supplier label"]</dt><dd class="col-sm-9">@(Model.Rule.Supplier?.Name ?? @Localizer["Not recorded"].Value)</dd>
+
                         <dt class="col-sm-3">@Localizer["Matching authorization"]</dt><dd class="col-sm-9"><code>@Model.Rule.PackagePattern @Model.Rule.Version</code></dd>
                         <dt class="col-sm-3">@Localizer["Authorization expires"]</dt><dd class="col-sm-9"><span data-utc-time="@Model.Rule.ExpiresAtUtc?.ToHtmlDateTime()">@(Model.Rule.ExpiresAtUtc == null ? Localizer["No expiry recorded"].Value : "")</span></dd>
                         @if (Model.LatestApproval != null)
@@ -32,53 +32,13 @@
                 </div>
             </section>
 
-            <div class="alert alert-info" role="alert"><div class="alert-message">@Localizer["The relationships below come from previously approved request reports. They describe observed resolution paths, not every possible future build or a blanket authorization for related packages."]</div></div>
-            <section class="card mb-4">
-                <div class="card-header"><h2 class="h5 mb-0">@Localizer["Packages this artifact brought in"]</h2></div>
-                <div class="card-body">
-                    @if (Model.RecordedChildren.Count == 0)
-                    {
-                        <p class="text-muted mb-0">@Localizer["No direct child relationship is recorded in approved request reports."]</p>
-                    }
-                    else
-                    {
-                        <ul class="mb-0">
-                            @foreach (var child in Model.RecordedChildren)
-                            {
-                                <li><code>@child.Name</code> @child.Version <small class="text-muted">(@child.Source)</small></li>
-                            }
-                        </ul>
-                    }
-                    @if (Model.ChildrenLimited) { <p class="small text-warning mt-2 mb-0">@Localizer["Only the first 100 relationships are shown."]</p> }
-                </div>
-            </section>
-            <section class="card">
-                <div class="card-header"><h2 class="h5 mb-0">@Localizer["Packages that brought this artifact in"]</h2></div>
-                <div class="card-body">
-                    @if (Model.RecordedParents.Count == 0)
-                    {
-                        <p class="text-muted mb-0">@Localizer["No parent relationship is recorded in approved request reports. This package may have been requested directly."]</p>
-                    }
-                    else
-                    {
-                        <ul class="mb-0">
-                            @foreach (var parent in Model.RecordedParents)
-                            {
-                                <li><code>@parent.Name</code> @parent.Version <small class="text-muted">(@parent.Source)</small></li>
-                            }
-                        </ul>
-                    }
-                    @if (Model.ParentsLimited) { <p class="small text-warning mt-2 mb-0">@Localizer["Only the first 100 relationships are shown."]</p> }
-                </div>
-            </section>
         </div>
         @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
             Localizer["Read this package record"].Value,
             "package-check",
             [
                 new ConceptTerm(Localizer["Package artifact"].Value, Localizer["A reported package name, version and policy source. Package files belong to your registry."].Value),
-                new ConceptTerm(Localizer["Current authorization"].Value, Localizer["An active rule and current vulnerability data allow this version. Expiry, revocation, or new findings can change that answer."].Value),
-                new ConceptTerm(Localizer["Recorded relationship"].Value, Localizer["A direct edge from an approved request's resolved graph. It does not prove all future installations use the same graph."].Value)
+                new ConceptTerm(Localizer["Current authorization"].Value, Localizer["An active rule and current vulnerability data allow this version. Expiry, revocation, or new findings can change that answer."].Value)
             ],
             Localizer["Check the complete resolved graph for every actual build, even when this package appears in the catalog."].Value))
     </div>

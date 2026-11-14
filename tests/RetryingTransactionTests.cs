@@ -29,21 +29,30 @@ public class RetryingTransactionTests
         await db.Database.EnsureCreatedAsync();
         var application = new DependencyApplication
         {
-            RequestedByUserId = "employee", Ecosystem = "npm", Source = "https://registry.npmjs.org",
-            Justification = "Test", DirectPackages = """[{"Name":"sample","Version":"1.0.0"}]""", ResolutionContext = "npm", Status = ApplicationStatus.Resolving
+            RequestedByUserId = "employee",
+            Ecosystem = "npm",
+            Source = "https://registry.npmjs.org",
+            Justification = "Test",
+            DirectPackages = """[{"Name":"sample","Version":"1.0.0"}]""",
+            ResolutionContext = "npm",
+            Status = ApplicationStatus.Resolving
         };
         db.DependencyApplications.Add(application);
         await db.SaveChangesAsync();
-        var dependency = new Dependency { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
-            Source = "https://registry.npmjs.org", Sha256 = new string('a', 64) };
+        var dependency = new Dependency
+        {
+            Ecosystem = "npm",
+            Name = "sample",
+            Version = "1.0.0",
+            Source = "https://registry.npmjs.org"
+        };
         var report = new ResolutionReport([dependency], [new ResolutionEdge(null, dependency)], [], "npm");
         var job = new DependencyResolutionJob(db, null!, null!, NullLogger<DependencyResolutionJob>.Instance, null!);
         Assert.IsTrue(await job.SaveResolutionAsync(application.Id, report));
         db.ChangeTracker.Clear();
         Assert.AreEqual(ApplicationStatus.ReadyForReview, (await db.DependencyApplications.SingleAsync()).Status);
-        Assert.AreEqual(1, await db.PackageArtifacts.CountAsync());
+        Assert.AreEqual(1, await db.PackageVersions.CountAsync());
         Assert.AreEqual(1, await db.ApplicationPackages.CountAsync());
-        Assert.AreEqual(1, await db.ApplicationEdges.CountAsync());
         Assert.AreEqual(failOnce, failure.Thrown);
     }
 
@@ -57,8 +66,13 @@ public class RetryingTransactionTests
         var failure = new GraphFailure { Enabled = failOnce };
         await using var db = new SqliteContext(Options(connection, failure));
         await db.Database.EnsureCreatedAsync();
-        db.PackageArtifacts.Add(new PackageArtifact { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
-            Source = "https://registry.npmjs.org", Sha256 = new string('a', 64), SourceVerifiedAtUtc = DateTime.UtcNow });
+        db.PackageVersions.Add(new PackageVersion
+        {
+            Ecosystem = "npm",
+            Name = "sample",
+            Version = "1.0.0",
+            Source = "https://registry.npmjs.org"
+        });
         await db.SaveChangesAsync();
         using var handler = new AdvisoryHandler();
         using var http = new HttpClient(handler);
@@ -112,10 +126,13 @@ public class RetryingTransactionTests
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             Calls++;
-            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK) { Content = new StringContent(
+            return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent(
                 request.Method == HttpMethod.Get
                     ? """{"id":"TEST-1","modified":"2026-09-23T00:00:00Z","affected":[]}"""
-                    : """{"results":[{"vulns":[{"id":"TEST-1","modified":"2026-09-23T00:00:00Z"}]}]}""") });
+                    : """{"results":[{"vulns":[{"id":"TEST-1","modified":"2026-09-23T00:00:00Z"}]}]}""")
+            });
         }
     }
 }

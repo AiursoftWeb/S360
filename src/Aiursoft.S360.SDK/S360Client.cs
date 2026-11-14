@@ -84,8 +84,7 @@ public class S360Client(AiurProtocolClient client)
             var expected = request.Dependencies[i];
             var actual = response.Decisions[i].Dependency;
             if (actual.Ecosystem != expected.Ecosystem || actual.Name != expected.Name ||
-                actual.Version != expected.Version || actual.Source != expected.Source ||
-                !actual.Sha256.Equals(expected.Sha256, StringComparison.OrdinalIgnoreCase))
+                actual.Version != expected.Version || actual.Source != expected.Source)
                 throw new InvalidOperationException("S360 returned a mismatched dependency decision set.");
         }
         return response;

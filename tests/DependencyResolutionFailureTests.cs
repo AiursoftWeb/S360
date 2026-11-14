@@ -19,26 +19,46 @@ public class DependencyResolutionFailureTests
         var options = new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase("s360-source-recovery-" + Guid.NewGuid()).Options;
         await using var db = new InMemoryContext(options);
-        var dependency = new Dependency { Ecosystem = "npm", Name = "sample", Version = "1.0.0",
-            Source = "https://registry.npmjs.org", Sha256 = new string('a', 64) };
-        var application = new DependencyApplication { RequestedByUserId = "employee", Ecosystem = "npm",
-            Source = dependency.Source, Justification = "Reverify the source", ResolutionContext = "npm",
-            DirectPackages = """[{"Name":"sample","Version":"1.0.0"}]""", Status = ApplicationStatus.Resolving };
+        var dependency = new Dependency
+        {
+            Ecosystem = "npm",
+            Name = "sample",
+            Version = "1.0.0",
+            Source = "https://registry.npmjs.org"
+        };
+        var application = new DependencyApplication
+        {
+            RequestedByUserId = "employee",
+            Ecosystem = "npm",
+            Source = dependency.Source,
+            Justification = "Reverify the source",
+            ResolutionContext = "npm",
+            DirectPackages = """[{"Name":"sample","Version":"1.0.0"}]""",
+            Status = ApplicationStatus.Resolving
+        };
         db.DependencyApplications.Add(application);
-        db.TrustRules.Add(new TrustRule { SupplierId = 0, ApplicationId = null, Ecosystem = "npm",
-            PackagePattern = "sample", Version = "1.*", Source = dependency.Source, Status = TrustRuleStatus.Approved });
-        db.PackageArtifacts.Add(new PackageArtifact { Ecosystem = dependency.Ecosystem, Name = dependency.Name,
-            Version = dependency.Version, Source = dependency.Source, Sha256 = dependency.Sha256,
-            SourceVerificationRejected = true });
+        db.Rules.Add(new PackageRule
+        {
+            ApplicationId = null,
+            Ecosystem = "npm",
+            PackagePattern = "sample",
+            Version = "1.*",
+            Source = dependency.Source,
+            Status = RuleStatus.Approved
+        });
+        db.PackageVersions.Add(new PackageVersion
+        {
+            Ecosystem = dependency.Ecosystem,
+            Name = dependency.Name,
+            Version = dependency.Version,
+            Source = dependency.Source
+        });
         await db.SaveChangesAsync();
         var job = new DependencyResolutionJob(db, null!, null!, NullLogger<DependencyResolutionJob>.Instance, null!);
         Assert.IsTrue(await job.SaveResolutionAsync(application.Id,
             new ResolutionReport([dependency], [new ResolutionEdge(null, dependency)], [], "npm")));
-        var artifact = await db.PackageArtifacts.SingleAsync();
-        Assert.IsTrue(artifact.SourceVerificationRejected);
-        Assert.IsNull(artifact.SourceVerifiedAtUtc);
+        var artifact = await db.PackageVersions.SingleAsync();
         Assert.IsNull(artifact.LastCheckedAtUtc);
-        Assert.IsNull(artifact.FirstTrustedAtUtc);
         var decision = (await new TrustService(db).AssessAsync([dependency])).Single();
         Assert.IsFalse(decision.Trusted);
         Assert.IsTrue(decision.PendingVerification);
@@ -52,8 +72,12 @@ public class DependencyResolutionFailureTests
         await using var db = new InMemoryContext(options);
         var application = new DependencyApplication
         {
-            RequestedByUserId = "employee", Ecosystem = "npm", Source = "https://registry.npmjs.org",
-            Justification = "Evaluate a dependency", DirectPackages = "[]", ResolutionContext = "npm",
+            RequestedByUserId = "employee",
+            Ecosystem = "npm",
+            Source = "https://registry.npmjs.org",
+            Justification = "Evaluate a dependency",
+            DirectPackages = "[]",
+            ResolutionContext = "npm",
             Status = ApplicationStatus.Resolving
         };
         db.DependencyApplications.Add(application);
@@ -73,16 +97,22 @@ public class DependencyResolutionFailureTests
             await worker.Database.MigrateAsync();
             var application = new DependencyApplication
             {
-                RequestedByUserId = "employee", Ecosystem = "nuget", Source = "https://api.nuget.org/v3/index.json",
-                Justification = "Evaluate a dependency", DirectPackages = "[]", ResolutionContext = "net10.0",
+                RequestedByUserId = "employee",
+                Ecosystem = "nuget",
+                Source = "https://api.nuget.org/v3/index.json",
+                Justification = "Evaluate a dependency",
+                DirectPackages = "[]",
+                ResolutionContext = "net10.0",
                 Status = ApplicationStatus.Resolving
             };
             worker.DependencyApplications.Add(application);
             await worker.SaveChangesAsync();
-            worker.PackageArtifacts.Add(new PackageArtifact
+            worker.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "nuget", Name = "partial", Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
+                Ecosystem = "nuget",
+                Name = "partial",
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json"
             });
             await using (var employee = new SqliteContext(options))
             {
@@ -93,7 +123,7 @@ public class DependencyResolutionFailureTests
             Assert.IsFalse(await DependencyResolutionJob.MarkFailedIfStillResolvingAsync(worker, application.Id, "resolve failed"));
             await using var verify = new SqliteContext(options);
             Assert.AreEqual(ApplicationStatus.Withdrawn, (await verify.DependencyApplications.SingleAsync()).Status);
-            Assert.AreEqual(0, await verify.PackageArtifacts.CountAsync());
+            Assert.AreEqual(0, await verify.PackageVersions.CountAsync());
         }
         finally
         {
@@ -112,8 +142,12 @@ public class DependencyResolutionFailureTests
             await db.Database.MigrateAsync();
             var application = new DependencyApplication
             {
-                RequestedByUserId = "employee", Ecosystem = "npm", Source = "https://registry.npmjs.org",
-                Justification = "Evaluate a dependency", DirectPackages = "[]", ResolutionContext = "npm",
+                RequestedByUserId = "employee",
+                Ecosystem = "npm",
+                Source = "https://registry.npmjs.org",
+                Justification = "Evaluate a dependency",
+                DirectPackages = "[]",
+                ResolutionContext = "npm",
                 Status = ApplicationStatus.Resolving
             };
             db.DependencyApplications.Add(application);
@@ -141,8 +175,12 @@ public class DependencyResolutionFailureTests
             await worker.Database.MigrateAsync();
             var application = new DependencyApplication
             {
-                RequestedByUserId = "employee", Ecosystem = "nuget", Source = "https://api.nuget.org/v3/index.json",
-                Justification = "Evaluate a dependency", DirectPackages = "[]", ResolutionContext = "net10.0",
+                RequestedByUserId = "employee",
+                Ecosystem = "nuget",
+                Source = "https://api.nuget.org/v3/index.json",
+                Justification = "Evaluate a dependency",
+                DirectPackages = "[]",
+                ResolutionContext = "net10.0",
                 Status = ApplicationStatus.Resolving
             };
             worker.DependencyApplications.Add(application);
@@ -155,10 +193,12 @@ public class DependencyResolutionFailureTests
             }
             await using (var transaction = await worker.Database.BeginTransactionAsync())
             {
-                worker.PackageArtifacts.Add(new PackageArtifact
+                worker.PackageVersions.Add(new PackageVersion
                 {
-                    Ecosystem = "nuget", Name = "uncommitted", Version = "1.0.0",
-                    Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
+                    Ecosystem = "nuget",
+                    Name = "uncommitted",
+                    Version = "1.0.0",
+                    Source = "https://api.nuget.org/v3/index.json"
                 });
                 await worker.SaveChangesAsync();
                 Assert.IsFalse(await DependencyResolutionJob.MarkReadyIfStillResolvingAsync(worker, application.Id));
@@ -166,7 +206,7 @@ public class DependencyResolutionFailureTests
             }
             await using var verify = new SqliteContext(options);
             Assert.AreEqual(ApplicationStatus.Withdrawn, (await verify.DependencyApplications.SingleAsync()).Status);
-            Assert.AreEqual(0, await verify.PackageArtifacts.CountAsync());
+            Assert.AreEqual(0, await verify.PackageVersions.CountAsync());
         }
         finally
         {
@@ -185,18 +225,24 @@ public class DependencyResolutionFailureTests
             await worker.Database.MigrateAsync();
             var application = new DependencyApplication
             {
-                RequestedByUserId = "employee", Ecosystem = "nuget", Source = "https://api.nuget.org/v3/index.json",
-                Justification = "Evaluate a dependency", DirectPackages = "[]", ResolutionContext = "net10.0",
+                RequestedByUserId = "employee",
+                Ecosystem = "nuget",
+                Source = "https://api.nuget.org/v3/index.json",
+                Justification = "Evaluate a dependency",
+                DirectPackages = "[]",
+                ResolutionContext = "net10.0",
                 Status = ApplicationStatus.Resolving
             };
             worker.DependencyApplications.Add(application);
             await worker.SaveChangesAsync();
             await using (var transaction = await worker.Database.BeginTransactionAsync())
             {
-                worker.PackageArtifacts.Add(new PackageArtifact
+                worker.PackageVersions.Add(new PackageVersion
                 {
-                    Ecosystem = "nuget", Name = "committed", Version = "1.0.0",
-                    Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
+                    Ecosystem = "nuget",
+                    Name = "committed",
+                    Version = "1.0.0",
+                    Source = "https://api.nuget.org/v3/index.json"
                 });
                 await worker.SaveChangesAsync();
                 Assert.IsTrue(await DependencyResolutionJob.MarkReadyIfStillResolvingAsync(worker, application.Id));
@@ -204,7 +250,7 @@ public class DependencyResolutionFailureTests
             }
             await using var verify = new SqliteContext(options);
             Assert.AreEqual(ApplicationStatus.ReadyForReview, (await verify.DependencyApplications.SingleAsync()).Status);
-            Assert.AreEqual(1, await verify.PackageArtifacts.CountAsync());
+            Assert.AreEqual(1, await verify.PackageVersions.CountAsync());
         }
         finally
         {

@@ -13,16 +13,16 @@ public class LegacyRuleMigration(TemplateDbContext db) : IScopedDependency
 {
     public async Task<LegacyMigrationPlan> PreviewAsync()
     {
-        var rules = await db.TrustRules.AsNoTracking().OrderBy(r => r.Id).ToListAsync();
-        var artifacts = await db.PackageArtifacts.AsNoTracking().OrderBy(a => a.Id).ToListAsync();
-        var reviews = await db.TrustRuleReviews.AsNoTracking().OrderBy(r => r.Id).ToListAsync();
-        var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking().OrderBy(e => e.Id).ToListAsync();
-        var rows = rules.Where(r => r.IsLegacyTemplate && r.Status == TrustRuleStatus.Approved)
+        var rules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).AsNoTracking().OrderBy(r => r.Id).ToListAsync();
+        var artifacts = await db.PackageVersions.AsNoTracking().OrderBy(a => a.Id).ToListAsync();
+        var reviews = await db.RuleChanges.AsNoTracking().OrderBy(r => r.Id).ToListAsync();
+        var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking().OrderBy(e => e.Id).ToListAsync();
+        var rows = rules.Where(r => r.IsLegacyTemplate && r.Status == RuleStatus.Approved)
             .SelectMany(rule => artifacts.Where(a => a.Ecosystem == rule.Ecosystem && a.Source == rule.Source &&
 
                     TrustPattern.Matches(rule.PackagePattern, a.Name, rule.Ecosystem) &&
                     TrustPattern.VersionMatches(rule.Version, a.Version, rule.Ecosystem, rule.IncludePrerelease))
-                .DistinctBy(a => PackagePolicy.NormalizeName(a.Ecosystem, a.Name))
+                .DistinctBy(a => a.Ecosystem == "nuget" ? a.Name.ToLowerInvariant() : a.Name)
                 .Where(a => !rules.Any(r => r.LegacySourceRuleId == rule.Id && r.MatchesPackage(a.Name)))
                 .Select(a => new LegacyMigrationRow(rule, a.Name)))
             .OrderBy(row => row.Rule.Id).ThenBy(row => row.Name, StringComparer.Ordinal).ToList();
@@ -30,7 +30,7 @@ public class LegacyRuleMigration(TemplateDbContext db) : IScopedDependency
         var fingerprint = Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes(
             JsonSerializer.Serialize(new { rules, artifacts, reviews, exclusions }))));
         return new LegacyMigrationPlan(fingerprint, rows,
-            rules.Where(r => r.IsLegacyTemplate && r.Status is TrustRuleStatus.Rejected or TrustRuleStatus.Revoked).Select(r => r.Id).ToList());
+            rules.Where(r => r.IsLegacyTemplate && r.Status is RuleStatus.Rejected or RuleStatus.Revoked).Select(r => r.Id).ToList());
     }
 
     public Task ApplyAsync(string fingerprint, IReadOnlyCollection<string> selections, string reviewer, string reason) =>
@@ -51,44 +51,58 @@ public class LegacyRuleMigration(TemplateDbContext db) : IScopedDependency
         var selected = selections.ToHashSet(StringComparer.Ordinal);
         if (selected.Count != selections.Count || selected.Any(key => plan.Rows.All(row => row.Key != key)))
             throw new ArgumentException("Select only concrete packages from the current preview.");
-        var originals = await db.TrustRules.Include(r => r.Reviews).OrderBy(r => r.Id).ToListAsync();
-        var exclusions = await db.TrustRuleVulnerabilityExclusions.Include(e => e.Vulnerability).ToListAsync();
+        var originals = await db.Rules.Where(r => r.Kind == RuleKind.Approval).Include(r => r.Reviews).OrderBy(r => r.Id).ToListAsync();
+        var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).Include(e => e.Vulnerability).ToListAsync();
         var batch = Guid.NewGuid().ToString("N");
         foreach (var row in plan.Rows.Where(row => selected.Contains(row.Key)))
         {
             var original = originals.Single(r => r.Id == row.Rule.Id);
-            var grant = new TrustRule
+            var grant = new PackageRule
             {
-                ApplicationId = original.ApplicationId, SupplierId = original.SupplierId,
-                Ecosystem = original.Ecosystem, PackagePattern = row.Name, Version = original.Version,
-                Source = original.Source, Sha256 = null, IncludePrerelease = original.IncludePrerelease,
-                Justification = original.Justification, RequestedByUserId = original.RequestedByUserId,
-                RequestedAtUtc = original.RequestedAtUtc, ExpiresAtUtc = original.ExpiresAtUtc,
-                Status = original.Status, LegacySourceRuleId = original.Id
+                ApplicationId = original.ApplicationId,
+                Ecosystem = original.Ecosystem,
+                PackagePattern = row.Name,
+                Version = original.Version,
+                Source = original.Source,
+                IncludePrerelease = original.IncludePrerelease,
+                Justification = original.Justification,
+                RequestedByUserId = original.RequestedByUserId,
+                RequestedAtUtc = original.RequestedAtUtc,
+                ExpiresAtUtc = original.ExpiresAtUtc,
+                Status = original.Status,
+                LegacySourceRuleId = original.Id
             };
-            db.TrustRules.Add(grant);
-            db.TrustRuleReviews.Add(new TrustRuleReview
+            db.Rules.Add(grant);
+            db.RuleChanges.Add(new RuleChange
             {
-                TrustRule = grant, TrustRuleId = grant.Id, Decision = grant.Status, ReviewerId = reviewer,
-                Reason = reason, DecisionBatchId = batch, ExpiresAtUtc = grant.ExpiresAtUtc
+                Rule = grant,
+                RuleId = grant.Id,
+                Decision = grant.Status,
+                ReviewerId = reviewer,
+                Reason = reason,
+                DecisionBatchId = batch,
+                ExpiresAtUtc = grant.ExpiresAtUtc
             });
-            foreach (var exclusion in exclusions.Where(e => e.TrustRuleId == original.Id &&
-                         e.Vulnerability.PackageName.Equals(row.Name, original.Ecosystem == "nuget"
+            foreach (var exclusion in exclusions.Where(e => e.ParentRuleId == original.Id &&
+                         e.Vulnerability!.PackageName.Equals(row.Name, original.Ecosystem == "nuget"
                              ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal)))
-                db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+                db.Rules.Add(new PackageRule
                 {
-                    TrustRule = grant, TrustRuleId = grant.Id, VulnerabilityId = exclusion.VulnerabilityId,
-                    CreatedByUserId = exclusion.CreatedByUserId, CreatedAtUtc = exclusion.CreatedAtUtc, Reason = exclusion.Reason
+                    Kind = RuleKind.VulnerabilityExclusion,
+                    Status = RuleStatus.Approved,
+                    ParentRule = grant,
+                    ParentRuleId = grant.Id,
+                    VulnerabilityId = exclusion.VulnerabilityId,
+                    RequestedByUserId = exclusion.RequestedByUserId,
+                    RequestedAtUtc = exclusion.RequestedAtUtc,
+                    Justification = exclusion.Justification
                 });
         }
-        // Bind every existing exact rule, including rejected/revoked grants, without changing its decision/history.
-        foreach (var rule in originals.Where(r => !r.IsLegacyTemplate && r.PackagePolicyId == null))
-            db.Entry(rule).Property(r => r.PackagePattern).IsModified = true;
         await db.SaveChangesAsync();
     }
 }
 
-public record LegacyMigrationRow(TrustRule Rule, string Name)
+public record LegacyMigrationRow(PackageRule Rule, string Name)
 {
     public string Key => $"{Rule.Id}:{Name}";
 }

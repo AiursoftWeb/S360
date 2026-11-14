@@ -35,7 +35,8 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
                 Decisions = request.Dependencies.Select((dependency, i) => permitted[i]
                     ? assessed[index++] : new DependencyDecision
                     {
-                        Dependency = dependency, Reason = "Package source is not permitted."
+                        Dependency = dependency,
+                        Reason = "Package source is not permitted."
                     }).ToList()
             });
         }
@@ -55,7 +56,7 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
             if (!AllowedPackageSources.Contains(configuration, ecosystem, source))
                 return BadRequest("Package source is not permitted.");
             source = TrustPattern.NormalizeSource(source);
-            var query = db.PackageArtifacts.AsNoTracking().Where(a => a.Ecosystem == ecosystem &&
+            var query = db.PackageVersions.AsNoTracking().Where(a => a.Ecosystem == ecosystem &&
                 a.Source == source);
             if (name != null)
             {
@@ -71,10 +72,12 @@ public class ArtifactAdmissionController(TemplateDbContext db, TrustService trus
             var page = rows.Take(take).Where(a => name == null || a.Name.Equals(name,
                 ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal))
                 .Select(a => new Dependency
-            {
-                Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version,
-                Source = a.Source
-            }).ToList();
+                {
+                    Ecosystem = a.Ecosystem,
+                    Name = a.Name,
+                    Version = a.Version,
+                    Source = a.Source
+                }).ToList();
             var decisions = await trust.AssessAsync(page);
             return Ok(new ApprovedArtifactPage
             {

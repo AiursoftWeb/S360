@@ -10,7 +10,7 @@ public static class DependencyIntroductionPaths
 {
     public static string Identity(Dependency dependency) =>
         $"{dependency.Ecosystem}\n{(dependency.Ecosystem == "nuget" ? dependency.Name.ToLowerInvariant() : dependency.Name)}\n" +
-        $"{dependency.Version}\n{TrustPattern.NormalizeSource(dependency.Source)}\n{dependency.Sha256.ToLowerInvariant()}";
+        $"{dependency.Version}\n{TrustPattern.NormalizeSource(dependency.Source)}";
 
     public static void AddNuGet(string assetsPath, IReadOnlyCollection<Dependency> dependencies,
         string project, Dictionary<string, List<string>> paths, List<DependencyGraphNode>? graph = null)
@@ -45,8 +45,12 @@ public static class DependencyIntroductionPaths
                 var scopeNodes = new List<DependencyGraphNode>();
                 DependencyGraphNode Node(string id, string kind, Dependency? package = null) => new()
                 {
-                    Project = project.Replace('\\', '/'), Ecosystem = "nuget", Target = target.Name,
-                    Id = id, Kind = kind, Package = package
+                    Project = project.Replace('\\', '/'),
+                    Ecosystem = "nuget",
+                    Target = target.Name,
+                    Id = id,
+                    Kind = kind,
+                    Package = package
                 };
                 var rootNode = Node("$root", "root");
                 rootNode.Children.AddRange(direct.Where(nodes.ContainsKey).Select(name => nodes[name].Name));
@@ -132,8 +136,11 @@ public static class DependencyIntroductionPaths
             if (!graphNodes.TryGetValue(id, out var node))
                 graphNodes.Add(id, node = new DependencyGraphNode
                 {
-                    Project = project.Replace('\\', '/'), Ecosystem = "npm", Id = id.Length == 0 ? "$root" : id,
-                    Kind = id.Length == 0 ? "root" : "package", Package = package
+                    Project = project.Replace('\\', '/'),
+                    Ecosystem = "npm",
+                    Id = id.Length == 0 ? "$root" : id,
+                    Kind = id.Length == 0 ? "root" : "package",
+                    Package = package
                 });
             return node;
         }

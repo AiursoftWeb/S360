@@ -17,8 +17,6 @@ public class Dependency
     [Required, StringLength(500)]
     public string Source { get; set; } = string.Empty;
 
-    [RegularExpression("^[a-fA-F0-9]{64}$")]
-    public string Sha256 { get; set; } = string.Empty;
 }
 
 public class CheckRequest

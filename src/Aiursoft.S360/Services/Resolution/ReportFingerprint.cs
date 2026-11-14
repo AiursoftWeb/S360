@@ -11,42 +11,31 @@ public static class ReportFingerprint
     public static string Compute(DependencyApplication application, ResolutionReport report)
     {
         ValidateReportScope(application, report.Dependencies);
-        ValidateRequestedRoots(application, report.Edges.Where(e => e.Parent == null).Select(e => e.Child));
-        return Compute(application.Ecosystem, application.Source, report.Context, report.Dependencies, report.Edges);
+        var direct = report.Edges.Where(e => e.Parent == null).Select(e => e.Child).ToList();
+        ValidateRequestedRoots(application, direct);
+        return Compute(application.Ecosystem, application.Source, report.Context,
+            report.Dependencies, direct);
     }
 
     public static string ComputePersisted(DependencyApplication application)
     {
-        if (application.Packages.Count() == 0 || application.Edges.Count() == 0 ||
-            // Validate even detached/incomplete graphs before trusting their fingerprint.
-            // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
-            application.Packages.Any(p => p.PackageArtifact == null || p.PackageArtifact.Id != p.PackageArtifactId) ||
-            application.Packages.Select(p => p.PackageArtifactId).Distinct().Count() != application.Packages.Count())
+        if (!application.Packages.Any() ||
+            application.Packages.Any(p => p.PackageVersion == null || p.PackageVersion.Id != p.PackageVersionId) ||
+            application.Packages.Select(p => p.PackageVersionId).Distinct().Count() != application.Packages.Count())
             throw new InvalidOperationException("The saved dependency report is incomplete.");
-
-        var artifacts = application.Packages.ToDictionary(p => p.PackageArtifactId,
-            p => p.PackageArtifact);
-        var dependencies = artifacts.ToDictionary(pair => pair.Key, pair => new Dependency
+        Dependency Read(ApplicationPackage p) => new()
         {
-            Ecosystem = pair.Value.Ecosystem, Name = pair.Value.Name, Version = pair.Value.Version,
-            Source = pair.Value.Source, Sha256 = pair.Value.Sha256
-        });
-        var edges = new List<ResolutionEdge>();
-        var directIds = new HashSet<int>();
-        foreach (var edge in application.Edges)
-        {
-            if (!dependencies.TryGetValue(edge.ChildPackageId, out var child) ||
-                edge.ParentPackageId.HasValue && !dependencies.ContainsKey(edge.ParentPackageId.Value))
-                throw new InvalidOperationException("The saved dependency report references an unknown package.");
-            if (edge.ParentPackageId == null) directIds.Add(edge.ChildPackageId);
-            edges.Add(new ResolutionEdge(edge.ParentPackageId.HasValue ? dependencies[edge.ParentPackageId.Value] : null, child));
-        }
-        if (application.Packages.Any(p => p.IsDirect != directIds.Contains(p.PackageArtifactId)))
-            throw new InvalidOperationException("The saved dependency report has inconsistent direct packages.");
-        ValidateReportScope(application, dependencies.Values);
-        ValidateRequestedRoots(application, directIds.Select(id => dependencies[id]));
+            Ecosystem = p.PackageVersion.Ecosystem,
+            Name = p.PackageVersion.Name,
+            Version = p.PackageVersion.Version,
+            Source = p.PackageVersion.Source
+        };
+        var dependencies = application.Packages.Select(Read).ToList();
+        var direct = application.Packages.Where(p => p.IsDirect).Select(Read).ToList();
+        ValidateReportScope(application, dependencies);
+        ValidateRequestedRoots(application, direct);
         return Compute(application.Ecosystem, application.Source, application.ResolutionContext,
-            dependencies.Values.ToList(), edges);
+            dependencies, direct);
     }
 
     private static void ValidateReportScope(DependencyApplication application, IEnumerable<Dependency> dependencies)
@@ -81,18 +70,18 @@ public static class ReportFingerprint
     }
 
     private static string Compute(string ecosystem, string source, string context,
-        IReadOnlyCollection<Dependency> dependencies, IReadOnlyCollection<ResolutionEdge> edges)
+        IReadOnlyCollection<Dependency> dependencies, IReadOnlyCollection<Dependency> direct)
     {
-        PackageResolutionService.ValidateGraph(dependencies, edges);
+        // This fingerprints the review text, never package files. Historical request
+        // reports keep their original fingerprint; new reviews bind the current list.
         var nodes = dependencies.Select(Key).OrderBy(x => x, StringComparer.Ordinal);
-        var links = edges.Select(e => $"{(e.Parent == null ? "ROOT" : Key(e.Parent))}->{Key(e.Child)}")
-            .OrderBy(x => x, StringComparer.Ordinal);
+        var roots = direct.Select(Key).OrderBy(x => x, StringComparer.Ordinal);
         var content = $"{ecosystem}\n{source}\n{context}\n" +
-                      string.Join('\n', nodes) + "\n" + string.Join('\n', links);
+                      string.Join('\n', nodes) + "\n" + string.Join('\n', roots);
         return Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes(content)));
     }
 
     private static string Key(Dependency dependency) =>
         $"{dependency.Ecosystem}\n{(dependency.Ecosystem == "nuget" ? dependency.Name.ToLowerInvariant() : dependency.Name)}\n" +
-        $"{dependency.Version}\n{dependency.Source}\n{dependency.Sha256.ToLowerInvariant()}";
+        $"{dependency.Version}\n{dependency.Source}";
 }

@@ -57,7 +57,9 @@ public class SupplyChainPagesTests : TestBase
         {
             using var response = await PostForm("/ApiKeys/Create", new Dictionary<string, string>
             {
-                ["Name"] = name, ["IsEnabled"] = "true", ["CanPublishBaselines"] = baseline.ToString(),
+                ["Name"] = name,
+                ["IsEnabled"] = "true",
+                ["CanPublishBaselines"] = baseline.ToString(),
                 ["ExpirationTime"] = DateTime.UtcNow.AddDays(30).ToString("s")
             });
             Assert.AreEqual(HttpStatusCode.Found, response.StatusCode);
@@ -86,7 +88,9 @@ public class SupplyChainPagesTests : TestBase
             Http.DefaultRequestHeaders.Add("X-S360-Key", secret);
             using var r = await Http.PostAsJsonAsync("/api/check", new CheckRequest
             {
-                Project = "rotation-test", RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1,
+                Project = "rotation-test",
+                RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1,
                 Context = new CheckContext { Purpose = "baseline", UserId = "forged", ApiKeyId = "forged" }
             });
             return r.StatusCode;
@@ -102,7 +106,7 @@ public class SupplyChainPagesTests : TestBase
             Assert.AreNotEqual("forged", context.ApiKeyId);
         }
         using (var deleted = await PostForm("/ApiKeys/Delete", new Dictionary<string, string>
-                   { ["id"] = oldId.ToString() }, tokenUrl: "/ApiKeys"))
+        { ["id"] = oldId.ToString() }, tokenUrl: "/ApiKeys"))
             Assert.AreEqual(HttpStatusCode.Found, deleted.StatusCode);
         Assert.AreEqual(HttpStatusCode.Unauthorized, await Check(oldKey));
         Assert.AreEqual(HttpStatusCode.OK, await Check(newKey));
@@ -133,7 +137,9 @@ public class SupplyChainPagesTests : TestBase
         {
             using var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
             {
-                Project = "scope-test", RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1,
+                Project = "scope-test",
+                RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1,
                 Context = new CheckContext { Purpose = purpose }
             });
             return response.StatusCode;
@@ -198,7 +204,8 @@ public class SupplyChainPagesTests : TestBase
             var user = await db.Users.SingleAsync(u => u.Email == account.email);
             db.UserClaims.Add(new Microsoft.AspNetCore.Identity.IdentityUserClaim<string>
             {
-                UserId = user.Id, ClaimType = Authorization.AppPermissions.Type,
+                UserId = user.Id,
+                ClaimType = Authorization.AppPermissions.Type,
                 ClaimValue = Authorization.AppPermissionNames.CanManageApiKeys
             });
             await db.SaveChangesAsync();
@@ -206,14 +213,14 @@ public class SupplyChainPagesTests : TestBase
         // Refresh the cookie for the newly granted navigation permission.
         await Http.GetAsync("/Account/LogOff");
         await PostForm("/Account/Login", new Dictionary<string, string>
-            { ["EmailOrUserName"] = account.email, ["Password"] = account.password });
+        { ["EmailOrUserName"] = account.email, ["Password"] = account.password });
         Assert.DoesNotContain("other-owner-key", await Http.GetStringAsync("/ApiKeys"));
         using (var edit = await Http.GetAsync("/ApiKeys/Edit/" + foreignId)) Assert.AreEqual(HttpStatusCode.NotFound, edit.StatusCode);
         using (var delete = await PostForm("/ApiKeys/Delete", new Dictionary<string, string>
-                   { ["id"] = foreignId.ToString() }, tokenUrl: "/ApiKeys/Create"))
+        { ["id"] = foreignId.ToString() }, tokenUrl: "/ApiKeys/Create"))
             Assert.AreEqual(HttpStatusCode.NotFound, delete.StatusCode);
         using (var escalate = await PostForm("/ApiKeys/Create", new Dictionary<string, string>
-               { ["Name"] = "escalation", ["CanPublishBaselines"] = "true", ["ExpirationTime"] = DateTime.UtcNow.AddDays(1).ToString("s") }))
+        { ["Name"] = "escalation", ["CanPublishBaselines"] = "true", ["ExpirationTime"] = DateTime.UtcNow.AddDays(1).ToString("s") }))
             AssertRedirect(escalate, "/Error/Code403", exact: false);
         using (var scope = Server!.Services.CreateScope())
         {
@@ -249,23 +256,33 @@ public class SupplyChainPagesTests : TestBase
             var userId = db.Users.Single(u => u.Email == "admin@default.com").Id;
             var removedSource = new DependencyApplication
             {
-                RequestedByUserId = userId, Ecosystem = "npm", Source = "https://127.0.0.1",
+                RequestedByUserId = userId,
+                Ecosystem = "npm",
+                Source = "https://127.0.0.1",
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage("is-number", "1.0.0") }),
-                Justification = "Check queued source policy", ResolutionContext = "npm; pending",
+                Justification = "Check queued source policy",
+                ResolutionContext = "npm; pending",
                 Status = ApplicationStatus.Resolving
             };
             var blockedPackage = new DependencyApplication
             {
-                RequestedByUserId = userId, Ecosystem = "npm", Source = "https://registry.npmjs.org",
+                RequestedByUserId = userId,
+                Ecosystem = "npm",
+                Source = "https://registry.npmjs.org",
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage("blocked-before-download", "1.0.0") }),
-                Justification = "Check queued block policy", ResolutionContext = "npm; pending",
+                Justification = "Check queued block policy",
+                ResolutionContext = "npm; pending",
                 Status = ApplicationStatus.Resolving
             };
             db.DependencyApplications.AddRange(removedSource, blockedPackage);
-            db.BlockRules.Add(new BlockRule
+            db.Rules.Add(new PackageRule
             {
-                Ecosystem = "npm", PackagePattern = "blocked-before-download", Version = "*",
-                Reason = "Newly blocked while queued", Active = true
+                Kind = RuleKind.Block,
+                Ecosystem = "npm",
+                PackagePattern = "blocked-before-download",
+                Version = "*",
+                Justification = "Newly blocked while queued",
+                Status = RuleStatus.Approved
             });
             await db.SaveChangesAsync();
             removedSourceId = removedSource.Id;
@@ -283,7 +300,7 @@ public class SupplyChainPagesTests : TestBase
         StringAssert.Contains(removed.Failure!, "no longer permitted");
         Assert.AreEqual(ApplicationStatus.Failed, blocked.Status);
         StringAssert.Contains(blocked.Failure!, "Newly blocked while queued");
-        Assert.AreEqual(0, await verify.PackageArtifacts.CountAsync());
+        Assert.AreEqual(0, await verify.PackageVersions.CountAsync());
     }
 
     [TestMethod]
@@ -312,7 +329,8 @@ public class SupplyChainPagesTests : TestBase
                 JsonSerializer.Serialize(new
                 {
                     targets = new Dictionary<string, object> { ["net10.0"] = new { } },
-                    packageFolders = new { }, libraries = new { },
+                    packageFolders = new { },
+                    libraries = new { },
                     project = new { restore = new { projectPath = project } }
                 }));
             var solution = await DependencyScannerTests.WriteSolutionAsync(root, project);
@@ -320,8 +338,10 @@ public class SupplyChainPagesTests : TestBase
                 "../../../../src/Aiursoft.S360.Client/Aiursoft.S360.Client.csproj"));
             var start = new ProcessStartInfo("dotnet")
             {
-                RedirectStandardOutput = true, RedirectStandardError = true,
-                UseShellExecute = false, WorkingDirectory = root
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                WorkingDirectory = root
             };
             foreach (var argument in new[]
                      {
@@ -435,8 +455,10 @@ public class SupplyChainPagesTests : TestBase
                 "../../../../src/Aiursoft.S360.Client/Aiursoft.S360.Client.csproj"));
             var start = new ProcessStartInfo("dotnet")
             {
-                RedirectStandardOutput = true, RedirectStandardError = true,
-                UseShellExecute = false, WorkingDirectory = root
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                UseShellExecute = false,
+                WorkingDirectory = root
             };
             foreach (var argument in new[]
                      {
@@ -478,7 +500,7 @@ public class SupplyChainPagesTests : TestBase
                 Assert.IsFalse(report.Trusted);
                 Assert.AreEqual("baseline", BuildCheckRun.Purpose(report.ContextJson));
             }
-            Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name == packageName));
+            Assert.IsFalse(await db.PackageVersions.AnyAsync(a => a.Name == packageName));
         }
         finally { Directory.Delete(root, recursive: true); }
     }
@@ -523,9 +545,12 @@ public class SupplyChainPagesTests : TestBase
             var request = new DependencyApplication
             {
                 RequestedByUserId = db.Users.Single(u => u.Email == "admin@default.com").Id,
-                Ecosystem = "nuget", Source = "https://api.nuget.org/v3/index.json",
-                Justification = "Read the concept guide", Status = ApplicationStatus.Failed,
-                Failure = "Fixture", ResolutionContext = "net10.0"
+                Ecosystem = "nuget",
+                Source = "https://api.nuget.org/v3/index.json",
+                Justification = "Read the concept guide",
+                Status = ApplicationStatus.Failed,
+                Failure = "Fixture",
+                ResolutionContext = "net10.0"
             };
             db.DependencyApplications.Add(request);
             await db.SaveChangesAsync();
@@ -549,29 +574,34 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var source = "https://api.nuget.org/v3/index.json";
-            var artifact = new PackageArtifact
+            var artifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0", Source = source,
-                Sha256 = new string('a', 64), FirstTrustedAtUtc = DateTime.UtcNow,
-                SourceVerifiedAtUtc = DateTime.UtcNow
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = source
             };
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0,
-                Supplier = new Supplier { Name = "Audit pending supplier" },
-                Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
-                Source = source, Sha256 = artifact.Sha256, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "1.0.0",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
             var application = new DependencyApplication
             {
                 RequestedByUserId = db.Users.Single(u => u.Email == "admin@default.com").Id,
-                Ecosystem = "nuget", Source = source, ResolutionContext = "net10.0",
+                Ecosystem = "nuget",
+                Source = source,
+                ResolutionContext = "net10.0",
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage(name, "1.0.0") }),
-                Justification = "Review while audit is pending", Status = ApplicationStatus.ReadyForReview,
-                Packages = [new ApplicationPackage { ApplicationId = 0, PackageArtifactId = artifact.Id, PackageArtifact = artifact, IsDirect = true }],
-                Edges = [new ApplicationEdge { ApplicationId = 0, ChildPackageId = 0, ParentPackageId = null, ChildPackage = artifact }]
+                Justification = "Review while audit is pending",
+                Status = ApplicationStatus.ReadyForReview,
+                Packages = [new ApplicationPackage { ApplicationId = 0, PackageVersionId = artifact.Id, PackageVersion = artifact, IsDirect = true }]
             };
             db.DependencyApplications.Add(application);
             await db.SaveChangesAsync();
@@ -621,18 +651,25 @@ public class SupplyChainPagesTests : TestBase
             var own = new DependencyApplication
             {
                 RequestedByUserId = db.Users.Single(u => u.Email == "admin@default.com").Id,
-                Ecosystem = "nuget", Source = "https://nuget.aiursoft.com/v3/index.json",
+                Ecosystem = "nuget",
+                Source = "https://nuget.aiursoft.com/v3/index.json",
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage("Example.Retry", "1.0.0") }),
-                Justification = "Retry transient registry failure", Project = "docs-viewer",
-                ResolutionContext = "net10.0; pending", Status = ApplicationStatus.Failed,
+                Justification = "Retry transient registry failure",
+                Project = "docs-viewer",
+                ResolutionContext = "net10.0; pending",
+                Status = ApplicationStatus.Failed,
                 Failure = "Registry temporarily unavailable"
             };
             var other = new DependencyApplication
             {
-                RequestedByUserId = "another-employee", Ecosystem = own.Ecosystem,
-                Source = own.Source, DirectPackages = own.DirectPackages,
-                Justification = own.Justification, ResolutionContext = own.ResolutionContext,
-                Status = ApplicationStatus.Failed, Failure = own.Failure
+                RequestedByUserId = "another-employee",
+                Ecosystem = own.Ecosystem,
+                Source = own.Source,
+                DirectPackages = own.DirectPackages,
+                Justification = own.Justification,
+                ResolutionContext = own.ResolutionContext,
+                Status = ApplicationStatus.Failed,
+                Failure = own.Failure
             };
             db.DependencyApplications.AddRange(own, other);
             await db.SaveChangesAsync();
@@ -669,31 +706,33 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var rootArtifact = new PackageArtifact
+            var rootArtifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json"
             };
-            var childArtifact = new PackageArtifact
+            var childArtifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = childName, Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('b', 64)
+                Ecosystem = "nuget",
+                Name = childName,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json"
             };
             var application = new DependencyApplication
             {
                 RequestedByUserId = db.Users.Single(u => u.Email == "admin@default.com").Id,
-                Ecosystem = "nuget", Source = "https://api.nuget.org/v3/index.json",
-                Justification = "Historical approval", Project = "later-blocked-project",
-                ResolutionContext = "net10.0", Status = ApplicationStatus.Approved,
+                Ecosystem = "nuget",
+                Source = "https://api.nuget.org/v3/index.json",
+                Justification = "Historical approval",
+                Project = "later-blocked-project",
+                ResolutionContext = "net10.0",
+                Status = ApplicationStatus.Approved,
                 Packages =
                 [
-                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, IsDirect = true, PackageArtifact = rootArtifact },
-                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, IsDirect = false, PackageArtifact = childArtifact }
-                ],
-                Edges =
-                [
-                    new ApplicationEdge { ApplicationId = 0, ChildPackageId = 0, ParentPackageId = null, ChildPackage = rootArtifact },
-                    new ApplicationEdge { ApplicationId = 0, ChildPackageId = 0, ParentPackageId = rootArtifact.Id, ParentPackage = rootArtifact, ChildPackage = childArtifact }
+                    new ApplicationPackage { ApplicationId = 0, PackageVersionId = 0, IsDirect = true, PackageVersion = rootArtifact },
+                    new ApplicationPackage { ApplicationId = 0, PackageVersionId = 0, IsDirect = false, PackageVersion = childArtifact }
                 ]
             };
             db.DependencyApplications.Add(application);
@@ -708,10 +747,14 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Add(new BlockRule
+            db.Rules.Add(new PackageRule
             {
-                Active = true, Ecosystem = "nuget", PackagePattern = childName, Version = "*",
-                Reason = "Incident discovered after approval"
+                Kind = RuleKind.Block,
+                Status = RuleStatus.Approved,
+                Ecosystem = "nuget",
+                PackagePattern = childName,
+                Version = "*",
+                Justification = "Incident discovered after approval"
             });
             await db.SaveChangesAsync();
         }
@@ -721,7 +764,7 @@ public class SupplyChainPagesTests : TestBase
         StringAssert.Contains(html, "Approved");
         StringAssert.Contains(html, "Currently blocked");
         StringAssert.Contains(html, "Incident discovered after approval");
-        StringAssert.Contains(html, "Introduction path: " + name + " &#x2192; " + childName);
+        StringAssert.Contains(html, "Introduction path: " + childName);
         using var verifyScope = Server!.Services.CreateScope();
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
         Assert.AreEqual(ApplicationStatus.Approved,
@@ -767,8 +810,11 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.Vulnerabilities.AddRange(new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = "Example.History", SourceId = sourceId,
-                Summary = "Updated advisory", RawAffectedJson = "[]",
+                Ecosystem = "nuget",
+                PackageName = "Example.History",
+                SourceId = sourceId,
+                Summary = "Updated advisory",
+                RawAffectedJson = "[]",
                 Aliases = JsonSerializer.Serialize(new[] { sharedAlias }),
                 Revisions =
                 [
@@ -777,8 +823,11 @@ public class SupplyChainPagesTests : TestBase
                 ]
             }, new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = "Example.History", SourceId = relatedId,
-                Summary = "Related source record", RawAffectedJson = "[]",
+                Ecosystem = "nuget",
+                PackageName = "Example.History",
+                SourceId = relatedId,
+                Summary = "Related source record",
+                RawAffectedJson = "[]",
                 Aliases = JsonSerializer.Serialize(new[] { sharedAlias })
             });
             await db.SaveChangesAsync();
@@ -807,25 +856,28 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.Suppliers.Add(new Supplier
-            {
-                Name = "Correlated supplier " + Guid.NewGuid().ToString("N"),
-                Rules = [new TrustRule
+
+            db.Rules.AddRange([new PackageRule
                 {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                    ApplicationId = null, SupplierId = 0,
+                    ApplicationId = null,
                     Ecosystem = "nuget", PackagePattern = package, Version = "10.0.*",
-                    Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved
-                }]
-            });
+                    Source = "https://api.nuget.org/v3/index.json", Status = RuleStatus.Approved
+                }]);
             db.Vulnerabilities.AddRange(new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = package, SourceId = "GHSA-" + Guid.NewGuid().ToString("N"),
-                Aliases = JsonSerializer.Serialize(new[] { alias }), RawAffectedJson = "[]"
+                Ecosystem = "nuget",
+                PackageName = package,
+                SourceId = "GHSA-" + Guid.NewGuid().ToString("N"),
+                Aliases = JsonSerializer.Serialize(new[] { alias }),
+                RawAffectedJson = "[]"
             }, new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = package, SourceId = "OSV-" + Guid.NewGuid().ToString("N"),
-                Aliases = JsonSerializer.Serialize(new[] { alias }), RawAffectedJson = range
+                Ecosystem = "nuget",
+                PackageName = package,
+                SourceId = "OSV-" + Guid.NewGuid().ToString("N"),
+                Aliases = JsonSerializer.Serialize(new[] { alias }),
+                RawAffectedJson = range
             });
             await db.SaveChangesAsync();
         }
@@ -843,19 +895,23 @@ public class SupplyChainPagesTests : TestBase
         await LoginAsAdmin();
         using var supplier = await PostForm("/SupplyChain/AddSupplier", new Dictionary<string, string>(),
             tokenUrl: "/SupplyChain/Index?tab=rules");
-        Assert.AreEqual(HttpStatusCode.BadRequest, supplier.StatusCode);
+        Assert.AreEqual(HttpStatusCode.NotFound, supplier.StatusCode);
 
         using var rule = await PostForm("/SupplyChain/AddRule", new Dictionary<string, string>
         {
-            ["supplierId"] = "1", ["ecosystem"] = "nuget", ["packagePattern"] = "Example.*",
-            ["version"] = "1.*", ["source"] = "https://api.nuget.org/v3/index.json",
+            ["ecosystem"] = "nuget",
+            ["packagePattern"] = "Example.*",
+            ["version"] = "1.*",
+            ["source"] = "https://api.nuget.org/v3/index.json",
             ["expiresAtUtc"] = DateTime.UtcNow.AddDays(1).ToString("O")
         }, tokenUrl: "/SupplyChain/Index?tab=rules");
         Assert.AreEqual(HttpStatusCode.BadRequest, rule.StatusCode);
 
         using var block = await PostForm("/SupplyChain/AddBlock", new Dictionary<string, string>
         {
-            ["ecosystem"] = "nuget", ["packagePattern"] = "Example.Bad", ["version"] = "*"
+            ["ecosystem"] = "nuget",
+            ["packagePattern"] = "Example.Bad",
+            ["version"] = "*"
         }, tokenUrl: "/SupplyChain/Index?tab=rules");
         Assert.AreEqual(HttpStatusCode.BadRequest, block.StatusCode);
     }
@@ -865,19 +921,18 @@ public class SupplyChainPagesTests : TestBase
     {
         await LoginAsAdmin();
         var packageName = "Example.AllowedSource." + Guid.NewGuid().ToString("N");
-        int supplierId;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Source policy supplier " + Guid.NewGuid().ToString("N") };
-            db.Suppliers.Add(supplier);
+
+
             await db.SaveChangesAsync();
-            supplierId = supplier.Id;
         }
         var fields = new Dictionary<string, string>
         {
-            ["supplierId"] = supplierId.ToString(), ["ecosystem"] = "nuget",
-            ["packagePattern"] = packageName, ["version"] = "1.*",
+            ["ecosystem"] = "nuget",
+            ["packagePattern"] = packageName,
+            ["version"] = "1.*",
             ["source"] = "https://packages.example.invalid/v3/index.json",
             ["justification"] = "Approve only configured package mirrors",
             ["expiresAtUtc"] = DateTime.UtcNow.AddDays(1).ToString("O")
@@ -891,7 +946,7 @@ public class SupplyChainPagesTests : TestBase
         Assert.AreEqual(HttpStatusCode.Redirect, accepted.StatusCode);
         using var verifyScope = Server!.Services.CreateScope();
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-        var rules = await verifyDb.TrustRules.Where(r => r.PackagePattern == packageName).ToListAsync();
+        var rules = await verifyDb.Rules.Where(r => r.Kind == RuleKind.Approval).Where(r => r.PackagePattern == packageName).ToListAsync();
         Assert.HasCount(1, rules);
         Assert.AreEqual("https://nuget.aiursoft.com/v3/index.json", rules[0].Source);
     }
@@ -905,29 +960,25 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.Suppliers.Add(new Supplier
-            {
-                Name = "Catalog source supplier " + Guid.NewGuid().ToString("N"),
-                Rules =
-                [
-                    new TrustRule
+
+            db.Rules.AddRange([
+                    new PackageRule
                     {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                        ApplicationId = null, SupplierId = 0,
+                        ApplicationId = null,
                         Ecosystem = "nuget", PackagePattern = permittedPackage, Version = "1.*",
                         Source = "https://nuget.aiursoft.com/v3/index.json",
-                        Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
+                        Status = RuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
                     },
-                    new TrustRule
+                    new PackageRule
                     {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                        ApplicationId = null, SupplierId = 0,
+                        ApplicationId = null,
                         Ecosystem = "nuget", PackagePattern = removedPackage, Version = "1.*",
                         Source = "https://packages.example.invalid/v3/index.json",
-                        Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
+                        Status = RuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
                     }
-                ]
-            });
+                ]);
             await db.SaveChangesAsync();
         }
 
@@ -959,17 +1010,22 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Add(new BlockRule
+            db.Rules.Add(new PackageRule
             {
-                Ecosystem = "nuget", PackagePattern = pattern, Version = "1.*",
-                Reason = "Company policy forbids this package"
+                Kind = RuleKind.Block,
+                Status = RuleStatus.Approved,
+                Ecosystem = "nuget",
+                PackagePattern = pattern,
+                Version = "1.*",
+                Justification = "Company policy forbids this package"
             });
             await db.SaveChangesAsync();
         }
         await LoginAsAdmin();
         using var response = await PostForm("/DependencyRequests/Submit", new Dictionary<string, string>
         {
-            ["ecosystem"] = "nuget", ["source"] = "https://nuget.aiursoft.com/v3/index.json",
+            ["ecosystem"] = "nuget",
+            ["source"] = "https://nuget.aiursoft.com/v3/index.json",
             ["directPackages"] = packageName + "@1.2.3",
             ["justification"] = "Verify direct blocklist explanation"
         }, tokenUrl: "/DependencyRequests/Index");
@@ -989,7 +1045,8 @@ public class SupplyChainPagesTests : TestBase
         {
             using var response = await PostForm("/DependencyRequests/Submit", new Dictionary<string, string>
             {
-                ["ecosystem"] = "npm", ["source"] = "https://npm.aiursoft.com",
+                ["ecosystem"] = "npm",
+                ["source"] = "https://npm.aiursoft.com",
                 ["directPackages"] = "example@" + requestedVersion,
                 ["justification"] = "Ensure the requested package version is exact"
             }, tokenUrl: "/DependencyRequests/Index");
@@ -1004,7 +1061,8 @@ public class SupplyChainPagesTests : TestBase
         await LoginAsAdmin();
         using var response = await PostForm("/DependencyRequests/Submit", new Dictionary<string, string>
         {
-            ["ecosystem"] = "nuget", ["source"] = "https://nuget.aiursoft.com/v3/index.json",
+            ["ecosystem"] = "nuget",
+            ["source"] = "https://nuget.aiursoft.com/v3/index.json",
             ["directPackages"] = packageName + "@1.0.0\n" + packageName.ToLowerInvariant() + "@1.0.0",
             ["justification"] = "The same NuGet package must not appear twice under different casing"
         }, tokenUrl: "/DependencyRequests/Index");
@@ -1022,7 +1080,8 @@ public class SupplyChainPagesTests : TestBase
         {
             using var response = await PostForm("/DependencyRequests/Submit", new Dictionary<string, string>
             {
-                ["ecosystem"] = "nuget", ["source"] = "https://nuget.aiursoft.com/v3/index.json",
+                ["ecosystem"] = "nuget",
+                ["source"] = "https://nuget.aiursoft.com/v3/index.json",
                 ["directPackages"] = name + "@1.0.0",
                 ["justification"] = "Reject package names that resemble filesystem paths"
             }, tokenUrl: "/DependencyRequests/Index");
@@ -1038,29 +1097,39 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var userId = db.Users.Single(u => u.Email == "admin@default.com").Id;
-            var artifact = new PackageArtifact
+            var artifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
+                Ecosystem = "nuget",
+                Name = packageName,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json"
             };
-            db.BlockRules.Add(new BlockRule
+            db.Rules.Add(new PackageRule
             {
-                Ecosystem = "nuget", PackagePattern = packageName, Version = "*",
-                Reason = "Blocked for impact test", CreatedByUserId = userId
+                Kind = RuleKind.Block,
+                Status = RuleStatus.Approved,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "*",
+                Justification = "Blocked for impact test",
+                RequestedByUserId = userId
             });
             db.DependencyApplications.Add(new DependencyApplication
             {
-                RequestedByUserId = userId, Ecosystem = "nuget", Source = artifact.Source,
-                Packages = [new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, PackageArtifact = artifact }]
+                RequestedByUserId = userId,
+                Ecosystem = "nuget",
+                Source = artifact.Source,
+                Packages = [new ApplicationPackage { ApplicationId = 0, PackageVersionId = 0, PackageVersion = artifact }]
             });
             db.BuildChecks.Add(new BuildCheck
             {
-                RunId = Guid.NewGuid().ToString("N"), Project = "impact-test",
+                RunId = Guid.NewGuid().ToString("N"),
+                Project = "impact-test",
                 Dependencies = [new BuildCheckDependency
                 {
-                    BuildCheckId = 0, PackageArtifactId = null,
+                    BuildCheckId = 0, PackageVersionId = null,
                     Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
-                    Source = artifact.Source, Sha256 = artifact.Sha256
+                    Source = artifact.Source
                 }]
             });
             await db.SaveChangesAsync();
@@ -1086,11 +1155,11 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.PackageArtifacts.AddRange(
-                new PackageArtifact { Ecosystem = "nuget", Name = root + ".Child", Version = "1.2.0", Source = source, Sha256 = new string('a', 64) },
-                new PackageArtifact { Ecosystem = "nuget", Name = root + ".Child", Version = "2.0.0", Source = source, Sha256 = new string('b', 64) },
-                new PackageArtifact { Ecosystem = "nuget", Name = root, Version = "1.2.0", Source = source, Sha256 = new string('c', 64) },
-                new PackageArtifact { Ecosystem = "nuget", Name = root + ".OtherSource", Version = "1.2.0", Source = "https://other.example/v3/index.json", Sha256 = new string('d', 64) });
+            db.PackageVersions.AddRange(
+                new PackageVersion { Ecosystem = "nuget", Name = root + ".Child", Version = "1.2.0", Source = source },
+                new PackageVersion { Ecosystem = "nuget", Name = root + ".Child", Version = "2.0.0", Source = source },
+                new PackageVersion { Ecosystem = "nuget", Name = root, Version = "1.2.0", Source = source },
+                new PackageVersion { Ecosystem = "nuget", Name = root + ".OtherSource", Version = "1.2.0", Source = "https://other.example/v3/index.json" });
             await db.SaveChangesAsync();
         }
         var url = "/SupplyChain/PreviewRule?ecosystem=nuget&packagePattern=" +
@@ -1120,7 +1189,9 @@ public class SupplyChainPagesTests : TestBase
                 new { ecosystem = "nuget", name = "Example", version = "1.0.0",
                     source = "https://api.nuget.org/v3/index.json", sha256 = new string('a', 64) }
             },
-            runId = Guid.NewGuid().ToString("N"), batchIndex = 0, batchCount = 1
+            runId = Guid.NewGuid().ToString("N"),
+            batchIndex = 0,
+            batchCount = 1
         });
         Assert.AreEqual(HttpStatusCode.Unauthorized, response.StatusCode);
     }
@@ -1131,26 +1202,33 @@ public class SupplyChainPagesTests : TestBase
         await AddCheckKeyAsync("integration-check-key", baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         using (var missingProject = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
-                   Dependencies = [], RunId = Guid.NewGuid().ToString("N")
-               }))
+        {
+            Context = new CheckContext { Purpose = "baseline" },
+            Project = "baseline-batch-test",
+            Dependencies = [],
+            RunId = Guid.NewGuid().ToString("N")
+        }))
             Assert.AreEqual(HttpStatusCode.BadRequest, missingProject.StatusCode);
         using (var incompleteBatch = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
-                   Dependencies = [], ScannedProjectCount = 1, BatchCount = 2,
-                   RunId = Guid.NewGuid().ToString("N")
-               }))
+        {
+            Context = new CheckContext { Purpose = "baseline" },
+            Project = "baseline-batch-test",
+            Dependencies = [],
+            ScannedProjectCount = 1,
+            BatchCount = 2,
+            RunId = Guid.NewGuid().ToString("N")
+        }))
             Assert.AreEqual(HttpStatusCode.BadRequest, incompleteBatch.StatusCode);
 
         var runId = Guid.NewGuid().ToString("N");
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Context = new CheckContext { Purpose = "baseline" },
-                   Dependencies = [], ScannedProjectCount = 2, RunId = runId,
-                   Project = "dependency-free-project"
-               }))
+        {
+            Context = new CheckContext { Purpose = "baseline" },
+            Dependencies = [],
+            ScannedProjectCount = 2,
+            RunId = runId,
+            Project = "dependency-free-project"
+        }))
         {
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             var result = await response.Content.ReadFromJsonAsync<CheckResponse>();
@@ -1177,11 +1255,15 @@ public class SupplyChainPagesTests : TestBase
     public async Task AnonymousReviewRequiresEnabledSettingAndCannotDeclareBaseline()
     {
         Assert.AreEqual("False", SettingsMap.Definitions.Single(d => d.Key == SettingsMap.AllowAnonymousReview).DefaultValue);
-        var request = new CheckRequest { Project = "self-reported-" + Guid.NewGuid().ToString("N"),
-            RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1,
+        var request = new CheckRequest
+        {
+            Project = "self-reported-" + Guid.NewGuid().ToString("N"),
+            RunId = Guid.NewGuid().ToString("N"),
+            ScannedProjectCount = 1,
             Context = new CheckContext { Purpose = "review", Provider = "gitlab", IsAnonymous = false },
             Dependencies = [new Dependency { Ecosystem = "nuget", Name = "Unapproved.Anonymous." + Guid.NewGuid().ToString("N"),
-                Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64) }] };
+                Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json" }]
+        };
         using (var disabled = await Http.PostAsJsonAsync("/api/check", request))
             Assert.AreEqual(HttpStatusCode.Unauthorized, disabled.StatusCode);
         using var settingsScope = Server!.Services.CreateScope();
@@ -1201,7 +1283,7 @@ public class SupplyChainPagesTests : TestBase
             {
                 var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
                 Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.RunId == request.RunId));
-                Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name == request.Dependencies[0].Name));
+                Assert.IsFalse(await db.PackageVersions.AnyAsync(a => a.Name == request.Dependencies[0].Name));
             }
             request.RunId = Guid.NewGuid().ToString("N");
             request.Context.Purpose = "baseline";
@@ -1231,8 +1313,13 @@ public class SupplyChainPagesTests : TestBase
         await AddCheckKeyAsync("review-only-key");
         await AddCheckKeyAsync("protected-baseline-key", baseline: true);
         var runId = Guid.NewGuid().ToString("N");
-        var request = new CheckRequest { Project = "baseline-auth-project", RunId = runId,
-            ScannedProjectCount = 1, Context = new CheckContext { Purpose = "baseline" } };
+        var request = new CheckRequest
+        {
+            Project = "baseline-auth-project",
+            RunId = runId,
+            ScannedProjectCount = 1,
+            Context = new CheckContext { Purpose = "baseline" }
+        };
         Http.DefaultRequestHeaders.Add("X-S360-Key", "review-only-key");
         using (var forbidden = await Http.PostAsJsonAsync("/api/check", request))
             Assert.AreEqual(HttpStatusCode.Forbidden, forbidden.StatusCode);
@@ -1260,7 +1347,7 @@ public class SupplyChainPagesTests : TestBase
         request.Context.Purpose = "baseline";
         request.Context.Ecosystem = "nuget";
         request.Dependencies = [new Dependency { Ecosystem = "npm", Name = "example", Version = "1.0.0",
-            Source = "https://npm.aiursoft.com", Sha256 = new string('a', 64) }];
+            Source = "https://npm.aiursoft.com" }];
         using (var mixedScope = await Http.PostAsJsonAsync("/api/check", request))
             Assert.AreEqual(HttpStatusCode.BadRequest, mixedScope.StatusCode);
         request.Dependencies.Clear();
@@ -1294,11 +1381,12 @@ public class SupplyChainPagesTests : TestBase
         foreach (var dependency in invalidDependencies)
         {
             dependency.Source = "https://api.nuget.org/v3/index.json";
-            dependency.Sha256 = new string('a', 64);
+
             using var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
             {
                 Dependencies = [dependency],
-                ScannedProjectCount = 1, RunId = Guid.NewGuid().ToString("N")
+                ScannedProjectCount = 1,
+                RunId = Guid.NewGuid().ToString("N")
             });
             Assert.AreEqual(HttpStatusCode.BadRequest, response.StatusCode,
                 $"{dependency.Name}@{dependency.Version}");
@@ -1310,15 +1398,39 @@ public class SupplyChainPagesTests : TestBase
     {
         await AddCheckKeyAsync("integration-check-key", baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
-        var package = new Dependency { Ecosystem = "nuget", Name = "Graph." + Guid.NewGuid().ToString("N"),
-            Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64) };
-        var root = new DependencyGraphNode { Project = "src/App.csproj", Ecosystem = "nuget", Target = "net10.0",
-            Id = "$root", Kind = "root", Children = ["package"] };
-        var node = new DependencyGraphNode { Project = root.Project, Ecosystem = "nuget", Target = root.Target,
-            Id = "package", Package = package };
-        var request = new CheckRequest {
-            Context = new CheckContext { Purpose = "baseline" }, Project = "graph-" + Guid.NewGuid().ToString("N"),
-            ScannedProjectCount = 1, Dependencies = [package], GraphNodes = [root], BatchCount = 2 };
+        var package = new Dependency
+        {
+            Ecosystem = "nuget",
+            Name = "Graph." + Guid.NewGuid().ToString("N"),
+            Version = "1.0.0",
+            Source = "https://api.nuget.org/v3/index.json"
+        };
+        var root = new DependencyGraphNode
+        {
+            Project = "src/App.csproj",
+            Ecosystem = "nuget",
+            Target = "net10.0",
+            Id = "$root",
+            Kind = "root",
+            Children = ["package"]
+        };
+        var node = new DependencyGraphNode
+        {
+            Project = root.Project,
+            Ecosystem = "nuget",
+            Target = root.Target,
+            Id = "package",
+            Package = package
+        };
+        var request = new CheckRequest
+        {
+            Context = new CheckContext { Purpose = "baseline" },
+            Project = "graph-" + Guid.NewGuid().ToString("N"),
+            ScannedProjectCount = 1,
+            Dependencies = [package],
+            GraphNodes = [root],
+            BatchCount = 2
+        };
         using (var first = await Http.PostAsJsonAsync("/api/check", request))
             Assert.AreEqual(HttpStatusCode.OK, first.StatusCode);
         request.BatchIndex = 1;
@@ -1363,14 +1475,21 @@ public class SupplyChainPagesTests : TestBase
     {
         await AddCheckKeyAsync("solution-report-key", baseline: true);
         Http.DefaultRequestHeaders.Add("X-S360-Key", "solution-report-key");
-        var package = new Dependency { Ecosystem = "nuget", Name = "Solution.Unapproved", Version = "1.0.0",
-            Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64) };
+        var package = new Dependency
+        {
+            Ecosystem = "nuget",
+            Name = "Solution.Unapproved",
+            Version = "1.0.0",
+            Source = "https://api.nuget.org/v3/index.json"
+        };
         var packageId = SolutionDependencyGraph.PackageId(package);
         var repository = "company/" + Guid.NewGuid().ToString("N");
         var request = new CheckRequest
         {
             Context = new CheckContext { Purpose = "baseline", Ecosystem = "nuget", Repository = repository, SolutionPath = "Product.sln" },
-            ScannedProjectCount = 2, BatchCount = 2, Dependencies = [package],
+            ScannedProjectCount = 2,
+            BatchCount = 2,
+            Dependencies = [package],
             SolutionGraph = new SolutionDependencyGraph
             {
                 SolutionPath = "Product.sln",
@@ -1470,38 +1589,56 @@ public class SupplyChainPagesTests : TestBase
         var runId = Guid.NewGuid().ToString("N");
         var dependency = new Dependency
         {
-            Ecosystem = "nuget", Name = "Unapproved." + Guid.NewGuid().ToString("N"), Version = "1.0.0",
-            Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
+            Ecosystem = "nuget",
+            Name = "Unapproved." + Guid.NewGuid().ToString("N"),
+            Version = "1.0.0",
+            Source = "https://api.nuget.org/v3/index.json"
         };
         using (var first = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Context = new CheckContext { Purpose = "baseline" },
-                   Dependencies = [dependency], ScannedProjectCount = 1,
-                   RunId = runId, BatchIndex = 0, BatchCount = 2,
-                   Project = "first-project", Commit = "first-commit"
-               }))
+        {
+            Context = new CheckContext { Purpose = "baseline" },
+            Dependencies = [dependency],
+            ScannedProjectCount = 1,
+            RunId = runId,
+            BatchIndex = 0,
+            BatchCount = 2,
+            Project = "first-project",
+            Commit = "first-commit"
+        }))
             Assert.AreEqual(HttpStatusCode.OK, first.StatusCode);
         using var conflicting = await Http.PostAsJsonAsync("/api/check", new CheckRequest
         {
             Context = new CheckContext { Purpose = "baseline" },
-            Dependencies = [dependency], ScannedProjectCount = 1,
-            RunId = runId, BatchIndex = 1, BatchCount = 2,
-            Project = "different-project", Commit = "first-commit"
+            Dependencies = [dependency],
+            ScannedProjectCount = 1,
+            RunId = runId,
+            BatchIndex = 1,
+            BatchCount = 2,
+            Project = "different-project",
+            Commit = "first-commit"
         });
         Assert.AreEqual(HttpStatusCode.BadRequest, conflicting.StatusCode);
         using var inconsistentScan = await Http.PostAsJsonAsync("/api/check", new CheckRequest
         {
             Context = new CheckContext { Purpose = "baseline" },
-            Dependencies = [dependency], ScannedProjectCount = 2,
-            RunId = runId, BatchIndex = 1, BatchCount = 2,
-            Project = "first-project", Commit = "first-commit"
+            Dependencies = [dependency],
+            ScannedProjectCount = 2,
+            RunId = runId,
+            BatchIndex = 1,
+            BatchCount = 2,
+            Project = "first-project",
+            Commit = "first-commit"
         });
         Assert.AreEqual(HttpStatusCode.BadRequest, inconsistentScan.StatusCode);
         using var inconsistentContext = await Http.PostAsJsonAsync("/api/check", new CheckRequest
         {
-            Dependencies = [dependency], ScannedProjectCount = 1,
-            RunId = runId, BatchIndex = 1, BatchCount = 2,
-            Project = "first-project", Commit = "first-commit",
+            Dependencies = [dependency],
+            ScannedProjectCount = 1,
+            RunId = runId,
+            BatchIndex = 1,
+            BatchCount = 2,
+            Project = "first-project",
+            Commit = "first-commit",
             Context = new CheckContext { Purpose = "baseline", Provider = "gitlab", Ref = "master", DefaultBranch = "master", PipelineSource = "push" }
         });
         Assert.AreEqual(HttpStatusCode.BadRequest, inconsistentContext.StatusCode);
@@ -1521,15 +1658,20 @@ public class SupplyChainPagesTests : TestBase
         var runId = Guid.NewGuid().ToString("N");
         var dependency = new Dependency
         {
-            Ecosystem = "nuget", Name = "Example.OutOfOrder." + Guid.NewGuid().ToString("N"),
-            Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json",
-            Sha256 = new string('a', 64)
+            Ecosystem = "nuget",
+            Name = "Example.OutOfOrder." + Guid.NewGuid().ToString("N"),
+            Version = "1.0.0",
+            Source = "https://api.nuget.org/v3/index.json"
         };
         var request = new CheckRequest
         {
             Context = new CheckContext { Purpose = "baseline" },
-            Dependencies = [dependency], ScannedProjectCount = 1, RunId = runId,
-            BatchIndex = 1, BatchCount = 2, Project = "out-of-order-project"
+            Dependencies = [dependency],
+            ScannedProjectCount = 1,
+            RunId = runId,
+            BatchIndex = 1,
+            BatchCount = 2,
+            Project = "out-of-order-project"
         };
         using (var outOfOrder = await Http.PostAsJsonAsync("/api/check", request))
             Assert.AreEqual(HttpStatusCode.BadRequest, outOfOrder.StatusCode);
@@ -1556,34 +1698,42 @@ public class SupplyChainPagesTests : TestBase
         var prefix = "Example.BatchPolicy." + Guid.NewGuid().ToString("N");
         var first = new Dependency
         {
-            Ecosystem = "nuget", Name = prefix + ".First", Version = "1.0.0",
-            Source = source, Sha256 = new string('a', 64)
+            Ecosystem = "nuget",
+            Name = prefix + ".First",
+            Version = "1.0.0",
+            Source = source
         };
         var second = new Dependency
         {
-            Ecosystem = "nuget", Name = prefix + ".Second", Version = "1.0.0",
-            Source = source, Sha256 = new string('b', 64)
+            Ecosystem = "nuget",
+            Name = prefix + ".Second",
+            Version = "1.0.0",
+            Source = source
         };
         var checkedAtUtc = DateTime.UtcNow;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Batch policy vendor " + Guid.NewGuid().ToString("N") };
+
             foreach (var dependency in new[] { first, second })
             {
-                db.TrustRules.Add(new TrustRule
+                db.Rules.Add(new PackageRule
                 {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                    ApplicationId = null, SupplierId = supplier.Id,
-                    Supplier = supplier, Ecosystem = dependency.Ecosystem, PackagePattern = dependency.Name,
-                    Version = dependency.Version, Source = dependency.Source, Sha256 = dependency.Sha256,
-                    Status = TrustRuleStatus.Approved, ExpiresAtUtc = checkedAtUtc.AddDays(1)
+                    RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+                    ApplicationId = null,
+                    Ecosystem = dependency.Ecosystem,
+                    PackagePattern = dependency.Name,
+                    Version = dependency.Version,
+                    Source = dependency.Source,
+                    Status = RuleStatus.Approved,
+                    ExpiresAtUtc = checkedAtUtc.AddDays(1)
                 });
-                db.PackageArtifacts.Add(new PackageArtifact
+                db.PackageVersions.Add(new PackageVersion
                 {
-                    Ecosystem = dependency.Ecosystem, Name = dependency.Name,
-                    Version = dependency.Version, Source = dependency.Source, Sha256 = dependency.Sha256,
-                    FirstTrustedAtUtc = checkedAtUtc, SourceVerifiedAtUtc = checkedAtUtc,
+                    Ecosystem = dependency.Ecosystem,
+                    Name = dependency.Name,
+                    Version = dependency.Version,
+                    Source = dependency.Source,
                     LastCheckedAtUtc = checkedAtUtc
                 });
             }
@@ -1603,11 +1753,15 @@ public class SupplyChainPagesTests : TestBase
         Http.DefaultRequestHeaders.Add("X-S360-Key", key);
         var runId = Guid.NewGuid().ToString("N");
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
-                   Dependencies = [first], ScannedProjectCount = 1,
-                   RunId = runId, BatchIndex = 0, BatchCount = 2
-               }))
+        {
+            Context = new CheckContext { Purpose = "baseline" },
+            Project = "baseline-batch-test",
+            Dependencies = [first],
+            ScannedProjectCount = 1,
+            RunId = runId,
+            BatchIndex = 0,
+            BatchCount = 2
+        }))
         {
             response.EnsureSuccessStatusCode();
             Assert.IsTrue((await response.Content.ReadFromJsonAsync<CheckResponse>())!.Trusted);
@@ -1615,19 +1769,27 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Add(new BlockRule
+            db.Rules.Add(new PackageRule
             {
-                Ecosystem = "nuget", PackagePattern = first.Name, Version = "*",
-                Reason = "Blocked after the first batch was checked"
+                Kind = RuleKind.Block,
+                Status = RuleStatus.Approved,
+                Ecosystem = "nuget",
+                PackagePattern = first.Name,
+                Version = "*",
+                Justification = "Blocked after the first batch was checked"
             });
             await db.SaveChangesAsync();
         }
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
-                   Dependencies = [second], ScannedProjectCount = 1,
-                   RunId = runId, BatchIndex = 1, BatchCount = 2
-               }))
+        {
+            Context = new CheckContext { Purpose = "baseline" },
+            Project = "baseline-batch-test",
+            Dependencies = [second],
+            ScannedProjectCount = 1,
+            RunId = runId,
+            BatchIndex = 1,
+            BatchCount = 2
+        }))
         {
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<CheckResponse>();
@@ -1653,36 +1815,43 @@ public class SupplyChainPagesTests : TestBase
         var prefix = "Example.BatchSource." + Guid.NewGuid().ToString("N");
         var first = new Dependency
         {
-            Ecosystem = "nuget", Name = prefix + ".First", Version = "1.0.0",
-            Source = removedSource, Sha256 = new string('a', 64)
+            Ecosystem = "nuget",
+            Name = prefix + ".First",
+            Version = "1.0.0",
+            Source = removedSource
         };
         var second = new Dependency
         {
-            Ecosystem = "nuget", Name = prefix + ".Second", Version = "1.0.0",
-            Source = remainingSource, Sha256 = new string('b', 64)
+            Ecosystem = "nuget",
+            Name = prefix + ".Second",
+            Version = "1.0.0",
+            Source = remainingSource
         };
         var checkedAt = DateTime.UtcNow;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Batch source vendor " + Guid.NewGuid().ToString("N") };
+
             foreach (var dependency in new[] { first, second })
             {
-                db.TrustRules.Add(new TrustRule
+                db.Rules.Add(new PackageRule
                 {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                    ApplicationId = null, SupplierId = supplier.Id,
-                    Supplier = supplier, Ecosystem = dependency.Ecosystem,
-                    PackagePattern = dependency.Name, Version = dependency.Version,
-                    Source = dependency.Source, Sha256 = dependency.Sha256,
-                    Status = TrustRuleStatus.Approved, ExpiresAtUtc = checkedAt.AddDays(1)
+                    RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+                    ApplicationId = null,
+                    Ecosystem = dependency.Ecosystem,
+                    PackagePattern = dependency.Name,
+                    Version = dependency.Version,
+                    Source = dependency.Source,
+                    Status = RuleStatus.Approved,
+                    ExpiresAtUtc = checkedAt.AddDays(1)
                 });
-                db.PackageArtifacts.Add(new PackageArtifact
+                db.PackageVersions.Add(new PackageVersion
                 {
-                    Ecosystem = dependency.Ecosystem, Name = dependency.Name,
-                    Version = dependency.Version, Source = dependency.Source,
-                    Sha256 = dependency.Sha256, FirstTrustedAtUtc = checkedAt,
-                    SourceVerifiedAtUtc = checkedAt, LastCheckedAtUtc = checkedAt
+                    Ecosystem = dependency.Ecosystem,
+                    Name = dependency.Name,
+                    Version = dependency.Version,
+                    Source = dependency.Source,
+                    LastCheckedAtUtc = checkedAt
                 });
             }
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
@@ -1702,11 +1871,15 @@ public class SupplyChainPagesTests : TestBase
         Http.DefaultRequestHeaders.Add("X-S360-Key", key);
         var runId = Guid.NewGuid().ToString("N");
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
-                   Dependencies = [first], ScannedProjectCount = 1,
-                   RunId = runId, BatchIndex = 0, BatchCount = 2
-               }))
+        {
+            Context = new CheckContext { Purpose = "baseline" },
+            Project = "baseline-batch-test",
+            Dependencies = [first],
+            ScannedProjectCount = 1,
+            RunId = runId,
+            BatchIndex = 0,
+            BatchCount = 2
+        }))
         {
             response.EnsureSuccessStatusCode();
             Assert.IsTrue((await response.Content.ReadFromJsonAsync<CheckResponse>())!.Trusted);
@@ -1718,9 +1891,13 @@ public class SupplyChainPagesTests : TestBase
         {
             using var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
             {
-                Context = new CheckContext { Purpose = "baseline" }, Project = "baseline-batch-test",
-                Dependencies = [second], ScannedProjectCount = 1,
-                RunId = runId, BatchIndex = 1, BatchCount = 2
+                Context = new CheckContext { Purpose = "baseline" },
+                Project = "baseline-batch-test",
+                Dependencies = [second],
+                ScannedProjectCount = 1,
+                RunId = runId,
+                BatchIndex = 1,
+                BatchCount = 2
             });
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<CheckResponse>();
@@ -1753,10 +1930,12 @@ public class SupplyChainPagesTests : TestBase
             Dependencies = [new Dependency
             {
                 Ecosystem = "nuget", Name = "Unapproved." + Guid.NewGuid().ToString("N"),
-                Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json",
-                Sha256 = new string('a', 64)
+                Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json"
             }],
-            ScannedProjectCount = 1, RunId = runId, BatchIndex = 0, BatchCount = 2,
+            ScannedProjectCount = 1,
+            RunId = runId,
+            BatchIndex = 0,
+            BatchCount = 2,
             Project = "duplicate-batch-test"
         };
         using (var first = await Http.PostAsJsonAsync("/api/check", request))
@@ -1776,15 +1955,26 @@ public class SupplyChainPagesTests : TestBase
     {
         var suffix = Guid.NewGuid().ToString("N");
         var project = "review-only-" + suffix;
-        var dependency = new Dependency { Ecosystem = "nuget", Name = "Unapproved." + suffix,
-            Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('d', 64) };
+        var dependency = new Dependency
+        {
+            Ecosystem = "nuget",
+            Name = "Unapproved." + suffix,
+            Version = "1.0.0",
+            Source = "https://api.nuget.org/v3/index.json"
+        };
         using var scope = Server!.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-        var supplier = new Supplier { Name = "Review-only vendor " + suffix };
-        db.TrustRules.Add(new TrustRule {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1), ApplicationId = null, SupplierId = supplier.Id, Supplier = supplier, Ecosystem = dependency.Ecosystem,
-            PackagePattern = dependency.Name + ".Approved", Version = "1.*", Source = dependency.Source,
-            Status = TrustRuleStatus.Approved });
+
+        db.Rules.Add(new PackageRule
+        {
+            RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+            ApplicationId = null,
+            Ecosystem = dependency.Ecosystem,
+            PackagePattern = dependency.Name + ".Approved",
+            Version = "1.*",
+            Source = dependency.Source,
+            Status = RuleStatus.Approved
+        });
         (await db.VulnerabilitySyncStates.SingleAsync()).LastSuccessAtUtc = null;
         await db.SaveChangesAsync();
         var settings = scope.ServiceProvider.GetRequiredService<GlobalSettingsService>();
@@ -1794,10 +1984,15 @@ public class SupplyChainPagesTests : TestBase
             await AddCheckKeyAsync("review-key");
             Http.DefaultRequestHeaders.Add("X-S360-Key", "review-key");
         }
-        var request = new CheckRequest { Project = project, ScannedProjectCount = 1,
+        var request = new CheckRequest
+        {
+            Project = project,
+            ScannedProjectCount = 1,
             Dependencies = [dependency, new Dependency { Ecosystem = dependency.Ecosystem,
                 Name = dependency.Name + ".Approved", Version = dependency.Version,
-                Source = dependency.Source, Sha256 = dependency.Sha256 }], BatchCount = 2 };
+                Source = dependency.Source}],
+            BatchCount = 2
+        };
         try
         {
             // Replaying or checking another batch must not create persistent run state.
@@ -1818,7 +2013,7 @@ public class SupplyChainPagesTests : TestBase
             using var graphBatch = await Http.PostAsJsonAsync("/api/check", request);
             graphBatch.EnsureSuccessStatusCode();
             Assert.IsTrue((await graphBatch.Content.ReadFromJsonAsync<CheckResponse>())!.Trusted);
-            Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name.StartsWith(dependency.Name)));
+            Assert.IsFalse(await db.PackageVersions.AnyAsync(a => a.Name.StartsWith(dependency.Name)));
             Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.RunId == request.RunId));
             Assert.IsFalse(await db.BuildCheckDependencies.AnyAsync(d => d.Name.StartsWith(dependency.Name)));
             Assert.IsTrue(GetService<Microsoft.Extensions.Caching.Memory.IMemoryCache>()
@@ -1843,19 +2038,33 @@ public class SupplyChainPagesTests : TestBase
         var settings = scope.ServiceProvider.GetRequiredService<GlobalSettingsService>();
         await settings.UpdateSettingAsync(SettingsMap.AllowAnonymousReview, "True");
         var name = "Example.Admission." + Guid.NewGuid().ToString("N");
-        var supplier = new Supplier { Name = name };
-        db.TrustRules.Add(new TrustRule {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1), ApplicationId = null, SupplierId = supplier.Id, Supplier = supplier,
-            Ecosystem = "nuget", PackagePattern = name, Version = "1.*", Source = "https://api.nuget.org/v3/index.json",
-            Status = TrustRuleStatus.Approved });
+
+        db.Rules.Add(new PackageRule
+        {
+            RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+            ApplicationId = null,
+            Ecosystem = "nuget",
+            PackagePattern = name,
+            Version = "1.*",
+            Source = "https://api.nuget.org/v3/index.json",
+            Status = RuleStatus.Approved
+        });
         var completedAudit = await db.VulnerabilitySyncStates.SingleAsync();
         completedAudit.LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1);
         completedAudit.LastSuccessAtUtc = DateTime.UtcNow;
         await db.SaveChangesAsync();
-        var request = new CheckRequest { Project = name, ScannedProjectCount = 1,
-            Dependencies = Enumerable.Range(0, 21).Select(i => new Dependency { Ecosystem = "nuget",
-                Name = name, Version = "1.0." + i, Source = "https://api.nuget.org/v3/index.json",
-                Sha256 = new string('a', 64) }).ToList() };
+        var request = new CheckRequest
+        {
+            Project = name,
+            ScannedProjectCount = 1,
+            Dependencies = Enumerable.Range(0, 21).Select(i => new Dependency
+            {
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0." + i,
+                Source = "https://api.nuget.org/v3/index.json"
+            }).ToList()
+        };
         try
         {
             for (var attempt = 0; attempt < 2; attempt++)
@@ -1866,7 +2075,7 @@ public class SupplyChainPagesTests : TestBase
                 Assert.IsNotNull(result);
                 Assert.IsTrue(result.Trusted, string.Join("; ", result.Decisions.Select(d => d.Reason)));
                 Assert.IsTrue(result.Decisions.All(d => d.Trusted && !d.PendingVerification));
-                Assert.AreEqual(0, await db.PackageArtifacts.CountAsync(a => a.Name == name));
+                Assert.AreEqual(0, await db.PackageVersions.CountAsync(a => a.Name == name));
             }
             var admission = scope.ServiceProvider.GetRequiredService<ReviewAdmission>();
             for (var i = 0; i < 4; i++) Assert.IsTrue(admission.AnonymousReviews.Wait(0));
@@ -1892,21 +2101,25 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Trusted vendor" };
-            db.Suppliers.Add(supplier);
-            db.TrustRules.Add(new TrustRule
+
+
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName, Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64),
-                Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json",
+                Status = RuleStatus.Approved,
+                ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
-            db.PackageArtifacts.Add(new PackageArtifact
+            db.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64),
-                SourceVerifiedAtUtc = DateTime.UtcNow,
+                Ecosystem = "nuget",
+                Name = packageName,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json",
                 LastCheckedAtUtc = DateTime.UtcNow
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
@@ -1934,20 +2147,22 @@ public class SupplyChainPagesTests : TestBase
         else Http.DefaultRequestHeaders.Add("X-S360-Key", "integration-check-key");
         var dependency = new Dependency
         {
-            Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
-            Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64)
+            Ecosystem = "nuget",
+            Name = packageName,
+            Version = "1.0.0",
+            Source = "https://api.nuget.org/v3/index.json"
         };
         var unconfiguredRunId = Guid.NewGuid().ToString("N");
         using (var unconfigured = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Dependencies = [new Dependency
+        {
+            Dependencies = [new Dependency
                    {
                        Ecosystem = dependency.Ecosystem, Name = dependency.Name,
-                       Version = dependency.Version, Source = "https://127.0.0.1",
-                       Sha256 = dependency.Sha256
+                       Version = dependency.Version, Source = "https://127.0.0.1"
                    }, dependency],
-                   ScannedProjectCount = 1, RunId = unconfiguredRunId
-               }))
+            ScannedProjectCount = 1,
+            RunId = unconfiguredRunId
+        }))
         {
             unconfigured.EnsureSuccessStatusCode();
             var denial = await unconfigured.Content.ReadFromJsonAsync<CheckResponse>();
@@ -1965,14 +2180,15 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             Assert.IsFalse(await db.BuildChecks.AnyAsync(c => c.RunId == unconfiguredRunId));
-            Assert.IsFalse(await db.PackageArtifacts.AnyAsync(a => a.Name == packageName &&
+            Assert.IsFalse(await db.PackageVersions.AnyAsync(a => a.Name == packageName &&
                 a.Source == "https://127.0.0.1"));
         }
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Dependencies = [dependency], ScannedProjectCount = 1,
-                   RunId = Guid.NewGuid().ToString("N")
-               }))
+        {
+            Dependencies = [dependency],
+            ScannedProjectCount = 1,
+            RunId = Guid.NewGuid().ToString("N")
+        }))
         {
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<CheckResponse>();
@@ -1983,14 +2199,19 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifact = await db.PackageArtifacts.SingleAsync(a => a.Name == packageName);
-            db.Vulnerabilities.Add(new Vulnerability { Ecosystem = "nuget", PackageName = packageName,
-                SourceId = "GHSA-fixture-" + Guid.NewGuid().ToString("N"), Summary = "Test-only advisory",
-                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = artifact.Id }] });
+            var artifact = await db.PackageVersions.SingleAsync(a => a.Name == packageName);
+            db.Vulnerabilities.Add(new Vulnerability
+            {
+                Ecosystem = "nuget",
+                PackageName = packageName,
+                SourceId = "GHSA-fixture-" + Guid.NewGuid().ToString("N"),
+                Summary = "Test-only advisory",
+                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageVersionId = artifact.Id }]
+            });
             await db.SaveChangesAsync();
         }
         using (var affected = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               { Dependencies = [dependency], ScannedProjectCount = 1, RunId = Guid.NewGuid().ToString("N") }))
+        { Dependencies = [dependency], ScannedProjectCount = 1, RunId = Guid.NewGuid().ToString("N") }))
         {
             affected.EnsureSuccessStatusCode();
             var decision = await affected.Content.ReadFromJsonAsync<CheckResponse>();
@@ -2001,18 +2222,23 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Add(new BlockRule
+            db.Rules.Add(new PackageRule
             {
-                Ecosystem = "nuget", PackagePattern = packageName, Version = "*", Active = true,
-                Reason = "Security incident"
+                Kind = RuleKind.Block,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "*",
+                Status = RuleStatus.Approved,
+                Justification = "Security incident"
             });
             await db.SaveChangesAsync();
         }
         using (var response = await Http.PostAsJsonAsync("/api/check", new CheckRequest
-               {
-                   Dependencies = [dependency], ScannedProjectCount = 1,
-                   RunId = Guid.NewGuid().ToString("N")
-               }))
+        {
+            Dependencies = [dependency],
+            ScannedProjectCount = 1,
+            RunId = Guid.NewGuid().ToString("N")
+        }))
         {
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadFromJsonAsync<CheckResponse>();
@@ -2029,8 +2255,7 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             Assert.IsFalse(await db.BuildCheckDependencies.AnyAsync(d => d.Name == packageName));
-            Assert.AreEqual(1, await db.PackageArtifacts.CountAsync(a => a.Name == packageName));
-            Assert.IsNull((await db.PackageArtifacts.SingleAsync(a => a.Name == packageName)).FirstTrustedAtUtc);
+            Assert.AreEqual(1, await db.PackageVersions.CountAsync(a => a.Name == packageName));
         }
         using var settingsScope = Server!.Services.CreateScope();
         await settingsScope.ServiceProvider.GetRequiredService<GlobalSettingsService>()
@@ -2046,13 +2271,15 @@ public class SupplyChainPagesTests : TestBase
         Assert.AreEqual(HttpStatusCode.Redirect, review.StatusCode);
         using var block = await Http.PostAsync("/SupplyChain/AddBlock", new FormUrlEncodedContent(new Dictionary<string, string>
         {
-            ["ecosystem"] = "nuget", ["packagePattern"] = "Example.Bad", ["version"] = "*",
+            ["ecosystem"] = "nuget",
+            ["packagePattern"] = "Example.Bad",
+            ["version"] = "*",
             ["reason"] = "Unsafe package"
         }));
         Assert.AreNotEqual(HttpStatusCode.OK, block.StatusCode);
         using var scope = Server!.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-        Assert.IsFalse(db.BlockRules.Any(b => b.PackagePattern == "Example.Bad"));
+        Assert.IsFalse(db.Rules.Where(r => r.Kind == RuleKind.Block).Any(b => b.PackagePattern == "Example.Bad"));
     }
 
     [TestMethod]
@@ -2061,27 +2288,27 @@ public class SupplyChainPagesTests : TestBase
         var packageName = "Example." + Guid.NewGuid().ToString("N");
         var rulePattern = packageName;
         await LoginAsAdmin();
-        int supplierId;
-        int unrelatedSupplierId;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Example vendor " + Guid.NewGuid().ToString("N") };
-            var unrelated = new Supplier { Name = "Other vendor " + Guid.NewGuid().ToString("N") };
-            db.Suppliers.AddRange(supplier, unrelated);
-            db.TrustRules.Add(new TrustRule
+
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = rulePattern, Version = "1.*",
-                Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = rulePattern,
+                Version = "1.*",
+                Source = "https://api.nuget.org/v3/index.json",
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
-            db.PackageArtifacts.Add(new PackageArtifact
+            db.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64),
-                FirstTrustedAtUtc = DateTime.UtcNow, SourceVerifiedAtUtc = DateTime.UtcNow,
+                Ecosystem = "nuget",
+                Name = packageName,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json",
                 LastCheckedAtUtc = DateTime.UtcNow
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
@@ -2099,23 +2326,11 @@ public class SupplyChainPagesTests : TestBase
                 audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
-            supplierId = supplier.Id;
-            unrelatedSupplierId = unrelated.Id;
         }
         using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
         {
             response.EnsureSuccessStatusCode();
             StringAssert.Contains(await response.Content.ReadAsStringAsync(), packageName);
-        }
-        using (var response = await Http.GetAsync($"/SupplyChain/Index?tab=rules&catalogView=artifacts&query={packageName}&supplierId={supplierId}"))
-        {
-            response.EnsureSuccessStatusCode();
-            StringAssert.Contains(await response.Content.ReadAsStringAsync(), "<code>" + packageName + "</code>");
-        }
-        using (var response = await Http.GetAsync($"/SupplyChain/Index?tab=rules&catalogView=artifacts&query={packageName}&supplierId={unrelatedSupplierId}"))
-        {
-            response.EnsureSuccessStatusCode();
-            Assert.DoesNotContain("<code>" + packageName + "</code>", await response.Content.ReadAsStringAsync());
         }
         var lookupUrl = "/SupplyChain/Index?tab=rules&catalogView=artifacts&lookupName=" + packageName + "&lookupVersion=1.1.0&lookupSource=" +
                         Uri.EscapeDataString("https://api.nuget.org/v3/index.json");
@@ -2138,13 +2353,15 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null,
-                SupplierId = supplierId, Ecosystem = "nuget", PackagePattern = packageName,
-                Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json",
-                Status = TrustRuleStatus.Revoked
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json",
+                Status = RuleStatus.Revoked
             });
             await db.SaveChangesAsync();
         }
@@ -2156,16 +2373,20 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.TrustRules.Single(r => r.PackagePattern == packageName && r.Version == "1.0.0").Status = TrustRuleStatus.Approved;
+            db.Rules.Where(r => r.Kind == RuleKind.Approval).Single(r => r.PackagePattern == packageName && r.Version == "1.0.0").Status = RuleStatus.Approved;
             await db.SaveChangesAsync();
         }
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Add(new BlockRule
+            db.Rules.Add(new PackageRule
             {
-                Ecosystem = "nuget", PackagePattern = packageName, Version = "*", Active = true,
-                Reason = "Blocked for regression test"
+                Kind = RuleKind.Block,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "*",
+                Status = RuleStatus.Approved,
+                Justification = "Blocked for regression test"
             });
             await db.SaveChangesAsync();
         }
@@ -2181,8 +2402,8 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Single(b => b.PackagePattern == packageName).Active = false;
-            db.TrustRules.Single(r => r.PackagePattern == rulePattern && r.Version == "1.*").Status = TrustRuleStatus.Revoked;
+            db.Rules.Where(r => r.Kind == RuleKind.Block).Single(b => b.PackagePattern == packageName).Status = RuleStatus.Revoked;
+            db.Rules.Where(r => r.Kind == RuleKind.Approval).Single(r => r.PackagePattern == rulePattern && r.Version == "1.*").Status = RuleStatus.Revoked;
             await db.SaveChangesAsync();
         }
         using (var response = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
@@ -2204,20 +2425,24 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifact = new PackageArtifact
+            var artifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = sha256,
-                FirstTrustedAtUtc = now, SourceVerifiedAtUtc = now, LastCheckedAtUtc = now
+                Ecosystem = "nuget",
+                Name = packageName,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json",
+                LastCheckedAtUtc = now
             };
-            db.PackageArtifacts.Add(artifact);
-            db.TrustRules.Add(new TrustRule
+            db.PackageVersions.Add(artifact);
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0,
-                Supplier = new Supplier { Name = "Audit test vendor" }, Ecosystem = "nuget",
-                PackagePattern = packageName, Version = "1.0.0",
-                Source = artifact.Source, Sha256 = sha256, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "1.0.0",
+                Source = artifact.Source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = now.AddDays(1)
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
@@ -2311,49 +2536,55 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task CatalogDoesNotShowVersionExcludedByOverlappingSupplierRule()
+    public async Task CatalogDoesNotShowVersionExcludedByOverlappingRule()
     {
         var packageName = "Example.SupplierScope." + Guid.NewGuid().ToString("N");
         const string source = "https://api.nuget.org/v3/index.json";
         int artifactId;
-        int excludedSupplierId;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifact = new PackageArtifact
+            var artifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = packageName, Version = "1.0.0", Source = source,
-                Sha256 = new string('a', 64), FirstTrustedAtUtc = DateTime.UtcNow,
-                SourceVerifiedAtUtc = DateTime.UtcNow, LastCheckedAtUtc = DateTime.UtcNow
+                Ecosystem = "nuget",
+                Name = packageName,
+                Version = "1.0.0",
+                Source = source,
+                LastCheckedAtUtc = DateTime.UtcNow
             };
-            var allowed = new TrustRule
+            var allowed = new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0,
-                Supplier = new Supplier { Name = "Allowed supplier " + Guid.NewGuid().ToString("N") },
-                Ecosystem = "nuget", PackagePattern = packageName, Version = "1.0.0",
-                Source = source, Sha256 = artifact.Sha256, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "1.0.0",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             };
-            var excluded = new TrustRule
+            var excluded = new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0,
-                Supplier = new Supplier { Name = "Excluded supplier " + Guid.NewGuid().ToString("N") },
-                Ecosystem = "nuget", PackagePattern = packageName, Version = "*",
-                Source = source, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "*",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             };
             var vulnerability = new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = packageName,
+                Ecosystem = "nuget",
+                PackageName = packageName,
                 SourceId = "GHSA-" + Guid.NewGuid().ToString("N"),
                 RawAffectedJson = """
                     [{"package":{"ecosystem":"NuGet","name":"PACKAGE"},"ranges":[{"type":"SEMVER","events":[{"introduced":"1.0.0"},{"fixed":"1.0.1"}]}]}]
                     """.Replace("PACKAGE", packageName, StringComparison.Ordinal)
             };
-            db.PackageArtifacts.Add(artifact);
-            db.TrustRules.AddRange(allowed, excluded);
+            db.PackageVersions.Add(artifact);
+            db.Rules.AddRange(allowed, excluded);
             db.Vulnerabilities.Add(vulnerability);
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null)
@@ -2370,14 +2601,15 @@ public class SupplyChainPagesTests : TestBase
                 audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
-            db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+            db.Rules.Add(new PackageRule
             {
-                TrustRuleId = excluded.Id, VulnerabilityId = vulnerability.Id,
-                Reason = "This supplier rule excludes the affected version"
+                Kind = RuleKind.VulnerabilityExclusion,
+                ParentRuleId = excluded.Id,
+                VulnerabilityId = vulnerability.Id,
+                Justification = "This rule excludes the affected version"
             });
             await db.SaveChangesAsync();
             artifactId = artifact.Id;
-            excludedSupplierId = excluded.SupplierId!.Value;
         }
         await LoginAsAdmin();
         using (var all = await Http.GetAsync("/SupplyChain/Index?tab=rules&catalogView=artifacts&query=" + packageName))
@@ -2385,7 +2617,7 @@ public class SupplyChainPagesTests : TestBase
             all.EnsureSuccessStatusCode();
             Assert.DoesNotContain($"/SupplyChain/Details/{artifactId}", await all.Content.ReadAsStringAsync());
         }
-        using var filtered = await Http.GetAsync($"/SupplyChain/Index?tab=rules&catalogView=artifacts&query={packageName}&supplierId={excludedSupplierId}");
+        using var filtered = await Http.GetAsync($"/SupplyChain/Index?tab=rules&catalogView=artifacts&query={packageName}");
         filtered.EnsureSuccessStatusCode();
         Assert.DoesNotContain($"/SupplyChain/Details/{artifactId}", await filtered.Content.ReadAsStringAsync());
     }
@@ -2402,34 +2634,43 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifact = new PackageArtifact
+            var artifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = packageName, Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('d', 64),
-                FirstTrustedAtUtc = DateTime.UtcNow, SourceVerifiedAtUtc = DateTime.UtcNow,
+                Ecosystem = "nuget",
+                Name = packageName,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json",
                 LastCheckedAtUtc = DateTime.UtcNow
             };
-            var child = new PackageArtifact
+            var child = new PackageVersion
             {
-                Ecosystem = "nuget", Name = childName, Version = "2.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('e', 64)
+                Ecosystem = "nuget",
+                Name = childName,
+                Version = "2.0.0",
+                Source = "https://api.nuget.org/v3/index.json"
             };
-            var rule = new TrustRule
+            var rule = new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0,
-                Supplier = new Supplier { Name = "Detail supplier " + Guid.NewGuid().ToString("N") },
-                Ecosystem = "nuget", PackagePattern = packageName, Version = "1.0.0",
-                Source = artifact.Source, Sha256 = artifact.Sha256, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "1.0.0",
+                Source = artifact.Source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1),
-                Reviews = [new TrustRuleReview { TrustRuleId = 0, Decision = TrustRuleStatus.Approved, ReviewedAtUtc = DateTime.UtcNow.AddDays(-1) }]
+                Reviews = [new RuleChange { RuleId = 0, Decision = RuleStatus.Approved, ReviewedAtUtc = DateTime.UtcNow.AddDays(-1) }]
             };
-            db.TrustRules.Add(rule);
+            db.PackageVersions.AddRange(artifact, child);
+            db.Rules.Add(rule);
             db.DependencyApplications.Add(new DependencyApplication
             {
-                Ecosystem = "nuget", Source = artifact.Source, Status = ApplicationStatus.Approved,
-                Project = privateProject, RequestedByUserId = db.Users.First().Id,
-                Edges = [new ApplicationEdge { ApplicationId = 0, ChildPackageId = 0, ParentPackageId = artifact.Id, ParentPackage = artifact, ChildPackage = child }]
+                Ecosystem = "nuget",
+                Source = artifact.Source,
+                Status = ApplicationStatus.Approved,
+                Project = privateProject,
+                RequestedByUserId = db.Users.First().Id,
+                Packages = [new ApplicationPackage { ApplicationId = 0, PackageVersionId = 0, PackageVersion = artifact, IsDirect = true }]
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null)
@@ -2458,17 +2699,16 @@ public class SupplyChainPagesTests : TestBase
             StringAssert.Contains(html, "Last checked");
             StringAssert.Contains(html, "data-utc-time=");
             Assert.IsFalse(html.Contains("Last checked (UTC)"));
-            StringAssert.Contains(html, "Detail supplier");
         }
         using (var response = await Http.GetAsync($"/SupplyChain/Details/{artifactId}"))
         {
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
             Assert.DoesNotContain(new string('d', 64), html);
-            StringAssert.Contains(html, childName);
+            Assert.DoesNotContain(childName, html);
             StringAssert.Contains(html, "Matching authorization");
             StringAssert.Contains(html, "s360-concept-rail");
-            StringAssert.Contains(html, "Recorded relationship");
+            Assert.DoesNotContain("Recorded relationship", html);
             Assert.DoesNotContain(privateProject, html);
         }
         var configuration = GetService<IConfiguration>();
@@ -2487,10 +2727,14 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Add(new BlockRule
+            db.Rules.Add(new PackageRule
             {
-                Ecosystem = "nuget", PackagePattern = packageName, Version = "*",
-                Reason = "Do not use this dependency"
+                Kind = RuleKind.Block,
+                Status = RuleStatus.Approved,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "*",
+                Justification = "Do not use this dependency"
             });
             await db.SaveChangesAsync();
         }
@@ -2499,8 +2743,8 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Single(b => b.PackagePattern == packageName).Active = false;
-            db.TrustRules.Single(r => r.Id == ruleId).Status = TrustRuleStatus.Revoked;
+            db.Rules.Where(r => r.Kind == RuleKind.Block).Single(b => b.PackagePattern == packageName).Status = RuleStatus.Revoked;
+            db.Rules.Where(r => r.Kind == RuleKind.Approval).Single(r => r.Id == ruleId).Status = RuleStatus.Revoked;
             await db.SaveChangesAsync();
         }
         using var revoked = await Http.GetAsync($"/SupplyChain/Details/{artifactId}");
@@ -2517,25 +2761,31 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.PackageArtifacts.AddRange(Enumerable.Range(0, 5001).Select(i => new PackageArtifact
+            db.PackageVersions.AddRange(Enumerable.Range(0, 5001).Select(i => new PackageVersion
             {
-                Ecosystem = "nuget", Name = $"A.Unapproved.{i:D4}", Version = "1.0.0",
-                Source = source, Sha256 = new string('a', 64),
-                FirstTrustedAtUtc = now, SourceVerifiedAtUtc = now, LastCheckedAtUtc = now
+                Ecosystem = "nuget",
+                Name = $"A.Unapproved.{i:D4}",
+                Version = "1.0.0",
+                Source = source,
+                LastCheckedAtUtc = now
             }));
-            db.PackageArtifacts.Add(new PackageArtifact
+            db.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "nuget", Name = approvedName, Version = "1.0.0",
-                Source = source, Sha256 = approvedHash,
-                FirstTrustedAtUtc = now, SourceVerifiedAtUtc = now, LastCheckedAtUtc = now
+                Ecosystem = "nuget",
+                Name = approvedName,
+                Version = "1.0.0",
+                Source = source,
+                LastCheckedAtUtc = now
             });
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0,
-                Supplier = new Supplier { Name = "Catalog vendor " + Guid.NewGuid().ToString("N") },
-                Ecosystem = "nuget", PackagePattern = approvedName, Version = "1.0.0",
-                Source = source, Sha256 = approvedHash, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = approvedName,
+                Version = "1.0.0",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = now.AddDays(1)
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
@@ -2575,20 +2825,24 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0,
-                Supplier = new Supplier { Name = "Partial audit vendor " + Guid.NewGuid().ToString("N") },
-                Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0", Source = source,
-                Sha256 = hash, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "1.0.0",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
-            db.PackageArtifacts.Add(new PackageArtifact
+            db.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0", Source = source,
-                Sha256 = hash, FirstTrustedAtUtc = checkedAtUtc,
-                SourceVerifiedAtUtc = checkedAtUtc, LastCheckedAtUtc = checkedAtUtc
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = source,
+                LastCheckedAtUtc = checkedAtUtc
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null)
@@ -2632,20 +2886,25 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0,
-                Supplier = new Supplier { Name = "Conflict vendor " + Guid.NewGuid().ToString("N") },
-                Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
-                Source = source, Status = TrustRuleStatus.Approved, ExpiresAtUtc = now.AddDays(1)
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "1.0.0",
+                Source = source,
+                Status = RuleStatus.Approved,
+                ExpiresAtUtc = now.AddDays(1)
             });
             foreach (var hash in new[] { firstHash, secondHash })
-                db.PackageArtifacts.Add(new PackageArtifact
+                db.PackageVersions.Add(new PackageVersion
                 {
-                    Ecosystem = "nuget", Name = name, Version = "1.0.0", Source = source,
-                    Sha256 = hash, FirstTrustedAtUtc = now,
-                    SourceVerifiedAtUtc = now, LastCheckedAtUtc = now
+                    Ecosystem = "nuget",
+                    Name = name,
+                    Version = "1.0.0",
+                    Source = source,
+                    LastCheckedAtUtc = now
                 });
             await db.SaveChangesAsync();
         }
@@ -2672,43 +2931,55 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Exclusion vendor " + Guid.NewGuid().ToString("N") };
-            var excludedRule = new TrustRule
+
+            var excludedRule = new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = name, Version = "1.*",
-                Source = source, Status = TrustRuleStatus.Approved, ExpiresAtUtc = now.AddDays(1)
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "1.*",
+                Source = source,
+                Status = RuleStatus.Approved,
+                ExpiresAtUtc = now.AddDays(1)
             };
-            var alternateRule = new TrustRule
+            var alternateRule = new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
-                Source = source, Sha256 = hash, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "1.0.0",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = now.AddDays(1)
             };
             var advisory = new Vulnerability
             {
-                SourceId = "GHSA-excluded-test", Ecosystem = "nuget", PackageName = name,
+                SourceId = "GHSA-excluded-test",
+                Ecosystem = "nuget",
+                PackageName = name,
                 RawAffectedJson = """
                     [{"package":{"ecosystem":"NuGet","name":"PACKAGE_NAME"},
                       "ranges":[{"type":"SEMVER","events":[{"introduced":"1.0.0"},{"fixed":"1.0.1"}]}]}]
                     """.Replace("PACKAGE_NAME", name, StringComparison.Ordinal)
             };
-            db.TrustRules.AddRange(excludedRule, alternateRule);
+            db.Rules.AddRange(excludedRule, alternateRule);
             db.Vulnerabilities.Add(advisory);
-            db.PackageArtifacts.Add(new PackageArtifact
+            db.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0", Source = source,
-                Sha256 = hash, FirstTrustedAtUtc = now,
-                SourceVerifiedAtUtc = now, LastCheckedAtUtc = now
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = source,
+                LastCheckedAtUtc = now
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null)
                 db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
                 {
-                    LastAttemptAtUtc = now.AddMinutes(-1), LastSuccessfulAttemptAtUtc = now.AddMinutes(-1),
+                    LastAttemptAtUtc = now.AddMinutes(-1),
+                    LastSuccessfulAttemptAtUtc = now.AddMinutes(-1),
                     LastSuccessAtUtc = DateTime.UtcNow
                 });
             else
@@ -2718,10 +2989,12 @@ public class SupplyChainPagesTests : TestBase
                 audit.LastSuccessAtUtc = DateTime.UtcNow;
             }
             await db.SaveChangesAsync();
-            db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+            db.Rules.Add(new PackageRule
             {
-                TrustRuleId = excludedRule.Id, VulnerabilityId = advisory.Id,
-                Reason = "Exclude vulnerable versions"
+                Kind = RuleKind.VulnerabilityExclusion,
+                ParentRuleId = excludedRule.Id,
+                VulnerabilityId = advisory.Id,
+                Justification = "Exclude vulnerable versions"
             });
             await db.SaveChangesAsync();
         }
@@ -2747,41 +3020,51 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var approved = new PackageArtifact
+            var approved = new PackageVersion
             {
-                Ecosystem = "nuget", Name = approvedName, Version = "1.0.0", Source = source,
-                Sha256 = new string('a', 64), FirstTrustedAtUtc = DateTime.UtcNow,
-                SourceVerifiedAtUtc = DateTime.UtcNow, LastCheckedAtUtc = DateTime.UtcNow
+                Ecosystem = "nuget",
+                Name = approvedName,
+                Version = "1.0.0",
+                Source = source,
+                LastCheckedAtUtc = DateTime.UtcNow
             };
             // Even with a matching pinned rule, conflicting trusted bytes must be held.
-            db.PackageArtifacts.Add(new PackageArtifact
+            db.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "nuget", Name = approvedName, Version = "1.0.0", Source = source,
-                Sha256 = new string('c', 64), FirstTrustedAtUtc = DateTime.UtcNow,
-                SourceVerifiedAtUtc = DateTime.UtcNow
+                Ecosystem = "nuget",
+                Name = approvedName,
+                Version = "1.0.0",
+                Source = source
             });
-            var newArtifact = new PackageArtifact
+            var newArtifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = newName, Version = "1.0.0", Source = source,
-                Sha256 = new string('b', 64)
+                Ecosystem = "nuget",
+                Name = newName,
+                Version = "1.0.0",
+                Source = source
             };
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0,
-                Supplier = new Supplier { Name = "Review scope supplier " + Guid.NewGuid().ToString("N") },
-                Ecosystem = "nuget", PackagePattern = approvedName, Version = "1.0.0",
-                Source = source, Sha256 = approved.Sha256, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = approvedName,
+                Version = "1.0.0",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
             db.DependencyApplications.Add(new DependencyApplication
             {
-                RequestedByUserId = "another-employee", Ecosystem = "nuget", Source = source,
-                Status = ApplicationStatus.ReadyForReview, Justification = "Check the review scope",
+                RequestedByUserId = "another-employee",
+                Ecosystem = "nuget",
+                Source = source,
+                Status = ApplicationStatus.ReadyForReview,
+                Justification = "Check the review scope",
                 Packages =
                 [
-                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = approved.Id, PackageArtifact = approved, IsDirect = true },
-                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, PackageArtifact = newArtifact }
+                    new ApplicationPackage { ApplicationId = 0, PackageVersionId = approved.Id, PackageVersion = approved, IsDirect = true },
+                    new ApplicationPackage { ApplicationId = 0, PackageVersionId = 0, PackageVersion = newArtifact }
                 ]
             });
             await db.SaveChangesAsync();
@@ -2821,31 +3104,37 @@ public class SupplyChainPagesTests : TestBase
         var checkedAt = DateTime.UtcNow;
         string reportHash;
         int applicationId;
-        int supplierId;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Conflicting archive vendor " + Guid.NewGuid().ToString("N") };
-            var artifact = new PackageArtifact
+
+            var artifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0", Source = source,
-                Sha256 = new string('a', 64), SourceVerifiedAtUtc = checkedAt,
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = source,
                 LastCheckedAtUtc = checkedAt
             };
             var application = new DependencyApplication
             {
-                RequestedByUserId = "another-employee", Ecosystem = "nuget", Source = source,
+                RequestedByUserId = "another-employee",
+                Ecosystem = "nuget",
+                Source = source,
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage(name, "1.0.0") }),
                 Justification = "Review independently verified package bytes",
-                ResolutionContext = "net10.0; any runtime", Status = ApplicationStatus.ReadyForReview,
-                Packages = [new ApplicationPackage { ApplicationId = 0, PackageArtifactId = artifact.Id, PackageArtifact = artifact, IsDirect = true }]
+                ResolutionContext = "net10.0; any runtime",
+                Status = ApplicationStatus.ReadyForReview,
+                Packages = [new ApplicationPackage { ApplicationId = 0, PackageVersionId = artifact.Id, PackageVersion = artifact, IsDirect = true }]
             };
-            db.Suppliers.Add(supplier);
+
             db.DependencyApplications.Add(application);
-            db.PackageArtifacts.Add(new PackageArtifact
+            db.PackageVersions.Add(new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0", Source = source,
-                Sha256 = new string('b', 64), SourceVerifiedAtUtc = checkedAt
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = source
             });
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null)
@@ -2859,8 +3148,6 @@ public class SupplyChainPagesTests : TestBase
             audit.LastError = null;
             await db.SaveChangesAsync();
             applicationId = application.Id;
-            supplierId = supplier.Id;
-            db.ApplicationEdges.Add(new ApplicationEdge { ApplicationId = application.Id, ParentPackageId = null, ChildPackageId = artifact.Id });
             await db.SaveChangesAsync();
             reportHash = application.ReportHash = ReportFingerprint.ComputePersisted(application);
             await db.SaveChangesAsync();
@@ -2869,8 +3156,8 @@ public class SupplyChainPagesTests : TestBase
         await LoginAsAdmin();
         using var response = await PostForm("/DependencyReviews/Approve", new Dictionary<string, string>
         {
-            ["id"] = applicationId.ToString(), ["reportHash"] = reportHash,
-            ["supplierId"] = supplierId.ToString(),
+            ["id"] = applicationId.ToString(),
+            ["reportHash"] = reportHash,
             ["expiresAtUtc"] = DateTime.UtcNow.AddDays(1).ToString("O"),
             ["reason"] = "Attempt to approve conflicting verified archives"
         }, tokenUrl: "/DependencyReviews/Index?filter=all");
@@ -2879,8 +3166,7 @@ public class SupplyChainPagesTests : TestBase
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
         Assert.AreEqual(ApplicationStatus.Approved,
             verifyDb.DependencyApplications.Single(a => a.Id == applicationId).Status);
-        Assert.IsTrue(verifyDb.TrustRules.Any(r => r.ApplicationId == applicationId));
-        Assert.IsTrue(verifyDb.TrustRules.Where(r => r.ApplicationId == applicationId).All(r => r.Sha256 == null));
+        Assert.IsTrue(verifyDb.Rules.Where(r => r.Kind == RuleKind.Approval).Any(r => r.ApplicationId == applicationId));
     }
 
     [TestMethod]
@@ -2890,38 +3176,44 @@ public class SupplyChainPagesTests : TestBase
         var name = "Example.Review." + Guid.NewGuid().ToString("N");
         string reportHash;
         int applicationId;
-        int supplierId;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Review vendor " + Guid.NewGuid().ToString("N") };
-            var artifact = new PackageArtifact
+
+            var artifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0", Source = source,
-                Sha256 = new string('a', 64), SourceVerifiedAtUtc = DateTime.UtcNow,
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = source,
                 LastCheckedAtUtc = DateTime.UtcNow
             };
             var application = new DependencyApplication
             {
-                RequestedByUserId = "a-different-employee", Ecosystem = "nuget", Source = source,
+                RequestedByUserId = "a-different-employee",
+                Ecosystem = "nuget",
+                Source = source,
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage(name, "1.0.0") }),
-                Justification = "Test current review policy", ResolutionContext = "net10.0; any runtime",
+                Justification = "Test current review policy",
+                ResolutionContext = "net10.0; any runtime",
                 Status = ApplicationStatus.ReadyForReview,
-                Packages = [new ApplicationPackage { ApplicationId = 0, PackageArtifactId = artifact.Id, PackageArtifact = artifact, IsDirect = true }]
+                Packages = [new ApplicationPackage { ApplicationId = 0, PackageVersionId = artifact.Id, PackageVersion = artifact, IsDirect = true }]
             };
-            db.Suppliers.Add(supplier);
+
             db.DependencyApplications.Add(application);
             await db.SaveChangesAsync();
             applicationId = application.Id;
-            supplierId = supplier.Id;
-            db.ApplicationEdges.Add(new ApplicationEdge { ApplicationId = application.Id, ParentPackageId = null, ChildPackageId = artifact.Id });
             await db.SaveChangesAsync();
             reportHash = application.ReportHash = ReportFingerprint.ComputePersisted(application);
             await db.SaveChangesAsync();
-            db.BlockRules.Add(new BlockRule
+            db.Rules.Add(new PackageRule
             {
-                Ecosystem = "nuget", PackagePattern = name, Version = "*", Active = true,
-                Reason = "Added after resolution"
+                Kind = RuleKind.Block,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "*",
+                Status = RuleStatus.Approved,
+                Justification = "Added after resolution"
             });
             await db.SaveChangesAsync();
         }
@@ -2930,8 +3222,8 @@ public class SupplyChainPagesTests : TestBase
         async Task<HttpResponseMessage> SubmitApproval() => await PostForm("/DependencyReviews/Approve",
             new Dictionary<string, string>
             {
-                ["id"] = applicationId.ToString(), ["reportHash"] = reportHash,
-                ["supplierId"] = supplierId.ToString(),
+                ["id"] = applicationId.ToString(),
+                ["reportHash"] = reportHash,
                 ["expiresAtUtc"] = DateTime.UtcNow.AddDays(1).ToString("O"),
                 ["reason"] = "A reviewer tried to approve this dependency"
             }, tokenUrl: "/DependencyReviews/Index?filter=all");
@@ -2963,22 +3255,28 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Single(b => b.PackagePattern == name).Active = false;
+            db.Rules.Where(r => r.Kind == RuleKind.Block).Single(b => b.PackagePattern == name).Status = RuleStatus.Revoked;
             db.DependencyApplications.Single(a => a.Id == applicationId).Status = ApplicationStatus.Revoked;
-            db.TrustRules.AddRange(
-                new TrustRule
+            db.Rules.AddRange(
+                new PackageRule
                 {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                    ApplicationId = applicationId, SupplierId = supplierId, Ecosystem = "nuget",
-                    PackagePattern = name, Version = "1.0.0", Source = source,
-                    Sha256 = new string('a', 64), Status = TrustRuleStatus.Revoked
+                    RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+                    ApplicationId = applicationId,
+                    Ecosystem = "nuget",
+                    PackagePattern = name,
+                    Version = "1.0.0",
+                    Source = source,
+                    Status = RuleStatus.Revoked
                 },
-                new TrustRule
+                new PackageRule
                 {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+                    RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                     ApplicationId = null,
-                    SupplierId = supplierId, Ecosystem = "nuget", PackagePattern = name,
-                    Version = "1.0.0", Source = source, Status = TrustRuleStatus.Revoked
+                    Ecosystem = "nuget",
+                    PackagePattern = name,
+                    Version = "1.0.0",
+                    Source = source,
+                    Status = RuleStatus.Revoked
                 });
             await db.SaveChangesAsync();
         }
@@ -2988,32 +3286,35 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var external = db.TrustRules.Single(r => r.PackagePattern == name && r.ApplicationId == null);
-            external.Status = TrustRuleStatus.Approved;
-            external.Sha256 = new string('b', 64);
+            var external = db.Rules.Where(r => r.Kind == RuleKind.Approval).Single(r => r.PackagePattern == name && r.ApplicationId == null);
+            external.Status = RuleStatus.Approved;
+
             await db.SaveChangesAsync();
         }
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var external = db.TrustRules.Single(r => r.PackagePattern == name && r.ApplicationId == null);
+            var external = db.Rules.Where(r => r.Kind == RuleKind.Approval).Single(r => r.PackagePattern == name && r.ApplicationId == null);
             external.Version = "*";
-            external.Sha256 = null;
-            db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+            db.Rules.Add(new PackageRule
             {
-                TrustRuleId = external.Id, VulnerabilityId = 0,
-                TrustRule = external,
+                Kind = RuleKind.VulnerabilityExclusion,
+                ParentRuleId = external.Id,
+                VulnerabilityId = 0,
+                ParentRule = external,
                 Vulnerability = new Vulnerability
                 {
-                    Ecosystem = "nuget", PackageName = name, SourceId = "GHSA-review-exclusion",
+                    Ecosystem = "nuget",
+                    PackageName = name,
+                    SourceId = "GHSA-review-exclusion",
                     RawAffectedJson = $$"""
                         [{"package":{"ecosystem":"NuGet","name":"{{name}}"},"versions":["1.0.0"]}]
                         """
                 },
-                Reason = "Excluded from the existing approval"
+                Justification = "Excluded from the existing approval"
             });
             var checkedAtUtc = DateTime.UtcNow;
-            db.PackageArtifacts.Single(a => a.Name == name).LastCheckedAtUtc = checkedAtUtc;
+            db.PackageVersions.Single(a => a.Name == name).LastCheckedAtUtc = checkedAtUtc;
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
             if (audit == null)
             {
@@ -3037,8 +3338,8 @@ public class SupplyChainPagesTests : TestBase
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
         Assert.AreEqual(ApplicationStatus.Revoked,
             verifyDb.DependencyApplications.Single(a => a.Id == applicationId).Status);
-        Assert.AreEqual(1, verifyDb.TrustRules.Count(r => r.PackagePattern == name &&
-            r.Status == TrustRuleStatus.Revoked));
+        Assert.AreEqual(1, verifyDb.Rules.Where(r => r.Kind == RuleKind.Approval).Count(r => r.PackagePattern == name &&
+            r.Status == RuleStatus.Revoked));
     }
 
     [TestMethod]
@@ -3048,43 +3349,39 @@ public class SupplyChainPagesTests : TestBase
         var suffix = Guid.NewGuid().ToString("N");
         string reportHash;
         int applicationId;
-        int supplierId;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Review history vendor " + suffix };
+
             var application = new DependencyApplication
             {
-                RequestedByUserId = "another-employee", Ecosystem = "nuget", Source = source,
+                RequestedByUserId = "another-employee",
+                Ecosystem = "nuget",
+                Source = source,
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage("Example.Batch.Root." + suffix, "1.0.0") }),
-                Justification = "Review two resolved packages", ResolutionContext = "net10.0; any runtime",
+                Justification = "Review two resolved packages",
+                ResolutionContext = "net10.0; any runtime",
                 Status = ApplicationStatus.ReadyForReview,
                 Packages = [
-                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, IsDirect = true, PackageArtifact = new PackageArtifact
+                    new ApplicationPackage { ApplicationId = 0, PackageVersionId = 0, IsDirect = true, PackageVersion = new PackageVersion
                     {
                         Ecosystem = "nuget", Name = "Example.Batch.Root." + suffix,
-                        Version = "1.0.0", Source = source, Sha256 = new string('a', 64),
-                        SourceVerifiedAtUtc = DateTime.UtcNow, LastCheckedAtUtc = DateTime.UtcNow
+                        Version = "1.0.0", Source = source, LastCheckedAtUtc = DateTime.UtcNow
                     } },
-                    new ApplicationPackage { ApplicationId = 0, PackageArtifactId = 0, PackageArtifact = new PackageArtifact
+                    new ApplicationPackage { ApplicationId = 0, PackageVersionId = 0, PackageVersion = new PackageVersion
                     {
                         Ecosystem = "nuget", Name = "Example.Batch.Child." + suffix,
-                        Version = "2.0.0", Source = source, Sha256 = new string('b', 64),
-                        SourceVerifiedAtUtc = DateTime.UtcNow, LastCheckedAtUtc = DateTime.UtcNow
+                        Version = "2.0.0", Source = source, LastCheckedAtUtc = DateTime.UtcNow
                     } }
                 ]
             };
-            db.Suppliers.Add(supplier);
+
             db.DependencyApplications.Add(application);
             await db.SaveChangesAsync();
             applicationId = application.Id;
-            supplierId = supplier.Id;
-            var rootId = application.Packages.Single(p => p.IsDirect).PackageArtifactId;
-            var childId = application.Packages.Single(p => !p.IsDirect).PackageArtifactId;
-            db.ApplicationEdges.AddRange([
-                new ApplicationEdge { ApplicationId = application.Id, ParentPackageId = null, ChildPackageId = rootId },
-                new ApplicationEdge { ApplicationId = application.Id, ParentPackageId = rootId, ChildPackageId = childId }
-            ]);
+            var rootId = application.Packages.Single(p => p.IsDirect).PackageVersionId;
+            var childId = application.Packages.Single(p => !p.IsDirect).PackageVersionId;
+
             await db.SaveChangesAsync();
             reportHash = application.ReportHash = ReportFingerprint.ComputePersisted(application);
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
@@ -3108,7 +3405,8 @@ public class SupplyChainPagesTests : TestBase
         async Task<HttpResponseMessage> Approve(string hash) => await PostForm("/DependencyReviews/Approve",
             new Dictionary<string, string>
             {
-                ["id"] = applicationId.ToString(), ["reportHash"] = hash,
+                ["id"] = applicationId.ToString(),
+                ["reportHash"] = hash,
                 ["expiresAtUtc"] = DateTime.UtcNow.AddDays(30).ToString("O"),
                 ["reason"] = "Reviewed the complete resolved package graph"
             }, tokenUrl: "/DependencyReviews/Index?filter=all");
@@ -3123,17 +3421,15 @@ public class SupplyChainPagesTests : TestBase
             audit.LastSuccessAtUtc = audit.LastAttemptAtUtc!.Value.AddSeconds(1);
             audit.LastError = null;
             var application = await db.DependencyApplications.Include(a => a.Packages)
-                .ThenInclude(p => p.PackageArtifact).SingleAsync(a => a.Id == applicationId);
+                .ThenInclude(p => p.PackageVersion).SingleAsync(a => a.Id == applicationId);
             foreach (var package in application.Packages)
-                package.PackageArtifact.LastCheckedAtUtc = audit.LastAttemptAtUtc.Value.AddTicks(1);
-            application.Packages.Single(p => !p.IsDirect).PackageArtifact.SourceVerifiedAtUtc = null;
+                package.PackageVersion.LastCheckedAtUtc = audit.LastAttemptAtUtc.Value.AddTicks(1);
             await db.SaveChangesAsync();
         }
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifact = await db.PackageArtifacts.SingleAsync(a => a.Name == "Example.Batch.Child." + suffix);
-            Assert.IsNull(artifact.SourceVerifiedAtUtc);
+            var artifact = await db.PackageVersions.SingleAsync(a => a.Name == "Example.Batch.Child." + suffix);
             var audit = await db.VulnerabilitySyncStates.SingleAsync();
             audit.LastAttemptAtUtc = DateTime.UtcNow;
             audit.LastError = "OSV temporarily unavailable";
@@ -3142,20 +3438,6 @@ public class SupplyChainPagesTests : TestBase
         using (var first = await Approve(reportHash))
             Assert.AreEqual(HttpStatusCode.Redirect, first.StatusCode,
                 await first.Content.ReadAsStringAsync());
-        Dictionary<int, int?> supplierAssignments;
-        using (var scope = Server!.Services.CreateScope())
-        {
-            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var grants = await db.TrustRules.Where(r => r.ApplicationId == applicationId).OrderBy(r => r.Id).ToListAsync();
-            Assert.IsTrue(grants.All(r => r.SupplierId == null), "Approving a report must not invent a supplier.");
-            var otherSupplier = new Supplier { Name = "Independent dependency vendor " + suffix };
-            db.Suppliers.Add(otherSupplier);
-            await db.SaveChangesAsync();
-            grants[0].SupplierId = supplierId;
-            grants[1].SupplierId = otherSupplier.Id;
-            await db.SaveChangesAsync();
-            supplierAssignments = grants.ToDictionary(r => r.Id, r => r.SupplierId);
-        }
         using (var second = await Approve(reportHash))
             Assert.AreEqual(HttpStatusCode.Redirect, second.StatusCode);
 
@@ -3163,15 +3445,16 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var application = db.DependencyApplications.Include(a => a.Packages).Single(a => a.Id == applicationId);
-            var rootId = application.Packages.Single(p => p.IsDirect).PackageArtifactId;
-            var added = new PackageArtifact
+            var rootId = application.Packages.Single(p => p.IsDirect).PackageVersionId;
+            var added = new PackageVersion
             {
-                Ecosystem = "nuget", Name = "Example.Batch.Added." + suffix,
-                Version = "1.0.0", Source = source, Sha256 = new string('c', 64),
-                SourceVerifiedAtUtc = DateTime.UtcNow, LastCheckedAtUtc = DateTime.UtcNow
+                Ecosystem = "nuget",
+                Name = "Example.Batch.Added." + suffix,
+                Version = "1.0.0",
+                Source = source,
+                LastCheckedAtUtc = DateTime.UtcNow
             };
-            db.ApplicationPackages.Add(new ApplicationPackage { ApplicationId = application.Id, PackageArtifactId = 0, PackageArtifact = added });
-            db.ApplicationEdges.Add(new ApplicationEdge { ApplicationId = application.Id, ChildPackageId = 0, ParentPackageId = rootId, ChildPackage = added });
+            db.ApplicationPackages.Add(new ApplicationPackage { ApplicationId = application.Id, PackageVersionId = 0, PackageVersion = added });
             await db.SaveChangesAsync();
         }
         using (var changedGraph = await Approve(reportHash))
@@ -3179,16 +3462,14 @@ public class SupplyChainPagesTests : TestBase
 
         using var verifyScope = Server!.Services.CreateScope();
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-        var reviews = verifyDb.TrustRuleReviews.Include(r => r.TrustRule)
-            .Where(r => r.TrustRule.ApplicationId == applicationId).ToList();
+        var reviews = verifyDb.RuleChanges.Include(r => r.Rule)
+            .Where(r => r.Rule.ApplicationId == applicationId).ToList();
         Assert.AreEqual(4, reviews.Count);
         Assert.IsTrue(reviews.All(r => r.ReportHash == reportHash));
         Assert.AreEqual(2, reviews.Select(r => r.DecisionBatchId).Distinct().Count());
         Assert.IsTrue(reviews.GroupBy(r => r.DecisionBatchId).All(group => group.Count() == 2));
-        var renewedGrants = verifyDb.TrustRules.Where(r => r.ApplicationId == applicationId).ToList();
+        var renewedGrants = verifyDb.Rules.Where(r => r.Kind == RuleKind.Approval).Where(r => r.ApplicationId == applicationId).ToList();
         Assert.AreEqual(2, renewedGrants.Count);
-        Assert.IsTrue(renewedGrants.All(r => r.SupplierId == supplierAssignments[r.Id]),
-            "Renewing mixed-publisher packages must preserve each existing supplier.");
     }
 
     [TestMethod]
@@ -3203,28 +3484,47 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var vulnerable = new PackageArtifact { Ecosystem = "nuget", Name = name, Version = "8.0.1",
-                Source = "https://nuget.aiursoft.com/v3/index.json", Sha256 = new string('a', 64) };
-            var fixedArtifact = new PackageArtifact { Ecosystem = "nuget", Name = name, Version = "8.0.2",
-                Source = vulnerable.Source, Sha256 = new string('b', 64) };
+            var vulnerable = new PackageVersion
+            {
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "8.0.1",
+                Source = "https://nuget.aiursoft.com/v3/index.json"
+            };
+            var fixedArtifact = new PackageVersion
+            {
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "8.0.2",
+                Source = vulnerable.Source
+            };
             db.Vulnerabilities.Add(new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = name, SourceId = "GHSA-impact-" + Guid.NewGuid().ToString("N"),
+                Ecosystem = "nuget",
+                PackageName = name,
+                SourceId = "GHSA-impact-" + Guid.NewGuid().ToString("N"),
                 Summary = "Denial of service in the affected package",
                 RawAffectedJson = $$"""
                     [{"package":{"ecosystem":"NuGet","name":"{{name}}"},"ranges":[{"type":"ECOSYSTEM","events":[{"introduced":"8.0.0"},{"fixed":"8.0.2"}]}]},
                      {"package":{"ecosystem":"NuGet","name":"Unrelated.Package"},"ranges":[{"type":"ECOSYSTEM","events":[{"introduced":"0"},{"fixed":"99.0.0"}]}]}]
                     """,
-                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = 0, PackageArtifact = vulnerable }]
+                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageVersionId = 0, PackageVersion = vulnerable }]
             });
-            db.PackageArtifacts.Add(fixedArtifact);
+            db.PackageVersions.Add(fixedArtifact);
             await db.SaveChangesAsync();
             vulnerableId = vulnerable.Id;
             fixedId = fixedArtifact.Id;
         }
         var baseline = new CheckContext { Purpose = "baseline", Provider = "local" };
-        var review = new CheckContext { Purpose = "review", Provider = "gitlab", Ref = "master", DefaultBranch = "master",
-            PipelineSource = "merge_request_event", MergeRequest = "42" };
+        var review = new CheckContext
+        {
+            Purpose = "review",
+            Provider = "gitlab",
+            Ref = "master",
+            DefaultBranch = "master",
+            PipelineSource = "merge_request_event",
+            MergeRequest = "42"
+        };
         var baselineId = await Record(vulnerableId, baseline, -5, trusted: false);
         await Record(fixedId, review, -4, trusted: true);
         await Record(fixedId, new CheckContext(), -3, trusted: true);
@@ -3286,9 +3586,15 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BuildChecks.Add(new BuildCheck { Project = project, RunId = Guid.NewGuid().ToString("N"),
-                ScannedProjectCount = 1, BatchCount = 1, CreatedAtUtc = now.AddSeconds(3),
-                ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = "baseline", Ecosystem = "npm" }) });
+            db.BuildChecks.Add(new BuildCheck
+            {
+                Project = project,
+                RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1,
+                BatchCount = 1,
+                CreatedAtUtc = now.AddSeconds(3),
+                ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = "baseline", Ecosystem = "npm" })
+            });
             await db.SaveChangesAsync();
         }
         using (var otherScope = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
@@ -3297,9 +3603,15 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BuildChecks.Add(new BuildCheck { Project = project, RunId = Guid.NewGuid().ToString("N"),
-                ScannedProjectCount = 1, BatchCount = 2, CreatedAtUtc = now.AddSeconds(3),
-                ContextJson = JsonSerializer.Serialize(baseline) });
+            db.BuildChecks.Add(new BuildCheck
+            {
+                Project = project,
+                RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1,
+                BatchCount = 2,
+                CreatedAtUtc = now.AddSeconds(3),
+                ContextJson = JsonSerializer.Serialize(baseline)
+            });
             await db.SaveChangesAsync();
         }
         using (var incomplete = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
@@ -3312,9 +3624,14 @@ public class SupplyChainPagesTests : TestBase
             for (var index = 0; index < 2; index++)
                 db.BuildChecks.Add(new BuildCheck
                 {
-                    Project = project, RunId = runId, BatchIndex = index, BatchCount = 2,
-                    ScannedProjectCount = 1, CreatedAtUtc = now.AddSeconds(3),
-                    ContextJson = JsonSerializer.Serialize(baseline), GraphJson = index == 0 ? null : "[]"
+                    Project = project,
+                    RunId = runId,
+                    BatchIndex = index,
+                    BatchCount = 2,
+                    ScannedProjectCount = 1,
+                    CreatedAtUtc = now.AddSeconds(3),
+                    ContextJson = JsonSerializer.Serialize(baseline),
+                    GraphJson = index == 0 ? null : "[]"
                 });
             await db.SaveChangesAsync();
         }
@@ -3327,9 +3644,15 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BuildChecks.Add(new BuildCheck { Project = project, RunId = Guid.NewGuid().ToString("N"),
-                ScannedProjectCount = 1, BatchCount = 1, CreatedAtUtc = now.AddSeconds(4),
-                ContextJson = JsonSerializer.Serialize(baseline) });
+            db.BuildChecks.Add(new BuildCheck
+            {
+                Project = project,
+                RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1,
+                BatchCount = 1,
+                CreatedAtUtc = now.AddSeconds(4),
+                ContextJson = JsonSerializer.Serialize(baseline)
+            });
             await db.SaveChangesAsync();
         }
         using (var cleared = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
@@ -3339,13 +3662,20 @@ public class SupplyChainPagesTests : TestBase
         {
             using var scope = Server!.Services.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifact = await db.PackageArtifacts.SingleAsync(a => a.Id == artifactId);
-            var check = new BuildCheck { Project = project, RunId = Guid.NewGuid().ToString("N"),
-                ScannedProjectCount = 1, BatchCount = 1, CreatedAtUtc = now.AddSeconds(seconds), Trusted = trusted,
+            var artifact = await db.PackageVersions.SingleAsync(a => a.Id == artifactId);
+            var check = new BuildCheck
+            {
+                Project = project,
+                RunId = Guid.NewGuid().ToString("N"),
+                ScannedProjectCount = 1,
+                BatchCount = 1,
+                CreatedAtUtc = now.AddSeconds(seconds),
+                Trusted = trusted,
                 ContextJson = context == null ? null : JsonSerializer.Serialize(context),
-                Dependencies = [new BuildCheckDependency { BuildCheckId = 0, PackageArtifactId = artifactId,
+                Dependencies = [new BuildCheckDependency { BuildCheckId = 0, PackageVersionId = artifactId,
                     Ecosystem = artifact.Ecosystem, Name = artifact.Name, Version = artifact.Version,
-                    Source = artifact.Source, Sha256 = artifact.Sha256, Trusted = trusted }] };
+                    Source = artifact.Source, Trusted = trusted }]
+            };
             db.BuildChecks.Add(check);
             await db.SaveChangesAsync();
             return check.Id;
@@ -3363,15 +3693,19 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var artifact = new PackageArtifact
+            var artifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = "Example.ProjectImpact." + suffix, Version = "1.0.0",
-                Source = "https://nuget.aiursoft.com/v3/index.json", Sha256 = new string('a', 64)
+                Ecosystem = "nuget",
+                Name = "Example.ProjectImpact." + suffix,
+                Version = "1.0.0",
+                Source = "https://nuget.aiursoft.com/v3/index.json"
             };
             db.Vulnerabilities.Add(new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = artifact.Name, SourceId = "GHSA-projects-" + suffix,
-                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = 0, PackageArtifact = artifact }]
+                Ecosystem = "nuget",
+                PackageName = artifact.Name,
+                SourceId = "GHSA-projects-" + suffix,
+                Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageVersionId = 0, PackageVersion = artifact }]
             });
             var reports = new (string Project, string? Purpose, string? MergeRequest)[]
             {
@@ -3384,20 +3718,25 @@ public class SupplyChainPagesTests : TestBase
             foreach (var report in reports)
                 db.BuildChecks.Add(new BuildCheck
                 {
-                    Project = report.Project, RunId = Guid.NewGuid().ToString("N"),
-                    BatchCount = 1, ScannedProjectCount = 1,
+                    Project = report.Project,
+                    RunId = Guid.NewGuid().ToString("N"),
+                    BatchCount = 1,
+                    ScannedProjectCount = 1,
                     ContextJson = report.Purpose == null ? null : JsonSerializer.Serialize(new CheckContext
                     {
-                        Purpose = report.Purpose, Ecosystem = "nuget", Provider = "gitlab",
-                        Ref = "master", DefaultBranch = "master",
+                        Purpose = report.Purpose,
+                        Ecosystem = "nuget",
+                        Provider = "gitlab",
+                        Ref = "master",
+                        DefaultBranch = "master",
                         PipelineSource = report.Purpose == "review" ? "merge_request_event" : "push",
                         MergeRequest = report.MergeRequest
                     }),
                     Dependencies = [new BuildCheckDependency
                     {
-                        BuildCheckId = 0, PackageArtifactId = 0, PackageArtifact = artifact,
+                        BuildCheckId = 0, PackageVersionId = 0, PackageVersion = artifact,
                         Ecosystem = "nuget", Name = artifact.Name, Version = artifact.Version,
-                        Source = artifact.Source, Sha256 = artifact.Sha256
+                        Source = artifact.Source
                     }]
                 });
             await db.SaveChangesAsync();
@@ -3448,34 +3787,44 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Overview supplier" };
-            var artifact = new PackageArtifact
+
+            var artifact = new PackageVersion
             {
-                Ecosystem = "nuget", Name = "Example.Overview", Version = "1.0.0",
-                Source = "https://nuget.aiursoft.com/v3/index.json", Sha256 = new string('a', 64)
+                Ecosystem = "nuget",
+                Name = "Example.Overview",
+                Version = "1.0.0",
+                Source = "https://nuget.aiursoft.com/v3/index.json"
             };
-            var rules = new[] { "1.*", "1.0.*" }.Select(version => new TrustRule
+            var rules = new[] { "1.*", "1.0.*" }.Select(version => new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0, Supplier = supplier, Ecosystem = "nuget",
-                PackagePattern = artifact.Name, Version = version, Source = artifact.Source,
-                Status = TrustRuleStatus.Approved
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = artifact.Name,
+                Version = version,
+                Source = artifact.Source,
+                Status = RuleStatus.Approved
             }).ToList();
-            db.TrustRules.AddRange(rules);
+            db.Rules.AddRange(rules);
             for (var i = 0; i < 102; i++)
                 db.Vulnerabilities.Add(new Vulnerability
                 {
-                    Ecosystem = "nuget", PackageName = i == 101 ? "example.overview" : artifact.Name,
-                    SourceId = $"GHSA-overview-{i}", Aliases = i == 101 ? "[\"GHSA-overview-0\"]" : "[]",
+                    Ecosystem = "nuget",
+                    PackageName = i == 101 ? "example.overview" : artifact.Name,
+                    SourceId = $"GHSA-overview-{i}",
+                    Aliases = i == 101 ? "[\"GHSA-overview-0\"]" : "[]",
                     RawAffectedJson = """
                         [{"package":{"ecosystem":"NuGet","name":"Example.Overview"},"versions":["1.0.0"]}]
                         """,
-                    Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageArtifactId = 0, PackageArtifact = artifact }]
+                    Matches = [new VulnerabilityMatch { VulnerabilityId = 0, PackageVersionId = 0, PackageVersion = artifact }]
                 });
             foreach (var project in new[] { "company/one", "company/two", "company/review-only" })
                 db.BuildChecks.Add(new BuildCheck
                 {
-                    Project = project, RunId = Guid.NewGuid().ToString("N"), BatchCount = 1, ScannedProjectCount = 1,
+                    Project = project,
+                    RunId = Guid.NewGuid().ToString("N"),
+                    BatchCount = 1,
+                    ScannedProjectCount = 1,
                     ContextJson = JsonSerializer.Serialize(new CheckContext
                     {
                         Purpose = project.EndsWith("review-only", StringComparison.Ordinal) ? "review" : "baseline",
@@ -3483,9 +3832,9 @@ public class SupplyChainPagesTests : TestBase
                     }),
                     Dependencies = [new BuildCheckDependency
                     {
-                        BuildCheckId = 0, PackageArtifactId = 0, PackageArtifact = artifact,
+                        BuildCheckId = 0, PackageVersionId = 0, PackageVersion = artifact,
                         Ecosystem = "nuget", Name = artifact.Name, Version = artifact.Version,
-                        Source = artifact.Source, Sha256 = artifact.Sha256
+                        Source = artifact.Source
                     }]
                 });
             await db.SaveChangesAsync();
@@ -3515,27 +3864,37 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var rule = new TrustRule
+            var rule = new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = 0, Supplier = new Supplier { Name = "Imported vendor" },
-                Ecosystem = "nuget", PackagePattern = "Example.Details", Version = "1.*",
-                Source = "https://nuget.aiursoft.com/v3/index.json", Justification = "Needed for document export",
-                Status = TrustRuleStatus.Revoked, ExpiresAtUtc = DateTime.UtcNow.AddDays(-1),
-                Reviews = [new TrustRuleReview { TrustRuleId = 0, Decision = TrustRuleStatus.Revoked,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = "Example.Details",
+                Version = "1.*",
+                Source = "https://nuget.aiursoft.com/v3/index.json",
+                Justification = "Needed for document export",
+                Status = RuleStatus.Revoked,
+                ExpiresAtUtc = DateTime.UtcNow.AddDays(-1),
+                Reviews = [new RuleChange {  RuleId = 0, Decision = RuleStatus.Revoked,
                     ReviewerId = "reviewer", Reason = "Replaced by maintained package" }]
             };
             var advisory = new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = rule.PackagePattern, SourceId = "GHSA-rule-details",
+                Ecosystem = "nuget",
+                PackageName = rule.PackagePattern,
+                SourceId = "GHSA-rule-details",
                 RawAffectedJson = """
                     [{"package":{"ecosystem":"NuGet","name":"Example.Details"},"versions":["1.0.0"]}]
                     """
             };
-            db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+            db.Rules.Add(new PackageRule
             {
-                TrustRuleId = 0, TrustRule = rule, VulnerabilityId = 0, Vulnerability = advisory,
-                Reason = "Exclude vulnerable old releases"
+                Kind = RuleKind.VulnerabilityExclusion,
+                ParentRuleId = 0,
+                ParentRule = rule,
+                VulnerabilityId = 0,
+                Vulnerability = advisory,
+                Justification = "Exclude vulnerable old releases"
             });
             await db.SaveChangesAsync();
             ruleId = rule.Id;
@@ -3550,14 +3909,15 @@ public class SupplyChainPagesTests : TestBase
             var user = await db.Users.SingleAsync(u => u.Email == account.email);
             db.UserClaims.Add(new Microsoft.AspNetCore.Identity.IdentityUserClaim<string>
             {
-                UserId = user.Id, ClaimType = Authorization.AppPermissions.Type,
+                UserId = user.Id,
+                ClaimType = Authorization.AppPermissions.Type,
                 ClaimValue = Authorization.AppPermissionNames.CanReadSupplyChain
             });
             await db.SaveChangesAsync();
         }
         await Http.GetAsync("/Account/LogOff");
         await PostForm("/Account/Login", new Dictionary<string, string>
-            { ["EmailOrUserName"] = account.email, ["Password"] = account.password });
+        { ["EmailOrUserName"] = account.email, ["Password"] = account.password });
         using var response = await Http.GetAsync($"/SupplyChain/RuleDetails/{ruleId}");
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
@@ -3573,9 +3933,9 @@ public class SupplyChainPagesTests : TestBase
         Assert.AreEqual(HttpStatusCode.NotFound, missing.StatusCode);
         using var verifyScope = Server!.Services.CreateScope();
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-        Assert.AreEqual(TrustRuleStatus.Revoked, (await verifyDb.TrustRules.FindAsync(ruleId))!.Status);
-        Assert.AreEqual(1, await verifyDb.TrustRuleReviews.CountAsync(r => r.TrustRuleId == ruleId));
-        Assert.AreEqual(1, await verifyDb.TrustRuleVulnerabilityExclusions.CountAsync(e => e.TrustRuleId == ruleId));
+        Assert.AreEqual(RuleStatus.Revoked, (await verifyDb.Rules.Where(r => r.Kind == RuleKind.Approval).SingleOrDefaultAsync(r => r.Id == ruleId))!.Status);
+        Assert.AreEqual(1, await verifyDb.RuleChanges.CountAsync(r => r.RuleId == ruleId));
+        Assert.AreEqual(1, await verifyDb.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).CountAsync(e => e.ParentRuleId == ruleId));
     }
 
     [TestMethod]
@@ -3588,23 +3948,29 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Vendor " + Guid.NewGuid().ToString("N") };
-            var rule = new TrustRule
+
+            var rule = new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName, Version = "10.0.*",
-                Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "10.0.*",
+                Source = "https://api.nuget.org/v3/index.json",
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             };
             var vulnerability = new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = packageName, SourceId = "GHSA-" + Guid.NewGuid().ToString("N"),
-                Summary = "Affected old version", RawAffectedJson = """
+                Ecosystem = "nuget",
+                PackageName = packageName,
+                SourceId = "GHSA-" + Guid.NewGuid().ToString("N"),
+                Summary = "Affected old version",
+                RawAffectedJson = """
                     [{"package":{"ecosystem":"NuGet","name":"PACKAGE"},"ranges":[{"type":"SEMVER","events":[{"introduced":"10.0.2"},{"fixed":"10.0.8"}]}]}]
                     """.Replace("PACKAGE", packageName, StringComparison.Ordinal)
             };
-            db.TrustRules.Add(rule);
+            db.Rules.Add(rule);
             db.Vulnerabilities.Add(vulnerability);
             await db.SaveChangesAsync();
             ruleId = rule.Id;
@@ -3620,10 +3986,12 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+            db.Rules.Add(new PackageRule
             {
-                TrustRuleId = ruleId, VulnerabilityId = vulnerabilityId,
-                Reason = "Affected versions excluded after review"
+                Kind = RuleKind.VulnerabilityExclusion,
+                ParentRuleId = ruleId,
+                VulnerabilityId = vulnerabilityId,
+                Justification = "Affected versions excluded after review"
             });
             await db.SaveChangesAsync();
         }
@@ -3648,33 +4016,44 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Overlap vendor " + Guid.NewGuid().ToString("N") };
-            var broad = new TrustRule
+
+            var broad = new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
-                Version = "10.*", Source = source, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "10.*",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             };
-            db.TrustRules.AddRange(broad, new TrustRule
+            db.Rules.AddRange(broad, new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
-                Version = "10.0.*", Source = source, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "10.0.*",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
-            }, new TrustRule
+            }, new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
-                Version = "10.0.2", Source = source, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "10.0.2",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
             var advisory = new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = name, SourceId = "GHSA-overlap-" + Guid.NewGuid().ToString("N"),
+                Ecosystem = "nuget",
+                PackageName = name,
+                SourceId = "GHSA-overlap-" + Guid.NewGuid().ToString("N"),
                 RawAffectedJson = """
                     [{"package":{"ecosystem":"NuGet","name":"PACKAGE"},
                       "ranges":[{"type":"SEMVER","events":[{"introduced":"10.0.2"},{"fixed":"10.0.3"}]}]}]
@@ -3682,10 +4061,12 @@ public class SupplyChainPagesTests : TestBase
             };
             db.Vulnerabilities.Add(advisory);
             await db.SaveChangesAsync();
-            db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+            db.Rules.Add(new PackageRule
             {
-                TrustRuleId = broad.Id, VulnerabilityId = advisory.Id,
-                Reason = "Exclude the affected version across overlapping approvals"
+                Kind = RuleKind.VulnerabilityExclusion,
+                ParentRuleId = broad.Id,
+                VulnerabilityId = advisory.Id,
+                Justification = "Exclude the affected version across overlapping approvals"
             });
             await db.SaveChangesAsync();
         }
@@ -3707,38 +4088,48 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Narrow exclusion vendor " + Guid.NewGuid().ToString("N") };
-            db.TrustRules.Add(new TrustRule
+
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
-                Version = "10.*", Source = source, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "10.*",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
-            var narrow = new TrustRule
+            var narrow = new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = name,
-                Version = "10.0.*", Source = source, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name,
+                Version = "10.0.*",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             };
             var advisory = new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = name, SourceId = "GHSA-narrow-" + Guid.NewGuid().ToString("N"),
+                Ecosystem = "nuget",
+                PackageName = name,
+                SourceId = "GHSA-narrow-" + Guid.NewGuid().ToString("N"),
                 RawAffectedJson = """
                     [{"package":{"ecosystem":"NuGet","name":"PACKAGE"},
                       "ranges":[{"type":"SEMVER","events":[{"introduced":"10.0.2"},{"fixed":"10.0.8"}]}]}]
                     """.Replace("PACKAGE", name, StringComparison.Ordinal)
             };
-            db.TrustRules.Add(narrow);
+            db.Rules.Add(narrow);
             db.Vulnerabilities.Add(advisory);
             await db.SaveChangesAsync();
-            db.TrustRuleVulnerabilityExclusions.Add(new TrustRuleVulnerabilityExclusion
+            db.Rules.Add(new PackageRule
             {
-                TrustRuleId = narrow.Id, VulnerabilityId = advisory.Id,
-                Reason = "Exclude all affected versions without excluding the full major range"
+                Kind = RuleKind.VulnerabilityExclusion,
+                ParentRuleId = narrow.Id,
+                VulnerabilityId = advisory.Id,
+                Justification = "Exclude all affected versions without excluding the full major range"
             });
             await db.SaveChangesAsync();
         }
@@ -3762,35 +4153,43 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var affected = new PackageArtifact
+            var affected = new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0",
-                Source = "https://nuget.aiursoft.com/v3/index.json", Sha256 = new string('a', 64)
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = "https://nuget.aiursoft.com/v3/index.json"
             };
-            var otherSource = new PackageArtifact
+            var otherSource = new PackageVersion
             {
-                Ecosystem = "nuget", Name = name, Version = "1.0.0",
-                Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('b', 64)
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = "https://api.nuget.org/v3/index.json"
             };
             db.Vulnerabilities.Add(new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = name,
+                Ecosystem = "nuget",
+                PackageName = name,
                 SourceId = "GHSA-identity-" + Guid.NewGuid().ToString("N"),
                 RawAffectedJson = "[]",
-                Matches = [new VulnerabilityMatch { PackageArtifactId = 0, VulnerabilityId = 0, PackageArtifact = affected }]
+                Matches = [new VulnerabilityMatch { PackageVersionId = 0, VulnerabilityId = 0, PackageVersion = affected }]
             });
-            db.PackageArtifacts.Add(otherSource);
+            db.PackageVersions.Add(otherSource);
             await db.SaveChangesAsync();
             affectedId = affected.Id;
             db.BuildChecks.Add(new BuildCheck
             {
-                Project = project, RunId = Guid.NewGuid().ToString("N"), BatchCount = 1,
-                ScannedProjectCount = 1, CreatedAtUtc = now,
+                Project = project,
+                RunId = Guid.NewGuid().ToString("N"),
+                BatchCount = 1,
+                ScannedProjectCount = 1,
+                CreatedAtUtc = now,
                 Dependencies = [new BuildCheckDependency
                 {
                     BuildCheckId = 0,
-                    PackageArtifactId = otherSource.Id, Ecosystem = "nuget", Name = name,
-                    Version = "1.0.0", Source = otherSource.Source, Sha256 = otherSource.Sha256
+                    PackageVersionId = otherSource.Id, Ecosystem = "nuget", Name = name,
+                    Version = "1.0.0", Source = otherSource.Source
                 }]
             });
             await db.SaveChangesAsync();
@@ -3812,14 +4211,16 @@ public class SupplyChainPagesTests : TestBase
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             db.BuildChecks.Add(new BuildCheck
             {
-                Project = project, RunId = Guid.NewGuid().ToString("N"), BatchCount = 1,
-                ScannedProjectCount = 1, CreatedAtUtc = now.AddSeconds(1),
+                Project = project,
+                RunId = Guid.NewGuid().ToString("N"),
+                BatchCount = 1,
+                ScannedProjectCount = 1,
+                CreatedAtUtc = now.AddSeconds(1),
                 Dependencies = [new BuildCheckDependency
                 {
                     BuildCheckId = 0,
-                    PackageArtifactId = affectedId, Ecosystem = "nuget", Name = name,
-                    Version = "1.0.0", Source = "https://nuget.aiursoft.com/v3/index.json",
-                    Sha256 = new string('a', 64)
+                    PackageVersionId = affectedId, Ecosystem = "nuget", Name = name,
+                    Version = "1.0.0", Source = "https://nuget.aiursoft.com/v3/index.json"
                 }]
             });
             await db.SaveChangesAsync();
@@ -3840,24 +4241,32 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Range block vendor " + Guid.NewGuid().ToString("N") };
-            db.TrustRules.Add(new TrustRule
+
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName,
-                Version = "10.0.*", Source = "https://api.nuget.org/v3/index.json",
-                Status = TrustRuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "10.0.*",
+                Source = "https://api.nuget.org/v3/index.json",
+                Status = RuleStatus.Approved,
+                ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
-            var block = new BlockRule
+            var block = new PackageRule
             {
-                Ecosystem = "nuget", PackagePattern = packageName, Version = "10.0.2",
-                Reason = "Initially block only one affected version"
+                Kind = RuleKind.Block,
+                Status = RuleStatus.Approved,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "10.0.2",
+                Justification = "Initially block only one affected version"
             };
-            db.BlockRules.Add(block);
+            db.Rules.Add(block);
             db.Vulnerabilities.Add(new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = packageName,
+                Ecosystem = "nuget",
+                PackageName = packageName,
                 SourceId = "GHSA-" + Guid.NewGuid().ToString("N"),
                 Summary = "Affected versions remain in the allowed range",
                 RawAffectedJson = """
@@ -3875,7 +4284,7 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            db.BlockRules.Single(b => b.Id == blockId).Version = "10.0.*";
+            db.Rules.Where(r => r.Kind == RuleKind.Block).Single(b => b.Id == blockId).Version = "10.0.*";
             await db.SaveChangesAsync();
         }
         using (var covered = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
@@ -3897,18 +4306,22 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Revoked range vendor " + Guid.NewGuid().ToString("N") };
-            db.TrustRules.Add(new TrustRule
+
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName,
-                Version = "10.0.*", Source = source, Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "10.0.*",
+                Source = source,
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
             db.Vulnerabilities.Add(new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = packageName,
+                Ecosystem = "nuget",
+                PackageName = packageName,
                 SourceId = "GHSA-revoked-" + Guid.NewGuid().ToString("N"),
                 RawAffectedJson = """
                     [{"package":{"ecosystem":"NuGet","name":"PACKAGE"},
@@ -3916,13 +4329,15 @@ public class SupplyChainPagesTests : TestBase
                     """.Replace("PACKAGE", packageName, StringComparison.Ordinal)
             });
             await db.SaveChangesAsync();
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null,
-                SupplierId = supplier.Id, Ecosystem = "nuget", PackagePattern = packageName,
-                Version = "10.0.*", Source = "https://nuget.aiursoft.com/v3/index.json",
-                Status = TrustRuleStatus.Revoked
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "10.0.*",
+                Source = "https://nuget.aiursoft.com/v3/index.json",
+                Status = RuleStatus.Revoked
             });
             await db.SaveChangesAsync();
         }
@@ -3934,14 +4349,15 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplierId = await db.TrustRules.Where(r => r.PackagePattern == packageName)
-                .Select(r => r.SupplierId).FirstAsync();
-            db.TrustRules.Add(new TrustRule
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                 ApplicationId = null,
-                SupplierId = supplierId, Ecosystem = "nuget", PackagePattern = packageName,
-                Version = "10.0.*", Source = source, Status = TrustRuleStatus.Revoked
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "10.0.*",
+                Source = source,
+                Status = RuleStatus.Revoked
             });
             await db.SaveChangesAsync();
         }
@@ -3961,19 +4377,24 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Historical vendor " + Guid.NewGuid().ToString("N") };
-            db.TrustRules.Add(new TrustRule
+
+            db.Rules.Add(new PackageRule
             {
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                ApplicationId = null, SupplierId = supplier.Id,
-                Supplier = supplier, Ecosystem = "nuget", PackagePattern = packageName, Version = "10.0.*",
-                Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = packageName,
+                Version = "10.0.*",
+                Source = "https://api.nuget.org/v3/index.json",
+                Status = RuleStatus.Approved,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
             });
             db.Vulnerabilities.Add(new Vulnerability
             {
-                Ecosystem = "nuget", PackageName = packageName,
-                SourceId = "GHSA-" + Guid.NewGuid().ToString("N"), Withdrawn = true,
+                Ecosystem = "nuget",
+                PackageName = packageName,
+                SourceId = "GHSA-" + Guid.NewGuid().ToString("N"),
+                Withdrawn = true,
                 RawAffectedJson = """
                     [{"package":{"ecosystem":"NuGet","name":"PACKAGE"},"ranges":[{"type":"SEMVER","events":[{"introduced":"10.0.2"},{"fixed":"10.0.8"}]}]}]
                     """.Replace("PACKAGE", packageName, StringComparison.Ordinal)
@@ -4005,34 +4426,44 @@ public class SupplyChainPagesTests : TestBase
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             var userId = db.Users.First().Id;
-            var supplier = new Supplier { Name = "Review vendor " + suffix };
-            db.TrustRules.AddRange(
-                new TrustRule
+
+            db.Rules.AddRange(
+                new PackageRule
                 {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                    ApplicationId = null, SupplierId = supplier.Id,
-                    Supplier = supplier,
+                    RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+                    ApplicationId = null,
                     Application = new DependencyApplication
                     {
-                        RequestedByUserId = userId, Ecosystem = "nuget", Project = "upcoming-" + suffix,
-                        Source = "https://api.nuget.org/v3/index.json", Status = ApplicationStatus.Approved
+                        RequestedByUserId = userId,
+                        Ecosystem = "nuget",
+                        Project = "upcoming-" + suffix,
+                        Source = "https://api.nuget.org/v3/index.json",
+                        Status = ApplicationStatus.Approved
                     },
-                    Ecosystem = "nuget", PackagePattern = "Example.Upcoming." + suffix, Version = "1.0.0",
-                    Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
+                    Ecosystem = "nuget",
+                    PackagePattern = "Example.Upcoming." + suffix,
+                    Version = "1.0.0",
+                    Source = "https://api.nuget.org/v3/index.json",
+                    Status = RuleStatus.Approved,
                     ExpiresAtUtc = DateTime.UtcNow.AddDays(10)
                 },
-                new TrustRule
+                new PackageRule
                 {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                    ApplicationId = null, SupplierId = supplier.Id,
-                    Supplier = supplier,
+                    RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+                    ApplicationId = null,
                     Application = new DependencyApplication
                     {
-                        RequestedByUserId = userId, Ecosystem = "nuget", Project = "expired-" + suffix,
-                        Source = "https://api.nuget.org/v3/index.json", Status = ApplicationStatus.Approved
+                        RequestedByUserId = userId,
+                        Ecosystem = "nuget",
+                        Project = "expired-" + suffix,
+                        Source = "https://api.nuget.org/v3/index.json",
+                        Status = ApplicationStatus.Approved
                     },
-                    Ecosystem = "nuget", PackagePattern = "Example.Expired." + suffix, Version = "1.0.0",
-                    Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved,
+                    Ecosystem = "nuget",
+                    PackagePattern = "Example.Expired." + suffix,
+                    Version = "1.0.0",
+                    Source = "https://api.nuget.org/v3/index.json",
+                    Status = RuleStatus.Approved,
                     ExpiresAtUtc = DateTime.UtcNow.AddDays(-1)
                 });
             await db.SaveChangesAsync();
@@ -4063,30 +4494,37 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var block = new BlockRule
+            var block = new PackageRule
             {
-                Ecosystem = "nuget", PackagePattern = oldName, Version = "*", Active = true,
-                Reason = "Old security reason"
+                Kind = RuleKind.Block,
+                Ecosystem = "nuget",
+                PackagePattern = oldName,
+                Version = "*",
+                Status = RuleStatus.Approved,
+                Justification = "Old security reason"
             };
-            db.BlockRules.Add(block);
+            db.Rules.Add(block);
             await db.SaveChangesAsync();
             blockId = block.Id;
         }
         using var response = await PostForm("/SupplyChain/EditBlock", new Dictionary<string, string>
         {
-            ["id"] = blockId.ToString(), ["packagePattern"] = newName, ["version"] = "2.*",
-            ["reason"] = "Updated security reason", ["changeReason"] = "Upstream renamed the package"
+            ["id"] = blockId.ToString(),
+            ["packagePattern"] = newName,
+            ["version"] = "2.*",
+            ["reason"] = "Updated security reason",
+            ["changeReason"] = "Upstream renamed the package"
         }, tokenUrl: "/SupplyChain/Index?tab=rules");
         Assert.AreEqual(HttpStatusCode.Redirect, response.StatusCode);
         using var verifyScope = Server!.Services.CreateScope();
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-        var changed = verifyDb.BlockRules.Single(b => b.Id == blockId);
+        var changed = verifyDb.Rules.Where(r => r.Kind == RuleKind.Block).Single(b => b.Id == blockId);
         Assert.AreEqual(newName, changed.PackagePattern);
         Assert.AreEqual("2.*", changed.Version);
-        var history = verifyDb.BlockRuleChanges.Single(c => c.BlockRuleId == blockId);
-        StringAssert.Contains(history.Description, oldName);
-        StringAssert.Contains(history.Description, newName);
-        StringAssert.Contains(history.Description, "Upstream renamed the package");
+        var history = verifyDb.RuleChanges.Single(c => c.RuleId == blockId);
+        StringAssert.Contains(history.Reason, oldName);
+        StringAssert.Contains(history.Reason, newName);
+        StringAssert.Contains(history.Reason, "Upstream renamed the package");
     }
 
     [TestMethod]
@@ -4103,14 +4541,19 @@ public class SupplyChainPagesTests : TestBase
             for (var i = 0; i < 101; i++)
                 db.DependencyApplications.Add(new DependencyApplication
                 {
-                    RequestedByUserId = owner.Id, Project = $"PaginationHistory-{i:000}",
-                    Ecosystem = "nuget", Source = "https://api.nuget.org/v3/index.json",
-                    CreatedAtUtc = timestamp, Status = ApplicationStatus.Failed
+                    RequestedByUserId = owner.Id,
+                    Project = $"PaginationHistory-{i:000}",
+                    Ecosystem = "nuget",
+                    Source = "https://api.nuget.org/v3/index.json",
+                    CreatedAtUtc = timestamp,
+                    Status = ApplicationStatus.Failed
                 });
             db.DependencyApplications.Add(new DependencyApplication
             {
-                RequestedByUserId = "another-owner", Project = "PaginationHistory-Private",
-                Ecosystem = "nuget", CreatedAtUtc = timestamp
+                RequestedByUserId = "another-owner",
+                Project = "PaginationHistory-Private",
+                Ecosystem = "nuget",
+                CreatedAtUtc = timestamp
             });
             await db.SaveChangesAsync();
         }
@@ -4138,28 +4581,32 @@ public class SupplyChainPagesTests : TestBase
     public async Task CatalogPaginationShowsOneListPerTabAndKeepsPagesAndFilters()
     {
         await LoginAsAdmin();
-        int supplierId;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = "Pagination supplier" };
-            db.Suppliers.Add(supplier);
+
+
             var now = DateTime.UtcNow;
             for (var i = 0; i < 501; i++)
             {
                 var name = $"Pagination.Catalog{i:000}";
-                db.TrustRules.Add(new TrustRule
+                db.Rules.Add(new PackageRule
                 {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
-                    ApplicationId = null, SupplierId = 0, Supplier = supplier,
-                    Ecosystem = "nuget", PackagePattern = name, Version = "1.0.0",
-                    Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved
+                    RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+                    ApplicationId = null,
+                    Ecosystem = "nuget",
+                    PackagePattern = name,
+                    Version = "1.0.0",
+                    Source = "https://api.nuget.org/v3/index.json",
+                    Status = RuleStatus.Approved
                 });
-                db.PackageArtifacts.Add(new PackageArtifact
+                db.PackageVersions.Add(new PackageVersion
                 {
-                    Ecosystem = "nuget", Name = name, Version = "1.0.0",
-                    Source = "https://api.nuget.org/v3/index.json", Sha256 = new string('a', 64),
-                    FirstTrustedAtUtc = now, SourceVerifiedAtUtc = now, LastCheckedAtUtc = now
+                    Ecosystem = "nuget",
+                    Name = name,
+                    Version = "1.0.0",
+                    Source = "https://api.nuget.org/v3/index.json",
+                    LastCheckedAtUtc = now
                 });
             }
             var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();
@@ -4173,9 +4620,8 @@ public class SupplyChainPagesTests : TestBase
             audit.LastSuccessAtUtc = DateTime.UtcNow;
             audit.LastError = null;
             await db.SaveChangesAsync();
-            supplierId = supplier.Id;
         }
-        var url = $"/SupplyChain/Index?tab=rules&ecosystem=nuget&query=Pagination.Catalog&supplierId={supplierId}";
+        var url = $"/SupplyChain/Index?tab=rules&ecosystem=nuget&query=Pagination.Catalog";
         static string TabUrl(string html, string title) => WebUtility.HtmlDecode(
             System.Text.RegularExpressions.Regex.Matches(html, @"<a\b[^>]*href=""([^""]+)""[^>]*>(.*?)</a>",
                     System.Text.RegularExpressions.RegexOptions.Singleline)
@@ -4199,7 +4645,6 @@ public class SupplyChainPagesTests : TestBase
         var artifactUrl = TabUrl(last, "Reported versions");
         StringAssert.Contains(artifactUrl, "catalogView=artifacts");
         StringAssert.Contains(artifactUrl, "query=Pagination.Catalog");
-        StringAssert.Contains(artifactUrl, $"supplierId={supplierId}");
         StringAssert.Contains(artifactUrl, "artifactPage=11");
         var artifacts = await Http.GetStringAsync(artifactUrl);
         AssertOneList(artifacts, "artifacts", "rules");
@@ -4234,15 +4679,19 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            total = await db.BlockRules.CountAsync(b => b.Ecosystem == "npm") + 201;
+            total = await db.Rules.Where(r => r.Kind == RuleKind.Block).CountAsync(b => b.Ecosystem == "npm") + 201;
             var now = DateTime.UtcNow;
             for (var i = 0; i < 201; i++)
-                db.BlockRules.Add(new BlockRule
+                db.Rules.Add(new PackageRule
                 {
-                    Ecosystem = "npm", PackagePattern = $"pagination-block-{i:000}",
-                    Reason = "Pagination regression", CreatedAtUtc = now
+                    Kind = RuleKind.Block,
+                    Status = RuleStatus.Approved,
+                    Ecosystem = "npm",
+                    PackagePattern = $"pagination-block-{i:000}",
+                    Justification = "Pagination regression",
+                    RequestedAtUtc = now
                 });
-            db.BlockRules.Add(new BlockRule { Ecosystem = "nuget", PackagePattern = "OtherEcosystem" });
+            db.Rules.Add(new PackageRule { Kind = RuleKind.Block, Status = RuleStatus.Approved, Ecosystem = "nuget", PackagePattern = "OtherEcosystem" });
             await db.SaveChangesAsync();
         }
         var first = await Http.GetStringAsync("/SupplyChain/Blocklist?ecosystem=npm");
@@ -4280,20 +4729,21 @@ public class SupplyChainPagesTests : TestBase
     {
         await LoginAsAdmin();
         var name = "Example.Policy." + Guid.NewGuid().ToString("N");
-        int supplierId;
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = name };
-            db.Suppliers.Add(supplier);
+
+
             await db.SaveChangesAsync();
-            supplierId = supplier.Id;
         }
         var fields = new Dictionary<string, string>
         {
-            ["supplierId"] = supplierId.ToString(), ["ecosystem"] = "nuget", ["packagePattern"] = name + ".*",
-            ["version"] = "9.*", ["source"] = "https://api.nuget.org/v3/index.json",
-            ["justification"] = "Approve one concrete dependency", ["expiresAtUtc"] = DateTime.UtcNow.AddDays(1).ToString("O")
+            ["ecosystem"] = "nuget",
+            ["packagePattern"] = name + ".*",
+            ["version"] = "9.*",
+            ["source"] = "https://api.nuget.org/v3/index.json",
+            ["justification"] = "Approve one concrete dependency",
+            ["expiresAtUtc"] = DateTime.UtcNow.AddDays(1).ToString("O")
         };
         using (var rejected = await PostForm("/SupplyChain/AddRule", fields, "/SupplyChain/Index?tab=rules"))
             Assert.AreEqual(HttpStatusCode.BadRequest, rejected.StatusCode);
@@ -4308,13 +4758,13 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var policy = await db.PackagePolicies.Include(p => p.Grants).SingleAsync(p => p.NormalizedName == name.ToLowerInvariant());
-            Assert.HasCount(2, policy.Grants);
-            policyId = policy.Id;
+            var grants = await db.Rules.Where(r => r.Kind == RuleKind.Approval && r.PackagePattern.ToLower() == name.ToLower()).OrderBy(r => r.Id).ToListAsync();
+            Assert.HasCount(2, grants);
+            policyId = grants[0].Id;
         }
         var html = await Http.GetStringAsync("/SupplyChain/Index?tab=rules&query=" + name);
-        Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(html, "/SupplyChain/PackageDetails/" + policyId + "\"><code>").Count);
-        var details = await Http.GetStringAsync("/SupplyChain/PackageDetails/" + policyId);
+        Assert.AreEqual(1, System.Text.RegularExpressions.Regex.Matches(html, System.Text.RegularExpressions.Regex.Escape("/SupplyChain/PackageDetails?ruleId=" + policyId + "\"><code>")).Count);
+        var details = await Http.GetStringAsync("/SupplyChain/PackageDetails?ruleId=" + policyId);
         StringAssert.Contains(details, "9.*");
         StringAssert.Contains(details, "10.*");
         using var prefixPreview = await Http.GetAsync("/SupplyChain/PreviewRule?ecosystem=nuget&packagePattern=" +
@@ -4334,14 +4784,25 @@ public class SupplyChainPagesTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
-            var supplier = new Supplier { Name = name };
-            var rule = new TrustRule {
-                RequestedAtUtc = DateTime.UtcNow.AddDays(-1), SupplierId = 0, Supplier = supplier, ApplicationId = null,
-                Ecosystem = "nuget", PackagePattern = name + "*", Version = "1.*",
-                Source = "https://api.nuget.org/v3/index.json", Status = TrustRuleStatus.Approved };
-            db.TrustRules.Add(rule);
-            db.PackageArtifacts.Add(new PackageArtifact { Ecosystem = "nuget", Name = name, Version = "1.0.0",
-                Source = rule.Source, Sha256 = new string('a', 64), SourceVerifiedAtUtc = DateTime.UtcNow });
+
+            var rule = new PackageRule
+            {
+                RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
+                ApplicationId = null,
+                Ecosystem = "nuget",
+                PackagePattern = name + "*",
+                Version = "1.*",
+                Source = "https://api.nuget.org/v3/index.json",
+                Status = RuleStatus.Approved
+            };
+            db.Rules.Add(rule);
+            db.PackageVersions.Add(new PackageVersion
+            {
+                Ecosystem = "nuget",
+                Name = name,
+                Version = "1.0.0",
+                Source = rule.Source
+            });
             await db.SaveChangesAsync();
             originalId = rule.Id;
         }
@@ -4349,8 +4810,12 @@ public class SupplyChainPagesTests : TestBase
         var fingerprint = System.Text.RegularExpressions.Regex.Match(page, "name=\"fingerprint\" value=\"([^\"]+)\"").Groups[1].Value;
         Assert.IsFalse(string.IsNullOrEmpty(fingerprint));
         Assert.DoesNotContain("checked=", page);
-        var fields = new Dictionary<string, string> { ["fingerprint"] = fingerprint,
-            ["selections"] = originalId + ":" + name + ".Fake", ["reason"] = "Review known concrete packages" };
+        var fields = new Dictionary<string, string>
+        {
+            ["fingerprint"] = fingerprint,
+            ["selections"] = originalId + ":" + name + ".Fake",
+            ["reason"] = "Review known concrete packages"
+        };
         using (var forged = await PostForm("/SupplyChain/MigrateLegacyRules", fields))
             Assert.AreEqual(HttpStatusCode.BadRequest, forged.StatusCode);
         fields["selections"] = originalId + ":" + name;
@@ -4361,8 +4826,8 @@ public class SupplyChainPagesTests : TestBase
         Assert.AreEqual(HttpStatusCode.Redirect, migrated.StatusCode);
         using var verify = Server!.Services.CreateScope();
         var database = verify.ServiceProvider.GetRequiredService<TemplateDbContext>();
-        Assert.AreEqual(1, await database.TrustRules.CountAsync(r => r.LegacySourceRuleId == originalId));
-        Assert.AreEqual(0, await database.TrustRules.CountAsync(r => r.PackagePattern == name + ".Fake"));
+        Assert.AreEqual(1, await database.Rules.Where(r => r.Kind == RuleKind.Approval).CountAsync(r => r.LegacySourceRuleId == originalId));
+        Assert.AreEqual(0, await database.Rules.Where(r => r.Kind == RuleKind.Approval).CountAsync(r => r.PackagePattern == name + ".Fake"));
     }
 
 }

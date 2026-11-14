@@ -17,10 +17,14 @@ public class RequestResolutionPolicyTests
         RequestResolutionPolicy.ValidateRequest("npm", "https://npm.aiursoft.com",
             direct, configuration, []);
 
-        var block = new BlockRule
+        var block = new PackageRule
         {
-            Ecosystem = "npm", PackagePattern = "@example/*", Version = "*",
-            Reason = "Incident response", Active = true
+            Kind = RuleKind.Block,
+            Ecosystem = "npm",
+            PackagePattern = "@example/*",
+            Version = "*",
+            Justification = "Incident response",
+            Status = RuleStatus.Approved
         };
         var blocked = Assert.ThrowsExactly<InvalidOperationException>(() =>
             RequestResolutionPolicy.ValidateRequest("npm", "https://npm.aiursoft.com",

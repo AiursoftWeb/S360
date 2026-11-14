@@ -20,7 +20,10 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
     {
         var decisions = await AssessAsync(candidates.Select(c => new Dependency
         {
-            Ecosystem = c.Ecosystem, Name = c.Name, Version = c.Version, Source = c.Source
+            Ecosystem = c.Ecosystem,
+            Name = c.Name,
+            Version = c.Version,
+            Source = c.Source
         }));
         return decisions.Select((d, i) => new MirrorCandidateDecision(candidates[i], d.Trusted)).ToList();
     }
@@ -38,21 +41,26 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
 
     private async Task<List<DependencyDecision>> AssessSnapshotAsync(IReadOnlyCollection<Dependency> requested)
     {
-        var rules = await db.TrustRules.AsNoTracking().Include(r => r.PackagePolicy)
-            .Where(r => r.Status != TrustRuleStatus.Pending).ToListAsync();
-        var blocks = await db.BlockRules.AsNoTracking().Where(r => r.Active).ToListAsync();
-        var exclusions = await db.TrustRuleVulnerabilityExclusions.AsNoTracking()
+        var rules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).AsNoTracking()
+            .Where(r => r.Status != RuleStatus.Pending).ToListAsync();
+        var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(r => r.Status == RuleStatus.Approved).ToListAsync();
+        var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
         var advisories = await db.Vulnerabilities.AsNoTracking().Where(v => !v.Withdrawn).ToListAsync();
         var audit = await db.VulnerabilitySyncStates.AsNoTracking().FirstOrDefaultAsync();
-        var approvals = await db.TrustRuleReviews.AsNoTracking()
-            .Where(r => r.Decision == TrustRuleStatus.Approved)
-            .GroupBy(r => r.TrustRuleId).Select(g => new { Id = g.Key, At = g.Max(r => r.ReviewedAtUtc) })
+        var approvals = await db.RuleChanges.AsNoTracking()
+            .Where(r => r.Decision == RuleStatus.Approved)
+            .GroupBy(r => r.RuleId).Select(g => new { Id = g.Key, At = g.Max(r => r.ReviewedAtUtc) })
             .ToDictionaryAsync(r => r.Id, r => r.At);
         var versionFindings = await db.VulnerabilityMatches.AsNoTracking()
             .Where(m => m.Active && !m.Vulnerability.Withdrawn)
-            .Select(m => new { m.PackageArtifact.Ecosystem, m.PackageArtifact.Name,
-                m.PackageArtifact.Version, m.Vulnerability.SourceId }).ToListAsync();
+            .Select(m => new
+            {
+                m.PackageVersion.Ecosystem,
+                m.PackageVersion.Name,
+                m.PackageVersion.Version,
+                m.Vulnerability.SourceId
+            }).ToListAsync();
         var now = DateTime.UtcNow;
         var fresh = audit?.LastSuccessAtUtc > now.AddHours(-12) && audit.LastSuccessAtUtc <= now;
         return requested.Select(dependency =>
@@ -72,22 +80,23 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
                 return new DependencyDecision { Dependency = dependency, Reason = $"This version has a known active vulnerability: {affected.SourceId}." };
             // A successful package-level OSV query covers new versions too. Newly approved
             // package names must enter the next audit before absence of findings means clean.
-            var covered = rules.Any(r => r.Status == TrustRuleStatus.Approved && r.Ecosystem == dependency.Ecosystem &&
+            var covered = rules.Any(r => r.Status == RuleStatus.Approved && r.Ecosystem == dependency.Ecosystem &&
                 r.MatchesPackage(dependency.Name) && !r.IsLegacyTemplate &&
                 (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now) &&
                 r.RequestedAtUtc <= audit?.LastSuccessfulAttemptAtUtc &&
                 (!approvals.TryGetValue(r.Id, out var at) || at <= audit.LastSuccessfulAttemptAtUtc));
             return fresh && covered ? decision : new DependencyDecision
             {
-                Dependency = dependency, PendingVerification = true,
+                Dependency = dependency,
+                PendingVerification = true,
                 Reason = "Current vulnerability data is unavailable for this package. A vulnerability refresh is required."
             };
         }).ToList();
     }
 
-    public static DependencyDecision Evaluate(Dependency dependency, IEnumerable<TrustRule> rules,
-        IEnumerable<BlockRule> blocks, DateTime now,
-        IReadOnlyCollection<TrustRuleVulnerabilityExclusion>? exclusions = null)
+    public static DependencyDecision Evaluate(Dependency dependency, IEnumerable<PackageRule> rules,
+        IEnumerable<PackageRule> blocks, DateTime now,
+        IReadOnlyCollection<PackageRule>? exclusions = null)
     {
         var source = TrustPattern.NormalizeSource(dependency.Source);
         var block = BlockRulePolicy.Match(blocks, dependency.Ecosystem, dependency.Name, dependency.Version);
@@ -96,31 +105,34 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         var matching = rules.Where(r => r.Ecosystem == dependency.Ecosystem && r.Source == source &&
             r.MatchesPackage(dependency.Name) &&
             TrustPattern.VersionMatches(r.Version, dependency.Version, dependency.Ecosystem, r.IncludePrerelease)).ToList();
-        var denied = matching.FirstOrDefault(r => r.Status is TrustRuleStatus.Rejected or TrustRuleStatus.Revoked);
+        var denied = matching.FirstOrDefault(r => r.Status is RuleStatus.Rejected or RuleStatus.Revoked);
         if (denied != null) return Decision(false, "Explicitly rejected or revoked.", denied);
 
-        var approved = matching.Where(r => r.Status == TrustRuleStatus.Approved).ToList();
+        var approved = matching.Where(r => r.Status == RuleStatus.Approved).ToList();
         // An explicit version exclusion must not be bypassed by another
         // overlapping approval, including a more specific pinned rule.
         var excluded = approved.Where(r => r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)
             .Select(r => MatchingExclusion(r, dependency, exclusions))
             .FirstOrDefault(e => e != null);
         if (excluded != null)
-            return Decision(false, $"Excluded vulnerable or uncertain version: {excluded.Vulnerability.SourceId}.", null);
+            return Decision(false, $"Excluded vulnerable or uncertain version: {excluded.Vulnerability!.SourceId}.", null);
         var allowed = approved.FirstOrDefault(r => r.ExpiresAtUtc == null || r.ExpiresAtUtc > now);
         return allowed == null
             ? Decision(false, approved.Count > 0 ? "Approval expired; review required." : "No approved trust rule.", null)
             : Decision(true, "Approved by package policy.", allowed);
 
-        DependencyDecision Decision(bool trusted, string reason, TrustRule? rule) => new()
+        DependencyDecision Decision(bool trusted, string reason, PackageRule? rule) => new()
         {
-            Dependency = dependency, Trusted = trusted, Reason = reason, RuleId = rule?.Id
+            Dependency = dependency,
+            Trusted = trusted,
+            Reason = reason,
+            RuleId = rule?.Id
         };
     }
 
-    internal static TrustRuleVulnerabilityExclusion? MatchingExclusion(TrustRule rule, Dependency dependency,
-        IReadOnlyCollection<TrustRuleVulnerabilityExclusion>? exclusions) => exclusions?.FirstOrDefault(e =>
-        e.TrustRuleId == rule.Id && e.Vulnerability is { Withdrawn: false } &&
+    internal static PackageRule? MatchingExclusion(PackageRule rule, Dependency dependency,
+        IReadOnlyCollection<PackageRule>? exclusions) => exclusions?.FirstOrDefault(e =>
+        e.ParentRuleId == rule.Id && e.Vulnerability is { Withdrawn: false } &&
         e.Vulnerability.Ecosystem == dependency.Ecosystem &&
         e.Vulnerability.PackageName.Equals(dependency.Name,
             dependency.Ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&

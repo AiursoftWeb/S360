@@ -31,20 +31,17 @@
     {
         <p><a asp-action="RuleDetails" asp-route-id="@legacyId">@Localizer["Original rule and approval history"] #@legacyId</a></p>
     }
-    @if (rule.PackagePolicyId is { } policyId)
-    {
-        <p><a asp-action="PackageDetails" asp-route-id="@policyId">@Localizer["All version grants for this package"]</a></p>
-    }
+    <p><a asp-action="PackageDetails" asp-route-ruleId="@rule.Id">@Localizer["All version grants for this package"]</a></p>
     <div class="card mb-4"><div class="card-body">
         <h2 class="h5">@Localizer["Authorization"]</h2>
         <dl class="row mb-0">
             <dt class="col-sm-3">@Localizer["Status"]</dt><dd class="col-sm-9">
                 @switch (rule.Status)
                 {
-                    case TrustRuleStatus.Approved: <span>@Localizer["Approved"]</span> break;
-                    case TrustRuleStatus.Pending: <span>@Localizer["Pending"]</span> break;
-                    case TrustRuleStatus.Rejected: <span>@Localizer["Rejected"]</span> break;
-                    case TrustRuleStatus.Revoked: <span>@Localizer["Revoked"]</span> break;
+                    case RuleStatus.Approved: <span>@Localizer["Approved"]</span> break;
+                    case RuleStatus.Pending: <span>@Localizer["Pending"]</span> break;
+                    case RuleStatus.Rejected: <span>@Localizer["Rejected"]</span> break;
+                    case RuleStatus.Revoked: <span>@Localizer["Revoked"]</span> break;
                 }
                 @if (expired) { <span class="badge bg-secondary ms-2">@Localizer["Expired"]</span> }
             </dd>
@@ -52,7 +49,7 @@
             <dt class="col-sm-3">@Localizer["Package pattern"]</dt><dd class="col-sm-9 text-break"><code>@rule.PackagePattern</code></dd>
             <dt class="col-sm-3">@Localizer["Version pattern"]</dt><dd class="col-sm-9"><code>@rule.Version</code></dd>
             <dt class="col-sm-3">@Localizer["Source"]</dt><dd class="col-sm-9 text-break">@rule.Source</dd>
-            <dt class="col-sm-3">@Localizer["Supplier"]</dt><dd class="col-sm-9">@(rule.Supplier?.Name ?? @Localizer["Not recorded"].Value)</dd>
+
             <dt class="col-sm-3">@Localizer["Prerelease versions"]</dt><dd class="col-sm-9">@(rule.IncludePrerelease ? @Localizer["Included"] : @Localizer["Excluded"])</dd>
             <dt class="col-sm-3">@Localizer["Expires"]</dt><dd class="col-sm-9">
                 @if (rule.ExpiresAtUtc is { } expiry) { <span data-utc-time="@expiry.ToHtmlDateTime()"></span> }
@@ -87,10 +84,10 @@
         @foreach (var exclusion in Model.Exclusions)
         {
             <div class="border-top py-3">
-                <strong>@exclusion.Vulnerability.PackageName</strong> · <a href="@exclusion.Vulnerability.Url" target="_blank" rel="noopener noreferrer">@exclusion.Vulnerability.SourceId</a>
-                @if (exclusion.Vulnerability.Withdrawn) { <span class="badge bg-secondary">@Localizer["Withdrawn"]</span> }
-                <p class="mb-1 text-break">@exclusion.Reason</p>
-                <small class="text-muted"><span data-utc-time="@exclusion.CreatedAtUtc.ToHtmlDateTime()"></span></small>
+                <strong>@exclusion.Vulnerability!.PackageName</strong> · <a href="@exclusion.Vulnerability!.Url" target="_blank" rel="noopener noreferrer">@exclusion.Vulnerability!.SourceId</a>
+                @if (exclusion.Vulnerability!.Withdrawn) { <span class="badge bg-secondary">@Localizer["Withdrawn"]</span> }
+                <p class="mb-1 text-break">@exclusion.Justification</p>
+                <small class="text-muted"><span data-utc-time="@exclusion.RequestedAtUtc.ToHtmlDateTime()"></span></small>
             </div>
         }
     </div></div>
@@ -102,10 +99,10 @@
             <div class="border-top py-3">
                 <strong>@switch (review.Decision)
                 {
-                    case TrustRuleStatus.Approved: <span>@Localizer["Approved"]</span> break;
-                    case TrustRuleStatus.Pending: <span>@Localizer["Pending"]</span> break;
-                    case TrustRuleStatus.Rejected: <span>@Localizer["Rejected"]</span> break;
-                    case TrustRuleStatus.Revoked: <span>@Localizer["Revoked"]</span> break;
+                    case RuleStatus.Approved: <span>@Localizer["Approved"]</span> break;
+                    case RuleStatus.Pending: <span>@Localizer["Pending"]</span> break;
+                    case RuleStatus.Rejected: <span>@Localizer["Rejected"]</span> break;
+                    case RuleStatus.Revoked: <span>@Localizer["Revoked"]</span> break;
                 }</strong>
                 <small class="text-muted ms-2"><span data-utc-time="@review.ReviewedAtUtc.ToHtmlDateTime()"></span></small>
                 <p class="mb-1 text-break">@review.Reason</p>

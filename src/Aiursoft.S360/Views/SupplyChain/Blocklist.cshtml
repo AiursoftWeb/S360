@@ -1,3 +1,4 @@
+@using Aiursoft.S360.Entities
 @using Aiursoft.WebTools
 @model Aiursoft.S360.Models.SupplyChainViewModels.BlocklistViewModel
 @using Aiursoft.S360.Models.Shared
@@ -7,7 +8,7 @@
 <div class="s360-workspace">
     <div class="s360-workspace-head">
         <h1>@Localizer["Absolute blocklist"]</h1>
-        <p class="text-muted">@Localizer["A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence."]</p>
+        <p class="text-muted">@Localizer["A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence."]</p>
     </div>
     <div class="s360-workspace-layout">
         <main class="s360-workspace-main">
@@ -36,11 +37,11 @@
             {
                 <section class="card mb-3"><div class="card-header d-flex justify-content-between align-items-center">
                     <h2 class="h6 mb-0"><code>@rule.PackagePattern</code> <span class="text-muted">@@</span> <code>@rule.Version</code></h2>
-                    <span class="badge @(rule.Active ? "bg-danger" : "bg-secondary")">@(rule.Active ? Localizer["Active block"] : Localizer["Disabled"])</span>
+                    <span class="badge @((rule.Status == RuleStatus.Approved) ? "bg-danger" : "bg-secondary")">@((rule.Status == RuleStatus.Approved) ? Localizer["Active block"] : Localizer["Disabled"])</span>
                 </div><div class="card-body">
-                    <p class="mb-2">@rule.Reason</p>
-                    <p class="text-muted small">@Localizer["Created"] <span data-utc-time="@rule.CreatedAtUtc.ToHtmlDateTime()"></span> · @Localizer["By"] @rule.CreatedByUserId</p>
-                    @if (rule.Active && Model.Impacts.TryGetValue(rule.Id, out var impact))
+                    <p class="mb-2">@rule.Justification</p>
+                    <p class="text-muted small">@Localizer["Created"] <span data-utc-time="@rule.RequestedAtUtc.ToHtmlDateTime()"></span> · @Localizer["By"] @rule.RequestedByUserId</p>
+                    @if ((rule.Status == RuleStatus.Approved) && Model.Impacts.TryGetValue(rule.Id, out var impact))
                     {
                         <p class="small mb-1">@Localizer["Recorded impact sample"]: @impact.ArtifactCount @Localizer["artifacts"], @impact.ApplicationCount @Localizer["applications"], @impact.CheckRunCount @Localizer["CI check runs"].</p>
                         @if (impact.ExamplePackages.Count > 0)
@@ -52,7 +53,7 @@
                                 <input type="hidden" name="id" value="@rule.Id" />
                                 <div class="col-md-4"><input name="packagePattern" value="@rule.PackagePattern" required maxlength="214" class="form-control" aria-label="@Localizer["Package pattern"]" /></div>
                                 <div class="col-md-2"><input name="version" value="@rule.Version" required maxlength="128" class="form-control" aria-label="@Localizer["Version pattern"]" /></div>
-                                <div class="col-md-6"><input name="reason" value="@rule.Reason" required maxlength="2000" class="form-control" aria-label="@Localizer["Block reason"]" /></div>
+                                <div class="col-md-6"><input name="reason" value="@rule.Justification" required maxlength="2000" class="form-control" aria-label="@Localizer["Block reason"]" /></div>
                                 <div class="col-md-9"><input name="changeReason" required maxlength="1000" class="form-control" placeholder="@Localizer["Why change this block?"]" /></div>
                                 <div class="col-md-3"><button class="btn btn-outline-primary w-100">@Localizer["Save change"]</button></div>
                             </form>
@@ -62,9 +63,9 @@
                                 <div class="col-md-3"><button class="btn btn-outline-danger w-100">@Localizer["Disable block"]</button></div>
                             </form>
                             <ul class="small mt-3 mb-0">
-                                @foreach (var change in rule.Changes.OrderByDescending(c => c.ChangedAtUtc))
+                                @foreach (var change in rule.Reviews.OrderByDescending(c => c.ReviewedAtUtc))
                                 {
-                                    <li><span data-utc-time="@change.ChangedAtUtc.ToHtmlDateTime()"></span> — @change.ChangedByUserId: @change.Description</li>
+                                    <li><span data-utc-time="@change.ReviewedAtUtc.ToHtmlDateTime()"></span> — @change.ReviewerId: @change.Reason</li>
                                 }
                             </ul>
                         </details>
@@ -72,9 +73,9 @@
                     else
                     {
                         <details><summary>@Localizer["View history"]</summary><ul class="small mt-2 mb-0">
-                            @foreach (var change in rule.Changes.OrderByDescending(c => c.ChangedAtUtc))
+                            @foreach (var change in rule.Reviews.OrderByDescending(c => c.ReviewedAtUtc))
                             {
-                                <li><span data-utc-time="@change.ChangedAtUtc.ToHtmlDateTime()"></span> — @change.ChangedByUserId: @change.Description</li>
+                                <li><span data-utc-time="@change.ReviewedAtUtc.ToHtmlDateTime()"></span> — @change.ReviewerId: @change.Reason</li>
                             }
                         </ul></details>
                     }

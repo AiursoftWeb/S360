@@ -98,7 +98,9 @@ public class CheckController(TrustService trust, TemplateDbContext db,
                 return Ok(new CheckResponse
                 {
                     SolutionGraphVersion = request.SolutionGraph == null ? 0 : 1,
-                    Code = Code.ResultShown, Trusted = decisions.All(d => d.Trusted), Decisions = decisions,
+                    Code = Code.ResultShown,
+                    Trusted = decisions.All(d => d.Trusted),
+                    Decisions = decisions,
                     Message = "Dependency review completed. No project report was saved."
                 });
             }
@@ -114,8 +116,18 @@ public class CheckController(TrustService trust, TemplateDbContext db,
         var contextJson = JsonSerializer.Serialize(request.Context);
         var graphJson = DependencyReportGraph.Serialize(request);
         var priorBatches = await db.BuildChecks.AsNoTracking().Where(c => c.RunId == request.RunId)
-            .Select(c => new { c.Project, c.Commit, c.Pipeline, c.BatchCount, c.BatchIndex, c.ScannedProjectCount, c.ContextJson,
-                HasGraph = c.GraphJson != null, GraphLength = c.GraphJson == null ? 0 : c.GraphJson.Length }).ToListAsync();
+            .Select(c => new
+            {
+                c.Project,
+                c.Commit,
+                c.Pipeline,
+                c.BatchCount,
+                c.BatchIndex,
+                c.ScannedProjectCount,
+                c.ContextJson,
+                HasGraph = c.GraphJson != null,
+                GraphLength = c.GraphJson == null ? 0 : c.GraphJson.Length
+            }).ToListAsync();
         if (priorBatches.Sum(c => (long)c.GraphLength) + (graphJson?.Length ?? 0) > DependencyReportGraph.MaximumSerializedCharacters)
             return BadRequest("The complete dependency graph exceeds the report size limit.");
         if (priorBatches.Any(prior => prior.BatchCount != request.BatchCount || prior.Project != request.Project ||
@@ -142,7 +154,10 @@ public class CheckController(TrustService trust, TemplateDbContext db,
                 catch (JsonException) { return BadRequest("An earlier graph batch is unreadable. Start a new report."); }
                 graphDependencies.AddRange(prior.SelectMany(c => c.Dependencies).Select(d => new Dependency
                 {
-                    Ecosystem = d.Ecosystem, Name = d.Name, Version = d.Version, Source = d.Source, Sha256 = d.Sha256
+                    Ecosystem = d.Ecosystem,
+                    Name = d.Name,
+                    Version = d.Version,
+                    Source = d.Source
                 }));
             }
             // Validate before policy evaluation or artifact writes. Relationships never grant trust.
@@ -156,21 +171,31 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             var decisions = await CheckDependenciesAsync(request.Dependencies, persist: true);
             var runTrusted = decisions.All(d => d.Trusted);
             string? runDenialReason = null;
-            var requestedKeys = request.Dependencies.Where((_, index) => sourceAllowed[index]).Select(dependency => ArtifactKey(
-                dependency.Ecosystem, dependency.Name, dependency.Version,
-                TrustPattern.NormalizeSource(dependency.Source), dependency.Sha256)).Distinct().ToList();
-            var artifactLookup = new Dictionary<string, PackageArtifact>(StringComparer.Ordinal);
-            // Keep the query bounded to this batch, even when the catalog has grown large.
-            foreach (var keys in requestedKeys.Chunk(500))
+            var requested = request.Dependencies.Where((_, index) => sourceAllowed[index]).ToList();
+            var requestedKeys = requested.Select(d => ArtifactKey(d.Ecosystem, d.Name, d.Version,
+                TrustPattern.NormalizeSource(d.Source))).ToHashSet(StringComparer.Ordinal);
+            var artifactLookup = new Dictionary<string, PackageVersion>(StringComparer.Ordinal);
+            foreach (var names in requested.Select(d => d.Name.ToLowerInvariant()).Distinct().Chunk(500))
             {
-                var existing = await db.PackageArtifacts.Where(a => keys.Contains(a.IdentityKey)).ToListAsync();
-                foreach (var artifact in existing) artifactLookup.Add(artifact.IdentityKey, artifact);
+                var versions = requested.Select(d => d.Version).Distinct().ToList();
+                var existing = await db.PackageVersions.Where(a => names.Contains(a.Name.ToLower()) &&
+                    versions.Contains(a.Version)).OrderBy(a => a.Id).ToListAsync();
+                foreach (var artifact in existing)
+                {
+                    var key = ArtifactKey(artifact.Ecosystem, artifact.Name, artifact.Version, artifact.Source);
+                    if (requestedKeys.Contains(key)) artifactLookup.TryAdd(key, artifact);
+                }
             }
             var check = new BuildCheck
             {
                 GraphJson = graphJson,
-                Project = request.Project, Commit = request.Commit, Pipeline = request.Pipeline, ContextJson = contextJson,
-                RunId = request.RunId, BatchIndex = request.BatchIndex, BatchCount = request.BatchCount,
+                Project = request.Project,
+                Commit = request.Commit,
+                Pipeline = request.Pipeline,
+                ContextJson = contextJson,
+                RunId = request.RunId,
+                BatchIndex = request.BatchIndex,
+                BatchCount = request.BatchCount,
                 ScannedProjectCount = request.ScannedProjectCount,
                 Trusted = runTrusted,
                 VulnerabilityDataCheckedAtUtc = await db.VulnerabilitySyncStates.AsNoTracking()
@@ -181,32 +206,39 @@ public class CheckController(TrustService trust, TemplateDbContext db,
                 var decision = decisions[decisionIndex];
                 var dependency = decision.Dependency;
                 var source = TrustPattern.NormalizeSource(dependency.Source);
-                PackageArtifact? artifact = null;
+                PackageVersion? artifact = null;
                 if (sourceAllowed[decisionIndex])
                 {
                     var key = ArtifactKey(dependency.Ecosystem, dependency.Name, dependency.Version,
-                        source, dependency.Sha256);
+                        source);
                     if (!artifactLookup.TryGetValue(key, out artifact))
                     {
                         // Observation is not authorization. An unapproved or blocked package
                         // still needs a durable artifact so scheduled vulnerability audit sees it.
                         // A source outside policy is recorded in the check only: never fetch it.
-                        artifact = new PackageArtifact
+                        artifact = new PackageVersion
                         {
-                            Ecosystem = dependency.Ecosystem, Name = dependency.Name,
-                            Version = dependency.Version, Source = source,
-                            Sha256 = dependency.Sha256.ToLowerInvariant()
+                            Ecosystem = dependency.Ecosystem,
+                            Name = dependency.Name,
+                            Version = dependency.Version,
+                            Source = source,
+
                         };
-                        db.PackageArtifacts.Add(artifact);
+                        db.PackageVersions.Add(artifact);
                         artifactLookup.Add(key, artifact);
                     }
                 }
                 db.BuildCheckDependencies.Add(new BuildCheckDependency
                 {
-                    BuildCheckId = check.Id, BuildCheck = check, PackageArtifactId = artifact?.Id,
-                    PackageArtifact = artifact, Ecosystem = dependency.Ecosystem,
-                    Name = dependency.Name, Version = dependency.Version, Source = source,
-                    Sha256 = dependency.Sha256.ToLowerInvariant(), Trusted = decision.Trusted,
+                    BuildCheckId = check.Id,
+                    BuildCheck = check,
+                    PackageVersionId = artifact?.Id,
+                    PackageVersion = artifact,
+                    Ecosystem = dependency.Ecosystem,
+                    Name = dependency.Name,
+                    Version = dependency.Version,
+                    Source = source,
+                    Trusted = decision.Trusted,
                     Reason = decision.Reason[..Math.Min(decision.Reason.Length, 1000)]
                 });
             }
@@ -226,8 +258,10 @@ public class CheckController(TrustService trust, TemplateDbContext db,
                 {
                     var entireRun = previous.SelectMany(c => c.Dependencies).Select(d => new Dependency
                     {
-                        Ecosystem = d.Ecosystem, Name = d.Name, Version = d.Version,
-                        Source = d.Source, Sha256 = d.Sha256
+                        Ecosystem = d.Ecosystem,
+                        Name = d.Name,
+                        Version = d.Version,
+                        Source = d.Source
                     }).Concat(request.Dependencies).ToList();
                     // A source can be removed after an earlier batch was accepted.
                     // Recheck the complete run against the current source policy,
@@ -254,7 +288,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             }
             db.BuildChecks.Add(check);
             await db.SaveChangesAsync();
-            QueueAudit(decisions, check.Dependencies.Any(d => d.PackageArtifact is { LastCheckedAtUtc: null }));
+            QueueAudit(decisions, check.Dependencies.Any(d => d.PackageVersion is { LastCheckedAtUtc: null }));
             return Ok(new CheckResponse
             {
                 SolutionGraphVersion = request.SolutionGraph == null ? 0 : 1,
@@ -283,7 +317,8 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             ? assessed[index++]
             : new DependencyDecision
             {
-                Dependency = dependency, Trusted = false,
+                Dependency = dependency,
+                Trusted = false,
                 Reason = "Package source is not permitted for CI verification."
             }).ToList();
     }
@@ -298,6 +333,6 @@ public class CheckController(TrustService trust, TemplateDbContext db,
     }
 
     private static string ArtifactKey(string ecosystem, string name, string version,
-        string source, string sha256) =>
-        PackageArtifact.CalculateIdentityKey(ecosystem, name, version, source, sha256);
+        string source) =>
+        TrustService.Identity(ecosystem, name, version, source);
 }

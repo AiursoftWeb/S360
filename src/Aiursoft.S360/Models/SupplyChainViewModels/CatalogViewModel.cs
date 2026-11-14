@@ -13,11 +13,9 @@ public class CatalogViewModel : UiStackLayoutViewModel
     public string CatalogView { get; set; } = "rules";
     public string Ecosystem { get; set; } = "nuget";
     public string? Query { get; set; }
-    public int? SupplierId { get; set; }
-    public List<TrustRule> Rules { get; set; } = [];
+    public List<PackageRule> Rules { get; set; } = [];
     public Dictionary<int, string> BlockedRuleReasons { get; set; } = [];
     public List<CatalogArtifactRow> Artifacts { get; set; } = [];
-    public List<Supplier> Suppliers { get; set; } = [];
     public int Page { get; set; } = 1;
     public int LegacyRuleCount { get; set; }
     public int TotalRules { get; set; }
@@ -32,21 +30,16 @@ public class CatalogViewModel : UiStackLayoutViewModel
     public string? LookupReason { get; set; }
 }
 
-public record CatalogArtifactRow(PackageArtifact Artifact, TrustRule AuthorizingRule);
+public record CatalogArtifactRow(PackageVersion Artifact, PackageRule AuthorizingRule);
 
 public class CatalogArtifactDetailsViewModel : UiStackLayoutViewModel
 {
     public CatalogArtifactDetailsViewModel() => PageTitle = "Available dependency details";
-    public required PackageArtifact Artifact { get; init; }
-    public required TrustRule Rule { get; init; }
-    public TrustRuleReview? LatestApproval { get; init; }
-    public List<CatalogRelatedPackage> RecordedParents { get; init; } = [];
-    public List<CatalogRelatedPackage> RecordedChildren { get; init; } = [];
-    public bool ParentsLimited { get; init; }
-    public bool ChildrenLimited { get; init; }
+    public required PackageVersion Artifact { get; init; }
+    public required PackageRule Rule { get; init; }
+    public RuleChange? LatestApproval { get; init; }
 }
 
-public record CatalogRelatedPackage(string Name, string Version, string Source);
 
 public class RulePreviewViewModel : UiStackLayoutViewModel
 {
@@ -67,7 +60,7 @@ public class BlocklistViewModel : UiStackLayoutViewModel
 {
     public BlocklistViewModel() => PageTitle = "Absolute blocklist";
     public string Ecosystem { get; set; } = "nuget";
-    public List<BlockRule> Rules { get; set; } = [];
+    public List<PackageRule> Rules { get; set; } = [];
     public Dictionary<int, BlockRuleImpact> Impacts { get; set; } = [];
     public bool PreviewLimited { get; set; }
     public int Page { get; set; } = 1;
@@ -80,8 +73,8 @@ public record BlockRuleImpact(int ArtifactCount, int ApplicationCount, int Check
 public class PackagePolicyViewModel : UiStackLayoutViewModel
 {
     public PackagePolicyViewModel() => PageTitle = "Package authorization";
-    public required PackagePolicy Policy { get; init; }
-    public List<TrustRule> Grants { get; init; } = [];
+    public required PackageRule Policy { get; init; }
+    public List<PackageRule> Grants { get; init; } = [];
     public int Page { get; init; } = 1;
     public int Total { get; init; }
     public List<string> RecordedProjects { get; init; } = [];

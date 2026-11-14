@@ -27,7 +27,7 @@ public class RequestDetailsViewModel : UiStackLayoutViewModel
 
 public class RequestPackageLine
 {
-    public required PackageArtifact Artifact { get; init; }
+    public required PackageVersion Artifact { get; init; }
     public required string Path { get; init; }
     public bool IsDirect { get; init; }
     public bool SourcePermitted { get; init; }

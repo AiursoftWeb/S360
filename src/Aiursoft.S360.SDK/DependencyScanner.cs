@@ -11,13 +11,13 @@ public static class DependencyScanner
     public static Task<ScanReport> ScanDetailedAsync(string root, HttpClient http,
         CancellationToken cancellationToken = default, string? expectedNpmSource = null, string? ecosystem = null,
         bool npmLockfileOnly = false) =>
-        ScanDetailedCoreAsync(root, http, cancellationToken, expectedNpmSource, ecosystem, npmLockfileOnly, null);
+        ScanDetailedCoreAsync(root, cancellationToken, expectedNpmSource, ecosystem, npmLockfileOnly, null);
 
     public static Task<ScanReport> ScanDetailedWithNpmRegistryAsync(string root, HttpClient http, string npmRegistry,
         CancellationToken cancellationToken = default, string? ecosystem = null, bool npmLockfileOnly = false) =>
-        ScanDetailedCoreAsync(root, http, cancellationToken, null, ecosystem, npmLockfileOnly, NpmRegistrySource(npmRegistry));
+        ScanDetailedCoreAsync(root, cancellationToken, null, ecosystem, npmLockfileOnly, NpmRegistrySource(npmRegistry));
 
-    private static async Task<ScanReport> ScanDetailedCoreAsync(string root, HttpClient http,
+    private static async Task<ScanReport> ScanDetailedCoreAsync(string root,
         CancellationToken cancellationToken, string? expectedNpmSource, string? ecosystem,
         bool npmLockfileOnly, string? npmRegistry)
     {

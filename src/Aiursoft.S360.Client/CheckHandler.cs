@@ -33,11 +33,11 @@ public class CheckHandler : CommandHandlerBuilder
     };
     private static readonly Option<bool> NpmLockfileOnlyOption = new("--npm-lockfile-only")
     {
-        Description = "Audit every locked npm archive before installation, including optional packages for other platforms."
+        Description = "Check every locked npm package version before installation, including optional packages for other platforms."
     };
     private static readonly Option<string?> NpmRegistryOption = new("--npm-registry")
     {
-        Description = "Audit standard npm tarballs from this HTTPS registry, matching npm replace-registry-host=always without changing the lockfile."
+        Description = "Check npm dependencies using this registry identity, matching npm replace-registry-host=always without changing the lockfile."
     };
     public override Command BuildAsCommand()
     {

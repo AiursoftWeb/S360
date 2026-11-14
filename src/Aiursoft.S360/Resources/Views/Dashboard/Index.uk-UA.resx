@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Підтримка «відстрілюй і забудь» для довготривалих завдань (наприклад, електронних листів або штучного інтелекту), із графічним інтерфейсом для управління чергою, паралельною обробкою та скасуванням.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} зацікавлених проєктів</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} версій пакетів, що потребують уваги</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>Усього: {0} · у процесі: {1} · схвалено: {2}</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Порожня дата означає, що повну синхронізацію даних про вразливості ще не виконано. Час указано за UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Політика, що може дозволяти відповідні пакети; абсолютна заборона або відсутність підтвердження артефакту все одно призводить до їх відхилення.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>Переклади на основі ШІ</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Абсолютні блокування, що мають пріоритет над правилами довіри та схваленнями.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Активні правила блокування</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>Переклади на основі ШІ</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Усі залежності автоматично реєструються та завжди доступні через ін&apos;єкцію в конструктор.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Ваша робота — без здогадок.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} зацікавлених проєктів</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} версій пакетів, що потребують уваги</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>Усього: {0} · у процесі: {1} · схвалено: {2}</value>
   </data>
 
 </root>

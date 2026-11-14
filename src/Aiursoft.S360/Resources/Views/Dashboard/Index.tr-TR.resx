@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Uzun süre çalışan görevler için &quot;fire-and-forget&quot; desteği (e-postalar veya AI gibi), kuyruk yönetimi, paralel işlem ve iptal için grafik arayüzle birlikte.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} etkilenen proje</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>Dikkat gerektiren {0} paket sürümü</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} toplam · {1} devam ediyor · {2} onaylandı</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Boş bir tarih, henüz eksiksiz bir güvenlik açığı eşitlemesinin başarıyla tamamlanmadığı anlamına gelir. Saatler UTC’dir.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Eşleşen paketlere izin verebilecek bir politika; ancak kesin bir engel veya eksik eser kanıtı, bu paketlerin yine de reddedilmesine neden olur.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>Yapay Zeka Destekli Çeviriler</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Güven kuralları ve onaylardan öncelikli olan mutlak engellemeler.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Etkin engelleme kuralları</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>Yapay Zeka Destekli Çeviriler</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Tüm bağımlılıklar otomatik olarak kaydedilir ve constructor injection yoluyla her zaman kullanılabilir.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>İşiniz, tahminlere yer bırakmadan.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} etkilenen proje</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>Dikkat gerektiren {0} paket sürümü</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} toplam · {1} devam ediyor · {2} onaylandı</value>
   </data>
 
 </root>

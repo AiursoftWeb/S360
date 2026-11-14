@@ -39,6 +39,9 @@
   <data name="Select" xml:space="preserve">
     <value>Вибрати</value>
   </data>
+  <data name="Select observed, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
+    <value>Виберіть спостережені конкретні назви пакетів, щоб успадкувати кожне початкове дозвол на версію. Початкові правила та затвердження залишаються читабельною історією. Нічого не вибирається автоматично.</value>
+  </data>
   <data name="Select verified, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
     <value>Виберіть перевірені конкретні назви пакунків, щоб успадкувати кожен початковий дозвіл на версію. Початкові правила та схвалення залишаться доступними для перегляду в історії. Нічого не вибирається автоматично.</value>
   </data>

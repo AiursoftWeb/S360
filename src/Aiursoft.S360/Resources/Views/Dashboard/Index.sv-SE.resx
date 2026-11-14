@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Stöd för &quot;fire-and-forget&quot; för långvariga uppgifter (t.ex. e-post eller AI), med en GUI för köhantering, parallell bearbetning och avbrott.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} drabbade projekt</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} paketversioner som behöver åtgärd</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} totalt · {1} pågår · {2} godkända</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Ett tomt datum innebär att ingen fullständig synkronisering av sårbarheter har lyckats ännu. Tiderna anges i UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>En policy som kan tillåta matchande paket; ett absolut block eller saknad artefaktbevisning innebär ändå att de nekas.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>AI-drivna översättningar</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Absoluta undantag som har företräde framför tillitsregler och godkännanden.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Aktiva blockeringsregler</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>AI-drivna översättningar</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Alla beroenden registreras automatiskt och är alltid tillgängliga via konstruktorinjektion.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Ditt arbete, utan gissningar.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} drabbade projekt</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} paketversioner som behöver åtgärd</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} totalt · {1} pågår · {2} godkända</value>
   </data>
 
 </root>

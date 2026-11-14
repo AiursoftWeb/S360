@@ -18,13 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} of {1} nodes shown" xml:space="preserve">
-    <value>{0} / {1} ノードを表示中</value>
-  </data>
-  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
-    <value>この図には脆弱性のあるパッケージが {0} 個あり、そのうち {1} 個は深さの制限またはフィルターによって非表示になっています。</value>
-  </data>
-  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+      <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
     <value>0 はプロジェクト参照のみを表示します。1 は直接参照されているパッケージを含みます。</value>
   </data>
   <data name="Collapse dependencies" xml:space="preserve">
@@ -215,6 +209,12 @@
   </data>
   <data name="Zoom out" xml:space="preserve">
     <value>縮小</value>
+  </data>
+  <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>{0} / {1} ノードを表示中</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>この図には脆弱性のあるパッケージが {0} 個あり、そのうち {1} 個は深さの制限またはフィルターによって非表示になっています。</value>
   </data>
 
 </root>

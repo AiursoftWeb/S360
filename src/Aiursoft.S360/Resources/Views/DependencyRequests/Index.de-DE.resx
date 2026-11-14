@@ -39,8 +39,14 @@
   <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
     <value>Geben Sie die genauen Versionen der direkten Abhängigkeiten an. S360 löst den gesamten Abhängigkeitsgraphen auf und prüft ihn; eine künftige CI-Integration wird nach der Bereitstellung den tatsächlichen Build-Graphen überprüfen.</value>
   </data>
+  <data name="Enter exact names and versions. CI reports transitive dependencies; S360 does not restore them." xml:space="preserve">
+    <value>Geben Sie exakte Namen und Versionen ein. CI meldet transitive Abhängigkeiten; S360 stellt sie nicht wieder her.</value>
+  </data>
   <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
     <value>Geben Sie nur die Pakete ein, die Sie direkt auswählen; S360 ermittelt deren transitive Abhängigkeiten. Verwenden Sie eine exakte Version, keinen Platzhalter.</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval." xml:space="preserve">
+    <value>Beispiel: Microsoft.EntityFrameworkCore@10.0.12. Geben Sie jedes Paket ein, das eine Genehmigung benötigt.</value>
   </data>
   <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
     <value>Zum Beispiel: Microsoft.EntityFrameworkCore@10.0.12. Geben Sie die Pakete ein, die Sie selbst ausgewählt haben; S360 ermittelt die Pakete, die diese mit sich bringen.</value>
@@ -59,6 +65,9 @@
   </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>Die Paketquelle ist für S360-Prüfungen nicht mehr zulässig.</value>
+  </data>
+  <data name="Packages, one name@version per line" xml:space="preserve">
+    <value>Pakete, ein Name@Version pro Zeile</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Projekt</value>

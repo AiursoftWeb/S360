@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>AlertCenter-endpoint</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>Tillad bruger at ændre apelation</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Tillad anonym gennemgang</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>Tillad afhængighedsreviews uden en API-nøgle. Anonyme reviews registreres som uverificerede rapporter og opdaterer aldrig produktionsbrug. Baseline-rapporter kræver altid deres beskyttede legitimationsoplysninger.</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>Tillad bruger at ændre apelation</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Tillad brugere at justere deres nickname på siden til at administrere profil.</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>S360 offentlig base-URL</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>Det brands navn, der vises i foden.</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>ICP-licensenr. for brugere i Kina. Lad stå tomt for at skjule.</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>Det brands navn, der vises i foden.</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>Det projektlogo, der vises i navigationen og foden. Støtter jpg, png, svg.</value>

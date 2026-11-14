@@ -60,6 +60,9 @@
   <data name="Package file and current authorization" xml:space="preserve">
     <value>Paket dosyası ve mevcut yetkilendirme</value>
   </data>
+  <data name="Package version and current authorization" xml:space="preserve">
+    <value>Paket sürümü ve geçerli yetkilendirme</value>
+  </data>
   <data name="Packages that brought this artifact in" xml:space="preserve">
     <value>Bu bileşeni getiren paketler</value>
   </data>
@@ -77,6 +80,9 @@
   </data>
   <data name="This concrete package file currently passes S360&apos;s authorization and stored vulnerability checks. A future build must still check its own complete dependency graph." xml:space="preserve">
     <value>Bu belirli paket dosyası şu anda S360&apos;ın yetkilendirme ve kayıtlı güvenlik açığı kontrollerinden geçmektedir. Gelecekteki bir derlemenin yine de kendi bağımlılık grafiğinin tamamını kontrol etmesi gerekir.</value>
+  </data>
+  <data name="This package version currently passes authorization and vulnerability checks." xml:space="preserve">
+    <value>Bu paket sürümü şu anda yetkilendirme ve açıklık kontrollerinden geçmektedir.</value>
   </data>
 
 </root>

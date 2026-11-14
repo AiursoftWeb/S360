@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>發送至 API 的依賴項清單中的一個有限部分。批次獲接納並不代表整個執行過程均獲接納。</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API 密鑰 ID</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>已接受</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>匿名審查</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>API 密鑰 ID</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>審計目的</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>批次</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>批次記錄</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>建置檢查記錄</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>執行</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>已掃描專案</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>搜尋</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>來源</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>此決定所依據的公告資料最後檢查時間；空白並不代表狀況良好。</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>批次記錄</value>
   </data>
 
 </root>

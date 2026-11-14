@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>Знайти пакунки</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>Як читати каталог</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>Джерело пакунків HTTPS</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Як читати каталог</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Враховувати попередні версії</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Керування постачальниками та правилами довіри</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Керування правилами довіри</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>Керувати дозволами для версій</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>Пакет</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>Доступність пакетів визначається затвердженими правилами та поточними перевірками вразливостей.</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>Файли пакетів завантажуються та перевіряються вашим реєстром. Це рішення охоплює політику пакетів і відомі вразливості.</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Назва пакета</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Зафіксовані артефакти</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>Звітні версії</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>Версії, які були доповіді та наразі відповідають політиці, відображаються тут. Правила також можуть допускати версії, які ще не були доповіді.</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>Переглянути застарілі правила</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Скасувати</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Пошук</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Пошук</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>Показати відомі версії пакетів, які відповідатимуть цьому запропонованому правилу. Це попередній перегляд області дії, а не рішення щодо довіри.</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Не вдалося виконати останню синхронізацію даних про вразливості. Записані артефакти приховано до успішного аудиту.</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>Послідовну синхронізацію вразливостей завершено з помилкою. Попередні завершені результати залишаються придатними до використання, доки не закінчиться їхній строк дії.</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>Правила довіри</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>Перевірку на вразливості ще не завершено. Зареєстровані артефакти не можна позначити як доступні.</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>Аудит вразливостей ще не завершено. Звітовані версії не можуть бути перелічені як доступні.</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>Перевірка на вразливості застаріла. Записані артефакти приховано до завершення нової перевірки.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>Аудит вразливостей застарів. Звітовані версії приховані, доки не завершиться новий аудит.</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>Правила з шаблонами підстановки автоматично дозволяють майбутні версії; хеші фіксуються під час першої появи.</value>

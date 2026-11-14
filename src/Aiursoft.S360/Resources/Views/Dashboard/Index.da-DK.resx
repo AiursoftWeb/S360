@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>&quot;Fire-and-forget&quot;-støtte til langvarende opgaver (som emails eller AI), med en brugergrænseflade til køstyring, parallell behandling og annullering.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} berørte projekter</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} pakkeversioner, der kræver opmærksomhed</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} i alt · {1} i gang · {2} godkendt</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>En tom dato betyder, at ingen fuldstændig synkronisering af sårbarheder endnu er gennemført. Tidspunkterne er i UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>En politik, der kan tillade matchende pakker; et absolut blokeringstilsagn eller manglende artefaktdokumentation afviser dem stadig.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>AI-drevne oversættelser</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Absolutte udelukkelser, der har forrang for tillidsregler og godkendelser.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Aktive blokeringsregler</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>AI-drevne oversættelser</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Alle afhængigheder registreres automatisk og er altid tilgængelige via konstruktor-injektion.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Dit arbejde, uden gætværk.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} berørte projekter</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} pakkeversioner, der kræver opmærksomhed</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} i alt · {1} i gang · {2} godkendt</value>
   </data>
 
 </root>

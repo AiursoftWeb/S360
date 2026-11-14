@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>Een beperkt deel van de afhankelijkheidslijst die naar de API wordt verzonden. Een geaccepteerde batch is niet hetzelfde als een volledig geaccepteerde run.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API-sleutel-ID</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Geaccepteerd</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Anonieme beoordeling</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>API-sleutel-ID</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Auditdoel</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Batch</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>batchrecords</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Buildcontrolegegevens</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Uitvoering</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Gescande projecten</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Zoeken</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Bron</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Wanneer de adviesgegevens achter deze beslissing de laatste keer zijn gecontroleerd; een lege waarde is geen bewijs van een schone schijf.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>batchrecords</value>
   </data>
 
 </root>

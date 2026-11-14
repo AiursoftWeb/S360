@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Hỗ trợ &quot;Fire-and-forget&quot; cho các tác vụ dài hạn (như email hoặc AI), đi kèm giao diện người dùng (GUI) để quản lý hàng đợi, xử lý song song và hủy bỏ.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} dự án bị ảnh hưởng</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} phiên bản gói cần chú ý</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>Tổng số: {0} · Đang xử lý: {1} · Đã phê duyệt: {2}</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Ngày để trống có nghĩa là chưa có lần đồng bộ lỗ hổng bảo mật đầy đủ nào thành công. Thời gian được tính theo UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Một chính sách có thể cho phép các gói khớp với tiêu chí; lệnh chặn tuyệt đối hoặc thiếu bằng chứng về hiện vật vẫn khiến chúng bị từ chối.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>Bản dịch hỗ trợ bởi AI</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Các trường hợp loại trừ tuyệt đối được ưu tiên hơn các quy tắc tin cậy và phê duyệt.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Các quy tắc chặn đang hoạt động</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>Bản dịch hỗ trợ bởi AI</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Tất cả các dependency đều được tự động đăng ký và luôn sẵn sàng để sử dụng thông qua constructor injection.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Công việc của bạn, không cần phỏng đoán.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} dự án bị ảnh hưởng</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} phiên bản gói cần chú ý</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>Tổng số: {0} · Đang xử lý: {1} · Đã phê duyệt: {2}</value>
   </data>
 
 </root>

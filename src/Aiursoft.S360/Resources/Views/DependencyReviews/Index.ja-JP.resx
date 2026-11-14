@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>承認済み</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>詳細レポートにはさらに多くの項目があります</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>承認</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>このリクエストに関する完全な依存関係レポートはありません。</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>既知の脆弱性は見つかりませんでした</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>このビューにはリクエストがありません。</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>パッケージソースを検証できませんでした</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>パッケージソースが許可されていません</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>審査待ち</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>プロジェクト</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>この表示内のレコード</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>拒否</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>この承認を取り消す</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>詳細レポートにはさらに多くの項目があります</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>この表示内のレコード</value>
   </data>
 
 </root>

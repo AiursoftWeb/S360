@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+      <data name="A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Paket yang cocok ditolak terlepas dari sumber, persetujuan, atau apakah ia tiba sebagai dependensi langsung atau transitif. Persetujuan dan pemeriksaan historis tetap ada sebagai bukti audit.</value>
+  </data>
+  <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
     <value>Paket yang cocok akan ditolak tanpa memandang pemasok, sumber, persetujuan, atau apakah paket tersebut diterima sebagai dependensi langsung atau transitif. Persetujuan dan pemeriksaan terdahulu tetap tersimpan sebagai bukti audit.</value>
   </data>
   <data name="Absolute blocklist" xml:space="preserve">
@@ -26,12 +29,6 @@
   </data>
   <data name="Add absolute block" xml:space="preserve">
     <value>Tambahkan pemblokiran mutlak</value>
-  </data>
-  <data name="applications" xml:space="preserve">
-    <value>aplikasi</value>
-  </data>
-  <data name="artifacts" xml:space="preserve">
-    <value>artefak</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Dependensi yang Tersedia</value>
@@ -104,6 +101,12 @@
   </data>
   <data name="Why disable this block?" xml:space="preserve">
     <value>Mengapa menonaktifkan pemblokiran ini?</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>aplikasi</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>artefak</value>
   </data>
 
 </root>

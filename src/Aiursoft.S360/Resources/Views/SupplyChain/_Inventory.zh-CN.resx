@@ -18,16 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
-    <value>{0} 个软件包制品 · {1} 项需处理</value>
-  </data>
-  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
-    <value>共 {0} 条结果 · 第 {1} 页，共 {2} 页</value>
-  </data>
-  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
-    <value>{0} 个存在漏洞的软件包 · {1} 个其他需关注的软件包</value>
-  </data>
-  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+      <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
     <value>此报告未记录完整的解决方案依赖关系图。请运行最新版 CLI 以生成该图；软件包列表仍可查看。</value>
   </data>
   <data name="A newer report is incomplete." xml:space="preserve">
@@ -120,9 +111,6 @@
   <data name="Not verified" xml:space="preserve">
     <value>未验证</value>
   </data>
-  <data name="npm: not included in this audit." xml:space="preserve">
-    <value>npm：未纳入此次审计。</value>
-  </data>
   <data name="NuGet and npm" xml:space="preserve">
     <value>NuGet 和 npm</value>
   </data>
@@ -162,11 +150,11 @@
   <data name="Proposed dependencies from Review checks. These do not replace the current baseline." xml:space="preserve">
     <value>来自“审查”检查的拟议依赖项。这些依赖项不会取代当前基线。</value>
   </data>
-  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
-    <value>查看项目清单需要供应链读取权限。您仍然可以浏览审批规则。</value>
-  </data>
   <data name="README badge" xml:space="preserve">
     <value>README 徽章</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>查看项目清单需要供应链读取权限。您仍然可以浏览审批规则。</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>报告</value>
@@ -218,6 +206,18 @@
   </data>
   <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
     <value>更新 CLI 报告以查看依赖关系。</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm：未纳入此次审计。</value>
+  </data>
+  <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} 个软件包制品 · {1} 项需处理</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>共 {0} 条结果 · 第 {1} 页，共 {2} 页</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} 个存在漏洞的软件包 · {1} 个其他需关注的软件包</value>
   </data>
 
 </root>

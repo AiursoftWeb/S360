@@ -63,11 +63,11 @@
   <data name="Last synchronization" xml:space="preserve">
     <value>上次同步</value>
   </data>
-  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
-    <value>監控每分鐘執行一次檢查。弱點發現作業依照既有的六小時稽核排程進行。認證資料與啟用設定使用「全域設定」，並支援以環境設定覆寫。</value>
-  </data>
   <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
     <value>MR 審查、過時的弱點資料、失敗的掃描及不完整的報告，都不會自動解除安全事件。最終仍須手動結案。</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>監控每分鐘執行一次檢查。弱點發現作業依照既有的六小時稽核排程進行。認證資料與啟用設定使用「全域設定」，並支援以環境設定覆寫。</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>否</value>

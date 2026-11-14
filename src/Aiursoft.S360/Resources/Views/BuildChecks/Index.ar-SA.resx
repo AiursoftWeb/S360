@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>جزء محدد من قائمة التبعيات المُرسلة إلى واجهة برمجة التطبيقات. قبول دفعة لا يعني قبول التشغيل بالكامل.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>معرّف مفتاح API</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>مقبول</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>مراجعة مجهولة الهوية</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>معرّف مفتاح API</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>الغرض من التدقيق</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>الدفعة</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>سجلات الدُفعات</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>سجلات التحقق من عملية البناء</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>التشغيل</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>المشاريع التي تم فحصها</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>بحث</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>المصدر</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>متى تم فحص بيانات النصح وراء هذا القرار في المرة الأخيرة؛ القيمة الفارغة ليست دليلًا على السلامة.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>سجلات الدُفعات</value>
   </data>
 
 </root>

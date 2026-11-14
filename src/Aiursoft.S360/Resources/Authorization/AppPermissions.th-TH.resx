@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>กำหนดค่าและซิงโครไนซ์การตรวจติดตามเหตุการณ์ด้านความปลอดภัยสำหรับเกณฑ์พื้นฐานของระบบจริง</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>สร้างและจัดการคีย์ API ส่วนตัว และใช้เพื่อตรวจสอบการพึ่งพา</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>สร้างคีย์ API และเรียกใช้ S360</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>สร้างและจัดการคีย์ API ส่วนตัว และใช้เพื่อตรวจสอบการพึ่งพา</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>สร้างคีย์ API ส่วนบุคคลที่เปิดใช้ baseline และระบุรายการ dependency สำหรับระบบ production</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>ตัวตนของเครื่องอาจดำเนินการตรวจสอบการพึ่งพาจาก CI ได้ แต่การเข้าสู่ระบบผ่านเบราว์เซอร์เพียงอย่างเดียวไม่สามารถใช้ API สำหรับตรวจสอบได้</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>จัดการการบล็อกแพ็กเกจแบบเด็ดขาด</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>จัดการการรวมระบบ AlertCenter</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>จัดการการตั้งค่าทั่วโลก</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>จัดการการบล็อกแพ็กเกจแบบเด็ดขาด</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>จัดการรายการบล็อก</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>จัดการการตั้งค่าทั่วโลก</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>จัดการกฎการอนุมัติความเกี่ยวข้อง</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>จัดการผู้จัดหาและกฎความเชื่อถือสำหรับ dependency แบบ wildcard</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>เผยแพร่เบสไลน์การผลิต</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>อ่านคำขอทั้งหมด การตรวจสอบบิลด์ และบันทึกการตรวจสอบช่องโหว่</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>อ่านสิทธิ์</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>อ่านบทบาท</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>อ่านข้อมูลห่วงโซ่อุปทาน</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>อ่านข้อมูลผู้ใช้</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>อ่านคำขอทั้งหมด การตรวจสอบบิลด์ และบันทึกการตรวจสอบช่องโหว่</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>อ่านข้อมูลห่วงโซ่อุปทาน</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>รีบูตแอปนี้</value>

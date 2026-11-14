@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Obsługa „wystrzel i zapomnij” dla długotrwałych zadań (np. e-maile lub AI), z interfejsem graficznym do zarządzania kolejką, przetwarzania równoległego i anulowania.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>Dotyczy {0} projektów</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} wersji pakietu wymagających uwagi</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>Łącznie: {0} · {1} w toku · {2} zatwierdzone</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Pusta data oznacza, że nie przeprowadzono jeszcze pomyślnie pełnej synchronizacji danych o podatnościach. Czasy podano w UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Reguła, która może zezwalać na pasujące pakiety; bezwzględna blokada lub brak dowodów dotyczących artefaktu nadal powodują ich odrzucenie.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>Tłumaczenia wspomagane przez sztuczną inteligencję</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Bezwzględne wykluczenia, które mają pierwszeństwo przed regułami zaufania i zatwierdzeniami.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Aktywne reguły blokowania</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>Tłumaczenia wspomagane przez sztuczną inteligencję</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Wszystkie zależności są automatycznie rejestrowane i zawsze dostępne poprzez wstrzykiwanie konstruktora.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Twoja praca, bez zgadywania.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>Dotyczy {0} projektów</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} wersji pakietu wymagających uwagi</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>Łącznie: {0} · {1} w toku · {2} zatwierdzone</value>
   </data>
 
 </root>

@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>ค้นหาแพ็กเกจ</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>วิธีอ่านแค็ตตาล็อก</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>แหล่งแพ็กเกจ HTTPS</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>วิธีอ่านแค็ตตาล็อก</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>รวมรุ่นพรีรีลีส</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>จัดการซัพพลายเออร์และกฎความน่าเชื่อถือ</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>จัดการกฎความไว้วางใจ</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>จัดการสิทธิ์การอนุมัติเวอร์ชัน</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>แพ็กเกจ</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>ความพร้อมใช้งานของแพ็กเกจขึ้นอยู่กับกฎที่ได้รับการอนุมัติและการตรวจสอบช่องโหว่ล่าสุด</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>ไฟล์แพ็กเกจจะถูกดาวน์โหลดและตรวจสอบโดยรีจิสทรีของคุณ การตัดสินใจนี้ครอบคลุมนโยบายแพ็กเกจและช่องโหว่ที่ทราบอยู่แล้ว</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>ชื่อแพ็กเกจ</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>รายการอาร์ติแฟกต์ที่บันทึกไว้</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>เวอร์ชันที่รายงาน</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>เวอร์ชันที่รายงานแล้วและปัจจุบันผ่านนโยบายจะแสดงที่นี่ กฎอาจอนุญาตเวอร์ชันที่ยังไม่ได้รายงานด้วยเช่นกัน</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>ตรวจสอบกฎเดิม</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>เพิกถอน</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>ค้นหา</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>ค้นหา</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>แสดงเวอร์ชันแพ็กเกจที่ทราบ ซึ่งกฎที่เสนอไว้นี้จะตรงกัน นี่เป็นเพียงตัวอย่างขอบเขต ไม่ใช่การตัดสินความน่าเชื่อถือ</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>การซิงโครไนซ์ข้อมูลช่องโหว่ล่าสุดล้มเหลว รายการสิ่งที่บันทึกไว้จะถูกซ่อนไว้จนกว่าการตรวจสอบจะสำเร็จ</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>การซิงค์ช่องโหว่ล่าสุดล้มเหลว ผลลัพธ์ที่เสร็จสมบูรณ์ก่อนหน้ายังคงใช้งานได้จนกว่าจะหมดอายุ</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>กฎความน่าเชื่อถือ</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>การตรวจสอบช่องโหว่ยังไม่เสร็จสิ้น จึงยังไม่สามารถแสดงรายการอาร์ติแฟกต์ที่บันทึกไว้เป็นรายการที่พร้อมใช้งานได้</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>การตรวจสอบช่องโหว่ยังไม่เสร็จสมบูรณ์ ไม่สามารถแสดงเวอร์ชันที่รายงานว่ามีอยู่ได้</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>การตรวจสอบช่องโหว่ล้าสมัยแล้ว รายการอาร์ติแฟกต์ที่บันทึกไว้จะถูกซ่อนไว้จนกว่าการตรวจสอบครั้งใหม่จะเสร็จสิ้น</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>การตรวจสอบช่องโหว่ล้าสมัยแล้ว เวอร์ชันที่รายงานจะถูกซ่อนไว้จนกว่าการตรวจสอบใหม่จะเสร็จสมบูรณ์</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>กฎไวลด์การ์ดอนุมัติเวอร์ชันในอนาคตโดยอัตโนมัติ และยังคงบันทึกแฮชที่พบเป็นครั้งแรก</value>

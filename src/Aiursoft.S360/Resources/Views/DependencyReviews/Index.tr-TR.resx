@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>Zaten onaylandı</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>ve tam raporda daha fazlası</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>Onay</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Bu istek için eksiksiz bir bağımlılık raporu mevcut değil.</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>Bilinen güvenlik açığı bulunamadı</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>Bu görünümde istek yok.</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>Paket kaynağı doğrulanamadı</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>Paket kaynağı izin verilmiyor</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>Beklemede</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>Proje</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>bu görünümdeki kayıtlar</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>Reddet</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>Bu onayı geri çek</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>ve tam raporda daha fazlası</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>bu görünümdeki kayıtlar</value>
   </data>
 
 </root>

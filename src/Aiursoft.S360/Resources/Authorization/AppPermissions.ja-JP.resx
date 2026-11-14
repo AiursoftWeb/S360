@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>本番環境のベースラインにおけるセキュリティインシデントの監視を構成し、同期します。</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>パーソナルAPIキーを作成・管理し、依存関係のレビューに使用します。</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>APIキーを作成しS360を呼び出す</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>パーソナルAPIキーを作成・管理し、依存関係のレビューに使用します。</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>ベースラインを有効にした個人用 API キーを作成し、本番環境の依存関係インベントリを宣言します。</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>CIからマシンのIDを使用して依存関係チェックを実行できますが、ブラウザーでログインしただけではチェックAPIを使用できません。</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>絶対的なパッケージブロックを管理します。</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>AlertCenter統合の管理</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>グローバル設定の管理</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>絶対的なパッケージブロックを管理します。</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>ブロックリストを管理</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>グローバル設定の管理</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>依存関係承認ルールを管理する</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>サプライヤーおよびワイルドカードによる依存関係の信頼ルールを管理します。</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>本番環境のベースラインを公開する</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>すべてのリクエスト、ビルドチェック、および脆弱性監査記録を閲覧する。</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>権限の閲覧</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>ロールの閲覧</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>サプライチェーンを閲覧</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>ユーザーの閲覧</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>すべてのリクエスト、ビルドチェック、および脆弱性監査記録を閲覧する。</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>サプライチェーンを閲覧</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>このアプリを再起動</value>

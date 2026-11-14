@@ -18,16 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
-    <value>{0} 個套件項目 · {1} 個需要處理</value>
-  </data>
-  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
-    <value>{0} 個結果 · 第 {1} 頁，共 {2} 頁</value>
-  </data>
-  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
-    <value>{0} 個有漏洞的套件 · {1} 個其他需要處理的套件</value>
-  </data>
-  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+      <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
     <value>此報告未有記錄完整的解決方案圖表。請執行最新版本的 CLI 以產生該圖表；套件清單仍可供查閱。</value>
   </data>
   <data name="A newer report is incomplete." xml:space="preserve">
@@ -120,9 +111,6 @@
   <data name="Not verified" xml:space="preserve">
     <value>未核實</value>
   </data>
-  <data name="npm: not included in this audit." xml:space="preserve">
-    <value>npm：未包含於此審計中。</value>
-  </data>
   <data name="NuGet and npm" xml:space="preserve">
     <value>NuGet 和 npm</value>
   </data>
@@ -156,11 +144,11 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>有報告的專案</value>
   </data>
-  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
-    <value>檢視專案清單需要供應鏈讀取權限。您仍可瀏覽核准規則。</value>
-  </data>
   <data name="README badge" xml:space="preserve">
     <value>README 徽章</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>檢視專案清單需要供應鏈讀取權限。您仍可瀏覽核准規則。</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>報告</value>
@@ -212,6 +200,18 @@
   </data>
   <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
     <value>更新 CLI 報告以查看依賴關係。</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm：未包含於此審計中。</value>
+  </data>
+  <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} 個套件項目 · {1} 個需要處理</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} 個結果 · 第 {1} 頁，共 {2} 頁</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} 個有漏洞的套件 · {1} 個其他需要處理的套件</value>
   </data>
 
 </root>

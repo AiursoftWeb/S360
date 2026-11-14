@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>Một phần có giới hạn trong danh sách phần phụ thuộc được gửi đến API. Một lô được chấp nhận không đồng nghĩa với toàn bộ lượt chạy được chấp nhận.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID khóa API</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Đã chấp nhận</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Đánh giá ẩn danh</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>ID khóa API</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Mục đích kiểm tra</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Lô</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>bản ghi lô</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Bản ghi kiểm tra bản dựng</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Lần chạy</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Các dự án đã quét</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Tìm kiếm</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Nguồn</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Thời điểm dữ liệu cảnh báo làm cơ sở cho quyết định này được kiểm tra gần nhất; giá trị để trống không có nghĩa là mọi thứ đều ổn.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>bản ghi lô</value>
   </data>
 
 </root>

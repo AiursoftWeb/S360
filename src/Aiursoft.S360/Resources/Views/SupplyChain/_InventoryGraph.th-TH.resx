@@ -18,13 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} of {1} nodes shown" xml:space="preserve">
-    <value>แสดงโหนด {0} จาก {1} โหนด</value>
-  </data>
-  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
-    <value>แพ็กเกจเสี่ยง {0} รายการในแผนภาพนี้ ซึ่งรวมถึง {1} รายการที่ถูกซ่อนด้วยระดับความลึกหรือตัวกรอง</value>
-  </data>
-  <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
+      <data name="0 shows project references only; 1 includes directly referenced packages." xml:space="preserve">
     <value>0 แสดงเฉพาะการอ้างอิงโปรเจกต์ ส่วน 1 จะแสดงแพ็กเกจที่อ้างอิงโดยตรงด้วย</value>
   </data>
   <data name="Collapse dependencies" xml:space="preserve">
@@ -215,6 +209,12 @@
   </data>
   <data name="Zoom out" xml:space="preserve">
     <value>ซูมออก</value>
+  </data>
+  <data name="{0} of {1} nodes shown" xml:space="preserve">
+    <value>แสดงโหนด {0} จาก {1} โหนด</value>
+  </data>
+  <data name="{0} vulnerable packages in this diagram, including {1} hidden by depth or filters." xml:space="preserve">
+    <value>แพ็กเกจเสี่ยง {0} รายการในแผนภาพนี้ ซึ่งรวมถึง {1} รายการที่ถูกซ่อนด้วยระดับความลึกหรือตัวกรอง</value>
   </data>
 
 </root>

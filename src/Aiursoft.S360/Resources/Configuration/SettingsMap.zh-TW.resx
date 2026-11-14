@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>AlertCenter 端點</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>允許使用者修改暱稱</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>允許匿名審查</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>允許在沒有 API 金鑰的情況下進行依賴項審查。匿名審查將被記錄為未經驗證的報告，且永遠不會更新生產環境使用量。基準報告始終需要其受保護的憑證。</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>允許使用者修改暱稱</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>允許使用者在個人檔案管理頁面中調整其暱稱。</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>S360 公開基礎 URL</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>頁尾顯示的品牌名稱</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>適用於中國大陸使用者的 ICP 備案號碼。留空則隱藏。</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>頁尾顯示的品牌名稱</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>專案的標誌顯示於導覽列與頁尾。支援 jpg、png、svg 格式。</value>

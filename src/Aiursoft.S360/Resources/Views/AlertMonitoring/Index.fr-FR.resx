@@ -63,11 +63,11 @@
   <data name="Last synchronization" xml:space="preserve">
     <value>Dernière synchronisation</value>
   </data>
-  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
-    <value>La surveillance est effectuée chaque minute. La détection des vulnérabilités suit le calendrier d’audit existant, toutes les six heures. Les identifiants et l’activation sont gérés dans les paramètres globaux, avec prise en charge des substitutions par environnement.</value>
-  </data>
   <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
     <value>Les revues de MR, les données de vulnérabilités obsolètes, les analyses échouées et les rapports partiels ne suppriment jamais automatiquement les incidents de sécurité. La résolution finale reste manuelle.</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>La surveillance est effectuée chaque minute. La détection des vulnérabilités suit le calendrier d’audit existant, toutes les six heures. Les identifiants et l’activation sont gérés dans les paramètres globaux, avec prise en charge des substitutions par environnement.</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Non</value>

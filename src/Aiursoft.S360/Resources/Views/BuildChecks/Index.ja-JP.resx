@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>API に送信される依存関係リストの一部です。バッチが受け入れられたことは、実行全体が受け入れられたことを意味しません。</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>APIキーID</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>承認済み</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>匿名レビュー</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>APIキーID</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>監査目的</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>バッチ</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>バッチ記録</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>ビルドチェック記録</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>実行</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>スキャンしたプロジェクト数</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>検索</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>ソース</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>この判断の根拠となるアドバイザリデータが最後に確認された日時です。値が空であることは、問題がないことを意味しません。</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>バッチ記録</value>
   </data>
 
 </root>

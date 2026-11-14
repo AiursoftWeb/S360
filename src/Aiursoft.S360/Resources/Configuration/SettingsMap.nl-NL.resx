@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>AlertCenter-eindpunt</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>Gebruiker toestaan om bijnaam aan te passen</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Anonieme review toestaan</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>Sta beoordelingen van afhankelijkheden zonder API-sleutel toe. Anonieme beoordelingen worden vastgelegd als niet-geverifieerde rapporten en werken het productiegebruik nooit bij. Voor basisrapporten is altijd de bijbehorende beveiligde inloggegevens vereist.</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>Gebruiker toestaan om bijnaam aan te passen</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Gebruikers toestaan om hun bijnaam aan te passen op de pagina voor profielbeheer.</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>S360 openbare basis-URL</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>De merknaam die wordt weergegeven in de voettekst.</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>Het ICP-licentienummer voor gebruikers uit het Chinese vasteland. Leeg laten om te verbergen.</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>De merknaam die wordt weergegeven in de voettekst.</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>Het logo van het project dat wordt weergegeven in de navigatiebalk en voettekst. Ondersteunt jpg, png, svg.</value>

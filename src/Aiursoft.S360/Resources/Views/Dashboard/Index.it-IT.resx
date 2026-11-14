@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Supporto &quot;fire-and-forget&quot; per attività a lungo termine (come email o IA), con interfaccia grafica per la gestione della coda, elaborazione parallela e annullamento.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} progetti interessati</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} versioni dei pacchetti che richiedono attenzione</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} totali · {1} in corso · {2} approvati</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Una data vuota significa che non è ancora stata completata correttamente alcuna sincronizzazione delle vulnerabilità. Gli orari sono espressi in UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Una regola che può consentire i pacchetti corrispondenti; un blocco assoluto o la mancanza di prove sull’artefatto ne comportano comunque il rifiuto.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>Traduzioni Basate sull&apos;Intelligenza Artificiale</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Esclusioni assolute che prevalgono sulle regole di fiducia e sulle approvazioni.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Regole di blocco attive</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>Traduzioni Basate sull&apos;Intelligenza Artificiale</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Tutte le dipendenze vengono registrate automaticamente e sono sempre disponibili tramite l&apos;iniezione tramite costruttore.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Il tuo lavoro, senza dover andare a tentativi.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} progetti interessati</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} versioni dei pacchetti che richiedono attenzione</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} totali · {1} in corso · {2} approvati</value>
   </data>
 
 </root>

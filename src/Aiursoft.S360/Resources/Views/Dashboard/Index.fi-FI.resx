@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>&quot;Tule ja unohda&quot; -tuki pitkäkestoisille tehtäville (kuten sähköposteille tai AI:lle), jossa on käyttöliittymä jonon hallintaan, rinnakkaisprosessointiin ja peruutukseen.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} projektia, joihin vaikutus kohdistuu</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} pakettiversiota, joihin tulisi kiinnittää huomiota</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} yhteensä · {1} käynnissä · {2} hyväksytty</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Tyhjä päivämäärä tarkoittaa, ettei haavoittuvuustietojen synkronointi ole vielä onnistunut kokonaisuudessaan. Ajat ovat UTC-aikoja.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Käytäntö, joka voi sallia ehdot täyttävät paketit; ehdoton esto tai puuttuvat artefaktin todisteet estävät ne silti.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>Tekoälyn voimaan perustuvat käännökset</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Ehdottomat estot, jotka ovat etusijalla luottamussääntöihin ja hyväksyntöihin nähden.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Aktiiviset estolistaukset</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>Tekoälyn voimaan perustuvat käännökset</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Kaikki riippuvuudet rekisteröidään automaattisesti ja ne ovat aina saatavilla konstruktorin kautta tapahtuvan injektoinnin avulla.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Työsi ilman arvailua.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} projektia, joihin vaikutus kohdistuu</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} pakettiversiota, joihin tulisi kiinnittää huomiota</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} yhteensä · {1} käynnissä · {2} hyväksytty</value>
   </data>
 
 </root>

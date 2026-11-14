@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>Cari paket</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>Cara membaca katalog</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>Sumber paket HTTPS</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Cara membaca katalog</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Sertakan versi prarilis</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Kelola pemasok dan aturan kepercayaan</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Kelola aturan kepercayaan</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>Kelola pemberian izin versi</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>Paket</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>Ketersediaan paket mengikuti aturan yang disetujui dan pemeriksaan kerentanan saat ini.</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>File paket diunduh dan diperiksa oleh registri Anda. Keputusan ini mencakup kebijakan paket dan kerentanan yang diketahui.</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Nama paket</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Artefak yang Tercatat</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>Versi yang dilaporkan</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>Versi yang dilaporkan dan saat ini memenuhi kebijakan ditampilkan di sini. Aturan juga dapat mengizinkan versi yang belum dilaporkan.</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>Tinjau aturan lama</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Cabut</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Cari</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Cari</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>Tampilkan versi paket yang diketahui dan akan cocok dengan aturan yang diusulkan ini. Ini hanya pratinjau cakupan, bukan keputusan kepercayaan.</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Sinkronisasi kerentanan terbaru gagal. Artefak yang tercatat disembunyikan hingga audit berhasil.</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>Sinkronisasi kerentanan terbaru gagal. Hasil yang selesai sebelumnya tetap dapat digunakan hingga kedaluwarsa.</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>Aturan kepercayaan</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>Audit kerentanan belum selesai. Artefak yang tercatat belum dapat ditampilkan sebagai tersedia.</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>Audit kerentanan belum selesai. Versi yang dilaporkan tidak dapat ditampilkan sebagai tersedia.</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>Audit kerentanan sudah kedaluwarsa. Artefak yang tercatat disembunyikan hingga audit baru selesai.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>Audit kerentanan sudah kedaluwarsa. Versi yang dilaporkan disembunyikan hingga audit baru selesai.</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>Aturan wildcard secara otomatis mengizinkan versi mendatang; hash yang pertama kali ditemukan tetap dicatat.</value>

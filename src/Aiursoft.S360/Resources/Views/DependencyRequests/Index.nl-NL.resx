@@ -39,8 +39,14 @@
   <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
     <value>Voer exacte directe versies in. S360 lost de volledige afhankelijkheidsgrafiek op en beoordeelt deze; toekomstige CI-integratie controleert na de implementatie de daadwerkelijke buildgrafiek.</value>
   </data>
+  <data name="Enter exact names and versions. CI reports transitive dependencies; S360 does not restore them." xml:space="preserve">
+    <value>Voer exacte namen en versies in. CI rapporteert transitive afhankelijkheden; S360 herstelt ze niet.</value>
+  </data>
   <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
     <value>Voer alleen de pakketten in die je rechtstreeks hebt gekozen; S360 ontdekt de transitieve afhankelijkheden ervan. Gebruik een exacte versie, geen wildcard.</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval." xml:space="preserve">
+    <value>Bijvoorbeeld: Microsoft.EntityFrameworkCore@10.0.12. Voer elk pakket in dat goedkeuring vereist.</value>
   </data>
   <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
     <value>Bijvoorbeeld: Microsoft.EntityFrameworkCore@10.0.12. Voer de pakketten in die u zelf hebt geselecteerd; S360 ontdekt de pakketten die deze pakketten met zich meebrengen.</value>
@@ -59,6 +65,9 @@
   </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>De pakketbron is niet langer toegestaan voor S360-controles.</value>
+  </data>
+  <data name="Packages, one name@version per line" xml:space="preserve">
+    <value>Packages, één naam@versie per regel</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>Project</value>

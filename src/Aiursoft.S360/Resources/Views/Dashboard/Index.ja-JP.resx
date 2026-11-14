@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>長期実行タスク（メールやAIなど）に対する「ファイア・アンド・フォーゲット」サポート。キュー管理、並列処理、キャンセルに対応するGUIを備えています。</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>影響を受けたプロジェクト数：{0}</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0}件のパッケージバージョンに注意が必要です</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>合計 {0} 件 · 処理中 {1} 件 · 承認済み {2} 件</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>日付が空欄の場合、脆弱性情報の同期がまだ一度も完全に成功していないことを意味します。時刻はUTCです。</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>一致するパッケージを許可する場合があるポリシーです。ただし、絶対的なブロックが設定されている場合や、アーティファクトの証拠が不足している場合は、引き続き拒否されます。</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>AIによる翻訳</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>信頼ルールや承認よりも優先される、例外のない除外ルール。</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>有効なブロックルール</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>AIによる翻訳</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>すべての依存関係は自動的に登録され、コンストラクタインジェクションを通じて常に利用可能です。</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>勘に頼らず、業務を進められます。</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>影響を受けたプロジェクト数：{0}</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0}件のパッケージバージョンに注意が必要です</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>合計 {0} 件 · 処理中 {1} 件 · 承認済み {2} 件</value>
   </data>
 
 </root>

@@ -60,6 +60,9 @@
   <data name="Package file and current authorization" xml:space="preserve">
     <value>पैकेज फ़ाइल और वर्तमान प्राधिकरण</value>
   </data>
+  <data name="Package version and current authorization" xml:space="preserve">
+    <value>पैकेज संस्करण और वर्तमान अधिकृतिकरण</value>
+  </data>
   <data name="Packages that brought this artifact in" xml:space="preserve">
     <value>वे पैकेज जो इस आर्टिफैक्ट को लेकर आए</value>
   </data>
@@ -77,6 +80,9 @@
   </data>
   <data name="This concrete package file currently passes S360&apos;s authorization and stored vulnerability checks. A future build must still check its own complete dependency graph." xml:space="preserve">
     <value>यह विशिष्ट पैकेज फ़ाइल फ़िलहाल S360 की प्राधिकरण और संग्रहीत भेद्यता जाँचों में सफल है। भविष्य के बिल्ड को फिर भी अपने संपूर्ण निर्भरता ग्राफ़ की जाँच करनी होगी।</value>
+  </data>
+  <data name="This package version currently passes authorization and vulnerability checks." xml:space="preserve">
+    <value>यह पैकेज वर्ज़न वर्तमान में प्राधिकरण और संवेदनशीलता जाँचों से गुज़रता है।</value>
   </data>
 
 </root>

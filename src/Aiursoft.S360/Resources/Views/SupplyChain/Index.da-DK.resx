@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>Find pakker</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>Sådan læser du kataloget</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>HTTPS-pakkekilde</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Sådan læser du kataloget</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Medtag forhåndsudgivelser</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Administrer leverandører og tillidsregler</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Administrér tillidregler</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>Administrer versionstilladelser</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>Pakke</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>Pakketilgængeligheden følger godkendte regler og aktuelle sårbarhedstjek.</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>Pakkefiler hentes og kontrolleres af dit registreringskontor. Denne beslutning dækker pakkepolitik og kendte sårbareheder.</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Pakkenavn</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Registrerede artefakter</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>Rapporterede versioner</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>Rapporterede versioner, der i øjeblikket opfylder politikken, vises her. Regler kan også tillade versioner, der endnu ikke er rapporteret.</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>Gennemgå ældre regler</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Tilbagekald</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Søg</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Søg</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>Vis kendte pakkeversioner, som denne foreslåede regel ville matche. Dette er en forhåndsvisning af omfanget, ikke en tillidsbeslutning.</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Den seneste synkronisering af sårbarheder mislykkedes. Registrerede artefakter er skjult, indtil en kontrol er gennemført.</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>Den seneste synkronisering af sårbарheder fejlede. De tidligere færdige resultater forbliver brugbare, indtil de udløber.</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>Tillidsregler</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>Sårbarhedsrevisionen er endnu ikke afsluttet. Registrerede artefakter kan ikke vises som tilgængelige.</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>Sårbarhedsrevisionen er ikke fuldført endnu. Rapporterede versioner kan ikke listes som tilgængelige.</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>Sårbarhedskontrollen er forældet. Registrerede artefakter er skjult, indtil en ny kontrol er gennemført.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>Sårbarhedsrevideringen er forældet. Rapporterede versioner er skjult, indtil en ny revidering er færdig.</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>Wildcardregler tillader automatisk fremtidige versioner; hashes, der ses for første gang, registreres stadig.</value>

@@ -39,6 +39,9 @@
   <data name="Select" xml:space="preserve">
     <value>Selecteren</value>
   </data>
+  <data name="Select observed, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
+    <value>Selecteer waargenomen, concrete pakketnamen om elk oorspronkelijke versie-toestemming over te nemen. Oorspronkelijke regels en goedkeuringen blijven leesbare geschiedenis. Er wordt niets automatisch geselecteerd.</value>
+  </data>
   <data name="Select verified, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
     <value>Selecteer geverifieerde, concrete pakketnamen om elk oorspronkelijk versierecht over te nemen. De oorspronkelijke regels en goedkeuringen blijven als geschiedenis raadpleegbaar. Er wordt niets automatisch geselecteerd.</value>
   </data>

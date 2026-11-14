@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>Già approvato</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>e altro nel report completo</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>Approvazione</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Non è disponibile un rapporto completo sulle dipendenze per questa richiesta.</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>Nessuna vulnerabilità nota trovata</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>Nessuna richiesta in questa visualizzazione.</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>Impossibile verificare l&apos;origine del pacchetto</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>Origine del pacchetto non consentita</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>In sospeso</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>Progetto</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>record presenti in questa visualizzazione</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>Rifiuta</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>Revoca questa approvazione</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>e altro nel report completo</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>record presenti in questa visualizzazione</value>
   </data>
 
 </root>

@@ -18,16 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
-    <value>{0} artefactos de paquetes · {1} requieren atención</value>
-  </data>
-  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
-    <value>{0} resultados · Página {1} de {2}</value>
-  </data>
-  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
-    <value>{0} paquetes vulnerables · {1} otros paquetes que requieren atención</value>
-  </data>
-  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+      <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
     <value>No se registró un grafo de solución completo en este informe. Ejecute la CLI más reciente para generarlo; la lista de paquetes sigue estando disponible.</value>
   </data>
   <data name="A newer report is incomplete." xml:space="preserve">
@@ -120,9 +111,6 @@
   <data name="Not verified" xml:space="preserve">
     <value>Sin verificar</value>
   </data>
-  <data name="npm: not included in this audit." xml:space="preserve">
-    <value>npm: no incluido en esta auditoría.</value>
-  </data>
   <data name="NuGet and npm" xml:space="preserve">
     <value>NuGet y npm</value>
   </data>
@@ -156,11 +144,11 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Proyectos con informes</value>
   </data>
-  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
-    <value>Se necesita permiso de lectura de la cadena de suministro para consultar el inventario de proyectos. Aun así, puedes consultar las reglas de aprobación.</value>
-  </data>
   <data name="README badge" xml:space="preserve">
     <value>Insignia para el README</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Se necesita permiso de lectura de la cadena de suministro para consultar el inventario de proyectos. Aun así, puedes consultar las reglas de aprobación.</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>Informes</value>
@@ -212,6 +200,18 @@
   </data>
   <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
     <value>Actualiza el informe de la CLI para ver las relaciones entre dependencias.</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: no incluido en esta auditoría.</value>
+  </data>
+  <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} artefactos de paquetes · {1} requieren atención</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} resultados · Página {1} de {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} paquetes vulnerables · {1} otros paquetes que requieren atención</value>
   </data>
 
 </root>

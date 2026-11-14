@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>Endpoint AlertCenter</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>Izinkan Pengguna Mengatur Nama Panggilan</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Izinkan ulasan anonim</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>Izinkan tinjauan dependensi tanpa kunci API. Tinjauan anonim dicatat sebagai laporan tidak terverifikasi dan tidak pernah memperbarui penggunaan produksi. Laporan baseline selalu memerlukan kredensial terlindungnya.</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>Izinkan Pengguna Mengatur Nama Panggilan</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Izinkan pengguna menyesuaikan nama panggilan mereka di halaman pengelolaan profil.</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>URL dasar publik S360</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>Nama merek yang ditampilkan di bagian footer.</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>Nomor izin ICP untuk pengguna daratan Tiongkok. Biarkan kosong untuk menyembunyikan.</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>Nama merek yang ditampilkan di bagian footer.</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>Logo proyek yang ditampilkan di navbar dan footer. Mendukung jpg, png, svg.</value>

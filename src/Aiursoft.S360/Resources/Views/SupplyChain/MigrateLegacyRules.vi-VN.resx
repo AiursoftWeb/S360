@@ -39,6 +39,9 @@
   <data name="Select" xml:space="preserve">
     <value>Chọn</value>
   </data>
+  <data name="Select observed, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
+    <value>Chọn các tên gói cụ thể, đã quan sát được để kế thừa mỗi quyền cấp phát phiên bản gốc. Các quy tắc và phê duyệt ban đầu vẫn được giữ làm lịch sử có thể đọc được. Không có gì được chọn tự động.</value>
+  </data>
   <data name="Select verified, concrete package names to inherit each original version grant. Original rules and approvals remain readable history. Nothing is selected automatically." xml:space="preserve">
     <value>Chọn các tên gói cụ thể đã được xác minh để kế thừa từng quyền cấp phiên bản ban đầu. Các quy tắc và phê duyệt ban đầu vẫn được lưu lại để tra cứu. Không có mục nào được tự động chọn.</value>
   </data>

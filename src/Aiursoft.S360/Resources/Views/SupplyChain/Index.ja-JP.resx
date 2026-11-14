@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>パッケージを探す</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>カタログの読み方</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>HTTPS パッケージソース</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>カタログの読み方</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>プレリリース版を含める</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>サプライヤーと信頼ルールの管理</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>信頼ルールを管理</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>バージョン付与を管理</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>パッケージ</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>パッケージの利用可能性は承認済みルールと最新の脆弱性チェックに従います。</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>パッケージファイルはレジストリによってダウンロードおよびチェックされます。この判断はパッケージポリシーと既知の脆弱性を対象とします。</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>パッケージ名</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>記録済みの成果物</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>報告されたバージョン</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>現在のポリシーに合格している報告済みバージョンがここに表示されます。ルールによって、まだ報告されていないバージョンも許可される場合があります。</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>従来のルールを確認</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>無効化</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>検索</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>検索</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>このルール案に一致する既知のパッケージバージョンを表示します。これは対象範囲のプレビューであり、信頼性を判断するものではありません。</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>最新の脆弱性同期に失敗しました。監査が正常に完了するまで、記録済みの成果物は非表示になります。</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>最新の脆弱性同期が失敗しました。期限が切れるまで、前回の完了した結果は引き続き利用可能です。</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>信頼ルール</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>脆弱性監査はまだ完了していません。記録されたアーティファクトは、利用可能として一覧表示できません。</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>脆弱性監査がまだ完了していません。報告されたバージョンは利用可能として一覧表示できません。</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>脆弱性監査の情報は古くなっています。新たな監査が完了するまで、記録済みの成果物は非表示になります。</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>脆弱性監査が期限切れです。新しい監査が完了するまで、報告されたバージョンは非表示になります。</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>ワイルドカードルールでは将来のバージョンも自動的に許可されますが、初回確認時のハッシュは引き続き記録されます。</value>

@@ -21,15 +21,6 @@
       <data name="&quot;Fire-and-forget&quot; support for long-running tasks (like emails or AI), featuring a GUI for queue management, parallel processing, and cancellation." xml:space="preserve">
     <value>Dukungan &quot;fire-and-forget&quot; untuk tugas berjalan lama (seperti email atau AI), dilengkapi antarmuka GUI untuk manajemen antrian, pemrosesan paralel, dan pembatalan.</value>
   </data>
-  <data name="{0} affected projects" xml:space="preserve">
-    <value>{0} proyek terdampak</value>
-  </data>
-  <data name="{0} package versions needing attention" xml:space="preserve">
-    <value>{0} versi paket yang perlu diperhatikan</value>
-  </data>
-  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
-    <value>{0} total · {1} sedang diproses · {2} disetujui</value>
-  </data>
   <data name="A blank date means that no complete vulnerability sync has succeeded yet. Times are UTC." xml:space="preserve">
     <value>Tanggal yang kosong berarti sinkronisasi kerentanan secara menyeluruh belum berhasil. Waktu menggunakan UTC.</value>
   </data>
@@ -69,6 +60,9 @@
   <data name="A policy that may allow matching packages; an absolute block or missing artifact evidence still refuses them." xml:space="preserve">
     <value>Kebijakan yang dapat mengizinkan paket yang cocok; pemblokiran mutlak atau tidak adanya bukti artefak tetap membuatnya ditolak.</value>
   </data>
+  <data name="AI-Powered Translations" xml:space="preserve">
+    <value>Terjemahan Berbasis AI</value>
+  </data>
   <data name="Absolute exclusions that take priority over trust rules and approvals." xml:space="preserve">
     <value>Pengecualian mutlak yang didahulukan daripada aturan kepercayaan dan persetujuan.</value>
   </data>
@@ -80,9 +74,6 @@
   </data>
   <data name="Active block rules" xml:space="preserve">
     <value>Aturan pemblokiran aktif</value>
-  </data>
-  <data name="AI-Powered Translations" xml:space="preserve">
-    <value>Terjemahan Berbasis AI</value>
   </data>
   <data name="All dependencies are automatically registered and always available via constructor injection." xml:space="preserve">
     <value>Semua dependensi terdaftar secara otomatis dan selalu tersedia melalui constructor injection.</value>
@@ -515,6 +506,15 @@
   </data>
   <data name="Your work, without the guesswork." xml:space="preserve">
     <value>Pekerjaan Anda, tanpa perlu menebak-nebak.</value>
+  </data>
+  <data name="{0} affected projects" xml:space="preserve">
+    <value>{0} proyek terdampak</value>
+  </data>
+  <data name="{0} package versions needing attention" xml:space="preserve">
+    <value>{0} versi paket yang perlu diperhatikan</value>
+  </data>
+  <data name="{0} total · {1} in progress · {2} approved" xml:space="preserve">
+    <value>{0} total · {1} sedang diproses · {2} disetujui</value>
   </data>
 
 </root>

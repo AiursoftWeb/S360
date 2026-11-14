@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>Määritä ja synkronoi tuotantoympäristöjen perustasojen tietoturvapoikkeamien valvonta.</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>Luo ja hallinnoi henkilökohtaisia API-avaimia ja käytä niitä riippuvuuksien tarkistamiseen.</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>Luo API-avaimia ja kutsu S360:aa</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Luo ja hallinnoi henkilökohtaisia API-avaimia ja käytä niitä riippuvuuksien tarkistamiseen.</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>Luo perustelineen mahdollistavat henkilökohtaiset API-avaimet ja ilmoita tuotantoryhmien riippuvuudet.</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>Koneen identiteetti voi suorittaa riippuvuustarkistuksia CI-putkesta; pelkällä selaimella kirjautumisella tarkistusrajapintaa ei voi käyttää.</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>Hallitse pakettien ehdottomia estoja.</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>Hallitse AlertCenter-integraatiota</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>Hallinnoi yleisiä asetuksia</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Hallitse pakettien ehdottomia estoja.</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Hallinnoi estolistaa</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>Hallinnoi yleisiä asetuksia</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>Hallitse riippuvuuden hyväksyntäsääntöjä.</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>Hallinnoi toimittajia ja riippuvuuksien jokerimerkkiluottamussääntöjä.</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>Julkaise tuotantotasoarvot</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>Lue kaikki pyynnöt, koontitarkistukset ja haavoittuvuuksien auditointitiedot.</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Lue käyttöoikeudet</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>Lue roolit</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>Lue toimitusketjun tietoja</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Lue käyttäjiä</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Lue kaikki pyynnöt, koontitarkistukset ja haavoittuvuuksien auditointitiedot.</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Lue toimitusketjun tietoja</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Käynnistä tämä sovellus uudelleen</value>

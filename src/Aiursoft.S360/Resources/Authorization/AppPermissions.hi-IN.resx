@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>प्रोडक्शन बेसलाइन के लिए सुरक्षा घटना निगरानी का विन्यास और सिंक करें।</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>व्यक्तिगत API कुंजियाँ बनाएँ और प्रबंधित करें, और उनका उपयोग निर्भरता समीक्षाओं के लिए करें।</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>API कुंजियाँ बनाएं और S360 को कॉल करें</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>व्यक्तिगत API कुंजियाँ बनाएँ और प्रबंधित करें, और उनका उपयोग निर्भरता समीक्षाओं के लिए करें।</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>बेसलाइन-सक्षम व्यक्तिगत API कुंजियाँ बनाएँ और उत्पादन निर्भरता सूचियाँ घोषित करें।</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>CI से मशीन पहचान द्वारा निर्भरता जाँचें की जा सकती हैं; केवल ब्राउज़र से लॉगिन करके जाँच API का उपयोग नहीं किया जा सकता।</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>पूर्ण पैकेज ब्लॉक प्रबंधित करें।</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>AlertCenter इंटीग्रेशन प्रबंधित करें</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>ग्लोबल सेटिंग्स प्रबंधित करें</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>पूर्ण पैकेज ब्लॉक प्रबंधित करें।</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>ब्लॉकलिस्ट प्रबंधित करें</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>ग्लोबल सेटिंग्स प्रबंधित करें</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>निर्भरता स्वीकृति नियमों को प्रबंधित करें।</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>आपूर्तिकर्ताओं और वाइल्डकार्ड निर्भरता विश्वास नियमों का प्रबंधन करें।</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>प्रोडक्शन बेसलाइन प्रकाशित करें</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>सभी अनुरोधों, बिल्ड जाँचों और भेद्यता ऑडिट रिकॉर्ड को देखें।</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>अनुमतियाँ पढ़ें</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>भूमिकाएँ पढ़ें</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>आपूर्ति श्रृंखला पढ़ें</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>उपयोगकर्ताओं को पढ़ें</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>सभी अनुरोधों, बिल्ड जाँचों और भेद्यता ऑडिट रिकॉर्ड को देखें।</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>आपूर्ति श्रृंखला पढ़ें</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>इस ऐप को पुनरारंभ करें</value>

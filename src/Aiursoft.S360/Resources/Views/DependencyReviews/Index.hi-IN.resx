@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>पहले से स्वीकृत</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>और पूरी रिपोर्ट में और भी</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>अनुमोदन</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>इस अनुरोध के लिए कोई पूर्ण निर्भरता रिपोर्ट उपलब्ध नहीं है।</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>कोई ज्ञात सुरक्षा दोष नहीं पाए गए</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>इस दृश्य में कोई अनुरोध नहीं है।</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>पैकेज के स्रोत की पुष्टि नहीं हो सकी</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>पैकेज स्रोत की अनुमति नहीं है</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>लंबित</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>परियोजना</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>इस दृश्य में रिकॉर्ड</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>अस्वीकार करें</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>यह अनुमोदन वापस लें</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>और पूरी रिपोर्ट में और भी</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>इस दृश्य में रिकॉर्ड</value>
   </data>
 
 </root>

@@ -69,11 +69,11 @@
   <data name="Configure and synchronize security incident monitoring for production baselines." xml:space="preserve">
     <value>Налаштуйте та синхронізуйте моніторинг інцидентів безпеки для продуктивних базових ліній.</value>
   </data>
-  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
-    <value>Створюйте та керуйте особистими API-ключами та використовуйте їх для огляду залежностей.</value>
-  </data>
   <data name="Create API keys and call S360" xml:space="preserve">
     <value>Створення ключів API та виклик S360</value>
+  </data>
+  <data name="Create and manage personal API keys and use them for dependency reviews." xml:space="preserve">
+    <value>Створюйте та керуйте особистими API-ключами та використовуйте їх для огляду залежностей.</value>
   </data>
   <data name="Create baseline-enabled personal API keys and declare production dependency inventories." xml:space="preserve">
     <value>Створюйте персональні ключі API з підтримкою базових конфігурацій і декларуйте переліки залежностей для виробничого середовища.</value>
@@ -102,17 +102,20 @@
   <data name="Machine identity may execute dependency checks from CI; browser login alone cannot use the check API." xml:space="preserve">
     <value>Ідентифікація машини може виконувати перевірки залежностей у CI; одного лише входу через браузер недостатньо для використання API перевірки.</value>
   </data>
-  <data name="Manage absolute package blocks." xml:space="preserve">
-    <value>Керуйте абсолютними блокуваннями пакетів.</value>
-  </data>
   <data name="Manage AlertCenter integration" xml:space="preserve">
     <value>Керування інтеграцією AlertCenter</value>
+  </data>
+  <data name="Manage Global Settings" xml:space="preserve">
+    <value>Керування загальними параметрами</value>
+  </data>
+  <data name="Manage absolute package blocks." xml:space="preserve">
+    <value>Керуйте абсолютними блокуваннями пакетів.</value>
   </data>
   <data name="Manage blocklist" xml:space="preserve">
     <value>Керування списком блокування</value>
   </data>
-  <data name="Manage Global Settings" xml:space="preserve">
-    <value>Керування загальними параметрами</value>
+  <data name="Manage dependency approval rules." xml:space="preserve">
+    <value>Керувати правилами затвердження залежностей.</value>
   </data>
   <data name="Manage suppliers and wildcard dependency trust rules." xml:space="preserve">
     <value>Керуйте постачальниками та правилами довіри до залежностей із шаблонами підстановки.</value>
@@ -123,20 +126,20 @@
   <data name="Publish production baselines" xml:space="preserve">
     <value>Публікувати базові конфігурації для продуктивного середовища</value>
   </data>
-  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
-    <value>Перегляд усіх запитів, перевірок збірок і записів аудиту вразливостей.</value>
-  </data>
   <data name="Read Permissions" xml:space="preserve">
     <value>Читати дозволи</value>
   </data>
   <data name="Read Roles" xml:space="preserve">
     <value>Перегляд ролей</value>
   </data>
-  <data name="Read supply chain" xml:space="preserve">
-    <value>Читати ланцюг постачання</value>
-  </data>
   <data name="Read Users" xml:space="preserve">
     <value>Перегляд користувачів</value>
+  </data>
+  <data name="Read all requests, build checks and vulnerability audit records." xml:space="preserve">
+    <value>Перегляд усіх запитів, перевірок збірок і записів аудиту вразливостей.</value>
+  </data>
+  <data name="Read supply chain" xml:space="preserve">
+    <value>Читати ланцюг постачання</value>
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Перезавантажити цей додаток</value>

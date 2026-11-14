@@ -18,16 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
-    <value>{0} artefacte de pachete · {1} necesită atenție</value>
-  </data>
-  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
-    <value>{0} rezultate · Pagina {1} din {2}</value>
-  </data>
-  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
-    <value>{0} pachete vulnerabile · {1} alte pachete care necesită atenție</value>
-  </data>
-  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+      <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
     <value>Graficul complet al soluției nu a fost înregistrat în acest raport. Rulați cea mai recentă versiune a CLI pentru a-l popula; lista de pachete rămâne disponibilă.</value>
   </data>
   <data name="A newer report is incomplete." xml:space="preserve">
@@ -117,9 +108,6 @@
   <data name="Not verified" xml:space="preserve">
     <value>Neverificat</value>
   </data>
-  <data name="npm: not included in this audit." xml:space="preserve">
-    <value>npm: nu este inclus în acest audit.</value>
-  </data>
   <data name="NuGet and npm" xml:space="preserve">
     <value>NuGet și npm</value>
   </data>
@@ -153,11 +141,11 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Proiecte cu rapoarte</value>
   </data>
-  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
-    <value>Citirea inventarului proiectelor necesită permisiunea de citire a lanțului de aprovizionare. Puteți consulta în continuare regulile de aprobare.</value>
-  </data>
   <data name="README badge" xml:space="preserve">
     <value>Insignă README</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>Citirea inventarului proiectelor necesită permisiunea de citire a lanțului de aprovizionare. Puteți consulta în continuare regulile de aprobare.</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>Raporturi</value>
@@ -209,6 +197,18 @@
   </data>
   <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
     <value>Actualizați raportul CLI pentru a vedea relațiile dintre dependențe.</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: nu este inclus în acest audit.</value>
+  </data>
+  <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0} artefacte de pachete · {1} necesită atenție</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0} rezultate · Pagina {1} din {2}</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>{0} pachete vulnerabile · {1} alte pachete care necesită atenție</value>
   </data>
 
 </root>

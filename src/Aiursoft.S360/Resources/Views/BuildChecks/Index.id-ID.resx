@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>Sebagian terbatas dari daftar dependensi yang dikirim ke API. Batch yang diterima tidak sama dengan keseluruhan proses yang diterima.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>ID Kunci API</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Diterima</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Tinjauan anonim</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>ID Kunci API</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Tujuan audit</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Batch</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>catatan batch</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Catatan Pemeriksaan Build</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Eksekusi</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Proyek yang dipindai</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Cari</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Sumber</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Kapan data advisori di balik keputusan ini terakhir diperiksa; nilai kosong bukanlah tanda bahwa semuanya aman.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>catatan batch</value>
   </data>
 
 </root>

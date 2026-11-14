@@ -39,8 +39,14 @@
   <data name="Enter exact direct versions. S360 resolves and reviews the entire graph; future CI integration will check the actual build graph after deployment." xml:space="preserve">
     <value>請輸入準確的直接依賴版本。S360 會解析並審查整個依賴關係圖；日後整合 CI 後，將會在部署後檢查實際的建置依賴關係圖。</value>
   </data>
+  <data name="Enter exact names and versions. CI reports transitive dependencies; S360 does not restore them." xml:space="preserve">
+    <value>請輸入確切的套件名稱及版本。CI 會報告間接依賴項目，但 S360 不會還原它們。</value>
+  </data>
   <data name="Enter only the packages you choose directly; S360 will discover their transitive dependencies. Use an exact version, not a wildcard." xml:space="preserve">
     <value>只輸入你直接選用的套件；S360 會找出它們的傳遞相依項目。請使用確切版本，不要使用萬用字元。</value>
+  </data>
+  <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval." xml:space="preserve">
+    <value>例如：Microsoft.EntityFrameworkCore@10.0.12。請輸入每個需要審批的套件。</value>
   </data>
   <data name="For example: Microsoft.EntityFrameworkCore@10.0.12. Enter packages you selected yourself; S360 discovers packages they bring in." xml:space="preserve">
     <value>例如：Microsoft.EntityFrameworkCore@10.0.12。請輸入你自行選擇的套件；S360 會找出這些套件引入的套件。</value>
@@ -59,6 +65,9 @@
   </data>
   <data name="Package source is no longer permitted for S360 checks." xml:space="preserve">
     <value>套件來源已不再獲准用於 S360 檢查。</value>
+  </data>
+  <data name="Packages, one name@version per line" xml:space="preserve">
+    <value>套件，每行一個名稱@版本</value>
   </data>
   <data name="Project" xml:space="preserve">
     <value>專案</value>

@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>查找软件包</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>如何阅读目录</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>HTTPS 软件包源</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>如何阅读目录</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>包含预发布版本</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>管理供应商和信任规则</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>管理信任规则</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>管理版本授权</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>软件包</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>软件包可用性遵循已批准的规则和当前的漏洞检查。</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>包文件由您的注册表下载并检查。此决定涵盖包策略和已知漏洞。</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>软件包名称</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>已记录的制品</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>报告的版本</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>当前符合策略的已报告版本将显示在此处。规则也可能允许尚未报告的版本。</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>查看旧版规则</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>撤销</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>搜索</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>搜索</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>显示此规则拟匹配的已知软件包版本。这只是范围预览，并不代表信任判定。</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>最新一次漏洞同步失败。成功完成审计前，已记录的构件将被隐藏。</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>最新的漏洞同步失败。之前的已完成结果在过期前仍可使用。</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>信任规则</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>漏洞审计尚未完成。无法将已记录的制品列为可用。</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>漏洞审计尚未完成。报告的版本无法列为可用。</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>漏洞审计结果已过期。在新一轮审计完成之前，已记录的制品将被隐藏。</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>漏洞审计已过期。在新的审计完成之前，已报告的版本将被隐藏。</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>通配符规则会自动允许未来版本；仍会记录首次发现的哈希值。</value>

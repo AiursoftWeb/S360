@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+      <data name="A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>แพ็กเกจที่ตรงตามเงื่อนไขจะถูกปฏิเสธไม่ว่าจะมาจากแหล่งใด ได้รับการอนุมัติหรือไม่ หรือเข้ามาในฐานะความพึ่งพาโดยตรงหรือทางอ้อม การอนุมัติและการตรวจสอบในอดีตยังคงอยู่เป็นหลักฐานเพื่อการตรวจสอบ</value>
+  </data>
+  <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
     <value>แพ็กเกจที่ตรงตามเงื่อนไขจะถูกปฏิเสธโดยไม่คำนึงถึงผู้จัดหา แหล่งที่มา การอนุมัติ หรือเป็นแพ็กเกจที่มาถึงในฐานะการพึ่งพาโดยตรงหรือการพึ่งพาต่อเนื่อง การอนุมัติและการตรวจสอบในอดีตจะยังคงเก็บไว้เป็นหลักฐานสำหรับการตรวจสอบย้อนหลัง</value>
   </data>
   <data name="Absolute blocklist" xml:space="preserve">
@@ -26,12 +29,6 @@
   </data>
   <data name="Add absolute block" xml:space="preserve">
     <value>เพิ่มรายการบล็อกแบบเด็ดขาด</value>
-  </data>
-  <data name="applications" xml:space="preserve">
-    <value>แอปพลิเคชัน</value>
-  </data>
-  <data name="artifacts" xml:space="preserve">
-    <value>อาร์ติแฟกต์</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>การพึ่งพาที่พร้อมใช้งาน</value>
@@ -104,6 +101,12 @@
   </data>
   <data name="Why disable this block?" xml:space="preserve">
     <value>ทำไมจึงปิดใช้งานกฎการบล็อกนี้?</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>แอปพลิเคชัน</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>อาร์ติแฟกต์</value>
   </data>
 
 </root>

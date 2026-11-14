@@ -33,14 +33,14 @@
   <data name="AlertCenter endpoint" xml:space="preserve">
     <value>Τελικό σημείο του AlertCenter</value>
   </data>
+  <data name="Allow User Adjust Nickname" xml:space="preserve">
+    <value>Επιτρέψτε στον Χρήστη να Τροποποιήσει το Παρασκήνιο Όνομα</value>
+  </data>
   <data name="Allow anonymous review" xml:space="preserve">
     <value>Επιτρέπει ανώνυμη αξιολόγηση</value>
   </data>
   <data name="Allow dependency reviews without an API key. Anonymous reviews are recorded as unverified reports and never update production usage. Baseline reports always require their protected credential." xml:space="preserve">
     <value>Επιτρέπεται η αξιολόγηση εξαρτήσεων χωρίς κλειδί API. Οι ανώνυμες αξιολογήσεις καταγράφονται ως μη επαληθευμένες αναφορές και δεν ενημερώνουν ποτέ τη χρήση παραγωγής. Οι αναφορές基準 απαιτούν πάντα το προστατευμένο διαπιστευτικό τους.</value>
-  </data>
-  <data name="Allow User Adjust Nickname" xml:space="preserve">
-    <value>Επιτρέψτε στον Χρήστη να Τροποποιήσει το Παρασκήνιο Όνομα</value>
   </data>
   <data name="Allow users to adjust their nickname in the profile management page." xml:space="preserve">
     <value>Επιτρέψτε στους χρήστες να τροποποιήσουν το ψευδώνυμό τους στη σελίδα διαχείρισης προφίλ.</value>
@@ -90,11 +90,11 @@
   <data name="S360 public base URL" xml:space="preserve">
     <value>Δημόσια βασική διεύθυνση URL του S360</value>
   </data>
-  <data name="The brand name displayed in the footer." xml:space="preserve">
-    <value>Το όνομα της εταιρείας που εμφανίζεται στον ποδόσκαλο.</value>
-  </data>
   <data name="The ICP license number for China mainland users. Leave empty to hide." xml:space="preserve">
     <value>Ο αριθμός άδειας ICP για χρήστες της κυρίως Κίνας. Αφήστε κενό για να κρυφτεί.</value>
+  </data>
+  <data name="The brand name displayed in the footer." xml:space="preserve">
+    <value>Το όνομα της εταιρείας που εμφανίζεται στον ποδόσκαλο.</value>
   </data>
   <data name="The logo of the project displayed in the navbar and footer. Support jpg, png, svg." xml:space="preserve">
     <value>Το λογότυπο του έργου που εμφανίζεται στην ναβιγατόρια και τον ποδοσκαλο. Υποστήριξη jpg, png, svg.</value>

@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>已獲批准</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>及完整報告中的其他項目</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>批核</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>此請求目前未有完整的依賴項報告。</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>未發現已知弱點</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>此檢視中沒有請求。</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>無法驗證套件來源</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>套件來源不被允許</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>待處理</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>專案</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>此檢視中的記錄</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>拒絕</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>撤回此項批准</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>及完整報告中的其他項目</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>此檢視中的記錄</value>
   </data>
 
 </root>

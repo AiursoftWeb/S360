@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+      <data name="A matching package is refused regardless of source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
+    <value>Un pacchetto corrispondente viene rifiutato indipendentemente dalla fonte, dall&apos;approvazione o dal fatto che sia arrivato come dipendenza diretta o transitiva. Le approvazioni e i controlli storici rimangono come prova di audit.</value>
+  </data>
+  <data name="A matching package is refused regardless of supplier, source, approval, or whether it arrived as a direct or transitive dependency. Historical approvals and checks remain as audit evidence." xml:space="preserve">
     <value>Un pacchetto corrispondente viene rifiutato indipendentemente dal fornitore, dalla provenienza, dall’approvazione o dal fatto che sia arrivato come dipendenza diretta o transitiva. Le approvazioni e i controlli storici restano come evidenza di audit.</value>
   </data>
   <data name="Absolute blocklist" xml:space="preserve">
@@ -26,12 +29,6 @@
   </data>
   <data name="Add absolute block" xml:space="preserve">
     <value>Aggiungi blocco assoluto</value>
-  </data>
-  <data name="applications" xml:space="preserve">
-    <value>applicazioni</value>
-  </data>
-  <data name="artifacts" xml:space="preserve">
-    <value>artefatti</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Dipendenze disponibili</value>
@@ -104,6 +101,12 @@
   </data>
   <data name="Why disable this block?" xml:space="preserve">
     <value>Perché disabilitare questo blocco?</value>
+  </data>
+  <data name="applications" xml:space="preserve">
+    <value>applicazioni</value>
+  </data>
+  <data name="artifacts" xml:space="preserve">
+    <value>artefatti</value>
   </data>
 
 </root>

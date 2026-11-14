@@ -21,6 +21,9 @@
       <data name="A bounded portion of the dependency list sent to the API. An accepted batch is not the same as a complete accepted run." xml:space="preserve">
     <value>API&apos;ye gönderilen bağımlılık listesinin belirli bir bölümü. Kabul edilen bir grup, tamamı kabul edilmiş bir çalıştırmayla aynı şey değildir.</value>
   </data>
+  <data name="API Key ID" xml:space="preserve">
+    <value>API Anahtar Kimliği</value>
+  </data>
   <data name="Accepted" xml:space="preserve">
     <value>Kabul Edildi</value>
   </data>
@@ -33,9 +36,6 @@
   <data name="Anonymous review" xml:space="preserve">
     <value>Anonim inceleme</value>
   </data>
-  <data name="API Key ID" xml:space="preserve">
-    <value>API Anahtar Kimliği</value>
-  </data>
   <data name="Audit purpose" xml:space="preserve">
     <value>Denetim amacı</value>
   </data>
@@ -44,9 +44,6 @@
   </data>
   <data name="Batch" xml:space="preserve">
     <value>Toplu işlem</value>
-  </data>
-  <data name="batch records" xml:space="preserve">
-    <value>toplu işlem kayıtları</value>
   </data>
   <data name="Build check records" xml:space="preserve">
     <value>Derleme Kontrol Kayıtları</value>
@@ -129,14 +126,14 @@
   <data name="Run" xml:space="preserve">
     <value>Çalıştırma</value>
   </data>
+  <data name="SHA-256" xml:space="preserve">
+    <value>SHA-256</value>
+  </data>
   <data name="Scanned projects" xml:space="preserve">
     <value>Taranan projeler</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Ara</value>
-  </data>
-  <data name="SHA-256" xml:space="preserve">
-    <value>SHA-256</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Kaynak</value>
@@ -176,6 +173,9 @@
   </data>
   <data name="When the advisory data behind this decision was last checked; a blank value is not a clean bill of health." xml:space="preserve">
     <value>Bu karara dayanak olan tavsiye verilerinin en son ne zaman kontrol edildiği; boş bir değer, güvenli olduğunun kanıtı değildir.</value>
+  </data>
+  <data name="batch records" xml:space="preserve">
+    <value>toplu işlem kayıtları</value>
   </data>
 
 </root>

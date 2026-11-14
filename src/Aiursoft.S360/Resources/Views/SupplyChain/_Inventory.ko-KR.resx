@@ -18,16 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
-    <value>{0}개의 패키지 아티팩트 · {1}건 처리 필요</value>
-  </data>
-  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
-    <value>{0}개 결과 · {2}페이지 중 {1}페이지</value>
-  </data>
-  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
-    <value>취약한 패키지 {0}개 · 주의가 필요한 기타 패키지 {1}개</value>
-  </data>
-  <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
+      <data name="A complete solution graph was not recorded in this report. Run the latest CLI to populate it; the package list remains available." xml:space="preserve">
     <value>이 보고서에는 완전한 솔루션 그래프가 기록되지 않았습니다. 최신 CLI를 실행하여 채워 넣으세요. 패키지 목록은 계속 사용할 수 있습니다.</value>
   </data>
   <data name="A newer report is incomplete." xml:space="preserve">
@@ -120,9 +111,6 @@
   <data name="Not verified" xml:space="preserve">
     <value>검증되지 않음</value>
   </data>
-  <data name="npm: not included in this audit." xml:space="preserve">
-    <value>npm: 이 감사에 포함되지 않음.</value>
-  </data>
   <data name="NuGet and npm" xml:space="preserve">
     <value>NuGet 및 npm</value>
   </data>
@@ -156,11 +144,11 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>보고서가 있는 프로젝트</value>
   </data>
-  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
-    <value>프로젝트 인벤토리 읽기에 공급망 읽기 권한이 필요합니다. 승인 규칙은 계속 열람할 수 있습니다.</value>
-  </data>
   <data name="README badge" xml:space="preserve">
     <value>README 배지</value>
+  </data>
+  <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
+    <value>프로젝트 인벤토리 읽기에 공급망 읽기 권한이 필요합니다. 승인 규칙은 계속 열람할 수 있습니다.</value>
   </data>
   <data name="Reports" xml:space="preserve">
     <value>리포트</value>
@@ -212,6 +200,18 @@
   </data>
   <data name="Update the CLI report to see dependency relationships." xml:space="preserve">
     <value>의존성 관계를 확인하려면 CLI 보고서를 업데이트하세요.</value>
+  </data>
+  <data name="npm: not included in this audit." xml:space="preserve">
+    <value>npm: 이 감사에 포함되지 않음.</value>
+  </data>
+  <data name="{0} package artifacts · {1} need attention" xml:space="preserve">
+    <value>{0}개의 패키지 아티팩트 · {1}건 처리 필요</value>
+  </data>
+  <data name="{0} results · Page {1} of {2}" xml:space="preserve">
+    <value>{0}개 결과 · {2}페이지 중 {1}페이지</value>
+  </data>
+  <data name="{0} vulnerable packages · {1} other packages needing attention" xml:space="preserve">
+    <value>취약한 패키지 {0}개 · 주의가 필요한 기타 패키지 {1}개</value>
   </data>
 
 </root>

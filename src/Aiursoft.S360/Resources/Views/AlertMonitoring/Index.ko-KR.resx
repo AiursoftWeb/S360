@@ -63,11 +63,11 @@
   <data name="Last synchronization" xml:space="preserve">
     <value>마지막 동기화</value>
   </data>
-  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
-    <value>모니터링은 매분 확인합니다. 취약점 탐지는 기존의 6시간 감사 일정을 따릅니다. 자격 증명과 활성화 설정은 전역 설정을 사용하며, 환경별 재정의도 지원합니다.</value>
-  </data>
   <data name="MR reviews, stale vulnerability data, failed scans and partial reports never automatically clear security incidents. Final resolution remains manual." xml:space="preserve">
     <value>MR 검토, 오래된 취약점 데이터, 실패한 스캔 및 일부만 완료된 보고서로는 보안 인시던트가 자동으로 해제되지 않습니다. 최종 해결은 수동으로 처리해야 합니다.</value>
+  </data>
+  <data name="Monitoring checks every minute. Vulnerability discovery follows the existing six-hour audit schedule. Credentials and enablement use Global Settings, with environment overrides supported." xml:space="preserve">
+    <value>모니터링은 매분 확인합니다. 취약점 탐지는 기존의 6시간 감사 일정을 따릅니다. 자격 증명과 활성화 설정은 전역 설정을 사용하며, 환경별 재정의도 지원합니다.</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>아니요</value>

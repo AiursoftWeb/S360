@@ -16,7 +16,7 @@
     <summary class="s360-inventory-package-summary">
         <span class="s360-inventory-package-name"><strong>@Model.Name</strong><small>@(Model.Ecosystem == "nuget" ? "NuGet" : "npm") · @string.Join(", ", Model.Versions.Select(v => v.Dependency.Version).Distinct())</small><span class="s360-inventory-purpose-preview">@(purposes.FirstOrDefault()?.Justification ?? reasons.FirstOrDefault() ?? @Localizer["No purpose or approval reason recorded"].Value)</span></span>
         <span class="s360-inventory-project-preview"><span class="s360-inventory-project-action">@string.Format(@Localizer["View all {0} projects"].Value, projects.Count)</span><small>@string.Join(", ", projects.Take(2))@(projects.Count > 2 ? " …" : "")</small></span>
-        @await Html.PartialAsync("_InventoryStatus", Model.Status == InventoryStatus.Compliant && Model.Versions.Any(v => v.State?.NeedsVerification == true) ? InventoryStatus.Pending : Model.Status)
+        @await Html.PartialAsync("_InventoryStatus", Model.DisplayStatus)
         <i class="s360-inventory-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
     </summary>
     <div class="s360-inventory-package-body">
@@ -57,7 +57,7 @@
         @foreach (var version in Model.Versions)
         {
             <section class="s360-inventory-version">
-                <div class="s360-inventory-version-heading"><strong>@version.Dependency.Version</strong>@await Html.PartialAsync("_InventoryStatus", version.Status == InventoryStatus.Compliant && version.State?.NeedsVerification == true ? InventoryStatus.Pending : version.Status)</div>
+                <div class="s360-inventory-version-heading"><strong>@version.Dependency.Version</strong>@await Html.PartialAsync("_InventoryStatus", version.DisplayStatus)</div>
                 <p>@version.Reason</p>
                 @if (version.Advisories.Count > 0)
                 {

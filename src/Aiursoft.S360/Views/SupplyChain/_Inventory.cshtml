@@ -14,7 +14,7 @@
         <header class="s360-project-header">
             <span class="s360-inventory-eyebrow">S360 · @Localizer["Supply chain"]</span>
             <div class="s360-project-title"><h1>@Model.Project?.Replace("//", " · ")</h1>
-                @if (selectedProject != null) { @await Html.PartialAsync("../SupplyChain/_InventoryStatus", selectedProject.Status == InventoryStatus.Compliant && selectedProject.Versions.Any(v => v.State?.NeedsVerification == true) ? InventoryStatus.Pending : selectedProject.Status) }
+                @if (selectedProject != null) { @await Html.PartialAsync("../SupplyChain/_InventoryStatus", selectedProject.DisplayStatus) }
             </div>
             @if (selectedProject != null)
             {
@@ -99,7 +99,7 @@
                 <option value="issues" selected="@(Model.Filter == "issues")">@Localizer["Needs attention"]</option>
                 <option value="cve" selected="@(Model.Filter == "cve")">@Localizer["Known vulnerabilities"]</option>
                 <option value="pending" selected="@(Model.Filter == "pending")">@Localizer["Not verified"]</option>
-                <option value="compliant" selected="@(Model.Filter == "compliant")">@Localizer["Compliant"]</option>
+                <option value="compliant" selected="@(Model.Filter == "compliant")">@Localizer["Current check passed"]</option>
             </select></label>
             }
             <button class="btn btn-primary">@if (isProjectDetails) { @Localizer["Explore"] } else { @Localizer["Search"] }</button>
@@ -133,7 +133,7 @@
                 @if (Model.Project == null)
                 {
                     <a class="s360-project-card" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-project="@project.Name" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem">
-                        <div class="s360-project-card-heading"><i data-lucide="folder-git-2" aria-hidden="true"></i>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", project.Status == InventoryStatus.Compliant && project.Versions.Any(v => v.State?.NeedsVerification == true) ? InventoryStatus.Pending : project.Status)</div>
+                        <div class="s360-project-card-heading"><i data-lucide="folder-git-2" aria-hidden="true"></i>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", project.DisplayStatus)</div>
                         <h2>@project.DisplayName</h2>
                         <small>@Localizer["Status covers only the reported ecosystems."]
                             @if (!project.Reports.Any(r => r.Ecosystem == "nuget")) { <span>@Localizer["NuGet: not included in this audit."]</span> }

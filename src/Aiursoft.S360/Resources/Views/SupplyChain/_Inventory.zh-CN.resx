@@ -238,4 +238,7 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>请核查报告的版本及当前审批状态。申请相应的审批，或升级至已获批准且不受影响的版本；切勿降级至存在漏洞的版本。</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>当前检查已通过</value>
+  </data>
 </root>

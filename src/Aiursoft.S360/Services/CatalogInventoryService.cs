@@ -189,7 +189,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
                         {
                             var state = graphStates.GetValueOrDefault(DependencyIntroductionPaths.Identity(n.Package!));
                             return new InventoryGraphNode(n.Id, "package", n.Package, [],
-                                state?.Status ?? InventoryStatus.Pending, state?.Reason, state?.Advisories ?? [],
+                                state?.DisplayStatus ?? InventoryStatus.Pending, state?.Reason, state?.Advisories ?? [],
                                 state?.Uses.Select(u => u.Project).Distinct().Order().ToList() ?? [],
                                 state == null ? [] : state.Requests.Select(r => r.Justification)
                                     .Concat(state.Rules.Select(r => r.Justification))
@@ -219,7 +219,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
                         {
                             var state = n.Package == null ? null : graphStates.GetValueOrDefault(DependencyIntroductionPaths.Identity(n.Package));
                             return new InventoryGraphNode(n.Id, n.Kind, n.Package, n.Children,
-                                state?.Status ?? InventoryStatus.Pending, state?.Reason, state?.Advisories ?? [],
+                                state?.DisplayStatus ?? InventoryStatus.Pending, state?.Reason, state?.Advisories ?? [],
                                 state?.Uses.Select(u => u.Project).Distinct().Order().ToList() ?? [],
                                 state == null ? [] : state.Requests.Select(r => r.Justification)
                                     .Concat(state.Rules.Select(r => r.Justification))
@@ -264,7 +264,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
              version.Rules.Any(r => Contains(r.Justification, model.Query)) ||
              version.Requests.Any(r => Contains(r.Justification, model.Query) || Contains(r.Project, model.Query)) ||
              version.Uses.Any(u => Contains(u.Project, model.Query))) &&
-            MatchesFilter(version.Status, version.Advisories.Count > 0, model.Filter);
+            MatchesFilter(version.DisplayStatus, version.Advisories.Count > 0, model.Filter);
         if (model.Tab == "dependencies")
         {
             var filtered = packages.Where(p => p.Versions.Any(VersionMatches)).ToList();
@@ -275,7 +275,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
         else
         {
             var filtered = projects.Values.Where(p => model.Project == null || p.Name == model.Project)
-                .Where(p => MatchesFilter(p.Status, p.Versions.Any(v => v.Advisories.Count > 0), model.Filter))
+                .Where(p => MatchesFilter(p.DisplayStatus, p.Versions.Any(v => v.Advisories.Count > 0), model.Filter))
                 .Where(p => Contains(p.Name, model.Query) || p.Versions.Any(v =>
                     Contains(v.Dependency.Name, model.Query) || v.Rules.Any(r => Contains(r.Justification, model.Query)) ||
                     v.Requests.Any(r => Contains(r.Justification, model.Query))))

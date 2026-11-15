@@ -16,7 +16,7 @@
     {
         <span class="s360-state s360-state-neutral"><i data-lucide="info" aria-hidden="true"></i>@Localizer["No known vulnerability found in this check"]</span>
     }
-    <div class="s360-admission-result" data-admission="@(Model.CanAdmit ? "allowed" : Model.Admission.PendingVerification ? "pending" : "denied")">
+    <div class="s360-admission-result" data-admission="@(Model.CanAdmit ? "allowed" : Model.Authorized && Model.Admission.PendingVerification ? "pending" : "denied")">
         @if (Model.CanAdmit && !Model.NeedsVerification)
         {
             <span class="s360-state s360-state-success"><i data-lucide="circle-check" aria-hidden="true"></i>@Localizer["Current admission check passed"]</span>

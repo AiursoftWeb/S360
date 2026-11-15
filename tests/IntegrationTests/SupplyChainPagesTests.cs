@@ -4493,7 +4493,7 @@ public class SupplyChainPagesTests : TestBase
         var html = await detailed.Content.ReadAsStringAsync();
         StringAssert.Contains(html, packageName);
         var findingStart = html.IndexOf($"<strong>{packageName}</strong>", StringComparison.Ordinal);
-        var nextFinding = html.IndexOf("<div class=\"card mb-3\">", findingStart + 1, StringComparison.Ordinal);
+        var nextFinding = html.IndexOf("<div class=\"card mb-3\" data-finding=", findingStart + 1, StringComparison.Ordinal);
         var findingHtml = nextFinding < 0 ? html[findingStart..] : html[findingStart..nextFinding];
         StringAssert.Contains(findingHtml, "Withdrawn");
         Assert.DoesNotContain("Authorization range includes affected versions", findingHtml);

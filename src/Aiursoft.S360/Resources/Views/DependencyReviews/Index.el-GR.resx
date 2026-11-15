@@ -24,9 +24,6 @@
   <data name="Already approved" xml:space="preserve">
     <value>Έχει ήδη εγκριθεί</value>
   </data>
-  <data name="and more in the complete report" xml:space="preserve">
-    <value>και περισσότερα στην πλήρη αναφορά</value>
-  </data>
   <data name="Approval" xml:space="preserve">
     <value>Έγκριση</value>
   </data>
@@ -93,6 +90,9 @@
   <data name="No complete dependency report is available for this request." xml:space="preserve">
     <value>Δεν υπάρχει πλήρης αναφορά εξαρτήσεων για αυτό το αίτημα.</value>
   </data>
+  <data name="No known vulnerabilities found" xml:space="preserve">
+    <value>Δεν βρέθηκαν γνωστές ευρωές</value>
+  </data>
   <data name="No requests in this view." xml:space="preserve">
     <value>Δεν υπάρχουν αιτήματα σε αυτήν την προβολή.</value>
   </data>
@@ -108,6 +108,9 @@
   <data name="Package source could not be verified" xml:space="preserve">
     <value>Δεν ήταν δυνατή η επαλήθευση της πηγής του πακέτου</value>
   </data>
+  <data name="Package source is not permitted" xml:space="preserve">
+    <value>Η πηγή του πακέτου δεν είναι επιτρεπόμενη</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>Σε εκκρεμότητα</value>
   </data>
@@ -122,9 +125,6 @@
   </data>
   <data name="Project" xml:space="preserve">
     <value>Έργο</value>
-  </data>
-  <data name="records in this view" xml:space="preserve">
-    <value>εγγραφές σε αυτήν την προβολή</value>
   </data>
   <data name="Reject" xml:space="preserve">
     <value>Απόρριψη</value>
@@ -212,6 +212,12 @@
   </data>
   <data name="Withdraw this approval" xml:space="preserve">
     <value>Ανάκληση αυτής της έγκρισης</value>
+  </data>
+  <data name="and more in the complete report" xml:space="preserve">
+    <value>και περισσότερα στην πλήρη αναφορά</value>
+  </data>
+  <data name="records in this view" xml:space="preserve">
+    <value>εγγραφές σε αυτήν την προβολή</value>
   </data>
 
 </root>

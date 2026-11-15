@@ -93,11 +93,11 @@
   <data name="Find packages" xml:space="preserve">
     <value>Εύρεση πακέτων</value>
   </data>
-  <data name="How to read the catalog" xml:space="preserve">
-    <value>Πώς να διαβάσετε τον κατάλογο</value>
-  </data>
   <data name="HTTPS package source" xml:space="preserve">
     <value>Πηγή πακέτων HTTPS</value>
+  </data>
+  <data name="How to read the catalog" xml:space="preserve">
+    <value>Πώς να διαβάσετε τον κατάλογο</value>
   </data>
   <data name="Include prerelease" xml:space="preserve">
     <value>Να περιλαμβάνονται προεκδόσεις</value>
@@ -119,6 +119,9 @@
   </data>
   <data name="Manage suppliers and trust rules" xml:space="preserve">
     <value>Διαχείριση προμηθευτών και κανόνων εμπιστοσύνης</value>
+  </data>
+  <data name="Manage trust rules" xml:space="preserve">
+    <value>Διαχείριση κανόνων εμπιστοσύνης</value>
   </data>
   <data name="Manage version grants" xml:space="preserve">
     <value>Διαχείριση εγκρίσεων εκδόσεων</value>
@@ -143,6 +146,12 @@
   </data>
   <data name="Package" xml:space="preserve">
     <value>Πακέτο</value>
+  </data>
+  <data name="Package availability follows approved rules and current vulnerability checks." xml:space="preserve">
+    <value>Η διαθεσιμότητα πακέτων ακολουθεί τα ενέχοντα κανόνες και τους τρέχοντες ελέγχους ευρωστίας.</value>
+  </data>
+  <data name="Package files are downloaded and checked by your registry. This decision covers package policy and known vulnerabilities." xml:space="preserve">
+    <value>Τα αρχεία πακέτων κατεβαίνουν και ελέγχονται από το μητρώο σας. Αυτή η απόφαση καλύπτει την πολιτική πακέτων και τα γνωστά ευρήματα ασφαλείας.</value>
   </data>
   <data name="Package name" xml:space="preserve">
     <value>Όνομα πακέτου</value>
@@ -174,17 +183,23 @@
   <data name="Recorded artifacts" xml:space="preserve">
     <value>Καταγεγραμμένα τεχνουργήματα</value>
   </data>
+  <data name="Reported versions" xml:space="preserve">
+    <value>Αναφερθένες εκδόσεις</value>
+  </data>
+  <data name="Reported versions that currently pass policy appear here. Rules may also allow versions not yet reported." xml:space="preserve">
+    <value>Εδώ εμφανίζονται οι αναφερθείσες εκδόσεις που currently πληρούν τις πολιτικές. Οι κανόνες μπορούν επίσης να επιτρέπουν εκδόσεις που δεν έχουν αναφερθεί ακόμη.</value>
+  </data>
   <data name="Review legacy rules" xml:space="preserve">
     <value>Εξετάστε τους παλιούς κανόνες</value>
   </data>
   <data name="Revoke" xml:space="preserve">
     <value>Ανάκληση</value>
   </data>
-  <data name="Search" xml:space="preserve">
-    <value>Αναζήτηση</value>
-  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Αναζήτηση</value>
   </data>
   <data name="Show known package versions that this proposed rule would match. This is a preview of scope, not a trust decision." xml:space="preserve">
     <value>Εμφανίστε τις γνωστές εκδόσεις πακέτων που θα αντιστοιχούσε σε αυτόν τον προτεινόμενο κανόνα. Αυτή είναι μια προεπισκόπηση του εύρους εφαρμογής και όχι απόφαση εμπιστοσύνης.</value>
@@ -207,6 +222,9 @@
   <data name="The latest vulnerability synchronization failed. Recorded artifacts are hidden until a successful audit." xml:space="preserve">
     <value>Ο πιο πρόσφατος συγχρονισμός ευπαθειών απέτυχε. Τα καταγεγραμμένα τεχνουργήματα παραμένουν κρυφά μέχρι να ολοκληρωθεί επιτυχώς ένας έλεγχος.</value>
   </data>
+  <data name="The latest vulnerability synchronization failed. The previous completed results remain usable until they expire." xml:space="preserve">
+    <value>Η τελευταία συγχρονισμός ευρωστειών απέτυχε. Τα προηγούμενα ολοκληρωμένα αποτελέσματα παραμένουν διαθέσιμα έως ότου ληξάνουν.</value>
+  </data>
   <data name="Trust rules" xml:space="preserve">
     <value>Κανόνες εμπιστοσύνης</value>
   </data>
@@ -222,8 +240,14 @@
   <data name="Vulnerability auditing has not completed yet. Recorded artifacts cannot be listed as available." xml:space="preserve">
     <value>Ο έλεγχος ευπαθειών δεν έχει ολοκληρωθεί ακόμη. Τα καταγεγραμμένα τεχνουργήματα δεν μπορούν να εμφανιστούν ως διαθέσιμα.</value>
   </data>
+  <data name="Vulnerability auditing has not completed yet. Reported versions cannot be listed as available." xml:space="preserve">
+    <value>Ο έλεγχος ευρωστημάτων δεν έχει ολοκληρωθεί ακόμη. Οι αναφερόμενες εκδόσεις δεν μπορούν να παραταχθούν ως διαθέσιμες.</value>
+  </data>
   <data name="Vulnerability auditing is stale. Recorded artifacts are hidden until a new audit completes." xml:space="preserve">
     <value>Ο έλεγχος ευπαθειών δεν είναι ενημερωμένος. Τα καταγεγραμμένα τεχνουργήματα παραμένουν κρυφά μέχρι να ολοκληρωθεί ένας νέος έλεγχος.</value>
+  </data>
+  <data name="Vulnerability auditing is stale. Reported versions are hidden until a new audit completes." xml:space="preserve">
+    <value>Ο ελεγχος ευρωτηματων εχει παρει. Οι αναφερομενες εκδοσεις κρυβονται εως οτου ολοκληρωθει ο ελεγχος.</value>
   </data>
   <data name="Wildcard rules automatically admit future versions; first-seen hashes are still recorded." xml:space="preserve">
     <value>Οι κανόνες με χαρακτήρες μπαλαντέρ επιτρέπουν αυτόματα μελλοντικές εκδόσεις· τα αποτυπώματα κατακερματισμού που καταγράφονται για πρώτη φορά εξακολουθούν να αποθηκεύονται.</value>

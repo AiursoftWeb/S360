@@ -653,6 +653,7 @@ a.s360-overview-metric:hover { box-shadow: 0 0 0 2px var(--bs-primary, #3b7ddd);
 .s360-status-page .s360-workspace-head::after { display: none; }
 .s360-status-page .s360-workspace-head h1 { color: var(--s360-ink); }
 .s360-status-page .s360-workspace-head p { color: var(--s360-muted) !important; }
+.s360-status-page code { color: var(--s360-ink); }
 .s360-status-page .card, .s360-status-page .s360-inventory-package,
 .s360-status-page .s360-inventory-package-body, .s360-status-page .s360-inventory-policy,
 .s360-status-page .s360-inventory-explanation, .s360-status-page .s360-project-card,
@@ -675,7 +676,7 @@ a.s360-overview-metric:hover { box-shadow: 0 0 0 2px var(--bs-primary, #3b7ddd);
 .s360-state-danger { color: var(--bs-danger-text-emphasis, #842029); background: var(--bs-danger-bg-subtle, #f8d7da); }
 .s360-state-protected, .s360-state-use { color: var(--bs-primary-text-emphasis, #084298); background: var(--bs-primary-bg-subtle, #cfe2ff); }
 .s360-state-warning { color: var(--bs-warning-text-emphasis, #664d03); background: var(--bs-warning-bg-subtle, #fff3cd); }
-.s360-state-neutral { color: var(--bs-secondary-color, #536270); background: var(--bs-secondary-bg, #e9ecef); }
+.s360-state-neutral { color: var(--bs-body-color, #25364a); background: var(--bs-secondary-bg, #e9ecef); }
 .s360-state-success { color: var(--bs-success-text-emphasis, #0f5132); background: var(--bs-success-bg-subtle, #d1e7dd); }
 .s360-report-coverage { display: flex; align-items: flex-start; gap: .75rem; padding: 1rem; border: 1px solid var(--s360-line); border-radius: .5rem; }
 .s360-status-legend { padding: .8rem 1rem; border: 1px solid var(--s360-line); border-radius: .5rem; }
@@ -693,6 +694,7 @@ a.s360-overview-metric:hover { box-shadow: 0 0 0 2px var(--bs-primary, #3b7ddd);
 .s360-version-tiles { display: grid; gap: .75rem; }
 .s360-version-tile { padding: .85rem; border: 1px solid var(--s360-line); border-radius: .4rem; background: var(--bs-tertiary-bg, #f8f9fa); overflow-wrap: anywhere; min-width: 0; }
 .s360-version-tile h4 { margin: 0 0 .6rem; }
+.s360-version-tile h4 code { font-size: .95rem; font-weight: 600; }
 .s360-version-facts { margin: .5rem 0; }
 .s360-admission-result { flex-basis: 100%; }
 .s360-version-evidence { font-size: .85rem; margin-top: .65rem; }

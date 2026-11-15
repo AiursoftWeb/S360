@@ -515,7 +515,7 @@ public class SupplyChainPagesTests : TestBase
                      ("/SupplyChain/Blocklist?ecosystem=nuget", "How absolute blocking works"),
                      ("/DependencyRequests/Index", "Package source"),
                      ("/DependencyReviews/Index", "Dependency approvals"),
-                     ("/VulnerabilityAudit/Index?ecosystem=nuget", "Quick versus detailed audit"),
+                     ("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget", "Quick versus detailed audit"),
                      ("/BuildChecks/Index", "Accepted versus enforced")
                  })
         {
@@ -790,7 +790,7 @@ public class SupplyChainPagesTests : TestBase
             state.LastError = "OSV temporarily unavailable";
             await db.SaveChangesAsync();
         }
-        using var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        using var response = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget");
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         StringAssert.Contains(html, "alert-warning");
@@ -832,7 +832,7 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
+        using var response = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true");
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         StringAssert.Contains(html, sourceId);
@@ -881,12 +881,12 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        using var response = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget");
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         Assert.AreEqual(1, html.Split($"<strong>{package}</strong>").Length - 1);
         StringAssert.Contains(html, "Correlated source records");
-        StringAssert.Contains(html, "Current authorization range permits an affected version");
+        StringAssert.Contains(html, "Authorization range includes affected versions");
     }
 
     [TestMethod]
@@ -2019,7 +2019,7 @@ public class SupplyChainPagesTests : TestBase
             Assert.IsTrue(GetService<Microsoft.Extensions.Caching.Memory.IMemoryCache>()
                 .TryGetValue("s360-osv-audit-queued", out _));
             await LoginAsAdmin();
-            foreach (var url in new[] { "/BuildChecks/Index", "/VulnerabilityAudit/Index?detailed=true",
+            foreach (var url in new[] { "/BuildChecks/Index", "/VulnerabilityAudit/Index?scope=all&detailed=true",
                          "/SupplyChain?tab=projects&scope=review" })
             {
                 using var page = await Http.GetAsync(url);
@@ -3522,7 +3522,7 @@ public class SupplyChainPagesTests : TestBase
         var baselineId = await Record(vulnerableId, baseline, -5, trusted: false);
         await Record(fixedId, review, -4, trusted: true);
         await Record(fixedId, new CheckContext(), -3, trusted: true);
-        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
@@ -3544,12 +3544,12 @@ public class SupplyChainPagesTests : TestBase
         baseline.PipelineSource = "schedule";
         await Record(fixedId, baseline, -2, trusted: true);
         await Record(vulnerableId, review, -1, trusted: false);
-        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             response.EnsureSuccessStatusCode();
             Assert.DoesNotContain(name, await response.Content.ReadAsStringAsync());
         }
-        using (var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true"))
+        using (var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true"))
         {
             detailed.EnsureSuccessStatusCode();
             var html = await detailed.Content.ReadAsStringAsync();
@@ -3558,7 +3558,7 @@ public class SupplyChainPagesTests : TestBase
             Assert.DoesNotContain("MR !42", html);
         }
         await Record(vulnerableId, null, 0, trusted: false);
-        using (var legacy = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var legacy = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             legacy.EnsureSuccessStatusCode();
             Assert.DoesNotContain(name, await legacy.Content.ReadAsStringAsync());
@@ -3567,10 +3567,10 @@ public class SupplyChainPagesTests : TestBase
         review.PipelineSource = "push";
         review.MergeRequest = null;
         await Record(vulnerableId, review, 1, trusted: false);
-        using (var reviewOnly = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var reviewOnly = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
             Assert.DoesNotContain(name, await reviewOnly.Content.ReadAsStringAsync());
         var affectedBaseline = await Record(vulnerableId, baseline, 2, trusted: false);
-        using (var affected = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var affected = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             var html = await affected.Content.ReadAsStringAsync();
             StringAssert.Contains(html, "Production baseline reports an affected version");
@@ -3591,7 +3591,7 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using (var otherScope = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var otherScope = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
             StringAssert.Contains(await otherScope.Content.ReadAsStringAsync(), $"checkId={affectedBaseline}");
         // A newer incomplete baseline cannot replace the last complete inventory.
         using (var scope = Server!.Services.CreateScope())
@@ -3608,7 +3608,7 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using (var incomplete = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var incomplete = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
             StringAssert.Contains(await incomplete.Content.ReadAsStringAsync(), $"checkId={affectedBaseline}");
         // A full batch count with mixed graph availability is still incomplete.
         using (var scope = Server!.Services.CreateScope())
@@ -3629,7 +3629,7 @@ public class SupplyChainPagesTests : TestBase
                 });
             await db.SaveChangesAsync();
         }
-        using (var mixedGraphs = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var mixedGraphs = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             mixedGraphs.EnsureSuccessStatusCode();
             StringAssert.Contains(await mixedGraphs.Content.ReadAsStringAsync(), $"checkId={affectedBaseline}");
@@ -3649,7 +3649,7 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using (var cleared = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var cleared = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
             Assert.DoesNotContain(name, await cleared.Content.ReadAsStringAsync());
 
         async Task<int> Record(int artifactId, CheckContext? context, int seconds, bool trusted)
@@ -3735,7 +3735,7 @@ public class SupplyChainPagesTests : TestBase
                 });
             await db.SaveChangesAsync();
         }
-        using var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        using var response = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget");
         response.EnsureSuccessStatusCode();
         var html = await response.Content.ReadAsStringAsync();
         StringAssert.Contains(html, "Production baseline projects: <strong>1</strong>");
@@ -3754,7 +3754,7 @@ public class SupplyChainPagesTests : TestBase
             projectPage.EnsureSuccessStatusCode();
             StringAssert.Contains(await projectPage.Content.ReadAsStringAsync(), baselineProject);
         }
-        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
+        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true");
         detailed.EnsureSuccessStatusCode();
         var detailedHtml = await detailed.Content.ReadAsStringAsync();
         Assert.DoesNotContain(reviewProject, detailedHtml);
@@ -3764,12 +3764,100 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
+    public async Task VulnerabilityTabsDefaultToProductionAndKeepRuleFindingsPaginated()
+    {
+        await LoginAsAdmin();
+        var suffix = Guid.NewGuid().ToString("N");
+        var rulePackage = "Example.RuleOnly." + suffix;
+        var productionId = "GHSA-production-" + suffix;
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            db.Rules.Add(new PackageRule
+            {
+                Ecosystem = "nuget", PackagePattern = rulePackage, Version = "*",
+                Source = "https://api.nuget.org/v3/index.json", Status = RuleStatus.Approved
+            });
+            for (var i = 0; i < 101; i++)
+                db.Vulnerabilities.Add(new Vulnerability
+                {
+                    Ecosystem = "nuget", PackageName = rulePackage,
+                    SourceId = $"GHSA-rule-{suffix}-{i}",
+                    RawAffectedJson = JsonSerializer.Serialize(new[] { new
+                    {
+                        package = new { ecosystem = "NuGet", name = rulePackage },
+                        versions = new[] { "1.0.0" }
+                    } })
+                });
+            var version = new PackageVersion
+            {
+                Ecosystem = "nuget", Name = "Example.Production." + suffix,
+                Version = "1.0.0", Source = "https://api.nuget.org/v3/index.json"
+            };
+            db.Vulnerabilities.Add(new Vulnerability
+            {
+                Ecosystem = "nuget", PackageName = version.Name, SourceId = productionId,
+                Matches = [new VulnerabilityMatch
+                {
+                    VulnerabilityId = 0, PackageVersionId = 0, PackageVersion = version
+                }]
+            });
+            db.BuildChecks.Add(new BuildCheck
+            {
+                Project = "company/production-" + suffix, RunId = suffix,
+                BatchCount = 1, ScannedProjectCount = 1,
+                ContextJson = JsonSerializer.Serialize(new CheckContext { Purpose = "baseline", Ecosystem = "nuget" }),
+                Dependencies = [new BuildCheckDependency
+                {
+                    BuildCheckId = 0, PackageVersionId = 0, PackageVersion = version,
+                    Ecosystem = "nuget", Name = version.Name, Version = version.Version, Source = version.Source
+                }]
+            });
+            await db.SaveChangesAsync();
+        }
+        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        {
+            response.EnsureSuccessStatusCode();
+            var html = await response.Content.ReadAsStringAsync();
+            StringAssert.Contains(html, $"data-finding=\"{productionId}\"");
+            Assert.DoesNotContain($"data-finding=\"GHSA-rule-{suffix}", html);
+            StringAssert.Contains(html, "Known affected versions are blocked at admission.");
+            Assert.DoesNotContain("Current authorization range permits an affected version", html);
+        }
+        var found = new HashSet<string>();
+        var pages = 0;
+        string? next = "/VulnerabilityAudit/Index?ecosystem=nuget&scope=authorization&detailed=true";
+        while (next != null)
+        {
+            Assert.IsTrue(++pages < 10);
+            using var response = await Http.GetAsync(next);
+            response.EnsureSuccessStatusCode();
+            var html = await response.Content.ReadAsStringAsync();
+            Assert.DoesNotContain($"data-finding=\"{productionId}\"", html);
+            foreach (System.Text.RegularExpressions.Match match in System.Text.RegularExpressions.Regex.Matches(html,
+                         $"data-finding=\"(GHSA-rule-{suffix}-[0-9]+)\""))
+                Assert.IsTrue(found.Add(match.Groups[1].Value), "A finding appeared on more than one page.");
+            var nextLink = System.Text.RegularExpressions.Regex.Match(html, "href=\"([^\"]+)\">Next</a>");
+            next = nextLink.Success ? WebUtility.HtmlDecode(nextLink.Groups[1].Value) : null;
+            if (next != null)
+            {
+                StringAssert.Contains(next, "scope=authorization");
+                StringAssert.Contains(next, "detailed=true");
+            }
+        }
+        Assert.AreEqual(101, found.Count);
+        Assert.IsTrue(pages >= 2);
+        using var invalid = await Http.GetAsync("/VulnerabilityAudit/Index?scope=invalid");
+        Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
+    }
+
+    [TestMethod]
     public async Task AuditOverviewDeduplicatesAcrossAllPagesAndCountsOnlyBaselineProjects()
     {
         await LoginAsAdmin();
         async Task<Dictionary<string, int>> Counts(string ecosystem)
         {
-            using var response = await Http.GetAsync($"/VulnerabilityAudit/Index?ecosystem={ecosystem}");
+            using var response = await Http.GetAsync($"/VulnerabilityAudit/Index?scope=all&ecosystem={ecosystem}");
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
             return System.Text.RegularExpressions.Regex.Matches(html, """data-audit-count="([^"]+)">([0-9]+)</strong>""")
@@ -3836,7 +3924,7 @@ public class SupplyChainPagesTests : TestBase
         }
         foreach (var page in new[] { 1, 2 })
         {
-            using var response = await Http.GetAsync($"/VulnerabilityAudit/Index?ecosystem=nuget&page={page}");
+            using var response = await Http.GetAsync($"/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&page={page}");
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
             StringAssert.Contains(html, $"data-audit-count=\"advisories\">{before["advisories"] + 101}</strong>");
@@ -3970,12 +4058,12 @@ public class SupplyChainPagesTests : TestBase
             ruleId = rule.Id;
             vulnerabilityId = vulnerability.Id;
         }
-        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             response.EnsureSuccessStatusCode();
             var html = await response.Content.ReadAsStringAsync();
             StringAssert.Contains(html, packageName);
-            StringAssert.Contains(html, "Current authorization range permits an affected version");
+            StringAssert.Contains(html, "Authorization range includes affected versions");
         }
         using (var scope = Server!.Services.CreateScope())
         {
@@ -3989,12 +4077,12 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             response.EnsureSuccessStatusCode();
             Assert.DoesNotContain(packageName, await response.Content.ReadAsStringAsync());
         }
-        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true"))
+        using (var response = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true"))
         {
             response.EnsureSuccessStatusCode();
             StringAssert.Contains(await response.Content.ReadAsStringAsync(), packageName);
@@ -4065,10 +4153,10 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
         }
 
-        using var quick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        using var quick = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget");
         quick.EnsureSuccessStatusCode();
         Assert.DoesNotContain(name, await quick.Content.ReadAsStringAsync());
-        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
+        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true");
         detailed.EnsureSuccessStatusCode();
         StringAssert.Contains(await detailed.Content.ReadAsStringAsync(), name);
     }
@@ -4128,10 +4216,10 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
         }
 
-        using var quick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        using var quick = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget");
         quick.EnsureSuccessStatusCode();
         Assert.DoesNotContain(name, await quick.Content.ReadAsStringAsync());
-        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
+        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true");
         detailed.EnsureSuccessStatusCode();
         StringAssert.Contains(await detailed.Content.ReadAsStringAsync(), name);
     }
@@ -4189,12 +4277,12 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
         }
 
-        using (var quick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var quick = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             quick.EnsureSuccessStatusCode();
             Assert.DoesNotContain(name, await quick.Content.ReadAsStringAsync());
         }
-        using (var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true"))
+        using (var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true"))
         {
             detailed.EnsureSuccessStatusCode();
             StringAssert.Contains(await detailed.Content.ReadAsStringAsync(), name);
@@ -4219,7 +4307,7 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using var affectedQuick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
+        using var affectedQuick = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true");
         affectedQuick.EnsureSuccessStatusCode();
         var html = await affectedQuick.Content.ReadAsStringAsync();
         StringAssert.Contains(html, name);
@@ -4270,7 +4358,7 @@ public class SupplyChainPagesTests : TestBase
             await db.SaveChangesAsync();
             blockId = block.Id;
         }
-        using (var partial = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var partial = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             partial.EnsureSuccessStatusCode();
             StringAssert.Contains(await partial.Content.ReadAsStringAsync(), packageName);
@@ -4281,12 +4369,12 @@ public class SupplyChainPagesTests : TestBase
             db.Rules.Where(r => r.Kind == RuleKind.Block).Single(b => b.Id == blockId).Version = "10.0.*";
             await db.SaveChangesAsync();
         }
-        using (var covered = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var covered = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             covered.EnsureSuccessStatusCode();
             Assert.DoesNotContain(packageName, await covered.Content.ReadAsStringAsync());
         }
-        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
+        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true");
         detailed.EnsureSuccessStatusCode();
         StringAssert.Contains(await detailed.Content.ReadAsStringAsync(), packageName);
     }
@@ -4335,7 +4423,7 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using (var otherSource = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var otherSource = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             otherSource.EnsureSuccessStatusCode();
             StringAssert.Contains(await otherSource.Content.ReadAsStringAsync(), packageName);
@@ -4355,10 +4443,10 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using var quick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget");
+        using var quick = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget");
         quick.EnsureSuccessStatusCode();
         Assert.DoesNotContain(packageName, await quick.Content.ReadAsStringAsync());
-        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
+        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true");
         detailed.EnsureSuccessStatusCode();
         StringAssert.Contains(await detailed.Content.ReadAsStringAsync(), packageName);
     }
@@ -4395,12 +4483,12 @@ public class SupplyChainPagesTests : TestBase
             });
             await db.SaveChangesAsync();
         }
-        using (var quick = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget"))
+        using (var quick = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget"))
         {
             quick.EnsureSuccessStatusCode();
             Assert.DoesNotContain(packageName, await quick.Content.ReadAsStringAsync());
         }
-        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?ecosystem=nuget&detailed=true");
+        using var detailed = await Http.GetAsync("/VulnerabilityAudit/Index?scope=all&ecosystem=nuget&detailed=true");
         detailed.EnsureSuccessStatusCode();
         var html = await detailed.Content.ReadAsStringAsync();
         StringAssert.Contains(html, packageName);
@@ -4408,7 +4496,7 @@ public class SupplyChainPagesTests : TestBase
         var nextFinding = html.IndexOf("<div class=\"card mb-3\">", findingStart + 1, StringComparison.Ordinal);
         var findingHtml = nextFinding < 0 ? html[findingStart..] : html[findingStart..nextFinding];
         StringAssert.Contains(findingHtml, "Withdrawn");
-        Assert.DoesNotContain("Current authorization range permits an affected version", findingHtml);
+        Assert.DoesNotContain("Authorization range includes affected versions", findingHtml);
     }
 
     [TestMethod]

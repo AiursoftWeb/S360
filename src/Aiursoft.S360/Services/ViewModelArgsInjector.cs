@@ -89,7 +89,7 @@ public class ViewModelArgsInjector(
         _ = localizer["Available dependency details"];
         _ = localizer["Build check records"];
         _ = localizer["Dependency approvals"];
-        _ = localizer["Existing package CVEs"];
+        _ = localizer["Vulnerability audit"];
         _ = localizer["My requests"];
         _ = localizer["Overview"];
         _ = localizer["Preview trust rule"];

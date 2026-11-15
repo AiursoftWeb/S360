@@ -401,6 +401,14 @@
 .s360-project-name { min-width: 12rem; max-width: 24rem; overflow-wrap: anywhere; }
 .s360-listed-versions { max-height: 12rem; overflow-y: auto; }
 .s360-vulnerability-page .s360-version-ranges code { white-space: nowrap; }
+.s360-vulnerability-page {
+    --s360-ink: var(--bs-body-color, #15243c);
+    --s360-muted: var(--bs-secondary-color, #5e6d82);
+    --s360-line: var(--bs-border-color, #e1e9ef);
+}
+.s360-vulnerability-page .card-header,
+.s360-vulnerability-page .s360-concept-card { background: var(--bs-body-bg, #fff); }
+.s360-vulnerability-page .s360-concept-card dt { color: var(--s360-ink); }
 @media (max-width: 1100px) {
     .s360-vulnerability-page .s360-concept-rail { grid-row: auto; }
 }

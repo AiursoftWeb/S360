@@ -10,6 +10,12 @@
 
 S360 records which NuGet and npm packages your team may use, checks known vulnerabilities, and alerts affected projects. Package servers handle downloading, integrity checks, and caching.
 
+![S360 screenshot](./screenshot.png)
+
+## Overview
+
+S360 records package admission rules, checks vulnerabilities and reports affected projects. Package servers download and cache artifacts; S360 supplies policy decisions.
+
 ## CLI & SDK
 
 Install the CLI with the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0):
@@ -21,8 +27,6 @@ dotnet tool install --global Aiursoft.S360.Client
 Run `s360 --help` to explore commands. See [Dependency checks](#dependency-checks) for configuration and examples.
 
 The [SDK source](src/Aiursoft.S360.SDK) is included in this repository; it is not published as a separate NuGet package.
-
-![S360 screenshot](./screenshot.png)
 
 ## Try
 
@@ -72,7 +76,9 @@ Open `http://localhost:5000`. Keep `/data` persistent for configuration, databas
 
 For company sign-in, configure `AppSettings__AuthProvider=OIDC` and the `AppSettings__OIDC__*` values. Keep client secrets outside Git and assign application permissions to the appropriate roles.
 
-## Dependency checks
+## Usage
+
+### Dependency checks
 
 The CLI checks restored dependencies against the server policy. NuGet checks require an explicit `.sln` file and the .NET SDK. Use the same solution and environment for restore, check and build:
 
@@ -113,7 +119,7 @@ CLI 1.0.10 and later also report manifest-scoped dependency relationships. Open 
 
 Configure permitted registries through `SupplyChain:NuGetSources` and `SupplyChain:NpmSources`. S360 treats these URLs as policy identities; it does not contact them. Requests contain package names and versions, and CI reports resolved dependency lists. S360 never restores dependencies or downloads package archives.
 
-## Package server integration
+### Package server integration
 
 Package servers query the existing `POST /api/artifacts/assess` endpoint with a personal `X-S360-Key`. Each dependency contains `ecosystem`, `name`, `version`, and `source`; no package file or hash is required. The response reports whether current rules and vulnerability data allow that version. Baseline permission is not required.
 
@@ -123,6 +129,16 @@ Recheck before serving cached packages so revocation and new vulnerabilities tak
 
 `GET /api/artifacts/approved` retains pagination for observed versions that currently pass policy. It is not an exhaustive list of versions covered by wildcard grants; assess exact candidate versions before use. The previous mirror routes remain read-only compatibility aliases during client upgrades; they no longer download or verify files.
 
+## Documentation
+
+- [Dependency checks](#dependency-checks)
+- [Package server integration](#package-server-integration)
+- [Configuration reference](src/Aiursoft.S360/appsettings.json)
+
 ## How to contribute
 
 Report bugs and suggestions through the issue tracker. Create a fork and a feature branch, then submit a merge request for review.
+
+## License
+
+Licensed under the [MIT License](LICENSE).

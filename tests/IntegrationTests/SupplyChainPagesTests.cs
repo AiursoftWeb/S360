@@ -3745,7 +3745,14 @@ public class SupplyChainPagesTests : TestBase
         Assert.DoesNotContain(reviewProject, html);
         Assert.DoesNotContain("scope=review", html);
         var baselineLinks = System.Text.RegularExpressions.Regex.Matches(html, "href=\"([^\"]+)\"[^>]*>" + baselineProject + "</a>");
-        Assert.AreEqual(1, baselineLinks.Count);
+        Assert.IsTrue(baselineLinks.Count >= 1);
+        foreach (System.Text.RegularExpressions.Match link in baselineLinks)
+        {
+            var target = WebUtility.HtmlDecode(link.Groups[1].Value);
+            StringAssert.Contains(target, "scope=baseline");
+            StringAssert.Contains(target, "ecosystem=nuget");
+            StringAssert.Contains(target, "project=" + Uri.EscapeDataString(baselineProject));
+        }
         var baselineUrl = WebUtility.HtmlDecode(baselineLinks[0].Groups[1].Value);
         StringAssert.Contains(baselineUrl, "scope=baseline");
         StringAssert.Contains(baselineUrl, "ecosystem=nuget");
@@ -3764,7 +3771,7 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
-    public async Task VulnerabilityTabsDefaultToProductionAndKeepRuleFindingsPaginated()
+    public async Task VulnerabilityTabsDefaultToProductionAndKeepAllAdvisoriesOfOnePackageTogether()
     {
         await LoginAsAdmin();
         var suffix = Guid.NewGuid().ToString("N");
@@ -3846,7 +3853,7 @@ public class SupplyChainPagesTests : TestBase
             }
         }
         Assert.AreEqual(101, found.Count);
-        Assert.IsTrue(pages >= 2);
+        Assert.AreEqual(1, pages);
         using var invalid = await Http.GetAsync("/VulnerabilityAudit/Index?scope=invalid");
         Assert.AreEqual(HttpStatusCode.BadRequest, invalid.StatusCode);
     }

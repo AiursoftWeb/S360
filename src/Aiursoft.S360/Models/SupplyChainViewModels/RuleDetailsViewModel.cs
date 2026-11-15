@@ -11,6 +11,7 @@ public class RuleDetailsViewModel : UiStackLayoutViewModel
     public List<PackageRule> Exclusions { get; init; } = [];
     public List<PackageRule> DerivedRules { get; init; } = [];
     public List<RuleAdvisoryRange> AdvisoryRanges { get; init; } = [];
+    public PackageRelationshipViewModel? Relationship { get; init; }
 }
 
 public record RuleAdvisoryRange(Vulnerability Advisory, RangeRisk Intersection);

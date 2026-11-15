@@ -1,0 +1,37 @@
+@using Aiursoft.WebTools
+@model Aiursoft.S360.Models.SupplyChainViewModels.PackageRelationshipViewModel
+@{
+    var reported = Model.Versions.Where(v => v.Uses.Count > 0).ToList();
+    var affected = reported.Where(v => v.State?.HasKnownVulnerability == true).ToList();
+    var unauthorized = reported.Any(v => v.State?.Authorized == false);
+}
+<section class="s360-package-status" aria-label="@Localizer["Current status and next action"]">
+    <div class="s360-state-list">
+        @if (affected.Count > 0)
+        { <span class="s360-state s360-state-danger" data-state="production-affected"><i data-lucide="triangle-alert" aria-hidden="true"></i>@Localizer["Production baseline reports an affected version"]</span> }
+        @if (unauthorized)
+        { <span class="s360-state s360-state-warning" data-state="unauthorized"><i data-lucide="file-x" aria-hidden="true"></i>@Localizer["Reported use is outside current authorization"]</span> }
+        @if (Model.CompleteReportCount == 0 || Model.IncompleteReports || Model.Versions.Any(v => v.State?.NeedsVerification == true))
+        { <span class="s360-state s360-state-warning" data-state="uncertain"><i data-lucide="circle-help" aria-hidden="true"></i>@Localizer["Evidence needs verification"]</span> }
+    </div>
+    @if (affected.Count > 0)
+    { <p class="mt-2">@Localizer["Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines."]</p> }
+    else if (Model.CompleteReportCount > 0)
+    { <p class="mt-2">@Localizer["No affected production use reported in the available complete baselines for this source. Unreported projects and later changes are not covered."]</p> }
+    else
+    { <p class="mt-2">@Localizer["Production use is not established. Submit a complete baseline before drawing a conclusion about deployed versions."]</p> }
+    @if (unauthorized)
+    { <p>@Localizer["Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability."]</p> }
+    @if (Model.CompleteReportCount > 0)
+    {
+        <p class="small text-muted">@string.Format(@Localizer["Checked against {0} complete baseline reports."].Value, Model.CompleteReportCount)
+            @Localizer["Report dates"]: <span data-utc-time="@Model.OldestReportAtUtc?.ToHtmlDateTime()"></span> – <span data-utc-time="@Model.LatestReportAtUtc?.ToHtmlDateTime()"></span></p>
+    }
+    @if (Model.IncompleteReports)
+    { <p class="small">@Localizer["Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained."]</p> }
+    <div class="s360-affected-project-links mb-3">
+    @foreach (var project in reported.SelectMany(v => v.Uses).Select(u => u.Project).Distinct().Order())
+    { <a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="baseline" asp-route-project="@project" asp-route-ecosystem="@Model.Ecosystem">@project</a> }
+    </div>
+    <a class="btn btn-outline-primary btn-sm mb-3" asp-controller="VulnerabilityAudit" asp-action="Index" asp-route-ecosystem="@Model.Ecosystem" asp-route-package="@Model.Name" asp-route-scope="all">@Localizer["Inspect advisories and fix boundaries"]</a>
+</section>

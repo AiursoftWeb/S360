@@ -7,14 +7,14 @@
     var isProjectDetails = Model.Tab == "projects" && Model.Project != null;
     var selectedProject = isProjectDetails ? Model.Projects.SingleOrDefault() : null;
 }
-<div class="s360-workspace s360-inventory @(isProjectDetails ? "s360-project-detail" : "")">
+<div class="s360-workspace s360-inventory s360-status-page @(isProjectDetails ? "s360-project-detail" : "")">
     @if (isProjectDetails)
     {
         <a class="s360-project-back" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem">← @Localizer["All projects"]</a>
         <header class="s360-project-header">
             <span class="s360-inventory-eyebrow">S360 · @Localizer["Supply chain"]</span>
             <div class="s360-project-title"><h1>@Model.Project?.Replace("//", " · ")</h1>
-                @if (selectedProject != null) { @await Html.PartialAsync("../SupplyChain/_InventoryStatus", selectedProject.Status) }
+                @if (selectedProject != null) { @await Html.PartialAsync("../SupplyChain/_InventoryStatus", selectedProject.DisplayStatus) }
             </div>
             @if (selectedProject != null)
             {
@@ -27,6 +27,23 @@
                 </p>
             }
         </header>
+        @if (selectedProject != null)
+        {
+            <div class="s360-state-list mb-3">
+                @if (Model.Scope == "baseline" && selectedProject.Versions.Any(v => v.State?.HasKnownVulnerability == true))
+                { <span class="s360-state s360-state-danger" data-state="production-affected"><i data-lucide="triangle-alert" aria-hidden="true"></i>@Localizer["Production baseline reports an affected version"]</span> }
+                @if (selectedProject.Versions.Any(v => v.State?.Authorized == false))
+                { <span class="s360-state s360-state-warning" data-state="unauthorized"><i data-lucide="file-x" aria-hidden="true"></i>@Localizer["Reported use is outside current authorization"]</span> }
+                @if (selectedProject.Incomplete || selectedProject.Reports.Count == 0 || selectedProject.Versions.Any(v => v.State?.NeedsVerification == true))
+                { <span class="s360-state s360-state-warning" data-state="uncertain"><i data-lucide="circle-help" aria-hidden="true"></i>@Localizer["Evidence needs verification"]</span> }
+            </div>
+            @if (Model.Scope == "baseline" && selectedProject.Versions.Any(v => v.State?.HasKnownVulnerability == true))
+            { <p>@Localizer["Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines."]</p> }
+            @if (selectedProject.Versions.Any(v => v.State?.Authorized == false))
+            { <p>@Localizer["Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability."]</p> }
+            <p class="small text-muted">@Localizer["Results apply to these report dates and the stored audit data. Changes after a report are not verified."]</p>
+            @await Html.PartialAsync("_StatusLegend")
+        }
     }
     else
     {
@@ -82,7 +99,7 @@
                 <option value="issues" selected="@(Model.Filter == "issues")">@Localizer["Needs attention"]</option>
                 <option value="cve" selected="@(Model.Filter == "cve")">@Localizer["Known vulnerabilities"]</option>
                 <option value="pending" selected="@(Model.Filter == "pending")">@Localizer["Not verified"]</option>
-                <option value="compliant" selected="@(Model.Filter == "compliant")">@Localizer["Compliant"]</option>
+                <option value="compliant" selected="@(Model.Filter == "compliant")">@Localizer["Current check passed"]</option>
             </select></label>
             }
             <button class="btn btn-primary">@if (isProjectDetails) { @Localizer["Explore"] } else { @Localizer["Search"] }</button>
@@ -116,7 +133,7 @@
                 @if (Model.Project == null)
                 {
                     <a class="s360-project-card" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-project="@project.Name" asp-route-scope="@Model.Scope" asp-route-ecosystem="@Model.Ecosystem">
-                        <div class="s360-project-card-heading"><i data-lucide="folder-git-2" aria-hidden="true"></i>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", project.Status)</div>
+                        <div class="s360-project-card-heading"><i data-lucide="folder-git-2" aria-hidden="true"></i>@await Html.PartialAsync("../SupplyChain/_InventoryStatus", project.DisplayStatus)</div>
                         <h2>@project.DisplayName</h2>
                         <small>@Localizer["Status covers only the reported ecosystems."]
                             @if (!project.Reports.Any(r => r.Ecosystem == "nuget")) { <span>@Localizer["NuGet: not included in this audit."]</span> }

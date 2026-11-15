@@ -100,4 +100,7 @@
     <value>{0} 个项目</value>
   </data>
 
+  <data name="Project purpose, approval reasons and report details" xml:space="preserve">
+    <value>项目用途、审批理由和报告详情</value>
+  </data>
 </root>

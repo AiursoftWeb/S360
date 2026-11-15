@@ -24,6 +24,10 @@ public class InventoryViewModel
     public bool CanRead { get; set; }
     public List<InventoryPackage> Packages { get; set; } = [];
     public List<InventoryProject> Projects { get; set; } = [];
+    public int CompleteReportCount { get; set; }
+    public bool IncompleteReports { get; set; }
+    public DateTime? OldestReportAtUtc { get; set; }
+    public DateTime? LatestReportAtUtc { get; set; }
     public int PageCount => Math.Max(1, (Total + PageSize - 1) / PageSize);
 }
 
@@ -34,6 +38,7 @@ public class InventoryPackage
     public required string Source { get; init; }
     public List<InventoryVersion> Versions { get; init; } = [];
     public InventoryStatus Status => Versions.Max(v => v.Status);
+    public InventoryStatus DisplayStatus => Versions.Max(v => v.DisplayStatus);
     public int AffectedProjectCount => Versions.Where(v => v.Status != InventoryStatus.Compliant)
         .SelectMany(v => v.Uses).Select(u => u.Project).Distinct().Count();
     public List<string> Projects => Versions.SelectMany(v => v.Uses).Select(u => u.Project).Distinct().Order().ToList();
@@ -48,6 +53,9 @@ public class InventoryVersion
     public List<PackageRule> Rules { get; init; } = [];
     public List<DependencyApplication> Requests { get; init; } = [];
     public List<InventoryUse> Uses { get; init; } = [];
+    public PackageVersionState? State { get; init; }
+    public InventoryStatus DisplayStatus => Status == InventoryStatus.Compliant && State?.NeedsVerification == true
+        ? InventoryStatus.Pending : Status;
 }
 
 public record InventoryUse(string Project, int CheckId, DateTime CheckedAtUtc, string? Commit, string? Pipeline);
@@ -66,6 +74,8 @@ public class InventoryProject
         : Incomplete || Reports.Count == 0 ||
           Versions.Any(v => v.Status == InventoryStatus.Pending)
             ? InventoryStatus.Pending : InventoryStatus.Compliant;
+    public InventoryStatus DisplayStatus => Status == InventoryStatus.Compliant &&
+        Versions.Any(v => v.DisplayStatus == InventoryStatus.Pending) ? InventoryStatus.Pending : Status;
 }
 
 public class InventorySolution

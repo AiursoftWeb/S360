@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>此来源中记录了 {0} 个版本；显示了 {1} 个。</value>
+  </data>
+  <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>较新的基线不完整。正在显示最近完整的报告。</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>准入</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>准入控制影响未来镜像包的供应。它不会更新现有部署，也不会更改项目的报告内容。</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>审批模式</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>首先检查审批模式。拦截、排除和已知漏洞仍可能拒绝特定版本。</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>审批、漏洞及报告的使用情况</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>授权</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>检查记录</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>已评估</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>未记录该来源的任何有效审批。</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>此来源未记录任何具体版本。此规则未确立使用情况。</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>当前显示的版本均未获得授权。</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>不可用</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>超出当前授权范围</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>记录在历史报告中</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>已记录的版本；未报告匹配的生产环境使用情况</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>在生产基线中报告</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>该图表显示的是已报告的版本和已记录的示例，而非此软件包的所有发布版本。</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>当前来源尚未配置用于包检查。</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>漏洞数据</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>为何出现此结果？</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>当前授权范围内</value>
+  </data>
+
+</root>

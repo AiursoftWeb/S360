@@ -5,15 +5,27 @@
 @using Microsoft.AspNetCore.Authorization
 @inject IAuthorizationService Authorization
 @model Aiursoft.S360.Models.SupplyChainViewModels.PackagePolicyViewModel
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
 @{
     var policy = Model.Policy;
     var canManage = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageTrustRules)).Succeeded;
 }
-<div class="container-fluid">
+<div class="s360-workspace s360-status-page">
     <p><a asp-action="Index" asp-route-tab="rules" asp-route-ecosystem="@policy.Ecosystem">@Localizer["Back to existing rule set"]</a></p>
     <h1><code>@policy.PackagePattern</code></h1>
     <p class="text-break">@policy.Ecosystem · @policy.Source</p>
     <p class="text-muted">@Localizer["Version grants are independent. Approval of this package does not approve other package names or registries."]</p>
+    @if (Model.Relationship is { } relationship)
+    {
+        <div class="card mb-4"><div class="card-body">
+            <h2 class="h5">@Localizer["Current status and reported versions"]</h2>
+            @await Html.PartialAsync("_PackageStatusSummary", relationship)
+            @await Html.PartialAsync("_StatusLegend")
+            @await Html.PartialAsync("_PackageVersionRelationship", relationship)
+        </div></div>
+    }
+    <h2 class="h5">@Localizer["Approval rules"]</h2>
     <div class="card"><div class="table-responsive"><table class="table mb-0 text-nowrap">
         <thead><tr><th>@Localizer["Version"]</th><th>@Localizer["Status"]</th><th>@Localizer["Expires"]</th>@if (canManage) { <th></th> }</tr></thead>
         <tbody>@foreach (var grant in Model.Grants)
@@ -33,9 +45,9 @@
     </table></div>
     @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
     </div>
-    <div class="card mt-3"><div class="card-body"><h2 class="h5">@Localizer["Recorded project usage"]</h2>
+    <div class="card mt-3"><div class="card-body"><details><summary>@Localizer["Historical project reports"]</summary>
         <p class="text-muted">@Localizer["These projects appear in recorded dependency reports, including history. This is not proof of current production use."]</p>
         @foreach (var project in Model.RecordedProjects) { <div>@project</div> }
         @if (Model.ProjectsLimited) { <p>@Localizer["Only the first 50 projects are shown."]</p> }
-    </div></div>
+    </details></div></div>
 </div>

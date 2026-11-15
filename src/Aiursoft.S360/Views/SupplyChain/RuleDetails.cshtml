@@ -8,13 +8,22 @@
     var rule = Model.Rule;
     var expired = rule.ExpiresAtUtc <= DateTime.UtcNow;
 }
-<div class="s360-workspace">
+<div class="s360-workspace s360-status-page">
     <p><a asp-action="Index" asp-route-tab="rules" asp-route-ecosystem="@rule.Ecosystem">← @Localizer["Back to existing rule set"]</a></p>
     <div class="s360-workspace-head">
         <h1>@Localizer["Trust rule details"] #@rule.Id</h1>
         <p class="text-break">@rule.PackagePattern @rule.Version</p>
         <p class="text-muted">@Localizer["A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free."]</p>
     </div>
+    @if (Model.Relationship is { } relationship)
+    {
+        <div class="card mb-3"><div class="card-body">
+            <h2 class="h5">@Localizer["Current status and reported versions"]</h2>
+            @await Html.PartialAsync("_PackageStatusSummary", relationship)
+            @await Html.PartialAsync("_StatusLegend")
+            @await Html.PartialAsync("_PackageVersionRelationship", relationship)
+        </div></div>
+    }
     @if (rule.IsLegacyTemplate)
     {
         <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["Historical package-name pattern. This rule no longer grants access."]</div></div>
@@ -59,23 +68,26 @@
             <dt class="col-sm-3">@Localizer["Requested at"]</dt><dd class="col-sm-9"><span data-utc-time="@rule.RequestedAtUtc.ToHtmlDateTime()"></span></dd>
         </dl>
     </div></div>
-    <div class="card mb-4 @(Model.AdvisoryRanges.Any(r => r.Intersection == RangeRisk.Affected) ? "border border-danger" : Model.AdvisoryRanges.Count > 0 ? "border border-warning" : "")"><div class="card-body">
+    <div class="card mb-4 @(Model.AdvisoryRanges.Any(r => r.Intersection == RangeRisk.Affected) ? "border border-info" : Model.AdvisoryRanges.Count > 0 ? "border border-warning" : "")"><div class="card-body">
         <h2 class="h5">@Localizer["Related advisory ranges"] (@Model.AdvisoryRanges.Count)</h2>
         <p class="small text-muted">@Localizer["These published ranges overlap the rule pattern or could not be evaluated. This is not a claim that the rule currently permits every listed version: status, expiry, exclusions, other rules, and the blocklist also apply. Production impact is shown on the vulnerability audit page."]</p>
-        <p><a asp-controller="VulnerabilityAudit" asp-action="Index" asp-route-ecosystem="@rule.Ecosystem">@Localizer["View current vulnerability audit"]</a></p>
+        <p><a asp-controller="VulnerabilityAudit" asp-action="Index" asp-route-ecosystem="@rule.Ecosystem" asp-route-package="@rule.PackagePattern" asp-route-scope="all">@Localizer["View current vulnerability audit"]</a></p>
         @if (Model.AdvisoryRanges.Count == 0) { <p class="text-muted">@Localizer["No related ranges in stored active advisories. This is not proof that the entire rule is safe."]</p> }
+        <p class="small">@Localizer["Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use."]</p>
+        <details><summary>@Localizer["Advisory details"]</summary>
         @foreach (var range in Model.AdvisoryRanges)
         {
             var overlaps = range.Intersection == RangeRisk.Affected;
-            <div class="alert @(overlaps ? "alert-danger" : "alert-warning") mb-3" role="alert">
-                <div class="alert-icon"><i class="align-middle" data-lucide="alert-triangle"></i></div>
+            <div class="alert @(overlaps ? "alert-info" : "alert-warning") mb-3" role="alert">
+                <div class="alert-icon"><i class="align-middle" data-lucide="@(overlaps ? "shield-check" : "circle-help")"></i></div>
                 <div class="alert-message text-break">
                     <strong>@range.Advisory.PackageName</strong> · <a class="alert-link" href="@range.Advisory.Url" target="_blank" rel="noopener noreferrer">@range.Advisory.SourceId</a>
-                    <span class="badge @(overlaps ? "bg-danger" : "bg-warning text-dark") ms-2">@(overlaps ? @Localizer["Range overlaps pattern"] : @Localizer["Range could not be evaluated"])</span>
+                    <span class="badge @(overlaps ? "bg-info" : "bg-warning text-dark") ms-2">@(overlaps ? @Localizer["Range overlaps pattern"] : @Localizer["Range could not be evaluated"])</span>
                     <p class="small mb-0 mt-1">@range.Advisory.Summary</p>
                 </div>
             </div>
         }
+        </details>
     </div></div>
     <div class="card mb-4"><div class="card-body">
         <h2 class="h5">@Localizer["Vulnerability exclusions"] (@Model.Exclusions.Count)</h2>

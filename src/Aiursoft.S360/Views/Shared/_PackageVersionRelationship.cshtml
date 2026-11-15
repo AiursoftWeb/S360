@@ -1,0 +1,93 @@
+@using Aiursoft.WebTools
+@using Aiursoft.S360.Entities
+@using Aiursoft.S360.Models.SupplyChainViewModels
+@model PackageRelationshipViewModel
+@{
+    var now = DateTime.UtcNow;
+    var approvals = Model.Rules.Where(r => r.Status == RuleStatus.Approved && !r.IsLegacyTemplate &&
+        (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now)).ToList();
+    var evaluatedAt = Model.Versions.Select(v => v.State?.EvaluatedAtUtc).Max();
+    var auditAt = Model.Versions.Select(v => v.State?.VulnerabilityDataAtUtc).Max();
+}
+<section class="s360-version-relationship" data-package-source="@Model.Source" aria-label="@Localizer["Approval, vulnerability and reported usage"]">
+    <div class="s360-relationship-source"><i data-lucide="database" aria-hidden="true"></i><span>@Model.Source</span></div>
+    <div class="s360-approval-patterns">
+        <strong>@Localizer["Approval patterns"]</strong>
+        @if (approvals.Count == 0) { <span>@Localizer["No active approval recorded for this source."]</span> }
+        @foreach (var rule in approvals)
+        { <a asp-controller="SupplyChain" asp-action="RuleDetails" asp-route-id="@rule.Id"><code>@rule.Version</code> · #@rule.Id</a> }
+    </div>
+    <p class="small text-muted">@Localizer["Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version."]</p>
+    @if (Model.Versions.Count == 0)
+    {
+        <p class="s360-state s360-state-neutral"><i data-lucide="circle-help" aria-hidden="true"></i>@Localizer["No concrete versions recorded for this source. Usage is not established by this rule."]</p>
+    }
+    else
+    {
+        <div class="s360-version-zones">
+            @foreach (var authorized in new[] { true, false })
+            {
+                var versions = Model.Versions.Where(v => v.State?.Authorized == authorized).ToList();
+                if (!authorized && versions.Count == 0) { continue; }
+                <section class="s360-version-zone @(authorized ? "s360-version-zone-approved" : "s360-version-zone-outside")" data-authorization="@(authorized ? "inside" : "outside")">
+                    <h3 class="h6">
+                        <i data-lucide="@(authorized ? "clipboard-check" : "file-x")" aria-hidden="true"></i>
+                        @if (authorized) { @Localizer["Within current authorization"] }
+                        else { @Localizer["Outside current authorization"] }
+                    </h3>
+                    @if (versions.Count == 0) { <p class="small text-muted">@Localizer["None of the displayed versions is currently authorized."]</p> }
+                    <div class="s360-version-tiles">
+                    @foreach (var version in versions)
+                    {
+                        <article class="s360-version-tile" data-observed-version="@version.Dependency.Version">
+                            <h4 class="h6"><code>@version.Dependency.Version</code></h4>
+                            @if (version.Uses.Count > 0)
+                            {
+                                <span class="s360-state @(Model.ProductionReports && version.State?.HasKnownVulnerability == true ? "s360-state-danger" : "s360-state-use")" data-reported-use="true"><i data-lucide="server" aria-hidden="true"></i>
+                                    @if (Model.ProductionReports) { @Localizer["Reported in production baseline"] }
+                                    else { @Localizer["Recorded in historical reports"] }
+                                </span>
+                            }
+                            else { <span class="small text-muted">@Localizer["Recorded version; no matching production use reported"]</span> }
+                            @await Html.PartialAsync("_PackageVersionState", version.State!)
+                            <details class="s360-version-evidence">
+                                <summary>@Localizer["Why this result?"]</summary>
+                                @if (!version.State!.SourcePermitted) { <p>@Localizer["This source is not currently configured for package checks."]</p> }
+                                <p class="small"><strong>@Localizer["Authorization"]:</strong> @version.State.Authorization.Reason</p>
+                                <p class="small"><strong>@Localizer["Admission"]:</strong> @version.State.Admission.Reason</p>
+                                @if (version.State.Advisories.Count > 0)
+                                {
+                                    <ul class="small">
+                                    @foreach (var advisory in version.State.Advisories)
+                                    { <li><a href="@advisory.Url" target="_blank" rel="noopener noreferrer">@advisory.SourceId</a></li> }
+                                    </ul>
+                                }
+                                @foreach (var use in version.Uses.OrderBy(u => u.Project, StringComparer.Ordinal).ThenByDescending(u => u.CheckedAtUtc))
+                                {
+                                    <div class="s360-version-use">
+                                        @if (!string.IsNullOrWhiteSpace(use.Project))
+                                        { <a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="@(Model.ProductionReports ? "baseline" : "history")" asp-route-project="@use.Project" asp-route-ecosystem="@Model.Ecosystem">@use.Project</a> }
+                                        <small><span data-utc-time="@use.CheckedAtUtc.ToHtmlDateTime()"></span> · <a asp-controller="BuildChecks" asp-action="Index" asp-route-checkId="@use.CheckId">@Localizer["Check record"]</a></small>
+                                    </div>
+                                }
+                            </details>
+                        </article>
+                    }
+                    </div>
+                </section>
+            }
+        </div>
+        @if (Model.IncompleteReports)
+        { <p class="s360-state s360-state-warning"><i data-lucide="circle-help" aria-hidden="true"></i>@Localizer["A newer baseline is incomplete. The last complete reports are shown."]</p> }
+        <p class="small text-muted mt-2">@Localizer["The diagram shows reported versions and recorded examples, not every release of this package."]</p>
+        @if (Model.ObservedVersionCount > Model.Versions.Count)
+        { <p class="small text-muted">@string.Format(@Localizer["{0} recorded versions in this source; {1} shown."].Value, Model.ObservedVersionCount, Model.Versions.Count)</p> }
+        <p class="small text-muted">
+            @Localizer["Evaluated"]: <span data-utc-time="@evaluatedAt?.ToHtmlDateTime()"></span>
+            · @Localizer["Vulnerability data"]:
+            @if (auditAt != null) { <span data-utc-time="@auditAt.Value.ToHtmlDateTime()"></span> }
+            else { @Localizer["Not available"] }
+        </p>
+    }
+    <p class="small mb-0">@Localizer["Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports."]</p>
+</section>

@@ -285,7 +285,24 @@ public class InventoryTests : TestBase
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
+            var audit = await db.VulnerabilitySyncStates.SingleAsync();
+            audit.LastAttemptAtUtc = DateTime.UtcNow;
+            audit.LastError = "Temporary refresh failure";
+            await db.SaveChangesAsync();
+        }
+        opened = (await Read("projects", project: _prefix + "graph")).Projects.Single();
+        Assert.AreEqual(InventoryStatus.Compliant, opened.Status,
+            "A still-fresh successful snapshot keeps the existing compliance decision.");
+        Assert.AreEqual(InventoryStatus.Pending, opened.DisplayStatus);
+        Assert.AreEqual(InventoryStatus.Pending, opened.Solution!.Packages.Single().Status,
+            "The graph must retain the failed-refresh warning shown in the package list.");
+        Assert.IsEmpty((await Read("projects", filter: "compliant", project: _prefix + "graph")).Projects);
+        Assert.HasCount(1, (await Read("projects", filter: "pending", project: _prefix + "graph")).Projects);
+        using (var scope = Server!.Services.CreateScope())
+        {
+            var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();
             (await db.Rules.Where(r => r.Kind == RuleKind.Approval).SingleAsync(r => r.Id == ruleId)).Status = RuleStatus.Revoked;
+            (await db.VulnerabilitySyncStates.SingleAsync()).LastError = null;
             await db.SaveChangesAsync();
         }
         opened = (await Read("projects", project: _prefix + "graph")).Projects.Single();
@@ -553,8 +570,8 @@ public class InventoryTests : TestBase
         var options = new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase("s360-company-summary-" + Guid.NewGuid()).Options;
         await using var db = new InMemoryContext(options);
-        var service = new CatalogInventoryService(db, new TrustService(db),
-            Server!.Services.GetRequiredService<IConfiguration>());
+        var service = new CatalogInventoryService(db, new PackageStatusService(db, new TrustService(db),
+            Server!.Services.GetRequiredService<IConfiguration>()));
         var empty = new InventoryViewModel();
         await service.PopulateAsync(empty);
         Assert.AreEqual(0, empty.Summary.ProjectCount);

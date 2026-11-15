@@ -220,4 +220,25 @@
     <value>{0} 个存在漏洞的软件包 · {1} 个其他需关注的软件包</value>
   </data>
 
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>拒绝其他下载无法修复现有部署。请升级受影响的项目并提交新的基线。</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>证据需要验证</value>
+  </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>生产基线报告存在受影响版本</value>
+  </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>报告的用法超出当前授权范围</value>
+  </data>
+  <data name="Results apply to these report dates and the stored audit data. Changes after a report are not verified." xml:space="preserve">
+    <value>结果适用于这些报告日期和已存储的审计数据。报告之后的变更未经过验证。</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>请核查报告的版本及当前审批状态。申请相应的审批，或升级至已获批准且不受影响的版本；切勿降级至存在漏洞的版本。</value>
+  </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>当前检查已通过</value>
+  </data>
 </root>

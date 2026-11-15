@@ -79,6 +79,7 @@ public class PackagePolicyViewModel : UiStackLayoutViewModel
     public int Total { get; init; }
     public List<string> RecordedProjects { get; init; } = [];
     public bool ProjectsLimited { get; init; }
+    public PackageRelationshipViewModel? Relationship { get; init; }
 }
 
 public class LegacyMigrationViewModel : UiStackLayoutViewModel

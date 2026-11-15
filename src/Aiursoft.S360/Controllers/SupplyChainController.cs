@@ -43,7 +43,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking()
                 .Where(e => e.ParentRuleId == id).Include(e => e.Vulnerability)
                 .OrderByDescending(e => e.RequestedAtUtc).ToListAsync();
-            // Only advisory ranges are needed, never build graphs or artifact matches.
+            // Advisory ranges describe the pattern; concrete versions are assessed separately below.
             var advisories = await db.Vulnerabilities.AsNoTracking()
                 .Where(v => v.Ecosystem == rule.Ecosystem && !v.Withdrawn).ToListAsync();
             var ranges = advisories.Where(v => rule.MatchesPackage(v.PackageName))
@@ -54,6 +54,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             return this.StackView(new RuleDetailsViewModel
             {
                 Rule = rule,
+                Relationship = rule.IsLegacyTemplate ? null : await inventory.ReadPackageRelationshipAsync(rule.Ecosystem, rule.PackagePattern, rule.Source),
                 Exclusions = exclusions,
                 AdvisoryRanges = ranges,
                 DerivedRules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).AsNoTracking().Where(r => r.LegacySourceRuleId == id)
@@ -333,6 +334,9 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
     [Authorize(Policy = AppPermissionNames.CanReadSupplyChain)]
     [HttpGet]
     public async Task<IActionResult> PackageDetails(int ruleId, int page = 1)
+        => await VulnerabilityAuditSnapshot.ReadAsync(db, () => PackageDetailsSnapshotAsync(ruleId, page));
+
+    private async Task<IActionResult> PackageDetailsSnapshotAsync(int ruleId, int page)
     {
         if (page is < 1 or > 10000) return BadRequest();
         var policy = await db.Rules.AsNoTracking().SingleOrDefaultAsync(p => p.Id == ruleId && p.Kind == RuleKind.Approval);
@@ -353,6 +357,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
         return this.StackView(new PackagePolicyViewModel
         {
             Policy = policy,
+            Relationship = policy.IsLegacyTemplate ? null : await inventory.ReadPackageRelationshipAsync(policy.Ecosystem, policy.PackagePattern, policy.Source),
             Grants = await grants.OrderBy(r => r.Version).ThenBy(r => r.Id)
                 .Skip((page - 1) * 50).Take(50).ToListAsync(),
             Page = page,

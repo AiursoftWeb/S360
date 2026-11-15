@@ -1,4 +1,5 @@
 @using Aiursoft.WebTools
+@using Aiursoft.S360.Models.SupplyChainViewModels
 @using Aiursoft.S360.Entities
 @using Aiursoft.S360.Authorization
 @using Microsoft.AspNetCore.Authorization
@@ -15,10 +16,20 @@
     <summary class="s360-inventory-package-summary">
         <span class="s360-inventory-package-name"><strong>@Model.Name</strong><small>@(Model.Ecosystem == "nuget" ? "NuGet" : "npm") · @string.Join(", ", Model.Versions.Select(v => v.Dependency.Version).Distinct())</small><span class="s360-inventory-purpose-preview">@(purposes.FirstOrDefault()?.Justification ?? reasons.FirstOrDefault() ?? @Localizer["No purpose or approval reason recorded"].Value)</span></span>
         <span class="s360-inventory-project-preview"><span class="s360-inventory-project-action">@string.Format(@Localizer["View all {0} projects"].Value, projects.Count)</span><small>@string.Join(", ", projects.Take(2))@(projects.Count > 2 ? " …" : "")</small></span>
-        @await Html.PartialAsync("_InventoryStatus", Model.Status)
+        @await Html.PartialAsync("_InventoryStatus", Model.Status == InventoryStatus.Compliant && Model.Versions.Any(v => v.State?.NeedsVerification == true) ? InventoryStatus.Pending : Model.Status)
         <i class="s360-inventory-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
     </summary>
     <div class="s360-inventory-package-body">
+        @if (Model.Versions.All(v => v.State != null))
+        {
+            @await Html.PartialAsync("_PackageVersionRelationship", new PackageRelationshipViewModel
+            {
+                Name = Model.Name, Ecosystem = Model.Ecosystem, Source = Model.Source,
+                Versions = Model.Versions, ProductionReports = inventoryScope == "baseline",
+                Rules = Model.Versions.SelectMany(v => v.State!.Rules).DistinctBy(r => r.Id).ToList()
+            })
+        }
+        <details class="mt-3"><summary>@Localizer["Project purpose, approval reasons and report details"]</summary>
         <section class="s360-inventory-projects mb-4">
             <h3>@string.Format(@Localizer["Projects using this package ({0})"].Value, projects.Count)</h3>
             <ul class="s360-inventory-uses">
@@ -46,11 +57,11 @@
         @foreach (var version in Model.Versions)
         {
             <section class="s360-inventory-version">
-                <div class="s360-inventory-version-heading"><strong>@version.Dependency.Version</strong>@await Html.PartialAsync("_InventoryStatus", version.Status)</div>
+                <div class="s360-inventory-version-heading"><strong>@version.Dependency.Version</strong>@await Html.PartialAsync("_InventoryStatus", version.Status == InventoryStatus.Compliant && version.State?.NeedsVerification == true ? InventoryStatus.Pending : version.Status)</div>
                 <p>@version.Reason</p>
                 @if (version.Advisories.Count > 0)
                 {
-                    <p><a asp-controller="VulnerabilityAudit" asp-action="Index" asp-route-ecosystem="@Model.Ecosystem" asp-route-detailed="true">@string.Join(", ", version.Advisories)</a></p>
+                    <p><a asp-controller="VulnerabilityAudit" asp-action="Index" asp-route-ecosystem="@Model.Ecosystem" asp-route-detailed="true" asp-route-package="@Model.Name" asp-route-scope="all">@string.Join(", ", version.Advisories)</a></p>
                 }
                 <h4>@Localizer["Recorded in these projects"]</h4>
                 <ul class="s360-inventory-uses">
@@ -100,5 +111,6 @@
                 </details>
             </section>
         }
+        </details>
     </div>
 </details>

@@ -24,6 +24,10 @@ public class InventoryViewModel
     public bool CanRead { get; set; }
     public List<InventoryPackage> Packages { get; set; } = [];
     public List<InventoryProject> Projects { get; set; } = [];
+    public int CompleteReportCount { get; set; }
+    public bool IncompleteReports { get; set; }
+    public DateTime? OldestReportAtUtc { get; set; }
+    public DateTime? LatestReportAtUtc { get; set; }
     public int PageCount => Math.Max(1, (Total + PageSize - 1) / PageSize);
 }
 
@@ -48,6 +52,7 @@ public class InventoryVersion
     public List<PackageRule> Rules { get; init; } = [];
     public List<DependencyApplication> Requests { get; init; } = [];
     public List<InventoryUse> Uses { get; init; } = [];
+    public PackageVersionState? State { get; init; }
 }
 
 public record InventoryUse(string Project, int CheckId, DateTime CheckedAtUtc, string? Commit, string? Pipeline);

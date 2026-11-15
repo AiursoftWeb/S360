@@ -1,0 +1,37 @@
+@model Aiursoft.S360.Models.SupplyChainViewModels.PackageVersionState
+<div class="s360-version-facts" data-version-state="@Model.Dependency.Version">
+    @if (Model.HasKnownVulnerability)
+    {
+        <span class="s360-state s360-state-protected" data-state="vulnerable"><i data-lucide="bug" aria-hidden="true"></i>@Localizer["Known vulnerable version"]</span>
+    }
+    @if (!Model.Authorized)
+    {
+        <span class="s360-state s360-state-warning" data-state="unauthorized"><i data-lucide="file-x" aria-hidden="true"></i>@Localizer["Outside current authorization"]</span>
+    }
+    @if (Model.NeedsVerification)
+    {
+        <span class="s360-state s360-state-warning" data-state="uncertain"><i data-lucide="circle-help" aria-hidden="true"></i>@Localizer["Evidence needs verification"]</span>
+    }
+    @if (!Model.HasKnownVulnerability && !Model.NeedsVerification)
+    {
+        <span class="s360-state s360-state-neutral"><i data-lucide="info" aria-hidden="true"></i>@Localizer["No known vulnerability found in this check"]</span>
+    }
+    <div class="s360-admission-result" data-admission="@(Model.CanAdmit ? "allowed" : Model.Admission.PendingVerification ? "pending" : "denied")">
+        @if (Model.CanAdmit && !Model.NeedsVerification)
+        {
+            <span class="s360-state s360-state-success"><i data-lucide="circle-check" aria-hidden="true"></i>@Localizer["Current admission check passed"]</span>
+        }
+        else if (Model.CanAdmit)
+        {
+            <span class="s360-state s360-state-neutral"><i data-lucide="info" aria-hidden="true"></i>@Localizer["Admission allowed; audit warning remains"]</span>
+        }
+        else if (Model.Admission.PendingVerification && Model.Authorized)
+        {
+            <span class="s360-state s360-state-warning"><i data-lucide="circle-help" aria-hidden="true"></i>@Localizer["Admission pending verification"]</span>
+        }
+        else
+        {
+            <span class="s360-state s360-state-protected"><i data-lucide="shield-check" aria-hidden="true"></i>@Localizer["Admission denied"]</span>
+        }
+    </div>
+</div>

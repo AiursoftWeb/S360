@@ -553,8 +553,8 @@ public class InventoryTests : TestBase
         var options = new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase("s360-company-summary-" + Guid.NewGuid()).Options;
         await using var db = new InMemoryContext(options);
-        var service = new CatalogInventoryService(db, new TrustService(db),
-            Server!.Services.GetRequiredService<IConfiguration>());
+        var service = new CatalogInventoryService(db, new PackageStatusService(db, new TrustService(db),
+            Server!.Services.GetRequiredService<IConfiguration>()));
         var empty = new InventoryViewModel();
         await service.PopulateAsync(empty);
         Assert.AreEqual(0, empty.Summary.ProjectCount);

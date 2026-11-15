@@ -148,4 +148,13 @@
     <value>已撤回</value>
   </data>
 
+  <data name="Advisory details" xml:space="preserve">
+    <value>公告详情</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>当前状态和已报告的版本</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>已知受影响版本在准入时会被阻止。仅凭范围重叠不足以证明生产环境中使用了受影响版本。</value>
+  </data>
 </root>

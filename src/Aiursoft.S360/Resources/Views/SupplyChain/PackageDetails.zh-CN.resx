@@ -70,4 +70,13 @@
     <value>各版本的授权彼此独立。批准此软件包并不意味着批准其他软件包名称或软件源。</value>
   </data>
 
+  <data name="Approval rules" xml:space="preserve">
+    <value>审批规则</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>当前状态和已报告的版本</value>
+  </data>
+  <data name="Historical project reports" xml:space="preserve">
+    <value>历史项目报告</value>
+  </data>
 </root>

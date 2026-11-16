@@ -16,6 +16,8 @@ S360 records which NuGet and npm packages your team may use, checks known vulner
 
 ## Overview
 
+### What is S360?
+
 S360 records package admission rules, checks vulnerabilities and reports affected projects. Package servers download and cache artifacts; S360 supplies policy decisions.
 
 ## CLI & SDK

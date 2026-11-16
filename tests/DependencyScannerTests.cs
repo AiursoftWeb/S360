@@ -11,6 +11,90 @@ namespace Aiursoft.S360.Tests;
 [TestClass]
 public class DependencyScannerTests
 {
+    [TestMethod]
+    [DataRow(true, false)]
+    [DataRow(true, true)]
+    [DataRow(false, false)]
+    [DataRow(false, true)]
+    public async Task BundledNpmDependenciesAreReportedIndividually(bool lockfileOnly, bool useInternalRegistry)
+    {
+        var root = Path.Combine(Path.GetTempPath(), "s360-bundled-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            await File.WriteAllTextAsync(Path.Combine(root, "package.json"),
+                """{"name":"sample","dependencies":{"@example/tool":"1.0.0"}}""");
+            await File.WriteAllTextAsync(Path.Combine(root, "package-lock.json"), """
+                {"lockfileVersion":3,"packages":{
+                    "":{"dependencies":{"@example/tool":"1.0.0"}},
+                    "node_modules/@example/tool":{"version":"1.0.0","resolved":"https://registry.npmjs.org/@example/tool/-/tool-1.0.0.tgz","bundleDependencies":["nested"],"dependencies":{"nested":"1.0.0"}},
+                    "node_modules/@example/tool/node_modules/nested":{"version":"1.0.0","inBundle":true,"dependencies":{"glob":"13.0.6"}},
+                    "node_modules/@example/tool/node_modules/nested/node_modules/glob":{"version":"13.0.6","inBundle":true}
+                }}
+                """);
+            if (!lockfileOnly)
+            {
+                foreach (var (path, name, version) in new[]
+                         {
+                             ("node_modules/@example/tool", "@example/tool", "1.0.0"),
+                             ("node_modules/@example/tool/node_modules/nested", "nested", "1.0.0"),
+                             ("node_modules/@example/tool/node_modules/nested/node_modules/glob", "glob", "13.0.6")
+                         })
+                {
+                    Directory.CreateDirectory(Path.Combine(root, path));
+                    await File.WriteAllTextAsync(Path.Combine(root, path, "package.json"),
+                        JsonSerializer.Serialize(new { name, version }));
+                }
+            }
+            var handler = new FixedHandler([]);
+            using var client = new HttpClient(handler);
+            const string registry = "https://nopkg.aiursoft.com/npm";
+            var report = useInternalRegistry
+                ? await DependencyScanner.ScanDetailedWithNpmRegistryAsync(root, client, registry,
+                    ecosystem: "npm", npmLockfileOnly: lockfileOnly)
+                : await DependencyScanner.ScanDetailedAsync(root, client, ecosystem: "npm", npmLockfileOnly: lockfileOnly);
+            Assert.AreEqual(3, report.Dependencies.Count);
+            Assert.IsTrue(report.Dependencies.All(d => d.Source == (useInternalRegistry ? registry : "https://registry.npmjs.org")));
+            var bundled = report.Dependencies.Single(d => d.Name == "glob");
+            Assert.AreEqual("13.0.6", bundled.Version);
+            var paths = report.IntroductionPaths[DependencyIntroductionPaths.Identity(bundled)];
+            Assert.IsTrue(paths.Any(path => path.Contains("@example/tool") && path.Contains("nested") && path.Contains("glob")));
+            await DependencyScanner.ValidateNpmArchiveSourcesAsync(Path.Combine(root, "package-lock.json"), "https://registry.npmjs.org");
+            await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
+                DependencyScanner.ValidateNpmArchiveSourcesAsync(Path.Combine(root, "package-lock.json"), registry));
+            Assert.AreEqual(0, handler.Calls);
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
+    [TestMethod]
+    [DataRow(false)]
+    [DataRow(true)]
+    public async Task MissingArchiveWithoutBundledParentIsRejected(bool bundled)
+    {
+        var root = Path.Combine(Path.GetTempPath(), "s360-invalid-bundle-" + Guid.NewGuid().ToString("N"));
+        Directory.CreateDirectory(root);
+        try
+        {
+            var lockPath = Path.Combine(root, "package-lock.json");
+            await File.WriteAllTextAsync(lockPath, JsonSerializer.Serialize(new
+            {
+                lockfileVersion = 3,
+                packages = new Dictionary<string, object>
+                {
+                    [""] = new { dependencies = new { example = "1.0.0" } },
+                    ["node_modules/example"] = new { version = "1.0.0", inBundle = bundled }
+                }
+            }));
+            var handler = new FixedHandler([]);
+            using var client = new HttpClient(handler);
+            await Assert.ThrowsExactlyAsync<InvalidOperationException>(() =>
+                DependencyScanner.ReadNpmAsync(lockPath, root, client, lockfileOnly: true));
+            Assert.AreEqual(0, handler.Calls);
+        }
+        finally { Directory.Delete(root, true); }
+    }
+
     internal static async Task<string> WriteSolutionAsync(string root, params string[] projects)
     {
         if (projects.Length == 0)

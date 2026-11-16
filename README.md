@@ -54,7 +54,7 @@ Add the SDK to your .NET project after version `10.0.0` is published by the defa
 dotnet add package Aiursoft.S360.SDK
 ```
 
-The SDK connects to your own S360 server; install and configure that server separately. The existing release pipeline publishes the same package to NuGet.org and the internal Nupkg registry.
+The SDK connects to your own S360 server; install and configure that server separately. The existing release pipeline publishes the same package to NuGet.org and the internal Nupkg registry. See the [SDK source](https://github.com/aiursoftweb/s360/tree/master/src/Aiursoft.S360.SDK) for the available client methods and models.
 
 ## Try
 

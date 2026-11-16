@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>النسخة الأساسية الأحدث غير مكتملة. يتم عرض أحدث التقارير المكتملة.</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>القبول</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>تتحكم عمليات القبول في إمدادات الحزم المرآتية المستقبلية. فهي لا تحدّث الانتشار الحالي ولا تغيّر ما يبلّغ عنه المشروع.</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>أنماط الاعتماد</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>يتم فحص أنماط الاعتماد أولاً. يمكن للحصارات والاستثناءات والثغرات الأمنية المعروفة أن ترفض إصدارًا محددًا بعد ذلك.</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>الموافقة والثغرات الأمنية والاستخدام المُبلَّغ عنه</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>التفويض</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>سجل الفحص</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>تم تقييمه</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>لا توجد موافقة نشطة مسجّلة لهذا المصدر.</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>لم تُسجَّل أي إصدارات محددة لهذا المصدر. الاستخدام غير مُثبت بموجب هذه القاعدة.</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>لا توجد أي من الإصدارات المعروضة مصرّح بها حاليًا.</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>غير متوفر</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>خارج نطاق التفويض الحالي</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>مسجّلة في التقارير التاريخية</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>إصدار مسجّل؛ لم يُبلّغ عن استخدام مطابق في الإنتاج</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>مُبلَّغ عنه في خط الأساس الإنتاجي</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>يُظهر المخطط الإصدارات المُبلَّغ عنها والأمثلة المُسجَّلة، وليس كل إصدارات هذا الحزمة.</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>هذا المصدر غير مُهيأ حاليًا لفحوصات الحزم.</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>بيانات الثغرات الأمنية</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>لماذا هذا النتيجة؟</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>ضمن التفويض الحالي</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>{0} إصدارات مسجّلة في هذا المصدر؛ {1} معروضة.</value>
+  </data>
+
+</root>

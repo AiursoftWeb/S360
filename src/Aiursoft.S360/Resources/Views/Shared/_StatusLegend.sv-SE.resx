@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Admission denied: protects future package supply" xml:space="preserve">
+    <value>Admission nekad: skyddar framtida paketleverans</value>
+  </data>
+  <data name="Authorization mismatch: review the version and rules" xml:space="preserve">
+    <value>Auktorisationsmismatch: granska versionen och reglerna</value>
+  </data>
+  <data name="Evidence missing or uncertain: verify the reports and audit" xml:space="preserve">
+    <value>Bevis saknas eller är osäkra: verifiera rapporterna och granskningen</value>
+  </data>
+  <data name="Production report affected: upgrade the project" xml:space="preserve">
+    <value>Produktionsrapport påverkad: uppgradera projektet</value>
+  </data>
+  <data name="These facts can coexist. Approval does not override vulnerability checks, and admission denial does not repair a deployed package. Green means only that this check passed." xml:space="preserve">
+    <value>Dessa fakta kan existera samtidigt. Godkännande åsidosätter inte sårbarhetskontroller, och avslag på tillträde åtgärdar inte ett utvalt paket. Grönt betyder bara att denna kontroll gick igenom.</value>
+  </data>
+  <data name="What do these statuses mean?" xml:space="preserve">
+    <value>Vad betyder dessa statusar?</value>
+  </data>
+
+</root>

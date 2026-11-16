@@ -48,7 +48,13 @@ See [Dependency checks](#dependency-checks) for configuration and examples.
 
 ### SDK
 
-The [SDK source](https://github.com/aiursoftweb/s360/tree/master/src/Aiursoft.S360.SDK) is included in this repository; it is not published as a separate NuGet package.
+Add the SDK to your .NET project after version `10.0.0` is published by the default-branch release pipeline:
+
+```bash
+dotnet add package Aiursoft.S360.SDK
+```
+
+The SDK connects to your own S360 server; install and configure that server separately. The existing release pipeline publishes the same package to NuGet.org and the internal Nupkg registry.
 
 ## Try
 

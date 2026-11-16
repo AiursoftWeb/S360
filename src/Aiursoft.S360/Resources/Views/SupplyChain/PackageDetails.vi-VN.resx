@@ -18,14 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Approved" xml:space="preserve">
+      <data name="Approval rules" xml:space="preserve">
+    <value>Quy tắc phê duyệt</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
     <value>Đã phê duyệt</value>
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Quay lại bộ quy tắc hiện có</value>
   </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Trạng thái hiện tại và các phiên bản được báo cáo</value>
+  </data>
   <data name="Expires" xml:space="preserve">
     <value>Ngày hết hạn</value>
+  </data>
+  <data name="Historical project reports" xml:space="preserve">
+    <value>Báo cáo dự án trong quá khứ</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>Chưa được ghi nhận</value>

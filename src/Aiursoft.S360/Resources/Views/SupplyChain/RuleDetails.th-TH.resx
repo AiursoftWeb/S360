@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>กฎอนุญาตให้ใช้แพ็กเกจ แต่ไม่ได้พิสูจน์ว่าโปรเจกต์ได้ใช้แพ็กเกจเหล่านั้น หรือว่าเวอร์ชันที่ได้รับอนุญาตปราศจากช่องโหว่</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>รายละเอียดการแจ้งเตือน</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>สิทธิ์ทั้งหมดสำหรับทุกเวอร์ชันของแพ็กเกจนี้</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>กลับไปยังชุดกฎเดิม</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>สถานะปัจจุบันและเวอร์ชันที่รายงาน</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>ระบบนิเวศ</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>รวมอยู่ด้วย</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>เวอร์ชันที่มีผลกระทบทราบแล้วจะถูกบล็อกที่จุดเข้าใช้งาน การทับซ้อนของช่วงเวอร์ชันเพียงอย่างเดียวไม่ใช่หลักฐานว่ามีการใช้งานในสภาพแวดล้อมจริงที่ได้รับผลกระทบ</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>สิทธิ์ที่แปลงเป็นรายการเฉพาะแล้ว</value>

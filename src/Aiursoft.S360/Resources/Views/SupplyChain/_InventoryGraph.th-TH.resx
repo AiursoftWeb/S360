@@ -36,6 +36,9 @@
   <data name="Copy view link" xml:space="preserve">
     <value>คัดลอกลิงก์มุมมอง</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>การตรวจสอบปัจจุบันผ่านแล้ว</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>การพึ่งพา</value>
   </data>

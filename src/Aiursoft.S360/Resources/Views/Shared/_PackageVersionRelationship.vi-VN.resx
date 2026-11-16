@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>Bản chuẩn mới hơn chưa đầy đủ. Các báo cáo hoàn chỉnh gần nhất được hiển thị.</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Sự chấp nhận</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>Kiểm soát tiếp nhận điều chỉnh nguồn cung gói được sao chép trong tương lai. Nó không cập nhật các triển khai hiện có hoặc thay đổi những gì một dự án báo cáo.</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>Mẫu phê duyệt</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>Các mẫu phê duyệt được kiểm tra trước. Các khối, ngoại lệ và lỗ hổng bảo mật đã biết vẫn có thể từ chối một phiên bản cụ thể.</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>Phê duyệt, lỗ hổng và tình trạng sử dụng được báo cáo</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Ủy quyền</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Bản ghi kiểm tra</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>Đã đánh giá</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>Không có phê duyệt nào đang hoạt động được ghi nhận cho nguồn này.</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>Không có phiên bản cụ thể nào được ghi nhận cho nguồn này. Việc sử dụng chưa được xác lập theo quy tắc này.</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>Không có phiên bản nào được hiển thị hiện đang được ủy quyền.</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>Không có sẵn</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>Ngoài phạm vi ủy quyền hiện tại</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>Được ghi nhận trong các báo cáo lịch sử</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>Phiên bản đã ghi; không có báo cáo sử dụng sản xuất phù hợp</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>Đã báo cáo trong cơ sở hạ tầng sản xuất</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>Biểu đồ hiển thị các phiên bản được báo cáo và các ví dụ được ghi lại, không phải mọi phiên bản phát hành của gói này.</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Nguồn này hiện chưa được cấu hình để kiểm tra gói.</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>Dữ liệu lỗ hổng bảo mật</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>Vì sao có kết quả này?</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>Trong phạm vi ủy quyền hiện tại</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>Có {0} phiên bản được ghi nhận trong nguồn này; hiển thị {1}.</value>
+  </data>
+
+</root>

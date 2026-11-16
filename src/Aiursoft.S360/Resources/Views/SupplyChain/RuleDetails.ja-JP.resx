@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>ルールはパッケージの使用を許可します。ただし、プロジェクトがそれらを使用していることを証明するものではなく、許可されたバージョンが脆弱性がないことを保証するものでもありません。</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>アドバイザリー詳細</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>このパッケージのすべてのバージョンに対する許可</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>既存のルールセットに戻る</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>現在のステータスと報告されたバージョン</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>エコシステム</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>含む</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>既知の脆弱バージョンは、導入時にブロックされます。範囲の重複のみでは、本番環境で影響を受ける使用が行われていることの証拠にはなりません。</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>移行された具体的な許可</value>

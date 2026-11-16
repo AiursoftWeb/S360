@@ -66,6 +66,12 @@
   <data name="Current baseline" xml:space="preserve">
     <value>Mốc cơ sở hiện tại</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Kiểm tra hiện tại đạt</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Việc từ chối tải xuống khác sẽ không khắc phục được triển khai hiện có. Nâng cấp các dự án bị ảnh hưởng và gửi các baseline mới.</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Các gói phụ thuộc</value>
   </data>
@@ -74,6 +80,9 @@
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Hệ sinh thái</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Bằng chứng cần được xác minh</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Khám phá</value>
@@ -138,6 +147,9 @@
   <data name="Previous" xml:space="preserve">
     <value>Trước</value>
   </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Dòng cơ sở sản xuất báo cáo phiên bản bị ảnh hưởng</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>Dự án</value>
   </data>
@@ -150,6 +162,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>Việc đọc danh mục dự án yêu cầu quyền đọc chuỗi cung ứng. Bạn vẫn có thể xem các quy tắc phê duyệt.</value>
   </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Việc sử dụng được báo cáo nằm ngoài phạm vi ủy quyền hiện tại</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Báo cáo</value>
   </data>
@@ -159,8 +174,14 @@
   <data name="Result pages" xml:space="preserve">
     <value>Các trang kết quả</value>
   </data>
+  <data name="Results apply to these report dates and the stored audit data. Changes after a report are not verified." xml:space="preserve">
+    <value>Kết quả áp dụng cho các ngày báo cáo này và dữ liệu kiểm toán đã lưu. Các thay đổi sau báo cáo sẽ không được xác minh.</value>
+  </data>
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>Các mục kiểm tra đánh giá không được lưu vào danh mục dự án.</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Xem xét phiên bản đã báo cáo và phê duyệt hiện tại. Yêu cầu phê duyệt phù hợp hoặc nâng cấp lên phiên bản đã được phê duyệt và không bị ảnh hưởng; không được hạ cấp xuống phiên bản có lỗ hổng bảo mật.</value>
   </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>Huy hiệu tuân thủ S360</value>

@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>规则授予使用软件包的权限。这并不能证明项目正在使用这些软件包，也不能证明获准的版本没有漏洞。</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>公告详情</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>此软件包的所有版本授权</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>返回现有规则集</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>当前状态和已报告的版本</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>生态系统</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>包含</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>已知受影响版本在准入时会被阻止。仅凭范围重叠不足以证明生产环境中使用了受影响版本。</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>已迁移的具体授权</value>
@@ -148,13 +157,4 @@
     <value>已撤回</value>
   </data>
 
-  <data name="Advisory details" xml:space="preserve">
-    <value>公告详情</value>
-  </data>
-  <data name="Current status and reported versions" xml:space="preserve">
-    <value>当前状态和已报告的版本</value>
-  </data>
-  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
-    <value>已知受影响版本在准入时会被阻止。仅凭范围重叠不足以证明生产环境中使用了受影响版本。</value>
-  </data>
 </root>

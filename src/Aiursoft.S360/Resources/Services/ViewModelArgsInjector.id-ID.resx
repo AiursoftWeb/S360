@@ -243,5 +243,8 @@
   <data name="Vulnerabilities" xml:space="preserve">
     <value>Kerentanan</value>
   </data>
+  <data name="Vulnerability audit" xml:space="preserve">
+    <value>Audit kerentanan</value>
+  </data>
 
 </root>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>ฐานข้อมูลล่าสุดไม่สมบูรณ์ รายงานฉบับสมบูรณ์ฉบับสุดท้ายที่บันทึกไว้จะแสดงแทน</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>การอนุมัติ</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>การควบคุมการรับเข้ากำหนดการจัดส่งแพ็กเกจแบบกระจกในอนาคต โดยไม่อัปเดตการติดตั้งที่มีอยู่หรือเปลี่ยนแปลงข้อมูลรายงานของโปรเจกต์</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>รูปแบบการอนุมัติ</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>ตรวจสอบรูปแบบการอนุมัติเป็นอันดับแรก บล็อก ข้อยกเว้น และช่องโหว่ที่ทราบแล้วยังคงสามารถปฏิเสธเวอร์ชันเฉพาะได้</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>การอนุมัติ ช่องโหว่ และการใช้งานที่รายงาน</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>การอนุญาต</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>บันทึกการตรวจสอบ</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>ประเมินแล้ว</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>ไม่มีการอนุมัติที่ใช้งานได้สำหรับแหล่งข้อมูลนี้</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>ไม่มีการบันทึกเวอร์ชันเฉพาะสำหรับแหล่งที่มานี้ การใช้งานไม่ได้ถูกกำหนดโดยกฎนี้</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>ไม่มีเวอร์ชันใดที่แสดงอยู่ได้รับอนุญาตในปัจจุบัน</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>ไม่พร้อมใช้งาน</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>อยู่นอกขอบเขตการอนุมัติในปัจจุบัน</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>บันทึกไว้ในรายงานทางประวัติศาสตร์</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>เวอร์ชันที่บันทึกไว้; ไม่มีการรายงานการใช้งานในสภาพแวดล้อมการผลิตที่ตรงกัน</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>รายงานในฐานการผลิต</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>แผนภาพแสดงเวอร์ชันที่รายงานและตัวอย่างที่บันทึกไว้ ไม่ใช่ทุกเวอร์ชันของแพ็กเกจนี้</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>ซอร์สนี้ยังไม่ได้มีการตั้งค่าสำหรับการตรวจสอบแพ็กเกจในขณะนี้</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>ข้อมูลช่องโหว่</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>เหตุใดจึงได้ผลลัพธ์นี้?</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>ภายในขอบเขตการอนุมัติปัจจุบัน</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>บันทึกเวอร์ชัน {0} ในแหล่งข้อมูลนี้; แสดง {1}</value>
+  </data>
+
+</root>

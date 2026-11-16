@@ -54,6 +54,9 @@
   <data name="Pipeline" xml:space="preserve">
     <value>파이프라인</value>
   </data>
+  <data name="Project purpose, approval reasons and report details" xml:space="preserve">
+    <value>프로젝트 목적, 승인 사유 및 보고서 세부 정보</value>
+  </data>
   <data name="Projects using this package ({0})" xml:space="preserve">
     <value>이 패키지를 사용하는 프로젝트 ({0})</value>
   </data>

@@ -21,6 +21,9 @@
       <data name="Compliant" xml:space="preserve">
     <value>適合</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>現在の検査合格</value>
+  </data>
   <data name="Needs attention" xml:space="preserve">
     <value>要対応</value>
   </data>

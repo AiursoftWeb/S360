@@ -18,14 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Approved" xml:space="preserve">
+      <data name="Approval rules" xml:space="preserve">
+    <value>승인 규칙</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
     <value>승인됨</value>
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>기존 규칙 집합으로 돌아가기</value>
   </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>현재 상태 및 보고된 버전</value>
+  </data>
   <data name="Expires" xml:space="preserve">
     <value>만료일</value>
+  </data>
+  <data name="Historical project reports" xml:space="preserve">
+    <value>과거 프로젝트 보고서</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>기록되지 않음</value>

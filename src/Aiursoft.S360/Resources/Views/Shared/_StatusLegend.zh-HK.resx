@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Admission denied: protects future package supply" xml:space="preserve">
+    <value>准許被拒：保護未來套件供應</value>
+  </data>
+  <data name="Authorization mismatch: review the version and rules" xml:space="preserve">
+    <value>授權不匹配：請檢視版本及規則</value>
+  </data>
+  <data name="Evidence missing or uncertain: verify the reports and audit" xml:space="preserve">
+    <value>證據缺失或不確定：請核實報告及審計</value>
+  </data>
+  <data name="Production report affected: upgrade the project" xml:space="preserve">
+    <value>生產報告受影響：升級專案</value>
+  </data>
+  <data name="These facts can coexist. Approval does not override vulnerability checks, and admission denial does not repair a deployed package. Green means only that this check passed." xml:space="preserve">
+    <value>這些事實可以並存。批准並不會取代漏洞檢查，拒絕准入也不會修復已部署的套件。綠色僅表示此項檢查通過。</value>
+  </data>
+  <data name="What do these statuses mean?" xml:space="preserve">
+    <value>這些狀態代表什麼意思？</value>
+  </data>
+
+</root>

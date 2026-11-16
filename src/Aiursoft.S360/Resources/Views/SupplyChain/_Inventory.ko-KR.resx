@@ -66,6 +66,12 @@
   <data name="Current baseline" xml:space="preserve">
     <value>현재 베이스라인</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>현재 검사 통과</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>다운로드를 거부해도 기존 배포는 복구되지 않습니다. 영향을 받은 프로젝트를 업그레이드하고 새 베이스라인을 제출하십시오.</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>종속 항목</value>
   </data>
@@ -74,6 +80,9 @@
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>생태계</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>증거가 검증이 필요합니다</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>탐색</value>
@@ -138,6 +147,9 @@
   <data name="Previous" xml:space="preserve">
     <value>이전</value>
   </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>프로덕션 베이스라인에서 영향받는 버전이 보고됨</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>프로젝트</value>
   </data>
@@ -150,6 +162,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>프로젝트 인벤토리 읽기에 공급망 읽기 권한이 필요합니다. 승인 규칙은 계속 열람할 수 있습니다.</value>
   </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>보고된 사용이 현재 인가 범위를 벗어남</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>리포트</value>
   </data>
@@ -159,8 +174,14 @@
   <data name="Result pages" xml:space="preserve">
     <value>결과 페이지</value>
   </data>
+  <data name="Results apply to these report dates and the stored audit data. Changes after a report are not verified." xml:space="preserve">
+    <value>결과는 해당 보고서 날짜와 저장된 감사 데이터에 적용됩니다. 보고서 생성 이후의 변경 사항은 검증되지 않습니다.</value>
+  </data>
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>검토 결과는 프로젝트 인벤토리에 저장되지 않습니다.</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>보고된 버전과 현재 승인 사항을 검토하십시오. 적절한 승인을 요청하거나 승인된 영향받지 않은 버전으로 업그레이드하십시오. 취약점으로 다운그레이드하지 마십시오.</value>
   </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360 규정 준수 배지</value>

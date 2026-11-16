@@ -21,6 +21,9 @@
       <data name="Compliant" xml:space="preserve">
     <value>合规</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>当前检查已通过</value>
+  </data>
   <data name="Needs attention" xml:space="preserve">
     <value>需要关注</value>
   </data>
@@ -28,7 +31,4 @@
     <value>未验证</value>
   </data>
 
-  <data name="Current check passed" xml:space="preserve">
-    <value>当前检查已通过</value>
-  </data>
 </root>

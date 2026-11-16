@@ -18,10 +18,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
-    <value>此来源中记录了 {0} 个版本；显示了 {1} 个。</value>
-  </data>
-  <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
     <value>较新的基线不完整。正在显示最近完整的报告。</value>
   </data>
   <data name="Admission" xml:space="preserve">
@@ -86,6 +83,9 @@
   </data>
   <data name="Within current authorization" xml:space="preserve">
     <value>当前授权范围内</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>此来源中记录了 {0} 个版本；显示了 {1} 个。</value>
   </data>
 
 </root>

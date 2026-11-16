@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>새로운 기준선(baseline)이 불완전합니다. 마지막으로 완료된 리포트가 표시됩니다.</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>허용</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>승인 제도는 미래의 미러링된 패키지 공급을 제어합니다. 기존 배포를 업데이트하거나 프로젝트가 보고하는 내용을 변경하지 않습니다.</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>승인 패턴</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>승인 패턴이 먼저 확인됩니다. 차단, 제외 및 알려진 취약성은 여전히 특정 버전을 거부할 수 있습니다.</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>승인, 취약점 및 보고된 사용 현황</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>권한 부여</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>검사 기록</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>평가됨</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>이 소스에 대한 유효한 승인 기록이 없습니다.</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>해당 소스에 대해 구체적인 버전이 기록되어 있지 않습니다. 이 규칙에 의해 사용이 확립되지 않았습니다.</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>표시된 버전 중 현재 승인된 버전이 없습니다.</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>미사용</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>현재 인가 범위 밖</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>역사적 보고에 기록됨</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>기록된 버전; 일치하는 프로덕션 사용 보고 없음</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>프로덕션 베이스라인에 보고됨</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>이 다이어그램은 보고된 버전과 기록된 예시를 보여주며, 이 패키지의 모든 릴리스를 포함하지 않습니다.</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>이 소스는 현재 패키지 검사에 설정되어 있지 않습니다.</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>취약점 데이터</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>이 결과가 나온 이유는 무엇인가요?</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>현재 인가 범위 내</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>이 소스에서 {0}개 버전이 기록되었으며, {1}개 표시됨.</value>
+  </data>
+
+</root>

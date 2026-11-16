@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Checked against {0} complete baseline reports." xml:space="preserve">
+    <value>{0} 件の完全なベースラインレポートと照合済み。</value>
+  </data>
+  <data name="Current status and next action" xml:space="preserve">
+    <value>現在の状況と次のアクション</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>ダウンロードを拒否しても、既存のデプロイメントは修復されません。影響を受けたプロジェクトをアップグレードし、新しいベースラインを提出してください。</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>証拠の確認が必要です</value>
+  </data>
+  <data name="Inspect advisories and fix boundaries" xml:space="preserve">
+    <value>アドバイザリーを確認し、境界を修正</value>
+  </data>
+  <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
+    <value>新しい不完全なレポートが存在します。使用状況の確認が必要です。最後に完全なベースラインが保持されています。</value>
+  </data>
+  <data name="No affected production use reported in the available complete baselines for this source. Unreported projects and later changes are not covered." xml:space="preserve">
+    <value>このソースの利用可能な完全なベースラインにおいて、影響を受ける本番環境での使用は報告されていません。報告されていないプロジェクトおよびその後の変更は対象外です。</value>
+  </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>本番環境のベースラインに影響を受けるバージョンが含まれています</value>
+  </data>
+  <data name="Production use is not established. Submit a complete baseline before drawing a conclusion about deployed versions." xml:space="preserve">
+    <value>本番環境での使用は確認されていません。デプロイされたバージョンについて結論を出す前に、完全なベースラインを提出してください。</value>
+  </data>
+  <data name="Report dates" xml:space="preserve">
+    <value>報告日</value>
+  </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>報告された利用は現在の承認範囲外です</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>報告されたバージョンと現在の承認を確認してください。適切な承認を依頼するか、承認済みの影響を受けていないバージョンにアップグレードしてください。脆弱性のあるバージョンへのダウングレードは行わないでください。</value>
+  </data>
+
+</root>

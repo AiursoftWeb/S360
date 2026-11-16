@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Checked against {0} complete baseline reports." xml:space="preserve">
+    <value>已核對 {0} 份完整基線報告。</value>
+  </data>
+  <data name="Current status and next action" xml:space="preserve">
+    <value>目前狀態及下一步行動</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>拒絕另一項下載並不能修復現有部署。請升級受影響的項目並提交新的基線。</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>證據需要核實</value>
+  </data>
+  <data name="Inspect advisories and fix boundaries" xml:space="preserve">
+    <value>檢視安全通告並修正邊界</value>
+  </data>
+  <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
+    <value>存在較新的不完整報告。使用情況需要核實；將保留最後一份完整基線。</value>
+  </data>
+  <data name="No affected production use reported in the available complete baselines for this source. Unreported projects and later changes are not covered." xml:space="preserve">
+    <value>現有完整基線中，此來源未報告任何受影響的生產使用情況。未報告的項目及後續變更不在涵蓋範圍內。</value>
+  </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>生產基線報告有受影響版本</value>
+  </data>
+  <data name="Production use is not established. Submit a complete baseline before drawing a conclusion about deployed versions." xml:space="preserve">
+    <value>生產環境使用情況尚未確認。在對已部署版本下結論之前，請提交完整的基準報告。</value>
+  </data>
+  <data name="Report dates" xml:space="preserve">
+    <value>報告日期</value>
+  </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>報告的使用超出目前授權範圍</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>檢查所報告的版本及目前授權。申請適當的授權，或升級至已獲授權且不受影響的版本；切勿降級至存在漏洞的版本。</value>
+  </data>
+
+</root>

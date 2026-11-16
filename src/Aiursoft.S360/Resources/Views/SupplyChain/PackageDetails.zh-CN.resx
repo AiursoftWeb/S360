@@ -18,14 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Approved" xml:space="preserve">
+      <data name="Approval rules" xml:space="preserve">
+    <value>审批规则</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
     <value>已批准</value>
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>返回现有规则集</value>
   </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>当前状态和已报告的版本</value>
+  </data>
   <data name="Expires" xml:space="preserve">
     <value>到期时间</value>
+  </data>
+  <data name="Historical project reports" xml:space="preserve">
+    <value>历史项目报告</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>未记录</value>
@@ -70,13 +79,4 @@
     <value>各版本的授权彼此独立。批准此软件包并不意味着批准其他软件包名称或软件源。</value>
   </data>
 
-  <data name="Approval rules" xml:space="preserve">
-    <value>审批规则</value>
-  </data>
-  <data name="Current status and reported versions" xml:space="preserve">
-    <value>当前状态和已报告的版本</value>
-  </data>
-  <data name="Historical project reports" xml:space="preserve">
-    <value>历史项目报告</value>
-  </data>
 </root>

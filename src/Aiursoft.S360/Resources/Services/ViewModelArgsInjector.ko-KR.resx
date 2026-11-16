@@ -246,5 +246,8 @@
   <data name="Vulnerabilities" xml:space="preserve">
     <value>취약점</value>
   </data>
+  <data name="Vulnerability audit" xml:space="preserve">
+    <value>취약점 감사</value>
+  </data>
 
 </root>

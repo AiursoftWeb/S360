@@ -36,6 +36,9 @@
   <data name="Copy view link" xml:space="preserve">
     <value>Скопіювати посилання на подання</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Поточну перевірку пройдено</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Залежності</value>
   </data>

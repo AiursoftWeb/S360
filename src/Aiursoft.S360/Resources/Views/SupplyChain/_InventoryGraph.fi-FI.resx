@@ -36,6 +36,9 @@
   <data name="Copy view link" xml:space="preserve">
     <value>Kopioi näkymän linkki</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Nykyinen tarkistus läpäisty</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Riippuvuudet</value>
   </data>

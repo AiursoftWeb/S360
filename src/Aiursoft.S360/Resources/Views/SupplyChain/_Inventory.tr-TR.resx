@@ -66,11 +66,20 @@
   <data name="Current baseline" xml:space="preserve">
     <value>Güncel temel</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Mevcut denetimden geçti</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Bir başka indirme işlemini engellemek, mevcut bir dağıtımı düzeltmez. Etkilenen projeleri yükseltin ve yeni temel sürümler gönderin.</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Bağımlılıklar</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosistem</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Kanıtların doğrulanması gerekiyor</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>İncele</value>
@@ -135,6 +144,9 @@
   <data name="Previous" xml:space="preserve">
     <value>Önceki</value>
   </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Üretim temel çizgisi etkilenen bir sürüm bildiriyor</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>Projeler</value>
   </data>
@@ -147,6 +159,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>Proje envanterinin görüntülenmesi, tedarik zinciri okuma izni gerektirir. Yine de onay kurallarını görüntüleyebilirsiniz.</value>
   </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Bildirilen kullanım mevcut yetkilendirmenin dışında</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Raporlar</value>
   </data>
@@ -156,8 +171,14 @@
   <data name="Result pages" xml:space="preserve">
     <value>Sonuç sayfaları</value>
   </data>
+  <data name="Results apply to these report dates and the stored audit data. Changes after a report are not verified." xml:space="preserve">
+    <value>Sonuçlar bu rapor tarihlerindeki ve saklanan denetim verilerindeki durumu yansıtır. Rapor sonrasındaki değişiklikler doğrulanmamıştır.</value>
+  </data>
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>İnceleme kontrolleri proje envanterine kaydedilmez.</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Bildirilen sürümü ve mevcut onayı gözden geçirin. Uygun bir onay talep edin veya onaylanmış, güvenlik açığı içermeyen bir sürüme yükseltin; güvenlik açığı bulunan daha eski bir sürüme geçmeyin.</value>
   </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360 uyumluluk rozeti</value>

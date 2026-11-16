@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Checked against {0} complete baseline reports." xml:space="preserve">
+    <value>Ελέγχθηκε βάσει {0} πλήρων αναφορών βάσης.</value>
+  </data>
+  <data name="Current status and next action" xml:space="preserve">
+    <value>Τρέχουσα κατάσταση και επόμενη ενέργεια</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Η απαγόρευση μιας ακόμη λήψης δεν θα διορθώσει μια υπάρχουσα εγκατάσταση. Αναβαθμίστε τα επηρεαζόμενα έργα και υποβάλετε νέα αρχεία αναφοράς.</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Τα στοιχεία χρειάζονται επαλήθευση</value>
+  </data>
+  <data name="Inspect advisories and fix boundaries" xml:space="preserve">
+    <value>Εξετάστε τις ειδοποιήσεις και διορθώστε τα όρια</value>
+  </data>
+  <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
+    <value>Υπάρχουν νεότερες, μη ολοκληρωμένες αναφορές. Η χρήση χρειάζεται επαλήθευση· διατηρούνται οι τελευταίες πλήρεις γραμμές βάσης.</value>
+  </data>
+  <data name="No affected production use reported in the available complete baselines for this source. Unreported projects and later changes are not covered." xml:space="preserve">
+    <value>Δεν έχει αναφερθεί χρήση στην παραγωγή που να επηρεάζεται στις διαθέσιμες πλήρεις γραμμές βάσης για αυτήν την πηγή. Δεν καλύπτονται έργα που δεν έχουν αναφερθεί ούτε μεταγενέστερες αλλαγές.</value>
+  </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Η βάση αναφοράς παραγωγής αναφέρει μια επηρεαζόμενη έκδοση</value>
+  </data>
+  <data name="Production use is not established. Submit a complete baseline before drawing a conclusion about deployed versions." xml:space="preserve">
+    <value>Δεν έχει διαπιστωθεί χρήση σε περιβάλλον παραγωγής. Υποβάλετε μια πλήρη βασική καταγραφή πριν καταλήξετε σε συμπέρασμα σχετικά με τις εκδόσεις που έχουν τεθεί σε λειτουργία.</value>
+  </data>
+  <data name="Report dates" xml:space="preserve">
+    <value>Ημερομηνίες αναφορών</value>
+  </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Η αναφερόμενη χρήση δεν καλύπτεται από την ισχύουσα έγκριση</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Ελέγξτε την αναφερόμενη έκδοση και την τρέχουσα έγκριση. Ζητήστε την κατάλληλη έγκριση ή αναβαθμίστε σε εγκεκριμένη έκδοση που δεν επηρεάζεται· μην υποβαθμίσετε σε μια ευάλωτη έκδοση.</value>
+  </data>
+
+</root>

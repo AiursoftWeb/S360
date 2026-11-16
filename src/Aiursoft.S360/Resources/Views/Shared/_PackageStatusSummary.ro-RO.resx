@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Checked against {0} complete baseline reports." xml:space="preserve">
+    <value>Verificat(ă) în raport cu {0} rapoarte de referință complete.</value>
+  </data>
+  <data name="Current status and next action" xml:space="preserve">
+    <value>Starea curentă și următoarea acțiune</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Refuzarea unei alte descărcări nu va remedia o implementare existentă. Actualizați proiectele afectate și trimiteți noi versiuni de referință.</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Dovezile trebuie verificate</value>
+  </data>
+  <data name="Inspect advisories and fix boundaries" xml:space="preserve">
+    <value>Consultă avizele și remediază problemele legate de limite.</value>
+  </data>
+  <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
+    <value>Există rapoarte incomplete mai recente. Utilizarea trebuie verificată; se păstrează cele mai recente rapoarte de referință complete.</value>
+  </data>
+  <data name="No affected production use reported in the available complete baselines for this source. Unreported projects and later changes are not covered." xml:space="preserve">
+    <value>În rapoartele de referință complete disponibile pentru această sursă nu a fost semnalată nicio utilizare în producție afectată. Proiectele neraportate și modificările ulterioare nu sunt incluse.</value>
+  </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Linia de bază a producției indică o versiune afectată</value>
+  </data>
+  <data name="Production use is not established. Submit a complete baseline before drawing a conclusion about deployed versions." xml:space="preserve">
+    <value>Utilizarea în producție nu este confirmată. Trimiteți o linie de bază completă înainte de a trage o concluzie despre versiunile implementate.</value>
+  </data>
+  <data name="Report dates" xml:space="preserve">
+    <value>Datele rapoartelor</value>
+  </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Utilizarea raportată nu este acoperită de autorizația actuală</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Verificați versiunea raportată și aprobarea curentă. Solicitați o aprobare adecvată sau treceți la o versiune aprobată, neafectată; nu reveniți la o versiune vulnerabilă.</value>
+  </data>
+
+</root>

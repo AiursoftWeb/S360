@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Admission denied: protects future package supply" xml:space="preserve">
+    <value>प्रवेश अस्वीकृत: भविष्य में पैकेज की आपूर्ति सुरक्षित रखता है</value>
+  </data>
+  <data name="Authorization mismatch: review the version and rules" xml:space="preserve">
+    <value>प्राधिकरण में विसंगति: संस्करण और नियमों की समीक्षा करें</value>
+  </data>
+  <data name="Evidence missing or uncertain: verify the reports and audit" xml:space="preserve">
+    <value>साक्ष्य उपलब्ध नहीं हैं या अनिश्चित हैं: रिपोर्टों और ऑडिट की जाँच करें</value>
+  </data>
+  <data name="Production report affected: upgrade the project" xml:space="preserve">
+    <value>प्रोडक्शन रिपोर्ट प्रभावित: प्रोजेक्ट अपग्रेड करें</value>
+  </data>
+  <data name="These facts can coexist. Approval does not override vulnerability checks, and admission denial does not repair a deployed package. Green means only that this check passed." xml:space="preserve">
+    <value>ये तथ्य एक साथ सही हो सकते हैं। स्वीकृति, सुरक्षा-कमज़ोरियों की जाँच को निष्प्रभावी नहीं करती, और प्रवेश अस्वीकृत करने से पहले से तैनात पैकेज की समस्या ठीक नहीं होती। हरे रंग का अर्थ केवल यह है कि यह जाँच सफल रही।</value>
+  </data>
+  <data name="What do these statuses mean?" xml:space="preserve">
+    <value>इन स्थितियों का क्या अर्थ है?</value>
+  </data>
+
+</root>

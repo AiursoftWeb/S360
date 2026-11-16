@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>Daha yeni bir temel rapor tamamlanmamış. Son tamamlanan raporlar gösteriliyor.</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Kabul</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>Kabul, gelecekteki yansıtılmış paket tedarikini kontrol eder. Mevcut dağıtımları güncellemez veya bir projenin raporladığı bilgileri değiştirmez.</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>Onay kalıpları</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>Onay kalıpları önce kontrol edilir. Engellemeler, hariç tutmalar ve bilinen güvenlik açıkları yine de belirli bir sürümün reddedilmesine neden olabilir.</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>Onay, güvenlik açıkları ve bildirilen kullanım</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Yetkilendirme</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Kontrol kaydı</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>Değerlendirildi</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>Bu kaynak için etkin bir onay kaydı yok.</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>Bu kaynak için somut bir sürüm kaydedilmemiş. Kullanım, bu kuralla belirlenmemiştir.</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>Görüntülenen sürümlerin hiçbiri şu anda yetkili değil.</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>Kullanılamıyor</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>Mevcut yetkilendirmenin dışında</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>Geçmiş raporlarda kaydedildi</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>Kaydedilen sürüm; üretimde buna karşılık gelen bir kullanım bildirilmedi</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>Üretim temel çizgisinde bildirildi</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>Diyagram, bildirilen sürümleri ve kaydedilen örnekleri gösterir; bu paketin tüm sürümlerini değil.</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Bu kaynak şu anda paket denetimleri için yapılandırılmamış.</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>Güvenlik açığı verileri</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>Bu sonucun nedeni ne?</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>Mevcut yetkilendirme kapsamında</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>Bu kaynakta {0} sürüm kaydedildi; {1} tanesi gösteriliyor.</value>
+  </data>
+
+</root>

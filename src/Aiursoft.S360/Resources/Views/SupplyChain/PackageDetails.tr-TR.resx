@@ -18,14 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Approved" xml:space="preserve">
+      <data name="Approval rules" xml:space="preserve">
+    <value>Onay kuralları</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
     <value>Onaylandı</value>
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Mevcut kural kümesine geri dön</value>
   </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Mevcut durum ve bildirilen sürümler</value>
+  </data>
   <data name="Expires" xml:space="preserve">
     <value>Son kullanma tarihi</value>
+  </data>
+  <data name="Historical project reports" xml:space="preserve">
+    <value>Geçmiş proje raporları</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>Kaydedilmemiş</value>

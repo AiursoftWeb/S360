@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Checked against {0} complete baseline reports." xml:space="preserve">
+    <value>Kontrolleret i forhold til {0} komplette basisrapporter.</value>
+  </data>
+  <data name="Current status and next action" xml:space="preserve">
+    <value>Aktuel status og næste handling</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>At afvise endnu en download løser ikke en eksisterende udrulning. Opgrader de berørte projekter, og indsend nye baselines.</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Dokumentationen skal verificeres</value>
+  </data>
+  <data name="Inspect advisories and fix boundaries" xml:space="preserve">
+    <value>Gennemgå sikkerhedsadvarsler, og ret afgrænsninger</value>
+  </data>
+  <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
+    <value>Der findes nyere, ufuldstændige rapporter. Brugen skal verificeres; de seneste komplette baselines bevares.</value>
+  </data>
+  <data name="No affected production use reported in the available complete baselines for this source. Unreported projects and later changes are not covered." xml:space="preserve">
+    <value>Der er ikke rapporteret om berørt produktionsbrug i de tilgængelige fuldstændige baselines for denne kilde. Ikke-rapporterede projekter og senere ændringer er ikke dækket.</value>
+  </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Produktionsgrundlaget melder om en berørt version</value>
+  </data>
+  <data name="Production use is not established. Submit a complete baseline before drawing a conclusion about deployed versions." xml:space="preserve">
+    <value>Brug i produktion er ikke fastslået. Indsend en fuldstændig baseline, før du drager en konklusion om de udrullede versioner.</value>
+  </data>
+  <data name="Report dates" xml:space="preserve">
+    <value>Rapportdatoer</value>
+  </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Den rapporterede brug ligger uden for den gældende godkendelse</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Gennemgå den rapporterede version og den aktuelle godkendelse. Anmod om en passende godkendelse, eller opgrader til en godkendt version uden kendte sårbarheder; nedgrader ikke til en sårbar version.</value>
+  </data>
+
+</root>

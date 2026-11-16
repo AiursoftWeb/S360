@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Checked against {0} complete baseline reports." xml:space="preserve">
+    <value>Tarkistettu {0} täydellistä perustilaraporttia vasten.</value>
+  </data>
+  <data name="Current status and next action" xml:space="preserve">
+    <value>Nykyinen tila ja seuraavat toimenpiteet</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Toisen latauksen estäminen ei korjaa jo olemassa olevaa käyttöönottoa. Päivitä vaikutuksen alaiset projektit ja lähetä uudet perustasot.</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Todisteet on tarkistettava</value>
+  </data>
+  <data name="Inspect advisories and fix boundaries" xml:space="preserve">
+    <value>Tarkastele tietoturvatiedotteita ja korjaa raja-arvot</value>
+  </data>
+  <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
+    <value>Uudempia keskeneräisiä raportteja on saatavilla. Käytön paikkansapitävyys on varmistettava; viimeisimmät täydelliset lähtötasot säilytetään.</value>
+  </data>
+  <data name="No affected production use reported in the available complete baselines for this source. Unreported projects and later changes are not covered." xml:space="preserve">
+    <value>Saatavilla olevissa tämän lähteen täydellisissä perustason raporteissa ei ole ilmoitettu tuotantokäytöstä, johon haavoittuvuus vaikuttaisi. Ilmoittamattomat projektit ja myöhemmät muutokset eivät sisälly tähän arvioon.</value>
+  </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Tuotantokäytön perustason raportissa on haavoittuva versio</value>
+  </data>
+  <data name="Production use is not established. Submit a complete baseline before drawing a conclusion about deployed versions." xml:space="preserve">
+    <value>Tuotantokäyttöä ei ole vahvistettu. Lähetä täydellinen perustason raportti, ennen kuin teet johtopäätöksiä käyttöönotetuista versioista.</value>
+  </data>
+  <data name="Report dates" xml:space="preserve">
+    <value>Raporttien päivämäärät</value>
+  </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Ilmoitettu käyttö ei kuulu voimassa olevan hyväksynnän piiriin</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Tarkista ilmoitettu versio ja voimassa oleva hyväksyntä. Pyydä asianmukainen hyväksyntä tai päivitä hyväksyttyyn, haavoittumattomaan versioon. Älä päivitä vanhempaan versioon, joka sisältää haavoittuvuuden.</value>
+  </data>
+
+</root>

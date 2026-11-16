@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Правило надає дозвіл на використання пакетів. Воно не доводить, що проєкт їх використовує, або що дозволені версії позбавлені вразливостей.</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>Відомості про рекомендацію</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>Усі дозволи на версії цього пакета</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Повернутися до наявного набору правил</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Поточний стан і зазначені версії</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Екосистема</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>Додано</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>Відомі вразливі версії блокуються під час допуску. Самого лише перетину діапазонів недостатньо, щоб стверджувати, що вразлива версія використовується у робочому середовищі.</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>Перенесені конкретні дозволи</value>

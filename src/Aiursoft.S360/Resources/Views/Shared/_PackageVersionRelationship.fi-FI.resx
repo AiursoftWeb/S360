@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>Uudempi vertailutaso on keskeneräinen. Viimeisimmät täydelliset raportit näytetään.</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Hyväksyntä</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>Hyväksyntä ohjaa tulevaa peilattujen pakettien tarjontaa. Se ei päivitä olemassa olevia käyttöönottoja eikä muuta sitä, mitä projekti raportoi.</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>Hyväksyntäkäytännöt</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>Hyväksyntäsäännöt tarkistetaan ensin. Estot, poissulkemiset ja tunnetut haavoittuvuudet voivat silti estää tietyn version käytön.</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>Hyväksyntä, haavoittuvuudet ja ilmoitettu käyttö</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Valtuutus</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Tarkistustietue</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>Arvioitu</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>Tälle lähteelle ei ole kirjattu voimassa olevaa hyväksyntää.</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>Tälle lähteelle ei ole kirjattu yhtään tarkkaa versiota. Tämä sääntö ei vahvista käytön hyväksyttävyyttä.</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>Yksikään näytetyistä versioista ei ole tällä hetkellä hyväksytty.</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>Ei saatavilla</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>Nykyisen valtuutuksen ulkopuolella</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>Kirjattu historiaraporteissa</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>Tallennettu versio; vastaavaa tuotantokäyttöä ei ole raportoitu</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>Ilmoitettu tuotantotason lähtötilanteessa</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>Kaavio näyttää ilmoitetut versiot ja kirjatut esimerkit, ei kaikkia tämän paketin julkaisuja.</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Tätä lähdettä ei ole tällä hetkellä määritetty pakettien tarkistuksia varten.</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>Haavoittuvuustiedot</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>Miksi tämä tulos?</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>Voimassa olevan valtuutuksen piirissä</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>Tässä lähteessä on tallennettu {0} versiota; {1} näytetään.</value>
+  </data>
+
+</root>

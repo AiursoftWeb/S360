@@ -66,11 +66,20 @@
   <data name="Current baseline" xml:space="preserve">
     <value>Nykyinen perustaso</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Nykyinen tarkistus läpäisty</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Toisen latauksen estäminen ei korjaa jo olemassa olevaa käyttöönottoa. Päivitä ongelmalliset projektit ja toimita uudet lähtötasot.</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Riippuvuudet</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosysteemi</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Näyttö on tarkistettava.</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Tutki</value>
@@ -135,6 +144,9 @@
   <data name="Previous" xml:space="preserve">
     <value>Edellinen</value>
   </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Tuotantotason perustaso ilmoittaa haavoittuvasta versiosta</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>Hankkeet</value>
   </data>
@@ -147,6 +159,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>Projektin inventaarin lukeminen vaatii toimitusketjun lukuoikeutta. Voit silti selata hyväksyntäsääntöjä.</value>
   </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Ilmoitettu käyttö ei kuulu voimassa olevan hyväksynnän piiriin</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Raportit</value>
   </data>
@@ -156,8 +171,14 @@
   <data name="Result pages" xml:space="preserve">
     <value>Tulos sivut</value>
   </data>
+  <data name="Results apply to these report dates and the stored audit data. Changes after a report are not verified." xml:space="preserve">
+    <value>Tulokset koskevat näiden raporttien päivämääriä ja tallennettuja auditointitietoja. Raportin jälkeisiä muutoksia ei ole varmennettu.</value>
+  </data>
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>Tarkistuksia ei tallenneta projektin inventaarioon.</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Tarkista ilmoitettu versio ja voimassa oleva hyväksyntä. Pyydä asianmukainen hyväksyntä tai päivitä hyväksyttyyn, haavoittumattomaan versioon. Älä päivitä vanhempaan, haavoittuvaan versioon.</value>
   </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360-vaatimustenmukaisuusmerkki</value>

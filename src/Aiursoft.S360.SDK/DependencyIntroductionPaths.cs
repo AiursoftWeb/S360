@@ -165,7 +165,8 @@ public static class DependencyIntroductionPaths
                             childPath.Replace('/', Path.DirectorySeparatorChar)))) continue;
                     var childNode = nodes[childPath];
                     var version = versionElement.GetString();
-                    var resolved = childNode.TryGetProperty("resolved", out var resolvedElement) &&
+                    var archive = DependencyScanner.NpmArchiveEntry(packages, childPath);
+                    var resolved = archive.Value.TryGetProperty("resolved", out var resolvedElement) &&
                                    Uri.TryCreate(resolvedElement.GetString(), UriKind.Absolute, out var uri)
                         ? TrustPattern.NormalizeSource(uri.GetLeftPart(UriPartial.Authority)) : null;
                     resolved = npmRegistry ?? resolved;

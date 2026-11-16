@@ -11,6 +11,37 @@ namespace Aiursoft.S360.Tests;
 [TestClass]
 public class SupplyChainPolicyTests
 {
+    [TestMethod]
+    [DataRow("LOW")]
+    [DataRow("MODERATE")]
+    [DataRow("HIGH")]
+    [DataRow("CRITICAL")]
+    [DataRow("")]
+    public async Task WildcardApprovalCannotBypassAnyActiveVulnerability(string severity)
+    {
+        await using var db = new InMemoryContext(new DbContextOptionsBuilder<InMemoryContext>()
+            .UseInMemoryDatabase("s360-severity-" + Guid.NewGuid()).Options);
+        db.Rules.Add(Rule());
+        db.VulnerabilitySyncStates.Add(new VulnerabilitySyncState
+        {
+            LastSuccessAtUtc = DateTime.UtcNow,
+            LastSuccessfulAttemptAtUtc = DateTime.UtcNow.AddMinutes(-1)
+        });
+        db.Vulnerabilities.Add(new Vulnerability
+        {
+            SourceId = "GHSA-severity-test", Ecosystem = "nuget",
+            PackageName = "Microsoft.Extensions.Logging", Severity = severity,
+            RawAffectedJson = """
+                [{"package":{"ecosystem":"NuGet","name":"Microsoft.Extensions.Logging"},"ranges":[{"type":"SEMVER","events":[{"introduced":"10.0.0"},{"fixed":"10.0.8"}]}]}]
+                """
+        });
+        await db.SaveChangesAsync();
+        var decisions = await new TrustService(db).AssessAsync([Package(version: "10.0.7"), Package()]);
+        Assert.IsFalse(decisions[0].Trusted);
+        StringAssert.Contains(decisions[0].Reason, "GHSA-severity-test");
+        Assert.IsTrue(decisions[1].Trusted);
+    }
+
     private static Dependency Package(string name = "Microsoft.Extensions.Logging", string version = "10.0.8") => new()
     {
         Ecosystem = "nuget",

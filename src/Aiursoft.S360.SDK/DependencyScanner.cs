@@ -307,14 +307,34 @@ public static class DependencyScanner
             ValidateNpmPackagePath(item.Name);
             if (item.Value.TryGetProperty("link", out var link) && link.ValueKind == JsonValueKind.True)
                 throw new InvalidOperationException($"npm symlink package is unsupported: {item.Name}");
-            var url = RequiredString(item.Value, "resolved", item.Name);
+            var archive = NpmArchiveEntry(packages, item.Name);
+            var url = RequiredString(archive.Value, "resolved", archive.Name);
             if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps ||
                 !string.IsNullOrEmpty(uri.UserInfo) || !string.IsNullOrEmpty(uri.Fragment) ||
                 !string.Equals(uri.GetLeftPart(UriPartial.Authority), source.GetLeftPart(UriPartial.Authority), StringComparison.OrdinalIgnoreCase) ||
                 HasPathTraversal(url) ||
-                (!uri.AbsolutePath.StartsWith(prefix, StringComparison.Ordinal) && !IsStandardRootNpmArchive(uri, item)))
+                (!uri.AbsolutePath.StartsWith(prefix, StringComparison.Ordinal) && !IsStandardRootNpmArchive(uri, archive)))
                 throw new InvalidOperationException($"npm archive source is outside the selected registry: {item.Name}");
         }
+    }
+
+    // Bundled dependencies have their own identity but travel inside an ancestor's archive.
+    // Read only lockfile metadata; never fetch an archive to discover this relationship.
+    internal static (string Name, JsonElement Value) NpmArchiveEntry(JsonElement packages, string path)
+    {
+        var entry = packages.GetProperty(path);
+        while (!entry.TryGetProperty("resolved", out _) &&
+               entry.TryGetProperty("inBundle", out var bundled) && bundled.ValueKind == JsonValueKind.True)
+        {
+            var separator = path.LastIndexOf("/node_modules/", StringComparison.Ordinal);
+            if (separator < 0)
+                throw new InvalidOperationException($"Bundled npm package has no archive owner: {path}");
+            path = path[..separator];
+            if (!packages.TryGetProperty(path, out entry) ||
+                entry.TryGetProperty("link", out var link) && link.ValueKind == JsonValueKind.True)
+                throw new InvalidOperationException($"Bundled npm archive owner is missing or linked: {path}");
+        }
+        return (path, entry);
     }
 
     private static bool HasPathTraversal(string url)
@@ -325,7 +345,7 @@ public static class DependencyScanner
         return Uri.UnescapeDataString(path).Split('/').Any(segment => segment is "." or "..");
     }
 
-    private static bool IsStandardRootNpmArchive(Uri archive, JsonProperty item)
+    private static bool IsStandardRootNpmArchive(Uri archive, (string Name, JsonElement Value) item)
     {
         var name = item.Value.TryGetProperty("name", out var declared) && declared.ValueKind == JsonValueKind.String
             ? declared.GetString()! : item.Name[(item.Name.LastIndexOf("node_modules/", StringComparison.Ordinal) + 13)..];
@@ -430,11 +450,18 @@ public static class DependencyScanner
             var name = entry.TryGetProperty("name", out var declaredName) && declaredName.ValueKind == JsonValueKind.String
                 ? declaredName.GetString()! : installationName;
             var version = RequiredString(entry, "version", item.Name);
-            var url = RequiredString(entry, "resolved", item.Name);
+            var archive = NpmArchiveEntry(packages, item.Name);
+            var url = RequiredString(archive.Value, "resolved", archive.Name);
             if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || uri.Scheme != Uri.UriSchemeHttps ||
                 !string.IsNullOrEmpty(uri.UserInfo) || !string.IsNullOrEmpty(uri.Fragment))
                 throw new InvalidOperationException($"Unsupported npm archive URL: {item.Name}");
-            if (npmRegistry != null) uri = NpmArchiveUri(uri, name, version, npmRegistry);
+            if (npmRegistry != null)
+            {
+                var archiveName = archive.Value.TryGetProperty("name", out var archiveDeclaredName)
+                    ? archiveDeclaredName.GetString()!
+                    : archive.Name[(archive.Name.LastIndexOf("node_modules/", StringComparison.Ordinal) + 13)..];
+                uri = NpmArchiveUri(uri, archiveName, RequiredString(archive.Value, "version", archive.Name), npmRegistry);
+            }
             // The package manager checks archive integrity; S360 reads dependency metadata only.
             if (!lockfileOnly)
             {

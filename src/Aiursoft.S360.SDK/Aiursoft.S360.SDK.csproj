@@ -1,15 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Library</OutputType>
+    <Version>10.0.0</Version>
     <TargetFramework>net10.0</TargetFramework>
     <AssemblyName>Aiursoft.S360.SDK</AssemblyName>
     <RootNamespace>Aiursoft.S360.SDK</RootNamespace>
     <IsTestProject>false</IsTestProject>
-    <IsPackable>false</IsPackable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Company>Aiursoft</Company>
+    <Product>Aiursoft.S360.SDK</Product>
+    <Description>Check dependency policy, vulnerabilities and production baselines against an Aiursoft S360 server.</Description>
+    <PackageId>Aiursoft.S360.SDK</PackageId>
+    <PackageTags>aiursoft s360 sdk</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/aiursoftweb/s360</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/aiursoftweb/s360.git</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="../../README.md" Pack="true" PackagePath="." />
     <PackageReference Include="Aiursoft.AiurProtocol" Version="10.0.34" />
   </ItemGroup>
 </Project>

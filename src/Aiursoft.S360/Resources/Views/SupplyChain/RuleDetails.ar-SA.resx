@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>تسمح القاعدة باستخدام الحزم. ولا تثبت أن المشروع يستخدمها أو أن الإصدارات المصرح بها خالية من الثغرات.</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>تفاصيل التنبيهات</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>جميع منح الإصدارات لهذه الحزمة</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>العودة إلى مجموعة القواعد الحالية</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>الحالة الحالية والإصدارات المُبلَّغ عنها</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>النظام البيئي</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>مشمولة</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>تُمنع الإصدارات المتأثرة المعروفة عند القبول. مجرد تداخل النطاق ليس دليلًا على استخدام إنتاجي متأثر.</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>التفويضات المحددة المُرحّلة</value>

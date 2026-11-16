@@ -21,6 +21,9 @@
       <data name="Compliant" xml:space="preserve">
     <value>متوافق</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>نجح الفحص الحالي</value>
+  </data>
   <data name="Needs attention" xml:space="preserve">
     <value>تتطلب الانتباه</value>
   </data>

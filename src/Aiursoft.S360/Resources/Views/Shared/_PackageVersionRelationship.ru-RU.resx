@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>Новая базовая версия неполная. Показаны последние полные отчеты.</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Допуск</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>Допуск управляет будущим поставками зеркальных пакетов. Он не обновляет существующие развёртывания и не изменяет то, что проект сообщает.</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>Шаблоны согласования</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>Сначала проверяются шаблоны утверждения. Блокировки, исключения и известные уязвимости всё ещё могут отклонить конкретную версию.</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>Одобрение, уязвимости и зафиксированное использование</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Авторизация</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Запись проверки</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>Оценено</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>Нет активных одобренных записей для этого источника.</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>Конкретные версии для этого источника не зафиксированы. Использование не установлено данным правилом.</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>Ни одна из отображаемых версий в настоящее время не авторизована.</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>Недоступно</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>Вне текущей авторизации</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>Зафиксировано в исторических отчётах</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>Зарегистрированная версия; использование в производственной среде не зафиксировано</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>Зафиксировано в производственной базовой линии</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>На диаграмме показаны сообщённые версии и зафиксированные примеры, а не все выпуски этого пакета.</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Этот источник в настоящее время не настроен для проверки пакетов.</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>Данные об уязвимостях</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>Почему такой результат?</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>В пределах текущего разрешения</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>В этом источнике зафиксировано версий: {0}; показано: {1}.</value>
+  </data>
+
+</root>

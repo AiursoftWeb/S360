@@ -36,6 +36,9 @@
   <data name="Copy view link" xml:space="preserve">
     <value>Kopiera vy-länk</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Aktuell kontroll godkänd</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Beroenden</value>
   </data>

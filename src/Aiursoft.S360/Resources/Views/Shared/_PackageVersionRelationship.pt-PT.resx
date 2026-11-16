@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>Uma linha de base mais recente está incompleta. São apresentados os últimos relatórios completos.</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Admissão</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>Os controlos de admissão regulam o fornecimento futuro de pacotes espelhados. Não atualizam implementações existentes nem alteram o que um projeto reporta.</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>Padrões de aprovação</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>Os padrões de aprovação são verificados em primeiro lugar. Bloqueios, exclusões e vulnerabilidades conhecidas ainda podem negar uma versão específica.</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>Aprovação, vulnerabilidade e utilização reportada</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Autorização</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Registo de verificação</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>Avaliado</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>Nenhuma aprovação ativa registada para esta fonte.</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>Não há versões concretas registadas para esta origem. O uso não está estabelecido por esta regra.</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>Nenhuma das versões apresentadas está atualmente autorizada.</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>Não disponível</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>Fora da autorização atual</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>Registado em relatórios históricos</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>Versão registada; sem utilização de produção correspondente reportada</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>Reportado na linha de base de produção</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>O diagrama mostra as versões reportadas e exemplos registados, não todas as versões de lançamento deste pacote.</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Esta origem não está atualmente configurada para verificações de pacotes.</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>Dados de vulnerabilidade</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>Porquê este resultado?</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>Dentro da autorização atual</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>{0} versões registadas nesta origem; {1} mostradas.</value>
+  </data>
+
+</root>

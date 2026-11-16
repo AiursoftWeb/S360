@@ -66,6 +66,12 @@
   <data name="Current baseline" xml:space="preserve">
     <value>الخط الأساسي الحالي</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>اجتاز الفحص الحالي</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>رفض تنزيل آخر لن يُصلح النشر الحالي. قم بترقية المشاريع المتأثرة وقدم خطوط الأساس الجديدة.</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>التبعيات</value>
   </data>
@@ -74,6 +80,9 @@
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>النظام البيئي</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>الأدلة بحاجة إلى التحقق</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>استكشاف</value>
@@ -138,6 +147,9 @@
   <data name="Previous" xml:space="preserve">
     <value>السابق</value>
   </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>تقرير خط الأساس للإنتاج عن إصدار متأثر</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>المشاريع</value>
   </data>
@@ -150,6 +162,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>يتطلب قراءة قائمة جرد المشروع إذن قراءة سلاسل التوريد. يمكنك الاطلاع على قواعد الاعتماد.</value>
   </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>الاستخدام المُبلَّغ عنه خارج نطاق التفويض الحالي</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>التقارير</value>
   </data>
@@ -159,8 +174,14 @@
   <data name="Result pages" xml:space="preserve">
     <value>صفحات النتائج</value>
   </data>
+  <data name="Results apply to these report dates and the stored audit data. Changes after a report are not verified." xml:space="preserve">
+    <value>تنطبق النتائج على تواريخ التقارير هذه وبيانات التدقيق المخزنة. لا يتم التحقق من التغييرات بعد إنشاء تقرير.</value>
+  </data>
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>فحوصات المراجعة لا تُحفظ كمخزون المشروع.</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>راجع الإصدار المُبلَّغ عنه والتصريح الحالي. اطلب تصريحًا مناسبًا أو قم بترقية إلى إصدار مُصرَّح به وغير متأثر؛ لا تقم بتخفيض الإصدار إلى إصدار يحتوي على ثغرة أمنية.</value>
   </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>شارة الامتثال لـ S360</value>

@@ -66,6 +66,12 @@
   <data name="Current baseline" xml:space="preserve">
     <value>Aktuell baslinje</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Aktuell kontroll godkänd</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Att neka en ny nedladdning åtgärdar inte en befintlig distribution. Uppgradera de drabbade projekten och skicka in nya baslinjer.</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Beroenden</value>
   </data>
@@ -74,6 +80,9 @@
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosystem</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Bevis kräver verifiering</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Utforska</value>
@@ -138,6 +147,9 @@
   <data name="Previous" xml:space="preserve">
     <value>Föregående</value>
   </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Produktionsbaslinjen rapporterar en påverkad version</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>Projekt</value>
   </data>
@@ -150,6 +162,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>Du behöver läsbehörighet till leveranskedjan för att läsa projektinventeringen. Du kan fortfarande bläddra bland godkännandereglerna.</value>
   </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Rapporterad användning är utanför nuvarande auktorisation</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Rapporter</value>
   </data>
@@ -159,8 +174,14 @@
   <data name="Result pages" xml:space="preserve">
     <value>Resultatsidor</value>
   </data>
+  <data name="Results apply to these report dates and the stored audit data. Changes after a report are not verified." xml:space="preserve">
+    <value>Resultatet gäller för dessa rapportdatum och den lagrade revisionsdatan. Ändringar efter en rapport verifieras inte.</value>
+  </data>
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>Granskningar sparas inte i projektets inventering.</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Granska den rapporterade versionen och den aktuella godkännandet. Begär ett lämpligt godkännande eller uppgradera till en godkänd, opåverkad version; nedgradera inte till en version med sårbarheter.</value>
   </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360-samverkansmärke</value>

@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Bir kural, paketlerin kullanılmasına izin verir. Ancak bir projenin bu paketleri kullandığını veya izin verilen sürümlerin güvenlik açıkları içermediğini kanıtlamaz.</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>Uyarı ayrıntıları</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>Bu pakete ait tüm sürüm izinleri</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Mevcut kural kümesine geri dön</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Mevcut durum ve bildirilen sürümler</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosistem</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>Dahil</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>Bilinen etkilenmiş sürümler kabul aşamasında engellenir. Tek başına aralık çakışması, üretim ortamında etkilenen sürümlerin kullanıldığına dair kanıt değildir.</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>Aktarılan somut izinler</value>

@@ -66,11 +66,20 @@
   <data name="Current baseline" xml:space="preserve">
     <value>Linia de bază curentă</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Verificarea curentă a fost trecută</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Refuzarea unei alte descărcări nu va remedia o implementare existentă. Actualizați proiectele afectate și trimiteți noi versiuni de referință.</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Dependențe</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ecosistem</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Dovezile necesită verificare</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Explorează</value>
@@ -135,6 +144,9 @@
   <data name="Previous" xml:space="preserve">
     <value>Anterior</value>
   </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Linia de bază pentru producție indică o versiune afectată</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>Proiecte</value>
   </data>
@@ -147,6 +159,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>Citirea inventarului proiectelor necesită permisiunea de citire a lanțului de aprovizionare. Puteți consulta în continuare regulile de aprobare.</value>
   </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Utilizarea raportată nu este autorizată în prezent</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Raporturi</value>
   </data>
@@ -156,8 +171,14 @@
   <data name="Result pages" xml:space="preserve">
     <value>Pagini cu rezultate</value>
   </data>
+  <data name="Results apply to these report dates and the stored audit data. Changes after a report are not verified." xml:space="preserve">
+    <value>Rezultatele se aplică datelor acestor rapoarte și datelor de audit stocate. Modificările efectuate după un raport nu sunt verificate.</value>
+  </data>
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>Verificările de recenzie nu sunt salvate ca inventar de proiect.</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Verificați versiunea raportată și aprobarea actuală. Solicitați o aprobare adecvată sau faceți upgrade la o versiune aprobată, fără vulnerabilități; nu reveniți la o versiune vulnerabilă.</value>
   </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>Insignă de conformitate S360</value>

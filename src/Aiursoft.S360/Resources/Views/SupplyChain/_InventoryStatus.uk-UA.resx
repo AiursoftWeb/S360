@@ -21,6 +21,9 @@
       <data name="Compliant" xml:space="preserve">
     <value>Відповідає вимогам</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Поточну перевірку пройдено</value>
+  </data>
   <data name="Needs attention" xml:space="preserve">
     <value>Потребує уваги</value>
   </data>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>एक नया आधार-रिपोर्ट अधूरी है। पिछली पूर्ण रिपोर्टें दिखाई जा रही हैं।</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>स्वीकृति</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>प्रवेश नियंत्रण भविष्य में मिरर किए गए पैकेजों की आपूर्ति को नियंत्रित करता है। यह मौजूदा डिप्लॉयमेंट को अपडेट नहीं करता और न ही किसी प्रोजेक्ट की रिपोर्ट में बदलाव करता है।</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>अनुमोदन के पैटर्न</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>पहले अनुमोदन पैटर्न की जाँच की जाती है। फिर भी, ब्लॉक, अपवर्जन और ज्ञात सुरक्षा कमज़ोरियाँ किसी विशिष्ट संस्करण को अस्वीकार कर सकती हैं।</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>स्वीकृति, सुरक्षा संबंधी कमजोरियाँ और रिपोर्ट किया गया उपयोग</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>प्राधिकरण</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>जाँच रिकॉर्ड</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>मूल्यांकन किया गया</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>इस स्रोत के लिए कोई सक्रिय अनुमोदन दर्ज नहीं है।</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>इस स्रोत के लिए कोई ठोस संस्करण दर्ज नहीं हैं। इस नियम से उपयोग स्थापित नहीं होता है।</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>प्रदर्शित संस्करणों में से कोई भी वर्तमान में अधिकृत नहीं है।</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>उपलब्ध नहीं</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>वर्तमान प्राधिकरण के दायरे से बाहर</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>ऐतिहासिक रिपोर्टों में दर्ज</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>दर्ज किया गया संस्करण; उत्पादन में इसके उपयोग की कोई रिपोर्ट नहीं है</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>प्रोडक्शन बेसलाइन में दर्ज</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>यह आरेख रिपोर्ट किए गए संस्करणों और दर्ज किए गए उदाहरणों को दिखाता है, इस पैकेज की हर रिलीज़ को नहीं।</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>यह स्रोत वर्तमान में पैकेज जाँच के लिए कॉन्फ़िगर नहीं किया गया है।</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>भेद्यता संबंधी डेटा</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>इस नतीजे का कारण क्या है?</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>वर्तमान प्राधिकरण के अंतर्गत</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>इस स्रोत में {0} संस्करण दर्ज हैं; {1} दिखाए गए हैं।</value>
+  </data>
+
+</root>

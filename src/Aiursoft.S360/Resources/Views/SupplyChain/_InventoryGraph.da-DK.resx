@@ -36,6 +36,9 @@
   <data name="Copy view link" xml:space="preserve">
     <value>Kopiér link til visning</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Den aktuelle kontrol er bestået</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Afhængigheder</value>
   </data>

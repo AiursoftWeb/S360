@@ -18,14 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Approved" xml:space="preserve">
+      <data name="Approval rules" xml:space="preserve">
+    <value>Reguli de aprobare</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
     <value>Aprobat</value>
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Înapoi la setul de reguli existent</value>
   </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Starea curentă și versiunile raportate</value>
+  </data>
   <data name="Expires" xml:space="preserve">
     <value>Expiră</value>
+  </data>
+  <data name="Historical project reports" xml:space="preserve">
+    <value>Rapoarte istorice ale proiectelor</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>Neînregistrat</value>

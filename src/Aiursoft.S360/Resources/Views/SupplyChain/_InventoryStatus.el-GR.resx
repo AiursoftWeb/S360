@@ -21,6 +21,9 @@
       <data name="Compliant" xml:space="preserve">
     <value>Συμμορφωμένο</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Ο τρέχων έλεγχος ολοκληρώθηκε με επιτυχία</value>
+  </data>
   <data name="Needs attention" xml:space="preserve">
     <value>Απαιτεί προσοχή</value>
   </data>

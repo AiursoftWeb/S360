@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>O nouă versiune de referință este incompletă. Sunt afișate cele mai recente rapoarte complete.</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Admitere</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>Admiterea controlează furnizarea viitoare a pachetelor oglindite. Nu actualizează implementările existente și nu modifică ceea ce raportează un proiect.</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>Modele de aprobare</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>Modelele de aprobare sunt verificate mai întâi. Blocările, excluderile și vulnerabilitățile cunoscute pot împiedica în continuare autorizarea unei anumite versiuni.</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>Aprobarea, vulnerabilitățile și utilizarea raportată</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Autorizare</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>Înregistrarea verificării</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>Evaluat</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>Nu este înregistrată nicio aprobare activă pentru această sursă.</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>Nu au fost înregistrate versiuni concrete pentru această sursă. Utilizarea nu este stabilită prin această regulă.</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>Niciuna dintre versiunile afișate nu este autorizată în prezent.</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>Indisponibil</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>În afara autorizării curente</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>Înregistrat în rapoartele istorice</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>Versiune înregistrată; nu a fost raportată nicio utilizare corespunzătoare în producție</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>Raportată în versiunea de referință pentru producție</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>Diagrama prezintă versiunile raportate și exemplele înregistrate, nu fiecare versiune lansată a acestui pachet.</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Această sursă nu este configurată în prezent pentru verificarea pachetelor.</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>Date despre vulnerabilități</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>De ce acest rezultat?</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>În limita autorizației curente</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>{0} versiuni înregistrate în această sursă; {1} afișate.</value>
+  </data>
+
+</root>

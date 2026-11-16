@@ -54,6 +54,9 @@
   <data name="Pipeline" xml:space="preserve">
     <value>Конвеєр</value>
   </data>
+  <data name="Project purpose, approval reasons and report details" xml:space="preserve">
+    <value>Мета проєкту, причини схвалення та відомості зі звіту</value>
+  </data>
   <data name="Projects using this package ({0})" xml:space="preserve">
     <value>Проєкти, що використовують цей пакет ({0})</value>
   </data>

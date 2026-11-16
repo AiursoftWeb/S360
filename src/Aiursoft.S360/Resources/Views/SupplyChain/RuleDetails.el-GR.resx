@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Μια κανόνας χορηγεί άδεια χρήσης πακέτων. Δεν αποδεικνύει ότι ένα έργο τα χρησιμοποιεί ή ότι οι επιτρεπόμενες εκδόσεις είναι απαλλαγμένες από ευθύνες.</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>Λεπτομέρειες συμβουλευτικής</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>Παραχωρήσεις για όλες τις εκδόσεις αυτού του πακέτου</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Επιστροφή στο υπάρχον σύνολο κανόνων</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Τρέχουσα κατάσταση και αναφερόμενες εκδόσεις</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Οικοσύστημα</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>Επεριλαμβάνονται</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>Οι γνωστές ευάλωτες εκδόσεις αποκλείονται κατά την έγκριση. Η απλή επικάλυψη ενός εύρους δεν αποτελεί απόδειξη ότι η έκδοση χρησιμοποιείται σε επηρεαζόμενο περιβάλλον παραγωγής.</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>Συγκεκριμένες άδειες που μεταφέρθηκαν</value>

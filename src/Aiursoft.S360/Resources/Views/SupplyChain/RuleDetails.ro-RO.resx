@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>O regulă acordă permisiunea de a utiliza pachete. Aceasta nu dovedește că un proiect le utilizează sau că versiunile permise nu prezintă vulnerabilități.</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>Detalii despre recomandare</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>Toate drepturile de utilizare pentru versiunile acestui pachet</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Înapoi la setul de reguli existent</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Starea actuală și versiunile raportate</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ecosistem</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>Inclus</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>Versiunile cunoscute ca fiind afectate sunt blocate la admitere. Simpla suprapunere a unui interval nu constituie o dovadă că versiuni afectate sunt utilizate în producție.</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>Aprobări concrete migrate</value>

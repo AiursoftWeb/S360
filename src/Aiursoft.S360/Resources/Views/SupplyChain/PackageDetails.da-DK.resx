@@ -18,14 +18,23 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Approved" xml:space="preserve">
+      <data name="Approval rules" xml:space="preserve">
+    <value>Godkendelsesregler</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
     <value>Godkendt</value>
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Tilbage til det eksisterende regelsæt</value>
   </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Aktuel status og indberettede versioner</value>
+  </data>
   <data name="Expires" xml:space="preserve">
     <value>Udløber</value>
+  </data>
+  <data name="Historical project reports" xml:space="preserve">
+    <value>Historiske projektrapporter</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>Ikke registreret</value>

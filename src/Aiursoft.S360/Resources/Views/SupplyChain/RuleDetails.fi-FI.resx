@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Sääntö antaa luvan pakettien käyttöön. Se ei kuitenkaan osoita, että projekti käyttää niitä tai että sallituissa versioissa ei ole haavoittuvuuksia.</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>Neuvonnan tiedot</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>Kaikki tämän paketin versioille myönnetyt käyttöoikeudet</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Takaisin olemassa olevaan sääntöjoukkoon</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Nykyinen tila ja ilmoitetut versiot</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosysteemi</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>Sisällytetty</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>Tunnetusti haavoittuvat versiot estetään hyväksymisvaiheessa. Pelkkä versionumerovälin päällekkäisyys ei ole näyttöä siitä, että haavoittuvaa versiota käytetään tuotannossa.</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>Siirretyt tarkat myöntöoikeudet</value>

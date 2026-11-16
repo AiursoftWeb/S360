@@ -246,5 +246,8 @@
   <data name="Vulnerabilities" xml:space="preserve">
     <value>Lỗ hổng bảo mật</value>
   </data>
+  <data name="Vulnerability audit" xml:space="preserve">
+    <value>Kiểm tra lỗ hổng bảo mật</value>
+  </data>
 
 </root>

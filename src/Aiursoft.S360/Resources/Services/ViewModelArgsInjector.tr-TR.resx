@@ -243,5 +243,8 @@
   <data name="Vulnerabilities" xml:space="preserve">
     <value>Güvenlik açıkları</value>
   </data>
+  <data name="Vulnerability audit" xml:space="preserve">
+    <value>Zafiyet denetimi</value>
+  </data>
 
 </root>

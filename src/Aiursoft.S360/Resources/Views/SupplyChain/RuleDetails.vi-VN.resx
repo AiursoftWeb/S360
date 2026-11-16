@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Quy tắc cho phép sử dụng các gói. Điều đó không chứng minh rằng một dự án có sử dụng chúng hay các phiên bản được phép không có lỗ hổng bảo mật.</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>Chi tiết khuyến nghị</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>Tất cả các cấp quyền phiên bản cho gói này</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Quay lại danh sách quy tắc hiện có</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Trạng thái hiện tại và các phiên bản đã báo cáo</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Hệ sinh thái</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>Được bao gồm</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>Các phiên bản bị ảnh hưởng đã biết sẽ bị chặn khi nhập. Việc chỉ có sự chồng chéo phạm vi không phải là bằng chứng cho việc sử dụng sản xuất bị ảnh hưởng.</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>Các quyền cấp cụ thể đã được chuyển đổi</value>

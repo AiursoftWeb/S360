@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Admission denied: protects future package supply" xml:space="preserve">
+    <value>Admission refusée : protège l&apos;approvisionnement futur en paquets</value>
+  </data>
+  <data name="Authorization mismatch: review the version and rules" xml:space="preserve">
+    <value>Incohérence d&apos;autorisation : vérifiez la version et les règles</value>
+  </data>
+  <data name="Evidence missing or uncertain: verify the reports and audit" xml:space="preserve">
+    <value>Preuves manquantes ou incertaines : vérifier les rapports et l&apos;audit</value>
+  </data>
+  <data name="Production report affected: upgrade the project" xml:space="preserve">
+    <value>Rapport de production affecté : mettre à jour le projet</value>
+  </data>
+  <data name="These facts can coexist. Approval does not override vulnerability checks, and admission denial does not repair a deployed package. Green means only that this check passed." xml:space="preserve">
+    <value>Ces faits peuvent coexister. L’approbation ne remplace pas les vérifications de vulnérabilités, et le refus d’admission ne répare pas un package déployé. Le vert signifie uniquement que cette vérification a été réussie.</value>
+  </data>
+  <data name="What do these statuses mean?" xml:space="preserve">
+    <value>Que signifient ces statuts ?</value>
+  </data>
+
+</root>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A newer baseline is incomplete. The last complete reports are shown." xml:space="preserve">
+    <value>新しいベースラインが不完全です。最後の完全なレポートが表示されています。</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>検収</value>
+  </data>
+  <data name="Admission controls future mirrored package supply. It does not update existing deployments or change what a project reports." xml:space="preserve">
+    <value>アドミッションは将来のミラーリングパッケージの供給を制御します。既存のデプロイを更新したり、プロジェクトが報告する内容を変更したりすることはしません。</value>
+  </data>
+  <data name="Approval patterns" xml:space="preserve">
+    <value>承認パターン</value>
+  </data>
+  <data name="Approval patterns are checked first. Blocks, exclusions and known vulnerabilities can still deny a specific version." xml:space="preserve">
+    <value>承認パターンが最初にチェックされます。ブロック、除外、既知の脆弱性により、特定のバージョンが拒否される場合があります。</value>
+  </data>
+  <data name="Approval, vulnerability and reported usage" xml:space="preserve">
+    <value>承認、脆弱性、および報告された使用状況</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>認可</value>
+  </data>
+  <data name="Check record" xml:space="preserve">
+    <value>チェック記録</value>
+  </data>
+  <data name="Evaluated" xml:space="preserve">
+    <value>評価済み</value>
+  </data>
+  <data name="No active approval recorded for this source." xml:space="preserve">
+    <value>このソースには有効な承認記録がありません。</value>
+  </data>
+  <data name="No concrete versions recorded for this source. Usage is not established by this rule." xml:space="preserve">
+    <value>このソースには具体的なバージョンが記録されていません。このルールにより使用は確立されていません。</value>
+  </data>
+  <data name="None of the displayed versions is currently authorized." xml:space="preserve">
+    <value>表示されているバージョンは、いずれも現在承認されていません。</value>
+  </data>
+  <data name="Not available" xml:space="preserve">
+    <value>利用不可</value>
+  </data>
+  <data name="Outside current authorization" xml:space="preserve">
+    <value>現在の認可範囲外</value>
+  </data>
+  <data name="Recorded in historical reports" xml:space="preserve">
+    <value>過去の報告に記録済み</value>
+  </data>
+  <data name="Recorded version; no matching production use reported" xml:space="preserve">
+    <value>記録済みバージョン；該当する本番環境での使用は報告されていません</value>
+  </data>
+  <data name="Reported in production baseline" xml:space="preserve">
+    <value>本番環境ベースラインに報告済み</value>
+  </data>
+  <data name="The diagram shows reported versions and recorded examples, not every release of this package." xml:space="preserve">
+    <value>図には報告されたバージョンと記録された例が表示されており、このパッケージのすべてのリリースを示しているわけではありません。</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>このソースは現在、パッケージチェック用に設定されていません。</value>
+  </data>
+  <data name="Vulnerability data" xml:space="preserve">
+    <value>脆弱性データ</value>
+  </data>
+  <data name="Why this result?" xml:space="preserve">
+    <value>この結果の理由は？</value>
+  </data>
+  <data name="Within current authorization" xml:space="preserve">
+    <value>現在の認可範囲内</value>
+  </data>
+  <data name="{0} recorded versions in this source; {1} shown." xml:space="preserve">
+    <value>このソースで記録されたバージョンは {0} 件です。表示されているのは {1} 件です。</value>
+  </data>
+
+</root>

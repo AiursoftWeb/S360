@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Checked against {0} complete baseline reports." xml:space="preserve">
+    <value>Geprüft gegen {0} vollständige Baseline-Berichte.</value>
+  </data>
+  <data name="Current status and next action" xml:space="preserve">
+    <value>Aktueller Status und nächste Maßnahme</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Das Ablehnen eines weiteren Downloads behebt eine vorhandene Bereitstellung nicht. Führen Sie die betroffenen Projekte auf die aktuelle Version up und reichen Sie neue Baselines ein.</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Beweise müssen verifiziert werden</value>
+  </data>
+  <data name="Inspect advisories and fix boundaries" xml:space="preserve">
+    <value>Beratungen prüfen und Grenzen korrigieren</value>
+  </data>
+  <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
+    <value>Neuere unvollständige Berichte existieren. Die Nutzung muss überprüft werden; die letzten vollständigen Baselines werden beibehalten.</value>
+  </data>
+  <data name="No affected production use reported in the available complete baselines for this source. Unreported projects and later changes are not covered." xml:space="preserve">
+    <value>In den verfügbaren vollständigen Baselines für diese Quelle wurde keine betroffene Produktivnutzung gemeldet. Nicht gemeldete Projekte und spätere Änderungen sind nicht abgedeckt.</value>
+  </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Produktionsbaseline meldet eine betroffene Version</value>
+  </data>
+  <data name="Production use is not established. Submit a complete baseline before drawing a conclusion about deployed versions." xml:space="preserve">
+    <value>Der Produktiveinsatz ist nicht belegt. Übermitteln Sie ein vollständiges Baseline-Report, bevor Sie Schlussfolgerungen über die eingesetzten Versionen ziehen.</value>
+  </data>
+  <data name="Report dates" xml:space="preserve">
+    <value>Berichtsdaten</value>
+  </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Gemeldete Nutzung liegt außerhalb der aktuellen Genehmigung</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Prüfen Sie die gemeldete Version und die aktuelle Genehmigung. Fordern Sie eine geeignete Genehmigung an oder aktualisieren Sie auf eine genehmigte, nicht betroffene Version; führen Sie keine Herunterstufung auf eine verwundbare Version durch.</value>
+  </data>
+
+</root>

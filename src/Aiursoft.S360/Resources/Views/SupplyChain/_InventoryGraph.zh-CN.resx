@@ -36,6 +36,9 @@
   <data name="Copy view link" xml:space="preserve">
     <value>复制视图链接</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>当前检查已通过</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>依赖项</value>
   </data>
@@ -217,7 +220,4 @@
     <value>{0} 个存在漏洞的包位于此图中，其中 {1} 个因深度或筛选器被隐藏。</value>
   </data>
 
-  <data name="Current check passed" xml:space="preserve">
-    <value>当前检查已通过</value>
-  </data>
 </root>

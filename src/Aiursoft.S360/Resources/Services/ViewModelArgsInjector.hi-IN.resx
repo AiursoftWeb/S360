@@ -243,5 +243,8 @@
   <data name="Vulnerabilities" xml:space="preserve">
     <value>कमज़ोरियाँ</value>
   </data>
+  <data name="Vulnerability audit" xml:space="preserve">
+    <value>संवेदनशीलता ऑडिट</value>
+  </data>
 
 </root>

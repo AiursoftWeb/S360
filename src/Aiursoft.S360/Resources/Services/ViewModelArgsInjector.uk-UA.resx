@@ -243,5 +243,8 @@
   <data name="Vulnerabilities" xml:space="preserve">
     <value>Вразливості</value>
   </data>
+  <data name="Vulnerability audit" xml:space="preserve">
+    <value>Аудит вразливостей</value>
+  </data>
 
 </root>

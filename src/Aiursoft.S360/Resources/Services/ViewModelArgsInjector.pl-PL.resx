@@ -243,5 +243,8 @@
   <data name="Vulnerabilities" xml:space="preserve">
     <value>Luki w zabezpieczeniach</value>
   </data>
+  <data name="Vulnerability audit" xml:space="preserve">
+    <value>Audyt podatności</value>
+  </data>
 
 </root>

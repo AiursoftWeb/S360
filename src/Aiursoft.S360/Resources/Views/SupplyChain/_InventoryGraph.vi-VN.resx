@@ -36,6 +36,9 @@
   <data name="Copy view link" xml:space="preserve">
     <value>Sao chép liên kết chế độ xem</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Kiểm tra hiện tại đã đạt yêu cầu</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Các gói phụ thuộc</value>
   </data>

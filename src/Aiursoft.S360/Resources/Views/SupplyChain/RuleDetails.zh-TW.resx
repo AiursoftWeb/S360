@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>規則授予使用套件的權限。它無法證明專案實際使用了這些套件，或允許的版本沒有漏洞。</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>建議內容詳情</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>此套件的所有版本授權</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>返回至現有規則集</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>目前狀態與回報版本</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>生態系統</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>已包含</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>已知的受影響版本會在准入時被阻擋。僅憑範圍重疊不足以證明生產環境存在受影響的使用情況。</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>已移轉的具體授權</value>

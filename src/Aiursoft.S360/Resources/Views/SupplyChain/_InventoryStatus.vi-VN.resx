@@ -21,6 +21,9 @@
       <data name="Compliant" xml:space="preserve">
     <value>Tuân thủ</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Kiểm tra hiện tại đã đạt</value>
+  </data>
   <data name="Needs attention" xml:space="preserve">
     <value>Cần chú ý</value>
   </data>

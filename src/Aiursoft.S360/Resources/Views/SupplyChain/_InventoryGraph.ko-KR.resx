@@ -36,6 +36,9 @@
   <data name="Copy view link" xml:space="preserve">
     <value>뷰 링크 복사</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>현재 검사 통과</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>종속성</value>
   </data>

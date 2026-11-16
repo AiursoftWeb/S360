@@ -10,7 +10,7 @@
 
 S360 records which NuGet and npm packages your team may use, checks known vulnerabilities, and alerts affected projects. Package servers handle downloading, integrity checks, and caching.
 
-![S360 screenshot](https://github.com/aiursoftweb/s360/blob/master/screenshot.png)
+![S360 screenshot](https://raw.githubusercontent.com/aiursoftweb/s360/master/screenshot.png)
 
 ## Overview
 

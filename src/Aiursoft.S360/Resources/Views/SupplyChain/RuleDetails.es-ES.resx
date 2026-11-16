@@ -21,6 +21,9 @@
       <data name="A rule grants permission to use packages. It does not prove that a project uses them or that permitted versions are vulnerability-free." xml:space="preserve">
     <value>Una regla concede permiso para usar paquetes. No demuestra que un proyecto los utilice ni que las versiones permitidas estén libres de vulnerabilidades.</value>
   </data>
+  <data name="Advisory details" xml:space="preserve">
+    <value>Detalles del aviso</value>
+  </data>
   <data name="All version grants for this package" xml:space="preserve">
     <value>Todas las autorizaciones para las versiones de este paquete</value>
   </data>
@@ -32,6 +35,9 @@
   </data>
   <data name="Back to existing rule set" xml:space="preserve">
     <value>Volver al conjunto de reglas existente</value>
+  </data>
+  <data name="Current status and reported versions" xml:space="preserve">
+    <value>Estado actual y versiones reportadas</value>
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ecosistema</value>
@@ -53,6 +59,9 @@
   </data>
   <data name="Included" xml:space="preserve">
     <value>Incluido</value>
+  </data>
+  <data name="Known affected versions are blocked at admission. A range overlap alone is not evidence of affected production use." xml:space="preserve">
+    <value>Las versiones conocidas como afectadas se bloquean en la admisión. Una superposición de rangos por sí sola no es evidencia de un uso afectado en producción.</value>
   </data>
   <data name="Migrated concrete grants" xml:space="preserve">
     <value>Concesiones concretas migradas</value>

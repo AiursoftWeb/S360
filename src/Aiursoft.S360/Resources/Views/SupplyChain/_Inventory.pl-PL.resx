@@ -66,6 +66,12 @@
   <data name="Current baseline" xml:space="preserve">
     <value>Obecna linia bazowa</value>
   </data>
+  <data name="Current check passed" xml:space="preserve">
+    <value>Bieżąca kontrola zakończona pomyślnie</value>
+  </data>
+  <data name="Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines." xml:space="preserve">
+    <value>Odmowa kolejnego pobrania nie naprawi istniejącego wdrożenia. Zaktualizuj dotknięte projekty i wyślij nowe bazy.</value>
+  </data>
   <data name="Dependencies" xml:space="preserve">
     <value>Zależności</value>
   </data>
@@ -74,6 +80,9 @@
   </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosystem</value>
+  </data>
+  <data name="Evidence needs verification" xml:space="preserve">
+    <value>Dowody wymagają weryfikacji</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Przeglądaj</value>
@@ -138,6 +147,9 @@
   <data name="Previous" xml:space="preserve">
     <value>Poprzednia</value>
   </data>
+  <data name="Production baseline reports an affected version" xml:space="preserve">
+    <value>Bazowy raport produkcyjny wskazuje na dotkniętą wersję</value>
+  </data>
   <data name="Projects" xml:space="preserve">
     <value>Projekty</value>
   </data>
@@ -150,6 +162,9 @@
   <data name="Reading project inventory requires supply-chain read permission. You can still browse the approval rules." xml:space="preserve">
     <value>Odczytywanie inwentarza projektu wymaga uprawnień do odczytu łańcucha dostaw. Nadal możesz przeglądać zasady zatwierdzania.</value>
   </data>
+  <data name="Reported use is outside current authorization" xml:space="preserve">
+    <value>Zgłoszone użycie wykracza poza bieżące upoważnienie</value>
+  </data>
   <data name="Reports" xml:space="preserve">
     <value>Raporty</value>
   </data>
@@ -159,8 +174,14 @@
   <data name="Result pages" xml:space="preserve">
     <value>Strony wyników</value>
   </data>
+  <data name="Results apply to these report dates and the stored audit data. Changes after a report are not verified." xml:space="preserve">
+    <value>Wyniki dotyczą tych dat raportów i przechowywanych danych audytowych. Zmiany po sporządzeniu raportu nie są weryfikowane.</value>
+  </data>
   <data name="Review checks are not saved as project inventory." xml:space="preserve">
     <value>Sprawdzenia przeglądu nie są zapisywane jako inwentaryzacja projektu.</value>
+  </data>
+  <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
+    <value>Przeglądaj zgłoszoną wersję i bieżące zatwierdzenie. Wnioskuj o odpowiednie zatwierdzenie lub zaktualizuj do zatwierdzonej, nieobjętej podatnością wersji; nie obniżaj wersji w sposób wprowadzający podatność.</value>
   </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>Odznaka zgodności S360</value>

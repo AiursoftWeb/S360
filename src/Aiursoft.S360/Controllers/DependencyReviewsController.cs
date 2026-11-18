@@ -86,37 +86,23 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             }
             var artifacts = reportPackages
                 .Select(p => p.PackageVersion).DistinctBy(a => a.Id).ToList();
-            var decisions = await trust.AssessAsync(artifacts.Select(a => new Dependency
+            var dependencies = artifacts.Select(a => new Dependency
             {
                 Ecosystem = a.Ecosystem,
                 Name = a.Name,
                 Version = a.Version,
                 Source = a.Source
-            }));
-            var currentRules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).AsNoTracking()
-                .Where(r => r.Status != RuleStatus.Pending).ToListAsync();
-            var currentBlocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(b => b.Status == RuleStatus.Approved).ToListAsync();
-            var currentExclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking()
-                .Include(e => e.Vulnerability).ToListAsync();
+            }).ToList();
+            var assessment = await trust.AssessForDisplayAsync(dependencies);
             var sourcePermitted = artifacts.ToDictionary(a => a.Id, a =>
                 AllowedPackageSources.Contains(configuration, a.Ecosystem, a.Source));
-            var authorized = artifacts.ToDictionary(a => a.Id, a =>
-                sourcePermitted[a.Id] &&
-                TrustService.Evaluate(new Dependency
-                {
-                    Ecosystem = a.Ecosystem,
-                    Name = a.Name,
-                    Version = a.Version,
-                    Source = a.Source
-                }, currentRules, currentBlocks, now, currentExclusions).Trusted);
-            var cleared = artifacts.Zip(decisions).ToDictionary(pair => pair.First.Id,
+            var authorized = artifacts.Zip(assessment.Authorization).ToDictionary(pair => pair.First.Id,
                 pair => sourcePermitted[pair.First.Id] && pair.Second.Trusted);
-            var audit = await db.VulnerabilitySyncStates.AsNoTracking()
-                .Select(s => new { s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc }).FirstOrDefaultAsync();
-            var vulnerabilityPolicy = await VulnerabilityPolicy.LoadAsync(db, now);
-            var blockingIds = artifacts.Where(a => vulnerabilityPolicy.Assess(new Dependency
-                { Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version, Source = a.Source }).Blocking.Count > 0)
-                .Select(a => a.Id).ToHashSet();
+            var cleared = artifacts.Zip(assessment.Decisions).ToDictionary(pair => pair.First.Id,
+                pair => sourcePermitted[pair.First.Id] && pair.Second.Trusted);
+            var audit = assessment.Audit;
+            var blockingIds = artifacts.Zip(assessment.Vulnerabilities).Where(pair => pair.Second.Blocking.Count > 0)
+                .Select(pair => pair.First.Id).ToHashSet();
             foreach (var group in reportPackages.GroupBy(p => p.ApplicationId))
             {
                 var entries = group.ToList();
@@ -173,22 +159,19 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
         var rules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).Where(r => r.Ecosystem == application.Ecosystem).ToListAsync();
         var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
-        var vulnerabilities = await VulnerabilityPolicy.LoadAsync(db, now);
+        var packages = application.Packages.Select(entry => entry.PackageVersion).Select(artifact => (artifact,
+            dependency: new Dependency
+            {
+                Ecosystem = artifact.Ecosystem, Name = artifact.Name, Version = artifact.Version, Source = artifact.Source
+            })).ToList();
+        var vulnerabilities = await VulnerabilityPolicy.LoadAsync(db, now, packages.Select(p => p.dependency).ToList());
 
-        foreach (var entry in application.Packages)
+        foreach (var (artifact, dependency) in packages)
         {
-            var artifact = entry.PackageVersion;
             var block = BlockRulePolicy.Match(blocks, artifact.Ecosystem, artifact.Name, artifact.Version);
             if (block != null)
                 return BadRequest(BlockRulePolicy.Explain(block, artifact.Name, artifact.Version,
                     artifact.Name));
-            var dependency = new Dependency
-            {
-                Ecosystem = artifact.Ecosystem,
-                Name = artifact.Name,
-                Version = artifact.Version,
-                Source = artifact.Source
-            };
             // An exact batch approval must not override an exclusion on an existing rule.
             var excluded = rules.Where(r => r.Status == RuleStatus.Approved &&
                     (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now) &&

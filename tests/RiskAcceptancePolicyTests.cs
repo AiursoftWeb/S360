@@ -124,7 +124,7 @@ public class RiskAcceptancePolicyTests
         var result = (await new TrustService(db).AssessAsync([Package()])).Single();
         Assert.AreEqual(condition is "normal" or "failed-audit", result.Trusted);
         if (condition == "normal") StringAssert.Contains(result.Reason, "risk accepted");
-        var state = await VulnerabilityPolicy.LoadAsync(db, now);
+        var state = await VulnerabilityPolicy.LoadAsync(db, now, [Package()]);
         Assert.HasCount(1, state.Assess(Package()).Findings);
         Assert.IsFalse(await db.Vulnerabilities.AnyAsync(v => v.Withdrawn));
     }

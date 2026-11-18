@@ -33,32 +33,58 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
     public Task<List<DependencyDecision>> ReviewAsync(IEnumerable<Dependency> dependencies) =>
         AssessAsync(dependencies);
 
-    public Task<List<DependencyDecision>> AssessAsync(IEnumerable<Dependency> dependencies)
+    public async Task<List<DependencyDecision>> AssessAsync(IEnumerable<Dependency> dependencies)
     {
         var requested = dependencies.ToList();
-        return VulnerabilityAuditSnapshot.ReadAsync(db, () => AssessSnapshotAsync(requested));
+        if (requested.Count == 0) return [];
+        var result = await VulnerabilityAuditSnapshot.ReadAsync(db, () => AssessSnapshotAsync(requested, includeDetails: false));
+        return result.Decisions;
     }
 
-    private async Task<List<DependencyDecision>> AssessSnapshotAsync(IReadOnlyCollection<Dependency> requested)
+    internal Task<TrustAssessment> AssessForDisplayAsync(IReadOnlyList<Dependency> requested) => requested.Count == 0
+        ? Task.FromResult(new TrustAssessment([], [], [], [], null, DateTime.UtcNow))
+        : VulnerabilityAuditSnapshot.ReadAsync(db, () => AssessSnapshotAsync(requested, includeDetails: true));
+
+    private async Task<TrustAssessment> AssessSnapshotAsync(IReadOnlyList<Dependency> requested, bool includeDetails)
     {
-        var rules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).AsNoTracking()
-            .Where(r => r.Status != RuleStatus.Pending).ToListAsync();
-        var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(r => r.Status == RuleStatus.Approved).ToListAsync();
-        var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking()
-            .Include(e => e.Vulnerability).ToListAsync();
+        var scope = new PolicyPackageNames(requested.Select(d => (d.Ecosystem, d.Name)));
+        var nuget = scope.NuGet;
+        var npm = scope.Npm;
+        var packageRules = db.Rules.AsNoTracking().Where(r =>
+            (r.Ecosystem == "nuget" && nuget.Length > 0 &&
+             (nuget.Contains(r.PackagePattern.ToLower()) || r.PackagePattern.Contains("*"))) ||
+            (r.Ecosystem == "npm" && npm.Length > 0 &&
+             (npm.Contains(r.PackagePattern) || r.PackagePattern.Contains("*"))));
+        var approvalQuery = packageRules.Where(r => r.Kind == RuleKind.Approval && r.Status != RuleStatus.Pending);
+        var rules = await (includeDetails ? approvalQuery : approvalQuery.Select(r => new PackageRule
+        {
+            Id = r.Id, Status = r.Status, Ecosystem = r.Ecosystem, PackagePattern = r.PackagePattern,
+            Version = r.Version, Source = r.Source, IncludePrerelease = r.IncludePrerelease,
+            RequestedAtUtc = r.RequestedAtUtc, ExpiresAtUtc = r.ExpiresAtUtc
+        })).ToListAsync();
+        var blocks = await packageRules.Where(r => r.Kind == RuleKind.Block && r.Status == RuleStatus.Approved).ToListAsync();
+        var approvedIds = rules.Where(r => r.Status == RuleStatus.Approved).Select(r => r.Id).ToArray();
+        var exclusions = approvedIds.Length == 0 ? [] : await db.Rules.AsNoTracking()
+            .Where(r => r.Kind == RuleKind.VulnerabilityExclusion && r.ParentRuleId.HasValue &&
+                approvedIds.Contains(r.ParentRuleId.Value)).Include(r => r.Vulnerability).ToListAsync();
         var now = DateTime.UtcNow;
-        var vulnerabilities = await VulnerabilityPolicy.LoadAsync(db, now);
+        var authorization = requested.Select(d => Evaluate(d, rules, blocks, now, exclusions)).ToList();
+        var targets = includeDetails ? requested : requested.Where((_, index) => authorization[index].Trusted).ToList();
+        if (targets.Count == 0) return new TrustAssessment(authorization, authorization, [], rules, null, now);
+
+        var vulnerabilities = await VulnerabilityPolicy.LoadAsync(db, now, targets, includeDetails);
+        var details = includeDetails ? requested.Select(vulnerabilities.Assess).ToList() : [];
         var audit = await db.VulnerabilitySyncStates.AsNoTracking().FirstOrDefaultAsync();
         var approvals = await db.RuleChanges.AsNoTracking()
-            .Where(r => r.Decision == RuleStatus.Approved)
+            .Where(r => r.Decision == RuleStatus.Approved && approvedIds.Contains(r.RuleId))
             .GroupBy(r => r.RuleId).Select(g => new { Id = g.Key, At = g.Max(r => r.ReviewedAtUtc) })
             .ToDictionaryAsync(r => r.Id, r => r.At);
         var fresh = audit?.LastSuccessAtUtc > now.AddHours(-12) && audit.LastSuccessAtUtc <= now;
-        return requested.Select(dependency =>
+        var decisions = requested.Select((dependency, index) =>
         {
-            var decision = Evaluate(dependency, rules, blocks, now, exclusions);
+            var decision = authorization[index];
             if (!decision.Trusted) return decision;
-            var assessment = vulnerabilities.Assess(dependency);
+            var assessment = includeDetails ? details[index] : vulnerabilities.Assess(dependency);
             if (assessment.Blocking.Count > 0)
                 return new DependencyDecision { Dependency = dependency,
                     Reason = $"This version has a known active vulnerability: {assessment.Blocking[0].SourceId}." };
@@ -80,6 +106,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
                 Reason = "Current vulnerability data is unavailable for this package. A vulnerability refresh is required."
             };
         }).ToList();
+        return new TrustAssessment(authorization, decisions, details, rules, audit, now);
     }
 
     public static DependencyDecision Evaluate(Dependency dependency, IEnumerable<PackageRule> rules,
@@ -127,3 +154,6 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         OsvRangeMatcher.Intersects(e.Vulnerability.RawAffectedJson, dependency.Ecosystem,
             dependency.Name, dependency.Version) != RangeRisk.NotAffected);
 }
+
+internal sealed record TrustAssessment(List<DependencyDecision> Authorization, List<DependencyDecision> Decisions,
+    List<VulnerabilityAssessment> Vulnerabilities, List<PackageRule> Rules, VulnerabilitySyncState? Audit, DateTime EvaluatedAtUtc);

@@ -72,7 +72,7 @@ public class BaselineMonitoringTests : TestBase
         await settings.UpdateSettingAsync(SettingsMap.AlertCenterApiKey, "isolated-test-key");
         await settings.UpdateSettingAsync(SettingsMap.AlertCenterEndpoint, "http://localhost:1");
         return new BaselineMonitoringService(_db,
-            new CatalogInventoryService(_db, new PackageStatusService(_db, new TrustService(_db), scope.ServiceProvider.GetRequiredService<IConfiguration>())), new AlertCenterSettingsProvider(settings),
+            new CatalogInventoryService(_db, new PackageStatusService(new TrustService(_db), scope.ServiceProvider.GetRequiredService<IConfiguration>())), new AlertCenterSettingsProvider(settings),
             client, state, NullLogger<BaselineMonitoringService>.Instance,
             lifecycle ?? scope.ServiceProvider.GetRequiredService<IBaselineLifecycle>());
     }

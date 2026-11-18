@@ -162,7 +162,7 @@ public class StatusClarityTests : TestBase
         audit.LastError = "Latest refresh failed";
         await db.SaveChangesAsync();
         var dependency = new Dependency { Ecosystem = "nuget", Name = name.ToUpperInvariant(), Version = "1.0.0", Source = source };
-        var service = new PackageStatusService(db, new TrustService(db), scope.ServiceProvider.GetRequiredService<IConfiguration>());
+        var service = new PackageStatusService(new TrustService(db), scope.ServiceProvider.GetRequiredService<IConfiguration>());
         var state = (await service.DescribeAsync([dependency])).Single();
         Assert.IsTrue(state.Authorized);
         Assert.IsTrue(state.CanAdmit, "A still-fresh successful snapshot keeps the existing admission behavior.");

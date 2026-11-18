@@ -3828,7 +3828,7 @@ public class SupplyChainPagesTests : TestBase
             var html = await response.Content.ReadAsStringAsync();
             StringAssert.Contains(html, $"data-finding=\"{productionId}\"");
             Assert.DoesNotContain($"data-finding=\"GHSA-rule-{suffix}", html);
-            StringAssert.Contains(html, "Known affected versions are blocked at admission.");
+            StringAssert.Contains(html, "Known affected versions require a fix or an approved risk acceptance.");
             Assert.DoesNotContain("Current authorization range permits an affected version", html);
         }
         var found = new HashSet<string>();

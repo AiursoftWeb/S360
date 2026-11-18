@@ -102,7 +102,7 @@ public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInven
                             await client.MitigateAsync(incident.IncidentId, new MitigateIncidentRequest
                             {
                                 Version = incident.Version,
-                                Reason = $"S360 confirmed the complete production baseline for {repository.Repository} is compliant with current policy and vulnerability data. Baseline checks: {string.Join(", ", repository.Projects.SelectMany(p => p.Reports).Select(r => r.CheckId))}. This does not resolve any independent pipeline failure."
+                                Reason = RecoveryReason(repository) + $"S360 confirmed the complete production baseline for {repository.Repository} is compliant with current policy and vulnerability data. Baseline checks: {string.Join(", ", repository.Projects.SelectMany(p => p.Reports).Select(r => r.CheckId))}. This does not resolve any independent pipeline failure."
                             });
                             links[repository.Repository] = incident.IncidentId;
                         }
@@ -123,6 +123,16 @@ public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInven
             logger.LogError("Security incident synchronization failed with {ExceptionType}.", exception.GetType().Name);
         }
         finally { state.Gate.Release(); }
+    }
+
+    private static string RecoveryReason(BaselineRepository repository)
+    {
+        var accepted = repository.Projects.SelectMany(p => p.Versions)
+            .SelectMany(v => v.State?.AcceptedVulnerabilities ?? []).DistinctBy(a => a.Rule.Id).ToList();
+        return accepted.Count == 0 ? string.Empty :
+            "Known vulnerability risks remain accepted by server-wide policy, not fixed by an upgrade. " +
+            string.Join("; ", accepted.Take(5).Select(a => $"Rule {a.Rule.Id}: " +
+                $"{a.Rule.Justification[..Math.Min(160, a.Rule.Justification.Length)]} (expires {a.Rule.ExpiresAtUtc:O})")) + ". ";
     }
 
     private async Task<List<IncidentDetails>> ReadActiveAsync()

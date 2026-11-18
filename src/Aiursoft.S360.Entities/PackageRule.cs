@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace Aiursoft.S360.Entities;
 
 public enum RuleStatus { Pending, Approved, Rejected, Revoked }
-public enum RuleKind { Approval, Block, VulnerabilityExclusion }
+public enum RuleKind { Approval, Block, VulnerabilityExclusion, RiskAcceptance }
 
 public class PackageRule
 {

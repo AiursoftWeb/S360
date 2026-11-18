@@ -46,38 +46,22 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(r => r.Status == RuleStatus.Approved).ToListAsync();
         var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
-        var advisories = await db.Vulnerabilities.AsNoTracking().Where(v => !v.Withdrawn).ToListAsync();
+        var now = DateTime.UtcNow;
+        var vulnerabilities = await VulnerabilityPolicy.LoadAsync(db, now);
         var audit = await db.VulnerabilitySyncStates.AsNoTracking().FirstOrDefaultAsync();
         var approvals = await db.RuleChanges.AsNoTracking()
             .Where(r => r.Decision == RuleStatus.Approved)
             .GroupBy(r => r.RuleId).Select(g => new { Id = g.Key, At = g.Max(r => r.ReviewedAtUtc) })
             .ToDictionaryAsync(r => r.Id, r => r.At);
-        var versionFindings = await db.VulnerabilityMatches.AsNoTracking()
-            .Where(m => m.Active && !m.Vulnerability.Withdrawn)
-            .Select(m => new
-            {
-                m.PackageVersion.Ecosystem,
-                m.PackageVersion.Name,
-                m.PackageVersion.Version,
-                m.Vulnerability.SourceId
-            }).ToListAsync();
-        var now = DateTime.UtcNow;
         var fresh = audit?.LastSuccessAtUtc > now.AddHours(-12) && audit.LastSuccessAtUtc <= now;
         return requested.Select(dependency =>
         {
             var decision = Evaluate(dependency, rules, blocks, now, exclusions);
             if (!decision.Trusted) return decision;
-            var finding = versionFindings.FirstOrDefault(v => v.Ecosystem == dependency.Ecosystem &&
-                v.Name.Equals(dependency.Name, dependency.Ecosystem == "nuget"
-                    ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) && v.Version == dependency.Version);
-            if (finding != null)
-                return new DependencyDecision { Dependency = dependency, Reason = $"This version has a known active vulnerability: {finding.SourceId}." };
-            var affected = advisories.FirstOrDefault(v => v.Ecosystem == dependency.Ecosystem &&
-                v.PackageName.Equals(dependency.Name, dependency.Ecosystem == "nuget"
-                    ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal) &&
-                OsvRangeMatcher.Intersects(v.RawAffectedJson, dependency.Ecosystem, dependency.Name, dependency.Version) != RangeRisk.NotAffected);
-            if (affected != null)
-                return new DependencyDecision { Dependency = dependency, Reason = $"This version has a known active vulnerability: {affected.SourceId}." };
+            var assessment = vulnerabilities.Assess(dependency);
+            if (assessment.Blocking.Count > 0)
+                return new DependencyDecision { Dependency = dependency,
+                    Reason = $"This version has a known active vulnerability: {assessment.Blocking[0].SourceId}." };
             // A successful package-level OSV query covers new versions too. Newly approved
             // package names must enter the next audit before absence of findings means clean.
             var covered = rules.Any(r => r.Status == RuleStatus.Approved && r.Ecosystem == dependency.Ecosystem &&
@@ -85,6 +69,10 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
                 (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now) &&
                 r.RequestedAtUtc <= audit?.LastSuccessfulAttemptAtUtc &&
                 (!approvals.TryGetValue(r.Id, out var at) || at <= audit.LastSuccessfulAttemptAtUtc));
+            if (fresh && covered && assessment.Accepted.Count > 0)
+                return new DependencyDecision { Dependency = dependency, Trusted = true, RuleId = decision.RuleId,
+                    Reason = "Approved by package policy; known vulnerability risk accepted by rules: " +
+                        string.Join(", ", assessment.Accepted.Select(a => a.Rule.Id).Distinct()) + "." };
             return fresh && covered ? decision : new DependencyDecision
             {
                 Dependency = dependency,

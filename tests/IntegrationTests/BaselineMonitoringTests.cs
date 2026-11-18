@@ -88,6 +88,76 @@ public class BaselineMonitoringTests : TestBase
     }
 
     [TestMethod]
+    public async Task UnknownRangeKeepsTheIncidentOpenEvenWithAnApprovedException()
+    {
+        using var scope = Server!.Services.CreateScope();
+        var db = _db;
+        FreshAudit(db);
+        var report = Report(_repository, false, ecosystem: "npm");
+        var dependency = report.Dependencies.Single();
+        dependency.Name = "picomatch";
+        dependency.Version = "4.0.7";
+        db.BuildChecks.Add(report);
+        db.Rules.Add(new PackageRule { Ecosystem = "npm", PackagePattern = "picomatch", Version = "*",
+            Source = dependency.Source, Status = RuleStatus.Approved, RequestedAtUtc = DateTime.UtcNow.AddDays(-1) });
+        var advisory = RiskAcceptancePolicyTests.Advisory();
+        db.Vulnerabilities.Add(advisory);
+        await db.SaveChangesAsync();
+        var client = new FakeClient();
+        var monitoring = await Monitor(scope, client, new BaselineMonitorState());
+        await monitoring.SynchronizeAsync();
+        Assert.HasCount(1, client.Created);
+        var acceptance = RiskAcceptancePolicyTests.Acceptance();
+        acceptance.Source = dependency.Source;
+        db.Rules.Add(acceptance);
+        advisory.RawAffectedJson = "not-json";
+        await db.SaveChangesAsync();
+        var repository = (await monitoring.PreviewAsync()).Single();
+        Assert.AreEqual(Models.SupplyChainViewModels.InventoryStatus.Pending, repository.Status);
+        await monitoring.SynchronizeAsync();
+        Assert.HasCount(0, client.Mitigated);
+        Assert.HasCount(1, client.Created);
+    }
+
+    [TestMethod]
+    [DataRow(false)]
+    [DataRow(true)]
+    public async Task AcceptedRiskMitigatesExistingBaselineAndRevocationOrExpiryReopensIt(bool expired)
+    {
+        using var scope = Server!.Services.CreateScope();
+        var db = _db;
+        FreshAudit(db);
+        var report = Report(_repository, false, ecosystem: "npm");
+        var dependency = report.Dependencies.Single();
+        dependency.Name = "picomatch";
+        dependency.Version = "4.0.7";
+        db.BuildChecks.Add(report);
+        db.Rules.Add(new PackageRule { Ecosystem = "npm", PackagePattern = "picomatch", Version = "*",
+            Source = dependency.Source, Status = RuleStatus.Approved, RequestedAtUtc = DateTime.UtcNow.AddDays(-1) });
+        db.Vulnerabilities.Add(RiskAcceptancePolicyTests.Advisory());
+        await db.SaveChangesAsync();
+        var client = new FakeClient();
+        var monitoring = await Monitor(scope, client, new BaselineMonitorState());
+        await monitoring.SynchronizeAsync();
+        Assert.HasCount(1, client.Created);
+        var acceptance = RiskAcceptancePolicyTests.Acceptance();
+        acceptance.Source = dependency.Source;
+        db.Rules.Add(acceptance);
+        await db.SaveChangesAsync();
+        await monitoring.SynchronizeAsync();
+        Assert.HasCount(1, client.Mitigated);
+        StringAssert.Contains(client.RecoveryReasons.Single(), "not fixed by an upgrade");
+        StringAssert.Contains(client.RecoveryReasons.Single(), acceptance.Justification);
+        Assert.IsFalse((await db.Vulnerabilities.SingleAsync()).Withdrawn);
+        if (expired) acceptance.ExpiresAtUtc = DateTime.UtcNow.AddSeconds(-1);
+        else acceptance.Status = RuleStatus.Revoked;
+        await db.SaveChangesAsync();
+        await monitoring.SynchronizeAsync();
+        Assert.HasCount(2, client.Created);
+        Assert.HasCount(1, client.Mitigated);
+    }
+
+    [TestMethod]
     public async Task KnownFindingCreatesSev2AndRepeatedRunsOrProcessorRestartsDoNotDuplicate()
     {
         using var scope = Server!.Services.CreateScope();
@@ -412,6 +482,7 @@ public class BaselineMonitoringTests : TestBase
         public List<IncidentDetails> Items { get; } = [];
         public List<CreateIncidentRequest> Created { get; } = [];
         public List<Guid> Mitigated { get; } = [];
+        public List<string> RecoveryReasons { get; } = [];
         public int Queries { get; private set; }
         public int Patches { get; private set; }
         public bool BadPage { get; set; }
@@ -448,6 +519,7 @@ public class BaselineMonitoringTests : TestBase
         }
         public Task<MitigateIncidentResponse> MitigateAsync(Guid id, MitigateIncidentRequest request)
         {
+            RecoveryReasons.Add(request.Reason);
             Mitigated.Add(id); Items.Single(i => i.IncidentId == id).Status = "mitigated";
             return Task.FromResult(new MitigateIncidentResponse());
         }

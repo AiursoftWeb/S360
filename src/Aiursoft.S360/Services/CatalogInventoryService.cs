@@ -140,7 +140,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
             var artifactIds = observed.Select(o => o.Dependency.PackageVersionId).ToHashSet();
             var state = states[i];
             var advisories = state.Advisories.SelectMany(AdvisoryNames).Distinct().Order().ToList();
-            var status = !state.Authorized || advisories.Count > 0
+            var status = !state.Authorized || state.BlockingAdvisories.Count > 0
                 ? InventoryStatus.NonCompliant
                 : state.CanAdmit ? InventoryStatus.Compliant : InventoryStatus.Pending;
             var version = new InventoryVersion
@@ -148,7 +148,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
                 Dependency = dependency,
                 Status = status,
                 Reason = !state.SourcePermitted ? "Package source is no longer permitted."
-                    : advisories.Count > 0 ? "Known active vulnerability: " + string.Join(", ", advisories)
+                    : state.BlockingAdvisories.Count > 0 ? "Known active vulnerability: " + string.Join(", ", state.BlockingAdvisories.SelectMany(AdvisoryNames).Distinct())
                     : state.Admission.Reason,
                 Advisories = advisories,
                 State = state,

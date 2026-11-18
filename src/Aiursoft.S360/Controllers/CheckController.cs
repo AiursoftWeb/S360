@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Aiursoft.AiurProtocol.Models;
 using Aiursoft.S360.SDK;
 using Aiursoft.S360.Services;
+using Aiursoft.S360.Services.AlertMonitoring;
 using Aiursoft.S360.Services.BackgroundJobs;
 using Aiursoft.S360.Services.Resolution;
 using Aiursoft.Canon.BackgroundJobs;
@@ -25,7 +26,8 @@ namespace Aiursoft.S360.Controllers;
 [Route("api/check")]
 public class CheckController(TrustService trust, TemplateDbContext db,
     BackgroundJobRegistry jobs, IMemoryCache cache, IConfiguration configuration,
-    GlobalSettingsService settings, IAuthorizationService authorization, ReviewAdmission admission, ServiceTaskQueue taskQueue) : ControllerBase
+    GlobalSettingsService settings, IAuthorizationService authorization, ReviewAdmission admission, ServiceTaskQueue taskQueue,
+    BaselineReviewControls baselineReview) : ControllerBase
 {
     [HttpPost, AllowAnonymous, LimitPerMin(120)]
     [RequestSizeLimit(4 * 1024 * 1024)]
@@ -242,6 +244,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
                     Reason = decision.Reason[..Math.Min(decision.Reason.Length, 1000)]
                 });
             }
+            BaselineReviewControls.ResumeToken? resume = null;
             if (request.BatchIndex == request.BatchCount - 1)
             {
                 // A policy change between batches must not let an earlier approval
@@ -256,6 +259,7 @@ public class CheckController(TrustService trust, TemplateDbContext db,
                 }
                 else
                 {
+                    resume = await baselineReview.FindStopToResumeAsync(check, previous);
                     var entireRun = previous.SelectMany(c => c.Dependencies).Select(d => new Dependency
                     {
                         Ecosystem = d.Ecosystem,
@@ -288,6 +292,12 @@ public class CheckController(TrustService trust, TemplateDbContext db,
             }
             db.BuildChecks.Add(check);
             await db.SaveChangesAsync();
+            if (resume != null)
+            {
+                if (!taskQueue.HasPendingOrProcessingTasks(nameof(BaselineIncidentSyncJob)))
+                    jobs.TriggerNow<BaselineIncidentSyncJob>();
+                await baselineReview.ClearResumedStopAsync(resume);
+            }
             QueueAudit(decisions, check.Dependencies.Any(d => d.PackageVersion is { LastCheckedAtUtc: null }));
             return Ok(new CheckResponse
             {

@@ -11,17 +11,18 @@ namespace Aiursoft.S360.Services.AlertMonitoring;
 
 public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInventoryService inventory,
     AlertCenterSettingsProvider settingsProvider, IBaselineIncidentClient client, BaselineMonitorState state,
-    ILogger<BaselineMonitoringService> logger, IBaselineLifecycle lifecycle)
+    ILogger<BaselineMonitoringService> logger, IBaselineLifecycle lifecycle, BaselineReviewControls reviewControls)
 {
     public const string Source = "S360.ProductionBaseline";
 
-    public Task<List<BaselineRepository>> PreviewAsync() => VulnerabilityAuditSnapshot.ReadAsync(db, async () =>
+    public Task<BaselinePreview> PreviewAsync() => VulnerabilityAuditSnapshot.ReadAsync(db, async () =>
     {
-        var projects = await inventory.ReadBaselineProjectsAsync();
+        var stopped = await reviewControls.ReadStoppedAsync();
+        var projects = await inventory.ReadBaselineProjectsAsync(stopped);
         var audit = await db.VulnerabilitySyncStates.AsNoTracking().FirstOrDefaultAsync();
         var fresh = audit?.LastSuccessAtUtc > DateTime.UtcNow.AddHours(-12) &&
             !VulnerabilityAuditFreshness.HasFailedLatestAttempt(audit.LastAttemptAtUtc, audit.LastSuccessAtUtc, audit.LastError);
-        return projects.GroupBy(p => p.Name.Split("//")[0], StringComparer.Ordinal)
+        var current = projects.GroupBy(p => BaselineReviewControls.RepositoryOf(p.Name), StringComparer.Ordinal)
             .Where(g => IsCompanyRepository(g.Key)).Select(g =>
             {
                 var items = g.OrderBy(p => p.Name, StringComparer.Ordinal).ToList();
@@ -40,11 +41,29 @@ public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInven
                 return new BaselineRepository(g.Key, verdict, fresh && verdict == InventoryStatus.Compliant,
                     items, summary);
             }).OrderBy(p => p.Repository, StringComparer.Ordinal).ToList();
+        return new BaselinePreview(current, stopped);
     });
 
     public static bool IsCompanyRepository(string repository) => repository.StartsWith("aiursoft/", StringComparison.Ordinal) &&
         repository.Length <= 240 && repository.Split('/').All(part => part.Length > 0 && part is not ("." or "..") &&
             part.All(c => char.IsAsciiLetterOrDigit(c) || c is '-' or '_' or '.')) && repository != "aiursoft/hom";
+
+    public async Task<bool> StopReviewAsync(string repository)
+    {
+        if (!IsCompanyRepository(repository)) return false;
+        await state.Gate.WaitAsync();
+        try
+        {
+            return await VulnerabilityAuditSnapshot.ExecuteAsync(db, async () =>
+            {
+                if (!await db.BuildChecks.AsNoTracking().AnyAsync(c => c.Project == repository ||
+                        (c.Project != null && c.Project.StartsWith(repository + "//")))) return false;
+                await reviewControls.StopAsync(repository);
+                return true;
+            });
+        }
+        finally { state.Gate.Release(); }
+    }
 
     public async Task SynchronizeAsync()
     {
@@ -55,39 +74,31 @@ public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInven
             var settings = await settingsProvider.GetAsync();
             if (!settings.Enabled) return;
             settings.Validate();
-            var repositories = await PreviewAsync(); // Commit the database snapshot before any remote I/O.
+            var preview = await PreviewAsync(); // Commit the database snapshot before any remote I/O.
             var active = await ReadActiveAsync();
             var owned = active.Where(i => i.Status == "new" && i.Metadata["source"] is JValue { Type: JTokenType.String } && i.Metadata.Value<string>("source") == Source &&
                     i.Metadata["repository"] is JValue { Type: JTokenType.String } && IsCompanyRepository(i.Metadata.Value<string>("repository")!))
                 .GroupBy(i => i.Metadata.Value<string>("repository")!, StringComparer.Ordinal)
                 .ToDictionary(g => g.Key, g => g.OrderBy(i => i.ReceivedAtUtc).ThenBy(i => i.IncidentId).ToList(), StringComparer.Ordinal);
-            var lifecycleStates = await lifecycle.ReadAsync(repositories.Select(repository => repository.Repository).Concat(owned.Keys));
             var success = true;
+            if (settings.AutoMitigate)
+                foreach (var (path, incidents) in owned.Where(entry => preview.StoppedRepositories.Contains(entry.Key)))
+                    success &= await MitigateInactiveAsync(path, incidents, links,
+                        $"Production baseline review was stopped for {path}. Historical checks are retained.");
+
+            var lifecycleStates = await lifecycle.ReadAsync(preview.Repositories.Select(repository => repository.Repository)
+                .Concat(owned.Keys.Where(path => !preview.StoppedRepositories.Contains(path))));
             foreach (var (path, incidents) in owned)
             {
-                if (!settings.AutoMitigate || lifecycleStates.GetValueOrDefault(path, BaselineLifecycleStatus.Unconfirmed) != BaselineLifecycleStatus.Retired)
+                if (!settings.AutoMitigate || preview.StoppedRepositories.Contains(path) ||
+                    lifecycleStates.GetValueOrDefault(path, BaselineLifecycleStatus.Unconfirmed) != BaselineLifecycleStatus.Retired)
                     continue;
 
-                try
-                {
-                    foreach (var incident in incidents)
-                    {
-                        await client.MitigateAsync(incident.IncidentId, new MitigateIncidentRequest
-                        {
-                            Version = incident.Version,
-                            Reason = $"S360 retired the baseline for {path} after its project path was absent from two verified GitLab inventories and project lookups. Historical checks are retained. This does not mean the dependency findings were fixed."
-                        });
-                        links[path] = incident.IncidentId;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    success = false;
-                    logger.LogError("Retired baseline incident mitigation failed for {Repository} with {ExceptionType}.", path, exception.GetType().Name);
-                }
+                success &= await MitigateInactiveAsync(path, incidents, links,
+                    $"S360 retired the baseline for {path} after its project path was absent from two verified GitLab inventories and project lookups. Historical checks are retained. This does not mean the dependency findings were fixed.");
             }
 
-            foreach (var repository in repositories)
+            foreach (var repository in preview.Repositories)
             {
                 if (lifecycleStates.GetValueOrDefault(repository.Repository, BaselineLifecycleStatus.Unconfirmed) != BaselineLifecycleStatus.Active)
                     continue;
@@ -151,6 +162,27 @@ public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInven
             logger.LogError("Security incident synchronization failed with {ExceptionType}.", exception.GetType().Name);
         }
         finally { state.Gate.Release(); }
+    }
+
+    private async Task<bool> MitigateInactiveAsync(string path, IReadOnlyList<IncidentDetails> incidents,
+        Dictionary<string, Guid> links, string reason)
+    {
+        try
+        {
+            foreach (var incident in incidents)
+            {
+                await client.MitigateAsync(incident.IncidentId, new MitigateIncidentRequest
+                    { Version = incident.Version, Reason = reason });
+                links[path] = incident.IncidentId;
+            }
+            return true;
+        }
+        catch (Exception exception)
+        {
+            logger.LogError("Inactive baseline incident mitigation failed for {Repository} with {ExceptionType}.",
+                path, exception.GetType().Name);
+            return false;
+        }
     }
 
     private static string RecoveryReason(BaselineRepository repository)

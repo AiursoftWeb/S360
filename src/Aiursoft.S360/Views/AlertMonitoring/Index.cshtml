@@ -58,7 +58,7 @@
                 <p class="text-muted small">@Localizer["Preview the current assessment before enabling notifications. Missing or incomplete evidence never proves recovery."]</p>
                 <div class="table-responsive">
                     <table class="table align-middle mb-0">
-                        <thead><tr><th>@Localizer["Repository"]</th><th>@Localizer["Current assessment"]</th><th>@Localizer["Incident"]</th></tr></thead>
+                        <thead><tr><th>@Localizer["Repository"]</th><th>@Localizer["Current assessment"]</th><th>@Localizer["Incident"]</th><th>@Localizer["Actions"]</th></tr></thead>
                         <tbody>
                         @foreach (var repository in Model.Repositories)
                         {
@@ -74,12 +74,31 @@
                                     { <a href="@Model.AlertCenterUrl/Incidents/Details/@incidentId">@Localizer["Open incident"]</a> }
                                     else { <span class="text-muted">—</span> }
                                 </td>
+                                <td>
+                                    <form asp-action="StopReview" method="post">
+                                        <input type="hidden" name="repository" value="@repository.Repository" />
+                                        <button type="submit" class="btn btn-sm btn-outline-secondary">@Localizer["Stop baseline review"]</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                        @foreach (var repository in Model.StoppedRepositories)
+                        {
+                            <tr>
+                                <td class="text-break"><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-scope="baseline" asp-route-query="@repository">@repository</a></td>
+                                <td><span class="badge text-bg-secondary">@Localizer["Baseline review stopped"]</span></td>
+                                <td>
+                                    @if (Model.AlertCenterUrl != null && Model.LastRun?.Incidents.TryGetValue(repository, out var incidentId) == true)
+                                    { <a href="@Model.AlertCenterUrl/Incidents/Details/@incidentId">@Localizer["Open incident"]</a> }
+                                    else { <span class="text-muted">—</span> }
+                                </td>
+                                <td class="small text-muted">@Localizer["Resumes on the next complete default-branch baseline."]</td>
                             </tr>
                         }
                         </tbody>
                     </table>
                 </div>
-                @if (Model.Repositories.Count == 0) { <p class="text-muted mt-3 mb-0">@Localizer["No eligible company production baselines are available."]</p> }
+                @if (Model.Repositories.Count == 0 && Model.StoppedRepositories.Count == 0) { <p class="text-muted mt-3 mb-0">@Localizer["No eligible company production baselines are available."]</p> }
             </div>
         </div>
     </div>

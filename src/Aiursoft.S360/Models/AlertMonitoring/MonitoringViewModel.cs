@@ -12,5 +12,6 @@ public class MonitoringViewModel : UiStackLayoutViewModel
     public bool RecoveryReadOnly { get; init; }
     public BaselineMonitorRun? LastRun { get; init; }
     public IReadOnlyList<BaselineRepository> Repositories { get; init; } = [];
+    public IReadOnlyList<string> StoppedRepositories { get; init; } = [];
     public string? AlertCenterUrl { get; init; }
 }

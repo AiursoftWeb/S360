@@ -2,6 +2,7 @@ using System.Text.Json;
 using Aiursoft.S360.Entities;
 using Aiursoft.S360.Models.SupplyChainViewModels;
 using Aiursoft.S360.SDK;
+using Aiursoft.S360.Services.AlertMonitoring;
 using Aiursoft.S360.Services.Vulnerability;
 using Aiursoft.Scanner.Abstractions;
 using Microsoft.EntityFrameworkCore;
@@ -12,10 +13,10 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
 {
     public Task PopulateAsync(InventoryViewModel model, bool projectOnly = false) => PopulateAsync(model, projectOnly, false);
 
-    public async Task<List<InventoryProject>> ReadBaselineProjectsAsync()
+    public async Task<List<InventoryProject>> ReadBaselineProjectsAsync(IReadOnlySet<string> stoppedRepositories)
     {
         var model = new InventoryViewModel { Tab = "projects", Scope = "baseline", Ecosystem = "all" };
-        await PopulateAsync(model, false, true);
+        await PopulateAsync(model, false, true, stoppedRepositories: stoppedRepositories);
         return model.Projects;
     }
 
@@ -46,7 +47,8 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
         });
 
     private async Task PopulateAsync(InventoryViewModel model, bool projectOnly, bool allProjects,
-        bool defaultBranchOnly = true, string? packageName = null, string? packageSource = null)
+        bool defaultBranchOnly = true, string? packageName = null, string? packageSource = null,
+        IReadOnlySet<string>? stoppedRepositories = null)
     {
         // Select complete snapshots before selecting packages: an empty newer snapshot
         // removes old dependencies, and a NuGet-only snapshot must not replace npm.
@@ -68,6 +70,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
                 GraphJson = c.GraphJson == null ? null : "[]"
             }).ToListAsync();
         var runs = checks.Where(c => !string.IsNullOrWhiteSpace(c.Project) &&
+                stoppedRepositories?.Contains(BaselineReviewControls.RepositoryOf(c.Project)) != true &&
                 BuildCheckRun.Purpose(c.ContextJson) != "review")
             .Where(c => !allProjects || !defaultBranchOnly || BuildCheckRun.Kind(c.ContextJson) == CheckKind.DefaultBranch)
             .GroupBy(c => c.RunId).Where(g => MatchesScope(g.First(), model.Scope))

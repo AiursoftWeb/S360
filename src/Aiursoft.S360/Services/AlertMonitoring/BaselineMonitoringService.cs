@@ -11,7 +11,7 @@ namespace Aiursoft.S360.Services.AlertMonitoring;
 
 public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInventoryService inventory,
     AlertCenterSettingsProvider settingsProvider, IBaselineIncidentClient client, BaselineMonitorState state,
-    ILogger<BaselineMonitoringService> logger)
+    ILogger<BaselineMonitoringService> logger, IBaselineLifecycle lifecycle)
 {
     public const string Source = "S360.ProductionBaseline";
 
@@ -61,9 +61,37 @@ public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInven
                     i.Metadata["repository"] is JValue { Type: JTokenType.String } && IsCompanyRepository(i.Metadata.Value<string>("repository")!))
                 .GroupBy(i => i.Metadata.Value<string>("repository")!, StringComparer.Ordinal)
                 .ToDictionary(g => g.Key, g => g.OrderBy(i => i.ReceivedAtUtc).ThenBy(i => i.IncidentId).ToList(), StringComparer.Ordinal);
+            var lifecycleStates = await lifecycle.ReadAsync(repositories.Select(repository => repository.Repository).Concat(owned.Keys));
             var success = true;
+            foreach (var (path, incidents) in owned)
+            {
+                if (!settings.AutoMitigate || lifecycleStates.GetValueOrDefault(path, BaselineLifecycleStatus.Unconfirmed) != BaselineLifecycleStatus.Retired)
+                    continue;
+
+                try
+                {
+                    foreach (var incident in incidents)
+                    {
+                        await client.MitigateAsync(incident.IncidentId, new MitigateIncidentRequest
+                        {
+                            Version = incident.Version,
+                            Reason = $"S360 retired the baseline for {path} after its project path was absent from two verified GitLab inventories and project lookups. Historical checks are retained. This does not mean the dependency findings were fixed."
+                        });
+                        links[path] = incident.IncidentId;
+                    }
+                }
+                catch (Exception exception)
+                {
+                    success = false;
+                    logger.LogError("Retired baseline incident mitigation failed for {Repository} with {ExceptionType}.", path, exception.GetType().Name);
+                }
+            }
+
             foreach (var repository in repositories)
             {
+                if (lifecycleStates.GetValueOrDefault(repository.Repository, BaselineLifecycleStatus.Unconfirmed) != BaselineLifecycleStatus.Active)
+                    continue;
+
                 try
                 {
                     var incidents = owned.GetValueOrDefault(repository.Repository) ?? [];

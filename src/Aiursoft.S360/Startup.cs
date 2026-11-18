@@ -67,6 +67,9 @@ public class Startup : IWebStartup
         services.AddScoped<IBaselineIncidentClient, BaselineIncidentClient>();
         services.AddScoped<BaselineMonitoringService>();
         services.AddSingleton<BaselineMonitorState>();
+        services.AddSingleton<IBaselineLifecycle, GitLabBaselineLifecycle>();
+        services.AddHttpClient(GitLabBaselineLifecycle.ClientName)
+            .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });
         services.AddSingleton<OsvRequestThrottle>();
         services.AddTransient<OsvRequestHandler>();
         services.AddHttpClient<OsvClient>(client => client.Timeout = TimeSpan.FromMinutes(2))

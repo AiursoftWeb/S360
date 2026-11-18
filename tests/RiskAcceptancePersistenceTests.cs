@@ -47,9 +47,10 @@ public class RiskAcceptancePersistenceTests
                 Assert.AreEqual(RuleKind.RiskAcceptance, saved.Kind);
                 Assert.AreEqual("reviewer", saved.Reviews.Single().ReviewerId);
                 Assert.AreEqual(rule.ExpiresAtUtc, saved.ExpiresAtUtc);
-                var policy = await VulnerabilityPolicy.LoadAsync(db, DateTime.UtcNow);
-                var result = policy.Assess(new SDK.Dependency { Ecosystem = "npm", Name = "picomatch",
-                    Version = "4.0.7", Source = saved.Source });
+                var dependency = new SDK.Dependency { Ecosystem = "npm", Name = "picomatch",
+                    Version = "4.0.7", Source = saved.Source };
+                var policy = await VulnerabilityPolicy.LoadAsync(db, DateTime.UtcNow, [dependency]);
+                var result = policy.Assess(dependency);
                 Assert.HasCount(1, result.Accepted);
                 Assert.HasCount(0, result.Blocking);
             }

@@ -123,6 +123,9 @@
   <data name="Manage trust rules" xml:space="preserve">
     <value>Manage trust rules</value>
   </data>
+  <data name="Manage vulnerability risk acceptance" xml:space="preserve">
+    <value>Manage vulnerability risk acceptance</value>
+  </data>
   <data name="Publish production baselines" xml:space="preserve">
     <value>Publish production baselines</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Restart This Application</value>
+  </data>
+  <data name="Review and revoke server-wide, time-limited acceptance of specific vulnerability risks." xml:space="preserve">
+    <value>Review and revoke server-wide, time-limited acceptance of specific vulnerability risks.</value>
   </data>
   <data name="Review dependency requests" xml:space="preserve">
     <value>Review dependency requests</value>

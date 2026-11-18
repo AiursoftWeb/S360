@@ -115,6 +115,9 @@ public class ViewModelArgsInjector(
     
         _ = localizer["Package authorization"];
         _ = localizer["Review legacy package rules"];
+    
+        _ = localizer["Risk acceptance"];
+        _ = localizer["Vulnerability risk acceptance"];
     }
 
     public void InjectSimple(

@@ -652,7 +652,7 @@ public class SupplyChainPagesTests : TestBase
             {
                 RequestedByUserId = db.Users.Single(u => u.Email == "admin@default.com").Id,
                 Ecosystem = "nuget",
-                Source = "https://nuget.aiursoft.com/v3/index.json",
+                Source = "https://nupkg.aiursoft.com/v3/index.json",
                 DirectPackages = JsonSerializer.Serialize(new[] { new DirectPackage("Example.Retry", "1.0.0") }),
                 Justification = "Retry transient registry failure",
                 Project = "docs-viewer",
@@ -941,14 +941,14 @@ public class SupplyChainPagesTests : TestBase
         Assert.AreEqual(HttpStatusCode.BadRequest, rejected.StatusCode);
         StringAssert.Contains(await rejected.Content.ReadAsStringAsync(), "not permitted for trust rules");
 
-        fields["source"] = "https://nuget.aiursoft.com/v3/index.json";
+        fields["source"] = "https://nupkg.aiursoft.com/v3/index.json";
         using var accepted = await PostForm("/SupplyChain/AddRule", fields, tokenUrl: "/SupplyChain/Index?tab=rules");
         Assert.AreEqual(HttpStatusCode.Redirect, accepted.StatusCode);
         using var verifyScope = Server!.Services.CreateScope();
         var verifyDb = verifyScope.ServiceProvider.GetRequiredService<TemplateDbContext>();
         var rules = await verifyDb.Rules.Where(r => r.Kind == RuleKind.Approval).Where(r => r.PackagePattern == packageName).ToListAsync();
         Assert.HasCount(1, rules);
-        Assert.AreEqual("https://nuget.aiursoft.com/v3/index.json", rules[0].Source);
+        Assert.AreEqual("https://nupkg.aiursoft.com/v3/index.json", rules[0].Source);
     }
 
     [TestMethod]
@@ -967,7 +967,7 @@ public class SupplyChainPagesTests : TestBase
                 RequestedAtUtc = DateTime.UtcNow.AddDays(-1),
                         ApplicationId = null,
                         Ecosystem = "nuget", PackagePattern = permittedPackage, Version = "1.*",
-                        Source = "https://nuget.aiursoft.com/v3/index.json",
+                        Source = "https://nupkg.aiursoft.com/v3/index.json",
                         Status = RuleStatus.Approved, ExpiresAtUtc = DateTime.UtcNow.AddDays(1)
                     },
                     new PackageRule
@@ -1025,7 +1025,7 @@ public class SupplyChainPagesTests : TestBase
         using var response = await PostForm("/DependencyRequests/Submit", new Dictionary<string, string>
         {
             ["ecosystem"] = "nuget",
-            ["source"] = "https://nuget.aiursoft.com/v3/index.json",
+            ["source"] = "https://nupkg.aiursoft.com/v3/index.json",
             ["directPackages"] = packageName + "@1.2.3",
             ["justification"] = "Verify direct blocklist explanation"
         }, tokenUrl: "/DependencyRequests/Index");
@@ -1062,7 +1062,7 @@ public class SupplyChainPagesTests : TestBase
         using var response = await PostForm("/DependencyRequests/Submit", new Dictionary<string, string>
         {
             ["ecosystem"] = "nuget",
-            ["source"] = "https://nuget.aiursoft.com/v3/index.json",
+            ["source"] = "https://nupkg.aiursoft.com/v3/index.json",
             ["directPackages"] = packageName + "@1.0.0\n" + packageName.ToLowerInvariant() + "@1.0.0",
             ["justification"] = "The same NuGet package must not appear twice under different casing"
         }, tokenUrl: "/DependencyRequests/Index");
@@ -1081,7 +1081,7 @@ public class SupplyChainPagesTests : TestBase
             using var response = await PostForm("/DependencyRequests/Submit", new Dictionary<string, string>
             {
                 ["ecosystem"] = "nuget",
-                ["source"] = "https://nuget.aiursoft.com/v3/index.json",
+                ["source"] = "https://nupkg.aiursoft.com/v3/index.json",
                 ["directPackages"] = name + "@1.0.0",
                 ["justification"] = "Reject package names that resemble filesystem paths"
             }, tokenUrl: "/DependencyRequests/Index");
@@ -1810,7 +1810,7 @@ public class SupplyChainPagesTests : TestBase
     public async Task FinalBatchRejectsAnEarlierPackageWhoseSourceWasRemoved()
     {
         const string removedSource = "https://api.nuget.org/v3/index.json";
-        const string remainingSource = "https://nuget.aiursoft.com/v3/index.json";
+        const string remainingSource = "https://nupkg.aiursoft.com/v3/index.json";
         const string key = "integration-batch-source-key";
         var prefix = "Example.BatchSource." + Guid.NewGuid().ToString("N");
         var first = new Dependency
@@ -3483,7 +3483,7 @@ public class SupplyChainPagesTests : TestBase
                 Ecosystem = "nuget",
                 Name = name,
                 Version = "8.0.1",
-                Source = "https://nuget.aiursoft.com/v3/index.json"
+                Source = "https://nupkg.aiursoft.com/v3/index.json"
             };
             var fixedArtifact = new PackageVersion
             {
@@ -3692,7 +3692,7 @@ public class SupplyChainPagesTests : TestBase
                 Ecosystem = "nuget",
                 Name = "Example.ProjectImpact." + suffix,
                 Version = "1.0.0",
-                Source = "https://nuget.aiursoft.com/v3/index.json"
+                Source = "https://nupkg.aiursoft.com/v3/index.json"
             };
             db.Vulnerabilities.Add(new Vulnerability
             {
@@ -3882,7 +3882,7 @@ public class SupplyChainPagesTests : TestBase
                 Ecosystem = "nuget",
                 Name = "Example.Overview",
                 Version = "1.0.0",
-                Source = "https://nuget.aiursoft.com/v3/index.json"
+                Source = "https://nupkg.aiursoft.com/v3/index.json"
             };
             var rules = new[] { "1.*", "1.0.*" }.Select(version => new PackageRule
             {
@@ -3960,7 +3960,7 @@ public class SupplyChainPagesTests : TestBase
                 Ecosystem = "nuget",
                 PackagePattern = "Example.Details",
                 Version = "1.*",
-                Source = "https://nuget.aiursoft.com/v3/index.json",
+                Source = "https://nupkg.aiursoft.com/v3/index.json",
                 Justification = "Needed for document export",
                 Status = RuleStatus.Revoked,
                 ExpiresAtUtc = DateTime.UtcNow.AddDays(-1),
@@ -4247,7 +4247,7 @@ public class SupplyChainPagesTests : TestBase
                 Ecosystem = "nuget",
                 Name = name,
                 Version = "1.0.0",
-                Source = "https://nuget.aiursoft.com/v3/index.json"
+                Source = "https://nupkg.aiursoft.com/v3/index.json"
             };
             var otherSource = new PackageVersion
             {
@@ -4309,7 +4309,7 @@ public class SupplyChainPagesTests : TestBase
                 {
                     BuildCheckId = 0,
                     PackageVersionId = affectedId, Ecosystem = "nuget", Name = name,
-                    Version = "1.0.0", Source = "https://nuget.aiursoft.com/v3/index.json"
+                    Version = "1.0.0", Source = "https://nupkg.aiursoft.com/v3/index.json"
                 }]
             });
             await db.SaveChangesAsync();
@@ -4425,7 +4425,7 @@ public class SupplyChainPagesTests : TestBase
                 Ecosystem = "nuget",
                 PackagePattern = packageName,
                 Version = "10.0.*",
-                Source = "https://nuget.aiursoft.com/v3/index.json",
+                Source = "https://nupkg.aiursoft.com/v3/index.json",
                 Status = RuleStatus.Revoked
             });
             await db.SaveChangesAsync();

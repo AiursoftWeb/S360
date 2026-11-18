@@ -35,7 +35,7 @@ public class BaselineMonitoringTests : TestBase
         await base.CleanServer();
     }
 
-    private const string PackageSource = "https://nuget.aiursoft.com/v3/index.json";
+    private const string PackageSource = "https://nupkg.aiursoft.com/v3/index.json";
 
     private static BuildCheck Report(string project, bool clean, string purpose = "baseline", int batches = 1,
         string pipelineSource = "push", string ecosystem = "nuget") => new()

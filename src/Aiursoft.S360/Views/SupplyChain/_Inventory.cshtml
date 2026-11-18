@@ -30,15 +30,19 @@
         @if (selectedProject != null)
         {
             <div class="s360-state-list mb-3">
-                @if (Model.Scope == "baseline" && selectedProject.Versions.Any(v => v.State?.HasKnownVulnerability == true))
+                @if (Model.Scope == "baseline" && selectedProject.Versions.Any(v => v.State?.BlockingAdvisories.Count > 0))
                 { <span class="s360-state s360-state-danger" data-state="production-affected"><i data-lucide="triangle-alert" aria-hidden="true"></i>@Localizer["Production baseline reports an affected version"]</span> }
-                @if (selectedProject.Versions.Any(v => v.State?.Authorized == false))
+                @if (selectedProject.Versions.Any(v => v.State?.AcceptedVulnerabilities.Count > 0))
+            { <p class="text-warning-emphasis">@Localizer["Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details."]</p> }
+            @if (selectedProject.Versions.Any(v => v.State?.Authorized == false))
                 { <span class="s360-state s360-state-warning" data-state="unauthorized"><i data-lucide="file-x" aria-hidden="true"></i>@Localizer["Reported use is outside current authorization"]</span> }
                 @if (selectedProject.Incomplete || selectedProject.Reports.Count == 0 || selectedProject.Versions.Any(v => v.State?.NeedsVerification == true))
                 { <span class="s360-state s360-state-warning" data-state="uncertain"><i data-lucide="circle-help" aria-hidden="true"></i>@Localizer["Evidence needs verification"]</span> }
             </div>
-            @if (Model.Scope == "baseline" && selectedProject.Versions.Any(v => v.State?.HasKnownVulnerability == true))
+            @if (Model.Scope == "baseline" && selectedProject.Versions.Any(v => v.State?.BlockingAdvisories.Count > 0))
             { <p>@Localizer["Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines."]</p> }
+            @if (selectedProject.Versions.Any(v => v.State?.AcceptedVulnerabilities.Count > 0))
+            { <p class="text-warning-emphasis">@Localizer["Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details."]</p> }
             @if (selectedProject.Versions.Any(v => v.State?.Authorized == false))
             { <p>@Localizer["Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability."]</p> }
             <p class="small text-muted">@Localizer["Results apply to these report dates and the stored audit data. Changes after a report are not verified."]</p>

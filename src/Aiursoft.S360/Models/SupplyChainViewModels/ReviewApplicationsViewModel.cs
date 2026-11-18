@@ -18,4 +18,4 @@ public class ReviewApplicationsViewModel : UiStackLayoutViewModel
 }
 
 public record ReviewPackageLine(PackageVersion Artifact, bool IsDirect, bool AlreadyAuthorized,
-    bool SourcePermitted, bool AuditCurrent, bool HasKnownVulnerability, bool CheckReady);
+    bool SourcePermitted, bool AuditCurrent, bool HasBlockingVulnerability, bool CheckReady);

@@ -27,35 +27,15 @@ public class PackageStatusService(TemplateDbContext db, TrustService trust, ICon
             r.Status == RuleStatus.Approved).ToListAsync();
         var exclusions = await db.Rules.AsNoTracking().Where(r => r.Kind == RuleKind.VulnerabilityExclusion)
             .Include(r => r.Vulnerability).ToListAsync();
-        var nugetNames = requested.Where(d => d.Ecosystem == "nuget").Select(d => d.Name.ToLowerInvariant()).Distinct().ToList();
-        var npmNames = requested.Where(d => d.Ecosystem == "npm").Select(d => d.Name).Distinct().ToList();
-        var advisories = await db.Vulnerabilities.AsNoTracking().Where(v => !v.Withdrawn &&
-                (v.Ecosystem == "nuget" && nugetNames.Contains(v.PackageName.ToLower()) ||
-                 v.Ecosystem == "npm" && npmNames.Contains(v.PackageName) ||
-                 v.Matches.Any(m => m.Active && (m.PackageVersion.Ecosystem == "nuget" && nugetNames.Contains(m.PackageVersion.Name.ToLower()) ||
-                     m.PackageVersion.Ecosystem == "npm" && npmNames.Contains(m.PackageVersion.Name)))))
-            .Include(v => v.Matches.Where(m => m.Active)).ThenInclude(m => m.PackageVersion)
-            .AsSplitQuery().ToListAsync();
         var audit = await db.VulnerabilitySyncStates.AsNoTracking().FirstOrDefaultAsync();
         var now = DateTime.UtcNow;
         var auditUncertain = audit?.LastSuccessAtUtc == null || audit.LastSuccessAtUtc <= now.AddHours(-12) ||
             audit.LastSuccessAtUtc > now || VulnerabilityAuditFreshness.HasFailedLatestAttempt(
                 audit.LastAttemptAtUtc, audit.LastSuccessAtUtc, audit.LastError);
+        var vulnerabilities = await VulnerabilityPolicy.LoadAsync(db, now);
         return requested.Select((dependency, index) =>
         {
-            var comparison = dependency.Ecosystem == "nuget" ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
-            var matchingAdvisories = advisories.Select(v => new
-            {
-                Advisory = v,
-                Recorded = v.Matches.Any(m => m.PackageVersion.Version == dependency.Version &&
-                    m.PackageVersion.Ecosystem == dependency.Ecosystem && m.PackageVersion.Name.Equals(dependency.Name, comparison))
-            }).Where(v => v.Recorded || v.Advisory.Ecosystem == dependency.Ecosystem &&
-                v.Advisory.PackageName.Equals(dependency.Name, comparison)).Select(v => new
-            {
-                v.Advisory, v.Recorded,
-                Risk = v.Recorded ? RangeRisk.Affected : OsvRangeMatcher.Intersects(v.Advisory.RawAffectedJson,
-                    dependency.Ecosystem, dependency.Name, dependency.Version)
-            }).ToList();
+            var assessment = vulnerabilities.Assess(dependency);
             return new PackageVersionState
             {
                 Dependency = dependency,
@@ -63,9 +43,10 @@ public class PackageStatusService(TemplateDbContext db, TrustService trust, ICon
                 Admission = decisions[index],
                 SourcePermitted = AllowedPackageSources.Contains(configuration, dependency.Ecosystem, dependency.Source),
                 AuditDataUncertain = auditUncertain,
-                VulnerabilityRangeUnknown = matchingAdvisories.Any(v => !v.Recorded && v.Risk == RangeRisk.Unknown),
-                Advisories = matchingAdvisories.Where(v => v.Recorded || v.Risk == RangeRisk.Affected)
-                    .Select(v => v.Advisory).ToList(),
+                VulnerabilityRangeUnknown = assessment.RangeUnknown,
+                Advisories = assessment.Findings,
+                BlockingAdvisories = assessment.Blocking.Where(assessment.Findings.Contains).ToList(),
+                AcceptedVulnerabilities = assessment.Accepted,
                 Rules = rules.Where(r => r.Ecosystem == dependency.Ecosystem &&
                     r.Source == TrustPattern.NormalizeSource(dependency.Source) && r.MatchesPackage(dependency.Name)).ToList(),
                 EvaluatedAtUtc = now,

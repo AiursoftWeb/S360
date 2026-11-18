@@ -1,0 +1,119 @@
+@using System.Globalization
+@using Aiursoft.S360.Authorization
+@using Aiursoft.S360.Entities
+@using Aiursoft.WebTools
+@using Microsoft.AspNetCore.Authorization
+@model Aiursoft.S360.Models.SupplyChainViewModels.RiskAcceptanceViewModel
+@inject IAuthorizationService Authorization
+@{
+    var canRequest = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanSubmitDependencyRequests)).Succeeded;
+    var canReview = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageVulnerabilityExceptions)).Succeeded;
+    var now = DateTime.UtcNow;
+}
+<div class="row">
+    <div class="col-xl-9">
+        <h1>@Localizer["Vulnerability risk acceptance"]</h1>
+        <p class="text-muted">@Localizer["Review a specific vulnerability once and apply the decision across this S360 server."]</p>
+        <div class="alert alert-warning" role="alert">
+            @Localizer["An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability."]
+        </div>
+        @if (Model.Advisory != null)
+        {
+            <div class="card mb-4"><div class="card-body">
+                <h2 class="h4">@Localizer["Request risk acceptance"]</h2>
+                <p><strong>@Model.Advisory.PackageName</strong> · @Model.Advisory.Ecosystem · <a href="@Model.Advisory.Url" rel="noopener noreferrer" target="_blank">@Model.Advisory.SourceId</a></p>
+                <p>@Model.Advisory.Summary</p>
+                @if (canRequest && !Model.Advisory.Withdrawn)
+                {
+                    <form asp-action="Submit" method="post">
+                        <input type="hidden" name="vulnerabilityId" value="@Model.Advisory.Id" />
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6"><label for="risk-version" class="form-label">@Localizer["Version scope"]</label>
+                                <input id="risk-version" name="version" class="form-control" maxlength="128" required placeholder="@Localizer["For example: 4.0.7 or 4.*"]" />
+                            </div>
+                            <div class="col-md-6"><label for="risk-source" class="form-label">@Localizer["Package source"]</label>
+                                <select id="risk-source" name="source" class="form-select" required>
+                                    @foreach (var source in Model.Sources) { <option value="@source">@source</option> }
+                                </select>
+                            </div>
+                            <div class="col-md-6"><label for="risk-expiry" class="form-label">@Localizer["Expires at (UTC)"]</label>
+                                <input id="risk-expiry" name="expiresAtUtc" type="datetime-local" class="form-control" required value="@now.AddDays(30).ToString("yyyy-MM-ddTHH:mm", CultureInfo.InvariantCulture)" />
+                            </div>
+                            <div class="col-12"><label for="risk-reason" class="form-label">@Localizer["Assessment, evidence and justification"]</label>
+                                <textarea id="risk-reason" name="reason" class="form-control" rows="4" maxlength="2000" required></textarea>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary">@Localizer["Submit for review"]</button>
+                    </form>
+                }
+                else { <p>@Localizer["A dependency-request permission and an active advisory are required to submit an exception."]</p> }
+            </div></div>
+        }
+        <nav class="nav nav-tabs mb-3" aria-label="@Localizer["Risk acceptance status"]">
+            <a class="nav-link @(Model.Filter == "active" ? "active" : "")" asp-route-filter="active">@Localizer["Active"]</a>
+            <a class="nav-link @(Model.Filter == "pending" ? "active" : "")" asp-route-filter="pending">@Localizer["Pending review"]</a>
+            <a class="nav-link @(Model.Filter == "all" ? "active" : "")" asp-route-filter="all">@Localizer["All decisions"]</a>
+        </nav>
+        @if (Model.Rules.Count == 0) { <div class="alert alert-info">@Localizer["No risk acceptance rules match this view. Open a vulnerability finding to request an exception."]</div> }
+        @foreach (var rule in Model.Rules)
+        {
+            <article class="card mb-3" data-risk-rule="@rule.Id"><div class="card-body">
+                <div class="d-flex justify-content-between flex-wrap gap-2">
+                    <h2 class="h5">#@rule.Id · @rule.PackagePattern <code>@rule.Version</code></h2>
+                    <span class="badge @(rule.Status == RuleStatus.Approved && rule.ExpiresAtUtc > now ? "bg-warning text-dark" : "bg-secondary")">
+                        @if (rule.ExpiresAtUtc <= now) { @Localizer["Expired"] }
+                        else if (rule.Status == RuleStatus.Pending) { @Localizer["Pending review"] }
+                        else if (rule.Status == RuleStatus.Approved) { @Localizer["Risk accepted"] }
+                        else if (rule.Status == RuleStatus.Rejected) { @Localizer["Rejected"] }
+                        else { @Localizer["Revoked"] }
+                    </span>
+                </div>
+                <p>@rule.Ecosystem · @rule.Source</p>
+                <p><a asp-controller="VulnerabilityAudit" asp-action="Index" asp-route-ecosystem="@rule.Ecosystem" asp-route-package="@rule.PackagePattern" asp-route-scope="all">@rule.Vulnerability?.SourceId</a></p>
+                <p class="text-break">@rule.Justification</p>
+                <p class="small">@Localizer["Requested by"]: @Model.UserNames.GetValueOrDefault(rule.RequestedByUserId, rule.RequestedByUserId) ·
+                    @Localizer["Requested at"]: <span data-utc-time="@rule.RequestedAtUtc.ToHtmlDateTime()"></span> ·
+                    @Localizer["Expires at"]: <span data-utc-time="@rule.ExpiresAtUtc?.ToHtmlDateTime()"></span></p>
+                @if (canReview && (rule.Status == RuleStatus.Pending || rule.Status == RuleStatus.Approved))
+                {
+                    <form method="post" class="row g-2 mt-2">
+                        <input type="hidden" name="id" value="@rule.Id" />
+                        <div class="col-12"><label class="form-label" for="decision-@rule.Id">@Localizer["Review reason"]</label>
+                            <textarea id="decision-@rule.Id" name="reason" class="form-control" maxlength="2000" required></textarea></div>
+                        <div class="col-12 d-flex gap-2">
+                            @if (rule.Status == RuleStatus.Pending)
+                            {
+                                <button asp-action="Approve" class="btn btn-warning" disabled="@(rule.ExpiresAtUtc <= now)">@Localizer["Accept risk server-wide"]</button>
+                                <button asp-action="Reject" class="btn btn-outline-danger">@Localizer["Reject"]</button>
+                            }
+                            else { <button asp-action="Revoke" class="btn btn-outline-danger">@Localizer["Revoke acceptance"]</button> }
+                        </div>
+                    </form>
+                }
+                <details class="mt-3"><summary>@Localizer["Decision history"]</summary>
+                    @foreach (var review in rule.Reviews.OrderByDescending(r => r.ReviewedAtUtc))
+                    {
+                        <div class="border-top py-2"><span data-utc-time="@review.ReviewedAtUtc.ToHtmlDateTime()"></span> ·
+                            @Model.UserNames.GetValueOrDefault(review.ReviewerId, review.ReviewerId) ·
+                            @if (review.Decision == RuleStatus.Approved) { @Localizer["Risk accepted"] }
+                            else if (review.Decision == RuleStatus.Rejected) { @Localizer["Rejected"] }
+                            else { @Localizer["Revoked"] }
+                            <p class="text-break mb-0">@review.Reason</p>
+                        </div>
+                    }
+                </details>
+            </div></article>
+        }
+        <nav aria-label="@Localizer["Pagination"]" class="d-flex gap-3">
+            @if (Model.Page > 1) { <a asp-route-filter="@Model.Filter" asp-route-page="@(Model.Page - 1)">@Localizer["Previous"]</a> }
+            @if (Model.Page * 50 < Model.Total) { <a asp-route-filter="@Model.Filter" asp-route-page="@(Model.Page + 1)">@Localizer["Next"]</a> }
+        </nav>
+    </div>
+    <aside class="col-xl-3"><div class="card"><div class="card-body">
+        <h2 class="h5">@Localizer["How risk acceptance works"]</h2>
+        <p>@Localizer["Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request."]</p>
+        <p>@Localizer["The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission."]</p>
+        <p>@Localizer["Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data."]</p>
+        <p>@Localizer["Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current."]</p>
+    </div></div></aside>
+</div>

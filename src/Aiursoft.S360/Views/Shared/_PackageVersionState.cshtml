@@ -1,8 +1,18 @@
+@using Aiursoft.WebTools
 @model Aiursoft.S360.Models.SupplyChainViewModels.PackageVersionState
 <div class="s360-version-facts" data-version-state="@Model.Dependency.Version">
     @if (Model.HasKnownVulnerability)
     {
         <span class="s360-state s360-state-protected" data-state="vulnerable"><i data-lucide="bug" aria-hidden="true"></i>@Localizer["Known vulnerable version"]</span>
+    }
+    @foreach (var accepted in Model.AcceptedVulnerabilities.DistinctBy(a => a.Rule.Id))
+    {
+        <div class="s360-state s360-state-warning" data-state="risk-accepted">
+            <i data-lucide="shield-alert" aria-hidden="true"></i>
+            <a asp-controller="RiskAcceptance" asp-action="Index" asp-route-filter="all">@Localizer["Risk accepted"] #@accepted.Rule.Id</a>
+            <span>@accepted.Advisory.SourceId · @accepted.Rule.Justification</span>
+            <span>@Localizer["Expires at"]: <span data-utc-time="@accepted.Rule.ExpiresAtUtc?.ToHtmlDateTime()"></span></span>
+        </div>
     }
     @if (!Model.Authorized)
     {

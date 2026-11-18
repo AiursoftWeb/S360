@@ -1,5 +1,6 @@
 using Aiursoft.S360.Entities;
 using Aiursoft.S360.SDK;
+using Aiursoft.S360.Services.Vulnerability;
 
 namespace Aiursoft.S360.Models.SupplyChainViewModels;
 
@@ -13,6 +14,8 @@ public class PackageVersionState
     public bool AuditDataUncertain { get; init; }
     public bool VulnerabilityRangeUnknown { get; init; }
     public List<Vulnerability> Advisories { get; init; } = [];
+    public List<Vulnerability> BlockingAdvisories { get; init; } = [];
+    public List<AcceptedVulnerability> AcceptedVulnerabilities { get; init; } = [];
     public List<PackageRule> Rules { get; init; } = [];
     public DateTime EvaluatedAtUtc { get; init; }
     public DateTime? VulnerabilityDataAtUtc { get; init; }
@@ -28,6 +31,8 @@ public class PackageRelationshipViewModel
     public required string Ecosystem { get; init; }
     public required string Source { get; init; }
     public List<InventoryVersion> Versions { get; init; } = [];
+    public List<Vulnerability> BlockingAdvisories { get; init; } = [];
+    public List<AcceptedVulnerability> AcceptedVulnerabilities { get; init; } = [];
     public List<PackageRule> Rules { get; init; } = [];
     public bool ProductionReports { get; init; } = true;
     public bool IncompleteReports { get; init; }

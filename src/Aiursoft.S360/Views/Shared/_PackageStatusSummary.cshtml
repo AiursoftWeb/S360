@@ -2,7 +2,7 @@
 @model Aiursoft.S360.Models.SupplyChainViewModels.PackageRelationshipViewModel
 @{
     var reported = Model.Versions.Where(v => v.Uses.Count > 0).ToList();
-    var affected = reported.Where(v => v.State?.HasKnownVulnerability == true).ToList();
+    var affected = reported.Where(v => v.State?.BlockingAdvisories.Count > 0).ToList();
     var unauthorized = reported.Any(v => v.State?.Authorized == false);
 }
 <section class="s360-package-status" aria-label="@Localizer["Current status and next action"]">
@@ -16,6 +16,8 @@
     </div>
     @if (affected.Count > 0)
     { <p class="mt-2">@Localizer["Denying another download will not repair an existing deployment. Upgrade the affected projects and submit new baselines."]</p> }
+    else if (reported.Any(v => v.State?.AcceptedVulnerabilities.Count > 0))
+    { <p class="mt-2">@Localizer["Known vulnerabilities remain in this baseline under approved risk acceptance. Inspect the decisions and their expiry dates below."]</p> }
     else if (Model.CompleteReportCount > 0)
     { <p class="mt-2">@Localizer["No affected production use reported in the available complete baselines for this source. Unreported projects and later changes are not covered."]</p> }
     else

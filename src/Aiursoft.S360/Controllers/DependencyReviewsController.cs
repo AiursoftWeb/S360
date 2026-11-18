@@ -113,10 +113,10 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
                 pair => sourcePermitted[pair.First.Id] && pair.Second.Trusted);
             var audit = await db.VulnerabilitySyncStates.AsNoTracking()
                 .Select(s => new { s.LastSuccessfulAttemptAtUtc, s.LastSuccessAtUtc }).FirstOrDefaultAsync();
-            var artifactIds = artifacts.Select(a => a.Id).ToList();
-            var affectedIds = (await db.VulnerabilityMatches.AsNoTracking()
-                .Where(m => artifactIds.Contains(m.PackageVersionId) && m.Active && !m.Vulnerability.Withdrawn)
-                .Select(m => m.PackageVersionId).ToListAsync()).ToHashSet();
+            var vulnerabilityPolicy = await VulnerabilityPolicy.LoadAsync(db, now);
+            var blockingIds = artifacts.Where(a => vulnerabilityPolicy.Assess(new Dependency
+                { Ecosystem = a.Ecosystem, Name = a.Name, Version = a.Version, Source = a.Source }).Blocking.Count > 0)
+                .Select(a => a.Id).ToHashSet();
             foreach (var group in reportPackages.GroupBy(p => p.ApplicationId))
             {
                 var entries = group.ToList();
@@ -127,7 +127,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
                         sourcePermitted.GetValueOrDefault(p.PackageVersionId),
                         VulnerabilityAuditFreshness.IsCurrent(p.PackageVersion.LastCheckedAtUtc,
                             audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now),
-                        affectedIds.Contains(p.PackageVersionId), cleared.GetValueOrDefault(p.PackageVersionId)))
+                        blockingIds.Contains(p.PackageVersionId), cleared.GetValueOrDefault(p.PackageVersionId)))
                     .ToList();
             }
         }
@@ -173,9 +173,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
         var rules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).Where(r => r.Ecosystem == application.Ecosystem).ToListAsync();
         var exclusions = await db.Rules.Where(r => r.Kind == RuleKind.VulnerabilityExclusion).AsNoTracking()
             .Include(e => e.Vulnerability).ToListAsync();
-        var affectedIds = (await db.VulnerabilityMatches.AsNoTracking()
-            .Where(m => m.Active && !m.Vulnerability.Withdrawn)
-            .Select(m => m.PackageVersionId).ToListAsync()).ToHashSet();
+        var vulnerabilities = await VulnerabilityPolicy.LoadAsync(db, now);
 
         foreach (var entry in application.Packages)
         {
@@ -206,7 +204,7 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
             if (!VulnerabilityAuditFreshness.IsCurrent(artifact.LastCheckedAtUtc,
                     audit?.LastSuccessfulAttemptAtUtc, audit?.LastSuccessAtUtc, now))
                 return BadRequest($"Vulnerability audit is missing or stale: {artifact.Name}@{artifact.Version}.");
-            if (affectedIds.Contains(artifact.Id))
+            if (vulnerabilities.Assess(dependency).Blocking.Count > 0)
                 return BadRequest($"Known active vulnerability: {artifact.Name}@{artifact.Version}.");
             if (rules.Any(r => r.ApplicationId != application.Id &&
                 r.Status is RuleStatus.Rejected or RuleStatus.Revoked &&

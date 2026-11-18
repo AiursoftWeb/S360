@@ -64,7 +64,7 @@ public class BaselineMonitoringTests : TestBase
         };
 
     private async Task<BaselineMonitoringService> Monitor(IServiceScope scope, FakeClient client, BaselineMonitorState state,
-        bool enabled = true, bool autoMitigate = true)
+        bool enabled = true, bool autoMitigate = true, IBaselineLifecycle? lifecycle = null)
     {
         var settings = scope.ServiceProvider.GetRequiredService<GlobalSettingsService>();
         await settings.UpdateSettingAsync(SettingsMap.AlertCenterEnabled, enabled.ToString());
@@ -73,7 +73,47 @@ public class BaselineMonitoringTests : TestBase
         await settings.UpdateSettingAsync(SettingsMap.AlertCenterEndpoint, "http://localhost:1");
         return new BaselineMonitoringService(_db,
             new CatalogInventoryService(_db, new PackageStatusService(new TrustService(_db), scope.ServiceProvider.GetRequiredService<IConfiguration>())), new AlertCenterSettingsProvider(settings),
-            client, state, NullLogger<BaselineMonitoringService>.Instance);
+            client, state, NullLogger<BaselineMonitoringService>.Instance,
+            lifecycle ?? scope.ServiceProvider.GetRequiredService<IBaselineLifecycle>());
+    }
+
+    [TestMethod]
+    public async Task RetiredBaselineMitigatesOwnedIncidentWithoutRemovingHistoryOrReopening()
+    {
+        using var scope = Server!.Services.CreateScope();
+        _db.BuildChecks.Add(Report(_repository, false));
+        await _db.SaveChangesAsync();
+        var client = new FakeClient();
+        var owned = client.Add(_repository);
+        var unrelated = client.Add(_repository, "GitLab.Pipeline");
+        var lifecycle = new TestLifecycle { Status = BaselineLifecycleStatus.Unconfirmed };
+        var monitor = await Monitor(scope, client, new BaselineMonitorState(), lifecycle: lifecycle);
+
+        await monitor.SynchronizeAsync();
+        Assert.IsEmpty(client.Mitigated);
+        Assert.IsEmpty(client.Created);
+
+        lifecycle.Status = BaselineLifecycleStatus.Retired;
+        await monitor.SynchronizeAsync();
+        await monitor.SynchronizeAsync();
+        CollectionAssert.AreEqual(new[] { owned.IncidentId }, client.Mitigated);
+        StringAssert.Contains(client.RecoveryReasons.Single(), "Historical checks are retained");
+        Assert.AreEqual("new", unrelated.Status);
+        Assert.IsEmpty(client.Created);
+        Assert.AreEqual(1, await _db.BuildChecks.CountAsync());
+
+        lifecycle.Status = BaselineLifecycleStatus.Active;
+        await monitor.SynchronizeAsync();
+        Assert.HasCount(1, client.Created);
+    }
+
+    private sealed class TestLifecycle : IBaselineLifecycle
+    {
+        public BaselineLifecycleStatus Status { get; set; }
+
+        public Task<IReadOnlyDictionary<string, BaselineLifecycleStatus>> ReadAsync(IEnumerable<string> repositories) =>
+            Task.FromResult<IReadOnlyDictionary<string, BaselineLifecycleStatus>>(
+                repositories.Distinct(StringComparer.Ordinal).ToDictionary(path => path, _ => Status, StringComparer.Ordinal));
     }
 
     private static void FreshAudit(TemplateDbContext db, bool stale = false, bool failed = false)

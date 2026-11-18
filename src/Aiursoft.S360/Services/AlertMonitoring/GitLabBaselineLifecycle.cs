@@ -34,7 +34,8 @@ public sealed class GitLabBaselineLifecycle(IHttpClientFactory clients, IConfigu
             return paths.ToDictionary(path => path, _ => BaselineLifecycleStatus.Active, StringComparer.Ordinal);
 
         if (clock.GetUtcNow() < _nextRefresh)
-            return _observations;
+            return _observations.Count > 0 ? _observations :
+                throw new InvalidOperationException("The GitLab project inventory is unavailable until the next refresh.");
 
         try
         {

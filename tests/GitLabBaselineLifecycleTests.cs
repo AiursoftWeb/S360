@@ -60,7 +60,7 @@ public class GitLabBaselineLifecycleTests
         {
             // No lifecycle states survive a failed scan.
         }
-        Assert.IsEmpty(await lifecycle.ReadAsync([Missing]));
+        await Assert.ThrowsExactlyAsync<InvalidOperationException>(() => lifecycle.ReadAsync([Missing]));
 
         clock.Advance(TimeSpan.FromMinutes(5));
         handler.Failure = null;

@@ -31,18 +31,29 @@ public sealed class AlertMonitoringController(GlobalSettingsService settings, Al
             endpoint.Scheme is "http" or "https" && string.IsNullOrEmpty(endpoint.UserInfo) &&
             string.IsNullOrEmpty(endpoint.Query) && string.IsNullOrEmpty(endpoint.Fragment))
             alertCenterUrl = endpoint.AbsoluteUri.TrimEnd('/');
+        var preview = await monitoring.PreviewAsync();
         return this.StackView(new MonitoringViewModel
         {
             Enabled = configuration.Enabled, ApiKeyConfigured = !string.IsNullOrWhiteSpace(configuration.ApiKey),
             AutoMitigate = configuration.AutoMitigate, RecoveryReadOnly = settings.IsOverriddenByConfig(SettingsMap.AlertCenterAutoMitigate),
-            LastRun = state.LastRun, Repositories = await monitoring.PreviewAsync(), AlertCenterUrl = alertCenterUrl
+            LastRun = state.LastRun, Repositories = preview.Repositories,
+            StoppedRepositories = preview.StoppedRepositories.Order(StringComparer.Ordinal).ToList(), AlertCenterUrl = alertCenterUrl
         });
     }
 
     [HttpPost, ValidateAntiForgeryToken]
     public IActionResult Synchronize()
     {
-        if (!queue.HasPendingOrProcessingTasks(nameof(BaselineIncidentSyncJob))) jobs.TriggerNow<BaselineIncidentSyncJob>();
+        QueueSynchronization();
+        return RedirectToAction(nameof(Index));
+    }
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> StopReview(string? repository)
+    {
+        if (!ModelState.IsValid || string.IsNullOrWhiteSpace(repository) || !await monitoring.StopReviewAsync(repository))
+            return BadRequest();
+        QueueSynchronization();
         return RedirectToAction(nameof(Index));
     }
 
@@ -53,5 +64,10 @@ public sealed class AlertMonitoringController(GlobalSettingsService settings, Al
         try { await settings.UpdateSettingAsync(SettingsMap.AlertCenterAutoMitigate, autoMitigate.ToString()); }
         catch (InvalidOperationException) { return Conflict(localizer["This setting is overridden by configuration."].Value); }
         return RedirectToAction(nameof(Index));
+    }
+
+    private void QueueSynchronization()
+    {
+        if (!queue.HasPendingOrProcessingTasks(nameof(BaselineIncidentSyncJob))) jobs.TriggerNow<BaselineIncidentSyncJob>();
     }
 }

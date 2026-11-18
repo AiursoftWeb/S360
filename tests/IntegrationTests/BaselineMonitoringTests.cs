@@ -74,7 +74,57 @@ public class BaselineMonitoringTests : TestBase
         return new BaselineMonitoringService(_db,
             new CatalogInventoryService(_db, new PackageStatusService(new TrustService(_db), scope.ServiceProvider.GetRequiredService<IConfiguration>())), new AlertCenterSettingsProvider(settings),
             client, state, NullLogger<BaselineMonitoringService>.Instance,
-            lifecycle ?? scope.ServiceProvider.GetRequiredService<IBaselineLifecycle>());
+            lifecycle ?? scope.ServiceProvider.GetRequiredService<IBaselineLifecycle>(),
+            new BaselineReviewControls(_db, NullLogger<BaselineReviewControls>.Instance));
+    }
+
+    [TestMethod]
+    public async Task StoppedReviewSkipsFindingsAndResumesOnlyOnACompleteNewBaseline()
+    {
+        using var scope = Server!.Services.CreateScope();
+        var project = _repository + "//Example.sln";
+        var older = Report(project, false, batches: 2);
+        _db.BuildChecks.AddRange(Report(project, false), older);
+        await _db.SaveChangesAsync();
+
+        var client = new FakeClient();
+        var owned = client.Add(_repository);
+        var pipeline = client.Add(_repository, "GitLab.Pipeline");
+        var monitoring = await Monitor(scope, client, new BaselineMonitorState());
+        Assert.IsTrue(await monitoring.StopReviewAsync(_repository));
+        Assert.IsFalse(await monitoring.StopReviewAsync(_repository + "-missing"));
+        await monitoring.SynchronizeAsync();
+        CollectionAssert.AreEqual(new[] { owned.IncidentId }, client.Mitigated);
+        StringAssert.Contains(client.RecoveryReasons.Single(), "review was stopped");
+        Assert.AreEqual("new", pipeline.Status);
+        Assert.IsEmpty(client.Created);
+        Assert.AreEqual(2, await _db.BuildChecks.CountAsync());
+
+        static BuildCheck LastBatch(BuildCheck first) => new()
+        {
+            Project = first.Project, ContextJson = first.ContextJson, RunId = first.RunId,
+            Commit = first.Commit, Pipeline = first.Pipeline, ScannedProjectCount = first.ScannedProjectCount,
+            BatchIndex = 1, BatchCount = 2, Trusted = false
+        };
+
+        var fresh = Report(project, false, batches: 2);
+        _db.BuildChecks.AddRange(LastBatch(older), Report(project, false, purpose: "review"),
+            Report(project, false, pipelineSource: "merge_request_event"), fresh);
+        await _db.SaveChangesAsync();
+        var stopped = await monitoring.PreviewAsync();
+        Assert.IsTrue(stopped.StoppedRepositories.Contains(_repository));
+        Assert.IsEmpty(stopped.Repositories);
+        await monitoring.SynchronizeAsync();
+        Assert.IsEmpty(client.Created);
+
+        _db.BuildChecks.Add(LastBatch(fresh));
+        await _db.SaveChangesAsync();
+        var resumed = await monitoring.PreviewAsync();
+        Assert.IsFalse(resumed.StoppedRepositories.Contains(_repository));
+        Assert.AreEqual(_repository, resumed.Repositories.Single().Repository);
+        await monitoring.SynchronizeAsync();
+        Assert.HasCount(1, client.Created);
+        Assert.AreEqual(7, await _db.BuildChecks.CountAsync());
     }
 
     [TestMethod]
@@ -152,7 +202,7 @@ public class BaselineMonitoringTests : TestBase
         db.Rules.Add(acceptance);
         advisory.RawAffectedJson = "not-json";
         await db.SaveChangesAsync();
-        var repository = (await monitoring.PreviewAsync()).Single();
+        var repository = (await monitoring.PreviewAsync()).Repositories.Single();
         Assert.AreEqual(Models.SupplyChainViewModels.InventoryStatus.Pending, repository.Status);
         await monitoring.SynchronizeAsync();
         Assert.HasCount(0, client.Mitigated);

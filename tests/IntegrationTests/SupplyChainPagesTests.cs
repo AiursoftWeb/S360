@@ -50,6 +50,52 @@ public class SupplyChainPagesTests : TestBase
     }
 
     [TestMethod]
+    public async Task DefaultBranchBaselineResumesRepositoryFromTheMonitoringPageImmediately()
+    {
+        const string key = "isolated-resume-baseline-key";
+        var repository = "aiursoft/resume-" + Guid.NewGuid().ToString("N");
+        var request = new CheckRequest
+        {
+            Project = repository, RunId = Guid.NewGuid().ToString("N"), ScannedProjectCount = 1,
+            Context = new CheckContext
+            {
+                Purpose = "baseline", Provider = "gitlab", Ref = "master", DefaultBranch = "master", PipelineSource = "push"
+            }
+        };
+        await AddCheckKeyAsync(key, baseline: true);
+        await LoginAsAdmin();
+        Http.DefaultRequestHeaders.Add("X-S360-Key", key);
+        try
+        {
+            using var earlier = await Http.PostAsJsonAsync("/api/check", request);
+            earlier.EnsureSuccessStatusCode();
+            using var stop = await PostForm("/AlertMonitoring/StopReview", new Dictionary<string, string>
+                { ["repository"] = repository }, "/AlertMonitoring");
+            Assert.AreEqual(HttpStatusCode.Redirect, stop.StatusCode);
+            StringAssert.Contains(await Http.GetStringAsync("/AlertMonitoring"), "Baseline review stopped");
+
+            request.RunId = Guid.NewGuid().ToString("N");
+            request.Dependencies = [new Dependency
+            {
+                Ecosystem = "nuget", Name = "Unapproved.Resume.Fixture", Version = "1.0.0",
+                Source = "https://unapproved-resume.invalid/v3/index.json"
+            }];
+            using var submitted = await Http.PostAsJsonAsync("/api/check", request);
+            submitted.EnsureSuccessStatusCode();
+            var decision = await submitted.Content.ReadFromJsonAsync<CheckResponse>();
+            Assert.IsNotNull(decision);
+            Assert.IsFalse(decision.Trusted);
+            var page = await Http.GetStringAsync("/AlertMonitoring");
+            StringAssert.Contains(page, "Stop baseline review");
+            Assert.DoesNotContain("Baseline review stopped", page);
+            using var scope = Server!.Services.CreateScope();
+            Assert.AreEqual(2, await scope.ServiceProvider.GetRequiredService<TemplateDbContext>()
+                .BuildChecks.CountAsync(check => check.Project == repository));
+        }
+        finally { Http.DefaultRequestHeaders.Remove("X-S360-Key"); }
+    }
+
+    [TestMethod]
     public async Task PersonalKeysRotateWithoutDowntimeAndRespectOwnershipAndRevocation()
     {
         await LoginAsAdmin();

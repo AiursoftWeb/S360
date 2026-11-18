@@ -67,7 +67,6 @@ public class Startup : IWebStartup
         services.AddScoped<IBaselineIncidentClient, BaselineIncidentClient>();
         services.AddScoped<BaselineMonitoringService>();
         services.AddSingleton<BaselineMonitorState>();
-        services.AddSingleton(TimeProvider.System);
         services.AddSingleton<IBaselineLifecycle, GitLabBaselineLifecycle>();
         services.AddHttpClient(GitLabBaselineLifecycle.ClientName)
             .ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler { AllowAutoRedirect = false });

@@ -15,11 +15,12 @@ public interface IBaselineLifecycle
     Task<IReadOnlyDictionary<string, BaselineLifecycleStatus>> ReadAsync(IEnumerable<string> repositories);
 }
 
-public sealed class GitLabBaselineLifecycle(IHttpClientFactory clients, IConfiguration configuration, TimeProvider clock)
+public sealed class GitLabBaselineLifecycle(IHttpClientFactory clients, IConfiguration configuration, TimeProvider? clock = null)
     : IBaselineLifecycle
 {
     public const string ClientName = "GitLabBaselineLifecycle";
     private static readonly TimeSpan RefreshPeriod = TimeSpan.FromMinutes(5);
+    private readonly TimeProvider _clock = clock ?? TimeProvider.System;
     private Dictionary<string, BaselineLifecycleStatus> _observations = new(StringComparer.Ordinal);
     private DateTimeOffset _nextRefresh;
 
@@ -32,7 +33,7 @@ public sealed class GitLabBaselineLifecycle(IHttpClientFactory clients, IConfigu
         if (paths.Length == 0 || (string.IsNullOrWhiteSpace(endpoint) && string.IsNullOrWhiteSpace(token)))
             return paths.ToDictionary(path => path, _ => BaselineLifecycleStatus.Active, StringComparer.Ordinal);
 
-        if (clock.GetUtcNow() < _nextRefresh)
+        if (_clock.GetUtcNow() < _nextRefresh)
             return _observations.Count > 0 ? _observations :
                 throw new InvalidOperationException("The GitLab project inventory is unavailable until the next refresh.");
 
@@ -81,7 +82,7 @@ public sealed class GitLabBaselineLifecycle(IHttpClientFactory clients, IConfigu
         }
         finally
         {
-            _nextRefresh = clock.GetUtcNow() + RefreshPeriod;
+            _nextRefresh = _clock.GetUtcNow() + RefreshPeriod;
         }
 
         return _observations;

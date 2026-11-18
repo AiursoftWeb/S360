@@ -1,5 +1,4 @@
 using System.Net;
-using System.Net.Http.Json;
 using Aiursoft.S360.Services.AlertMonitoring;
 
 namespace Aiursoft.S360.Tests;

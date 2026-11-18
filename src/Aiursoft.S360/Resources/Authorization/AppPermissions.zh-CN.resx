@@ -123,6 +123,9 @@
   <data name="Manage trust rules" xml:space="preserve">
     <value>管理信任规则</value>
   </data>
+  <data name="Manage vulnerability risk acceptance" xml:space="preserve">
+    <value>管理漏洞风险接受</value>
+  </data>
   <data name="Publish production baselines" xml:space="preserve">
     <value>发布生产基线</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>重启此应用</value>
+  </data>
+  <data name="Review and revoke server-wide, time-limited acceptance of specific vulnerability risks." xml:space="preserve">
+    <value>审查并撤销全服务器范围内、有时限的特定漏洞风险接受。</value>
   </data>
   <data name="Review dependency requests" xml:space="preserve">
     <value>审核依赖请求</value>

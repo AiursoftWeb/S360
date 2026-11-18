@@ -151,7 +151,7 @@ public class StatusClarityTests : TestBase
         await using var db = new InMemoryContext(new DbContextOptionsBuilder<InMemoryContext>()
             .UseInMemoryDatabase("status-explanation-" + Guid.NewGuid()).Options);
         var name = "explanation-" + Guid.NewGuid().ToString("N");
-        const string source = "https://nuget.aiursoft.com/v3/index.json";
+        const string source = "https://nupkg.aiursoft.com/v3/index.json";
         db.Rules.Add(new PackageRule { Ecosystem = "nuget", PackagePattern = name, Source = source, Version = "*",
             Status = RuleStatus.Approved, RequestedAtUtc = DateTime.UtcNow.AddDays(-1) });
         var audit = await db.VulnerabilitySyncStates.FirstOrDefaultAsync();

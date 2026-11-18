@@ -13,7 +13,7 @@ namespace Aiursoft.S360.Tests.IntegrationTests;
 public class InventoryTests : TestBase
 {
     private readonly string _prefix = "inventory-" + Guid.NewGuid().ToString("N") + "/";
-    private const string Source = "https://nuget.aiursoft.com/v3/index.json";
+    private const string Source = "https://nupkg.aiursoft.com/v3/index.json";
 
     private BuildCheck Report(string project, string? purpose, string? ecosystem,
         DateTime time, params PackageVersion[] artifacts) => new()

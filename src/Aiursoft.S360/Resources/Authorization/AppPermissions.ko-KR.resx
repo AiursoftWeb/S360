@@ -123,6 +123,9 @@
   <data name="Manage trust rules" xml:space="preserve">
     <value>신뢰 규칙 관리</value>
   </data>
+  <data name="Manage vulnerability risk acceptance" xml:space="preserve">
+    <value>취약점 위험 수용 관리</value>
+  </data>
   <data name="Publish production baselines" xml:space="preserve">
     <value>프로덕션 기준선 게시</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>이 앱 재시작</value>
+  </data>
+  <data name="Review and revoke server-wide, time-limited acceptance of specific vulnerability risks." xml:space="preserve">
+    <value>서버 전체에 적용되는 특정 취약점 위험에 대한 기간이 정해진 허용을 검토하고 철회합니다.</value>
   </data>
   <data name="Review dependency requests" xml:space="preserve">
     <value>의존성 요청 검토</value>

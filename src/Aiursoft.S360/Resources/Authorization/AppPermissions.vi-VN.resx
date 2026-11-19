@@ -123,6 +123,9 @@
   <data name="Manage trust rules" xml:space="preserve">
     <value>Quản lý các quy tắc tin cậy</value>
   </data>
+  <data name="Manage vulnerability risk acceptance" xml:space="preserve">
+    <value>Quản lý việc chấp nhận rủi ro lỗ hổng</value>
+  </data>
   <data name="Publish production baselines" xml:space="preserve">
     <value>Công bố các phiên bản cơ sở cho môi trường sản xuất</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Khởi Động Lại Ứng Dụng Này</value>
+  </data>
+  <data name="Review and revoke server-wide, time-limited acceptance of specific vulnerability risks." xml:space="preserve">
+    <value>Xem xét và thu hồi việc chấp nhận có thời hạn, áp dụng trên toàn máy chủ, đối với các rủi ro lỗ hổng bảo mật cụ thể.</value>
   </data>
   <data name="Review dependency requests" xml:space="preserve">
     <value>Duyệt yêu cầu phụ thuộc</value>

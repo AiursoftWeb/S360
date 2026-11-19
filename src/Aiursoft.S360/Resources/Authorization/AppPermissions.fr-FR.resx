@@ -123,6 +123,9 @@
   <data name="Manage trust rules" xml:space="preserve">
     <value>Gérer les règles de confiance</value>
   </data>
+  <data name="Manage vulnerability risk acceptance" xml:space="preserve">
+    <value>Gérer l&apos;acceptation du risque de vulnérabilité</value>
+  </data>
   <data name="Publish production baselines" xml:space="preserve">
     <value>Publier les lignes de base de production</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Redémarrer cette application</value>
+  </data>
+  <data name="Review and revoke server-wide, time-limited acceptance of specific vulnerability risks." xml:space="preserve">
+    <value>Examiner et révoquer l&apos;acceptation à l&apos;échelle du serveur, limitée dans le temps, de risques de vulnérabilités spécifiques.</value>
   </data>
   <data name="Review dependency requests" xml:space="preserve">
     <value>Examiner les demandes de dépendances</value>

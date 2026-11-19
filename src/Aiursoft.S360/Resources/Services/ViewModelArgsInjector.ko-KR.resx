@@ -201,6 +201,9 @@
   <data name="Review legacy package rules" xml:space="preserve">
     <value>기존 패키지 규칙 검토</value>
   </data>
+  <data name="Risk acceptance" xml:space="preserve">
+    <value>리스크 수용</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>역할 상세 정보</value>
   </data>
@@ -248,6 +251,9 @@
   </data>
   <data name="Vulnerability audit" xml:space="preserve">
     <value>취약점 감사</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>취약점 리스크 수용</value>
   </data>
 
 </root>

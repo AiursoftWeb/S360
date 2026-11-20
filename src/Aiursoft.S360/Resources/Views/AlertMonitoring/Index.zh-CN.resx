@@ -18,10 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-  <data name="Actions" xml:space="preserve">
+      <data name="Actions" xml:space="preserve">
     <value>操作</value>
   </data>
-      <data name="AlertCenter monitoring" xml:space="preserve">
+  <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter 监控</value>
   </data>
   <data name="Application API key" xml:space="preserve">

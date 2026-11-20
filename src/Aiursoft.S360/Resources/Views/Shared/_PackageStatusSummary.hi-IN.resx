@@ -33,6 +33,9 @@
   <data name="Inspect advisories and fix boundaries" xml:space="preserve">
     <value>सलाहों की समीक्षा करें और समाधान की सीमाएँ तय करें</value>
   </data>
+  <data name="Known vulnerabilities remain in this baseline under approved risk acceptance. Inspect the decisions and their expiry dates below." xml:space="preserve">
+    <value>इस बेसलाइन में अनुमोदित जोखिम स्वीकृति के तहत ज्ञात कमज़ोरियाँ बनी हुई हैं। नीचे दिए गए निर्णयों और उनके समाप्ति तिथियों का निरीक्षण करें।</value>
+  </data>
   <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
     <value>अधिक हाल की अधूरी रिपोर्टें मौजूद हैं। उपयोग की पुष्टि आवश्यक है; अंतिम पूर्ण बेसलाइन रिपोर्टें बरकरार रखी गई हैं।</value>
   </data>

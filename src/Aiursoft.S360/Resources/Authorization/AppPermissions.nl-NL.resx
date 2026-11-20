@@ -123,6 +123,9 @@
   <data name="Manage trust rules" xml:space="preserve">
     <value>Vertrouwensregels beheren</value>
   </data>
+  <data name="Manage vulnerability risk acceptance" xml:space="preserve">
+    <value>Risicoacceptatie voor kwetsbaarheden beheren</value>
+  </data>
   <data name="Publish production baselines" xml:space="preserve">
     <value>Publicatie productielijsten</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Herstart deze app</value>
+  </data>
+  <data name="Review and revoke server-wide, time-limited acceptance of specific vulnerability risks." xml:space="preserve">
+    <value>Beoordeel en intrek de serverbrede, tijdelijke acceptatie van specifieke kwetsbaarheidsrisico&apos;s.</value>
   </data>
   <data name="Review dependency requests" xml:space="preserve">
     <value>Beoordeel aanvragen voor afhankelijkheden</value>

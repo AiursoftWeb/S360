@@ -96,6 +96,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Bekende kwetsbaarheden</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>Bekende kwetsbaarheidsrisico&apos;s zijn via beleid geaccepteerd. Inspecteer de regels en hun vervaldatums in de pakketdetails.</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>Meest recente volledige baselines. Dit zijn gerapporteerde afhankelijkheden, geen bewijs van implementatie.</value>
   </data>

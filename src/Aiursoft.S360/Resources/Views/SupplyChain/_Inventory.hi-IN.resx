@@ -93,6 +93,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>जाने-माने खाली</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>नियति के अनुसार ज्ञात कमज़ोरी जोखिम स्वीकार किए गए हैं। पैकेज विवरणों में नियमों और उनकी समाप्ति तिथियों का निरीक्षण करें।</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>नवीनतम पूर्ण बेसलाइन। ये रिपोर्ट किए गए निर्भरताएं हैं, डिप्लॉयमेंट का प्रमाण नहीं।</value>
   </data>

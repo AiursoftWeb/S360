@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="AlertCenter monitoring" xml:space="preserve">
+      <data name="Actions" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter 監控</value>
   </data>
   <data name="Application API key" xml:space="preserve">
@@ -26,6 +29,9 @@
   </data>
   <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
     <value>當完整基線確認合規時，自動緩解事故</value>
+  </data>
+  <data name="Baseline review stopped" xml:space="preserve">
+    <value>基線審查已停止</value>
   </data>
   <data name="Configured" xml:space="preserve">
     <value>已設定</value>
@@ -93,6 +99,9 @@
   <data name="Repository" xml:space="preserve">
     <value>儲存庫</value>
   </data>
+  <data name="Resumes on the next complete default-branch baseline." xml:space="preserve">
+    <value>將於下一個完整預設分支基準中恢復。</value>
+  </data>
   <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
     <value>S360 會在最新一份完整的生產環境相依性基線中，報告已確認的 CVE 或違反政策的情況。即使不重新建置專案，新的 CVE 也可能觸發事故。</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Severity" xml:space="preserve">
     <value>嚴重程度</value>
+  </data>
+  <data name="Stop baseline review" xml:space="preserve">
+    <value>停止基準線審閱</value>
   </data>
   <data name="Succeeded" xml:space="preserve">
     <value>成功</value>

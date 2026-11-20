@@ -198,6 +198,9 @@
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Oude pakketregels beoordelen</value>
   </data>
+  <data name="Risk acceptance" xml:space="preserve">
+    <value>Risicoacceptatie</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Rolgegevens</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="Vulnerability audit" xml:space="preserve">
     <value>Kwetsbaarheidsaudit</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Risicoacceptatie van kwetsbaarheden</value>
   </data>
 
 </root>

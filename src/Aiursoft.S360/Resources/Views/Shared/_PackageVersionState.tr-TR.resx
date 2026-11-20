@@ -33,6 +33,9 @@
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Kanıtın doğrulanması gerekiyor</value>
   </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Son kullanma tarihi</value>
+  </data>
   <data name="Known vulnerable version" xml:space="preserve">
     <value>Bilinen güvenlik açığı bulunan sürüm</value>
   </data>
@@ -41,6 +44,9 @@
   </data>
   <data name="Outside current authorization" xml:space="preserve">
     <value>Geçerli yetkilendirmenin dışında</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risk kabul edildi</value>
   </data>
 
 </root>

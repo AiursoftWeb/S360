@@ -33,6 +33,9 @@
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Τα αποδεικτικά στοιχεία χρειάζονται επαλήθευση</value>
   </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Λήγει στις</value>
+  </data>
   <data name="Known vulnerable version" xml:space="preserve">
     <value>Γνωστή ευάλωτη έκδοση</value>
   </data>
@@ -41,6 +44,9 @@
   </data>
   <data name="Outside current authorization" xml:space="preserve">
     <value>Εκτός της τρέχουσας εξουσιοδότησης</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Κίνδυνος αποδεκτός</value>
   </data>
 
 </root>

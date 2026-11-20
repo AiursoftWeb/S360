@@ -96,6 +96,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>已知漏洞</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>已知漏洞风险已根据策略被接受。请在包详情中检查相关规则及其到期日期。</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>最新完整基线。这些是报告的依赖项，而非部署证明。</value>
   </data>

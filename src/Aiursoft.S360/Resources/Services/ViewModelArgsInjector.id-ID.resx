@@ -198,6 +198,9 @@
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Tinjau aturan paket lama</value>
   </data>
+  <data name="Risk acceptance" xml:space="preserve">
+    <value>Penerimaan risiko</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Detail Peran</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="Vulnerability audit" xml:space="preserve">
     <value>Audit kerentanan</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Penerimaan risiko kerentanan</value>
   </data>
 
 </root>

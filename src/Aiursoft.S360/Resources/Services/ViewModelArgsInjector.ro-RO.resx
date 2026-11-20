@@ -198,6 +198,9 @@
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Revizuirea regulilor vechi pentru pachete</value>
   </data>
+  <data name="Risk acceptance" xml:space="preserve">
+    <value>Acceptarea riscului</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Detalii Rol</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="Vulnerability audit" xml:space="preserve">
     <value>Audit de vulnerabilități</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Acceptarea riscului de vulnerabilitate</value>
   </data>
 
 </root>

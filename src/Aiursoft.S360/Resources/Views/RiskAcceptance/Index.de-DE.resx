@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>Zur Übermittlung einer Ausnahme sind eine Berechtigung für Abhängigkeitsanfragen und ein aktives Advisory erforderlich.</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>Risiko serverweit akzeptieren</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>Alle Entscheidungen</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>Eine genehmigte Ausnahme gilt für jedes aktuelle und zukünftige Projekt, das den ausgewählten Paket-, Quell- und Versionsumfang verwendet. Sie behebt die Schwachstelle nicht.</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>Bewertung, Nachweise und Begründung</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>Entscheidungsverlauf</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>Dokumentieren Sie, warum diese Schwachstelle nicht zutrifft oder warum das verbleibende Risiko akzeptabel ist. Ein Prüfer mit der Berechtigung zur Risikozustimmung muss die Anfrage genehmigen.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Abgelaufen</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Läuft ab am</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Läuft ab am (UTC)</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>Ablauf oder Widerruf stellt die Blockierung bei der nächsten Überprüfung wieder her. Baseline-Vorfälle können automatisch gemindert werden, nur wenn keine blockierenden Befunde mehr vorliegen und die Nachweise aktuell sind.</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>Zum Beispiel: 4.0.7 oder 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>So funktioniert die Risikozustimmung</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Weiter</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>Keine Risikozustimmungsregeln entsprechen dieser Ansicht. Öffnen Sie einen Sicherheitsbefund, um eine Ausnahme zu beantragen.</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Paketquelle</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>Seitennavigation</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Ausstehende Prüfung</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Ablehnen</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Abgelehnt</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>Risikoakzeptanz anfordern</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Angefordert am</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>Angefordert von</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>Prüfen Sie eine bestimmte Schwachstelle einmal und wenden Sie die Entscheidung auf diesem S360-Server an.</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>Begründung der Prüfung</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>Zustimmung zurückziehen</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Rückgängig gemacht</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>Status der Risikozustimmung</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risiko akzeptiert</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>Zur Prüfung einreichen</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>Die Entscheidung gilt serverweit. Zusammenhängende CVE- und GHSA-Einträge werden gemeinsam bewertet. Andere Schwachstellen und explizite Paketblockaden verweigern weiterhin den Zugang.</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>Versionsbereich</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>Schwachstellenberichte bleiben sichtbar. Eine Ausnahme gewährt keine Paketfreigabe und umgeht veraltete Schwachstellendaten nicht.</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Risikozustimmung bei Sicherheitslücken</value>
+  </data>
+
+</root>

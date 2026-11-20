@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>Pentru a trimite o excepție, este necesară o permisiune de solicitare de dependență și un consiliu activ.</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>Acceptă riscul pe tot serverul</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Activă</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>Toate deciziile</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>O excepție aprobată se aplică tuturor proiectelor actuale și viitoare care utilizează pachetul, sursa și intervalul de versiuni selectate. Aceasta nu repară vulnerabilitatea.</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>Evaluare, dovezi și justificare</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>Istoricul deciziilor</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>Documentați de ce această vulnerabilitate nu este aplicabilă sau de ce riscul rezidual este acceptabil. Un evaluator cu permisiunea de acceptare a riscului trebuie să aprobe cererea.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Expirat</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Expiră la</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Expiră la (UTC)</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>Expirarea sau revocarea restabilește blocarea la următoarea verificare. Incidentele de bază pot fi atenuate automat doar atunci când nu mai există constatări de blocare și dovezile sunt actualizate.</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>De exemplu: 4.0.7 sau 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>Cum funcționează acceptarea riscului</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Următorul</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>Nicio regulă de acceptare a riscurilor nu corespunde acestei vederi. Deschideți un rezultat de vulnerabilitate pentru a solicita o excepție.</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Sursa pachetului</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>Paginare</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>În așteptarea revizuirii</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Anterior</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Respinge</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Respins</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>Solicitare acceptare a riscului</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Solicitat la</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>Solicitat de</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>Evaluati o vulnerabilitate specifica o singura data si aplicati decizia pe intregul acest server S360.</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>Motivul revizuirii</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>Revocare acceptare</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Revocat</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>Starea acceptării riscului</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risc acceptat</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>Trimite pentru analiză</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>Decizia se aplică la nivel de server. Înregistrările CVE și GHSA corelate sunt evaluate împreună. Alte vulnerabilități și blocările explicite de pachete continuă să refuze admiterea.</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>Intervalul de versiuni</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>Înregistrările de vulnerabilități rămân vizibile. O excepție nu acordă aprobarea pachetului sau nu ocolește datele învechite despre vulnerabilități.</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Acceptarea riscului de vulnerabilitate</value>
+  </data>
+
+</root>

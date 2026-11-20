@@ -33,6 +33,9 @@
   <data name="Inspect advisories and fix boundaries" xml:space="preserve">
     <value>Consultă avizele și remediază problemele legate de limite.</value>
   </data>
+  <data name="Known vulnerabilities remain in this baseline under approved risk acceptance. Inspect the decisions and their expiry dates below." xml:space="preserve">
+    <value>Vulnerabilitățile cunoscute rămân în această linie de bază în baza acceptării aprobate a riscurilor. Inspectați deciziile și termenele lor de expirare de mai jos.</value>
+  </data>
   <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
     <value>Există rapoarte incomplete mai recente. Utilizarea trebuie verificată; se păstrează cele mai recente rapoarte de referință complete.</value>
   </data>

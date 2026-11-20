@@ -93,6 +93,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Bilinen açıklar</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>Bilinen zafiyet riskleri politika tarafından kabul edilmiştir. Kuralları ve son kullanma tarihlerini paket ayrıntılarında inceleyin.</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>En güncel eksiksiz temel raporlar. Bunlar bildirilen bağımlılıklardır; dağıtımın kanıtı değildir.</value>
   </data>

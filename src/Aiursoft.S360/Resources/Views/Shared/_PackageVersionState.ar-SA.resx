@@ -33,6 +33,9 @@
   <data name="Evidence needs verification" xml:space="preserve">
     <value>الأدلة بحاجة إلى تحقق</value>
   </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>تنتهي صلاحيته في</value>
+  </data>
   <data name="Known vulnerable version" xml:space="preserve">
     <value>إصدار معروف أنه يحتوي على ثغرة أمنية</value>
   </data>
@@ -41,6 +44,9 @@
   </data>
   <data name="Outside current authorization" xml:space="preserve">
     <value>خارج نطاق الترخيص الحالي</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>تم قبول المخاطر</value>
   </data>
 
 </root>

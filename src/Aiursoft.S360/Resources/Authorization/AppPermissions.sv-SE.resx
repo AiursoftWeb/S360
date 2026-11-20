@@ -123,6 +123,9 @@
   <data name="Manage trust rules" xml:space="preserve">
     <value>Hantera förtroenderegler</value>
   </data>
+  <data name="Manage vulnerability risk acceptance" xml:space="preserve">
+    <value>Hantera acceptans av sårbarhetsrisk</value>
+  </data>
   <data name="Publish production baselines" xml:space="preserve">
     <value>Publicera produktionsbaserlinjer</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Starta om den här appen</value>
+  </data>
+  <data name="Review and revoke server-wide, time-limited acceptance of specific vulnerability risks." xml:space="preserve">
+    <value>Granska och återkalla serveromfattande, tidsbegränsade accepteringar av specifika sårbarhetsrisker.</value>
   </data>
   <data name="Review dependency requests" xml:space="preserve">
     <value>Granska beroendeförfrågningar</value>

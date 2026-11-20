@@ -33,6 +33,9 @@
   <data name="Inspect advisories and fix boundaries" xml:space="preserve">
     <value>Güvenlik uyarılarını inceleyin ve sınırları belirleyin</value>
   </data>
+  <data name="Known vulnerabilities remain in this baseline under approved risk acceptance. Inspect the decisions and their expiry dates below." xml:space="preserve">
+    <value>Bu baz çizgisinde onaylanmış risk kabulü kapsamında bilinen açıklıklar devam etmektedir. Aşağıdaki kararları ve son geçerlilik tarihlerini inceleyin.</value>
+  </data>
   <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
     <value>Daha yeni ancak eksik raporlar mevcut. Kullanımın doğrulanması gerekiyor; son eksiksiz temel raporlar korunuyor.</value>
   </data>

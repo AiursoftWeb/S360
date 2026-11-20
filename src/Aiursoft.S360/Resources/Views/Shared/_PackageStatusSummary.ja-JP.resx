@@ -33,6 +33,9 @@
   <data name="Inspect advisories and fix boundaries" xml:space="preserve">
     <value>アドバイザリーを確認し、境界を修正</value>
   </data>
+  <data name="Known vulnerabilities remain in this baseline under approved risk acceptance. Inspect the decisions and their expiry dates below." xml:space="preserve">
+    <value>承認済みリスク受容の下で、このベースラインには既知の脆弱性が残存しています。以下の決定とその有効期限をご確認ください。</value>
+  </data>
   <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
     <value>新しい不完全なレポートが存在します。使用状況の確認が必要です。最後に完全なベースラインが保持されています。</value>
   </data>

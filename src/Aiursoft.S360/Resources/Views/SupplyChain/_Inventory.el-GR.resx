@@ -93,6 +93,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Γνωστά ευρήματα</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>Οι γνωστοί κίνδυνοι ευπαθειών έχουν αποδεχθεί βάσει πολιτικής. Εξετάστε τους κανόνες και τις ημερομηνίες λήξης τους στις λεπτομέρειες του πακέτου.</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>Οι πιο πρόσφατες πλήρεις βασικές καταγραφές. Πρόκειται για αναφερόμενες εξαρτήσεις, όχι για απόδειξη ότι έχουν αναπτυχθεί.</value>
   </data>

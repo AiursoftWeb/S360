@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>İstisna göndermek için bağımlılık isteme izni ve etkin bir uyarı gereklidir.</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>Rişi sunucu genelinde kabul et</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>Tüm kararlar</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>Onaylanan bir istisna, seçilen paket, kaynak ve sürüm kapsamını kullanan tüm mevcut ve gelecekteki projelere uygulanır. Bu, kırılganlığı gidermez.</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>Değerlendirme, kanıt ve gerekçe</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>Karar geçmişi</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>Bu açıklığın neden geçerli olmadığını veya kalan riskin neden kabul edilebilir olduğunu belgeleyin. Risk kabulü yetkisine sahip bir gözden geçirmenin onayı gereklidir.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Süresi Doldu</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Son kullanma tarihi</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Bitiş zamanı (UTC)</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>Süre dolması veya iptal edilmesi, bir sonraki denetimde engellemeyi geri getirir. Baz hatası olayları, yalnızca engelleyici bulguların kalmadığı ve kanıtların güncel olduğu durumlarda otomatik olarak azaltılabilir.</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>Örnek: 4.0.7 veya 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>Risk kabulü nasıl çalışır</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Sonraki</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>Bu görünümle eşleşen risk kabul kuralları yok. Bir istisna talep etmek için bir güvenlik açığı bulgusu oluşturun.</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Paket kaynağı</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>Sayfalama</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>İnceleme bekleniyor</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Önceki</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Reddet</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Reddedildi</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>Risk kabulü talep et</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Talep tarihi</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>İsteyen</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>Belirli bir açığı bir kez inceleyin ve kararı bu S360 sunucusu genelinde uygulayın.</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>İnceleme nedeni</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>Kabulü Geri Al</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>İptal Edildi</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>Risk kabul durumu</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risk kabul edildi</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>İnceleme için gönder</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>Karar sunucu genelinde geçerlidir. İlişkili CVE ve GHSA kayıtları birlikte değerlendirilir. Diğer açıklar ve açık paket engelleri kabulü reddetmeye devam eder.</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>Sürüm kapsamı</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>Kırılganlık kayıtları görünür kalmaya devam eder. Bir istisna, paket onayı vermez veya güncelliğini yitirmiş kırılganlık verilerini atlamaz.</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Zafiyet risk kabulü</value>
+  </data>
+
+</root>

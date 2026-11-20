@@ -3489,6 +3489,15 @@ public class SupplyChainPagesTests : TestBase
         {
             Ecosystem = "nuget", Name = "Example.Batch.Child." + suffix, Version = "2.0.0", Source = source
         };
+        using (var assessment = await Http.PostAsJsonAsync("/api/artifacts/assess",
+                   new ArtifactAssessmentRequest { Dependencies = [child] }))
+        {
+            assessment.EnsureSuccessStatusCode();
+            Assert.IsTrue((await assessment.Content.ReadFromJsonAsync<ArtifactAssessmentResponse>())!.Decisions.Single().Trusted);
+        }
+        var approved = await Http.GetFromJsonAsync<ApprovedArtifactPage>(
+            $"/api/artifacts/approved?ecosystem=nuget&source={Uri.EscapeDataString(source)}&name={child.Name}");
+        Assert.AreEqual(child.Version, approved!.Artifacts.Single().Version);
         using (var download = await Http.PostAsJsonAsync("/api/artifacts/mirror/verify", child))
         {
             Assert.AreEqual(HttpStatusCode.OK, download.StatusCode, await download.Content.ReadAsStringAsync());

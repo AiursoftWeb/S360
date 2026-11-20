@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="AlertCenter monitoring" xml:space="preserve">
+      <data name="Actions" xml:space="preserve">
+    <value>Azioni</value>
+  </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
     <value>Monitoraggio di AlertCenter</value>
   </data>
   <data name="Application API key" xml:space="preserve">
@@ -26,6 +29,9 @@
   </data>
   <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
     <value>Mitiga automaticamente gli incidenti quando la baseline completa è confermata conforme</value>
+  </data>
+  <data name="Baseline review stopped" xml:space="preserve">
+    <value>Revisione di baseline interrotta</value>
   </data>
   <data name="Configured" xml:space="preserve">
     <value>Configurato</value>
@@ -93,6 +99,9 @@
   <data name="Repository" xml:space="preserve">
     <value>Repository</value>
   </data>
+  <data name="Resumes on the next complete default-branch baseline." xml:space="preserve">
+    <value>Riprende alla prossima baseline completa del ramo predefinito.</value>
+  </data>
   <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
     <value>S360 segnala CVE confermate o violazioni delle policy nell’ultima baseline completa delle dipendenze in produzione. Una nuova CVE può generare un incidente senza ricompilare il progetto.</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Severity" xml:space="preserve">
     <value>Gravità</value>
+  </data>
+  <data name="Stop baseline review" xml:space="preserve">
+    <value>Interrompi revisione baseline</value>
   </data>
   <data name="Succeeded" xml:space="preserve">
     <value>Completata</value>

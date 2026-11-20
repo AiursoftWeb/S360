@@ -33,6 +33,9 @@
   <data name="Inspect advisories and fix boundaries" xml:space="preserve">
     <value>فحص النشرات وإصلاح الحدود</value>
   </data>
+  <data name="Known vulnerabilities remain in this baseline under approved risk acceptance. Inspect the decisions and their expiry dates below." xml:space="preserve">
+    <value>تبقى ثغرات معروفة في هذا الأساس وفق قبول مخاطر معتمد. افحص القرارات وتواريخ انتهاء صحتها أدناه.</value>
+  </data>
   <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
     <value>توجد تقارير أحدث غير مكتملة. يلزم التحقق من الاستخدام؛ يتم الاحتفاظ بآخر الخطوط الأساسية المكتملة.</value>
   </data>

@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="AlertCenter monitoring" xml:space="preserve">
+      <data name="Actions" xml:space="preserve">
+    <value>การดำเนินการ</value>
+  </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
     <value>การตรวจสอบ AlertCenter</value>
   </data>
   <data name="Application API key" xml:space="preserve">
@@ -26,6 +29,9 @@
   </data>
   <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
     <value>ลดความรุนแรงของเหตุการณ์โดยอัตโนมัติเมื่อฐานบรรทัดฐานทั้งหมดได้รับการยืนยันว่าปฏิบัติตามข้อกำหนดแล้ว</value>
+  </data>
+  <data name="Baseline review stopped" xml:space="preserve">
+    <value>การตรวจสอบฐานข้อมูลถูกหยุด</value>
   </data>
   <data name="Configured" xml:space="preserve">
     <value>กำหนดค่าแล้ว</value>
@@ -93,6 +99,9 @@
   <data name="Repository" xml:space="preserve">
     <value>ที่เก็บโค้ด</value>
   </data>
+  <data name="Resumes on the next complete default-branch baseline." xml:space="preserve">
+    <value>จะดำเนินการต่อเมื่อการตรวจสอบฐานข้อมูลสาขาเริ่มต้นเสร็จสมบูรณ์ครั้งถัดไป</value>
+  </data>
   <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
     <value>S360 รายงานช่องโหว่ CVE ที่ยืนยันแล้วหรือการละเมิดนโยบายในฐานข้อมูลพื้นฐานของการพึ่งพาสำหรับระบบจริงที่สมบูรณ์ล่าสุด CVE ใหม่อาจทำให้เกิดเหตุการณ์ได้โดยไม่ต้องสร้างโครงการใหม่</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Severity" xml:space="preserve">
     <value>ระดับความรุนแรง</value>
+  </data>
+  <data name="Stop baseline review" xml:space="preserve">
+    <value>หยุดการทบทวนฐาน</value>
   </data>
   <data name="Succeeded" xml:space="preserve">
     <value>สำเร็จ</value>

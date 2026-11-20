@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>Cần có quyền yêu cầu phụ thuộc và một khuyến nghị đang hoạt động để gửi một ngoại lệ.</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>Chấp nhận rủi ro trên toàn máy chủ</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Đang hoạt động</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>Tất cả các quyết định</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>Một ngoại lệ được phê duyệt sẽ áp dụng cho mọi dự án hiện tại và tương lai sử dụng phạm vi gói, nguồn và phiên bản đã chọn. Nó không khắc phục lỗ hổng.</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>Đánh giá, bằng chứng và lý do</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>Lịch sử quyết định</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>Tài liệu hóa lý do lỗ hổng này không áp dụng hoặc lý do rủi ro còn lại là chấp nhận được. Người xem xét có quyền chấp nhận rủi ro phải phê duyệt yêu cầu.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Đã hết hạn</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Hết hạn vào</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Hết hạn lúc (UTC)</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>Việc hết hạn hoặc thu hồi sẽ khôi phục chặn tại lần kiểm tra tiếp theo. Các sự cố cơ sở chỉ có thể được giảm thiểu tự động khi không còn kết quả chặn nào và bằng chứng vẫn còn hiệu lực.</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>Ví dụ: 4.0.7 hoặc 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>Cách chấp nhận rủi ro hoạt động</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Tiếp theo</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>Không có quy tắc chấp nhận rủi ro nào khớp với chế độ xem này. Mở một phát hiện lỗ hổng để yêu cầu ngoại lệ.</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Nguồn gói</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>Phân trang</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Chờ xem xét</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Trước</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Từ chối</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>Yêu cầu chấp nhận rủi ro</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Được yêu cầu lúc</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>Người yêu cầu</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>Xem xét một lỗ hổng cụ thể một lần và áp dụng quyết định đó trên toàn bộ máy chủ S360 này.</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>Lý do xem xét</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>Thu hồi chấp nhận</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Đã thu hồi</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>Trạng thái chấp nhận rủi ro</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Đã chấp nhận rủi ro</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>Gửi để xem xét</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>Quyết định này áp dụng trên toàn máy chủ. Các bản ghi CVE và GHSA có liên quan được đánh giá cùng nhau. Các lỗ hổng khác và các lệnh chặn gói rõ ràng tiếp tục từ chối việc chấp nhận.</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>Phạm vi phiên bản</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>Bản ghi lỗ hổng vẫn hiển thị. Ngoại lệ không cấp quyền phê duyệt gói hoặc bỏ qua dữ liệu lỗ hổng cũ.</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Chấp nhận rủi ro lỗ hổng</value>
+  </data>
+
+</root>

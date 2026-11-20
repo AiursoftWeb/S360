@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>Для отправки исключения требуются разрешение на запрос зависимости и активное уведомление.</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>Принять риск на всём сервере</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Активные</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>Все решения</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>Одобренное исключение распространяется на все текущие и будущие проекты, использующие выбранный пакет, источник и диапазон версий. Оно не устраняет уязвимость.</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>Оценка, доказательства и обоснование</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>История решений</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>Опишите, почему данная уязвимость неприменима или почему оставшийся риск допустим. Заявка должна быть утверждена рецензентом с правом принятия риска.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Истёк</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Действует до</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Срок действия (UTC)</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>Истечение срока действия или отмена восстанавливают блокировку при следующей проверке. Базовые инциденты могут быть автоматически смягчены только в том случае, если не осталось блокирующих результатов и данные доказательств актуальны.</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>Например: 4.0.7 или 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>Как работает принятие риска</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Далее</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>Нет правил принятия риска, соответствующих этому представлению. Откройте уязвимость, чтобы запросить исключение.</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Источник пакета</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>Постраничная навигация</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Ожидает проверки</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Предыдущая</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Отклонить</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Отклонено</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>Запрос на принятие риска</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Запрошено</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>Запрошено</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>Оцените конкретную уязвимость один раз и примените решение на этом сервере S360.</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>Причина проверки</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>Отозвать принятие</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Отозвано</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>Статус принятия риска</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Риск принят</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>Отправить на рассмотрение</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>Решение действует на уровне всего сервера. Связанные записи CVE и GHSA оцениваются совместно. Другие уязвимости и явные блокировки пакетов по-прежнему запрещают допуск.</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>Диапазон версий</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>Записи об уязвимостях остаются видимыми. Исключение не предоставляет одобрения пакета и не позволяет обойти устаревшие данные об уязвимостях.</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Принятие риска уязвимости</value>
+  </data>
+
+</root>

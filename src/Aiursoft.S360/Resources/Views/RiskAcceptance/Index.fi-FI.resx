@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>Poikkeuksen lähettämiseen tarvitaan riippuvuuspyyntöoikeus ja aktiivinen neuvo.</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>Hyväksy riski palvelimen laajuisesti</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktiiviset</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>Kaikki päätökset</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>Hyväksytty poikkeus koskee kaikkia nykyisiä ja tulevia projekteja, jotka käyttävät valittua pakettia, lähdettä ja versioaluetta. Se ei korjaa haavoittuvuutta.</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>Arvio, todisteet ja perustelut</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>Päätöshistoria</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>Kuvaa, miksi tämä haavoittuvuus ei ole sovellettavissa tai miksi jäljellä oleva riski on hyväksyttävä. Pyyntö on hyväksyttävä tarkistajan toimesta, jolla on riskin hyväksymisen oikeudet.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Vanhentunut</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Voimassa asti</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Voimassaolo-aika (UTC)</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>Voimassaolon päättymisellä tai kumottavalla palautetaan estäminen seuraavassa tarkistuksessa. Päättymistapahtumia voidaan lieventää automaattisesti vain, jos estäviä havaintoja ei jää jäljelle ja todisteet ovat ajantasaisia.</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>Esimerkiksi: 4.0.7 tai 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>Miten riskinsieto toimii</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Seuraava</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>Tässä näkymässä ei ole riskins hyväksymisen sääntöjä. Avaa haavoittuvuuden löydös pyytääksesi poikkeusta.</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Paketin lähde</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>Sivutus</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Odottaa tarkistusta</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Edellinen</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Hylkää</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Hylätty</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>Pyydä riskin hyväksymistä</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Pyydetty</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>Pyytänyt</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>Tarkista tietty haavoittuvuus kerran ja sovelta päätös koko S360-palvelimelle.</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>Katselmoinnin syy</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>Kumoa hyväksyntä</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Kumottu</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>Riskin hyväksymisen tila</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Riski hyväksytty</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>Lähetä arviointiin</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>Päätös koskee koko palvelinta. Yhdensuuntaiset CVE- ja GHSA-tallenteet arvioidaan yhdessä. Muut haavoittuvuudet ja nimenomaiset pakettilohkot jatkavat pääsyn estämistä.</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>Versiotaso</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>Haavoittuvuustallenteet pysyvät näkyvissä. Poikkeus ei myönnä paketin hyväksyntää eikä ohita vanhentuneita haavoittuvuusdataa.</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Haavoittuvuuden riskin hyväksyminen</value>
+  </data>
+
+</root>

@@ -123,6 +123,9 @@
   <data name="Manage trust rules" xml:space="preserve">
     <value>Administrer tillidsregler</value>
   </data>
+  <data name="Manage vulnerability risk acceptance" xml:space="preserve">
+    <value>Administrer accept af sårbarhedsrisiko</value>
+  </data>
   <data name="Publish production baselines" xml:space="preserve">
     <value>Udgiv produktionsbaselines</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>Genstart denne app</value>
+  </data>
+  <data name="Review and revoke server-wide, time-limited acceptance of specific vulnerability risks." xml:space="preserve">
+    <value>Gennemse og ophæv serverbred, tidsbegrænset accept af specifikke sårbarhedsrisici.</value>
   </data>
   <data name="Review dependency requests" xml:space="preserve">
     <value>Gennemgå anmodninger om afhængigheder</value>

@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="AlertCenter monitoring" xml:space="preserve">
+      <data name="Actions" xml:space="preserve">
+    <value>İşlemler</value>
+  </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter izleme</value>
   </data>
   <data name="Application API key" xml:space="preserve">
@@ -26,6 +29,9 @@
   </data>
   <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
     <value>Eksiksiz baz çizgisi uygun olarak onaylandığında olayları otomatik olarak azaltın</value>
+  </data>
+  <data name="Baseline review stopped" xml:space="preserve">
+    <value>Taban inceleme durduruldu</value>
   </data>
   <data name="Configured" xml:space="preserve">
     <value>Yapılandırıldı</value>
@@ -93,6 +99,9 @@
   <data name="Repository" xml:space="preserve">
     <value>Depo</value>
   </data>
+  <data name="Resumes on the next complete default-branch baseline." xml:space="preserve">
+    <value>Bir sonraki eksiksiz varsayılan dal baz çizgisinde yeniden başlar.</value>
+  </data>
   <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
     <value>S360, en son tamamlanmış üretim bağımlılık taban çizgisinde doğrulanmış CVE&apos;leri veya politika ihlallerini raporlar. Yeni bir CVE, projenin yeniden derlenmesi olmadan bir olayı tetikleyebilir.</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Severity" xml:space="preserve">
     <value>Önem derecesi</value>
+  </data>
+  <data name="Stop baseline review" xml:space="preserve">
+    <value>Taban çizgi incelemesini durdur</value>
   </data>
   <data name="Succeeded" xml:space="preserve">
     <value>Başarılı</value>

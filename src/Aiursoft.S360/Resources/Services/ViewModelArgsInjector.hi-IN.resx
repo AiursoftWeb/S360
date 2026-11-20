@@ -198,6 +198,9 @@
   <data name="Review legacy package rules" xml:space="preserve">
     <value>विरासत में मिले पैकेज नियमों की समीक्षा करें</value>
   </data>
+  <data name="Risk acceptance" xml:space="preserve">
+    <value>जोखिम स्वीकृति</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>भूमिका विवरण</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="Vulnerability audit" xml:space="preserve">
     <value>संवेदनशीलता ऑडिट</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>संवेदनशीलता जोखिम स्वीकृति</value>
   </data>
 
 </root>

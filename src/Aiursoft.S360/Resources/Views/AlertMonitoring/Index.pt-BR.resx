@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="AlertCenter monitoring" xml:space="preserve">
+      <data name="Actions" xml:space="preserve">
+    <value>Ações</value>
+  </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
     <value>Monitoramento do Centro de Alertas</value>
   </data>
   <data name="Application API key" xml:space="preserve">
@@ -26,6 +29,9 @@
   </data>
   <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
     <value>Mitigar incidentes automaticamente quando a linha de base completa for confirmada como em conformidade</value>
+  </data>
+  <data name="Baseline review stopped" xml:space="preserve">
+    <value>Revisão de linha de base interrompida</value>
   </data>
   <data name="Configured" xml:space="preserve">
     <value>Configurado</value>
@@ -93,6 +99,9 @@
   <data name="Repository" xml:space="preserve">
     <value>Repositório</value>
   </data>
+  <data name="Resumes on the next complete default-branch baseline." xml:space="preserve">
+    <value>Retoma na próxima linha de base completa da branch padrão.</value>
+  </data>
   <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
     <value>O S360 informa CVEs confirmadas ou violações de políticas na linha de base mais recente e completa das dependências de produção. Uma nova CVE pode gerar um incidente sem que seja necessário reconstruir o projeto.</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Severity" xml:space="preserve">
     <value>Gravidade</value>
+  </data>
+  <data name="Stop baseline review" xml:space="preserve">
+    <value>Parar revisão da linha de base</value>
   </data>
   <data name="Succeeded" xml:space="preserve">
     <value>Concluído</value>

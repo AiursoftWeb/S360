@@ -96,6 +96,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>既知の脆弱性</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>既知の脆弱性リスクはポリシーにより承認されています。パッケージ詳細でルールとその有効期限を確認してください。</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>最新の完全なベースライン。これらは報告された依存関係であり、デプロイの証拠ではありません。</value>
   </data>

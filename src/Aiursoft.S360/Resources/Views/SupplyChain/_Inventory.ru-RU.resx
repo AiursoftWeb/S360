@@ -96,6 +96,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Известные уязвимости</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>Известные риски уязвимостей приняты в соответствии с политикой. Ознакомьтесь с правилами и датами их истечения в деталях пакета.</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>Последние полные базовые версии. Это задекларированные зависимости, а не подтверждение их использования в работе.</value>
   </data>

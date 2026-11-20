@@ -33,6 +33,9 @@
   <data name="Evidence needs verification" xml:space="preserve">
     <value>证据需要验证</value>
   </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>过期时间</value>
+  </data>
   <data name="Known vulnerable version" xml:space="preserve">
     <value>已知存在漏洞的版本</value>
   </data>
@@ -41,6 +44,9 @@
   </data>
   <data name="Outside current authorization" xml:space="preserve">
     <value>超出当前授权范围</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>风险已接受</value>
   </data>
 
 </root>

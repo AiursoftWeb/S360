@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="AlertCenter monitoring" xml:space="preserve">
+      <data name="Actions" xml:space="preserve">
+    <value>कार्रवाइयाँ</value>
+  </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter की निगरानी</value>
   </data>
   <data name="Application API key" xml:space="preserve">
@@ -26,6 +29,9 @@
   </data>
   <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
     <value>जब पूर्ण बेसलाइन का पालन की पुष्टि हो जाती है, तो स्वतः घटनाओं को कम करें</value>
+  </data>
+  <data name="Baseline review stopped" xml:space="preserve">
+    <value>बेसलाइन समीक्षा रुकी</value>
   </data>
   <data name="Configured" xml:space="preserve">
     <value>विन्यासित</value>
@@ -93,6 +99,9 @@
   <data name="Repository" xml:space="preserve">
     <value>रिपॉज़िटरी</value>
   </data>
+  <data name="Resumes on the next complete default-branch baseline." xml:space="preserve">
+    <value>अगली पूर्ण डिफ़ॉल्ट-ब्रांच बेसलाइन पर फिर से शुरू होगा।</value>
+  </data>
   <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
     <value>S360 नवीनतम पूर्ण उत्पादन निर्भरता आधाररेखा में पुष्ट CVE या नीति उल्लंघनों की रिपोर्ट करता है। कोई नया CVE प्रोजेक्ट को दोबारा बनाए बिना भी एक घटना शुरू कर सकता है।</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Severity" xml:space="preserve">
     <value>गंभीरता</value>
+  </data>
+  <data name="Stop baseline review" xml:space="preserve">
+    <value>बेसलाइन समीक्षा रोकें</value>
   </data>
   <data name="Succeeded" xml:space="preserve">
     <value>सफल</value>

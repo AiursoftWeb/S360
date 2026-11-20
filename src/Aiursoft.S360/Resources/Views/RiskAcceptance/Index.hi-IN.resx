@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>एक निर्भरता-अनुरोध अनुमतियाँ और एक सक्रिय सलाह ज़रूरी है एक अपवाद जमा करने के लिए।</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>सर्वर-व्यापक जोखिम स्वीकारें</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>सक्रिय</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>सभी निर्णय</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>एक स्वीकृत अपवाद चुने गए पैकेज, स्रोत और संस्करण दायरे का उपयोग करने वाले सभी वर्तमान और भविष्य के प्रोजेक्ट्स पर लागू होता है। यह कमजोरी को ठीक नहीं करता है।</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>मूल्यांकन, प्रमाण और औचित्य</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>निर्णय इतिहास</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>दस्तावेज़ करें कि यह संवेदनशीलता क्यों लागू नहीं है या शेष जोखिम क्यों स्वीकार्य है। जोखिम-स्वीकृति की अनुमति वाले समीक्षक को अनुरोध को स्वीकृत करना होगा।</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>समाप्त</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>समाप्ति समय</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>समाप्ति समय (UTC)</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>समाप्ति या निरसन अगली जाँच पर ब्लॉकिंग को पुनर्स्थापित करता है। बेसलाइन घटनाएँ तभी स्वतः समायोजित की जा सकती हैं जब कोई ब्लॉकिंग खोज शेष न हो और प्रमाण मौजूदा हों।</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>उदाहरण के लिए: 4.0.7 या 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>जोखिम स्वीकृति कैसे काम करती है</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>अगला</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>इस दृश्य से कोई जोखिम स्वीकृति नियम मेल नहीं खाते। एक अपवाद का अनुरोध करने के लिए एक कमजोरी खोज खोलें।</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>पैकेज स्रोत</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>पेजिनेशन</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>समीक्षा लंबित</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>पिछला</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>अस्वीकार करें</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>अस्वीकृत</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>जोखिम स्वीकृति अनुरोध करें</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>अनुरोधित समय</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>द्वारा अनुरोधित</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>एक विशिष्ट कमजोरी की एक बार समीक्षा करें और इस S360 सर्वर पर निर्णय लागू करें।</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>समीक्षा कारण</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>स्वीकृति रद्द करें</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>रद्द</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>जोखिम स्वीकृति स्थिति</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>जोखिम स्वीकार किया गया</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>समीक्षा हेतु सबमिट करें</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>यह निर्णय सर्वर-व्यापक रूप से लागू होता है। संबंधित CVE और GHSA रिकॉर्ड एक साथ मूल्यांकित किए जाते हैं। अन्य कमजोरियों और स्पष्ट पैकेज ब्लॉक्स प्रवेश को अस्वीकार करना जारी रखते हैं।</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>संस्करण दायरा</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>संवेदनशीलता रिकॉर्ड दिखाई देते रहते हैं। एक अपवाद पैकेज अनुमोदन प्रदान नहीं करता है या पुरानी संवेदनशीलता डेटा को नज़रअंदाज़ नहीं करता है।</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>संवेदनशीलता जोखिम स्वीकृति</value>
+  </data>
+
+</root>

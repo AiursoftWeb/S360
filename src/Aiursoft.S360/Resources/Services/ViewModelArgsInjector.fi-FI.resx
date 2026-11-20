@@ -198,6 +198,9 @@
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Tarkastele vanhoja pakettisääntöjä</value>
   </data>
+  <data name="Risk acceptance" xml:space="preserve">
+    <value>Riskin hyväksyminen</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Roolin tiedot</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="Vulnerability audit" xml:space="preserve">
     <value>Haavoittuvuuksien tarkistus</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Haavoittuvuusriskin hyväksyminen</value>
   </data>
 
 </root>

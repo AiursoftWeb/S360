@@ -93,6 +93,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Vulnerabilități cunoscute</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>Riscurile cunoscute de vulnerabilitate au fost acceptate prin politică. Inspecționați regulile și datele lor de expirare în detaliile pachetului.</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>Cele mai recente linii de bază complete. Acestea sunt dependențe raportate, nu dovezi de implementare.</value>
   </data>

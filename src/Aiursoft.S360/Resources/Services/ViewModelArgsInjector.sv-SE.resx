@@ -198,6 +198,9 @@
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Granska äldre paketregler</value>
   </data>
+  <data name="Risk acceptance" xml:space="preserve">
+    <value>Riskacceptans</value>
+  </data>
   <data name="Role Details" xml:space="preserve">
     <value>Rollinformation</value>
   </data>
@@ -245,6 +248,9 @@
   </data>
   <data name="Vulnerability audit" xml:space="preserve">
     <value>Sårbarhetsgranskning</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Sårbarhetsriskacceptans</value>
   </data>
 
 </root>

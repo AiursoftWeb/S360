@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>例外を提出するには、依存関係のリクエスト権限と有効なアドバイザリが必要です。</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>サーバー全体でリスクを承認</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>有効</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>すべての決定</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>承認された例外は、選択されたパッケージ、ソース、およびバージョン範囲を使用するすべての現在および将来のプロジェクトに適用されます。これにより、脆弱性は修正されません。</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>評価、証拠、および根拠</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>決定履歴</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>この脆弱性が適用されない理由、または残存リスクが許容できる理由を文書化してください。リスク受諾権限を持つレビュアーによる承認が必要です。</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>期限切れ</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>有効期限</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>有効期限（UTC）</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>期限切れまたは取り消しにより、次のチェック時にブロックが復元されます。ベースラインインシデントは、ブロッキング対象の検出結果が残っておらず、かつエビデンスが最新である場合のみ、自動的に軽減できます。</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>例: 4.0.7 または 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>リスク受容の仕組み</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>次へ</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>このビューに一致するリスク受入ルールはありません。例外を申請するには、脆弱性の検出結果を開いてください。</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>パッケージソース</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>ページネーション</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>レビュー待ち</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>前へ</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>拒否</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>却下</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>リスク受容の申請</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>申請日時</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>申請者</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>特定の脆弱性を一度審査し、その判断をこのS360サーバー全体に適用します。</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>レビュー理由</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>承認の取り消し</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>取り消し済み</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>リスク受容の状況</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>リスク承認済み</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>レビューに提出</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>この決定はサーバー全体に適用されます。関連付けられた CVE と GHSA レコードはまとめて評価されます。その他の脆弱性と明示的なパッケージブロックは引き続き入力を拒否します。</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>バージョン範囲</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>脆弱性レコードは表示され続けます。例外はパッケージの承認を付与したり、古い脆弱性データをバイパスしたりするものではありません。</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>脆弱性のリスク受容</value>
+  </data>
+
+</root>

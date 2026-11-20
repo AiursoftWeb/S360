@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="AlertCenter monitoring" xml:space="preserve">
+      <data name="Actions" xml:space="preserve">
+    <value>Actions</value>
+  </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
     <value>Surveillance d&apos;AlertCenter</value>
   </data>
   <data name="Application API key" xml:space="preserve">
@@ -26,6 +29,9 @@
   </data>
   <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
     <value>Atténuer automatiquement les incidents lorsque le référentiel complet est confirmé conforme</value>
+  </data>
+  <data name="Baseline review stopped" xml:space="preserve">
+    <value>Examen de référence arrêté</value>
   </data>
   <data name="Configured" xml:space="preserve">
     <value>Configurée</value>
@@ -93,6 +99,9 @@
   <data name="Repository" xml:space="preserve">
     <value>Dépôt</value>
   </data>
+  <data name="Resumes on the next complete default-branch baseline." xml:space="preserve">
+    <value>Reprend à la prochaine ligne de base complète de la branche par défaut.</value>
+  </data>
   <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
     <value>S360 signale les CVE confirmées ou les violations de politique dans la dernière référence complète des dépendances en production. Une nouvelle CVE peut déclencher un incident sans qu’il soit nécessaire de reconstruire le projet.</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Severity" xml:space="preserve">
     <value>Gravité</value>
+  </data>
+  <data name="Stop baseline review" xml:space="preserve">
+    <value>Arrêter la revue de référence</value>
   </data>
   <data name="Succeeded" xml:space="preserve">
     <value>Réussi</value>

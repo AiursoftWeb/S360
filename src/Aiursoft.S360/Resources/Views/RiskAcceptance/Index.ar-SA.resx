@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>يتطلب تقديم استثناء وجود إذن طلب اعتماد واستشارة نشطة.</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>قبول المخاطر على مستوى الخادم</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>نشطة</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>جميع القرارات</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>تنطبق الاستثناء المعتمد على كل مشروع حالي ومستقبل يستخدم نطاق الحزمة والمصدر والإصدار المحددين. لا يقوم بإصلاح الثغرة.</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>التقييم والأدلة والمبررات</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>سجل القرارات</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>وثّق سبب عدم تطبيق هذا الثغرة الأمنية أو سبب قبول المخاطر المتبقية. يجب على مراجع يملك صلاحية قبول المخاطر الموافقة على الطلب.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>منتهية الصلاحية</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>تنتهي الصلاحية في</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>تنتهي الصلاحية في (توقيت UTC)</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>استعادة الحظر عند انتهاء الصلاحية أو الإلغاء عند الفحص التالي. يمكن التخفيف من الحوادث الأساسية تلقائيًا فقط عندما لا تبقى أي نتائج حظر وكون الأدلة محدثة.</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>على سبيل المثال: 4.0.7 أو 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>كيف يعمل قبول المخاطر</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>التالي</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>لا توجد قواعد لقبول المخاطر تطابق هذا العرض. افتح نتيجة ثغرة أمنية لطلب استثناء.</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>مصدر الحزمة</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>ترقيم الصفحات</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>بانتظار المراجعة</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>السابق</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>رفض</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>مرفوض</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>طلب قبول المخاطر</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>تاريخ الطلب</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>طلب بواسطة</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>راجع ثغرة محددة مرة واحدة ويطبّق القرار عبر خادم S360 هذا.</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>سبب المراجعة</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>إلغاء القبول</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>ملغاة</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>حالة قبول المخاطر</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>تم قبول المخاطر</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>إرسال للمراجعة</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>ينطبق القرار على مستوى الخادم بالكامل. يتم تقييم سجلات CVE وGHSA المرتبطة معًا. تستمر الثغرات الأخرى وحظر الحزم الصريحة في رفض القبول.</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>نطاق الإصدار</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>تظل سجلات الثغرات الأمنية مرئية. الاستثناء لا يمنح موافقة على الحزمة أو يتجاوز بيانات الثغرات الأمنية القديمة.</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>قبول مخاطر الثغرات</value>
+  </data>
+
+</root>

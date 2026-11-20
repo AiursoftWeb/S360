@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>提交例外需要依赖请求权限和有效的安全公告。</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>全服务器接受风险</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>已启用</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>所有决定</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>已批准的例外适用于使用所选软件包、来源和版本范围的所有当前和未来项目。它不会修复该漏洞。</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>评估、证据及理由</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>决策历史</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>请说明该漏洞为何不适用，或为何剩余风险可接受。拥有风险接受权限的审核人员必须批准该请求。</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>已过期</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>过期时间</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>到期时间（UTC）</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>到期或撤销将在下次检查时恢复阻止。仅当没有剩余阻止性发现且证据为最新时，基线事件才可自动缓解。</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>例如：4.0.7 或 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>风险接受机制说明</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>下一页</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>没有风险接受规则与此视图匹配。请打开一个漏洞发现以申请例外。</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>软件包来源</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>分页</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>待审核</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>上一页</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>拒绝</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>已拒绝</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>申请风险接受</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>申请于</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>申请人</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>一次性审查特定漏洞，并将该决定应用于此 S360 服务器。</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>审核原因</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>撤销接受</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>已撤销</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>风险接受状态</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>风险已接受</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>提交审核</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>该决策适用于整个服务器。关联的 CVE 和 GHSA 记录将一并评估。其他漏洞和显式的包阻止规则仍会拒绝准入。</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>版本范围</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>漏洞记录仍然可见。例外不会授予软件包批准或绕过过时的漏洞数据。</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>漏洞风险接受</value>
+  </data>
+
+</root>

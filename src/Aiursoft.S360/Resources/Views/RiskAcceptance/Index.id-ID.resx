@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="A dependency-request permission and an active advisory are required to submit an exception." xml:space="preserve">
+    <value>Izin permintaan dependensi dan advis aktif diperlukan untuk mengajukan pengecualian.</value>
+  </data>
+  <data name="Accept risk server-wide" xml:space="preserve">
+    <value>Terima risiko di seluruh server</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>Aktif</value>
+  </data>
+  <data name="All decisions" xml:space="preserve">
+    <value>Semua keputusan</value>
+  </data>
+  <data name="An approved exception applies to every current and future project using the selected package, source and version scope. It does not fix the vulnerability." xml:space="preserve">
+    <value>Pengecualian yang disetujui berlaku untuk setiap proyek saat ini dan mendatang yang menggunakan cakupan paket, sumber, dan versi yang dipilih. Ini tidak memperbaiki kerentanan tersebut.</value>
+  </data>
+  <data name="Assessment, evidence and justification" xml:space="preserve">
+    <value>Penilaian, bukti, dan justifikasi</value>
+  </data>
+  <data name="Decision history" xml:space="preserve">
+    <value>Riwayat keputusan</value>
+  </data>
+  <data name="Document why this vulnerability is not applicable or why the remaining risk is acceptable. A reviewer with the risk-acceptance permission must approve the request." xml:space="preserve">
+    <value>Dokumentasikan mengapa kerentanan ini tidak berlaku atau mengapa risiko yang tersisa dapat diterima. Peninjau dengan izin penerimaan risiko harus menyetujui permintaan tersebut.</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Kedaluwarsa</value>
+  </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Berakhir pada</value>
+  </data>
+  <data name="Expires at (UTC)" xml:space="preserve">
+    <value>Berlaku hingga (UTC)</value>
+  </data>
+  <data name="Expiry or revocation restores blocking at the next check. Baseline incidents can be mitigated automatically only when no blocking findings remain and the evidence is current." xml:space="preserve">
+    <value>Kedaluwarsa atau pencabutan memulihkan pemblokiran pada pemeriksaan berikutnya. Insiden garis dasar dapat dimitigasi secara otomatis hanya ketika tidak ada lagi temuan pemblokir dan buktinya masih berlaku.</value>
+  </data>
+  <data name="For example: 4.0.7 or 4.*" xml:space="preserve">
+    <value>Contoh: 4.0.7 atau 4.*</value>
+  </data>
+  <data name="How risk acceptance works" xml:space="preserve">
+    <value>Cara kerja penerimaan risiko</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Berikutnya</value>
+  </data>
+  <data name="No risk acceptance rules match this view. Open a vulnerability finding to request an exception." xml:space="preserve">
+    <value>Tidak ada aturan penerimaan risiko yang cocok dengan tampilan ini. Buka temuan kerentanan untuk meminta pengecualian.</value>
+  </data>
+  <data name="Package source" xml:space="preserve">
+    <value>Sumber paket</value>
+  </data>
+  <data name="Pagination" xml:space="preserve">
+    <value>Paginasi</value>
+  </data>
+  <data name="Pending review" xml:space="preserve">
+    <value>Menunggu tinjauan</value>
+  </data>
+  <data name="Previous" xml:space="preserve">
+    <value>Sebelumnya</value>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Tolak</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Ditolak</value>
+  </data>
+  <data name="Request risk acceptance" xml:space="preserve">
+    <value>Permintaan penerimaan risiko</value>
+  </data>
+  <data name="Requested at" xml:space="preserve">
+    <value>Diminta pada</value>
+  </data>
+  <data name="Requested by" xml:space="preserve">
+    <value>Diminta oleh</value>
+  </data>
+  <data name="Review a specific vulnerability once and apply the decision across this S360 server." xml:space="preserve">
+    <value>Tinjau kerentanan tertentu sekali dan terapkan keputusan tersebut di seluruh server S360 ini.</value>
+  </data>
+  <data name="Review reason" xml:space="preserve">
+    <value>Alasan peninjauan</value>
+  </data>
+  <data name="Revoke acceptance" xml:space="preserve">
+    <value>Cabut penerimaan</value>
+  </data>
+  <data name="Revoked" xml:space="preserve">
+    <value>Dicabut</value>
+  </data>
+  <data name="Risk acceptance status" xml:space="preserve">
+    <value>Status penerimaan risiko</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risiko diterima</value>
+  </data>
+  <data name="Submit for review" xml:space="preserve">
+    <value>Kirim untuk ditinjau</value>
+  </data>
+  <data name="The decision applies server-wide. Correlated CVE and GHSA records are assessed together. Other vulnerabilities and explicit package blocks continue to deny admission." xml:space="preserve">
+    <value>Keputusan berlaku di seluruh server. Catatan CVE dan GHSA yang berkorelasi dinilai bersama. Kerentanan lain dan blokir paket eksplisit tetap menolak penerimaan.</value>
+  </data>
+  <data name="Version scope" xml:space="preserve">
+    <value>Cakupan versi</value>
+  </data>
+  <data name="Vulnerability records remain visible. An exception does not grant package approval or bypass stale vulnerability data." xml:space="preserve">
+    <value>Catatan kerentanan tetap terlihat. Pengecualian tidak memberikan persetujuan paket atau melewati data kerentanan yang kedaluwarsa.</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Penerimaan risiko kerentanan</value>
+  </data>
+
+</root>

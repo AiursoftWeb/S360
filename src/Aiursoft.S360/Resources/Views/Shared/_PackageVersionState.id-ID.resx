@@ -33,6 +33,9 @@
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Bukti perlu diverifikasi</value>
   </data>
+  <data name="Expires at" xml:space="preserve">
+    <value>Berlaku hingga</value>
+  </data>
   <data name="Known vulnerable version" xml:space="preserve">
     <value>Versi yang diketahui rentan</value>
   </data>
@@ -41,6 +44,9 @@
   </data>
   <data name="Outside current authorization" xml:space="preserve">
     <value>Di luar otorisasi saat ini</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risiko diterima</value>
   </data>
 
 </root>

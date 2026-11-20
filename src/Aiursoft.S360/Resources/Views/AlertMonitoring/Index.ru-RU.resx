@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="AlertCenter monitoring" xml:space="preserve">
+      <data name="Actions" xml:space="preserve">
+    <value>Действия</value>
+  </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
     <value>Мониторинг AlertCenter</value>
   </data>
   <data name="Application API key" xml:space="preserve">
@@ -26,6 +29,9 @@
   </data>
   <data name="Automatically mitigate incidents when the complete baseline is confirmed compliant" xml:space="preserve">
     <value>Автоматически устранять инциденты, когда соответствие требованиям подтверждено для всей базовой конфигурации</value>
+  </data>
+  <data name="Baseline review stopped" xml:space="preserve">
+    <value>Базовый обзор остановлен</value>
   </data>
   <data name="Configured" xml:space="preserve">
     <value>Настроен</value>
@@ -93,6 +99,9 @@
   <data name="Repository" xml:space="preserve">
     <value>Репозиторий</value>
   </data>
+  <data name="Resumes on the next complete default-branch baseline." xml:space="preserve">
+    <value>Возобновится при следующей полной проверке базовой линии ветки по умолчанию.</value>
+  </data>
   <data name="S360 reports confirmed CVEs or policy violations in the latest complete production dependency baseline. A new CVE can trigger an incident without rebuilding the project." xml:space="preserve">
     <value>S360 сообщает о подтверждённых CVE или нарушениях политик в последней полной производственной базовой линии зависимостей. Новый CVE может привести к возникновению инцидента без необходимости пересборки проекта.</value>
   </data>
@@ -104,6 +113,9 @@
   </data>
   <data name="Severity" xml:space="preserve">
     <value>Критичность</value>
+  </data>
+  <data name="Stop baseline review" xml:space="preserve">
+    <value>Остановить проверку базовой линии</value>
   </data>
   <data name="Succeeded" xml:space="preserve">
     <value>Успешно</value>

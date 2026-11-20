@@ -93,6 +93,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Kerentanan yang diketahui</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>Risiko kerentanan yang diketahui telah diterima berdasarkan kebijakan. Periksa aturan dan tanggal kedaluwarsanya di detail paket.</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>Data dasar lengkap terbaru. Ini adalah dependensi yang dilaporkan, bukan bukti penerapan.</value>
   </data>

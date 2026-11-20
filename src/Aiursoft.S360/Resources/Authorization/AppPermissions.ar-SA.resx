@@ -123,6 +123,9 @@
   <data name="Manage trust rules" xml:space="preserve">
     <value>إدارة قواعد الثقة</value>
   </data>
+  <data name="Manage vulnerability risk acceptance" xml:space="preserve">
+    <value>إدارة قبول مخاطر الثغرات الأمنية</value>
+  </data>
   <data name="Publish production baselines" xml:space="preserve">
     <value>نشر خطوط الأساس للإنتاج</value>
   </data>
@@ -143,6 +146,9 @@
   </data>
   <data name="Reboot This App" xml:space="preserve">
     <value>إعادة تشغيل هذا التطبيق</value>
+  </data>
+  <data name="Review and revoke server-wide, time-limited acceptance of specific vulnerability risks." xml:space="preserve">
+    <value>مراجعة وسحب القبول المحدود زمنيًا على مستوى الخادم لمخاطر الثغرات الأمنية المحددة.</value>
   </data>
   <data name="Review dependency requests" xml:space="preserve">
     <value>مراجعة طلبات الاعتماديات</value>

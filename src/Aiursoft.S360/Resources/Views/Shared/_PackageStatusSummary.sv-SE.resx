@@ -33,6 +33,9 @@
   <data name="Inspect advisories and fix boundaries" xml:space="preserve">
     <value>Inspektera advisories och åtgärda gränser</value>
   </data>
+  <data name="Known vulnerabilities remain in this baseline under approved risk acceptance. Inspect the decisions and their expiry dates below." xml:space="preserve">
+    <value>Kända sårbarheter kvarstår i denna baslinje under godkänd riskacceptans. Inspektera besluten och deras utgångsdatum nedan.</value>
+  </data>
   <data name="Newer incomplete reports exist. Usage needs verification; the last complete baselines are retained." xml:space="preserve">
     <value>Nyare ofullständiga rapporter finns. Användningen behöver verifieras; de senaste fullständiga baslinjerna behålls.</value>
   </data>

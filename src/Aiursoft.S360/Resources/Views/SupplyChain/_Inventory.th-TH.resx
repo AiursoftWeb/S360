@@ -96,6 +96,9 @@
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>ช่องโหว่ที่ทราบแล้ว</value>
   </data>
+  <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
+    <value>ความเสี่ยงด้านช่องโหว่ที่ทราบแล้วได้รับการยอมรับตามนโยบาย กรุณาตรวจสอบกฎและวันหมดอายุของกฎเหล่านั้นในรายละเอียดแพ็กเกจ</value>
+  </data>
   <data name="Latest complete baselines. These are reported dependencies, not proof of deployment." xml:space="preserve">
     <value>เบสไลน์สมบูรณ์ล่าสุด รายการเหล่านี้เป็น dependencies ที่รายงานไว้ ไม่ใช่หลักฐานยืนยันการ deploy</value>
   </data>

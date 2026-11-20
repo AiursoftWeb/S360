@@ -60,7 +60,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         {
             Id = r.Id, Status = r.Status, Ecosystem = r.Ecosystem, PackagePattern = r.PackagePattern,
             Version = r.Version, Source = r.Source, IncludePrerelease = r.IncludePrerelease,
-            RequestedAtUtc = r.RequestedAtUtc, ExpiresAtUtc = r.ExpiresAtUtc
+            ApplicationId = r.ApplicationId, RequestedAtUtc = r.RequestedAtUtc, ExpiresAtUtc = r.ExpiresAtUtc
         })).ToListAsync();
         var blocks = await packageRules.Where(r => r.Kind == RuleKind.Block && r.Status == RuleStatus.Approved).ToListAsync();
         var approvedIds = rules.Where(r => r.Status == RuleStatus.Approved).Select(r => r.Id).ToArray();
@@ -80,6 +80,9 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
             .GroupBy(r => r.RuleId).Select(g => new { Id = g.Key, At = g.Max(r => r.ReviewedAtUtc) })
             .ToDictionaryAsync(r => r.Id, r => r.At);
         var fresh = audit?.LastSuccessAtUtc > now.AddHours(-12) && audit.LastSuccessAtUtc <= now;
+        var reviewedVersions = fresh && audit?.LastSuccessfulAttemptAtUtc is { } auditStarted
+            ? await LoadReviewedVersionsAsync(rules, approvals, scope, auditStarted, audit.LastSuccessAtUtc, now)
+            : [];
         var decisions = requested.Select((dependency, index) =>
         {
             var decision = authorization[index];
@@ -88,13 +91,15 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
             if (assessment.Blocking.Count > 0)
                 return new DependencyDecision { Dependency = dependency,
                     Reason = $"This version has a known active vulnerability: {assessment.Blocking[0].SourceId}." };
-            // A successful package-level OSV query covers new versions too. Newly approved
-            // package names must enter the next audit before absence of findings means clean.
+            // A package-level audit covers new versions. An approval from a dependency report
+            // can also reuse the current audit for the exact version in that report.
             var covered = rules.Any(r => r.Status == RuleStatus.Approved && r.Ecosystem == dependency.Ecosystem &&
                 r.MatchesPackage(dependency.Name) && !r.IsLegacyTemplate &&
                 (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now) &&
                 r.RequestedAtUtc <= audit?.LastSuccessfulAttemptAtUtc &&
-                (!approvals.TryGetValue(r.Id, out var at) || at <= audit.LastSuccessfulAttemptAtUtc));
+                (!approvals.TryGetValue(r.Id, out var at) || at <= audit.LastSuccessfulAttemptAtUtc)) ||
+                (reviewedVersions.Count > 0 && reviewedVersions.Contains(Identity(dependency.Ecosystem,
+                    dependency.Name, dependency.Version, TrustPattern.NormalizeSource(dependency.Source))));
             if (fresh && covered && assessment.Accepted.Count > 0)
                 return new DependencyDecision { Dependency = dependency, Trusted = true, RuleId = decision.RuleId,
                     Reason = "Approved by package policy; known vulnerability risk accepted by rules: " +
@@ -107,6 +112,38 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
             };
         }).ToList();
         return new TrustAssessment(authorization, decisions, details, rules, audit, now);
+    }
+
+    private async Task<HashSet<string>> LoadReviewedVersionsAsync(IEnumerable<PackageRule> rules,
+        Dictionary<int, DateTime> approvals, PolicyPackageNames scope, DateTime auditStarted, DateTime? auditCompleted,
+        DateTime now)
+    {
+        var recentlyApproved = rules.Where(r => r.ApplicationId.HasValue && r.Status == RuleStatus.Approved &&
+                !r.IsLegacyTemplate && !r.Version.Contains('*') && (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now) &&
+                approvals.TryGetValue(r.Id, out var reviewedAt) && reviewedAt <= now &&
+                (reviewedAt > auditStarted || r.RequestedAtUtc > auditStarted))
+            .Select(r => (ApplicationId: r.ApplicationId!.Value,
+                Identity: Identity(r.Ecosystem, r.PackagePattern, r.Version, r.Source)))
+            .ToHashSet();
+        if (recentlyApproved.Count == 0) return [];
+
+        var applicationIds = recentlyApproved.Select(r => r.ApplicationId).Distinct().ToArray();
+        var nuget = scope.NuGet;
+        var npm = scope.Npm;
+        var versions = await db.ApplicationPackages.AsNoTracking()
+            .Where(p => applicationIds.Contains(p.ApplicationId) && p.Application.Status == ApplicationStatus.Approved &&
+                ((p.PackageVersion.Ecosystem == "nuget" && nuget.Contains(p.PackageVersion.Name.ToLower())) ||
+                 (p.PackageVersion.Ecosystem == "npm" && npm.Contains(p.PackageVersion.Name))))
+            .Select(p => new
+            {
+                p.ApplicationId, p.PackageVersion.Ecosystem, p.PackageVersion.Name,
+                p.PackageVersion.Version, p.PackageVersion.Source, p.PackageVersion.LastCheckedAtUtc
+            }).ToListAsync();
+        return versions.Where(v => VulnerabilityAuditFreshness.IsCurrent(v.LastCheckedAtUtc, auditStarted, auditCompleted, now))
+            .Select(v => (v.ApplicationId, Identity: Identity(v.Ecosystem, v.Name, v.Version, v.Source)))
+            .Where(recentlyApproved.Contains)
+            .Select(v => v.Identity)
+            .ToHashSet(StringComparer.Ordinal);
     }
 
     public static DependencyDecision Evaluate(Dependency dependency, IEnumerable<PackageRule> rules,

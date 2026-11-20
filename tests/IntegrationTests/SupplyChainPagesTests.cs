@@ -3482,6 +3482,25 @@ public class SupplyChainPagesTests : TestBase
         using (var second = await Approve(reportHash))
             Assert.AreEqual(HttpStatusCode.Redirect, second.StatusCode);
 
+        const string key = "approved-report-mirror-key";
+        await AddCheckKeyAsync(key);
+        Http.DefaultRequestHeaders.Add("X-S360-Key", key);
+        var child = new Dependency
+        {
+            Ecosystem = "nuget", Name = "Example.Batch.Child." + suffix, Version = "2.0.0", Source = source
+        };
+        using (var download = await Http.PostAsJsonAsync("/api/artifacts/mirror/verify", child))
+        {
+            Assert.AreEqual(HttpStatusCode.OK, download.StatusCode, await download.Content.ReadAsStringAsync());
+            Assert.IsTrue((await download.Content.ReadFromJsonAsync<DependencyDecision>())!.Trusted);
+        }
+        using (var candidates = await Http.PostAsJsonAsync("/api/artifacts/mirror/candidates",
+                   new MirrorCandidateRequest([new MirrorCandidate(child.Ecosystem, child.Name, child.Version, child.Source)])))
+        {
+            candidates.EnsureSuccessStatusCode();
+            Assert.IsTrue((await candidates.Content.ReadFromJsonAsync<MirrorCandidateResponse>())!.Decisions.Single().CanFetch);
+        }
+
         using (var scope = Server!.Services.CreateScope())
         {
             var db = scope.ServiceProvider.GetRequiredService<TemplateDbContext>();

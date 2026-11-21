@@ -11,7 +11,6 @@ using Aiursoft.S360.MySql;
 using Aiursoft.S360.Services.Authentication;
 using Aiursoft.S360.Services.BackgroundJobs;
 using Aiursoft.S360.Sqlite;
-using Aiursoft.UiStack;
 using Aiursoft.UiStack.Layout;
 using Aiursoft.UiStack.Navigation;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -126,7 +125,6 @@ public class Startup : IWebStartup
     {
         app.UseExceptionHandler("/Error/Code500");
         app.UseStatusCodePagesWithReExecute("/Error/Code{0}");
-        app.UseUIStack();
         app.UseStaticFiles();
         app.UseRouting();
         app.UseAuthentication();

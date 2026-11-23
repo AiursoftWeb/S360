@@ -124,6 +124,7 @@ public class BaselineMonitoringTests : TestBase
         Assert.AreEqual(_repository, resumed.Repositories.Single().Repository);
         await monitoring.SynchronizeAsync();
         Assert.HasCount(1, client.Created);
+        StringAssert.Contains(client.Created.Single().InvestigateUrl, "/SupplyChain?tab=projects&scope=baseline&query=");
         Assert.AreEqual(7, await _db.BuildChecks.CountAsync());
     }
 

@@ -110,11 +110,13 @@ public sealed class BaselineMonitoringService(TemplateDbContext db, CatalogInven
                     {
                         if (incidents.Count == 0)
                         {
+                            var link = settings.PublicBaseUrl.TrimEnd('/') + "/SupplyChain?tab=projects&scope=baseline&query=" + Uri.EscapeDataString(repository.Repository);
                             var created = await client.CreateAsync(new CreateIncidentRequest
                             {
                                 ReportId = Guid.NewGuid(), Level = "sev2", OccurredAtUtc = DateTimeOffset.UtcNow,
                                 Title = $"Security findings in {repository.Repository}"[..Math.Min(200, 21 + repository.Repository.Length)],
                                 Content = Describe(repository, settings),
+                                InvestigateUrl = link,
                                 Context = new JObject { ["repository"] = repository.Repository, ["findings"] = JObject.Parse(repository.FindingsJson) },
                                 Metadata = new JObject { ["source"] = Source, ["repository"] = repository.Repository,
                                     ["assessment"] = JObject.Parse(repository.FindingsJson) }

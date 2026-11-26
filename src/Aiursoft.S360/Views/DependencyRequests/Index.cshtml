@@ -1,15 +1,16 @@
+@using Aiursoft.S360.Entities
+@using Aiursoft.S360.Models.Shared
 @using Aiursoft.WebTools
 @model Aiursoft.S360.Models.SupplyChainViewModels.MyRequestsViewModel
-@using Aiursoft.S360.Models.Shared
 @* ReSharper disable once Razor.SectionNotResolved *@
 @section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
 
 <div class="s360-workspace">
 <div class="s360-workspace-head">
-<h1>@(Model.ShowHistory ? Localizer["My dependency requests"] : Localizer["Request a new dependency"])</h1>
+<h1>@(Model.ShowHistory && !Model.ShowCreateForm ? Localizer["My dependency requests"] : Localizer["Request a new dependency"])</h1>
 @if (Model.ShowCreateForm)
 {
-    <p class="text-muted">@Localizer["Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed."]</p>
+    <p class="text-muted">@Localizer["Request approval for exact package versions before adding them to your project."]</p>
 }
 else
 {
@@ -25,33 +26,98 @@ else
 <div id="new-request" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Package details"]</h2></div><div class="card-body">
     <form asp-action="Submit" method="post" class="row g-3">
         <div class="col-md-3"><label class="form-label">@Localizer["Ecosystem"] <span class="s360-field-help" title="@Localizer["NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs."]" aria-label="@Localizer["NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs."]" tabindex="0">?</span></label>
-            <select id="request-ecosystem" name="ecosystem" class="form-select"><option value="nuget">NuGet</option><option value="npm">npm</option></select></div>
+            <select id="request-ecosystem" name="ecosystem" class="form-select">
+                <option value="nuget" selected="@(Model.PrefillEcosystem == "nuget")">NuGet</option>
+                <option value="npm" selected="@(Model.PrefillEcosystem == "npm")">npm</option>
+            </select></div>
         <div class="col-md-9"><label class="form-label">@Localizer["Source"] <span class="s360-field-help" title="@Localizer["The registry that supplies the package archive. A package from another registry needs its own review."]" aria-label="@Localizer["The registry that supplies the package archive. A package from another registry needs its own review."]" tabindex="0">?</span></label>
             <select id="request-source" name="source" class="form-select" required>
-                @foreach (var source in Model.NuGetSources) { <option value="@source" data-ecosystem="nuget">NuGet — @source</option> }
-                @foreach (var source in Model.NpmSources) { <option value="@source" data-ecosystem="npm">npm — @source</option> }
+                @foreach (var source in Model.NuGetSources)
+                {
+                    <option value="@source" data-ecosystem="nuget" selected="@(Model.PrefillEcosystem == "nuget" && string.Equals(Model.PrefillSource, source, StringComparison.OrdinalIgnoreCase))">NuGet — @source</option>
+                }
+                @foreach (var source in Model.NpmSources)
+                {
+                    <option value="@source" data-ecosystem="npm" selected="@(Model.PrefillEcosystem == "npm" && string.Equals(Model.PrefillSource, source, StringComparison.OrdinalIgnoreCase))">npm — @source</option>
+                }
             </select><div class="form-text">@Localizer["Choose a registry for the selected ecosystem. The source is part of the review evidence."]</div></div>
         <div class="col-md-7"><label class="form-label">@Localizer["Packages, one name@version per line"] <span class="s360-field-help" title="@Localizer["For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval."]" aria-label="@Localizer["For example: Microsoft.EntityFrameworkCore@10.0.12. Enter each package that needs approval."]" tabindex="0">?</span></label>
-            <textarea name="directPackages" class="form-control" rows="5" maxlength="2000" required placeholder="Microsoft.EntityFrameworkCore@10.0.12"></textarea>
+            <textarea name="directPackages" class="form-control" rows="5" maxlength="2000" required placeholder="Microsoft.EntityFrameworkCore@10.0.12">@Model.PrefillDirectPackages</textarea>
             <div class="form-text">@Localizer["Enter exact names and versions. CI reports transitive dependencies; S360 does not restore them."]</div></div>
         <div class="col-md-5"><label class="form-label">@Localizer["Project (optional)"]</label>
-            <input name="project" class="form-control mb-3" maxlength="200" />
+            <input name="project" value="@Model.PrefillProject" class="form-control mb-3" maxlength="200" />
             <label class="form-label">@Localizer["Why is this dependency needed?"]</label>
             <textarea name="justification" class="form-control" rows="3" maxlength="2000" required></textarea></div>
         <div class="col-12"><button class="btn btn-primary">@Localizer["Submit request"]</button></div>
     </form>
 </div></div>
 
+<section class="card mb-4 s360-approver-directory" aria-label="@Localizer["Who can approve your request"]">
+    <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+        <h2 class="h5 mb-0">@Localizer["Who can approve your request"]</h2>
+        <span class="small text-muted">@Localizer["After resolution completes, contact any reviewer below to approve your request."]</span>
+    </div>
+    <div class="card-body">
+        @if (Model.Approvers.Count == 0)
+        {
+            <p class="text-muted mb-0">@Localizer["No reviewers with approval permission are currently configured. Contact your system administrator."]</p>
+        }
+        else
+        {
+            <div class="s360-approver-grid">
+                @foreach (var approver in Model.Approvers)
+                {
+                    var isSelf = string.Equals(approver.UserId, Model.CurrentUserId, StringComparison.Ordinal);
+                    <div class="s360-approver-card">
+                        @if (!string.IsNullOrWhiteSpace(approver.AvatarUrl))
+                        {
+                            <img src="@approver.AvatarUrl" alt="@approver.DisplayName" class="rounded-circle s360-approver-avatar" width="40" height="40" />
+                        }
+                        else
+                        {
+                            <span class="s360-approver-avatar s360-approver-avatar-fallback" aria-hidden="true"><i data-lucide="user-check"></i></span>
+                        }
+                        <div class="s360-approver-meta">
+                            <div class="d-flex align-items-center flex-wrap gap-1">
+                                <strong>@approver.DisplayName</strong>
+                                @foreach (var role in approver.RoleNames)
+                                {
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis">@role</span>
+                                }
+                                @if (isSelf)
+                                {
+                                    <span class="badge bg-warning-subtle text-warning-emphasis">@Localizer["You — cannot self-approve"]</span>
+                                }
+                            </div>
+                            @if (!string.IsNullOrWhiteSpace(approver.Email))
+                            {
+                                <a class="small text-break" href="mailto:@approver.Email">@approver.Email</a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</section>
 }
 @if (Model.ShowHistory)
 {
-<div id="recent-requests" class="card s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recent requests"]</h2></div>
+<div id="recent-requests" class="card mb-4 s360-workspace-anchor"><div class="card-header"><h2 class="h5 mb-0">@Localizer["Recent requests"]</h2></div>
     <div class="table-responsive"><table class="table mb-0"><thead><tr><th>@Localizer["Created"]</th><th>@Localizer["Ecosystem"]</th>
         <th>@Localizer["Project"]</th><th>@Localizer["Status"]</th><th></th></tr></thead><tbody>
         @foreach (var application in Model.Applications)
         {
+            var badgeClass = application.Status switch
+            {
+                ApplicationStatus.Approved => "bg-success",
+                ApplicationStatus.ReadyForReview => "bg-warning text-dark",
+                ApplicationStatus.Resolving => "bg-info text-dark",
+                ApplicationStatus.Failed or ApplicationStatus.Rejected or ApplicationStatus.Revoked => "bg-danger",
+                _ => "bg-secondary"
+            };
             <tr><td><span data-utc-time="@application.CreatedAtUtc.ToHtmlDateTime()"></span></td><td>@application.Ecosystem</td><td>@application.Project</td>
-                <td>@application.Status
+                <td><span class="badge @badgeClass">@application.Status</span>
                     @if (Model.ApplicationsWithRemovedSources.Contains(application.Id))
                     {
                         <div class="text-danger small">@Localizer["Package source is no longer permitted for S360 checks."]</div>
@@ -66,8 +132,8 @@ else
     @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
 </div>
 }
-</div>
-@await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+
+@await Html.PartialAsync("_WorkspaceHelp", new ConceptGuideViewModel(
     Localizer["Understand your request"].Value,
     "package-search",
     [
@@ -79,6 +145,7 @@ else
         new ConceptTerm(Localizer["Exact version"].Value, Localizer["A single published version such as 10.0.12. Do not request 10.*, latest, or a version range in this form."].Value)
     ],
     Localizer["Start with the exact packages your project needs. Check the resulting report before relying on an approval."].Value))
+</div>
 </div>
 </div>
 @* ReSharper disable once Razor.SectionNotResolved *@

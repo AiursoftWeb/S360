@@ -32,8 +32,7 @@
                 </div>
             </section>
 
-        </div>
-        @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+            @await Html.PartialAsync("_WorkspaceHelp", new ConceptGuideViewModel(
             Localizer["Read this package record"].Value,
             "package-check",
             [
@@ -41,5 +40,6 @@
                 new ConceptTerm(Localizer["Current authorization"].Value, Localizer["An active rule and current vulnerability data allow this version. Expiry, revocation, or new findings can change that answer."].Value)
             ],
             Localizer["Check the complete resolved graph for every actual build, even when this package appears in the catalog."].Value))
+        </div>
     </div>
 </div>

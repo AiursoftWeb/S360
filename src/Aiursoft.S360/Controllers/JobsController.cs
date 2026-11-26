@@ -25,13 +25,13 @@ public class JobsController(
 {
     [Authorize(Policy = AppPermissionNames.CanViewBackgroundJobs)]
     [RenderInNavBar(
-        NavGroupName = "Administration",
+        NavGroupName = "Account & Admin",
         NavGroupOrder = 9999,
-        CascadedLinksGroupName = "System",
-        CascadedLinksIcon = "cog",
-        CascadedLinksOrder = 9999,
+        CascadedLinksGroupName = "Administration",
+        CascadedLinksIcon = "settings",
+        CascadedLinksOrder = 3,
         LinkText = "Background Jobs",
-        LinkOrder = 2)]
+        LinkOrder = 4)]
     public IActionResult Index()
     {
         var oneHourAgo = TimeSpan.FromHours(1);

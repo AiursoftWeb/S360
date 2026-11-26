@@ -19,10 +19,10 @@ public class DashboardController(TemplateDbContext db, UserManager<User> users,
     IAuthorizationService authorization, CatalogInventoryService inventory) : Controller
 {
     [RenderInNavBar(
-        NavGroupName = "Features",
+        NavGroupName = "Overview",
         NavGroupOrder = 1,
-        CascadedLinksGroupName = "Home",
-        CascadedLinksIcon = "home",
+        CascadedLinksGroupName = "Dashboard",
+        CascadedLinksIcon = "layout-dashboard",
         CascadedLinksOrder = 1,
         LinkText = "Company overview",
         LinkOrder = 1)]

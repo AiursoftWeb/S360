@@ -20,26 +20,32 @@ namespace Aiursoft.S360.Controllers;
 [LimitPerMin]
 public class DependencyRequestsController(TemplateDbContext db, UserManager<User> users,
     IConfiguration configuration, BackgroundJobRegistry jobs, IAuthorizationService authorization,
-    TrustService trust) : Controller
+    TrustService trust, DependencyApproverDirectoryService approverDirectory) : Controller
 {
     [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]
-    public Task<IActionResult> Index(int page = 1) => RenderRequests(showForm: true, showHistory: true, page);
+    public Task<IActionResult> Index(int page = 1, string? ecosystem = null, string? source = null,
+        string? package = null, string? project = null)
+        => RenderRequests(showForm: true, showHistory: true, page, ecosystem, source, package, project);
 
     [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]
     [HttpGet]
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
-        CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
-        LinkText = "Request a new dependency", LinkOrder = 1)]
-    public Task<IActionResult> Create() => RenderRequests(showForm: true, showHistory: false);
+        CascadedLinksGroupName = "Requests", CascadedLinksIcon = "inbox", CascadedLinksOrder = 3,
+        LinkText = "Request a package", LinkOrder = 1)]
+    public Task<IActionResult> Create(string? ecosystem = null, string? source = null,
+        string? package = null, string? project = null)
+        => RenderRequests(showForm: true, showHistory: false, ecosystem: ecosystem, source: source,
+            package: package, project: project);
 
     [Authorize(Policy = AppPermissionNames.CanSubmitDependencyRequests)]
     [HttpGet]
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
-        CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
-        LinkText = "My requests", LinkOrder = 3)]
+        CascadedLinksGroupName = "Requests", CascadedLinksIcon = "inbox", CascadedLinksOrder = 3,
+        LinkText = "My requests", LinkOrder = 2)]
     public Task<IActionResult> History(int page = 1) => RenderRequests(showForm: false, showHistory: true, page);
 
-    private async Task<IActionResult> RenderRequests(bool showForm, bool showHistory, int page = 1)
+    private async Task<IActionResult> RenderRequests(bool showForm, bool showHistory, int page = 1,
+        string? ecosystem = null, string? source = null, string? package = null, string? project = null)
     {
         if (page is < 1 or > 10000) return BadRequest();
         var userId = users.GetUserId(User);
@@ -47,6 +53,43 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
         var query = db.DependencyApplications.AsNoTracking().Where(a => a.RequestedByUserId == userId);
         var total = showHistory ? await query.CountAsync() : 0;
         page = Math.Min(page, Math.Max(1, (total + 49) / 50));
+
+        var nugetSources = configuration.GetSection("SupplyChain:NuGetSources").Get<string[]>()?.ToList() ?? [];
+        var npmSources = configuration.GetSection("SupplyChain:NpmSources").Get<string[]>()?.ToList() ?? [];
+        var prefillEcosystem = string.Equals(ecosystem, "npm", StringComparison.OrdinalIgnoreCase)
+            ? "npm"
+            : "nuget";
+        string? prefillSource = null;
+        if (!string.IsNullOrWhiteSpace(source))
+        {
+            var trimmedSource = source.Trim();
+            var matchedNuget = MatchConfiguredSource(nugetSources, trimmedSource);
+            var matchedNpm = MatchConfiguredSource(npmSources, trimmedSource);
+            if (prefillEcosystem == "npm" && matchedNpm != null)
+            {
+                prefillSource = matchedNpm;
+            }
+            else if (prefillEcosystem == "nuget" && matchedNuget != null)
+            {
+                prefillSource = matchedNuget;
+            }
+            else if (string.IsNullOrWhiteSpace(ecosystem) && matchedNpm != null)
+            {
+                prefillEcosystem = "npm";
+                prefillSource = matchedNpm;
+            }
+            else if (string.IsNullOrWhiteSpace(ecosystem) && matchedNuget != null)
+            {
+                prefillEcosystem = "nuget";
+                prefillSource = matchedNuget;
+            }
+        }
+
+        var prefillPackages = string.IsNullOrWhiteSpace(package) ? null : package.Trim();
+        if (prefillPackages is { Length: > 2000 }) prefillPackages = prefillPackages[..2000];
+        var prefillProject = string.IsNullOrWhiteSpace(project) ? null : project.Trim();
+        if (prefillProject is { Length: > 200 }) prefillProject = prefillProject[..200];
+
         var model = new MyRequestsViewModel
         {
             ShowCreateForm = showForm,
@@ -57,8 +100,15 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
             Applications = showHistory ? await query
                 .OrderByDescending(a => a.CreatedAtUtc).ThenByDescending(a => a.Id)
                 .Skip((page - 1) * 50).Take(50).ToListAsync() : [],
-            NuGetSources = configuration.GetSection("SupplyChain:NuGetSources").Get<string[]>()?.ToList() ?? [],
-            NpmSources = configuration.GetSection("SupplyChain:NpmSources").Get<string[]>()?.ToList() ?? []
+            NuGetSources = nugetSources,
+            NpmSources = npmSources,
+            PrefillEcosystem = prefillEcosystem,
+            PrefillSource = prefillSource,
+            PrefillDirectPackages = prefillPackages,
+            PrefillProject = prefillProject,
+            Approvers = await approverDirectory.GetApproversAsync(),
+            CanReview = (await authorization.AuthorizeAsync(User, AppPermissionNames.CanReviewDependencyRequests)).Succeeded,
+            CurrentUserId = userId
         };
         model.ApplicationsWithRemovedSources = model.Applications
             .Where(application => !AllowedPackageSources.Contains(configuration,
@@ -72,12 +122,12 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
                 .Where(p => visibleIds.Contains(p.ApplicationId))
                 .ToListAsync();
             var blocks = await db.Rules.Where(r => r.Kind == RuleKind.Block).AsNoTracking().Where(b => b.Status == RuleStatus.Approved).ToListAsync();
-            foreach (var package in reportPackages)
+            foreach (var packageEntry in reportPackages)
             {
-                var artifact = package.PackageVersion;
+                var artifact = packageEntry.PackageVersion;
                 var block = BlockRulePolicy.Match(blocks, artifact.Ecosystem, artifact.Name, artifact.Version);
-                if (block != null && !model.CurrentBlockReasons.ContainsKey(package.ApplicationId))
-                    model.CurrentBlockReasons[package.ApplicationId] =
+                if (block != null && !model.CurrentBlockReasons.ContainsKey(packageEntry.ApplicationId))
+                    model.CurrentBlockReasons[packageEntry.ApplicationId] =
                         BlockRulePolicy.Explain(block, artifact.Name, artifact.Version,
                             artifact.Name);
             }
@@ -132,23 +182,60 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
             .Include(a => a.Packages).ThenInclude(p => p.PackageVersion)
             .FirstOrDefaultAsync(a => a.Id == id);
         if (application == null) return NotFound();
-        var isOwner = application.RequestedByUserId == users.GetUserId(User);
+        var currentUserId = users.GetUserId(User);
+        var isOwner = application.RequestedByUserId == currentUserId;
         var canReadAll = (await authorization.AuthorizeAsync(User, AppPermissionNames.CanReadSupplyChain)).Succeeded;
         if (!isOwner && !canReadAll) return Forbid();
-        var model = new RequestDetailsViewModel { Application = application };
-        if (isOwner && application.Status == ApplicationStatus.Failed &&
-            (await authorization.AuthorizeAsync(User, AppPermissionNames.CanSubmitDependencyRequests)).Succeeded)
+        var canReview = (await authorization.AuthorizeAsync(User, AppPermissionNames.CanReviewDependencyRequests)).Succeeded;
+        var reviewPath = Url.Action(nameof(DependencyReviewsController.Index), "DependencyReviews",
+            new { filter = "pending" }) ?? "/DependencyReviews/Index?filter=pending";
+        var reviewAnchorUrl = $"{Request.Scheme}://{Request.Host}{reviewPath}#request-{application.Id}";
+
+        string? decidedByDisplayName = null;
+        if (!string.IsNullOrWhiteSpace(application.DecidedByUserId))
         {
-            try
+            var decider = await db.Users.AsNoTracking()
+                .Where(u => u.Id == application.DecidedByUserId)
+                .Select(u => new { u.DisplayName, u.UserName, u.Email })
+                .FirstOrDefaultAsync();
+            if (decider != null)
             {
-                var direct = JsonSerializer.Deserialize<List<DirectPackage>>(application.DirectPackages);
-                if (direct is { Count: > 0 })
-                    model.RetryDirectPackages = string.Join('\n', direct.Select(p => $"{p.Name}@{p.Version}"));
+                decidedByDisplayName = !string.IsNullOrWhiteSpace(decider.DisplayName)
+                    ? decider.DisplayName
+                    : decider.UserName ?? decider.Email;
             }
-            catch (JsonException)
+        }
+
+        List<string> directSummaries = [];
+        try
+        {
+            var parsedDirect = JsonSerializer.Deserialize<List<DirectPackage>>(application.DirectPackages);
+            if (parsedDirect is { Count: > 0 })
             {
-                // Older or incomplete failed requests remain readable without offering an invalid retry.
+                directSummaries = parsedDirect.Select(p => $"{p.Name}@{p.Version}").ToList();
             }
+        }
+        catch (JsonException)
+        {
+            // Older or malformed direct-package payloads stay readable without breaking the details page.
+        }
+
+        var model = new RequestDetailsViewModel
+        {
+            Application = application,
+            Approvers = await approverDirectory.GetApproversAsync(),
+            CanReview = canReview,
+            IsOwner = isOwner,
+            CurrentUserId = currentUserId,
+            DecidedByDisplayName = decidedByDisplayName,
+            DirectPackageSummaries = directSummaries,
+            ReviewAnchorUrl = reviewAnchorUrl
+        };
+        if (isOwner && application.Status == ApplicationStatus.Failed &&
+            (await authorization.AuthorizeAsync(User, AppPermissionNames.CanSubmitDependencyRequests)).Succeeded &&
+            directSummaries.Count > 0)
+        {
+            model.RetryDirectPackages = string.Join('\n', directSummaries);
         }
         var packages = application.Packages.ToList();
         var dependencies = packages.Select(package => new Dependency
@@ -200,6 +287,32 @@ public class DependencyRequestsController(TemplateDbContext db, UserManager<User
         application.DecidedAtUtc = DateTime.UtcNow;
         await db.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
+    }
+
+    private static string? MatchConfiguredSource(List<string> configuredSources, string candidate)
+    {
+        var exact = configuredSources.FirstOrDefault(s =>
+            string.Equals(s, candidate, StringComparison.OrdinalIgnoreCase));
+        if (exact != null) return exact;
+        try
+        {
+            var normalizedCandidate = TrustPattern.NormalizeSource(candidate);
+            return configuredSources.FirstOrDefault(s =>
+            {
+                try
+                {
+                    return string.Equals(TrustPattern.NormalizeSource(s), normalizedCandidate, StringComparison.OrdinalIgnoreCase);
+                }
+                catch (ArgumentException)
+                {
+                    return false;
+                }
+            });
+        }
+        catch (ArgumentException)
+        {
+            return null;
+        }
     }
 
     private static List<DirectPackage>? ParseDirectPackages(string input, string ecosystem)

@@ -34,13 +34,13 @@ public class ManageController(
     //
     // GET: /Manage/Index
     [RenderInNavBar(
-        NavGroupName = "Settings",
-        NavGroupOrder = 9998,
+        NavGroupName = "Account & Admin",
+        NavGroupOrder = 9999,
         CascadedLinksGroupName = "Personal",
         CascadedLinksIcon = "user-circle",
         CascadedLinksOrder = 1,
         LinkText = "Profile Settings",
-        LinkOrder = 3)]
+        LinkOrder = 2)]
     [HttpGet]
     public async Task<IActionResult> Index(ManageMessageId? message = null)
     {

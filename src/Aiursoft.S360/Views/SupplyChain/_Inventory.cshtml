@@ -33,7 +33,7 @@
                 @if (Model.Scope == "baseline" && selectedProject.Versions.Any(v => v.State?.BlockingAdvisories.Count > 0))
                 { <span class="s360-state s360-state-danger" data-state="production-affected"><i data-lucide="triangle-alert" aria-hidden="true"></i>@Localizer["Production baseline reports an affected version"]</span> }
                 @if (selectedProject.Versions.Any(v => v.State?.AcceptedVulnerabilities.Count > 0))
-            { <p class="text-warning-emphasis">@Localizer["Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details."]</p> }
+                { <span class="s360-state s360-state-warning" data-state="risk-accepted"><i data-lucide="shield-alert" aria-hidden="true"></i>@Localizer["Known vulnerability risks accepted by policy"]</span> }
             @if (selectedProject.Versions.Any(v => v.State?.Authorized == false))
                 { <span class="s360-state s360-state-warning" data-state="unauthorized"><i data-lucide="file-x" aria-hidden="true"></i>@Localizer["Reported use is outside current authorization"]</span> }
                 @if (selectedProject.Incomplete || selectedProject.Reports.Count == 0 || selectedProject.Versions.Any(v => v.State?.NeedsVerification == true))

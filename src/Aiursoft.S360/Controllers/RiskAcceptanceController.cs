@@ -20,7 +20,7 @@ public class RiskAcceptanceController(TemplateDbContext db, UserManager<User> us
     IConfiguration configuration) : Controller
 {
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
-        CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
+        CascadedLinksGroupName = "Packages and rules", CascadedLinksIcon = "package-check", CascadedLinksOrder = 2,
         LinkText = "Risk acceptance", LinkOrder = 3)]
     public async Task<IActionResult> Index(string filter = "active", int page = 1, int? vulnerabilityId = null)
     {

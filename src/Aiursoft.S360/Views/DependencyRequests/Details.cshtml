@@ -4,6 +4,44 @@
 @model Aiursoft.S360.Models.SupplyChainViewModels.RequestDetailsViewModel
 @* ReSharper disable once Razor.SectionNotResolved *@
 @section styles { <link rel="stylesheet" href="~/styles/s360.css" /> }
+@{
+    var status = Model.Application.Status;
+    var step2State = status switch
+    {
+        ApplicationStatus.Resolving => "active",
+        ApplicationStatus.Failed => "danger",
+        ApplicationStatus.Withdrawn => "muted",
+        _ => "done"
+    };
+    var step3State = status switch
+    {
+        ApplicationStatus.ReadyForReview => "active",
+        ApplicationStatus.Approved or ApplicationStatus.Rejected or ApplicationStatus.Revoked => "done",
+        _ => "muted"
+    };
+    var step4State = status switch
+    {
+        ApplicationStatus.Approved => "done",
+        ApplicationStatus.Rejected or ApplicationStatus.Revoked => "danger",
+        ApplicationStatus.Withdrawn => "muted",
+        _ => "pending"
+    };
+    var step4Label = status switch
+    {
+        ApplicationStatus.Approved => Localizer["Approved"].Value,
+        ApplicationStatus.Rejected => Localizer["Rejected"].Value,
+        ApplicationStatus.Revoked => Localizer["Approval withdrawn"].Value,
+        ApplicationStatus.Withdrawn => Localizer["Withdrawn"].Value,
+        _ => Localizer["Decision"].Value
+    };
+    var packageSummary = Model.DirectPackageSummaries.Count > 0
+        ? string.Join(", ", Model.DirectPackageSummaries)
+        : $"{Model.Application.Ecosystem} ({Model.Packages.Count})";
+    var projectSegment = string.IsNullOrWhiteSpace(Model.Application.Project)
+        ? string.Empty
+        : $" ({Model.Application.Project})";
+    var nudgePayload = $"[S360] Please review dependency request #{Model.Application.Id}{projectSegment}\nPackages: {packageSummary}\nReview link: {Model.ReviewAnchorUrl}";
+}
 
 <div class="s360-workspace">
 <div class="s360-workspace-head">
@@ -14,10 +52,56 @@
 </div>
 <div class="s360-workspace-layout">
 <div class="s360-workspace-main">
+
+<ol class="s360-stepper mb-4" aria-label="@Localizer["Request progress"]">
+    <li class="s360-step is-done">
+        <span class="s360-step-dot" aria-hidden="true"><i data-lucide="check"></i></span>
+        <span class="s360-step-label">@Localizer["Submitted"]</span>
+    </li>
+    <li class="s360-step is-@step2State">
+        <span class="s360-step-dot" aria-hidden="true">
+            @if (step2State == "done") { <i data-lucide="check"></i> }
+            else if (step2State == "danger") { <i data-lucide="x"></i> }
+            else { <span>2</span> }
+        </span>
+        <span class="s360-step-label">@Localizer["Resolving & checking"]</span>
+    </li>
+    <li class="s360-step is-@step3State">
+        <span class="s360-step-dot" aria-hidden="true">
+            @if (step3State == "done") { <i data-lucide="check"></i> }
+            else { <span>3</span> }
+        </span>
+        <span class="s360-step-label">@Localizer["Waiting for approval"]</span>
+    </li>
+    <li class="s360-step is-@step4State">
+        <span class="s360-step-dot" aria-hidden="true">
+            @if (step4State == "done") { <i data-lucide="check"></i> }
+            else if (step4State == "danger") { <i data-lucide="x"></i> }
+            else { <span>4</span> }
+        </span>
+        <span class="s360-step-label">@step4Label</span>
+    </li>
+</ol>
+
 @if (!string.IsNullOrWhiteSpace(Model.Application.DecisionReason))
 {
     <div class="card mb-4">
-        <div class="card-header"><h2 class="h5 mb-0">@Localizer["Review decision"]</h2></div>
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h2 class="h5 mb-0">@Localizer["Review decision"]</h2>
+            @if (!string.IsNullOrWhiteSpace(Model.DecidedByDisplayName) || Model.Application.DecidedAtUtc != null)
+            {
+                <small class="text-muted">
+                    @if (!string.IsNullOrWhiteSpace(Model.DecidedByDisplayName))
+                    {
+                        <span>@Model.DecidedByDisplayName</span>
+                    }
+                    @if (Model.Application.DecidedAtUtc != null)
+                    {
+                        <span> · <span data-utc-time="@Model.Application.DecidedAtUtc.Value.ToHtmlDateTime()"></span></span>
+                    }
+                </small>
+            }
+        </div>
         <div class="card-body"><p class="mb-0">@Model.Application.DecisionReason</p></div>
     </div>
 }
@@ -45,6 +129,89 @@
 {
     <div class="alert alert-warning" role="alert"><div class="alert-message">@Localizer["This report is ready for administrator review. It is not an approval."]</div></div>
 }
+@if (Model.Application.Status is ApplicationStatus.ReadyForReview or ApplicationStatus.Resolving)
+{
+    <section class="card mb-4 s360-approver-directory" data-request-nudge aria-label="@Localizer["Approvers"]">
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div>
+                <h2 class="h5 mb-0">
+                    @(Model.Application.Status == ApplicationStatus.ReadyForReview
+                        ? Localizer["Next step: contact an approver"]
+                        : Localizer["Who will review this request"])
+                </h2>
+            </div>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                @if (Model.CanReview && Model.Application.Status == ApplicationStatus.ReadyForReview && !Model.IsOwner)
+                {
+                    <a class="btn btn-primary btn-sm"
+                       asp-controller="DependencyReviews"
+                       asp-action="Index"
+                       asp-route-filter="pending"
+                       asp-fragment="request-@Model.Application.Id">
+                        <i data-lucide="clipboard-check"></i> @Localizer["Review this request"]
+                    </a>
+                }
+                <button type="button" class="btn btn-outline-primary btn-sm" data-copy-nudge>
+                    <i data-lucide="copy"></i> @Localizer["Copy approval link & message"]
+                </button>
+            </div>
+        </div>
+        <div class="card-body">
+            @if (Model.CanReview && Model.IsOwner && Model.Application.Status == ApplicationStatus.ReadyForReview)
+            {
+                <p class="small text-muted mb-3">@Localizer["Applicants cannot approve their own requests. Ask another reviewer below to review this request."]</p>
+            }
+            @if (Model.Approvers.Count == 0)
+            {
+                <p class="text-muted mb-0">@Localizer["No reviewers with approval permission are currently configured. Contact your system administrator."]</p>
+            }
+            else
+            {
+                <div class="s360-approver-grid">
+                    @foreach (var approver in Model.Approvers)
+                    {
+                        var isSelf = string.Equals(approver.UserId, Model.CurrentUserId, StringComparison.Ordinal);
+                        <div class="s360-approver-card">
+                            @if (!string.IsNullOrWhiteSpace(approver.AvatarUrl))
+                            {
+                                <img src="@approver.AvatarUrl" alt="@approver.DisplayName" class="rounded-circle s360-approver-avatar" width="40" height="40" />
+                            }
+                            else
+                            {
+                                <span class="s360-approver-avatar s360-approver-avatar-fallback" aria-hidden="true"><i data-lucide="user-check"></i></span>
+                            }
+                            <div class="s360-approver-meta">
+                                <div class="d-flex align-items-center flex-wrap gap-1">
+                                    <strong>@approver.DisplayName</strong>
+                                    @foreach (var role in approver.RoleNames)
+                                    {
+                                        <span class="badge bg-secondary-subtle text-secondary-emphasis">@role</span>
+                                    }
+                                    @if (isSelf && Model.IsOwner)
+                                    {
+                                        <span class="badge bg-warning-subtle text-warning-emphasis">@Localizer["You — cannot self-approve"]</span>
+                                    }
+                                </div>
+                                @if (!string.IsNullOrWhiteSpace(approver.Email))
+                                {
+                                    <a class="small text-break" href="mailto:@approver.Email">@approver.Email</a>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            }
+            <div class="mt-2">
+                <span class="small text-success" role="status" aria-live="polite" data-nudge-status></span>
+            </div>
+            <textarea class="form-control form-control-sm mt-2 font-monospace" rows="3" readonly hidden data-nudge-message>@nudgePayload</textarea>
+            <div hidden data-nudge-localization>
+                <span data-key="copied">@Localizer["Approval link and message copied."]</span>
+                <span data-key="copyFailed">@Localizer["Select and copy the message below."]</span>
+            </div>
+        </div>
+    </section>
+}
 @if (!string.IsNullOrEmpty(Model.Application.Failure) && Model.Application.Status != ApplicationStatus.Failed)
 {
     <div class="alert alert-secondary" role="alert"><div class="alert-message">@Model.Application.Failure</div></div>
@@ -58,7 +225,7 @@
         @Localizer["New review items"]: @Model.Packages.Count(p => p.SourcePermitted && !p.AlreadyAuthorized) ·
         @Localizer["Source not permitted"]: @Model.Packages.Count(p => !p.SourcePermitted) ·
         @Localizer["Authorized but not check-ready"]: @Model.Packages.Count(p => p.AlreadyAuthorized && !p.CheckReady)</p>
-    <div class="table-responsive"><table class="table table-hover"><thead><tr>
+    <div class="table-responsive mb-3"><table class="table table-hover"><thead><tr>
         <th>@Localizer["Package"]</th><th>@Localizer["Version"]</th>
         <th>@Localizer["Introduction path"]</th><th>@Localizer["Current authorization"]</th>
     </tr></thead><tbody>
@@ -79,11 +246,11 @@
 
 @if (Model.Application.Status is ApplicationStatus.Resolving or ApplicationStatus.ReadyForReview)
 {
-    <form asp-action="Withdraw" method="post"><input type="hidden" name="id" value="@Model.Application.Id" />
+    <form asp-action="Withdraw" method="post" class="mb-4"><input type="hidden" name="id" value="@Model.Application.Id" />
         <button class="btn btn-outline-danger">@Localizer["Withdraw request"]</button></form>
 }
-</div>
-@await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+
+@await Html.PartialAsync("_WorkspaceHelp", new ConceptGuideViewModel(
     Localizer["Reading this report"].Value,
     "git-branch",
     [
@@ -97,3 +264,8 @@
     Localizer["A completed resolution report is evidence for a decision, not proof that a later build used the same graph."].Value))
 </div>
 </div>
+</div>
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section scripts {
+    <script src="~/js/request-nudge.js" asp-append-version="true" defer></script>
+}

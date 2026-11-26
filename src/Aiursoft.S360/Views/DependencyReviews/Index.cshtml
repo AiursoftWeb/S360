@@ -32,7 +32,7 @@
         var sourceRemoved = Model.ApplicationsWithRemovedSources.Contains(application.Id);
         var checksIncomplete = packages.Count == 0 || packages.Any(p => !p.SourcePermitted ||
             !p.AuditCurrent || p.HasBlockingVulnerability || (p.AlreadyAuthorized && !p.CheckReady));
-        <section class="card mb-4">
+        <section id="request-@application.Id" class="card mb-4 s360-review-card">
             <div class="card-header d-flex justify-content-between align-items-start gap-2 flex-wrap">
                 <div>
                     <h2 class="h4 mb-1 text-break">@(application.Project ?? @Localizer["Dependency request"].Value)</h2>

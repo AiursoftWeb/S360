@@ -86,8 +86,7 @@
                 <div class="alert alert-info" role="alert"><div class="alert-message">@Localizer["No block rules have been recorded for this ecosystem."]</div></div>
             }
             @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
-        </main>
-        @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
+            @await Html.PartialAsync("_WorkspaceHelp", new ConceptGuideViewModel(
             Localizer["How absolute blocking works"].Value,
             "shield-ban",
             [
@@ -96,5 +95,6 @@
                 new ConceptTerm(Localizer["Recorded impact"].Value, Localizer["Existing applications and CI records remain historical facts. New checks use the current blocklist and refuse matching packages."].Value)
             ],
             Localizer["Changing or disabling a block requires a reason and keeps its history."].Value))
+        </main>
     </div>
 </div>

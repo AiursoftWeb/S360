@@ -68,7 +68,7 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
     {
         if (catalogView is not ("rules" or "artifacts") || tab is not ("dependencies" or "projects" or "rules") ||
             ecosystem is not ("all" or "nuget" or "npm") || scope is not ("baseline" or "review" or "history") ||
-            filter is not ("all" or "issues" or "pending" or "compliant" or "cve") ||
+            filter is not ("all" or "issues" or "pending" or "compliant" or "cve" or "risk-accepted") ||
             page is < 1 or > 10000 || artifactPage is < 1 or > 10000 || query?.Length > 214 || project?.Length > 750) return BadRequest();
         if (tab != "rules" && lookupName == null && lookupVersion == null && lookupSource == null)
         {

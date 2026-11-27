@@ -27,5 +27,9 @@
     <None Include="../src/Aiursoft.S360/wwwroot/styles/uploader.css" TargetPath="wwwroot/styles/uploader.css" CopyToOutputDirectory="PreserveNewest" />
     <None Include="../src/Aiursoft.S360/wwwroot/styles/s360.css" TargetPath="wwwroot/styles/s360.css" CopyToOutputDirectory="PreserveNewest" />
     <None Include="../src/Aiursoft.S360/wwwroot/js/request-nudge.js" TargetPath="wwwroot/js/request-nudge.js" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../src/Aiursoft.S360/wwwroot/js/project-diagnosis.js" TargetPath="wwwroot/js/project-diagnosis.js" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../src/Aiursoft.S360/wwwroot/js/project-badge.js" TargetPath="wwwroot/js/project-badge.js" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../src/Aiursoft.S360/wwwroot/js/dependency-graph.js" TargetPath="wwwroot/js/dependency-graph.js" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../src/Aiursoft.S360/wwwroot/js/solution-graph.js" TargetPath="wwwroot/js/solution-graph.js" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

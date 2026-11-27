@@ -13,6 +13,11 @@
         <div class="d-flex gap-2 flex-wrap">
             @if (Model.CanReadSupplyChain)
             {
+                var nonCompliantCount = Model.Summary?.ProjectStatuses.GetValueOrDefault(InventoryStatus.NonCompliant) ?? 0;
+                if (nonCompliantCount > 0)
+                {
+                    <a class="btn btn-danger" asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-filter="issues">@string.Format(Localizer["Non-compliant projects ({0})"].Value, nonCompliantCount)</a>
+                }
                 <a class="btn btn-outline-primary" asp-controller="SupplyChain" asp-action="Index">@Localizer["Explore compliance"]</a>
             }
             @if (Model.CanSubmitRequests)
@@ -75,7 +80,7 @@
         <p class="small text-muted">@Localizer["Compliant means current checks passed for the reported ecosystems. Not verified includes incomplete reports and missing or stale evidence."]</p>
         <div class="row g-3 mb-3">
             <div class="col-12 col-xl-6"><section class="card h-100">
-                <div class="card-header d-flex justify-content-between align-items-center gap-2"><h2 class="h5 card-title mb-0">@Localizer["Priority packages"]</h2><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies">@Localizer["View all"]</a></div>
+                <div class="card-header d-flex justify-content-between align-items-center gap-2"><h2 class="h5 card-title mb-0">@Localizer["Priority packages"]</h2><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="dependencies" asp-route-filter="issues">@Localizer["View all"]</a></div>
                 <div class="card-body">
                     <p class="small text-muted">@Localizer["Known vulnerabilities first, then other audit issues. Open a package to see who uses it and the recorded reasons."]</p>
                     @if (summary.PriorityPackages.Count == 0) { <p class="text-muted">@Localizer["No package issues found in the available baseline data."]</p> }
@@ -94,7 +99,7 @@
                 </div>
             </section></div>
             <div class="col-12 col-xl-6"><section class="card h-100">
-                <div class="card-header d-flex justify-content-between align-items-center gap-2"><h2 class="h5 card-title mb-0">@Localizer["Projects needing attention"]</h2><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects">@Localizer["View all"]</a></div>
+                <div class="card-header d-flex justify-content-between align-items-center gap-2"><h2 class="h5 card-title mb-0">@Localizer["Projects needing attention"]</h2><a asp-controller="SupplyChain" asp-action="Index" asp-route-tab="projects" asp-route-filter="issues">@Localizer["View all"]</a></div>
                 <div class="card-body">
                     <p class="small text-muted">@Localizer["Open a project to trace the dependency path and inspect the exact versions."]</p>
                     @if (summary.PriorityProjects.Count == 0) { <p class="text-muted">@Localizer["No project issues found in the available baseline data."]</p> }

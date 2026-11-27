@@ -17,6 +17,8 @@ public class PackageVersionState
     public List<Vulnerability> BlockingAdvisories { get; init; } = [];
     public List<AcceptedVulnerability> AcceptedVulnerabilities { get; init; } = [];
     public List<PackageRule> Rules { get; init; } = [];
+    public PackageRule? MatchedBlockRule { get; init; }
+    public bool Blocked => MatchedBlockRule != null;
     public DateTime EvaluatedAtUtc { get; init; }
     public DateTime? VulnerabilityDataAtUtc { get; init; }
     public bool Authorized => SourcePermitted && Authorization.Trusted;

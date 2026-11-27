@@ -41,8 +41,8 @@
                     </tbody></table></div>
                 }
             </div>
-            <div class="mt-4">
-            @await Html.PartialAsync("_WorkspaceHelp", new ConceptGuideViewModel(
+        </main>
+        @await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
             Localizer["Read this preview carefully"].Value,
             "scan-search",
             [
@@ -50,7 +50,5 @@
                 new ConceptTerm(Localizer["Pattern match"].Value, Localizer["A name and version satisfying the proposed rule at this source. It is not proof of a clean vulnerability audit or approved dependency graph."].Value)
             ],
             Localizer["Review the source and expiry before creating a rule. Absolute blocks still take priority."].Value))
-            </div>
-        </main>
     </div>
 </div>

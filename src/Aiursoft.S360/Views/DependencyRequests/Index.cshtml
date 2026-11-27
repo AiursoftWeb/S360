@@ -133,7 +133,8 @@ else
 </div>
 }
 
-@await Html.PartialAsync("_WorkspaceHelp", new ConceptGuideViewModel(
+</div>
+@await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
     Localizer["Understand your request"].Value,
     "package-search",
     [
@@ -145,7 +146,6 @@ else
         new ConceptTerm(Localizer["Exact version"].Value, Localizer["A single published version such as 10.0.12. Do not request 10.*, latest, or a version range in this form."].Value)
     ],
     Localizer["Start with the exact packages your project needs. Check the resulting report before relying on an approval."].Value))
-</div>
 </div>
 </div>
 @* ReSharper disable once Razor.SectionNotResolved *@

@@ -184,7 +184,8 @@ public class NavigationAndApproverUxTests : TestBase
         StringAssert.Contains(html, "value=\"AlertCenter\"");
         Assert.IsTrue(Regex.IsMatch(html, @"<option\s+value=""npm""\s+selected=""selected""", RegexOptions.IgnoreCase),
             "Expected npm ecosystem option to be pre-selected.");
-        StringAssert.Contains(html, "<details class=\"s360-help-disclosure mb-3\">");
+        StringAssert.Contains(html, "<aside class=\"s360-concept-rail\"");
+        StringAssert.Contains(html, "Understand your request");
     }
 
     [TestMethod]

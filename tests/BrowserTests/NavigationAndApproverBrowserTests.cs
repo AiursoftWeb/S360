@@ -10,7 +10,7 @@ namespace Aiursoft.S360.Tests.BrowserTests;
 public class NavigationAndApproverBrowserTests : BrowserTestBase
 {
     [TestMethod]
-    public async Task SidebarNavigationHelpDisclosureAndCopyNudgeWorkInRealBrowser()
+    public async Task SidebarNavigationResponsiveConceptRailAndCopyNudgeWorkInRealBrowser()
     {
         var pageErrors = new List<string>();
         Page.PageError += (_, message) => pageErrors.Add(message);
@@ -64,43 +64,63 @@ public class NavigationAndApproverBrowserTests : BrowserTestBase
             await Expect(Page.Locator("#requests a[href='/DependencyReviews/Index']")).ToContainTextAsync("Approvals (");
             await CaptureIfRequestedAsync("01-dashboard-sidebar-light.png");
 
-            // Open Create page with prefill query and verify approvers + collapsed help disclosure.
+            // Open Create page at 1440px (>=1400px): verify prefill, approvers, and right-side concept rail.
             await NavigateAsync("/DependencyRequests/Create?ecosystem=npm&package=dompurify@3.2.8&project=AlertCenter");
             await Expect(Page.Locator(".s360-approver-directory")).ToContainTextAsync("admin@default.com");
             await Expect(Page.Locator("input[name='project']")).ToHaveValueAsync("AlertCenter");
             await Expect(Page.Locator("textarea[name='directPackages']")).ToHaveValueAsync("dompurify@3.2.8");
 
-            var helpDisclosure = Page.Locator("details.s360-help-disclosure");
-            await Expect(helpDisclosure).ToBeVisibleAsync();
-            Assert.IsNull(await helpDisclosure.GetAttributeAsync("open"));
-            await CaptureIfRequestedAsync("02-create-request-light.png");
-            await helpDisclosure.Locator("summary").ClickAsync();
-            await Expect(helpDisclosure).ToHaveAttributeAsync("open", "");
+            var mainBoxWide = await Page.Locator(".s360-workspace-main").BoundingBoxAsync();
+            var railBoxWide = await Page.Locator(".s360-workspace-layout > .s360-concept-rail").BoundingBoxAsync();
+            Assert.IsNotNull(mainBoxWide);
+            Assert.IsNotNull(railBoxWide);
+            Assert.IsTrue(railBoxWide.X >= mainBoxWide.X + mainBoxWide.Width - 1,
+                $"Expected concept rail to sit to the right of main workspace at 1440px (main right={mainBoxWide.X + mainBoxWide.Width}, rail x={railBoxWide.X}).");
+            await CaptureIfRequestedAsync("02-create-request-wide-light.png");
 
-            // Open Details page, verify 4-step stepper, copy nudge button, and direct Review CTA.
+            // Open Details page at 1440px: verify 4-step stepper, right-side rail, copy nudge, and Review CTA.
             await NavigateAsync($"/DependencyRequests/Details/{requestId}");
             await Expect(Page.Locator(".s360-stepper .s360-step")).ToHaveCountAsync(4);
             await Expect(Page.Locator(".s360-approver-directory")).ToContainTextAsync("admin@default.com");
+            await Expect(Page.Locator(".s360-workspace-layout > .s360-concept-rail")).ToBeVisibleAsync();
 
             await Page.Locator("[data-copy-nudge]").ClickAsync();
             await Expect(Page.Locator("[data-nudge-status]")).Not.ToBeEmptyAsync();
-            await CaptureIfRequestedAsync("03-request-details-light.png");
+            await CaptureIfRequestedAsync("03-request-details-wide-light.png");
 
+            // Narrow to 1200px (<1400px): verify concept rail drops below main workspace (expanded, not above).
+            await Page.SetViewportSizeAsync(1200, 900);
+            var mainBoxMed = await Page.Locator(".s360-workspace-main").BoundingBoxAsync();
+            var railBoxMed = await Page.Locator(".s360-workspace-layout > .s360-concept-rail").BoundingBoxAsync();
+            Assert.IsNotNull(mainBoxMed);
+            Assert.IsNotNull(railBoxMed);
+            Assert.IsTrue(railBoxMed.Y >= mainBoxMed.Y + mainBoxMed.Height - 1,
+                $"Expected concept rail below main workspace at 1200px (main bottom={mainBoxMed.Y + mainBoxMed.Height}, rail y={railBoxMed.Y}).");
+            await CaptureIfRequestedAsync("04-request-details-medium-light.png");
+
+            // Return to 1440px and test Review CTA -> #request-{id} anchor.
+            await Page.SetViewportSizeAsync(1440, 900);
             var reviewCta = Page.Locator("a.btn-primary", new() { HasTextString = "Review this request" });
             await Expect(reviewCta).ToBeVisibleAsync();
             await reviewCta.ClickAsync();
             await Expect(Page).ToHaveURLAsync(new Regex($"/DependencyReviews.*#request-{requestId}$", RegexOptions.IgnoreCase));
             await Expect(Page.Locator($"#request-{requestId}")).ToBeVisibleAsync();
-            await CaptureIfRequestedAsync("04-reviews-anchor-light.png");
+            await CaptureIfRequestedAsync("05-reviews-anchor-light.png");
 
-            // Verify dark theme rendering on Request Details (desktop and narrow viewport).
+            // Verify dark theme rendering on Request Details (wide 1440px right-rail + 430px mobile bottom-rail).
             await Page.EvaluateAsync("() => fetch('/api/switch-theme', { method: 'POST', credentials: 'same-origin' })");
             await NavigateAsync($"/DependencyRequests/Details/{requestId}");
             await Expect(Page.Locator(".s360-stepper .s360-step")).ToHaveCountAsync(4);
-            await CaptureIfRequestedAsync("05-request-details-dark.png");
+            await CaptureIfRequestedAsync("06-request-details-wide-dark.png");
 
             await Page.SetViewportSizeAsync(430, 900);
-            await CaptureIfRequestedAsync("06-request-details-mobile-dark.png");
+            var mainBoxMob = await Page.Locator(".s360-workspace-main").BoundingBoxAsync();
+            var railBoxMob = await Page.Locator(".s360-workspace-layout > .s360-concept-rail").BoundingBoxAsync();
+            Assert.IsNotNull(mainBoxMob);
+            Assert.IsNotNull(railBoxMob);
+            Assert.IsTrue(railBoxMob.Y >= mainBoxMob.Y + mainBoxMob.Height - 1,
+                $"Expected concept rail below main workspace at 430px (main bottom={mainBoxMob.Y + mainBoxMob.Height}, rail y={railBoxMob.Y}).");
+            await CaptureIfRequestedAsync("07-request-details-mobile-dark.png");
 
             Assert.AreEqual(0, pageErrors.Count, "Unexpected page errors: " + string.Join("; ", pageErrors));
         }

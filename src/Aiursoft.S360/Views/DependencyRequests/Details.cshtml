@@ -250,7 +250,8 @@
         <button class="btn btn-outline-danger">@Localizer["Withdraw request"]</button></form>
 }
 
-@await Html.PartialAsync("_WorkspaceHelp", new ConceptGuideViewModel(
+</div>
+@await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
     Localizer["Reading this report"].Value,
     "git-branch",
     [
@@ -262,7 +263,6 @@
         new ConceptTerm(Localizer["Approved versus checked"].Value, Localizer["Approval records a decision about this report. A future build still needs its own check of the packages it actually restored or installed."].Value)
     ],
     Localizer["A completed resolution report is evidence for a decision, not proof that a later build used the same graph."].Value))
-</div>
 </div>
 </div>
 @* ReSharper disable once Razor.SectionNotResolved *@

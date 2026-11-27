@@ -306,7 +306,7 @@
 .s360-workspace-head p:last-child { margin-bottom: 0; }
 .s360-workspace-head a { color: #79e6d0; font-weight: 750; }
 .s360-workspace-head code { color: #bcf6e9; }
-.s360-workspace-layout { display: grid; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 1.25rem; }
+.s360-workspace-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, 285px); align-items: start; gap: 1.25rem; }
 .s360-workspace-main { min-width: 0; }
 .s360-concept-rail { position: sticky; top: 1.25rem; min-width: 0; }
 .s360-concept-card { overflow: hidden; padding: 1.4rem; border: 1px solid #d5e8e9; border-radius: 1rem; background: linear-gradient(155deg, #f5fcfb, #fff 60%); box-shadow: 0 12px 28px rgba(20, 71, 82, .07); }
@@ -348,6 +348,11 @@
 .s360-workspace details { padding: .8rem 1rem; border: 1px solid var(--s360-line); border-radius: .7rem; background: #f9fcfd; }
 .s360-workspace details summary { cursor: pointer; color: #176b83; font-weight: 750; }
 
+@media (max-width: 1399.98px) {
+    .s360-workspace-layout { grid-template-columns: minmax(0, 1fr); }
+    .s360-workspace-layout > .s360-concept-rail { position: static; grid-row: auto; }
+    .s360-workspace-layout > .s360-concept-rail .s360-concept-card dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); column-gap: 1.5rem; }
+}
 @media (max-width: 1100px) {
     .s360-home-learning-layout { grid-template-columns: 1fr; }
     .s360-home-learning-layout .s360-concept-card dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.25rem; }
@@ -355,9 +360,6 @@
     .s360-dashboard-hero-art { opacity: .35; }
     .s360-stat-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .s360-decision-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .s360-workspace-layout { grid-template-columns: 1fr; }
-    .s360-concept-rail { position: static; grid-row: 1; }
-    .s360-concept-card dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 1.25rem; }
 }
 @media (max-width: 860px) {
     .s360-hero-grid,
@@ -391,7 +393,8 @@
     .s360-workspace { padding: .8rem .5rem 3rem; }
     .s360-workspace-head { padding: 1.5rem 1.25rem; }
     .s360-workspace .card-body { padding: 1rem; }
-    .s360-concept-card dl { display: block; }
+    .s360-concept-card dl,
+    .s360-workspace-layout > .s360-concept-rail .s360-concept-card dl { display: block; }
 }
 @media (prefers-reduced-motion: reduce) {
     .s360-feature { transition: none; }
@@ -718,7 +721,7 @@ a.s360-overview-metric:hover { box-shadow: 0 0 0 2px var(--bs-primary, #3b7ddd);
 .s360-status-page .s360-concept-card { margin-top: 1rem; box-shadow: none; }
 .s360-status-page .s360-concept-rail { position: static; }
 
-/* M1 UX polish: on-demand help disclosure, request progress stepper, approver directory, review anchor highlight. */
+/* M1 UX polish: responsive concept rail dark/light theme support, request progress stepper, approver directory, review anchor highlight. */
 .s360-workspace {
     --s360-ink: var(--bs-body-color, #15243c);
     --s360-muted: var(--bs-secondary-color, #5e6d82);
@@ -733,17 +736,14 @@ a.s360-overview-metric:hover { box-shadow: 0 0 0 2px var(--bs-primary, #3b7ddd);
 .s360-workspace details summary { color: var(--bs-primary, #176b83); }
 .s360-workspace code { color: var(--bs-code-color, #155f79); }
 
-.s360-help-disclosure { margin-top: .5rem; padding: .7rem 1rem; border: 1px solid var(--s360-line); border-radius: .75rem; background: var(--bs-body-bg, #fff); }
-.s360-help-disclosure > summary { display: inline-flex; align-items: center; gap: .45rem; font-size: .85rem; font-weight: 700; cursor: pointer; list-style: none; }
-.s360-help-disclosure > summary::-webkit-details-marker { display: none; }
-.s360-help-disclosure > summary svg { width: 1rem; height: 1rem; flex: none; }
-.s360-help-disclosure .s360-concept-rail { position: static; margin-top: 1rem; }
-.s360-help-disclosure .s360-concept-card { box-shadow: none; background: var(--bs-tertiary-bg, #f8f9fa); border-color: var(--s360-line); }
-.s360-help-disclosure .s360-concept-card h2,
-.s360-help-disclosure .s360-concept-card dt { color: var(--s360-ink); }
-.s360-help-disclosure .s360-concept-card dd { color: var(--s360-muted); }
-.s360-help-disclosure .s360-concept-card dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); column-gap: 1.5rem; }
-.s360-help-disclosure .s360-concept-card dl > div { border-top-color: var(--s360-line); }
+.s360-workspace .s360-concept-card { background: var(--bs-body-bg, #fff); border-color: var(--s360-line); box-shadow: 0 9px 25px rgba(20, 42, 71, .045); }
+.s360-workspace .s360-concept-icon { color: var(--bs-success-text-emphasis, #0b8778); background: var(--bs-success-bg-subtle, #dbf5ec); }
+.s360-workspace .s360-concept-card .s360-kicker { color: var(--bs-success-text-emphasis, #138a7d); }
+.s360-workspace .s360-concept-card h2,
+.s360-workspace .s360-concept-card dt { color: var(--s360-ink); }
+.s360-workspace .s360-concept-card dd { color: var(--s360-muted); }
+.s360-workspace .s360-concept-card dl > div { border-top-color: var(--s360-line); }
+.s360-workspace .s360-concept-tip { color: var(--bs-success-text-emphasis, #226653); background: var(--bs-success-bg-subtle, #e5f7ef); }
 
 .s360-sync-meta { display: inline-flex; align-items: center; gap: .45rem; }
 .s360-sync-meta svg { width: 1rem; height: 1rem; color: var(--bs-success, #198754); flex: none; }

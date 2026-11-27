@@ -95,7 +95,8 @@
     </div>
 }
 @await Html.PartialAsync("_Pagination", new PaginationViewModel(Model.Page, 50, Model.Total))
-@await Html.PartialAsync("_WorkspaceHelp", new ConceptGuideViewModel(
+</div>
+@await Html.PartialAsync("_ConceptGuide", new ConceptGuideViewModel(
     @Localizer["Read a check record"].Value,
     "list-checks",
     [
@@ -108,6 +109,5 @@
         new ConceptTerm(@Localizer["Vulnerability data time"].Value, @Localizer["When the advisory data behind this decision was last checked; a blank value is not a clean bill of health."].Value)
     ],
     @Localizer["These are reported checks; Runner enforcement is a separate rollout step and is not implied by a record here."].Value))
-</div>
 </div>
 </div>

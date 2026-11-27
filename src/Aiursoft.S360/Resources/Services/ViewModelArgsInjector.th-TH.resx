@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>การเข้าถึงถูกปฏิเสธ</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>บัญชีและการจัดการ</value>
+  </data>
   <data name="Account Settings" xml:space="preserve">
     <value>การตั้งค่าบัญชี</value>
   </data>
@@ -42,11 +45,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>เทมเพลต Aiursoft</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>การติดตามตรวจสอบ AlertCenter</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>ไม่ระบุชื่อ</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>การอนุมัติ</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>รายการการพึ่งพาที่พร้อมใช้งาน</value>
@@ -60,8 +69,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>คำขอไม่ถูกต้อง</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>รายการบล็อก</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>บันทึกการตรวจสอบบิลด์</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>การตรวจสอบการสร้าง</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>เปลี่ยนรูปโปรไฟล์</value>
@@ -77,6 +92,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>ภาพรวมบริษัท</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>การปฏิบัติตามข้อกำหนด</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>ตัวสำรวจการปฏิบัติตามข้อกำหนด</value>
@@ -171,6 +189,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>การอนุมัติแพ็กเกจ</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>แพ็กเกจและกฎ</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>รายละเอียดสิทธิ์การใช้งาน</value>
   </data>
@@ -192,11 +213,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>การตั้งค่าโปรไฟล์</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>โปรเจกต์</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>สมัครสมาชิก</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>ส่งคำขอเพิ่มรายการการพึ่งพาใหม่</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>ขอแพ็กเกจ</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>คำขอ</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>ตรวจสอบกฎแพ็กเกจเดิม</value>
@@ -209,6 +239,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>บทบาท</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>กฎและแพ็กเกจ</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>ภาพรวม S360</value>

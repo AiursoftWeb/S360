@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted advisories" xml:space="preserve">
+    <value>已接受的警示</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>有效的風險接受</value>
+  </data>
+  <data name="Blocking compliance issues" xml:space="preserve">
+    <value>阻擋性合規問題</value>
+  </data>
+  <data name="Blocking rule" xml:space="preserve">
+    <value>封鎖規則</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>已列入封鎖清單</value>
+  </data>
+  <data name="Browse rules" xml:space="preserve">
+    <value>瀏覽規則</value>
+  </data>
+  <data name="Compliance diagnosis" xml:space="preserve">
+    <value>合規診斷</value>
+  </data>
+  <data name="Dependency graph not recorded in this report." xml:space="preserve">
+    <value>此報告中未記錄相依性圖。</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>直接相依</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>到期日</value>
+  </data>
+  <data name="Filter blocking issues" xml:space="preserve">
+    <value>篩選阻擋問題</value>
+  </data>
+  <data name="Inspect CVEs" xml:space="preserve">
+    <value>檢視 CVE</value>
+  </data>
+  <data name="Inspect package" xml:space="preserve">
+    <value>檢查套件</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>引入路徑</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>管理封鎖清單</value>
+  </data>
+  <data name="Manage risk acceptances" xml:space="preserve">
+    <value>管理風險接受</value>
+  </data>
+  <data name="Matching rule" xml:space="preserve">
+    <value>符合規則</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>需要驗證</value>
+  </data>
+  <data name="No blocking compliance issues" xml:space="preserve">
+    <value>無阻擋性合規問題</value>
+  </data>
+  <data name="No blocking issues match the selected filter." xml:space="preserve">
+    <value>沒有封鎖性問題符合選取的篩選條件。</value>
+  </data>
+  <data name="No expiry recorded" xml:space="preserve">
+    <value>未記錄到期日</value>
+  </data>
+  <data name="Ordered by severity: absolute blocklist, active vulnerabilities, source policy, authorization, and pending verification." xml:space="preserve">
+    <value>依嚴重程度排序：絕對封鎖清單、活躍漏洞、來源政策、授權，以及待驗證項目。</value>
+  </data>
+  <data name="Other approved rules for this package" xml:space="preserve">
+    <value>此套件的其他核准規則</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>套件</value>
+  </data>
+  <data name="Policy rule" xml:space="preserve">
+    <value>政策規則</value>
+  </data>
+  <data name="Request this package" xml:space="preserve">
+    <value>申請此套件</value>
+  </data>
+  <data name="Risk acceptances" xml:space="preserve">
+    <value>風險接受</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>來源不受允許</value>
+  </data>
+  <data name="Transitive" xml:space="preserve">
+    <value>間接</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>未授權</value>
+  </data>
+
+</root>

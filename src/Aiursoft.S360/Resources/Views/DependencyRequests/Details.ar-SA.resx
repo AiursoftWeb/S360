@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>تم التصريح به مسبقًا</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>لا يمكن للمقدِّمين الموافقة على طلباتهم الخاصة. اطلب من أحد المراجعين أدناه مراجعة هذا الطلب.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>تم نسخ رابط الموافقة والرسالة.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>الموافقون</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>مُصرَّح به ولكن غير جاهز للتحقق</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>نسخ رابط الاعتماد والرسالة</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>التفويض الحالي</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>عناصر جديدة للمراجعة</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>لا يوجد حاليًا أي مراجعين ممنوحين صلاحية الموافقة. يرجى التواصل مع مسؤول النظام.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>الحزمة</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>تقرير SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>تقدم الطلب</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>تاريخ الطلب:</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>المعالجة قيد الانتظار أو التنفيذ. حدّث هذه الصفحة للاطلاع على النتيجة.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>جاري الحل والفحص</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>إعادة المحاولة كطلب جديد</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>قرار المراجعة</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>مراجعة هذا الطلب</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>حدد الرسالة أدناه وانسخها.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>المصدر</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>الحالة</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>مُقدَّم</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>يظل الطلب الفاشل محفوظًا في سجلك. ويُراجَع الطلب الجديد وفقًا لقواعد المصدر وقائمة الحظر المعمول بها اليوم.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>الإصدار</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>بانتظار الموافقة</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>سحب الطلب</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>أنت — لا يمكنك الموافقة على طلبك بنفسك</value>
   </data>
 
 </root>

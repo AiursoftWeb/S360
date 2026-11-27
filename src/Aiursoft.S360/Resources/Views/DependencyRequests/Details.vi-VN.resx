@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Đã được cho phép</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Người nộp đơn không thể phê duyệt chính yêu cầu của mình. Hãy nhờ một người xem xét khác bên dưới xem xét yêu cầu này.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Đã sao chép liên kết phê duyệt và thông báo.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Người phê duyệt</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Đã được cấp phép nhưng chưa sẵn sàng kiểm tra</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Sao chép liên kết &amp; thông báo phê duyệt</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Ủy quyền hiện tại</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Mục cần xem xét mới</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Hiện chưa có người đánh giá nào được cấu hình với quyền phê duyệt. Vui lòng liên hệ quản trị viên hệ thống.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Gói phần mềm</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>Báo cáo SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Tiến độ yêu cầu</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Được yêu cầu</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>Quá trình phân giải đang chờ xử lý hoặc đang chạy. Tải lại trang này để xem kết quả.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Đang giải quyết &amp; kiểm tra</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Thử lại dưới dạng yêu cầu mới</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Quyết định xét duyệt</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Xem xét yêu cầu này</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Chọn và sao chép thông báo bên dưới.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Nguồn</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Trạng thái</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Đã gửi</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Yêu cầu thất bại vẫn được lưu trong lịch sử của bạn. Yêu cầu mới sẽ được kiểm tra theo các quy tắc về nguồn và danh sách chặn hiện nay.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Phiên bản</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>Đang chờ phê duyệt</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Rút lại yêu cầu</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Bạn — không thể tự phê duyệt</value>
   </data>
 
 </root>

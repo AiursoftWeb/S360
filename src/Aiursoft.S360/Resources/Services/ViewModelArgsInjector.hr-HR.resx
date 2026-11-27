@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="API Key" xml:space="preserve">
+    <value>API ključ</value>
+  </data>
+  <data name="API Keys" xml:space="preserve">
+    <value>API ključevi</value>
+  </data>
+  <data name="Absolute blocklist" xml:space="preserve">
+    <value>Apsolutna popisa blokiranih</value>
+  </data>
+  <data name="Access Denied" xml:space="preserve">
+    <value>Pristup odbijen</value>
+  </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>Račun i administracija</value>
+  </data>
+  <data name="Administration" xml:space="preserve">
+    <value>Administracija</value>
+  </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
+  <data name="AlertCenter monitoring" xml:space="preserve">
+    <value>AlertCenter nadzor</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Odobrenja</value>
+  </data>
+  <data name="Available dependencies" xml:space="preserve">
+    <value>Dostupne ovisnosti</value>
+  </data>
+  <data name="Available dependency details" xml:space="preserve">
+    <value>Detalji dostupnih ovisnosti</value>
+  </data>
+  <data name="Background Jobs" xml:space="preserve">
+    <value>Pozadinski poslovi</value>
+  </data>
+  <data name="Bad Request" xml:space="preserve">
+    <value>Neispravni zahtjev</value>
+  </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Popis blokiranih</value>
+  </data>
+  <data name="Build check records" xml:space="preserve">
+    <value>Zapisi provjera izgradnje</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>Provjere izgradnje</value>
+  </data>
+  <data name="Change Avatar" xml:space="preserve">
+    <value>Promjena avatara</value>
+  </data>
+  <data name="Change Password" xml:space="preserve">
+    <value>Promjena lozinke</value>
+  </data>
+  <data name="Change Profile" xml:space="preserve">
+    <value>Promjena profila</value>
+  </data>
+  <data name="Click to login" xml:space="preserve">
+    <value>Kliknite za prijavu</value>
+  </data>
+  <data name="Company overview" xml:space="preserve">
+    <value>Pregled tvrtke</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Usklađenost</value>
+  </data>
+  <data name="Compliance explorer" xml:space="preserve">
+    <value>Preglednik usklađenosti</value>
+  </data>
+  <data name="Create Role" xml:space="preserve">
+    <value>Kreiraj ulogu</value>
+  </data>
+  <data name="Create User" xml:space="preserve">
+    <value>Kreiraj korisnika</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>Nadzorna ploča</value>
+  </data>
+  <data name="Delete Account" xml:space="preserve">
+    <value>Brisanje računa</value>
+  </data>
+  <data name="Delete Role" xml:space="preserve">
+    <value>Obriši ulogu</value>
+  </data>
+  <data name="Delete User" xml:space="preserve">
+    <value>Brisanje korisnika</value>
+  </data>
+  <data name="Dependencies" xml:space="preserve">
+    <value>Ovisnosti</value>
+  </data>
+  <data name="Dependency approvals" xml:space="preserve">
+    <value>Odobrenja ovisnosti</value>
+  </data>
+  <data name="Dependency catalog" xml:space="preserve">
+    <value>Katalog ovisnosti</value>
+  </data>
+  <data name="Directory" xml:space="preserve">
+    <value>Direktorij</value>
+  </data>
+  <data name="Edit Role" xml:space="preserve">
+    <value>Uredi ulogu</value>
+  </data>
+  <data name="Edit User" xml:space="preserve">
+    <value>Uredi korisnika</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Pogreška</value>
+  </data>
+  <data name="Existing rule set" xml:space="preserve">
+    <value>Postojeći skup pravila</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>Funkcije</value>
+  </data>
+  <data name="Global Settings" xml:space="preserve">
+    <value>Globalna postavka</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Početna</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>Indeks</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Internal Server Error" xml:space="preserve">
+    <value>Interna pogreška poslužitelja</value>
+  </data>
+  <data name="Lockout" xml:space="preserve">
+    <value>Zaključavanje</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Prijava</value>
+  </data>
+  <data name="Login to get access to all features." xml:space="preserve">
+    <value>Prijavite se da biste dobili pristup svim funkcijama.</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>Upravljanje</value>
+  </data>
+  <data name="Monitoring" xml:space="preserve">
+    <value>Praćenje</value>
+  </data>
+  <data name="My requests" xml:space="preserve">
+    <value>Moje zahtjevi</value>
+  </data>
+  <data name="Not Found" xml:space="preserve">
+    <value>Nije pronađeno</value>
+  </data>
+  <data name="Overview" xml:space="preserve">
+    <value>Pregled</value>
+  </data>
+  <data name="Package authorization" xml:space="preserve">
+    <value>Ovlaštenje paketa</value>
+  </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>Paketi i pravila</value>
+  </data>
+  <data name="Permission Details" xml:space="preserve">
+    <value>Detalji dopuštenja</value>
+  </data>
+  <data name="Permissions" xml:space="preserve">
+    <value>Dopuštenja</value>
+  </data>
+  <data name="Personal" xml:space="preserve">
+    <value>Osobno</value>
+  </data>
+  <data name="Policies" xml:space="preserve">
+    <value>Politike</value>
+  </data>
+  <data name="Preview trust rule" xml:space="preserve">
+    <value>Pregled pravila povjerenja</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="Profile Settings" xml:space="preserve">
+    <value>Postavke profila</value>
+  </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projekti</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registracija</value>
+  </data>
+  <data name="Request a new dependency" xml:space="preserve">
+    <value>Zatraži novu ovisnost</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>Zatraži paket</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Zahtjevi</value>
+  </data>
+  <data name="Review legacy package rules" xml:space="preserve">
+    <value>Pregled pravila za zastarjele pakete</value>
+  </data>
+  <data name="Risk acceptance" xml:space="preserve">
+    <value>Prihvaćanje rizika</value>
+  </data>
+  <data name="Role Details" xml:space="preserve">
+    <value>Detalji uloge</value>
+  </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Uloge</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>Pravila i paketi</value>
+  </data>
+  <data name="S360 overview" xml:space="preserve">
+    <value>S360 pregled</value>
+  </data>
+  <data name="Security audit" xml:space="preserve">
+    <value>Sigurnosna revizija</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Postavke</value>
+  </data>
+  <data name="Sign out" xml:space="preserve">
+    <value>Odjava</value>
+  </data>
+  <data name="Supply chain" xml:space="preserve">
+    <value>Lanac opskrbe</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>Sustav</value>
+  </data>
+  <data name="System Info" xml:space="preserve">
+    <value>Informacije o sustavu</value>
+  </data>
+  <data name="Trust rule details" xml:space="preserve">
+    <value>Detalji pravila pouzdanosti</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Neovlašteno</value>
+  </data>
+  <data name="User Details" xml:space="preserve">
+    <value>Detalji korisnika</value>
+  </data>
+  <data name="Users" xml:space="preserve">
+    <value>Korisnici</value>
+  </data>
+  <data name="Vulnerabilities" xml:space="preserve">
+    <value>Ranjivosti</value>
+  </data>
+  <data name="Vulnerability audit" xml:space="preserve">
+    <value>Revizija ranjivosti</value>
+  </data>
+  <data name="Vulnerability risk acceptance" xml:space="preserve">
+    <value>Prihvaćanje rizika od ranjivosti</value>
+  </data>
+
+</root>

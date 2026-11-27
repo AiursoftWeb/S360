@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>جميع المشاريع</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>جميع التبعيات المُبلَّغ عنها</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>كل الحالات</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>سجل الفحص</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>انقر للتوسيع</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>نظرة عامة على الشركة</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>النظام البيئي</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>ملخص حالة النظام البيئي</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>الأدلة بحاجة إلى التحقق</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>استكشاف</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>تصفية الحزم في هذا المشروع</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>تصفية الحزم في هذا المشروع...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>ابحث عن مشروع أو حزمة، وتحقّق من امتثالها، وتتبّع سبب استخدامها.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>مخطط التبعيات التفاعلي</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>عروض المخزون</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>ثغرات أمنية معروفة</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>مخاطر الثغرات الأمنية المعروفة المقبولة بموجب السياسة</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>تم قبول مخاطر الثغرات المعروفة بموجب السياسة. افحص القواعد وتواريخ انتهائها في تفاصيل الحزمة.</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>تحتاج إلى انتباه</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>المحتاجة انتباه فقط</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>التالي</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>لا توجد سجلات مطابقة</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>غير مشمول في هذا التدقيق</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>غير موثّق</value>
@@ -159,6 +186,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>المشاريع التي لديها تقارير</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>مرشحات الامتثال السريعة</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>شارة README</value>
   </data>
@@ -186,11 +216,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>راجع الإصدار المُبلَّغ عنه والتصريح الحالي. اطلب تصريحًا مناسبًا أو قم بترقية إلى إصدار مُصرَّح به وغير متأثر؛ لا تقم بتخفيض الإصدار إلى إصدار يحتوي على ثغرة أمنية.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>المخاطر مقبولة</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>شارة الامتثال لـ S360</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>بحث</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>ابحث في كل حزمة وفحصها</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>البحث في المخزون</value>

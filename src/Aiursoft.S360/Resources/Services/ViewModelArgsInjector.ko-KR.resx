@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>액세스 거부됨</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>계정 및 관리</value>
+  </data>
   <data name="Account Settings" xml:space="preserve">
     <value>계정 설정</value>
   </data>
@@ -42,11 +45,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft 템플릿</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>알림 센터</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter 모니터링</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>익명</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>승인</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>사용 가능한 종속성</value>
@@ -60,8 +69,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>잘못된 요청</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>차단 목록</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>빌드 검사 기록</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>빌드 검사</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>아바타 변경</value>
@@ -77,6 +92,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>회사 개요</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>준수</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>규정 준수 탐색기</value>
@@ -171,6 +189,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>패키지 승인</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>패키지 및 규칙</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>권한 세부 정보</value>
   </data>
@@ -192,11 +213,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>프로필 설정</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>프로젝트</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>회원가입</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>새 종속성 요청</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>패키지 요청</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>요청</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>기존 패키지 규칙 검토</value>
@@ -209,6 +239,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>역할</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>규칙 및 패키지</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360 개요</value>

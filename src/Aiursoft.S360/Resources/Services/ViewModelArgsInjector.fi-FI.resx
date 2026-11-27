@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>Pääsy estetty</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>Tili &amp; Hallinta</value>
+  </data>
   <data name="Admin" xml:space="preserve">
     <value>Ylläpitäjä</value>
   </data>
@@ -39,11 +42,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft-malli</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenterin valvonta</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anonyymi</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Hyväksynnät</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Saatavilla olevat riippuvuudet</value>
@@ -57,8 +66,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>Väärä pyyntö</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Estolista</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>Koontitarkistustietueet</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>Build-tarkistukset</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Vaihda avataria</value>
@@ -74,6 +89,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Yhtiön yleiskatsaus</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Noudattaminen</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>Vaatimustenmukaisuuden tarkastelu</value>
@@ -168,6 +186,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>Pakettien valtuutus</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>Paketit ja säännöt</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Oikeuksien tiedot</value>
   </data>
@@ -189,11 +210,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>Profiilin asetukset</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Hankkeet</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Rekisteröidy</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Pyydä uutta riippuvuutta</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>Pyydä pakettia</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Pyyntöjä</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Tarkastele vanhoja pakettisääntöjä</value>
@@ -206,6 +236,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Roolit</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>Säännöt ja paketit</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360-yleiskatsaus</value>

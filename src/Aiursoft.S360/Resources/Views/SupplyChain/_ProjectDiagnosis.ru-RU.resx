@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted advisories" xml:space="preserve">
+    <value>Принятые предупреждения</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Активные принятые риски</value>
+  </data>
+  <data name="Blocking compliance issues" xml:space="preserve">
+    <value>Блокирующие проблемы соответствия</value>
+  </data>
+  <data name="Blocking rule" xml:space="preserve">
+    <value>Правило блокировки</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>В списке блокировок</value>
+  </data>
+  <data name="Browse rules" xml:space="preserve">
+    <value>Просмотр правил</value>
+  </data>
+  <data name="Compliance diagnosis" xml:space="preserve">
+    <value>Диагностика соответствия</value>
+  </data>
+  <data name="Dependency graph not recorded in this report." xml:space="preserve">
+    <value>Граф зависимостей не зафиксирован в этом отчёте.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Прямая зависимость</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Срок действия</value>
+  </data>
+  <data name="Filter blocking issues" xml:space="preserve">
+    <value>Фильтр блокирующих проблем</value>
+  </data>
+  <data name="Inspect CVEs" xml:space="preserve">
+    <value>Просмотреть CVE</value>
+  </data>
+  <data name="Inspect package" xml:space="preserve">
+    <value>Просмотреть пакет</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>Путь введения</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Управление списком блокировки</value>
+  </data>
+  <data name="Manage risk acceptances" xml:space="preserve">
+    <value>Управление принятыми рисками</value>
+  </data>
+  <data name="Matching rule" xml:space="preserve">
+    <value>Совпадающее правило</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Требует проверки</value>
+  </data>
+  <data name="No blocking compliance issues" xml:space="preserve">
+    <value>Нет блокирующих проблем соответствия</value>
+  </data>
+  <data name="No blocking issues match the selected filter." xml:space="preserve">
+    <value>Нет блокирующих проблем, соответствующих выбранному фильтру.</value>
+  </data>
+  <data name="No expiry recorded" xml:space="preserve">
+    <value>Срок действия не указан</value>
+  </data>
+  <data name="Ordered by severity: absolute blocklist, active vulnerabilities, source policy, authorization, and pending verification." xml:space="preserve">
+    <value>Отсортировано по степени серьёзности: абсолютный блок-лист, активные уязвимости, политика источника, авторизация и ожидающая верификации.</value>
+  </data>
+  <data name="Other approved rules for this package" xml:space="preserve">
+    <value>Другие одобренные правила для этого пакета</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Пакет</value>
+  </data>
+  <data name="Policy rule" xml:space="preserve">
+    <value>Правило политики</value>
+  </data>
+  <data name="Request this package" xml:space="preserve">
+    <value>Запросить этот пакет</value>
+  </data>
+  <data name="Risk acceptances" xml:space="preserve">
+    <value>Принятые риски</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>Источник не разрешён</value>
+  </data>
+  <data name="Transitive" xml:space="preserve">
+    <value>Транзитивный</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Неавторизованный</value>
+  </data>
+
+</root>

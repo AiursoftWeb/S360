@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted advisories" xml:space="preserve">
+    <value>Advisories aceitos</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Aceites de risco ativos</value>
+  </data>
+  <data name="Blocking compliance issues" xml:space="preserve">
+    <value>Problemas de conformidade bloqueantes</value>
+  </data>
+  <data name="Blocking rule" xml:space="preserve">
+    <value>Regra de bloqueio</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Bloqueados</value>
+  </data>
+  <data name="Browse rules" xml:space="preserve">
+    <value>Exibir regras</value>
+  </data>
+  <data name="Compliance diagnosis" xml:space="preserve">
+    <value>Diagnóstico de conformidade</value>
+  </data>
+  <data name="Dependency graph not recorded in this report." xml:space="preserve">
+    <value>Grafo de dependências não registrado neste relatório.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Dependência direta</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Expira</value>
+  </data>
+  <data name="Filter blocking issues" xml:space="preserve">
+    <value>Filtrar problemas bloqueantes</value>
+  </data>
+  <data name="Inspect CVEs" xml:space="preserve">
+    <value>Inspecionar CVEs</value>
+  </data>
+  <data name="Inspect package" xml:space="preserve">
+    <value>Inspecionar pacote</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>Caminho de introdução</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Gerenciar lista de bloqueios</value>
+  </data>
+  <data name="Manage risk acceptances" xml:space="preserve">
+    <value>Gerenciar aceites de risco</value>
+  </data>
+  <data name="Matching rule" xml:space="preserve">
+    <value>Regra correspondente</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Necessita verificação</value>
+  </data>
+  <data name="No blocking compliance issues" xml:space="preserve">
+    <value>Sem problemas de conformidade bloqueantes</value>
+  </data>
+  <data name="No blocking issues match the selected filter." xml:space="preserve">
+    <value>Nenhum problema de bloqueio corresponde ao filtro selecionado.</value>
+  </data>
+  <data name="No expiry recorded" xml:space="preserve">
+    <value>Nenhuma data de expiração registrada</value>
+  </data>
+  <data name="Ordered by severity: absolute blocklist, active vulnerabilities, source policy, authorization, and pending verification." xml:space="preserve">
+    <value>Ordenado por severidade: lista de bloqueio absoluta, vulnerabilidades ativas, política de origem, autorização e verificação pendente.</value>
+  </data>
+  <data name="Other approved rules for this package" xml:space="preserve">
+    <value>Outras regras aprovadas para este pacote</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Pacote</value>
+  </data>
+  <data name="Policy rule" xml:space="preserve">
+    <value>Regra de política</value>
+  </data>
+  <data name="Request this package" xml:space="preserve">
+    <value>Solicitar este pacote</value>
+  </data>
+  <data name="Risk acceptances" xml:space="preserve">
+    <value>Aceitações de risco</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>Fonte não permitida</value>
+  </data>
+  <data name="Transitive" xml:space="preserve">
+    <value>Transitivo</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Não autorizado</value>
+  </data>
+
+</root>

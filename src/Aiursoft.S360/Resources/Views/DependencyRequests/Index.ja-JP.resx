@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+      <data name="After resolution completes, contact any reviewer below to approve your request." xml:space="preserve">
+    <value>解決が完了したら、以下のレビューアーのいずれかに連絡して、リクエストの承認を依頼してください。</value>
+  </data>
+  <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
     <value>選択したエコシステムのレジストリを選択してください。ソースはレビューの証拠の一部となります。</value>
   </data>
   <data name="Created" xml:space="preserve">
@@ -57,6 +60,9 @@
   <data name="New request" xml:space="preserve">
     <value>新しいリクエスト</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>承認権限を持つレビュアーが現在設定されていません。システム管理者にお問い合わせください。</value>
+  </data>
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet は .NET パッケージ用、npm は JavaScript パッケージ用です。プロジェクトで実際にインストールする方を選択してください。</value>
   </data>
@@ -84,6 +90,9 @@
   <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
     <value>プロジェクトに新しいパッケージを追加する前に、承認を申請してください。パッケージの正確な名前とバージョンを入力し、必要な理由を説明してください。</value>
   </data>
+  <data name="Request approval for exact package versions before adding them to your project." xml:space="preserve">
+    <value>プロジェクトにパッケージを追加する前に、正確なパッケージバージョンの承認をリクエストしてください。</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>ソース</value>
   </data>
@@ -102,8 +111,14 @@
   <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
     <value>申請した依存関係の審査状況と判断を確認できます。</value>
   </data>
+  <data name="Who can approve your request" xml:space="preserve">
+    <value>リクエストを承認できる人</value>
+  </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>この依存関係が必要な理由は何ですか？</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>あなた — 自己承認はできません</value>
   </data>
 
 </root>

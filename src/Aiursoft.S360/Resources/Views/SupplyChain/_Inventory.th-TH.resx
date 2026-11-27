@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>ทุกโปรเจกต์</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>การพึ่งพาทั้งหมดที่รายงาน</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>สถานะทั้งหมด</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>บันทึกการตรวจสอบ</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>คลิกเพื่อขยาย</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>ภาพรวมบริษัท</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>ระบบนิเวศ</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>สรุปสถานะระบบนิเวศ</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>หลักฐานต้องได้รับการตรวจสอบยืนยัน</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>สำรวจ</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>กรองแพ็กเกจในโปรเจกต์นี้</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>กรองแพ็กเกจในโปรเจกต์นี้...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>ค้นหาโปรเจกต์หรือแพ็กเกจ ตรวจสอบสถานะการปฏิบัติตามข้อกำหนด และติดตามที่มาของการใช้งาน</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>กราฟการพึ่งพาระดับอินเทอร์แอกทีฟ</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>มุมมองคลังสินค้า</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>ช่องโหว่ที่ทราบแล้ว</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>ความเสี่ยงด้านช่องโหว่ที่ทราบแล้วได้รับการยอมรับตามนโยบาย</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>ความเสี่ยงด้านช่องโหว่ที่ทราบแล้วได้รับการยอมรับตามนโยบาย กรุณาตรวจสอบกฎและวันหมดอายุของกฎเหล่านั้นในรายละเอียดแพ็กเกจ</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>ต้องการการดูแล</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>เฉพาะที่ต้องการความสนใจเท่านั้น</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>ถัดไป</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>ไม่พบรายการที่ตรงกัน</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>ไม่รวมอยู่ในครั้งนี้</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>ยังไม่ตรวจสอบ</value>
@@ -159,6 +186,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>โครงการที่มีรายงาน</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>ตัวกรองการปฏิบัติตามข้อกำหนดแบบด่วน</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>README badge</value>
   </data>
@@ -186,11 +216,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>ตรวจสอบเวอร์ชันที่รายงานและอนุมัติปัจจุบัน ขอการอนุมัติที่เหมาะสมหรืออัปเกรดไปยังเวอร์ชันที่ได้รับอนุมัติแล้วและไม่ได้รับผลกระทบ ห้ามดาวน์เกรดจนทำให้เกิดช่องโหว่</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>ยอมรับความเสี่ยงแล้ว</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>ป้ายสัญลักษณ์การปฏิบัติตามข้อกำหนด S360</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>ค้นหา</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>ค้นหาและตรวจสอบทุกแพ็กเกจ</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>ค้นหารายการในคลัง</value>

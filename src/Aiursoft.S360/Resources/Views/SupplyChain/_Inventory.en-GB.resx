@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>All projects</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>All reported dependencies</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>All statuses</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Check record</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Click to expand</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Company overview</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Ecosystem</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Ecosystem status summary</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Evidence requires verification</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Explore</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Filter packages in this project</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Filter packages in this project...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Find a project or package, inspect its compliance, and trace why it is used.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Interactive dependency graph</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Inventory views</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Known vulnerabilities</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Known vulnerability risks accepted by policy</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details.</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Requires attention</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Needs attention only</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>No matching records</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Not included in this audit</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Not verified</value>
@@ -159,6 +186,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Projects with reports</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Quick compliance filters</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>README badge</value>
   </data>
@@ -186,11 +216,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risk accepted</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360 compliance badge</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Search and inspect every package</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Search inventory</value>

@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Все проекты</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Все обнаруженные зависимости</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Все статусы</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Запись проверки</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Нажмите, чтобы развернуть</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Обзор компании</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Экосистема</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Сводка статуса экосистемы</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Требуется верификация данных</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Изучить</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Фильтрация пакетов в этом проекте</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Фильтровать пакеты в этом проекте...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Найдите проект или пакет, проверьте его соответствие требованиям и проследите, почему он используется.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Интерактивный граф зависимостей</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Виды инвентаря</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Известные уязвимости</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Известные риски уязвимостей, принятые политикой</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Известные риски уязвимостей приняты в соответствии с политикой. Ознакомьтесь с правилами и датами их истечения в деталях пакета.</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Требует внимания</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Только требующие внимания</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Далее</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Нет совпадающих записей</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Не включено в этот аудит</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Не проверено</value>
@@ -159,6 +186,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Проекты с отчётами</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Быстрые фильтры соответствия</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>Значок README</value>
   </data>
@@ -186,11 +216,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Проверьте указанную версию и текущее разрешение. Запросите соответствующее разрешение или обновитесь до одобренной версии, не содержащей уязвимостей; не переходите на более низкую версию с уязвимостью.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Риск принят</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>Значок соответствия S360</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Поиск</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Поиск и проверка всех пакетов</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Поиск по инвентарю</value>

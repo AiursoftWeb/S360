@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Alle projecten</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Alle gemelde afhankelijkheden</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Alle statussen</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Controlerecordaat</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Klik om uit te vouwen</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Bedrijfsoverzicht</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Ecosystem</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Samenvatting van de ecosysteemstatus</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Bewijs moet geverifieerd worden</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Verkennen</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Filter pakketten in dit project</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Filter pakketten in dit project...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Zoek een project of pakket, inspecteer de naleving en traceer waarom het wordt gebruikt.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Interactief afhankelijkheidsdiagram</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Inventarisweergaven</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Bekende kwetsbaarheden</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Bekende kwetsbaarheidsrisico&apos;s geaccepteerd door beleid</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Bekende kwetsbaarheidsrisico&apos;s zijn via beleid geaccepteerd. Inspecteer de regels en hun vervaldatums in de pakketdetails.</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Vereist aandacht</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Alleen aandacht vereist</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Volgende</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Geen overeenkomende records</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Niet opgenomen in deze audit</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Niet geverifieerd</value>
@@ -159,6 +186,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Projecten met rapporten</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Snelle conformiteitsfilters</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>README-badge</value>
   </data>
@@ -186,11 +216,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Controleer de gemelde versie en de huidige goedkeuring. Verzoek een passende goedkeuring of upgrade naar een goedgekeurd, niet-betrokken versie; downgrade niet naar een kwetsbare versie.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risque geaccepteerd</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360-nalevingsbadge</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Zoeken</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Zoek en inspecteer elk pakket</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Voorraad doorzoeken</value>

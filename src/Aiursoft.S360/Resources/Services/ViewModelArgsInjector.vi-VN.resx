@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>Truy cập bị từ chối</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>Tài khoản &amp; Quản trị</value>
+  </data>
   <data name="Account Settings" xml:space="preserve">
     <value>Cài đặt Tài khoản</value>
   </data>
@@ -42,11 +45,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Template</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>Giám sát AlertCenter</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Ẩn danh</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Phê duyệt</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Các phụ thuộc hiện có</value>
@@ -60,8 +69,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>Yêu cầu sai</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Danh sách chặn</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>Bản ghi kiểm tra bản dựng</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>Kiểm tra build</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Thay đổi Ảnh đại diện</value>
@@ -77,6 +92,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Tổng quan công ty</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Tuân thủ</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>Trình khám phá tuân thủ</value>
@@ -171,6 +189,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>Ủy quyền gói</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>Gói và quy tắc</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Chi tiết quyền hạn</value>
   </data>
@@ -192,11 +213,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>Cài đặt Hồ sơ</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Dự án</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Đăng ký</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Yêu cầu một phần phụ thuộc mới</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>Yêu cầu một gói</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Yêu cầu</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Xem lại các quy tắc gói cũ</value>
@@ -209,6 +239,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Vai trò</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>Quy tắc &amp; gói</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>Tổng quan S360</value>

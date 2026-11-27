@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Al geautoriseerd</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Aanvragers kunnen hun eigen aanvragen niet goedkeuren. Vraag een andere beoordelaar hieronder om deze aanvraag te beoordelen.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Goedgekeurde link en bericht gekopieerd.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Goedkeurers</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Wel gemacht, maar nog niet klaar voor controle</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Kopieer goedkeuringslink en bericht</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Huidige autorisatie</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Nieuwe beoordelingsitems</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Er zijn momenteel geen beoordelaars met goedkeuringsmachtiging geconfigureerd. Neem contact op met uw systeembeheerder.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Pakket</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>SHA-256-rapport</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Vooruitgang aanvraag</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Aangevraagd</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>De verwerking staat in de wachtrij of is bezig. Vernieuw deze pagina om het resultaat te bekijken.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Oplossen &amp; controleren</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Opnieuw proberen als nieuwe aanvraag</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Beoordelingsbesluit</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Beoordeel deze aanvraag</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Selecteer en kopieer de onderstaande bericht.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Bron</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Ingediend</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Het mislukte verzoek blijft in je geschiedenis staan. Het nieuwe verzoek wordt getoetst aan de bron- en blokkeerlijstregels van vandaag.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Versie</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>Wacht op goedkeuring</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Verzoek intrekken</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>U — kunt niet zelf goedkeuren</value>
   </data>
 
 </root>

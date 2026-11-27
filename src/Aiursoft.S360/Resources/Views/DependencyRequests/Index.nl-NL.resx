@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+      <data name="After resolution completes, contact any reviewer below to approve your request." xml:space="preserve">
+    <value>Nadat de afhandeling is voltooid, neemt u contact op met een van de onderstaande reviewers om uw verzoek goed te keuren.</value>
+  </data>
+  <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
     <value>Kies een pakketbron voor het geselecteerde ecosysteem. De bron maakt deel uit van het beoordelingsbewijs.</value>
   </data>
   <data name="Created" xml:space="preserve">
@@ -57,6 +60,9 @@
   <data name="New request" xml:space="preserve">
     <value>Nieuw verzoek</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Er zijn momenteel geen reviewers met goedkeuringsmachtiging geconfigureerd. Neem contact op met uw systeembeheerder.</value>
+  </data>
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet is voor .NET-pakketten; npm is voor JavaScript-pakketten. Kies de optie die je project daadwerkelijk installeert.</value>
   </data>
@@ -84,6 +90,9 @@
   <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
     <value>Vraag goedkeuring aan voordat je een nieuw pakket aan je project toevoegt. Voer de exacte naam en versie in en leg uit waarom het nodig is.</value>
   </data>
+  <data name="Request approval for exact package versions before adding them to your project." xml:space="preserve">
+    <value>Vraag goedkeuring aan voor exacte pakketversies voordat je ze aan je project toevoegt.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Bron</value>
   </data>
@@ -102,8 +111,14 @@
   <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
     <value>Volg de voortgang van de beoordeling en de beslissingen over de afhankelijkheden die u hebt aangevraagd.</value>
   </data>
+  <data name="Who can approve your request" xml:space="preserve">
+    <value>Wie kan uw verzoek goedkeuren</value>
+  </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Waarom is deze afhankelijkheid nodig?</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>U — kunt niet zelf goedkeuren</value>
   </data>
 
 </root>

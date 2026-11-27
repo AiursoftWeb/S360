@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Todos os projetos</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Todas as dependências reportadas</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Todos os estados</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Registo de verificação</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Clique para expandir</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Visão geral da empresa</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Ecossistema</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Resumo do estado do ecossistema</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>A evidência necessita de verificação</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Explorar</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Filtrar pacotes neste projeto</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Filtrar pacotes neste projeto...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Encontre um projeto ou pacote, verifique a sua conformidade e descubra por que motivo é utilizado.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Grafo interativo de dependências</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Vistas de inventário</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Vulnerabilidades conhecidas</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Riscos de vulnerabilidades conhecidos aceites por política</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Os riscos de vulnerabilidades conhecidos foram aceites por política. Inspecione as regras e as respetivas datas de expiração nos detalhes do pacote.</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Requer atenção</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Apenas com atenção</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Seguinte</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Sem registos correspondentes</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Não incluído nesta auditoria</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Não verificado</value>
@@ -159,6 +186,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Projetos com relatórios</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Filtros rápidos de conformidade</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>Emblema para o README</value>
   </data>
@@ -186,11 +216,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Revise a versão reportada e a aprovação atual. Solicite uma aprovação adequada ou faça o upgrade para uma versão aprovada e não afetada; não faça downgrade para uma versão vulnerável.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risco aceite</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>Emblema de conformidade S360</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Pesquisar</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Pesquisar e inspecionar todos os pacotes</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Pesquisar inventário</value>

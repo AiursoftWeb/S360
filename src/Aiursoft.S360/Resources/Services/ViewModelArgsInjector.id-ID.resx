@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>Akses Ditolak</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>Akun &amp; Admin</value>
+  </data>
   <data name="Admin" xml:space="preserve">
     <value>Administrator</value>
   </data>
@@ -39,11 +42,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Template Aiursoft</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>Pemantauan AlertCenter</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anonim</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Persetujuan</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Dependensi yang tersedia</value>
@@ -57,8 +66,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>Permintaan Salah</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Daftar Blokir</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>Catatan pemeriksaan build</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>Pemeriksaan Build</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Ubah Avatar</value>
@@ -74,6 +89,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Ikhtisar Perusahaan</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Kepatuhan</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>Penjelajah Kepatuhan</value>
@@ -168,6 +186,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>Otorisasi Paket</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>Paket dan aturan</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Detail Izin</value>
   </data>
@@ -189,11 +210,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>Pengaturan Profil</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Proyek</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Daftar</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Ajukan dependensi baru</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>Minta paket</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Permintaan</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Tinjau aturan paket lama</value>
@@ -206,6 +236,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Peran</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>Aturan &amp; paket</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>Ikhtisar S360</value>

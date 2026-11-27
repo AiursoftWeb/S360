@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>Adgang nægtet</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>Konto &amp; Admin</value>
+  </data>
   <data name="Admin" xml:space="preserve">
     <value>Administrator</value>
   </data>
@@ -39,11 +42,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Skabelon</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter-overvågning</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anonym</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Godkendelser</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Tilgængelige afhængigheder</value>
@@ -57,8 +66,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>Forkert anmodning</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Blocklist</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>Buildkontrolposter</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>Byggekontroller</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Skift avatar</value>
@@ -74,6 +89,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Virksomhedsoversigt</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Overholdelse</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>Compliance-oversigt</value>
@@ -168,6 +186,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>Pakkeautorisation</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>Pakker og regler</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Tilladelsesdetaljer</value>
   </data>
@@ -189,11 +210,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>Profilindstillinger</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projekter</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Registrer</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Anmod om en ny afhængighed</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>Anmod om et pakke</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Anmodninger</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Gennemgå ældre pakkeregler</value>
@@ -206,6 +236,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Roller</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>Regler og pakker</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360-oversigt</value>

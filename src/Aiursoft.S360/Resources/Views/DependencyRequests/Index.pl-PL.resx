@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+      <data name="After resolution completes, contact any reviewer below to approve your request." xml:space="preserve">
+    <value>Po zakończeniu rozstrzygania skontaktuj się z dowolnym recenzentem poniżej, aby zatwierdzić Twoje żądanie.</value>
+  </data>
+  <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
     <value>Wybierz rejestr dla wybranego ekosystemu. Źródło stanowi część materiałów dowodowych z przeglądu.</value>
   </data>
   <data name="Created" xml:space="preserve">
@@ -57,6 +60,9 @@
   <data name="New request" xml:space="preserve">
     <value>Nowe zgłoszenie</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Nie skonfigurowano obecnie żadnych recenzentów z uprawnieniami do zatwierdzania. Skontaktuj się z administratorem systemu.</value>
+  </data>
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet służy do pakietów .NET, a npm do pakietów JavaScript. Wybierz ten, którego faktycznie używa Twój projekt.</value>
   </data>
@@ -84,6 +90,9 @@
   <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
     <value>Przed dodaniem nowego pakietu do projektu poproś o zatwierdzenie. Podaj jego dokładną nazwę i wersję oraz wyjaśnij, dlaczego jest potrzebny.</value>
   </data>
+  <data name="Request approval for exact package versions before adding them to your project." xml:space="preserve">
+    <value>Poproś o zatwierdzenie dokładnych wersji pakietów przed dodaniem ich do projektu.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Źródło</value>
   </data>
@@ -102,8 +111,14 @@
   <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
     <value>Śledź postępy w weryfikacji i decyzje dotyczące zgłoszonych przez Ciebie zależności.</value>
   </data>
+  <data name="Who can approve your request" xml:space="preserve">
+    <value>Kto może zatwierdzić Twoje żądanie</value>
+  </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>Dlaczego ta zależność jest potrzebna?</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Ty — nie możesz zatwierdzić sam(a)</value>
   </data>
 
 </root>

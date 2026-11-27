@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>Zugriff verweigert</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>Konto &amp; Verwaltung</value>
+  </data>
   <data name="Account Settings" xml:space="preserve">
     <value>Kontoeinstellungen</value>
   </data>
@@ -42,11 +45,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Template</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter-Überwachung</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anonym</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Genehmigungen</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Verfügbare Abhängigkeiten</value>
@@ -60,8 +69,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>Ungültige Anforderung</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Sperrliste</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>Build-Prüfprotokolle</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>Build-Checks</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Avatar ändern</value>
@@ -77,6 +92,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Unternehmensübersicht</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Compliance</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>Compliance-Explorer</value>
@@ -171,6 +189,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>Paketautorisierung</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>Pakete und Regeln</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Berechtigungsdetails</value>
   </data>
@@ -192,11 +213,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>Profileinstellungen</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projekte</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Registrieren</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Neue Abhängigkeit anfordern</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>Paket anfordern</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Anfragen</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Alte Paketregeln überprüfen</value>
@@ -209,6 +239,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Rollen</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>Regeln &amp; Pakete</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360-Übersicht</value>

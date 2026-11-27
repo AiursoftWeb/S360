@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>アクセスが拒否されました</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>アカウントと管理</value>
+  </data>
   <data name="Account Settings" xml:space="preserve">
     <value>アカウント設定</value>
   </data>
@@ -42,11 +45,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft テンプレート</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>アラートセンター</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter監視</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>匿名</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>承認</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>利用可能な依存関係</value>
@@ -60,8 +69,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>Bad Request</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>ブロックリスト</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>ビルドチェック記録</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>ビルドチェック</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>アバターを変更</value>
@@ -77,6 +92,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>会社概要</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>コンプライアンス</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>コンプライアンスエクスプローラー</value>
@@ -171,6 +189,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>パッケージの承認</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>パッケージとルール</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>権限の詳細</value>
   </data>
@@ -192,11 +213,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>プロフィール設定</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>プロジェクト</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>登録</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>新しい依存関係をリクエストする</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>パッケージのリクエスト</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>リクエスト</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>従来のパッケージルールを確認</value>
@@ -209,6 +239,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>ロール</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>ルールとパッケージ</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360の概要</value>

@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>存取被拒</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>帳戶及管理</value>
+  </data>
   <data name="Account Settings" xml:space="preserve">
     <value>帳戶設定</value>
   </data>
@@ -42,11 +45,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft 模板</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter 監控</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>匿名</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>審批</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>可用相依項目</value>
@@ -60,8 +69,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>錯誤的請求</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>封鎖清單</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>建置檢查記錄</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>建置檢查</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>更改頭像</value>
@@ -77,6 +92,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>公司概覽</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>合規</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>合規探索器</value>
@@ -171,6 +189,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>套件授權</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>套件與規則</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>權限詳情</value>
   </data>
@@ -192,11 +213,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>檔案設定</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>項目</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>註冊</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>申請新增相依項目</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>申請套件</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>請求</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>檢視舊版套件規則</value>
@@ -209,6 +239,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>角色</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>規則及套件</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360 概覽</value>

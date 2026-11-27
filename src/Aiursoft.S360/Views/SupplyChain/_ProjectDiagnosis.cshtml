@@ -1,0 +1,311 @@
+@using Aiursoft.WebTools
+@using Aiursoft.S360.Authorization
+@using Aiursoft.S360.Models.SupplyChainViewModels
+@using Aiursoft.S360.Services
+@using Microsoft.AspNetCore.Authorization
+@model InventoryProject
+@inject IAuthorizationService Authorization
+@{
+    var diagnosis = Model.Diagnosis ?? ProjectComplianceDiagnostics.Build(Model);
+    var scope = ViewData["InventoryScope"] as string ?? "baseline";
+    var canSubmitRequests = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanSubmitDependencyRequests)).Succeeded;
+    var canManageBlocks = (await Authorization.AuthorizeAsync(User, AppPermissionNames.CanManageBlocklist)).Succeeded;
+    var sourceIssuesCount = diagnosis.BlockingIssues.Count(i => i.Severity == ProjectIssueSeverity.SourceNotPermitted);
+    var unauthorizedOnlyCount = diagnosis.BlockingIssues.Count(i => i.Severity == ProjectIssueSeverity.Unauthorized);
+}
+
+@if (diagnosis.BlockingIssues.Count == 0 && !Model.Incomplete && Model.Reports.Count > 0)
+{
+    <section class="s360-diagnosis-healthy mb-4" aria-label="@Localizer["Compliance diagnosis"]">
+        <div class="d-flex align-items-start gap-3">
+            <span class="s360-diagnosis-healthy-icon" aria-hidden="true"><i data-lucide="shield-check"></i></span>
+            <div>
+                <h2 class="h5 mb-1">@Localizer["No blocking compliance issues"]</h2>
+                <p class="mb-0 small text-muted">@string.Format(Localizer["All {0} reported package versions passed current authorization and vulnerability checks."].Value, Model.Versions.Count)</p>
+            </div>
+        </div>
+    </section>
+}
+else if (diagnosis.BlockingIssues.Count > 0)
+{
+    <section class="card mb-4 s360-diagnosis-panel" aria-label="@Localizer["Blocking compliance issues"]">
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div>
+                <h2 class="h5 mb-0">@string.Format(Localizer["Blocking issues ({0})"].Value, diagnosis.BlockingIssues.Count)</h2>
+                <p class="small text-muted mb-0">@Localizer["Ordered by severity: absolute blocklist, active vulnerabilities, source policy, authorization, and pending verification."]</p>
+            </div>
+            <div class="s360-diagnosis-filters" role="group" aria-label="@Localizer["Filter blocking issues"]">
+                <button type="button" class="btn btn-sm btn-outline-secondary active" data-diagnosis-filter="all">
+                    @string.Format(Localizer["All ({0})"].Value, diagnosis.BlockingIssues.Count)
+                </button>
+                @if (diagnosis.BlocklistedCount > 0)
+                {
+                    <button type="button" class="btn btn-sm btn-outline-dark" data-diagnosis-filter="blocklist">
+                        @string.Format(Localizer["Blocklisted ({0})"].Value, diagnosis.BlocklistedCount)
+                    </button>
+                }
+                @if (diagnosis.VulnerableCount > 0)
+                {
+                    <button type="button" class="btn btn-sm btn-outline-danger" data-diagnosis-filter="cve">
+                        @string.Format(Localizer["Vulnerable ({0})"].Value, diagnosis.VulnerableCount)
+                    </button>
+                }
+                @if (sourceIssuesCount > 0)
+                {
+                    <button type="button" class="btn btn-sm btn-outline-warning" data-diagnosis-filter="source">
+                        @string.Format(Localizer["Source denied ({0})"].Value, sourceIssuesCount)
+                    </button>
+                }
+                @if (unauthorizedOnlyCount > 0)
+                {
+                    <button type="button" class="btn btn-sm btn-outline-warning" data-diagnosis-filter="unauthorized">
+                        @string.Format(Localizer["Unauthorized ({0})"].Value, unauthorizedOnlyCount)
+                    </button>
+                }
+                @if (diagnosis.VerificationCount > 0)
+                {
+                    <button type="button" class="btn btn-sm btn-outline-info" data-diagnosis-filter="verification">
+                        @string.Format(Localizer["Not verified ({0})"].Value, diagnosis.VerificationCount)
+                    </button>
+                }
+            </div>
+        </div>
+        <div class="card-body d-flex flex-column gap-3">
+            @foreach (var issue in diagnosis.BlockingIssues)
+            {
+                var dep = issue.Version.Dependency;
+                var severityClass = issue.Severity switch
+                {
+                    ProjectIssueSeverity.Blocklisted => "is-blocklisted",
+                    ProjectIssueSeverity.ActiveVulnerability => "is-vulnerable",
+                    ProjectIssueSeverity.SourceNotPermitted or ProjectIssueSeverity.Unauthorized => "is-unauthorized",
+                    _ => "is-verification"
+                };
+                <article class="s360-issue-card @severityClass" data-issue-category="@issue.CategoryKey">
+                    <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-2">
+                        <div class="d-flex align-items-center flex-wrap gap-2">
+                            <code class="s360-issue-pkg">@dep.Name@@@dep.Version</code>
+                            <span class="badge bg-secondary-subtle text-secondary-emphasis">@(dep.Ecosystem == "nuget" ? "NuGet" : "npm")</span>
+                            @if (issue.IsBlocklisted)
+                            {
+                                <span class="badge text-bg-dark">@Localizer["Blocklisted"]</span>
+                            }
+                            @if (issue.HasActiveVulnerability)
+                            {
+                                <span class="badge text-bg-danger">@string.Format(Localizer["Active CVE ({0})"].Value, issue.BlockingAdvisories.Count)</span>
+                            }
+                            @if (issue.SourceNotPermitted)
+                            {
+                                <span class="badge text-bg-warning">@Localizer["Source not permitted"]</span>
+                            }
+                            @if (issue.IsUnauthorized && !issue.IsBlocklisted && !issue.SourceNotPermitted)
+                            {
+                                <span class="badge text-bg-warning">@Localizer["Unauthorized"]</span>
+                            }
+                            @if (issue.NeedsVerification)
+                            {
+                                <span class="badge text-bg-info">@Localizer["Needs verification"]</span>
+                            }
+                        </div>
+                        <span class="small text-muted text-break">@dep.Source</span>
+                    </div>
+
+                    <p class="mb-2 small">@issue.Version.Reason</p>
+
+                    @if (issue.BlockingAdvisories.Count > 0)
+                    {
+                        <div class="d-flex flex-wrap gap-1 mb-2">
+                            @foreach (var advisory in issue.BlockingAdvisories)
+                            {
+                                <a class="badge text-bg-danger text-decoration-none"
+                                   asp-controller="VulnerabilityAudit"
+                                   asp-action="Index"
+                                   asp-route-ecosystem="@dep.Ecosystem"
+                                   asp-route-detailed="true"
+                                   asp-route-package="@dep.Name"
+                                   asp-route-scope="all">@advisory</a>
+                            }
+                        </div>
+                    }
+
+                    <div class="s360-issue-meta small mb-2">
+                        <div class="s360-issue-path">
+                            <span class="text-muted fw-semibold">@Localizer["Introduction path"]:</span>
+                            @if (issue.IntroductionPaths.Count > 0)
+                            {
+                                @if (issue.IsDirectDependency)
+                                {
+                                    <span class="badge bg-primary-subtle text-primary-emphasis">@Localizer["Direct dependency"]</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis">@Localizer["Transitive"]</span>
+                                }
+                                <code>@issue.IntroductionPaths[0]</code>
+                                @if (issue.IntroductionPaths.Count > 1 || issue.TotalPathCount > issue.IntroductionPaths.Count)
+                                {
+                                    <details class="s360-more-paths mt-1">
+                                        <summary>@string.Format(Localizer["Show {0} more introduction paths"].Value, issue.TotalPathCount - 1)</summary>
+                                        <ul class="mb-0 mt-1 ps-3">
+                                            @foreach (var extraPath in issue.IntroductionPaths.Skip(1))
+                                            {
+                                                <li><code>@extraPath</code></li>
+                                            }
+                                        </ul>
+                                    </details>
+                                }
+                            }
+                            else
+                            {
+                                <span class="text-muted">@Localizer["Dependency graph not recorded in this report."]</span>
+                            }
+                        </div>
+
+                        @if (issue.IsBlocklisted && issue.Version.State?.MatchedBlockRule is { } blockRule)
+                        {
+                            <div class="mt-1">
+                                <span class="text-muted fw-semibold">@Localizer["Blocking rule"]:</span>
+                                <code>#@blockRule.Id · @blockRule.PackagePattern @blockRule.Version</code>
+                                @if (!string.IsNullOrWhiteSpace(blockRule.Justification))
+                                {
+                                    <span> — @blockRule.Justification</span>
+                                }
+                            </div>
+                        }
+                        else if (issue.Version.Rules.Count > 0)
+                        {
+                            <div class="mt-1">
+                                <span class="text-muted fw-semibold">@Localizer["Matching rule"]:</span>
+                                @foreach (var rule in issue.Version.Rules.Take(3))
+                                {
+                                    <a class="me-2" asp-controller="SupplyChain" asp-action="RuleDetails" asp-route-id="@rule.Id">#@rule.Id (@rule.PackagePattern @rule.Version)</a>
+                                }
+                            </div>
+                        }
+                        else if (issue.OtherApprovedRules.Count > 0)
+                        {
+                            <div class="mt-1">
+                                <span class="text-muted fw-semibold">@Localizer["Other approved rules for this package"]:</span>
+                                @foreach (var rule in issue.OtherApprovedRules.Take(4))
+                                {
+                                    <a class="me-2" asp-controller="SupplyChain" asp-action="RuleDetails" asp-route-id="@rule.Id">@rule.Version</a>
+                                }
+                            </div>
+                        }
+                    </div>
+
+                    <div class="d-flex flex-wrap gap-2">
+                        @if (issue.IsUnauthorized && !issue.IsBlocklisted && !issue.SourceNotPermitted && canSubmitRequests)
+                        {
+                            <a class="btn btn-primary btn-sm"
+                               asp-controller="DependencyRequests"
+                               asp-action="Create"
+                               asp-route-ecosystem="@dep.Ecosystem"
+                               asp-route-source="@dep.Source"
+                               asp-route-package="@($"{dep.Name}@{dep.Version}")"
+                               asp-route-project="@Model.Name">
+                                @Localizer["Request this package"]
+                            </a>
+                        }
+                        @if (issue.HasActiveVulnerability)
+                        {
+                            <a class="btn btn-outline-danger btn-sm"
+                               asp-controller="VulnerabilityAudit"
+                               asp-action="Index"
+                               asp-route-ecosystem="@dep.Ecosystem"
+                               asp-route-detailed="true"
+                               asp-route-package="@dep.Name"
+                               asp-route-scope="all">
+                                @Localizer["Inspect CVEs"]
+                            </a>
+                            <a class="btn btn-outline-secondary btn-sm"
+                               asp-controller="RiskAcceptance"
+                               asp-action="Index">
+                                @Localizer["Risk acceptances"]
+                            </a>
+                        }
+                        @if (issue.IsBlocklisted && canManageBlocks)
+                        {
+                            <a class="btn btn-outline-dark btn-sm"
+                               asp-controller="SupplyChain"
+                               asp-action="Blocklist"
+                               asp-route-ecosystem="@dep.Ecosystem">
+                                @Localizer["Manage blocklist"]
+                            </a>
+                        }
+                        <a class="btn btn-outline-secondary btn-sm"
+                           asp-controller="SupplyChain"
+                           asp-action="Index"
+                           asp-route-tab="dependencies"
+                           asp-route-scope="@scope"
+                           asp-route-ecosystem="@dep.Ecosystem"
+                           asp-route-query="@dep.Name">
+                            @Localizer["Inspect package"]
+                        </a>
+                        @if (issue.OtherApprovedRules.Count > 0)
+                        {
+                            <a class="btn btn-outline-secondary btn-sm"
+                               asp-controller="SupplyChain"
+                               asp-action="Index"
+                               asp-route-tab="rules"
+                               asp-route-ecosystem="@dep.Ecosystem"
+                               asp-route-query="@dep.Name">
+                                @Localizer["Browse rules"]
+                            </a>
+                        }
+                    </div>
+                </article>
+            }
+            <p class="small text-muted mb-0" data-diagnosis-empty hidden>@Localizer["No blocking issues match the selected filter."]</p>
+        </div>
+    </section>
+}
+
+@if (diagnosis.RiskAcceptedVersions.Count > 0)
+{
+    <section class="card mb-4 s360-risk-accepted-panel" aria-label="@Localizer["Active risk acceptances"]">
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <h2 class="h5 mb-0">@string.Format(Localizer["Active risk acceptances ({0})"].Value, diagnosis.RiskAcceptedVersions.Count)</h2>
+            <a class="btn btn-outline-secondary btn-sm" asp-controller="RiskAcceptance" asp-action="Index">@Localizer["Manage risk acceptances"]</a>
+        </div>
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table mb-0">
+                    <thead>
+                        <tr>
+                            <th>@Localizer["Package"]</th>
+                            <th>@Localizer["Accepted advisories"]</th>
+                            <th>@Localizer["Policy rule"]</th>
+                            <th>@Localizer["Expires"]</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var version in diagnosis.RiskAcceptedVersions)
+                        {
+                            var accepted = version.State!.AcceptedVulnerabilities;
+                            var earliestExpiry = accepted.Where(a => a.Rule.ExpiresAtUtc != null).Select(a => a.Rule.ExpiresAtUtc).Min();
+                            <tr>
+                                <td>
+                                    <code>@version.Dependency.Name@@@version.Dependency.Version</code>
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis ms-1">@(version.Dependency.Ecosystem == "nuget" ? "NuGet" : "npm")</span>
+                                </td>
+                                <td>@string.Join(", ", accepted.Select(a => a.Advisory.SourceId).Distinct())</td>
+                                <td>@string.Join(", ", accepted.Select(a => $"#{a.Rule.Id}").Distinct())</td>
+                                <td>
+                                    @if (earliestExpiry != null)
+                                    {
+                                        <span data-utc-time="@earliestExpiry.Value.ToHtmlDateTime()"></span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">@Localizer["No expiry recorded"]</span>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+}

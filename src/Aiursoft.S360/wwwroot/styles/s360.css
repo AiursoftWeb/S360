@@ -773,3 +773,40 @@ a.s360-overview-metric:hover { box-shadow: 0 0 0 2px var(--bs-primary, #3b7ddd);
 
 .s360-review-card { scroll-margin-top: 1.5rem; transition: border-color .2s ease, box-shadow .2s ease; }
 .s360-review-card:target { border-color: var(--bs-primary, #3b7ddd); box-shadow: 0 0 0 .25rem rgba(59, 125, 221, .25); }
+
+/* M2 UX polish: exception-first project compliance diagnosis, ecosystem strip, quick filters, and on-demand graph/inventory disclosures. */
+.s360-ecosystem-strip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
+.s360-ecosystem-card { padding: .85rem 1rem; border: 1px solid var(--s360-line); border-left-width: 4px; border-radius: .75rem; background: var(--bs-body-bg, #fff); }
+.s360-ecosystem-card.is-clean { border-left-color: var(--bs-success, #198754); }
+.s360-ecosystem-card.is-issue { border-left-color: var(--bs-danger, #dc3545); }
+.s360-ecosystem-card.is-missing { border-left-color: var(--bs-secondary, #6c757d); }
+@media (max-width: 720px) {
+    .s360-ecosystem-strip { grid-template-columns: minmax(0, 1fr); }
+}
+
+.s360-quick-filters { display: flex; flex-wrap: wrap; gap: .5rem; }
+
+.s360-diagnosis-healthy { padding: 1.15rem 1.25rem; border: 1px solid var(--bs-success-border-subtle, #a3cfbb); border-radius: .9rem; background: var(--bs-success-bg-subtle, #d1e7dd); color: var(--bs-success-text-emphasis, #0a3622); }
+.s360-diagnosis-healthy .text-muted { color: var(--bs-success-text-emphasis, #0a3622) !important; opacity: .88; }
+.s360-diagnosis-healthy-icon { display: inline-grid; place-items: center; width: 2.35rem; height: 2.35rem; border-radius: .65rem; background: var(--bs-success, #198754); color: #fff; flex: none; }
+.s360-diagnosis-healthy-icon svg { width: 1.25rem; height: 1.25rem; }
+
+.s360-diagnosis-filters { display: flex; flex-wrap: wrap; gap: .4rem; }
+.s360-issue-card { padding: 1rem 1.15rem; border: 1px solid var(--s360-line); border-left-width: 4px; border-radius: .8rem; background: var(--bs-tertiary-bg, #f8f9fa); }
+.s360-issue-card.is-blocklisted { border-left-color: var(--bs-emphasis-color, #212529); }
+.s360-issue-card.is-vulnerable { border-left-color: var(--bs-danger, #dc3545); }
+.s360-issue-card.is-unauthorized { border-left-color: var(--bs-warning, #ffc107); }
+.s360-issue-card.is-verification { border-left-color: var(--bs-info, #0dcaf0); }
+.s360-issue-pkg { font-size: .95rem; font-weight: 750; color: var(--s360-ink); }
+.s360-issue-path { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem; }
+.s360-more-paths { width: 100%; border: 0 !important; padding: .25rem 0 0 !important; background: transparent !important; }
+.s360-more-paths summary { font-size: .78rem; font-weight: 600; }
+
+.s360-graph-disclosure,
+.s360-all-deps-disclosure { padding: .9rem 1.1rem; border: 1px solid var(--s360-line); border-radius: .9rem; background: var(--bs-body-bg, #fff); }
+.s360-disclosure-summary { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .5rem; cursor: pointer; list-style: none; color: var(--s360-ink); }
+.s360-disclosure-summary::-webkit-details-marker { display: none; }
+.s360-disclosure-summary svg { width: 1.1rem; height: 1.1rem; flex: none; color: var(--bs-primary, #3b7ddd); }
+
+.s360-deps-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: .75rem; }
+.s360-deps-toolbar input[type="search"] { flex: 1 1 240px; max-width: 380px; }

@@ -35,6 +35,7 @@ public class PackageStatusService(TrustService trust, IConfiguration configurati
                 AcceptedVulnerabilities = assessment.Accepted,
                 Rules = result.Rules.Where(r => r.Ecosystem == dependency.Ecosystem &&
                     r.Source == TrustPattern.NormalizeSource(dependency.Source) && r.MatchesPackage(dependency.Name)).ToList(),
+                MatchedBlockRule = BlockRulePolicy.Match(result.Blocks, dependency.Ecosystem, dependency.Name, dependency.Version),
                 EvaluatedAtUtc = now,
                 VulnerabilityDataAtUtc = audit?.LastSuccessAtUtc
             };

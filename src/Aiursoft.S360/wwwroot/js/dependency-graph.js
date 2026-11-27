@@ -367,9 +367,12 @@ if (host) {
     });
     compact.addEventListener('change', schedule);
     new ResizeObserver(() => fit()).observe(canvas);
+    const disclosure = host.closest('details.s360-graph-disclosure');
+    let hasSharedTree = false;
     load();
     try {
         const raw = new URLSearchParams(location.hash.slice(1)).get('tree');
+        if (raw && raw.length <= 20000) hasSharedTree = true;
         if (raw && raw.length <= 20000) {
             const state = JSON.parse(raw);
             const index = graphs.findIndex(g => g.Project === state.manifest && g.Target === state.target && g.Ecosystem === state.ecosystem);
@@ -387,5 +390,12 @@ if (host) {
             } else restoreNotice = text('viewChanged');
         }
     } catch { /* Invalid view links fall back to the current three-level graph. */ }
-    schedule();
+    if (disclosure && !disclosure.open && !hasSharedTree) {
+        disclosure.addEventListener('toggle', () => {
+            if (disclosure.open) schedule();
+        }, { once: true });
+    } else {
+        if (disclosure && hasSharedTree) disclosure.open = true;
+        schedule();
+    }
 }

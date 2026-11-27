@@ -231,6 +231,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
                     });
                 }
             }
+            opened.Diagnosis = ProjectComplianceDiagnostics.Build(opened);
         }
         var packages = versions.GroupBy(v => (v.Dependency.Ecosystem,
                 Name: v.Dependency.Ecosystem == "nuget" ? v.Dependency.Name.ToLowerInvariant() : v.Dependency.Name, v.Dependency.Source))
@@ -247,6 +248,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
             PackageCount = packages.Count,
             VulnerablePackageCount = packages.Count(p => p.Versions.Any(v => v.Advisories.Count > 0)),
             VulnerableProjectCount = projects.Values.Count(p => p.Versions.Any(v => v.Advisories.Count > 0)),
+            RiskAcceptedProjectCount = projects.Values.Count(p => p.Versions.Any(v => v.State?.AcceptedVulnerabilities.Count > 0)),
             ProjectStatuses = projects.Values.GroupBy(p => p.Status).ToDictionary(g => g.Key, g => g.Count()),
             PackageStatuses = packages.GroupBy(p => p.Status).ToDictionary(g => g.Key, g => g.Count()),
             LatestReportUtc = projects.Values.SelectMany(p => p.Reports).Select(r => (DateTime?)r.CheckedAtUtc).Max(),
@@ -267,7 +269,7 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
              version.Rules.Any(r => Contains(r.Justification, model.Query)) ||
              version.Requests.Any(r => Contains(r.Justification, model.Query) || Contains(r.Project, model.Query)) ||
              version.Uses.Any(u => Contains(u.Project, model.Query))) &&
-            MatchesFilter(version.DisplayStatus, version.Advisories.Count > 0, model.Filter);
+            MatchesFilter(version.DisplayStatus, version.Advisories.Count > 0, version.State?.AcceptedVulnerabilities.Count > 0, model.Filter);
         if (model.Tab == "dependencies")
         {
             var filtered = packages.Where(p => p.Versions.Any(VersionMatches)).ToList();
@@ -278,11 +280,14 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
         else
         {
             var filtered = projects.Values.Where(p => model.Project == null || p.Name == model.Project)
-                .Where(p => MatchesFilter(p.DisplayStatus, p.Versions.Any(v => v.Advisories.Count > 0), model.Filter))
+                .Where(p => MatchesFilter(p.DisplayStatus, p.Versions.Any(v => v.Advisories.Count > 0), p.Versions.Any(v => v.State?.AcceptedVulnerabilities.Count > 0), model.Filter))
                 .Where(p => Contains(p.Name, model.Query) || p.Versions.Any(v =>
                     Contains(v.Dependency.Name, model.Query) || v.Rules.Any(r => Contains(r.Justification, model.Query)) ||
                     v.Requests.Any(r => Contains(r.Justification, model.Query))))
-                .OrderByDescending(p => p.Status).ThenBy(p => p.Name, StringComparer.Ordinal).ToList();
+                .OrderByDescending(p => p.DisplayStatus)
+                .ThenByDescending(p => p.Versions.Any(v => v.State?.BlockingAdvisories.Count > 0))
+                .ThenByDescending(p => p.Versions.Count(v => v.Status == InventoryStatus.NonCompliant))
+                .ThenBy(p => p.Name, StringComparer.Ordinal).ToList();
             model.Total = filtered.Count;
             model.Page = Math.Min(model.Page, model.PageCount);
             model.Projects = allProjects ? filtered : filtered.Skip((model.Page - 1) * InventoryViewModel.PageSize).Take(InventoryViewModel.PageSize).ToList();
@@ -298,12 +303,13 @@ public class CatalogInventoryService(TemplateDbContext db, PackageStatusService 
     private static bool Contains(string? value, string? query) => string.IsNullOrEmpty(query) ||
         value?.Contains(query, StringComparison.OrdinalIgnoreCase) == true;
 
-    private static bool MatchesFilter(InventoryStatus status, bool hasCve, string filter) => filter switch
+    private static bool MatchesFilter(InventoryStatus status, bool hasCve, bool hasRiskAccepted, string filter) => filter switch
     {
         "issues" => status == InventoryStatus.NonCompliant,
         "pending" => status == InventoryStatus.Pending,
         "compliant" => status == InventoryStatus.Compliant,
         "cve" => hasCve,
+        "risk-accepted" => hasRiskAccepted,
         _ => true
     };
 

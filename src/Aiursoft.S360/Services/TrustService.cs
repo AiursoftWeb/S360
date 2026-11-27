@@ -42,7 +42,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
     }
 
     internal Task<TrustAssessment> AssessForDisplayAsync(IReadOnlyList<Dependency> requested) => requested.Count == 0
-        ? Task.FromResult(new TrustAssessment([], [], [], [], null, DateTime.UtcNow))
+        ? Task.FromResult(new TrustAssessment([], [], [], [], [], null, DateTime.UtcNow))
         : VulnerabilityAuditSnapshot.ReadAsync(db, () => AssessSnapshotAsync(requested, includeDetails: true));
 
     private async Task<TrustAssessment> AssessSnapshotAsync(IReadOnlyList<Dependency> requested, bool includeDetails)
@@ -70,7 +70,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
         var now = DateTime.UtcNow;
         var authorization = requested.Select(d => Evaluate(d, rules, blocks, now, exclusions)).ToList();
         var targets = includeDetails ? requested : requested.Where((_, index) => authorization[index].Trusted).ToList();
-        if (targets.Count == 0) return new TrustAssessment(authorization, authorization, [], rules, null, now);
+        if (targets.Count == 0) return new TrustAssessment(authorization, authorization, [], rules, blocks, null, now);
 
         var vulnerabilities = await VulnerabilityPolicy.LoadAsync(db, now, targets, includeDetails);
         var details = includeDetails ? requested.Select(vulnerabilities.Assess).ToList() : [];
@@ -106,7 +106,7 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
                 Reason = "Current vulnerability data is unavailable for this package. A vulnerability refresh is required."
             };
         }).ToList();
-        return new TrustAssessment(authorization, decisions, details, rules, audit, now);
+        return new TrustAssessment(authorization, decisions, details, rules, blocks, audit, now);
     }
 
     public static DependencyDecision Evaluate(Dependency dependency, IEnumerable<PackageRule> rules,
@@ -156,4 +156,4 @@ public class TrustService(TemplateDbContext db) : IScopedDependency
 }
 
 internal sealed record TrustAssessment(List<DependencyDecision> Authorization, List<DependencyDecision> Decisions,
-    List<VulnerabilityAssessment> Vulnerabilities, List<PackageRule> Rules, VulnerabilitySyncState? Audit, DateTime EvaluatedAtUtc);
+    List<VulnerabilityAssessment> Vulnerabilities, List<PackageRule> Rules, List<PackageRule> Blocks, VulnerabilitySyncState? Audit, DateTime EvaluatedAtUtc);

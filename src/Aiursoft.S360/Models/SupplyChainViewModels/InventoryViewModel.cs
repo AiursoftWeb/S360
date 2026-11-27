@@ -68,6 +68,7 @@ public class InventoryProject
     public List<InventoryReport> Reports { get; init; } = [];
     public List<InventoryGraph> Graphs { get; set; } = [];
     public InventorySolution? Solution { get; set; }
+    public ProjectDiagnosis? Diagnosis { get; set; }
     public bool Incomplete { get; set; }
     public InventoryStatus Status => Versions.Any(v => v.Status == InventoryStatus.NonCompliant)
         ? InventoryStatus.NonCompliant
@@ -112,9 +113,47 @@ public class InventorySummary
     public int PackageCount { get; init; }
     public int VulnerablePackageCount { get; init; }
     public int VulnerableProjectCount { get; init; }
+    public int RiskAcceptedProjectCount { get; init; }
     public Dictionary<InventoryStatus, int> ProjectStatuses { get; init; } = [];
     public Dictionary<InventoryStatus, int> PackageStatuses { get; init; } = [];
     public DateTime? LatestReportUtc { get; init; }
     public List<InventoryPackage> PriorityPackages { get; init; } = [];
     public List<InventoryProject> PriorityProjects { get; init; } = [];
+}
+
+public enum ProjectIssueSeverity
+{
+    NeedsVerification = 1,
+    Unauthorized = 2,
+    SourceNotPermitted = 3,
+    ActiveVulnerability = 4,
+    Blocklisted = 5
+}
+
+public class ProjectDiagnosticIssue
+{
+    public required InventoryVersion Version { get; init; }
+    public required ProjectIssueSeverity Severity { get; init; }
+    public required string CategoryKey { get; init; }
+    public bool IsBlocklisted { get; init; }
+    public bool HasActiveVulnerability { get; init; }
+    public bool SourceNotPermitted { get; init; }
+    public bool IsUnauthorized { get; init; }
+    public bool NeedsVerification { get; init; }
+    public List<string> BlockingAdvisories { get; init; } = [];
+    public List<string> IntroductionPaths { get; init; } = [];
+    public bool IsDirectDependency { get; init; }
+    public int TotalPathCount { get; init; }
+    public List<PackageRule> OtherApprovedRules { get; init; } = [];
+}
+
+public class ProjectDiagnosis
+{
+    public List<ProjectDiagnosticIssue> BlockingIssues { get; init; } = [];
+    public List<InventoryVersion> RiskAcceptedVersions { get; init; } = [];
+    public List<InventoryVersion> CompliantVersions { get; init; } = [];
+    public int BlocklistedCount => BlockingIssues.Count(i => i.Severity == ProjectIssueSeverity.Blocklisted);
+    public int VulnerableCount => BlockingIssues.Count(i => i.Severity == ProjectIssueSeverity.ActiveVulnerability);
+    public int UnauthorizedCount => BlockingIssues.Count(i => i.Severity is ProjectIssueSeverity.Unauthorized or ProjectIssueSeverity.SourceNotPermitted);
+    public int VerificationCount => BlockingIssues.Count(i => i.Severity == ProjectIssueSeverity.NeedsVerification);
 }

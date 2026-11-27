@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>已授權</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>申請人無法核准自己的申請。請要求下方的其他審核人員審核此申請。</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>核准連結與訊息已複製。</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>核准者</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>已授權但尚未通過檢查</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>複製核准連結與訊息</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>目前授權狀態</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>新的待審核項目</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>目前尚未設定具有核准權限的審核人員。請聯絡您的系統管理員。</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>套件</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>報告 SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>申請進度</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>提出時間</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>解析作業已排入佇列或正在執行。請重新整理此頁面以查看結果。</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>解析與檢查中</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>以新請求重試</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>審查決定</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>檢視此請求</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>請選取並複製下方的訊息。</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>來源</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>狀態</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>已提交</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>失敗的要求會保留在您的記錄中。新的要求會依據今天的來源與封鎖清單規則進行檢查。</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>版本</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>等待核准</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>撤回申請</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>您 — 無法自行核准</value>
   </data>
 
 </root>

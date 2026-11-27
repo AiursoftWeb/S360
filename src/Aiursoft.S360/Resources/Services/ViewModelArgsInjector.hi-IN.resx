@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>प्रवेश अस्वीकृत</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>खाता और प्रशासन</value>
+  </data>
   <data name="Admin" xml:space="preserve">
     <value>प्रशासक</value>
   </data>
@@ -39,11 +42,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft टेम्पलेट</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>अलर्ट सेंटर की निगरानी</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>अनाम</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>अनुमोदित</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>उपलब्ध निर्भरताएँ</value>
@@ -57,8 +66,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>खराब अनुरोध</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>ब्लॉकलिस्ट</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>बिल्ड जाँच रिकॉर्ड</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>बिल्ड जाँचें</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>अवतार बदलें</value>
@@ -74,6 +89,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>कंपनी का अवलोकन</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>सम्पालन</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>सम्पालन एक्सप्लोरर</value>
@@ -168,6 +186,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>पैकेज प्राधिकरण</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>पैकेज और नियम</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>अनुमति विवरण</value>
   </data>
@@ -189,11 +210,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>प्रोफ़ाइल सेटिंग्स</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>परियोजनाएँ</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>पंजीकरण करें</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>नई निर्भरता का अनुरोध करें</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>पैकेज का अनुरोध करें</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>अनुरोध</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>विरासत में मिले पैकेज नियमों की समीक्षा करें</value>
@@ -206,6 +236,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>भूमिकाएँ</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>नियम और पैकेज</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360 का अवलोकन</value>

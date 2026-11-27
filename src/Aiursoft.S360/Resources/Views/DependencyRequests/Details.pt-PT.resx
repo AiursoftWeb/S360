@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Já autorizado</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Os requerentes não podem aprovar os seus próprios pedidos. Peça a outro revisor abaixo para rever este pedido.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Ligação e mensagem de aprovação copiadas.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Aprovadores</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Autorizados, mas não prontos para verificação</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Copiar ligação e mensagem de aprovação</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Autorização atual</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Novos itens para análise</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Não existem, de momento, revisores com permissão de aprovação configurados. Contacte o administrador do sistema.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Pacote</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>Relatório SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Progresso do pedido</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Solicitado</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>A resolução está na fila ou em curso. Atualize esta página para ver o resultado.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>A resolver e a verificar</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Tentar novamente como novo pedido</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Decisão da análise</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Rever este pedido</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Selecione e copie a mensagem abaixo.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Origem</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Estado</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Submetido</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>O pedido que falhou permanece no seu histórico. O novo pedido é verificado de acordo com as regras atuais da origem e da lista de bloqueio.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Versão</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>À espera de aprovação</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Retirar o pedido</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Você — não pode auto-aprovar</value>
   </data>
 
 </root>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted advisories" xml:space="preserve">
+    <value>承認済みアドバイザリ</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>有効なリスク許容</value>
+  </data>
+  <data name="Blocking compliance issues" xml:space="preserve">
+    <value>ブロックされたコンプライアンス問題</value>
+  </data>
+  <data name="Blocking rule" xml:space="preserve">
+    <value>ブロックルール</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>ブロックリスト登録済み</value>
+  </data>
+  <data name="Browse rules" xml:space="preserve">
+    <value>ルールの閲覧</value>
+  </data>
+  <data name="Compliance diagnosis" xml:space="preserve">
+    <value>コンプライアンス診断</value>
+  </data>
+  <data name="Dependency graph not recorded in this report." xml:space="preserve">
+    <value>このレポートには依存関係グラフが記録されていません。</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>直接依存</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>有効期限</value>
+  </data>
+  <data name="Filter blocking issues" xml:space="preserve">
+    <value>ブロック対象の問題をフィルタリング</value>
+  </data>
+  <data name="Inspect CVEs" xml:space="preserve">
+    <value>CVEを調査する</value>
+  </data>
+  <data name="Inspect package" xml:space="preserve">
+    <value>パッケージを検査する</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>導入パス</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>ブロックリストの管理</value>
+  </data>
+  <data name="Manage risk acceptances" xml:space="preserve">
+    <value>リスク受容の管理</value>
+  </data>
+  <data name="Matching rule" xml:space="preserve">
+    <value>一致ルール</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>確認が必要</value>
+  </data>
+  <data name="No blocking compliance issues" xml:space="preserve">
+    <value>重大なコンプライアンス問題はありません</value>
+  </data>
+  <data name="No blocking issues match the selected filter." xml:space="preserve">
+    <value>選択したフィルターに一致するブロッキング問題はありません。</value>
+  </data>
+  <data name="No expiry recorded" xml:space="preserve">
+    <value>有効期限なし</value>
+  </data>
+  <data name="Ordered by severity: absolute blocklist, active vulnerabilities, source policy, authorization, and pending verification." xml:space="preserve">
+    <value>重大度順：絶対ブロックリスト、アクティブな脆弱性、ソースポリシー、認可、検証待ち。</value>
+  </data>
+  <data name="Other approved rules for this package" xml:space="preserve">
+    <value>このパッケージの他の承認ルール</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>パッケージ</value>
+  </data>
+  <data name="Policy rule" xml:space="preserve">
+    <value>ポリシールール</value>
+  </data>
+  <data name="Request this package" xml:space="preserve">
+    <value>このパッケージをリクエスト</value>
+  </data>
+  <data name="Risk acceptances" xml:space="preserve">
+    <value>リスク受容</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>ソースが許可されていません</value>
+  </data>
+  <data name="Transitive" xml:space="preserve">
+    <value>間接依存</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>未承認</value>
+  </data>
+
+</root>

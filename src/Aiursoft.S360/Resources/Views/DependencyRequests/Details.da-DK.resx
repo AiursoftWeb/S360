@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Allerede godkendt</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Søgere kan ikke godkende deres egne anmodninger. Bed en anden revident nedenfor om at revidere denne anmodning.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Godkendelseslink og besked kopieret.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Godkendere</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Autoriseret, men ikke klar til kontrol</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Kopiér godkendelseslink og -besked</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Nuværende godkendelse</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Nye gennemgangspunkter</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Der er i øjeblikket ikke konfigureret nogle revisorer med godkendelsesrettigheder. Kontakt din systemadministrator.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Pakke</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>Rapportens SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Anmodningsforløb</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Anmodet</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>Behandlingen er sat i kø eller i gang. Opdater siden for at se resultatet.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Løser og kontrollerer</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Prøv igen som en ny anmodning</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Vurderingsbeslutning</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Gennemgå denne anmodning</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Vælg og kopier beskeden nedenfor.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Kilde</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Indsendt</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Den mislykkede anmodning forbliver i din historik. Den nye anmodning kontrolleres i forhold til dagens regler for kilder og blokeringslister.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>Venter på godkendelse</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Træk anmodningen tilbage</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Du — kan ikke godkende dig selv</value>
   </data>
 
 </root>

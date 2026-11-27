@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Redan godkända</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Sökande kan inte godkänna egna ansökningar. Be en annan granskare nedan att granska denna ansökan.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Godkännandestänk och meddelande kopierat.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Godkännare</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Auktoriserad men inte redo för kontroll</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Kopiera godkännandelänk och meddelande</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Nuvarande behörighet</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Nya ärenden att granska</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Det finns för närvarande inga granskare med godkännanderättigheter konfigurerade. Kontakta din systemadministratör.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Paket</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>Rapportens SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Förfrågan – förlopp</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Begärd</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>Lösningen väntar i kön eller körs. Uppdatera sidan för att se resultatet.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Återställer och kontrollerar</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Försök igen som en ny begäran</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Beslut vid granskning</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Granska denna begäran</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Markera och kopiera meddelandet nedan.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Källa</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Inlämnad</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Den misslyckade begäran finns kvar i din historik. Den nya begäran kontrolleras mot dagens regler för källor och blockeringslistor.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Version</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>Väntar på godkännande</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Återkalla begäran</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Du — kan inte självgodkänna</value>
   </data>
 
 </root>

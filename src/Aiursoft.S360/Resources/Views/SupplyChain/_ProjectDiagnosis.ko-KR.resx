@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted advisories" xml:space="preserve">
+    <value>승인된 보안 공지</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>활성 위험 허용</value>
+  </data>
+  <data name="Blocking compliance issues" xml:space="preserve">
+    <value>차단되는 컴플라이언스 문제</value>
+  </data>
+  <data name="Blocking rule" xml:space="preserve">
+    <value>차단 규칙</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>차단 목록</value>
+  </data>
+  <data name="Browse rules" xml:space="preserve">
+    <value>규칙 열기</value>
+  </data>
+  <data name="Compliance diagnosis" xml:space="preserve">
+    <value>컴플라이언스 진단</value>
+  </data>
+  <data name="Dependency graph not recorded in this report." xml:space="preserve">
+    <value>이 보고서에 의존성 그래프가 기록되지 않았습니다.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>직접 의존성</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>만료</value>
+  </data>
+  <data name="Filter blocking issues" xml:space="preserve">
+    <value>차단 문제 필터</value>
+  </data>
+  <data name="Inspect CVEs" xml:space="preserve">
+    <value>CVE 확인</value>
+  </data>
+  <data name="Inspect package" xml:space="preserve">
+    <value>패키지 검사</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>도입 경로</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>차단 목록 관리</value>
+  </data>
+  <data name="Manage risk acceptances" xml:space="preserve">
+    <value>리스크 수용 관리</value>
+  </data>
+  <data name="Matching rule" xml:space="preserve">
+    <value>일치 규칙</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>검증 필요</value>
+  </data>
+  <data name="No blocking compliance issues" xml:space="preserve">
+    <value>차단되는 준수 사항 없음</value>
+  </data>
+  <data name="No blocking issues match the selected filter." xml:space="preserve">
+    <value>선택한 필터에 해당하는 차단 문제가 없습니다.</value>
+  </data>
+  <data name="No expiry recorded" xml:space="preserve">
+    <value>만료일이 기록되지 않음</value>
+  </data>
+  <data name="Ordered by severity: absolute blocklist, active vulnerabilities, source policy, authorization, and pending verification." xml:space="preserve">
+    <value>중요도 순서: 절대 차단 목록, 활성 취약점, 소스 정책, 권한 부여, 및 대기 중인 검증.</value>
+  </data>
+  <data name="Other approved rules for this package" xml:space="preserve">
+    <value>해당 패키지의 기타 승인된 규칙</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>패키지</value>
+  </data>
+  <data name="Policy rule" xml:space="preserve">
+    <value>정책 규칙</value>
+  </data>
+  <data name="Request this package" xml:space="preserve">
+    <value>이 패키지 요청</value>
+  </data>
+  <data name="Risk acceptances" xml:space="preserve">
+    <value>리스크 수용</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>소스 사용 불가</value>
+  </data>
+  <data name="Transitive" xml:space="preserve">
+    <value>전달적</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>권한 없음</value>
+  </data>
+
+</root>

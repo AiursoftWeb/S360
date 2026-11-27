@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+      <data name="After resolution completes, contact any reviewer below to approve your request." xml:space="preserve">
+    <value>Una vez completada la resolución, contacte a cualquier revisor de la lista inferior para que apruebe su solicitud.</value>
+  </data>
+  <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
     <value>Elige un registro para el ecosistema seleccionado. El origen forma parte de las pruebas de revisión.</value>
   </data>
   <data name="Created" xml:space="preserve">
@@ -57,6 +60,9 @@
   <data name="New request" xml:space="preserve">
     <value>Nueva solicitud</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>No hay revisores con permiso de aprobación configurados actualmente. Póngase en contacto con su administrador del sistema.</value>
+  </data>
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet es para paquetes de .NET; npm, para paquetes de JavaScript. Elige el que realmente instale tu proyecto.</value>
   </data>
@@ -84,6 +90,9 @@
   <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
     <value>Solicita aprobación antes de añadir un paquete nuevo a tu proyecto. Indica su nombre y versión exactos y explica por qué lo necesitas.</value>
   </data>
+  <data name="Request approval for exact package versions before adding them to your project." xml:space="preserve">
+    <value>Solicite aprobación para las versiones exactas de los paquetes antes de agregarlos a su proyecto.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Origen</value>
   </data>
@@ -102,8 +111,14 @@
   <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
     <value>Sigue el progreso de la revisión y las decisiones sobre las dependencias que has solicitado.</value>
   </data>
+  <data name="Who can approve your request" xml:space="preserve">
+    <value>¿Quién puede aprobar su solicitud?</value>
+  </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>¿Por qué se necesita esta dependencia?</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Tú — no puedes autoaprobar</value>
   </data>
 
 </root>

@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>Access Denied</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>Account &amp; Admin</value>
+  </data>
   <data name="Account Settings" xml:space="preserve">
     <value>Account Settings</value>
   </data>
@@ -42,11 +45,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Template</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter monitoring</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anonymous</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Approvals</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Available dependencies</value>
@@ -60,8 +69,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>Bad Request</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Blocklist</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>Build Check Records</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>Build checks</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Change Profile Picture</value>
@@ -77,6 +92,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Company overview</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Compliance</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>Compliance explorer</value>
@@ -171,6 +189,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>Package authorisation</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>Packages and rules</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Permission Details</value>
   </data>
@@ -192,11 +213,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>Profile Settings</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projects</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Request a new dependency</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>Request a package</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Requests</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Review legacy package rules</value>
@@ -209,6 +239,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Roles</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>Rules &amp; packages</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360 overview</value>

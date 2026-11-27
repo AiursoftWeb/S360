@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Уже авторизовано</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Заявители не могут утверждать собственные заявки. Попросите другого рецензента ниже рассмотреть эту заявку.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Ссылка и сообщение для одобрения скопированы.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Утверждающие</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Одобрено, но не готово к проверке</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Скопировать ссылку и сообщение для одобрения</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Текущее разрешение</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Новые элементы, требующие проверки</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Сейчас не настроены ни один рецензент с правом утверждения. Обратитесь к системному администратору.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Пакет</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>Хеш SHA-256 отчёта</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Ход запроса</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Запрошено</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>Обработка поставлена в очередь или выполняется. Обновите эту страницу, чтобы увидеть результат.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Разрешение и проверка</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Повторить как новый запрос</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Решение по итогам проверки</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Рассмотреть этот запрос</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Выберите и скопируйте сообщение ниже.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Источник</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Статус</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Отправлено</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Неудачный запрос останется в истории. Новый запрос будет проверен с учётом сегодняшних правил для источников и списка блокировки.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Версия</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>Ожидание одобрения</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Отозвать запрос</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Вы — не можете одобрить сами</value>
   </data>
 
 </root>

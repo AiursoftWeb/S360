@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>ได้รับอนุญาตแล้ว</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>ผู้ยื่นขอไม่สามารถอนุมัติคำขอของตนเองได้ กรุณาขอให้ผู้ตรวจสอบคนอื่นด้านล่างตรวจสอบคำขอนี้</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>คัดลอกลิงก์การอนุมัติและข้อความแล้ว</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>ผู้อนุมัติ</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>ได้รับอนุญาตแล้ว แต่ยังไม่พร้อมสำหรับการตรวจสอบ</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>คัดลอกลิงก์การอนุมัติและข้อความ</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>การอนุมัติในปัจจุบัน</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>รายการใหม่ที่ต้องตรวจสอบ</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>ปัจจุบันยังไม่ได้กำหนดผู้ตรวจสอบที่มีสิทธิ์อนุมัติไว้ กรุณาติดต่อผู้ดูแลระบบ</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>แพ็กเกจ</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>รายงาน SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>ความคืบหน้าของคำขอ</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>ส่งคำขอเมื่อ</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>กำลังรอคิวหรือกำลังดำเนินการแก้ไข โปรดรีเฟรชหน้านี้เพื่อดูผลลัพธ์</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>กำลังดำเนินการและตรวจสอบ</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>ลองส่งคำขอใหม่</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>ผลการพิจารณา</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>ตรวจสอบคำขอนี้</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>เลือกและคัดลอกข้อความด้านล่าง</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>แหล่งที่มา</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>สถานะ</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>ส่งแล้ว</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>คำขอที่ไม่สำเร็จจะยังคงอยู่ในประวัติของคุณ คำขอใหม่จะได้รับการตรวจสอบตามแหล่งที่มาและกฎของรายการบล็อกในวันนี้</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>เวอร์ชัน</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>รอการอนุมัติ</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>ถอนคำขอ</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>คุณ — ไม่สามารถอนุมัติด้วยตนเองได้</value>
   </data>
 
 </root>

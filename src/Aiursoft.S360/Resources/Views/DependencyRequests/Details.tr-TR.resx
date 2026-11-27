@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Önceden yetkilendirilmiş</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Başvuranlar kendi taleplerini onaylayamaz. Bu talebi incelemesi için aşağıdaki başka bir inceleme uzmanına başvurun.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Onay bağlantısı ve mesajı kopyalandı.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Onaylayanlar</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Yetkilendirilmiş ancak denetime hazır değil</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Onay bağlantısını ve mesajını kopyala</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Mevcut yetkilendirme</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>İnceleme için yeni öğeler</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Şu anda onay yetkisine sahip hiçbir inceleyici yapılandırılmamış. Sistem yöneticinizle iletişime geçin.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Paket</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>Raporun SHA-256 özeti</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>İstek ilerlemesi</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Talep edildi</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>Çözümleme sıraya alınmış veya devam ediyor. Sonucu görmek için bu sayfayı yenileyin.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Çözülüyor ve kontrol ediliyor</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Yeni bir istek olarak yeniden dene</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>İnceleme kararı</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Bu isteği incele</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Aşağıdaki mesajı seçin ve kopyalayın.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Kaynak</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Durum</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Gönderildi</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Başarısız istek geçmişinizde kalır. Yeni istek, bugünün kaynak ve engelleme listesi kurallarına göre kontrol edilir.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Sürüm</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>Onay bekleniyor</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Talebi geri çek</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Siz — kendi onayınızı yapamazsınız</value>
   </data>
 
 </root>

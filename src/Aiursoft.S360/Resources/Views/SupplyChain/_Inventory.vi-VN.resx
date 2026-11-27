@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Tất cả các dự án</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Tất cả các phụ thuộc được báo cáo</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Tất cả trạng thái</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Bản ghi kiểm tra</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Nhấp để mở rộng</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Tổng quan công ty</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Hệ sinh thái</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Tóm tắt trạng thái hệ sinh thái</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Bằng chứng cần được xác minh</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Khám phá</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Lọc các gói trong dự án này</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Lọc các gói trong dự án này...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Tìm dự án hoặc gói, kiểm tra mức độ tuân thủ và truy tìm lý do chúng được sử dụng.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Biểu đồ phụ thuộc tương tác</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Giao diện danh mục</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Lỗ hổng bảo mật đã biết</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Rủi ro lỗ hổng bảo mật đã biết được chấp nhận theo chính sách</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Các rủi ro lỗ hổng bảo mật đã biết đã được chấp nhận theo chính sách. Hãy kiểm tra các quy tắc và ngày hết hạn của chúng trong chi tiết gói.</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Cần chú ý</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Chỉ những mục cần chú ý</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Tiếp theo</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Không tìm thấy bản ghi phù hợp</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Không được bao gồm trong đợt kiểm toán này</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Chưa được xác minh</value>
@@ -159,6 +186,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Dự án có báo cáo</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Bộ lọc tuân thủ nhanh</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>Biểu tượng README</value>
   </data>
@@ -186,11 +216,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Xem xét phiên bản đã báo cáo và phê duyệt hiện tại. Yêu cầu phê duyệt phù hợp hoặc nâng cấp lên phiên bản đã được phê duyệt và không bị ảnh hưởng; không được hạ cấp xuống phiên bản có lỗ hổng bảo mật.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Đã chấp nhận rủi ro</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>Huy hiệu tuân thủ S360</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Tìm kiếm</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Tìm kiếm và kiểm tra mọi gói</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Tìm kiếm danh mục</value>

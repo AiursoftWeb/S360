@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Alla projekt</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Alla rapporterade beroenden</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Alla statusar</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Kontrollpost</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Klicka för att expandera</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Företagsöversikt</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosystem</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Sammanfattning av ekosystemstatus</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Bevis kräver verifiering</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Utforska</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Filtrera paket i det här projektet</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Filtrera paket i det här projektet...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Hitta ett projekt eller paket, granska dess efterlevnad och ta reda på varför det används.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Interaktivt beroendegraf</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Inventeringsvyer</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Kända sårbarheter</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Kända sårbarhetsriskar accepterade enligt policy</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Kända sårbarhetsrisker har accepterats enligt policy. Inspektera reglerna och deras utgångsdatum i paketdetaljerna.</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Behöver åtgärd</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Endast de som behöver uppmärksamhet</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Nästa</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Inga matchande poster</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Inte inkluderad i denna revision</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Inte verifierad</value>
@@ -159,6 +186,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Projekt med rapporter</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Snabba efterlevnadsfilter</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>README-badge</value>
   </data>
@@ -186,11 +216,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Granska den rapporterade versionen och den aktuella godkännandet. Begär ett lämpligt godkännande eller uppgradera till en godkänd, opåverkad version; nedgradera inte till en version med sårbarheter.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risk accepterat</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360-samverkansmärke</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Sök</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Sök och inspektera alla paket</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Sök i lagret</value>

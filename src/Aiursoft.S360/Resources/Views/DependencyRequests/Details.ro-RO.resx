@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Deja autorizate</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Solicitanții nu își pot aproba propriile cereri. Cereți altui evaluator de mai jos să verifice această cerere.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Link-ul de aprobare și mesajul au fost copiate.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Aprobat</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Autorizate, dar nu sunt pregătite pentru verificare</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Copiați linkul și mesajul de aprobare</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Autorizare curentă</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Elemente noi de revizuit</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Nu există recenzori cu permisiune de aprobare configurați în prezent. Contactați administratorul sistemului.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Pachet</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>Raport SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Progresul cererii</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Solicitat</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>Rezolvarea este în așteptare sau în curs de desfășurare. Reîmprospătați această pagină pentru a vedea rezultatul.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Rezolvare și verificare</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Reîncearcă sub forma unei solicitări noi</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Decizia evaluării</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Revizuiți această cerere</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Selectați și copiați mesajul de mai jos.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Sursă</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Stare</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Trimis</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Solicitarea eșuată rămâne în istoricul tău. Noua solicitare este verificată conform regulilor de astăzi privind sursele și lista de blocare.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Versiune</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>În așteptarea aprobării</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Retrageți cererea</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Dumneavoastră — nu vă puteți auto-aproba</value>
   </data>
 
 </root>

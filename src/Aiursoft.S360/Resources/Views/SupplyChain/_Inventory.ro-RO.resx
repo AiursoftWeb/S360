@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Toate proiectele</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Toate dependențele raportate</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Toate stările</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Înregistrarea verificării</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Faceți clic pentru a expanda</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Prezentare generală a companiei</value>
@@ -78,20 +84,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Ecosistem</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Rezumatul stării ecosistemului</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Dovezile necesită verificare</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Explorează</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Filtrează pachetele din acest proiect</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Filtrează pachetele din acest proiect...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Găsiți un proiect sau un pachet, verificați conformitatea acestuia și urmăriți motivul utilizării sale.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Grafic interactiv de dependențe</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Vizualizări inventar</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Vulnerabilități cunoscute</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Riscuri de vulnerabilități cunoscute acceptate prin politică</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Riscurile cunoscute de vulnerabilitate au fost acceptate prin politică. Inspecționați regulile și datele lor de expirare în detaliile pachetului.</value>
@@ -105,6 +126,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Necesită atenție</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Doar cele care necesită atenție</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Următorul</value>
   </data>
@@ -116,6 +140,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Nicio înregistrare corespunzătoare</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Neinclus în acest audit</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Neverificat</value>
@@ -156,6 +183,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Proiecte cu rapoarte</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Filtre rapide de conformitate</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>Insignă README</value>
   </data>
@@ -183,11 +213,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Verificați versiunea raportată și aprobarea actuală. Solicitați o aprobare adecvată sau faceți upgrade la o versiune aprobată, fără vulnerabilități; nu reveniți la o versiune vulnerabilă.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risc acceptat</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>Insignă de conformitate S360</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Cautare</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Căutați și inspectați fiecare pachet</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Cautare inventar</value>

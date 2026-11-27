@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>Åtkomst nekad</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>Konto &amp; Admin</value>
+  </data>
   <data name="Admin" xml:space="preserve">
     <value>Administratör</value>
   </data>
@@ -39,11 +42,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Aiursoft Mall</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>AlertCenter övervakning</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Anonym</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Godkännanden</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Tillgängliga beroenden</value>
@@ -57,8 +66,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>Felaktig begäran</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Blocklist</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>Byggkontrollposter</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>Byggkontroller</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Byt avatar</value>
@@ -74,6 +89,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Företagsöversikt</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Säkerhetskrav</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>Säkerhetsöversyn</value>
@@ -168,6 +186,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>Paketauktorisering</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>Paket och regler</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Behörighetsdetaljer</value>
   </data>
@@ -189,11 +210,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>Profilinställningar</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Projekt</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Registrera</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Begär ett nytt beroende</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>Begär en paket</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Begäranden</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Granska äldre paketregler</value>
@@ -206,6 +236,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Roller</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>Regler och paket</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>S360-översikt</value>

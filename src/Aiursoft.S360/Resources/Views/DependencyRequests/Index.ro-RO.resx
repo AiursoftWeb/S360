@@ -18,7 +18,10 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-      <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
+      <data name="After resolution completes, contact any reviewer below to approve your request." xml:space="preserve">
+    <value>După finalizarea rezolvării, contactați orice evaluator de mai jos pentru a aproba solicitarea dumneavoastră.</value>
+  </data>
+  <data name="Choose a registry for the selected ecosystem. The source is part of the review evidence." xml:space="preserve">
     <value>Alegeți un registru pentru ecosistemul selectat. Sursa face parte din dovezile analizate.</value>
   </data>
   <data name="Created" xml:space="preserve">
@@ -57,6 +60,9 @@
   <data name="New request" xml:space="preserve">
     <value>Solicitare nouă</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Nu există recenzori cu permisiune de aprobare configurați în prezent. Contactați administratorul de sistem.</value>
+  </data>
   <data name="NuGet is for .NET packages; npm is for JavaScript packages. Choose the one your project actually installs." xml:space="preserve">
     <value>NuGet este pentru pachete .NET; npm este pentru pachete JavaScript. Alege-l pe cel pe care îl instalează efectiv proiectul tău.</value>
   </data>
@@ -84,6 +90,9 @@
   <data name="Request approval before adding a new package to your project. Enter its exact name and version, and explain why it is needed." xml:space="preserve">
     <value>Solicită aprobarea înainte de a adăuga un pachet nou la proiectul tău. Introdu numele și versiunea exacte și explică de ce este necesar.</value>
   </data>
+  <data name="Request approval for exact package versions before adding them to your project." xml:space="preserve">
+    <value>Solicitați aprobarea pentru versiuni exacte de pachete înainte de a le adăuga în proiectul dvs.</value>
+  </data>
   <data name="Source" xml:space="preserve">
     <value>Sursă</value>
   </data>
@@ -102,8 +111,14 @@
   <data name="Track review progress and decisions for the dependencies you requested." xml:space="preserve">
     <value>Urmăriți progresul evaluării și deciziile privind dependențele pe care le-ați solicitat.</value>
   </data>
+  <data name="Who can approve your request" xml:space="preserve">
+    <value>Cine poate aproba cererea dumneavoastră</value>
+  </data>
   <data name="Why is this dependency needed?" xml:space="preserve">
     <value>De ce este necesară această dependență?</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Dumneavoastră — nu vă puteți auto-aproba</value>
   </data>
 
 </root>

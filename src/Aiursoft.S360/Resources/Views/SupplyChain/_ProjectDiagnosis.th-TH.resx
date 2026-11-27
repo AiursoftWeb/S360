@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted advisories" xml:space="preserve">
+    <value>คำแนะนำที่ได้รับการยอมรับ</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>การยอมรับความเสี่ยงที่มีผลบังคับใช้</value>
+  </data>
+  <data name="Blocking compliance issues" xml:space="preserve">
+    <value>ปัญหาการปฏิบัติตามข้อกำหนดที่กีดขวาง</value>
+  </data>
+  <data name="Blocking rule" xml:space="preserve">
+    <value>กฎการบล็อก</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>อยู่ในรายการบล็อก</value>
+  </data>
+  <data name="Browse rules" xml:space="preserve">
+    <value>ดูกฎ</value>
+  </data>
+  <data name="Compliance diagnosis" xml:space="preserve">
+    <value>การวินิจฉัยการปฏิบัติตามข้อกำหนด</value>
+  </data>
+  <data name="Dependency graph not recorded in this report." xml:space="preserve">
+    <value>ไม่ได้บันทึกกราฟการพึ่งพารายงานนี้</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>การพึ่งพาทันที</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>หมดอายุ</value>
+  </data>
+  <data name="Filter blocking issues" xml:space="preserve">
+    <value>ตัวกรองปัญหาการบล็อก</value>
+  </data>
+  <data name="Inspect CVEs" xml:space="preserve">
+    <value>ตรวจสอบ CVEs</value>
+  </data>
+  <data name="Inspect package" xml:space="preserve">
+    <value>ตรวจสอบแพ็กเกจ</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>เส้นทางนำเข้ามา</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>จัดการรายการบล็อก</value>
+  </data>
+  <data name="Manage risk acceptances" xml:space="preserve">
+    <value>จัดการการยอมรับความเสี่ยง</value>
+  </data>
+  <data name="Matching rule" xml:space="preserve">
+    <value>กฎที่ตรงกัน</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>ต้องตรวจสอบ</value>
+  </data>
+  <data name="No blocking compliance issues" xml:space="preserve">
+    <value>ไม่มีปัญหาการปฏิบัติตามข้อกำหนดที่ขัดขวาง</value>
+  </data>
+  <data name="No blocking issues match the selected filter." xml:space="preserve">
+    <value>ไม่พบปัญหาการบล็อกที่ตรงกับตัวกรองที่เลือก</value>
+  </data>
+  <data name="No expiry recorded" xml:space="preserve">
+    <value>ไม่มีการบันทึกวันหมดอายุ</value>
+  </data>
+  <data name="Ordered by severity: absolute blocklist, active vulnerabilities, source policy, authorization, and pending verification." xml:space="preserve">
+    <value>เรียงตามระดับความรุนแรง: บล็อกลิสต์เด็ดขาด ช่องโหว่ที่กำลังใช้งานอยู่ นโยบายแหล่งที่มา การอนุญาต และการตรวจสอบที่ยังค้างอยู่</value>
+  </data>
+  <data name="Other approved rules for this package" xml:space="preserve">
+    <value>กฎที่ได้รับอนุมัติอื่นสำหรับแพ็กเกจนี้</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>แพ็กเกจ</value>
+  </data>
+  <data name="Policy rule" xml:space="preserve">
+    <value>กฎนโยบาย</value>
+  </data>
+  <data name="Request this package" xml:space="preserve">
+    <value>ขอแพ็กเกจนี้</value>
+  </data>
+  <data name="Risk acceptances" xml:space="preserve">
+    <value>การยอมรับความเสี่ยง</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>ไม่ได้รับอนุญาตจากแหล่งข้อมูล</value>
+  </data>
+  <data name="Transitive" xml:space="preserve">
+    <value>การพึ่งพาแบบอ้อม</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>ไม่ได้รับอนุญาต</value>
+  </data>
+
+</root>

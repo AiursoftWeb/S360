@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>既に承認済み</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>申請者は自分の申請を承認できません。以下の別のレビューアにこの申請のレビューを依頼してください。</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>承認リンクとメッセージがコピーされました。</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>承認者</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>承認済みだがチェック未完了</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>承認リンクとメッセージをコピー</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>現在の承認状況</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>新たに審査が必要な項目</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>承認権限を持つレビューアが現在設定されていません。システム管理者にお問い合わせください。</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>パッケージ</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>レポートのSHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>リクエストの進捗</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>申請日時：</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>解決処理はキューに追加されているか、実行中です。結果を確認するには、このページを更新してください。</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>解決と確認中</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>新しいリクエストとして再試行</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>審査結果</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>このリクエストを確認する</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>下のメッセージを選択してコピーしてください。</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>ソース</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>ステータス</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>提出済み</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>失敗したリクエストは履歴に残ります。新しいリクエストは、今日時点のソースとブロックリストのルールに照らして確認されます。</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>バージョン</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>承認待ち</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>申請を取り下げる</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>あなた — 自己承認はできません</value>
   </data>
 
 </root>

@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>所有项目</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>所有已报告的依赖项</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>所有状态</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>检查记录</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>点击展开</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>公司概览</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>生态系统</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>生态系统状态摘要</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>证据需要验证</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>探索</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>筛选此项目中的软件包</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>筛选此项目中的软件包...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>查找项目或软件包，检查其合规性，并追溯其使用原因。</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>交互式依赖关系图</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>库存视图</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>已知漏洞</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>已知漏洞风险已按策略接受</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>已知漏洞风险已根据策略被接受。请在包详情中检查相关规则及其到期日期。</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>需要关注</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>仅显示需关注项</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>下一页</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>没有匹配的记录</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>未包含在此次审计中</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>未验证</value>
@@ -165,6 +192,9 @@
   <data name="Proposed dependencies from Review checks. These do not replace the current baseline." xml:space="preserve">
     <value>来自“审查”检查的拟议依赖项。这些依赖项不会取代当前基线。</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>快速合规筛选</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>README 徽章</value>
   </data>
@@ -192,11 +222,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>请核查报告的版本及当前审批状态。申请相应的审批，或升级至已获批准且不受影响的版本；切勿降级至存在漏洞的版本。</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>已接受风险</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360 合规徽章</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>搜索并检查每个包</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>搜索清单</value>

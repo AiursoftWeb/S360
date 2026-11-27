@@ -30,6 +30,9 @@
   <data name="Access Denied" xml:space="preserve">
     <value>Доступ заборонено</value>
   </data>
+  <data name="Account &amp; Admin" xml:space="preserve">
+    <value>Обліковий запис та адміністрування</value>
+  </data>
   <data name="Admin" xml:space="preserve">
     <value>Адмін</value>
   </data>
@@ -39,11 +42,17 @@
   <data name="Aiursoft Template" xml:space="preserve">
     <value>Шаблон Aiursoft</value>
   </data>
+  <data name="AlertCenter" xml:space="preserve">
+    <value>AlertCenter</value>
+  </data>
   <data name="AlertCenter monitoring" xml:space="preserve">
     <value>Моніторинг AlertCenter</value>
   </data>
   <data name="Anonymous" xml:space="preserve">
     <value>Анонімний</value>
+  </data>
+  <data name="Approvals" xml:space="preserve">
+    <value>Затвердження</value>
   </data>
   <data name="Available dependencies" xml:space="preserve">
     <value>Доступні залежності</value>
@@ -57,8 +66,14 @@
   <data name="Bad Request" xml:space="preserve">
     <value>Помилковий запит</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Чорний список</value>
+  </data>
   <data name="Build check records" xml:space="preserve">
     <value>Записи перевірок збірки</value>
+  </data>
+  <data name="Build checks" xml:space="preserve">
+    <value>Перевірки збірки</value>
   </data>
   <data name="Change Avatar" xml:space="preserve">
     <value>Змінити аватар</value>
@@ -74,6 +89,9 @@
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Огляд компанії</value>
+  </data>
+  <data name="Compliance" xml:space="preserve">
+    <value>Відповідність</value>
   </data>
   <data name="Compliance explorer" xml:space="preserve">
     <value>Дослідник відповідності</value>
@@ -168,6 +186,9 @@
   <data name="Package authorization" xml:space="preserve">
     <value>Авторизація пакета</value>
   </data>
+  <data name="Packages and rules" xml:space="preserve">
+    <value>Пакети та правила</value>
+  </data>
   <data name="Permission Details" xml:space="preserve">
     <value>Деталі дозволів</value>
   </data>
@@ -189,11 +210,20 @@
   <data name="Profile Settings" xml:space="preserve">
     <value>Налаштування профілю</value>
   </data>
+  <data name="Projects" xml:space="preserve">
+    <value>Проєкти</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>Реєстрація</value>
   </data>
   <data name="Request a new dependency" xml:space="preserve">
     <value>Запросити нову залежність</value>
+  </data>
+  <data name="Request a package" xml:space="preserve">
+    <value>Запитати пакет</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Запити</value>
   </data>
   <data name="Review legacy package rules" xml:space="preserve">
     <value>Перегляд застарілих правил для пакетів</value>
@@ -206,6 +236,9 @@
   </data>
   <data name="Roles" xml:space="preserve">
     <value>Ролі</value>
+  </data>
+  <data name="Rules &amp; packages" xml:space="preserve">
+    <value>Правила та пакети</value>
   </data>
   <data name="S360 overview" xml:space="preserve">
     <value>Огляд S360</value>

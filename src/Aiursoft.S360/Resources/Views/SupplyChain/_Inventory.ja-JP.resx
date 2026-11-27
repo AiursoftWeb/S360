@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>すべてのプロジェクト</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>報告されたすべての依存関係</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>すべてのステータス</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>チェック記録</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>クリックして展開</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>会社概要</value>
@@ -81,20 +87,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>エコシステム</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>エコシステムステータス概要</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>証拠の確認が必要です</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>詳しく見る</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>このプロジェクトのパッケージをフィルタリング</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>このプロジェクトのパッケージをフィルタリング...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>プロジェクトまたはパッケージを検索し、コンプライアンスを確認して、使用されている理由を特定します。</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>インタラクティブな依存関係グラフ</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>インベントリ表示</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>既知の脆弱性</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>ポリシーにより承認された既知の脆弱性リスク</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>既知の脆弱性リスクはポリシーにより承認されています。パッケージ詳細でルールとその有効期限を確認してください。</value>
@@ -108,6 +129,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>要対応</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>問題のある項目のみ</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>次へ</value>
   </data>
@@ -119,6 +143,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>一致するレコードはありません</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>この監査に含まれていません</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>未確認</value>
@@ -159,6 +186,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>レポート付きプロジェクト</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>コンプライアンスクイックフィルター</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>READMEバッジ</value>
   </data>
@@ -186,11 +216,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>報告されたバージョンと現在の承認を確認してください。適切な承認を申請するか、承認済みかつ影響を受けないバージョンにアップグレードしてください。脆弱性のあるバージョンへのダウングレードは行わないでください。</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>リスク許容済み</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360 準拠バッジ</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>検索</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>すべてのパッケージを検索して詳細を確認</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>在庫を検索</value>

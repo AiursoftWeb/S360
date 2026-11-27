@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted advisories" xml:space="preserve">
+    <value>Accepterede advisories</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Aktive risikogodkendelser</value>
+  </data>
+  <data name="Blocking compliance issues" xml:space="preserve">
+    <value>Blokerende overensstemmelsesproblemer</value>
+  </data>
+  <data name="Blocking rule" xml:space="preserve">
+    <value>Blokerende regel</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Bloklisteret</value>
+  </data>
+  <data name="Browse rules" xml:space="preserve">
+    <value>Se regelefter</value>
+  </data>
+  <data name="Compliance diagnosis" xml:space="preserve">
+    <value>Overholdelsesdiagnose</value>
+  </data>
+  <data name="Dependency graph not recorded in this report." xml:space="preserve">
+    <value>Afhængighedsgraphen er ikke optaget i denne rapport.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Direkte afhængighed</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Udløber</value>
+  </data>
+  <data name="Filter blocking issues" xml:space="preserve">
+    <value>Filtrér blokerende problemer</value>
+  </data>
+  <data name="Inspect CVEs" xml:space="preserve">
+    <value>Inspicér CVE&apos;er</value>
+  </data>
+  <data name="Inspect package" xml:space="preserve">
+    <value>Inspiktér pakke</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>Introduktionssti</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Administrér bloklist</value>
+  </data>
+  <data name="Manage risk acceptances" xml:space="preserve">
+    <value>Administrér risikogodkendelser</value>
+  </data>
+  <data name="Matching rule" xml:space="preserve">
+    <value>Matchende regel</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Kræver verificering</value>
+  </data>
+  <data name="No blocking compliance issues" xml:space="preserve">
+    <value>Ingen blokerende overensstemmelsesproblemer</value>
+  </data>
+  <data name="No blocking issues match the selected filter." xml:space="preserve">
+    <value>Ingen blokerende problemer matcher den valgte filter.</value>
+  </data>
+  <data name="No expiry recorded" xml:space="preserve">
+    <value>Ingen udløb registreret</value>
+  </data>
+  <data name="Ordered by severity: absolute blocklist, active vulnerabilities, source policy, authorization, and pending verification." xml:space="preserve">
+    <value>Sorteret efter alvorlighed: absolut blokliste, aktive sårbarheder, kildepolitik, autorisation og afventende verifikation.</value>
+  </data>
+  <data name="Other approved rules for this package" xml:space="preserve">
+    <value>Andre godkendte regler for denne pakke</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Pakke</value>
+  </data>
+  <data name="Policy rule" xml:space="preserve">
+    <value>Politikkregel</value>
+  </data>
+  <data name="Request this package" xml:space="preserve">
+    <value>Anmod om denne pakke</value>
+  </data>
+  <data name="Risk acceptances" xml:space="preserve">
+    <value>Risikogodkendelser</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>Kilde ikke tilladt</value>
+  </data>
+  <data name="Transitive" xml:space="preserve">
+    <value>Transitiv</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Uautoriserede</value>
+  </data>
+
+</root>

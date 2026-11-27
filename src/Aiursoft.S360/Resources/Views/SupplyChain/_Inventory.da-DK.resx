@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Alle projekter</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Alle rapporterede afhængigheder</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Alle statusser</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Tjekoptegnelse</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Klik for at udvide</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Oversigt over selskabet</value>
@@ -78,20 +84,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Økosystem</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Økosystemstatusopsummering</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Dokumentationen skal verificeres</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Udforsk</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Filtrér pakker i dette projekt</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Filtrér pakker i dette projekt...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Find et projekt eller en pakke, undersøg dets overholdelse af reglerne, og find ud af, hvorfor det bruges.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Interaktiv afhængighedsgraf</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Inventarvisninger</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Kendte sårbarheder</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Kendte sårbarhedsrisici accepteret ved policy</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Kendte sårbarhedsrisici er blevet accepteret ved policy. Inspektér reglerne og deres udløbsdatoer i pakkedetaljerne.</value>
@@ -105,6 +126,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Kræver opmærksomhed</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Kun dem, der kræver opmærksomhed</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Næste</value>
   </data>
@@ -116,6 +140,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Ingen matchende poster</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Ikke inkluderet i denne revision</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Ikke verificeret</value>
@@ -156,6 +183,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Projekter med rapporter</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Hurtige overholdelsesfiltre</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>README-badge</value>
   </data>
@@ -183,11 +213,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Gennemgå den indberettede version og den gældende godkendelse. Anmod om en passende godkendelse, eller opgrader til en godkendt version uden kendte sårbarheder; nedgrader ikke til en sårbar version.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risiko accepteret</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360 overholdelsesbadge</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Søg</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Søg og inspektér hver pakke</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Søg i lagerbeholdningen</value>

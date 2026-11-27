@@ -21,9 +21,9 @@ public class ApiKeysController(TemplateDbContext db, ApiKeyPermissions permissio
     private string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
     private Task<bool> CanManage() => permissions.HasAsync(UserId, AppPermissionNames.CanManageApiKeys);
 
-    [RenderInNavBar(NavGroupName = "Settings", NavGroupOrder = 9998,
-        CascadedLinksGroupName = "Personal", CascadedLinksIcon = "user", CascadedLinksOrder = 1,
-        LinkText = "API Keys", LinkOrder = 2)]
+    [RenderInNavBar(NavGroupName = "Account & Admin", NavGroupOrder = 9999,
+        CascadedLinksGroupName = "Personal", CascadedLinksIcon = "user-circle", CascadedLinksOrder = 1,
+        LinkText = "API Keys", LinkOrder = 1)]
     [HttpGet]
     public async Task<IActionResult> Index()
     {

@@ -1,4 +1,5 @@
 using Aiursoft.Scanner.Abstractions;
+using Aiursoft.S360.Authorization;
 using Aiursoft.S360.Configuration;
 using Aiursoft.S360.Controllers;
 using Aiursoft.S360.Entities;
@@ -18,6 +19,7 @@ using Aiursoft.UiStack.Views.Shared.Components.UserDropdown;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using System.Diagnostics.CodeAnalysis;
@@ -31,7 +33,8 @@ public class ViewModelArgsInjector(
     IAuthorizationService authorizationService,
     IOptions<AppSettings> appSettings,
     GlobalSettingsService globalSettingsService,
-    SignInManager<User> signInManager) : IScopedDependency
+    SignInManager<User> signInManager,
+    TemplateDbContext dbContext) : IScopedDependency
 {
 
     [ExcludeFromCodeCoverage]
@@ -45,6 +48,7 @@ public class ViewModelArgsInjector(
         _ = localizer["Users"];
         _ = localizer["Roles"];
         _ = localizer["Administration"];
+        _ = localizer["Account & Admin"];
         _ = localizer["System"];
         _ = localizer["Info"];
         _ = localizer["Manage"];
@@ -70,6 +74,7 @@ public class ViewModelArgsInjector(
         _ = localizer["Permissions"];
         _ = localizer["Background Jobs"];
         _ = localizer["Global Settings"];
+        _ = localizer["AlertCenter"];
         _ = localizer["AlertCenter monitoring"];
         _ = localizer["Monitoring"];
 
@@ -85,14 +90,23 @@ public class ViewModelArgsInjector(
         _ = localizer["Delete Account"];
     
         _ = localizer["Absolute blocklist"];
+        _ = localizer["Approvals"];
         _ = localizer["Available dependencies"];
         _ = localizer["Available dependency details"];
+        _ = localizer["Blocklist"];
         _ = localizer["Build check records"];
+        _ = localizer["Build checks"];
+        _ = localizer["Compliance"];
         _ = localizer["Dependency approvals"];
         _ = localizer["Vulnerability audit"];
         _ = localizer["My requests"];
         _ = localizer["Overview"];
+        _ = localizer["Packages and rules"];
         _ = localizer["Preview trust rule"];
+        _ = localizer["Projects"];
+        _ = localizer["Request a package"];
+        _ = localizer["Requests"];
+        _ = localizer["Rules & packages"];
         _ = localizer["S360 overview"];
         _ = localizer["Supply chain"];
 
@@ -160,6 +174,11 @@ public class ViewModelArgsInjector(
         };
 
         var currentViewingController = context.GetRouteValue("controller")?.ToString();
+        var currentViewingAction = context.GetRouteValue("action")?.ToString();
+        var isAuthenticated = context.User.Identity?.IsAuthenticated == true;
+        bool? canReadSupplyChain = null;
+        bool? canReviewDependencyRequests = null;
+        int? pendingReviewCount = null;
         var navGroupsForView = new List<NavGroup>();
 
         foreach (var groupDef in navigationState.NavMap)
@@ -171,7 +190,21 @@ public class ViewModelArgsInjector(
                 foreach (var linkDef in itemDef.Links)
                 {
                     bool isVisible;
-                    if (string.IsNullOrEmpty(linkDef.RequiredPolicy))
+                    if (string.Equals(linkDef.Href, "/SupplyChain/Index", StringComparison.OrdinalIgnoreCase))
+                    {
+                        canReadSupplyChain ??= isAuthenticated &&
+                            authorizationService.AuthorizeAsync(context.User, AppPermissionNames.CanReadSupplyChain)
+                                .GetAwaiter().GetResult().Succeeded;
+                        isVisible = canReadSupplyChain.Value;
+                    }
+                    else if (string.Equals(linkDef.Href, "/DependencyReviews/Index", StringComparison.OrdinalIgnoreCase))
+                    {
+                        canReviewDependencyRequests ??= isAuthenticated &&
+                            authorizationService.AuthorizeAsync(context.User, AppPermissionNames.CanReviewDependencyRequests)
+                                .GetAwaiter().GetResult().Succeeded;
+                        isVisible = canReviewDependencyRequests.Value;
+                    }
+                    else if (string.IsNullOrEmpty(linkDef.RequiredPolicy))
                     {
                         isVisible = true;
                     }
@@ -183,10 +216,20 @@ public class ViewModelArgsInjector(
 
                     if (isVisible)
                     {
+                        var linkText = localizer[linkDef.Text].Value;
+                        if (string.Equals(linkDef.Href, "/DependencyReviews/Index", StringComparison.OrdinalIgnoreCase))
+                        {
+                            pendingReviewCount ??= dbContext.DependencyApplications.AsNoTracking()
+                                .Count(a => a.Status == ApplicationStatus.ReadyForReview);
+                            if (pendingReviewCount.Value > 0)
+                            {
+                                linkText = $"{linkText} ({pendingReviewCount.Value})";
+                            }
+                        }
                         linksForView.Add(new CascadedLink
                         {
                             Href = linkDef.Href,
-                            Text = localizer[linkDef.Text]
+                            Text = linkText
                         });
                     }
                 }
@@ -198,13 +241,8 @@ public class ViewModelArgsInjector(
                         UniqueId = itemDef.UniqueId,
                         Text = localizer[itemDef.Text],
                         LucideIcon = itemDef.Icon,
-                        IsActive = linksForView.Any(l =>
-                        {
-                            // Extract controller name from href (e.g., "/Manage/Index" -> "Manage")
-                            var hrefController = l.Href.TrimStart('/').Split('/').FirstOrDefault();
-                            // Exact match to avoid false positives like "Manage" matching "ManagePayroll"
-                            return string.Equals(hrefController, currentViewingController, StringComparison.OrdinalIgnoreCase);
-                        }),
+                        IsActive = linksForView.Any(l => IsNavLinkActive(
+                            context, l.Href, currentViewingController, currentViewingAction)),
                         Links = linksForView
                     });
                 }
@@ -329,6 +367,52 @@ public class ViewModelArgsInjector(
         }
     }
 
+    private static bool IsNavLinkActive(
+        HttpContext context,
+        string href,
+        string? currentController,
+        string? currentAction)
+    {
+        var pathOnly = href.Split('?', '#')[0];
+        var segments = pathOnly.TrimStart('/').Split('/', StringSplitOptions.RemoveEmptyEntries);
+        var hrefController = segments.ElementAtOrDefault(0);
+        if (!string.Equals(hrefController, currentController, StringComparison.OrdinalIgnoreCase))
+        {
+            return false;
+        }
+
+        if (!string.Equals(currentController, "SupplyChain", StringComparison.OrdinalIgnoreCase))
+        {
+            return true;
+        }
+
+        var hrefAction = segments.ElementAtOrDefault(1) ?? "Index";
+        var action = string.IsNullOrWhiteSpace(currentAction) ? "Index" : currentAction;
+        var isRulesTab = string.Equals(context.Request.Query["tab"], "rules", StringComparison.OrdinalIgnoreCase);
+
+        if (string.Equals(hrefAction, "Index", StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Equals(action, "Index", StringComparison.OrdinalIgnoreCase) && !isRulesTab;
+        }
+
+        if (string.Equals(hrefAction, "Blocklist", StringComparison.OrdinalIgnoreCase))
+        {
+            return string.Equals(action, "Blocklist", StringComparison.OrdinalIgnoreCase);
+        }
+
+        if (string.Equals(hrefAction, "Rules", StringComparison.OrdinalIgnoreCase))
+        {
+            return (string.Equals(action, "Index", StringComparison.OrdinalIgnoreCase) && isRulesTab) ||
+                   string.Equals(action, "Rules", StringComparison.OrdinalIgnoreCase) ||
+                   string.Equals(action, "RuleDetails", StringComparison.OrdinalIgnoreCase) ||
+                   string.Equals(action, "PackageDetails", StringComparison.OrdinalIgnoreCase) ||
+                   string.Equals(action, "Details", StringComparison.OrdinalIgnoreCase) ||
+                   string.Equals(action, "PreviewRule", StringComparison.OrdinalIgnoreCase) ||
+                   string.Equals(action, "MigrateLegacyRules", StringComparison.OrdinalIgnoreCase);
+        }
+
+        return string.Equals(hrefAction, action, StringComparison.OrdinalIgnoreCase);
+    }
 
     private async Task<string> GetLogoUrl(HttpContext context)
     {

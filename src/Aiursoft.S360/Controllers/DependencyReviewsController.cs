@@ -20,8 +20,8 @@ public class DependencyReviewsController(TemplateDbContext db, UserManager<User>
     IConfiguration configuration) : Controller
 {
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
-        CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
-        LinkText = "Dependency approvals", LinkOrder = 1)]
+        CascadedLinksGroupName = "Requests", CascadedLinksIcon = "inbox", CascadedLinksOrder = 3,
+        LinkText = "Approvals", LinkOrder = 3)]
     public async Task<IActionResult> Index(string filter = "pending", int page = 1)
         => await VulnerabilityAuditSnapshot.ReadAsync(db, () => IndexSnapshotAsync(filter, page));
 

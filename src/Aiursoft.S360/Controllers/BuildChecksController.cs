@@ -16,8 +16,8 @@ namespace Aiursoft.S360.Controllers;
 public class BuildChecksController(TemplateDbContext db) : Controller
 {
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
-        CascadedLinksGroupName = "Security audit", CascadedLinksIcon = "shield-check", CascadedLinksOrder = 3,
-        LinkText = "Build check records", LinkOrder = 2)]
+        CascadedLinksGroupName = "Compliance", CascadedLinksIcon = "shield-check", CascadedLinksOrder = 1,
+        LinkText = "Build checks", LinkOrder = 3)]
     public async Task<IActionResult> Index(string? project = null, int page = 1, int? checkId = null)
     {
         if (page is < 1 or > 10000 || project?.Length > 750 || checkId is <= 0) return BadRequest();

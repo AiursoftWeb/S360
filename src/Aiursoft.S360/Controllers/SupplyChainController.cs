@@ -20,8 +20,8 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
     IConfiguration configuration, CatalogInventoryService inventory, IAuthorizationService authorization) : Controller
 {
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
-        CascadedLinksGroupName = "Dependencies", CascadedLinksIcon = "package", CascadedLinksOrder = 1,
-        LinkText = "Compliance explorer", LinkOrder = 2)]
+        CascadedLinksGroupName = "Compliance", CascadedLinksIcon = "shield-check", CascadedLinksOrder = 1,
+        LinkText = "Projects", LinkOrder = 1)]
     public async Task<IActionResult> Index(string ecosystem = "all", string? query = null,
         string? lookupName = null, string? lookupVersion = null, string? lookupSource = null,
         string tab = "projects", string scope = "baseline", string filter = "all", string? project = null, int page = 1, int artifactPage = 1, string catalogView = "rules")
@@ -29,8 +29,8 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             lookupName, lookupVersion, lookupSource, tab, scope, filter, project, page, artifactPage, catalogView));
 
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
-        CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
-        LinkText = "Existing rule set", LinkOrder = 0)]
+        CascadedLinksGroupName = "Packages and rules", CascadedLinksIcon = "package-check", CascadedLinksOrder = 2,
+        LinkText = "Rules & packages", LinkOrder = 1)]
     public IActionResult Rules() => RedirectToAction(nameof(Index), new { tab = "rules" });
 
     [Authorize(Policy = AppPermissionNames.CanReadSupplyChain)]
@@ -263,8 +263,8 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
 
     [Authorize(Policy = AppPermissionNames.CanManageBlocklist)]
     [RenderInNavBar(NavGroupName = "Supply chain", NavGroupOrder = 10,
-        CascadedLinksGroupName = "Policies", CascadedLinksIcon = "clipboard-check", CascadedLinksOrder = 2,
-        LinkText = "Absolute blocklist", LinkOrder = 2)]
+        CascadedLinksGroupName = "Packages and rules", CascadedLinksIcon = "package-check", CascadedLinksOrder = 2,
+        LinkText = "Blocklist", LinkOrder = 2)]
     public async Task<IActionResult> Blocklist(string ecosystem = "nuget", int page = 1)
     {
         if (ecosystem is not ("nuget" or "npm") || page is < 1 or > 10000) return BadRequest();

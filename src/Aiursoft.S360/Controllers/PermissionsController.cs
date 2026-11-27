@@ -24,11 +24,11 @@ public class PermissionsController(
 {
     [Authorize(Policy = AppPermissionNames.CanReadPermissions)]
     [RenderInNavBar(
-        NavGroupName = "Administration",
+        NavGroupName = "Account & Admin",
         NavGroupOrder = 9999,
         CascadedLinksGroupName = "Directory",
         CascadedLinksIcon = "users",
-        CascadedLinksOrder = 9998,
+        CascadedLinksOrder = 2,
         LinkText = "Permissions",
         LinkOrder = 3)]
     public async Task<IActionResult> Index()

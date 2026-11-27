@@ -25,5 +25,7 @@
   <ItemGroup>
     <None Include="../src/Aiursoft.S360/wwwroot/scripts/uploader.js" TargetPath="wwwroot/scripts/uploader.js" CopyToOutputDirectory="PreserveNewest" />
     <None Include="../src/Aiursoft.S360/wwwroot/styles/uploader.css" TargetPath="wwwroot/styles/uploader.css" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../src/Aiursoft.S360/wwwroot/styles/s360.css" TargetPath="wwwroot/styles/s360.css" CopyToOutputDirectory="PreserveNewest" />
+    <None Include="../src/Aiursoft.S360/wwwroot/js/request-nudge.js" TargetPath="wwwroot/js/request-nudge.js" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 </Project>

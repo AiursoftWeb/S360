@@ -26,11 +26,11 @@ public class RolesController(
     // GET: Roles
     [Authorize(Policy = AppPermissionNames.CanReadRoles)]
     [RenderInNavBar(
-        NavGroupName = "Administration",
+        NavGroupName = "Account & Admin",
         NavGroupOrder = 9999,
         CascadedLinksGroupName = "Directory",
         CascadedLinksIcon = "users",
-        CascadedLinksOrder = 9998,
+        CascadedLinksOrder = 2,
         LinkText = "Roles",
         LinkOrder = 2)]
     public async Task<IActionResult> Index()

@@ -1,4 +1,5 @@
 using Aiursoft.S360.Entities;
+using Aiursoft.S360.Services;
 using Aiursoft.UiStack.Layout;
 
 namespace Aiursoft.S360.Models.SupplyChainViewModels;
@@ -15,6 +16,13 @@ public class MyRequestsViewModel : UiStackLayoutViewModel
     public HashSet<int> ApplicationsWithRemovedSources { get; set; } = [];
     public List<string> NuGetSources { get; set; } = [];
     public List<string> NpmSources { get; set; } = [];
+    public string PrefillEcosystem { get; set; } = "nuget";
+    public string? PrefillSource { get; set; }
+    public string? PrefillDirectPackages { get; set; }
+    public string? PrefillProject { get; set; }
+    public IReadOnlyList<DependencyApproverInfo> Approvers { get; set; } = [];
+    public bool CanReview { get; set; }
+    public string? CurrentUserId { get; set; }
 }
 
 public class RequestDetailsViewModel : UiStackLayoutViewModel
@@ -23,6 +31,13 @@ public class RequestDetailsViewModel : UiStackLayoutViewModel
     public DependencyApplication Application { get; set; } = new();
     public List<RequestPackageLine> Packages { get; set; } = [];
     public string? RetryDirectPackages { get; set; }
+    public IReadOnlyList<DependencyApproverInfo> Approvers { get; set; } = [];
+    public bool CanReview { get; set; }
+    public bool IsOwner { get; set; }
+    public string? CurrentUserId { get; set; }
+    public string? DecidedByDisplayName { get; set; }
+    public List<string> DirectPackageSummaries { get; set; } = [];
+    public string ReviewAnchorUrl { get; set; } = string.Empty;
 }
 
 public class RequestPackageLine

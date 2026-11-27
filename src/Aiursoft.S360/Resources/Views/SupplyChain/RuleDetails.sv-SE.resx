@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>Aktuell status och rapporterade versioner</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>Detaljerade auktoriseringszoner &amp; fullständiga versionsbevis</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosystem</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>Undantag drar bort berörda versioner från auktoriseringen. De döljer inte en berörd version som redan har rapporterats av en produktionsbaslinje.</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Expandera</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Utgången</value>

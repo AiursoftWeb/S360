@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>Поточний стан і зазначені версії</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>Детальні зони авторизації та повні докази версій</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Екосистема</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>Виключення віднімають уражені версії від авторизації. Вони не приховують уражену версію, яка вже була зазначена у базовому виробничому стані.</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Розгорнути</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Прострочено</value>

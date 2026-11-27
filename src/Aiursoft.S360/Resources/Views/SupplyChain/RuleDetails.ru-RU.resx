@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>Текущий статус и сообщённые версии</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>Детальные зоны авторизации и полные доказательства версий</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Экосистема</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>Исключения вычитают затронутые версии из авторизации. Они не скрывают затронутую версию, уже сообщённую производственной базой.</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Развернуть</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Истёк срок действия</value>

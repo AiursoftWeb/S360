@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>Kesin engelleme listesi geçersiz kılma</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>Aktif CVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>Aktif bildirim aralıkları</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Aktif risk kabulü</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Kabul</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>Kabul Edildi</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>Uyarılar</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tümü</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Onay kapsamı</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>Denetim uyarısı</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Yetkilendirme</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>Yetkilendirildi ve geçerli kabul kontrollerinden geçiyor</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>Engelleyen uyarılar</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Engellendi</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>Onay kalıplarını, mutlak engel listeni kesimlerini, açıklama hariç tutmalarını, aktif uyarı aralıklarını, risk kabulünü ve kaydedilen sürümleri birleştirir.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>Geçerli kural</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>Kanıt ve kullanım ayrıntıları</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Hari tutulan</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>Kuraldan hariç</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Süresi Dolmuş</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Son kullanma tarihi</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>Duruma göre sürümleri filtrele</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Düzeltildi</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>Şu sürümlerde düzeltildi</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>Bu kuralda</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>Listelenen</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Doğrulama gerekli</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>Bu kaynak için onay kuralı kaydedilmedi.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>Bu kaynak için henüz somut sürümler kaydedilmedi. Yukarıdaki aralık katmanları politika sınırlarını gösterir; kaydedilen sürümler, CI tarafından raporlandığında veya kayıt defterinde gözlemlendiğinde burada görünür.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>Bu desenle çakışan kayıtlı aktif bildirim aralığı bulunmuyor. Bu, kapsanan tüm sürümlerin güvenlik açığından arındığına dair bir kanıt değildir.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>Gözlemlenen sürüm spektrumu</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>Bir veya daha fazla uyarı aralığı çözümlenemedi.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>En eski sürümden en yeni sürüme sıralanmıştır. İncelemek için bir bölüme tıklayın.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>Yetki dışı</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>Kural dışı</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>Mutlak engelleme listesi tarafından geçersiz kılındı</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>Kısmi ayrıştırılmamış aralık</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>Politika aralığı katmanları</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Ön Sürüm</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Aralık değerlendirilemedi</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>Kaydedilen sürüm dağılımı</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Raporlanan projeler</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>Risk kabulü mevcut</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risk kabul edildi</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Kural</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>Dışlama yoluyla onaydan çıkarıldı</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Bu kaynak şu anda paket denetimleri için yapılandırılmamıştır.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>Çözümlenemeyen aralık</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>Ayrıştırılamayan aralıklar temkinli bir şekilde (hata durumunda kapalı) ele alınır ve asla güvenli olarak kabul edilmez.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>Sürüm spektrumu ve politika katmanları</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>Sürüm spektrumu ve politika katmanları</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Sürümler</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>Görsel sürüm durum spektrumu</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Zararluluk istisnaları</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Geri Çekildi</value>
+  </data>
+
+</root>

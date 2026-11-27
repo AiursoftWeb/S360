@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Όλα τα έργα</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Όλες οι αναφερθείσες εξαρτήσεις</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Όλες οι καταστάσεις</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Καταγραφή ελέγχου</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Κάντε κλικ για ανάπτυξη</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Επισκόπηση εταιρείας</value>
@@ -78,20 +84,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Οικοσύστημα</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Σύνοψη κατάστασης οικοσυστήματος</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Τα τεκμήρια χρειάζονται επαλήθευση</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Εξερεύνηση</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Φιλτράρισμα πακέτων σε αυτό το έργο</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Φιλτράρισμα πακέτων σε αυτό το έργο...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Βρείτε ένα έργο ή πακέτο, ελέγξτε τη συμμόρφωσή του και παρακολουθήστε γιατί χρησιμοποιείται.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Διαδραστικός γράφος εξαρτήσεων</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Οπτικές απόψεις αποθεματικού</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Γνωστά ευρήματα</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Γνωστοί κίνδυνοι ευρωστίας που αποδεχτήκαν βάσει πολιτικής</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Οι γνωστοί κίνδυνοι ευπαθειών έχουν αποδεχθεί βάσει πολιτικής. Εξετάστε τους κανόνες και τις ημερομηνίες λήξης τους στις λεπτομέρειες του πακέτου.</value>
@@ -105,6 +126,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Απαιτεί προσοχή</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Μόνο αυτά που χρειάζονται προσοχή</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Επόμενο</value>
   </data>
@@ -116,6 +140,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Καμία ταιριακή εγγραφή</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Δεν περιλαμβάνεται σε αυτόν τον έλεγχο</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Μη επαληθευμένο</value>
@@ -156,6 +183,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Έργα με αναφορές</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Γρήγοροι φίλτροι συμμόρφωσης</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>Σήμα README</value>
   </data>
@@ -183,11 +213,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Ελέγξτε την αναφερόμενη έκδοση και την τρέχουσα έγκριση. Ζητήστε την κατάλληλη έγκριση ή αναβαθμίστε σε εγκεκριμένη έκδοση χωρίς γνωστά προβλήματα· μην κάνετε υποβάθμιση σε ευάλωτη έκδοση.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Αποδεκτός κίνδυνος</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>Σήμα συμμόρφωσης S360</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Αναζήτηση</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Αναζήτηση και έλεγχος κάθε πακέτου</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Αναζήτηση αποθεματικού</value>

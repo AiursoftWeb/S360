@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>Đóng gán danh sách chặn tuyệt đối</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>CVE đang hoạt động</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>Dải khuyến nghị đang hoạt động</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Các chấp nhận rủi ro đang hoạt động</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Sự chấp nhận</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>Đã chấp nhận</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>Cảnh báo</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Tất cả</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Phạm vi phê duyệt</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>Cảnh báo kiểm toán</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Ủy quyền</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>Được ủy quyền và vượt qua các kiểm tra tiếp nhận hiện tại</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>Lời khuyên chặn</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Bị chặn</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>Kết hợp các mẫu phê duyệt, cắt giảm danh sách chặn tuyệt đối, loại trừ lỗ hổng bảo mật, các khoảng thời gian khuyến nghị hoạt động, chấp nhận rủi ro và các phiên bản đã ghi nhận.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>Quy tắc hiện tại</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>Bằng chứng &amp; chi tiết sử dụng</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Loại trừ</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>Loại trừ khỏi quy tắc</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Đã hết hạn</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Hết hạn</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>Lọc phiên bản theo trạng thái</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Đã sửa</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>Đã khắc phục trong</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>Trong quy tắc này</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>Đã liệt kê</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Cần xác minh</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>Không có quy tắc phê duyệt nào được ghi nhận cho nguồn này.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>Chưa ghi nhận phiên bản cụ thể nào cho nguồn này. Các lớp phạm vi phía trên hiển thị các ranh giới chính sách; các phiên bản được ghi nhận sẽ xuất hiện tại đây sau khi được báo cáo bởi CI hoặc quan sát được trong registry.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>Không có phạm vi khuyến nghị tích cực nào được lưu trữ chồng lên mẫu này. Điều này không phải là bằng chứng cho thấy tất cả các phiên bản được bao phủ đều không có lỗ hổng bảo mật.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>Phổ các phiên bản quan sát được</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>Một hoặc nhiều khoảng khuyến nghị không thể phân tích được.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>Được sắp xếp từ phiên bản cũ nhất đến mới nhất. Nhấp vào một phân đoạn để xem chi tiết.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>Ngoài phạm vi ủy quyền</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>Ngoài quy tắc</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>Bị ghi đè bởi danh sách chặn tuyệt đối</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>Dải phạm vi chưa phân tích một phần</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>Các lớp phạm vi chính sách</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Phi bản chính thức</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Không thể đánh giá phạm vi</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>Phân tích phiên bản được ghi nhận</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Dự án được báo cáo</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>Có chấp nhận rủi ro</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Chấp nhận rủi ro</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Quy tắc</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>Bị loại khỏi phê duyệt do bị loại trừ</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Nguồn này hiện chưa được cấu hình để kiểm tra gói.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>Dải không phân tích được</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>Các khoảng không được phân tích sẽ được xử lý một cách thận trọng (fail-closed) và không bao giờ được coi là an toàn.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>Phổ phiên bản &amp; các lớp chính sách</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>Phổ phiên bản và các lớp chính sách</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Phiên bản</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>Phổ trạng thái phiên bản trực quan</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Các loại trừ lỗ hổng bảo mật</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Đã rút</value>
+  </data>
+
+</root>

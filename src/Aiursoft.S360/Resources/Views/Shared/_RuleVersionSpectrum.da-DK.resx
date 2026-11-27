@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>Absolut blokliste-override</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>Aktiv CVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>Aktive rådgivningsområder</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Aktive risikogodkendelser</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Admission</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>Godkendt</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>Advarsler</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Godkendelsesområde</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>Revisionsadvarsel</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Autorisation</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>Godkendt og består de aktuelle indladelser</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>Blokerende advisories</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Bloklisteret</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>Kombinerer godkendelsesmønstre, absolutte bloklisteskæringer, sårbarhedsundtagelser, aktive rådgivningsintervaller, risikogodkendelser og registrerede versioner.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>Aktuel regel</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>Bevis og brugsdetaljer</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Udelukket</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>Udeladt fra regel</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Udløbet</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Udløber</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>Filtrér versioner efter status</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Rettet</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>Rettet i</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>I denne regel</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>Listede</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Kræver verificering</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>Ingen godkendelsesregler er registreret for denne kilde.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>Der er endnu ikke registreret konkrete versioner for denne kilde. Interval-lagene ovenfor viser policygrænser; registrerede versioner vises her, når de rapporteres af CI eller observeres i registret.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>Ingen gemte aktive rådgivningsområder overlapper dette mønster. Dette er ikke bevis for, at alle dækkede versioner er fri for sårbarheder.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>Spektrum over observerede versioner</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>En eller flere rådgivelsesområder kunne ikke fortolkes.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>Rangeret fra ældste til nyeste version. Klik på et segment for at inspicere.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>Uden for godkendelse</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>Uden for regel</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>Overrullet af absolut blockliste</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>Delvist uparsed interval</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>Policyinterval-lag</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Forudgivelse</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Intervallet kunne ikke evalueres</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>Fordeling af registrerede versioner</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Rapporterede projekter</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>Risikoacceptans eksisterer</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risiko accepteret</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Rule</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>Fjernet fra godkendelse ved udelukkelse</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Denne kilde er ikke i øjeblikket konfigureret til pakkekontroller.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>Uoparseret interval</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>Udlæste intervaller behandles konservativt (fail-closed) og antages aldrig at være sikre.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>Versionsspektrum &amp; policy-lag</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>Versionspektrum og policy-lag</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Versioner</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>Visuel versionstatus-spektrum</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Sårbarhedsundtagelser</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Tilbagekaldt</value>
+  </data>
+
+</root>

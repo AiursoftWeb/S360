@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>絕對封鎖清單覆寫</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>有效 CVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>有效的安全建議範圍</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>已生效的風險接受</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>准入</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>已核准</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>安全公告</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>核准範圍</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>稽核警告</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>授權</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>已授權並通過目前准入檢查</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>封鎖建議</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>已列入封鎖清單</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>整合核准模式、絕對封鎖清單排除、弱點排除、有效公告區間、風險接受及已記錄版本。</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>目前規則</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>證據與使用詳情</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>已排除</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>已從規則中排除</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>已過期</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>到期</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>依狀態篩選版本</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>已修復</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>已修正於</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>在此規則中</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>已列出</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>需要驗證</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>此來源未記錄任何核准規則。</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>此來源尚未記錄任何具體版本。上方的範圍圖層顯示策略邊界；已記錄的版本將在此處顯示，一旦由 CI 報告或在登錄表中觀察到。</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>未儲存的有效建議範圍與此模式沒有重疊。這並非所有涵蓋版本皆無漏洞的證明。</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>觀察到的版本光譜</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>有一個或多個建議範圍無法解析。</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>依版本由舊到新排序。點擊區段以檢視。</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>授權範圍外</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>規則外</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>被絕對封鎖清單覆蓋</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>部分未解析範圍</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>政策範圍圖層</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>預發布</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>無法評估範圍</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>已記錄版本明細</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>報告的專案</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>存在風險接受</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>風險已接受</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>規則</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>已透過排除規則從核准中移除</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>此來源目前未設定為執行套件檢查。</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>未解析範圍</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>無法解析的範圍將以保守方式處理（失敗即封閉），且絕不被視為安全。</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>版本範圍與政策層級</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>版本範圍與政策層級</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>版本</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>視覺化版本狀態光譜</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>弱點排除</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>已撤銷</value>
+  </data>
+
+</root>

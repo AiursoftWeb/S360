@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>Anulación absoluta de la lista de bloqueos</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>CVE activo</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>Intervalos activos de avisos</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Aceptaciones de riesgo activas</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Admisión</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>Admitido</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>Advertencias</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Todas</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Ámbito de aprobación</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>Advertencia de auditoría</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Autorización</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>Autorizado y pasa las comprobaciones de admisión actuales</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>Consejos de bloqueo</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>En la lista de bloqueo</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>Combina patrones de aprobación, exclusiones absolutas de la lista de bloqueos, exclusiones de vulnerabilidades, intervalos de avisos activos, aceptaciones de riesgo y versiones registradas.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>Regla actual</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>Pruebas y detalles de uso</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Excluido</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>Excluido de la regla</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Caducado</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Caduca</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>Filtrar versiones por estado</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Corregido</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>Corregido en</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>En esta regla</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>Listado</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Requiere verificación</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>No se han registrado reglas de aprobación para esta fuente.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>Aún no se han registrado versiones concretas para esta fuente. Las capas de rangos superiores muestran los límites de la política; las versiones registradas aparecerán aquí una vez que sean informadas por CI o detectadas en el registro.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>No hay rangos activos de avisos guardados que se solapen con este patrón. Esto no es prueba de que todas las versiones cubiertas estén libres de vulnerabilidades.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>Espectro de versiones observadas</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>No se pudieron analizar uno o más intervalos de asesoramiento.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>Ordenado de la versión más antigua a la más nueva. Haga clic en un segmento para inspeccionarlo.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>Fuera de autorización</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>Fuera de la regla</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>Sobrescrito por lista de bloqueo absoluta</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>Rango parcial sin analizar</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>Capas de rangos de política</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Prerrelanzamiento</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>No se pudo evaluar el rango</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>Desglose de versiones registradas</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Proyectos reportados</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>Existe aceptación de riesgo</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Riesgo aceptado</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Regla</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>Excluido de la aprobación por exclusión</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Esta fuente no está configurada actualmente para las comprobaciones de paquetes.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>Rango no analizado</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>Los intervalos no analizados se tratan de forma conservadora (fallan de forma cerrada) y nunca se dan por seguros.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>Espectro de versiones y capas de política</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>Espectro de versiones y capas de política</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Versiones</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>Espectro visual del estado de las versiones</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Exclusiones de vulnerabilidades</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Retirado</value>
+  </data>
+
+</root>

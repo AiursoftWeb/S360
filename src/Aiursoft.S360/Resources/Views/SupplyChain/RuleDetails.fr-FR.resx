@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>État actuel et versions signalées</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>Zones d&apos;autorisation détaillées &amp; preuves complètes des versions</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Écosystème</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>Les exclusions retirent de l’autorisation les versions affectées. Elles ne masquent pas une version affectée déjà signalée par une référence de production.</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Développer</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Expirée</value>

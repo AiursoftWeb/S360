@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>Starea actuală și versiunile raportate</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>Zone de autorizare detaliate &amp; dovezi complete ale versiunilor</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ecosistem</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>Excluderile scad din autorizare versiunile afectate. Ele nu ascund o versiune afectată deja raportată de o versiune de referință pentru producție.</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Expand</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Expirată</value>

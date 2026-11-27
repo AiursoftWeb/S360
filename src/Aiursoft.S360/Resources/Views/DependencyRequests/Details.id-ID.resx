@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Sudah diizinkan</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Pemohon tidak dapat menyetujui permintaan mereka sendiri. Minta peninjau lain di bawah ini untuk meninjau permintaan ini.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Tautan dan pesan persetujuan disalin.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Persetujuan</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Diizinkan tetapi belum siap diperiksa</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Salin tautan &amp; pesan persetujuan</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Otorisasi saat ini</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Item ulasan baru</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Tidak ada peninjau dengan izin persetujuan yang dikonfigurasi saat ini. Hubungi administrator sistem Anda.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Paket</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>SHA-256 laporan</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Progres permintaan</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Diminta</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>Resolusi sedang mengantre atau berjalan. Muat ulang halaman ini untuk melihat hasilnya.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Menyelesaikan &amp; memeriksa</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Coba lagi sebagai permintaan baru</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Keputusan peninjauan</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Tinjau permintaan ini</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Pilih dan salin pesan di bawah ini.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Sumber</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Status</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Diajukan</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Permintaan yang gagal tetap tersimpan dalam riwayat Anda. Permintaan baru akan diperiksa berdasarkan sumber dan aturan daftar blokir hari ini.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Versi</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>Menunggu persetujuan</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Tarik permintaan</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Anda — tidak dapat menyetujui sendiri</value>
   </data>
 
 </root>

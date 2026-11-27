@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>Trạng thái hiện tại và các phiên bản đã báo cáo</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>Khu vực ủy quyền chi tiết &amp; bằng chứng phiên bản đầy đủ</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Hệ sinh thái</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>Các loại trừ sẽ loại bỏ các phiên bản bị ảnh hưởng khỏi sự ủy quyền. Chúng không che giấu một phiên bản bị ảnh hưởng đã được báo cáo bởi một cơ sở chuẩn sản xuất.</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Mở rộng</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Đã hết hạn</value>

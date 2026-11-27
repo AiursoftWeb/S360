@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>Absolute blocklist override</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>Actieve CVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>Actieve adviesbereiken</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Actieve risicoaanvaarding</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Toelating</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>Toegelaten</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>Adviezen</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Goedkeuringsbereik</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>Auditwaarschuwing</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Autorisatie</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>Geautoriseerd en slaagt in de huidige toegangscontroles</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>Blokkerende adviezen</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Geblokkeerd</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>Combineert goedkeuringspatronen, absolute blocklijst-sneden, kwetsbaarheidsuitzonderingen, actieve adviesintervallen, risicogodkeuringen en geregistreerde versies.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>Huidige regel</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>Bewijs en gebruiksdetails</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Uitgesloten</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>Uitgesloten van regel</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Verlopen</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Verloopt</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>Filter versies op status</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Opgelost</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>Opgelost in</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>In deze regel</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>Opgelijst</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Vereist verificatie</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>Er zijn geen goedkeuringsregels geregistreerd voor deze bron.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>Er zijn nog geen concrete versies geregistreerd voor deze bron. De bereiklagen hierboven tonen beleidsgrenzen; geregistreerde versies verschijnen hier zodra ze door CI worden gemeld of in het register worden waargenomen.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>Er zijn geen opgeslagen actieve adviesbereiken die dit patroon overlappen. Dit is geen bewijs dat alle gedekte versies vrij zijn van kwetsbaarheden.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>Waargenomen versiespectrum</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>Eén of meer adviesbereiken konden niet worden geparseerd.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>Gerangschikt van oudste naar nieuwste versie. Klik op een segment om te inspecteren.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>Buiten autorisatie</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>Buiten regel</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>Overschreven door absolute blokkeringslijst</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>Gedeeltelijk niet-geanalyseerd bereik</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>Beleidslagen voor bereik</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Voorafreleas</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Bereik kon niet worden geëvalueerd</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>Opgenomen versieoverzicht</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Gerapporteerde projecten</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>Risicoacceptatie bestaat</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risico geaccepteerd</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Regel</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>Uitgesloten van goedkeuring door uitsluiting</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Deze bron is momenteel niet geconfigureerd voor pakketcontroles.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>Niet-geparst bereik</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>Ongeparseerde bereiken worden conservatief behandeld (fail-closed) en worden nooit als veilig aangenomen.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>Versiespectrum &amp; beleidslagen</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>Versiespectrum en beleidslagen</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Versies</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>Visueel versiestatusspectrum</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Kwetsbaarheidsuitsluitingen</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Ingetrokken</value>
+  </data>
+
+</root>

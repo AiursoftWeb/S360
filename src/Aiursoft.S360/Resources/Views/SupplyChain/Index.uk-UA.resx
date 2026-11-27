@@ -63,6 +63,9 @@
   <data name="Back to dependency inventory" xml:space="preserve">
     <value>Повернутися до інвентаризації залежностей</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Чорний список</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>Не знаходите потрібний пакет? Надішліть запит</value>
   </data>
@@ -89,6 +92,9 @@
   </data>
   <data name="Expires at (UTC)" xml:space="preserve">
     <value>Термін дії (UTC)</value>
+  </data>
+  <data name="Expiring soon" xml:space="preserve">
+    <value>Скоро закінчується</value>
   </data>
   <data name="Find packages" xml:space="preserve">
     <value>Знайти пакунки</value>
@@ -128,6 +134,9 @@
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Застосувати правила</value>
+  </data>
+  <data name="No known overlap" xml:space="preserve">
+    <value>Немає відомих перекриттів</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>Не зазначено</value>

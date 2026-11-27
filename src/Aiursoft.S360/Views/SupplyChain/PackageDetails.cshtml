@@ -16,13 +16,28 @@
     <h1><code>@policy.PackagePattern</code></h1>
     <p class="text-break">@policy.Ecosystem · @policy.Source</p>
     <p class="text-muted">@Localizer["Version grants are independent. Approval of this package does not approve other package names or registries."]</p>
+    @if (Model.Spectrum is { } spectrum)
+    {
+        @await Html.PartialAsync("_RuleVersionSpectrum", spectrum)
+    }
     @if (Model.Relationship is { } relationship)
     {
         <div class="card mb-4"><div class="card-body">
             <h2 class="h5">@Localizer["Current status and reported versions"]</h2>
             @await Html.PartialAsync("_PackageStatusSummary", relationship)
             @await Html.PartialAsync("_StatusLegend")
-            @await Html.PartialAsync("_PackageVersionRelationship", relationship)
+            <details class="s360-all-deps-disclosure mt-3">
+                <summary class="s360-disclosure-summary">
+                    <span class="d-inline-flex align-items-center gap-2 fw-semibold">
+                        <i data-lucide="list-tree" aria-hidden="true"></i>
+                        @Localizer["Detailed authorization zones & full version evidence"] (@relationship.Versions.Count)
+                    </span>
+                    <span class="small text-muted">@Localizer["Expand"]</span>
+                </summary>
+                <div class="mt-3">
+                    @await Html.PartialAsync("_PackageVersionRelationship", relationship)
+                </div>
+            </details>
         </div></div>
     }
     <h2 class="h5">@Localizer["Approval rules"]</h2>
@@ -51,3 +66,10 @@
         @if (Model.ProjectsLimited) { <p>@Localizer["Only the first 50 projects are shown."]</p> }
     </details></div></div>
 </div>
+@* ReSharper disable once Razor.SectionNotResolved *@
+@section scripts {
+    @if (Model.Spectrum != null)
+    {
+        <script src="~/js/rule-spectrum.js" asp-append-version="true" defer></script>
+    }
+}

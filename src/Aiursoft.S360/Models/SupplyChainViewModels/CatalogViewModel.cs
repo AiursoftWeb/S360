@@ -15,6 +15,7 @@ public class CatalogViewModel : UiStackLayoutViewModel
     public string? Query { get; set; }
     public List<PackageRule> Rules { get; set; } = [];
     public Dictionary<int, string> BlockedRuleReasons { get; set; } = [];
+    public Dictionary<int, RuleListSpectrumSignal> RuleSignals { get; set; } = [];
     public List<CatalogArtifactRow> Artifacts { get; set; } = [];
     public int Page { get; set; } = 1;
     public int LegacyRuleCount { get; set; }
@@ -80,6 +81,7 @@ public class PackagePolicyViewModel : UiStackLayoutViewModel
     public List<string> RecordedProjects { get; init; } = [];
     public bool ProjectsLimited { get; init; }
     public PackageRelationshipViewModel? Relationship { get; init; }
+    public RuleVersionSpectrumViewModel? Spectrum { get; init; }
 }
 
 public class LegacyMigrationViewModel : UiStackLayoutViewModel

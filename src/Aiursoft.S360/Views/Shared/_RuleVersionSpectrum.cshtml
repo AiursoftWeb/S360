@@ -1,0 +1,507 @@
+@using Aiursoft.WebTools
+@using Aiursoft.S360.Entities
+@using Aiursoft.S360.Models.SupplyChainViewModels
+@using Aiursoft.S360.Services.Vulnerability
+@model RuleVersionSpectrumViewModel
+@{
+    static string StatusKey(VersionSpectrumStatus status) => status switch
+    {
+        VersionSpectrumStatus.Admitted => "admitted",
+        VersionSpectrumStatus.RiskAccepted => "risk-accepted",
+        VersionSpectrumStatus.Vulnerable => "vulnerable",
+        VersionSpectrumStatus.Excluded => "excluded",
+        VersionSpectrumStatus.Blocklisted => "blocklisted",
+        VersionSpectrumStatus.NeedsVerification => "verification",
+        _ => "outside"
+    };
+
+    static string StatusIcon(VersionSpectrumStatus status) => status switch
+    {
+        VersionSpectrumStatus.Admitted => "circle-check",
+        VersionSpectrumStatus.RiskAccepted => "shield-alert",
+        VersionSpectrumStatus.Vulnerable => "bug",
+        VersionSpectrumStatus.Excluded => "scissors",
+        VersionSpectrumStatus.Blocklisted => "shield-ban",
+        VersionSpectrumStatus.NeedsVerification => "circle-help",
+        _ => "file-x"
+    };
+
+    string StatusLabel(VersionSpectrumStatus status) => status switch
+    {
+        VersionSpectrumStatus.Admitted => Localizer["Admitted"].Value,
+        VersionSpectrumStatus.RiskAccepted => Localizer["Risk accepted"].Value,
+        VersionSpectrumStatus.Vulnerable => Localizer["Active CVE"].Value,
+        VersionSpectrumStatus.Excluded => Localizer["Excluded by policy"].Value,
+        VersionSpectrumStatus.Blocklisted => Localizer["Blocklisted"].Value,
+        VersionSpectrumStatus.NeedsVerification => Localizer["Needs verification"].Value,
+        _ => Localizer["Outside authorization"].Value
+    };
+}
+
+<section class="s360-spectrum card mb-4" data-rule-spectrum="true" data-package="@Model.PackageName" aria-label="@Localizer["Version spectrum and policy layers"]">
+    <div class="card-header d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div>
+            <h2 class="h5 mb-0 d-flex align-items-center gap-2">
+                <i data-lucide="layers" aria-hidden="true"></i>
+                <span>@Localizer["Version spectrum & policy layers"]</span>
+            </h2>
+            <p class="small text-muted mb-0 mt-1">@Localizer["Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions."]</p>
+        </div>
+        <div class="s360-spectrum-kpis" aria-label="@Localizer["Recorded version breakdown"]">
+            <span class="s360-spectrum-kpi is-admitted" data-kpi="admitted"><i data-lucide="circle-check" aria-hidden="true"></i>@Model.AdmittedCount @Localizer["Admitted"]</span>
+            @if (Model.RiskAcceptedCount > 0)
+            {
+                <span class="s360-spectrum-kpi is-risk-accepted" data-kpi="risk-accepted"><i data-lucide="shield-alert" aria-hidden="true"></i>@Model.RiskAcceptedCount @Localizer["Risk accepted"]</span>
+            }
+            @if (Model.VulnerableCount > 0)
+            {
+                <span class="s360-spectrum-kpi is-vulnerable" data-kpi="vulnerable"><i data-lucide="bug" aria-hidden="true"></i>@Model.VulnerableCount @Localizer["Active CVE"]</span>
+            }
+            @if (Model.ExcludedCount > 0)
+            {
+                <span class="s360-spectrum-kpi is-excluded" data-kpi="excluded"><i data-lucide="scissors" aria-hidden="true"></i>@Model.ExcludedCount @Localizer["Excluded"]</span>
+            }
+            @if (Model.BlocklistedCount > 0)
+            {
+                <span class="s360-spectrum-kpi is-blocklisted" data-kpi="blocklisted"><i data-lucide="shield-ban" aria-hidden="true"></i>@Model.BlocklistedCount @Localizer["Blocklisted"]</span>
+            }
+            @if (Model.NeedsVerificationCount > 0)
+            {
+                <span class="s360-spectrum-kpi is-verification" data-kpi="verification"><i data-lucide="circle-help" aria-hidden="true"></i>@Model.NeedsVerificationCount @Localizer["Needs verification"]</span>
+            }
+            @if (Model.OutsideRuleCount > 0)
+            {
+                <span class="s360-spectrum-kpi is-outside" data-kpi="outside"><i data-lucide="file-x" aria-hidden="true"></i>@Model.OutsideRuleCount @Localizer["Outside rule"]</span>
+            }
+        </div>
+    </div>
+
+    <div class="card-body">
+        @if (Model.HasAnyUnparsedAdvisory)
+        {
+            <div class="alert alert-warning mb-3" role="status" data-spectrum-unparsed-warning="true">
+                <div class="alert-message small mb-0">
+                    <strong>@Localizer["One or more advisory ranges could not be parsed."]</strong>
+                    @Localizer["Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe."]
+                </div>
+            </div>
+        }
+
+        <div class="s360-spectrum-layers" aria-label="@Localizer["Policy range layers"]">
+            @* Layer 1: Approval scope *@
+            <div class="s360-spectrum-layer is-approval" data-spectrum-layer="approvals">
+                <div class="s360-spectrum-layer-head">
+                    <span class="s360-spectrum-layer-title"><i data-lucide="shield-check" aria-hidden="true"></i>@Localizer["Approval scope"]</span>
+                    <span class="badge bg-secondary-subtle text-secondary-emphasis">@Model.Approvals.Count</span>
+                </div>
+                <div class="s360-spectrum-layer-body">
+                    @if (Model.Approvals.Count == 0)
+                    {
+                        <span class="small text-muted">@Localizer["No approval rules recorded for this source."]</span>
+                    }
+                    else
+                    {
+                        <div class="s360-spectrum-chips">
+                            @foreach (var approval in Model.Approvals)
+                            {
+                                var active = approval.Status == RuleStatus.Approved && !approval.IsExpired;
+                                <a asp-controller="SupplyChain" asp-action="RuleDetails" asp-route-id="@approval.RuleId"
+                                   class="s360-spectrum-chip @(approval.IsFocused ? "is-focused" : "") @(active ? "is-active-approval" : "is-inactive-approval")"
+                                   data-approval-rule="@approval.RuleId">
+                                    <code>@approval.VersionPattern</code>
+                                    <span class="small text-muted">#@approval.RuleId</span>
+                                    @if (approval.IsFocused)
+                                    {
+                                        <span class="badge bg-primary">@Localizer["Current rule"]</span>
+                                    }
+                                    <span class="badge bg-secondary-subtle text-secondary-emphasis">@(approval.IsWildcard ? Localizer["Wildcard"] : Localizer["Exact"])</span>
+                                    @if (!active)
+                                    {
+                                        <span class="badge bg-secondary">
+                                            @if (approval.IsExpired) { @Localizer["Expired"] }
+                                            else { @approval.Status }
+                                        </span>
+                                    }
+                                    else if (approval.IncludePrerelease)
+                                    {
+                                        <span class="badge bg-info-subtle text-info-emphasis">@Localizer["Prerelease"]</span>
+                                    }
+                                    @if (approval.ExpiresAtUtc is { } exp)
+                                    {
+                                        <span class="small text-muted">@Localizer["Expires"]: <span data-utc-time="@exp.ToHtmlDateTime()"></span></span>
+                                    }
+                                </a>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @* Layer 2: Absolute blocklist cuts *@
+            @if (Model.Blocks.Count > 0)
+            {
+                <div class="s360-spectrum-layer is-blocklisted" data-spectrum-layer="blocks">
+                    <div class="s360-spectrum-layer-head">
+                        <span class="s360-spectrum-layer-title"><i data-lucide="shield-ban" aria-hidden="true"></i>@Localizer["Absolute blocklist override"]</span>
+                        <span class="badge bg-dark">@Model.Blocks.Count</span>
+                    </div>
+                    <div class="s360-spectrum-layer-body">
+                        <div class="s360-spectrum-band-list">
+                            @foreach (var block in Model.Blocks)
+                            {
+                                <div class="s360-spectrum-band-row" data-block-rule="@block.RuleId">
+                                    <span class="badge bg-dark"><code>@block.PackagePattern</code> @@ <code>@block.VersionPattern</code></span>
+                                    <span class="small text-muted">#@block.RuleId</span>
+                                    <span class="small text-break">@block.Justification</span>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @* Layer 3: Vulnerability exclusions *@
+            @if (Model.Exclusions.Count > 0)
+            {
+                <div class="s360-spectrum-layer is-excluded" data-spectrum-layer="exclusions">
+                    <div class="s360-spectrum-layer-head">
+                        <span class="s360-spectrum-layer-title"><i data-lucide="scissors" aria-hidden="true"></i>@Localizer["Vulnerability exclusions"]</span>
+                        <span class="badge s360-badge-excluded">@Model.Exclusions.Count</span>
+                    </div>
+                    <div class="s360-spectrum-layer-body">
+                        <div class="s360-spectrum-band-list">
+                            @foreach (var exclusion in Model.Exclusions)
+                            {
+                                <div class="s360-spectrum-band-row" data-exclusion-rule="@exclusion.RuleId">
+                                    @if (!string.IsNullOrWhiteSpace(exclusion.Url))
+                                    { <a href="@exclusion.Url" target="_blank" rel="noopener noreferrer" class="fw-semibold">@exclusion.SourceId</a> }
+                                    else { <span class="fw-semibold">@exclusion.SourceId</span> }
+                                    @if (exclusion.ParentRuleId is { } parentId)
+                                    {
+                                        <span class="small text-muted">@Localizer["Rule"] #@parentId</span>
+                                    }
+                                    @if (exclusion.Withdrawn)
+                                    {
+                                        <span class="badge bg-secondary">@Localizer["Withdrawn"]</span>
+                                    }
+                                    @foreach (var interval in exclusion.Intervals)
+                                    {
+                                        <span class="s360-interval-pill is-excluded"><code>@interval.DisplayRange</code></span>
+                                    }
+                                    @if (exclusion.ListedVersions.Count > 0)
+                                    {
+                                        var shown = exclusion.ListedVersions.Take(5).ToList();
+                                        <span class="s360-interval-pill is-excluded">
+                                            @Localizer["Versions"]: <code>@string.Join(", ", shown)</code>@if (exclusion.ListedVersions.Count > 5) { <span> +@(exclusion.ListedVersions.Count - 5)</span> }
+                                        </span>
+                                    }
+                                    @if (exclusion.HasUnparsedData)
+                                    {
+                                        <span class="badge bg-warning text-dark">@Localizer["Unparsed range"]</span>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(exclusion.Justification))
+                                    {
+                                        <span class="small text-muted text-break">@exclusion.Justification</span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            @* Layer 4: Active advisory ranges *@
+            <div class="s360-spectrum-layer @(Model.Advisories.Count > 0 ? "is-vulnerable" : "is-clean")" data-spectrum-layer="advisories">
+                <div class="s360-spectrum-layer-head">
+                    <span class="s360-spectrum-layer-title"><i data-lucide="bug" aria-hidden="true"></i>@Localizer["Active advisory ranges"]</span>
+                    <span class="badge @(Model.Advisories.Count > 0 ? "bg-danger" : "bg-secondary-subtle text-secondary-emphasis")">@Model.Advisories.Count</span>
+                </div>
+                <div class="s360-spectrum-layer-body">
+                    @if (Model.Advisories.Count == 0)
+                    {
+                        <span class="small text-muted">@Localizer["No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free."]</span>
+                    }
+                    else
+                    {
+                        <div class="s360-spectrum-band-list">
+                            @foreach (var advisory in Model.Advisories)
+                            {
+                                <div class="s360-spectrum-band-row" data-advisory-id="@advisory.SourceId">
+                                    @if (!string.IsNullOrWhiteSpace(advisory.Url))
+                                    { <a href="@advisory.Url" target="_blank" rel="noopener noreferrer" class="fw-semibold">@advisory.SourceId</a> }
+                                    else { <span class="fw-semibold">@advisory.SourceId</span> }
+                                    @if (advisory.Intersection == RangeRisk.Unknown)
+                                    {
+                                        <span class="badge bg-warning text-dark">@Localizer["Range could not be evaluated"]</span>
+                                    }
+                                    @foreach (var interval in advisory.Intervals)
+                                    {
+                                        <span class="s360-interval-pill is-vulnerable"><code>@interval.DisplayRange</code></span>
+                                        @if (!string.IsNullOrWhiteSpace(interval.FixedVersion))
+                                        {
+                                            <span class="s360-interval-pill is-fixed">@Localizer["Fixed"]: <code>@interval.FixedVersion</code></span>
+                                        }
+                                    }
+                                    @if (advisory.ListedVersions.Count > 0)
+                                    {
+                                        var shown = advisory.ListedVersions.Take(6).ToList();
+                                        <span class="s360-interval-pill is-vulnerable">
+                                            @Localizer["Listed"]: <code>@string.Join(", ", shown)</code>@if (advisory.ListedVersions.Count > 6) { <span> +@(advisory.ListedVersions.Count - 6)</span> }
+                                        </span>
+                                    }
+                                    @if (advisory.HasUnparsedRange && advisory.Intersection != RangeRisk.Unknown)
+                                    {
+                                        <span class="badge bg-warning text-dark">@Localizer["Partial unparsed range"]</span>
+                                    }
+                                    @if (advisory.HasExclusion)
+                                    {
+                                        <span class="badge s360-badge-excluded">@Localizer["Excluded from rule"]</span>
+                                    }
+                                    @if (advisory.HasRiskAcceptance)
+                                    {
+                                        <span class="badge bg-warning-subtle text-warning-emphasis">@Localizer["Risk acceptance exists"]</span>
+                                    }
+                                    @if (!string.IsNullOrWhiteSpace(advisory.Summary))
+                                    {
+                                        <span class="small text-muted text-break">@advisory.Summary</span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+
+            @* Layer 5: Active risk acceptances *@
+            @if (Model.RiskAcceptances.Count > 0)
+            {
+                <div class="s360-spectrum-layer is-risk-accepted" data-spectrum-layer="risk-acceptances">
+                    <div class="s360-spectrum-layer-head">
+                        <span class="s360-spectrum-layer-title"><i data-lucide="shield-alert" aria-hidden="true"></i>@Localizer["Active risk acceptances"]</span>
+                        <span class="badge bg-warning text-dark">@Model.RiskAcceptances.Count</span>
+                    </div>
+                    <div class="s360-spectrum-layer-body">
+                        <div class="s360-spectrum-band-list">
+                            @foreach (var acceptance in Model.RiskAcceptances)
+                            {
+                                <div class="s360-spectrum-band-row" data-risk-acceptance-rule="@acceptance.RuleId">
+                                    <a asp-controller="RiskAcceptance" asp-action="Index" asp-route-filter="all" class="fw-semibold">#@acceptance.RuleId</a>
+                                    <code>@acceptance.VersionPattern</code>
+                                    @if (!string.IsNullOrWhiteSpace(acceptance.AdvisorySourceId))
+                                    {
+                                        if (!string.IsNullOrWhiteSpace(acceptance.AdvisoryUrl))
+                                        {
+                                            <a href="@acceptance.AdvisoryUrl" target="_blank" rel="noopener noreferrer">@acceptance.AdvisorySourceId</a>
+                                        }
+                                        else
+                                        {
+                                            <span>@acceptance.AdvisorySourceId</span>
+                                        }
+                                    }
+                                    <span class="small text-break">@acceptance.Justification</span>
+                                    @if (acceptance.ExpiresAtUtc is { } exp)
+                                    {
+                                        <span class="small text-muted">@Localizer["Expires"]: <span data-utc-time="@exp.ToHtmlDateTime()"></span></span>
+                                    }
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        @* Concrete version spectrum track & matrix *@
+        <div class="s360-spectrum-versions mt-4">
+            <div class="d-flex flex-wrap justify-content-between align-items-baseline gap-2 mb-2">
+                <h3 class="h6 mb-0">@Localizer["Observed versions spectrum"] (@Model.Versions.Count)</h3>
+                <span class="small text-muted">@Localizer["Ordered from oldest to newest version. Click a segment to inspect."]</span>
+            </div>
+
+            @if (Model.Versions.Count == 0)
+            {
+                <div class="s360-spectrum-empty small text-muted" data-spectrum-empty="true">
+                    <i data-lucide="circle-help" aria-hidden="true"></i>
+                    <span>@Localizer["No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry."]</span>
+                </div>
+            }
+            else
+            {
+                <div class="s360-spectrum-track" role="list" aria-label="@Localizer["Visual version status spectrum"]">
+                    @foreach (var point in Model.Versions)
+                    {
+                        var key = StatusKey(point.Status);
+                        <button type="button"
+                                class="s360-spectrum-segment is-@key @(point.Uses.Count > 0 ? "has-production-use" : "")"
+                                data-spectrum-segment="@point.Version"
+                                data-spectrum-status="@key"
+                                title="@point.Version — @StatusLabel(point.Status)">
+                            <span class="s360-spectrum-segment-ver">@point.Version</span>
+                            <span class="s360-spectrum-segment-tag">@StatusLabel(point.Status)</span>
+                        </button>
+                    }
+                </div>
+
+                <div class="s360-spectrum-filters mt-3 mb-3" role="toolbar" aria-label="@Localizer["Filter versions by status"]">
+                    <button type="button" class="btn btn-sm btn-primary" data-spectrum-filter="all" aria-pressed="true">@Localizer["All"] (@Model.Versions.Count)</button>
+                    @if (Model.AdmittedCount > 0)
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-success" data-spectrum-filter="admitted" aria-pressed="false">@Localizer["Admitted"] (@Model.AdmittedCount)</button>
+                    }
+                    @if (Model.RiskAcceptedCount > 0)
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-warning" data-spectrum-filter="risk-accepted" aria-pressed="false">@Localizer["Risk accepted"] (@Model.RiskAcceptedCount)</button>
+                    }
+                    @if (Model.VulnerableCount > 0)
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-spectrum-filter="vulnerable" aria-pressed="false">@Localizer["Active CVE"] (@Model.VulnerableCount)</button>
+                    }
+                    @if (Model.ExcludedCount > 0)
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-secondary s360-btn-excluded" data-spectrum-filter="excluded" aria-pressed="false">@Localizer["Excluded"] (@Model.ExcludedCount)</button>
+                    }
+                    @if (Model.BlocklistedCount > 0)
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-dark" data-spectrum-filter="blocklisted" aria-pressed="false">@Localizer["Blocklisted"] (@Model.BlocklistedCount)</button>
+                    }
+                    @if (Model.NeedsVerificationCount > 0)
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-info" data-spectrum-filter="verification" aria-pressed="false">@Localizer["Needs verification"] (@Model.NeedsVerificationCount)</button>
+                    }
+                    @if (Model.OutsideRuleCount > 0)
+                    {
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-spectrum-filter="outside" aria-pressed="false">@Localizer["Outside rule"] (@Model.OutsideRuleCount)</button>
+                    }
+                </div>
+
+                <div class="s360-spectrum-matrix" data-spectrum-matrix="true">
+                    @foreach (var point in Model.Versions)
+                    {
+                        var key = StatusKey(point.Status);
+                        <article class="s360-spectrum-card is-@key"
+                                 data-spectrum-card="@point.Version"
+                                 data-spectrum-status="@key">
+                            <div class="d-flex flex-wrap justify-content-between align-items-start gap-2">
+                                <div class="d-flex flex-wrap align-items-center gap-2">
+                                    <code class="s360-spectrum-card-ver">@point.Version</code>
+                                    <span class="s360-spectrum-pill is-@key">
+                                        <i data-lucide="@StatusIcon(point.Status)" aria-hidden="true"></i>
+                                        @StatusLabel(point.Status)
+                                    </span>
+                                    @if (Model.FocusedRuleId.HasValue && point.WithinFocusedRule)
+                                    {
+                                        <span class="badge bg-primary-subtle text-primary-emphasis">@Localizer["In this rule"]</span>
+                                    }
+                                    @if (!point.WithinAnyApproval && point.Status is VersionSpectrumStatus.Vulnerable or VersionSpectrumStatus.Blocklisted)
+                                    {
+                                        <span class="badge bg-warning-subtle text-warning-emphasis">@Localizer["Outside authorization"]</span>
+                                    }
+                                    @if (point.AuditWarning)
+                                    {
+                                        <span class="badge bg-warning-subtle text-warning-emphasis">@Localizer["Audit warning"]</span>
+                                    }
+                                    else if (point.NeedsVerification && point.Status != VersionSpectrumStatus.NeedsVerification)
+                                    {
+                                        <span class="badge bg-info-subtle text-info-emphasis">@Localizer["Needs verification"]</span>
+                                    }
+                                    @if (point.Uses.Count > 0)
+                                    {
+                                        <span class="badge @(Model.ProductionReports && point.BlockingAdvisories.Count > 0 ? "bg-danger" : "bg-primary")">
+                                            @if (Model.ProductionReports)
+                                            {
+                                                @string.Format(Localizer["Production: {0} project(s)"].Value, point.Uses.Select(u => u.Project).Distinct().Count())
+                                            }
+                                            else
+                                            {
+                                                @string.Format(Localizer["Historical: {0} project(s)"].Value, point.Uses.Select(u => u.Project).Distinct().Count())
+                                            }
+                                        </span>
+                                    }
+                                </div>
+                                @if (point.FixVersions.Count > 0)
+                                {
+                                    <span class="s360-interval-pill is-fixed">@Localizer["Fixed in"]: <code>@string.Join(", ", point.FixVersions)</code></span>
+                                }
+                            </div>
+
+                            <div class="small mt-2 text-break">
+                                @switch (point.Status)
+                                {
+                                    case VersionSpectrumStatus.Blocklisted:
+                                        <span>@Localizer["Overridden by absolute blocklist"] @if (point.BlockRuleId is { } blkId) { <strong>#@blkId</strong> }</span>
+                                        break;
+                                    case VersionSpectrumStatus.Excluded:
+                                        <span>@Localizer["Subtracted from approval by exclusion"] @if (point.ExclusionRuleId is { } exId) { <strong>#@exId</strong> } @if (!string.IsNullOrWhiteSpace(point.ExclusionAdvisoryId)) { <span>(<code>@point.ExclusionAdvisoryId</code>)</span> }</span>
+                                        break;
+                                    case VersionSpectrumStatus.Vulnerable:
+                                        <span>@Localizer["Blocking advisories"]: @string.Join(", ", point.BlockingAdvisories.Select(a => a.SourceId))</span>
+                                        break;
+                                    case VersionSpectrumStatus.RiskAccepted:
+                                        <span>@Localizer["Risk accepted"]: @string.Join(", ", point.AcceptedVulnerabilities.DistinctBy(a => a.Rule.Id).Select(a => $"#{a.Rule.Id} ({a.Advisory.SourceId})"))</span>
+                                        break;
+                                    case VersionSpectrumStatus.Admitted:
+                                        <span>@Localizer["Authorized and passes current admission checks"] @if (point.AuthorizingRuleId.HasValue) { <span>· <a asp-controller="SupplyChain" asp-action="RuleDetails" asp-route-id="@point.AuthorizingRuleId.Value">@Localizer["Rule"] #@point.AuthorizingRuleId.Value</a></span> }</span>
+                                        break;
+                                    case VersionSpectrumStatus.NeedsVerification:
+                                        <span>@point.AdmissionReason</span>
+                                        break;
+                                    default:
+                                        <span>@point.AuthorizationReason</span>
+                                        break;
+                                }
+                            </div>
+
+                            <details class="s360-spectrum-evidence mt-2">
+                                <summary class="small">@Localizer["Evidence & usage details"]</summary>
+                                <div class="small pt-2">
+                                    @if (!point.SourcePermitted)
+                                    {
+                                        <p class="mb-1 text-warning">@Localizer["This source is not currently configured for package checks."]</p>
+                                    }
+                                    <p class="mb-1"><strong>@Localizer["Authorization"]:</strong> @point.AuthorizationReason</p>
+                                    <p class="mb-1"><strong>@Localizer["Admission"]:</strong> @point.AdmissionReason</p>
+                                    @if (point.BlockingAdvisories.Count > 0)
+                                    {
+                                        <p class="mb-1"><strong>@Localizer["Advisories"]:</strong>
+                                            @foreach (var adv in point.BlockingAdvisories)
+                                            {
+                                                @if (!string.IsNullOrWhiteSpace(adv.Url))
+                                                { <a href="@adv.Url" target="_blank" rel="noopener noreferrer" class="me-2">@adv.SourceId</a> }
+                                                else { <span class="me-2">@adv.SourceId</span> }
+                                            }
+                                        </p>
+                                    }
+                                    @if (point.Uses.Count > 0)
+                                    {
+                                        <div class="mt-2">
+                                            <strong>@Localizer["Reported projects"]:</strong>
+                                            <div class="d-flex flex-wrap gap-2 mt-1">
+                                                @foreach (var use in point.Uses.OrderBy(u => u.Project, StringComparer.Ordinal).ThenByDescending(u => u.CheckedAtUtc))
+                                                {
+                                                    if (!string.IsNullOrWhiteSpace(use.Project))
+                                                    {
+                                                        <a class="badge bg-secondary-subtle text-secondary-emphasis text-decoration-none"
+                                                           asp-controller="SupplyChain" asp-action="Index"
+                                                           asp-route-tab="projects"
+                                                           asp-route-scope="@(Model.ProductionReports ? "baseline" : "history")"
+                                                           asp-route-project="@use.Project"
+                                                           asp-route-ecosystem="@Model.Ecosystem">@use.Project</a>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </details>
+                        </article>
+                    }
+                </div>
+
+                @if (Model.ObservedVersionCount > Model.Versions.Count)
+                {
+                    <p class="small text-muted mt-2 mb-0">@string.Format(Localizer["Showing {0} of {1} recorded versions for this source."].Value, Model.Versions.Count, Model.ObservedVersionCount)</p>
+                }
+            }
+        </div>
+    </div>
+</section>

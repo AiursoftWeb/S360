@@ -118,7 +118,42 @@ else if (Model.AuditStatus == CatalogAuditStatus.Stale)
                 @if (grants.Any(r => Model.BlockedRuleReasons.ContainsKey(r.Id)))
                 { <span class="badge bg-danger" title="@string.Join("; ", grants.Where(r => Model.BlockedRuleReasons.ContainsKey(r.Id)).Select(r => Model.BlockedRuleReasons[r.Id]))">@Localizer["Overridden by blocklist"]</span> }
             </td>
-            <td>@foreach (var grant in grants) { <div><a asp-action="RuleDetails" asp-route-id="@grant.Id"><code>@grant.Version</code></a></div> }</td>
+            <td>@foreach (var grant in grants)
+            {
+                Model.RuleSignals.TryGetValue(grant.Id, out var signal);
+                <div class="s360-rule-grant-row" data-rule-signal-id="@grant.Id">
+                    <a asp-action="RuleDetails" asp-route-id="@grant.Id"><code>@grant.Version</code></a>
+                    @if (signal != null)
+                    {
+                        <span class="s360-rule-signals">
+                            @if (signal.HasBlockOverlap)
+                            {
+                                <span class="s360-signal-pill is-blocklisted" data-signal="blocklist" title="@signal.BlockReason">@Localizer["Blocklist"]</span>
+                            }
+                            @if (signal.OverlappingAdvisoryCount > 0)
+                            {
+                                <span class="s360-signal-pill is-vulnerable" data-signal="cve">@string.Format(Localizer["{0} CVE"].Value, signal.OverlappingAdvisoryCount)</span>
+                            }
+                            @if (signal.UnparsedAdvisoryCount > 0)
+                            {
+                                <span class="s360-signal-pill is-verification" data-signal="unparsed">@string.Format(Localizer["{0} unparsed"].Value, signal.UnparsedAdvisoryCount)</span>
+                            }
+                            @if (signal.ExclusionCount > 0)
+                            {
+                                <span class="s360-signal-pill is-excluded" data-signal="exclusion">@string.Format(Localizer["{0} excl."].Value, signal.ExclusionCount)</span>
+                            }
+                            @if (signal.ExpiringSoon)
+                            {
+                                <span class="s360-signal-pill is-warning" data-signal="expiring">@Localizer["Expiring soon"]</span>
+                            }
+                            @if (!signal.HasBlockOverlap && signal.OverlappingAdvisoryCount == 0 && signal.UnparsedAdvisoryCount == 0 && signal.ExclusionCount == 0)
+                            {
+                                <span class="s360-signal-pill is-clean" data-signal="clean">@Localizer["No known overlap"]</span>
+                            }
+                        </span>
+                    }
+                </div>
+            }</td>
             <td class="s360-catalog-source"><details class="s360-catalog-source-details">
                 <summary title="@rule.Source">@(Uri.TryCreate(rule.Source, UriKind.Absolute, out var sourceUri) ? sourceUri.Host : rule.Source)</summary>
                 <small>@rule.Source</small>

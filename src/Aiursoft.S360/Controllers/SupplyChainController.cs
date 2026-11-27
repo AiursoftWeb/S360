@@ -47,14 +47,17 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             var advisories = await db.Vulnerabilities.AsNoTracking()
                 .Where(v => v.Ecosystem == rule.Ecosystem && !v.Withdrawn).ToListAsync();
             var ranges = advisories.Where(v => rule.MatchesPackage(v.PackageName))
-                .Select(v => new RuleAdvisoryRange(v, OsvRangeMatcher.Intersects(v.RawAffectedJson,
+                .Select(v => new RuleAdvisoryRange(v, RuleVersionSpectrumBuilder.SafeIntersects(v.RawAffectedJson,
                     rule.Ecosystem, v.PackageName, rule.Version, rule.IncludePrerelease)))
                 .Where(r => r.Intersection != RangeRisk.NotAffected)
                 .OrderBy(r => r.Advisory.PackageName, StringComparer.Ordinal).ThenBy(r => r.Advisory.SourceId, StringComparer.Ordinal).ToList();
+            var relationship = rule.IsLegacyTemplate ? null : await inventory.ReadPackageRelationshipAsync(rule.Ecosystem, rule.PackagePattern, rule.Source);
+            var spectrum = await BuildPackageSpectrumAsync(rule.Ecosystem, rule.PackagePattern, rule.Source, rule, relationship, ranges, exclusions);
             return this.StackView(new RuleDetailsViewModel
             {
                 Rule = rule,
-                Relationship = rule.IsLegacyTemplate ? null : await inventory.ReadPackageRelationshipAsync(rule.Ecosystem, rule.PackagePattern, rule.Source),
+                Relationship = relationship,
+                Spectrum = spectrum,
                 Exclusions = exclusions,
                 AdvisoryRanges = ranges,
                 DerivedRules = await db.Rules.Where(r => r.Kind == RuleKind.Approval).AsNoTracking().Where(r => r.LegacySourceRuleId == id)
@@ -199,6 +202,29 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             if (block != null)
                 model.BlockedRuleReasons[rule.Id] = BlockRulePolicy.Explain(block,
                     rule.PackagePattern, rule.Version, rule.PackagePattern);
+        }
+        if (model.Rules.Count > 0)
+        {
+            var pageRuleIds = model.Rules.Select(r => r.Id).Distinct().ToArray();
+            var pagePackageNames = model.Rules
+                .Where(r => !r.IsLegacyTemplate)
+                .Select(r => ecosystem == "nuget" ? r.PackagePattern.ToLowerInvariant() : r.PackagePattern)
+                .Distinct().ToArray();
+            var exclusionCounts = await db.Rules.AsNoTracking()
+                .Where(r => r.Kind == RuleKind.VulnerabilityExclusion && r.ParentRuleId.HasValue &&
+                    pageRuleIds.Contains(r.ParentRuleId.Value) && r.Vulnerability != null && !r.Vulnerability.Withdrawn)
+                .GroupBy(r => r.ParentRuleId!.Value)
+                .Select(g => new { RuleId = g.Key, Count = g.Count() })
+                .ToDictionaryAsync(x => x.RuleId, x => x.Count);
+            var pageAdvisories = pagePackageNames.Length == 0 ? [] :
+                await db.Vulnerabilities.AsNoTracking()
+                    .Where(v => v.Ecosystem == ecosystem && !v.Withdrawn &&
+                        (ecosystem == "nuget"
+                            ? pagePackageNames.Contains(v.PackageName.ToLower())
+                            : pagePackageNames.Contains(v.PackageName)))
+                    .ToListAsync();
+            model.RuleSignals = RuleVersionSpectrumBuilder.BuildRuleListSignals(
+                model.Rules, blocks, exclusionCounts, pageAdvisories, now);
         }
         if (lookupName != null)
         {
@@ -354,10 +380,13 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             : recordedUses.Where(d => d.Name == policy.PackagePattern);
         var projects = await recordedUses.Where(d => d.BuildCheck.Project != null)
             .Select(d => d.BuildCheck.Project!).Distinct().OrderBy(name => name).Take(51).ToListAsync();
+        var relationship = policy.IsLegacyTemplate ? null : await inventory.ReadPackageRelationshipAsync(policy.Ecosystem, policy.PackagePattern, policy.Source);
+        var spectrum = await BuildPackageSpectrumAsync(policy.Ecosystem, policy.PackagePattern, policy.Source, null, relationship);
         return this.StackView(new PackagePolicyViewModel
         {
             Policy = policy,
-            Relationship = policy.IsLegacyTemplate ? null : await inventory.ReadPackageRelationshipAsync(policy.Ecosystem, policy.PackagePattern, policy.Source),
+            Relationship = relationship,
+            Spectrum = spectrum,
             Grants = await grants.OrderBy(r => r.Version).ThenBy(r => r.Id)
                 .Skip((page - 1) * 50).Take(50).ToListAsync(),
             Page = page,
@@ -365,6 +394,91 @@ public class SupplyChainController(TemplateDbContext db, UserManager<User> users
             RecordedProjects = projects.Take(50).ToList(),
             ProjectsLimited = projects.Count > 50
         });
+    }
+
+    private async Task<RuleVersionSpectrumViewModel?> BuildPackageSpectrumAsync(
+        string ecosystem,
+        string packageName,
+        string source,
+        PackageRule? focusedRule,
+        PackageRelationshipViewModel? relationship,
+        IReadOnlyCollection<RuleAdvisoryRange>? precomputedAdvisoryRanges = null,
+        IReadOnlyCollection<PackageRule>? precomputedFocusedExclusions = null)
+    {
+        if (focusedRule?.IsLegacyTemplate == true || packageName.Contains('*')) return null;
+        var now = DateTime.UtcNow;
+        var approvals = (relationship?.Rules ?? [])
+            .Concat(focusedRule != null ? [focusedRule] : [])
+            .DistinctBy(r => r.Id)
+            .ToList();
+        var approvalIds = approvals.Select(r => r.Id).ToArray();
+        var blocks = await db.Rules.AsNoTracking()
+            .Where(r => r.Kind == RuleKind.Block && r.Status == RuleStatus.Approved && r.Ecosystem == ecosystem)
+            .ToListAsync();
+        var exclusions = approvalIds.Length == 0
+            ? (precomputedFocusedExclusions?.ToList() ?? [])
+            : await db.Rules.AsNoTracking()
+                .Where(r => r.Kind == RuleKind.VulnerabilityExclusion && r.ParentRuleId.HasValue &&
+                    approvalIds.Contains(r.ParentRuleId.Value))
+                .Include(r => r.Vulnerability)
+                .OrderByDescending(r => r.RequestedAtUtc)
+                .ToListAsync();
+        var normalizedName = ecosystem == "nuget" ? packageName.ToLowerInvariant() : packageName;
+        var riskAcceptances = await db.Rules.AsNoTracking()
+            .Where(r => r.Kind == RuleKind.RiskAcceptance && r.Status == RuleStatus.Approved &&
+                r.ExpiresAtUtc > now && r.Ecosystem == ecosystem && r.Source == source &&
+                (ecosystem == "nuget" ? r.PackagePattern.ToLower() == normalizedName : r.PackagePattern == packageName))
+            .Include(r => r.Vulnerability)
+            .OrderBy(r => r.ExpiresAtUtc)
+            .ToListAsync();
+
+        IReadOnlyCollection<RuleAdvisoryRange> advisoryRanges;
+        if (precomputedAdvisoryRanges != null)
+        {
+            advisoryRanges = precomputedAdvisoryRanges;
+        }
+        else
+        {
+            var advisories = await db.Vulnerabilities.AsNoTracking()
+                .Where(v => v.Ecosystem == ecosystem && !v.Withdrawn &&
+                    (ecosystem == "nuget" ? v.PackageName.ToLower() == normalizedName : v.PackageName == packageName))
+                .ToListAsync();
+            var scopeRules = approvals
+                .Where(r => r.Status == RuleStatus.Approved && !r.IsLegacyTemplate &&
+                    (r.ExpiresAtUtc == null || r.ExpiresAtUtc > now))
+                .ToList();
+            if (scopeRules.Count == 0)
+                scopeRules = approvals.Where(r => !r.IsLegacyTemplate).ToList();
+
+            var computed = new List<RuleAdvisoryRange>();
+            foreach (var advisory in advisories)
+            {
+                var worst = RangeRisk.NotAffected;
+                foreach (var scopeRule in scopeRules)
+                {
+                    var risk = RuleVersionSpectrumBuilder.SafeIntersects(advisory.RawAffectedJson, ecosystem,
+                        advisory.PackageName, scopeRule.Version, scopeRule.IncludePrerelease);
+                    if (risk == RangeRisk.Affected) { worst = RangeRisk.Affected; break; }
+                    if (risk == RangeRisk.Unknown) worst = RangeRisk.Unknown;
+                }
+                if (worst != RangeRisk.NotAffected)
+                    computed.Add(new RuleAdvisoryRange(advisory, worst));
+            }
+            advisoryRanges = computed;
+        }
+
+        return RuleVersionSpectrumBuilder.Build(
+            ecosystem,
+            packageName,
+            source,
+            focusedRule,
+            approvals,
+            blocks,
+            exclusions,
+            advisoryRanges,
+            riskAcceptances,
+            relationship,
+            now);
     }
 
     [Authorize(Policy = AppPermissionNames.CanManageTrustRules)]

@@ -30,6 +30,12 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>Current status and reported versions</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>Detailed authorisation zones &amp; full version evidence</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Expand</value>
+  </data>
   <data name="Expires" xml:space="preserve">
     <value>Expires</value>
   </data>

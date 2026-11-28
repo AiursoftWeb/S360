@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>絶対ブロックリスト上書き</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>アクティブなCVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>アクティブなアドバイザリ範囲</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>有効なリスク受容</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>承認</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>採用済み</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>アドバイザリ</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>すべて</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>承認スコープ</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>監査警告</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>認可</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>承認済み、かつ現在の受入チェックに合格</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>ブロック中のアドバイザリ</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>ブロックリスト登録済み</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>承認パターン、絶対的なブロックリスト除外、脆弱性除外、アクティブなアドバイザリー区間、リスク許容、および記録済みバージョンを組み合わせて表示します。</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>現在のルール</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>エビデンスと使用詳細</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>除外</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>ルールから除外</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>期限切れ</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>有効期限</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>ステータスでバージョンをフィルタリング</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>修正済み</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>修正済みバージョン</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>このルール内</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>記載済み</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>要確認</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>このソースには承認ルールが記録されていません。</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>このソースにはまだ具体的なバージョンが記録されていません。上記の範囲レイヤーはポリシーの境界を示しています。CIによって報告された場合、またはレジストリで観測された場合に、記録されたバージョンがここに表示されます。</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>保存されているアクティブなアドバイザリ範囲が、このパターンと重複していません。ただし、対象となるすべてのバージョンが脆弱性なしであることの証明ではありません。</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>観測されたバージョンスペクトラム</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>1つ以上のアドバイザリー範囲を解析できませんでした。</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>古いバージョンから新しいバージョンの順に並べられています。セグメントをクリックすると詳細を確認できます。</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>承認範囲外</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>ルール外</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>絶対ブロックリストにより上書き</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>一部のパース未完了範囲</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>ポリシー範囲レイヤー</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>プレリリース</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>範囲を評価できませんでした</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>記録されたバージョンの内訳</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>報告されたプロジェクト</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>リスク受容が存在します</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>リスク許容</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>ルール</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>除外により承認から除外されました</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>このソースは現在、パッケージチェック用に設定されていません。</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>未解析範囲</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>解析できない範囲は保守的に扱われ（fail-closed）、安全とみなされることはありません。</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>バージョンスプレクトラム &amp; ポリシーレイヤー</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>バージョンスペクトラムとポリシーレイヤー</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>バージョン</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>バージョンステータスのビジュアルスペクトラム</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>脆弱性の除外</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>撤回済み</value>
+  </data>
+
+</root>

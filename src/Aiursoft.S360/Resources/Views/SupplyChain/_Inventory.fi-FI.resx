@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Kaikki hankkeet</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Kaikki rapportoidut riippuvuudet</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Kaikki tilat</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Tarkistustietue</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Napsauta laajentaa</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Yrityksen yleiskatsaus</value>
@@ -78,20 +84,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosysteemi</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Ekosysteemin tilan yhteenveto</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Näyttö on tarkistettava.</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Tutki</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Suodata tämän projektin paketteja</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Suodata paketteja tässä hankkeessa...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Etsi projekti tai paketti, tarkista sen vaatimustenmukaisuus ja selvitä, miksi sitä käytetään.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Interaktiivinen riippuvuuskaavio</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Varastonäkymät</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Tunnetut haavoittuvuudet</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Tunnustetut haavoittuvuusriskit hyväksyttyä poliittisesti</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Tunnetut haavoittuvuusrisikit on hyväksytty käytännön nojalla. Tarkista säännöt ja niiden voimassaoloajat paketin tiedoissa.</value>
@@ -105,6 +126,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Vaatii huomiota</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Vain huomiota vaativat</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Seuraava</value>
   </data>
@@ -116,6 +140,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Ei vastaavia merkintöjä</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Ei sisälly tähän tarkastukseen</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Ei todennettu</value>
@@ -156,6 +183,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Projektit, joilla on raportteja</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Pika-noudattamissuodattimet</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>README-merkki</value>
   </data>
@@ -183,11 +213,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Tarkista ilmoitettu versio ja voimassa oleva hyväksyntä. Pyydä asianmukainen hyväksyntä tai päivitä hyväksyttyyn, haavoittumattomaan versioon. Älä päivitä vanhempaan, haavoittuvaan versioon.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Riski hyväksytty</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360-vaatimustenmukaisuusmerkki</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Haku</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Etsi ja tarkista jokainen paketti</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Hae inventaariosta</value>

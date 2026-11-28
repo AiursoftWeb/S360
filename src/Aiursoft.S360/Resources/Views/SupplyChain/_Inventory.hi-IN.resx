@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>सभी प्रोजेक्ट</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>सभी रिपोर्ट किए गए निर्भरताएँ</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>सभी स्थितियाँ</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>जाँच रिकॉर्ड</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>विस्तार के लिए क्लिक करें</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>कंपनी अवलोकन</value>
@@ -78,20 +84,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>इकोसिस्टम</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>पारिस्थितिकी तंत्र स्थिति सारांश</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>साक्ष्यों का सत्यापन आवश्यक है</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>एक्सप्लोर करें</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>इस प्रोजेक्ट में पैकेज फ़िल्टर करें</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>इस प्रोजेक्ट में पैकेज फ़िल्टर करें...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>प्रोजेक्ट या पैकेज खोजें, इसकी अनुपालना जाँचें और यह ट्रैस करें कि यह किसलिए उपयोग किया जाता है।</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>इंटरैक्टिव डिपेंडेंसी ग्राफ़</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>इन्वेंटरी दृश्य</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>जाने-माने खाली</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>नीति द्वारा स्वीकृत ज्ञात संवेदनशीलता जोखिम</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>नियति के अनुसार ज्ञात कमज़ोरी जोखिम स्वीकार किए गए हैं। पैकेज विवरणों में नियमों और उनकी समाप्ति तिथियों का निरीक्षण करें।</value>
@@ -105,6 +126,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>ध्यान की आवश्यकता</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>केवल ध्यान की आवश्यकता</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>अगला</value>
   </data>
@@ -116,6 +140,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>कोई मिलान वाली रिकॉर्ड नहीं</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>इस ऑडिट में शामिल नहीं</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>सत्यापित नहीं</value>
@@ -156,6 +183,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>रिपोर्ट के साथ प्रोजेक्ट</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>त्वरित अनुपालन फ़िल्टर</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>रीडमी बैज</value>
   </data>
@@ -183,11 +213,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>रिपोर्ट किए गए संस्करण और वर्तमान अनुमोदन की समीक्षा करें। उचित अनुमोदन का अनुरोध करें या ऐसे अनुमोदित संस्करण में अपग्रेड करें जिसमें कोई ज्ञात भेद्यता न हो; भेद्यता वाले पुराने संस्करण पर वापस न जाएँ।</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>जोखिम स्वीकार किया गया</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>S360 अनुपालन बैज</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>खोजें</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>हर पैकेज खोजें और निरीक्षण करें</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>इन्वेंटरी खोजें</value>

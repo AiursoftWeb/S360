@@ -30,6 +30,12 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>目前狀態及報告版本</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>詳細授權範圍及完整版本憑證</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>展開</value>
+  </data>
   <data name="Expires" xml:space="preserve">
     <value>到期日</value>
   </data>

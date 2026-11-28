@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>Абсолютное переопределение списка блокировки</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>Активный CVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>Активные диапазоны уведомлений</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Действующие принятия рисков</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Допуск</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>Принят</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>Сообщения</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Все</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Область одобрения</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>Предупреждение аудита</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Авторизация</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>Авторизовано и проходит текущие проверки допуска</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>Блокирующие уведомления</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Заблокирован</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>Объединяет шаблоны одобрения, абсолютные блокировки, исключения уязвимостей, активные интервалы уведомлений, принятые риски и зафиксированные версии.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>Текущее правило</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>Доказательства и сведения об использовании</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Исключено</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>Исключено из правила</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Истекла</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Срок действия истекает</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>Фильтровать версии по статусу</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Исправлено</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>Исправлено в</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>В этом правиле</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>Перечисленные</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Требует проверки</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>Для этого источника не записано правил одобрения.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>Конкретные версии для этого источника пока не зафиксированы. Слои диапазонов выше показывают границы политики; зафиксированные версии появятся здесь после отчёта CI или наблюдения в реестре.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>Ни один из сохранённых активных диапазонов уведомлений не пересекается с этим шаблоном. Это не доказательство того, что все охваченные версии не содержат уязвимостей.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>Спектр наблюдаемых версий</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>Не удалось разобрать один или несколько диапазонов уведомлений.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>Упорядочено от самой старой к самой новой версии. Нажмите на сегмент для просмотра.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>Вне авторизации</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>Вне правил</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>Переопределено абсолютным списком запрещённых версий</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>Частично неразобранный диапазон</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>Слои диапазонов политики</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Предварительная версия</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Диапазон не мог быть оценён</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>Разбивка записанных версий</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Сообщённые проекты</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>Принятие риска существует</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Риск принят</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Правило</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>Исключено из одобрения</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Этот источник в настоящее время не настроен для проверки пакетов.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>Необработанный диапазон</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>Необработанные диапазоны обрабатываются консервативно (fail-closed) и никогда не считаются безопасными.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>Спектр версий и уровни политик</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>Спектр версий и уровни политик</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Версии</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>Визуальный спектр статусов версий</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Исключения уязвимостей</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Отозвано</value>
+  </data>
+
+</root>

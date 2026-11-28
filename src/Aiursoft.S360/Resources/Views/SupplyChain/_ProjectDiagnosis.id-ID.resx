@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Accepted advisories" xml:space="preserve">
+    <value>Advisori yang diterima</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Penerimaan risiko aktif</value>
+  </data>
+  <data name="Blocking compliance issues" xml:space="preserve">
+    <value>Masalah kepatuhan yang menghalangi</value>
+  </data>
+  <data name="Blocking rule" xml:space="preserve">
+    <value>Aturan pemblokiran</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Diblokir</value>
+  </data>
+  <data name="Browse rules" xml:space="preserve">
+    <value>Telusuri aturan</value>
+  </data>
+  <data name="Compliance diagnosis" xml:space="preserve">
+    <value>Diagnosis kepatuhan</value>
+  </data>
+  <data name="Dependency graph not recorded in this report." xml:space="preserve">
+    <value>Grafik dependensi tidak dicatat dalam laporan ini.</value>
+  </data>
+  <data name="Direct dependency" xml:space="preserve">
+    <value>Dependensi langsung</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Kedaluwarsa</value>
+  </data>
+  <data name="Filter blocking issues" xml:space="preserve">
+    <value>Saring masalah yang menghalangi</value>
+  </data>
+  <data name="Inspect CVEs" xml:space="preserve">
+    <value>Periksa CVE</value>
+  </data>
+  <data name="Inspect package" xml:space="preserve">
+    <value>Periksa paket</value>
+  </data>
+  <data name="Introduction path" xml:space="preserve">
+    <value>Jalur pengenalan</value>
+  </data>
+  <data name="Manage blocklist" xml:space="preserve">
+    <value>Kelola daftar blok</value>
+  </data>
+  <data name="Manage risk acceptances" xml:space="preserve">
+    <value>Kelola penerimaan risiko</value>
+  </data>
+  <data name="Matching rule" xml:space="preserve">
+    <value>Aturan yang cocok</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Perlu verifikasi</value>
+  </data>
+  <data name="No blocking compliance issues" xml:space="preserve">
+    <value>Tidak ada masalah kepatuhan yang menghalangi</value>
+  </data>
+  <data name="No blocking issues match the selected filter." xml:space="preserve">
+    <value>Tidak ada masalah penghalang yang cocok dengan filter yang dipilih.</value>
+  </data>
+  <data name="No expiry recorded" xml:space="preserve">
+    <value>Tidak ada masa kedaluwarsa yang tercatat</value>
+  </data>
+  <data name="Ordered by severity: absolute blocklist, active vulnerabilities, source policy, authorization, and pending verification." xml:space="preserve">
+    <value>Diurutkan berdasarkan tingkat keparahan: daftar blokir absolut, kerentanan aktif, kebijakan sumber, otorisasi, dan verifikasi tertunda.</value>
+  </data>
+  <data name="Other approved rules for this package" xml:space="preserve">
+    <value>Aturan disetujui lain untuk paket ini</value>
+  </data>
+  <data name="Package" xml:space="preserve">
+    <value>Paket</value>
+  </data>
+  <data name="Policy rule" xml:space="preserve">
+    <value>Aturan kebijakan</value>
+  </data>
+  <data name="Request this package" xml:space="preserve">
+    <value>Minta paket ini</value>
+  </data>
+  <data name="Risk acceptances" xml:space="preserve">
+    <value>Penerimaan risiko</value>
+  </data>
+  <data name="Source not permitted" xml:space="preserve">
+    <value>Sumber tidak diizinkan</value>
+  </data>
+  <data name="Transitive" xml:space="preserve">
+    <value>Transitif</value>
+  </data>
+  <data name="Unauthorized" xml:space="preserve">
+    <value>Tidak Diotorisasi</value>
+  </data>
+
+</root>

@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Jo hyväksytty</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Hakijat eivät voi hyväksyä omia hakemuksiaan. Pyydä toista tarkastajaa alla tarkistamaan tämä pyyntö.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Hyväksymyslinkki ja viesti kopioitu.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Hyväksyjät</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Hyväksytty, mutta tarkistus ei ole valmis</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Kopioi hyväksyntälinkki ja viesti</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Nykyinen valtuutus</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Uudet tarkistettavat kohteet</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Tarkistajia, joilla on hyväksymisoikeus, ei ole tällä hetkellä määritetty. Ota yhteyttä järjestelmänvalvojasi.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Paketti</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>Raportin SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Pyyntöprosessi</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Pyydetty</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>Ratkaisu on jonossa tai käynnissä. Päivitä tämä sivu nähdäksesi tuloksen.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Ratkaistaan ja tarkistetaan</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Yritä uudelleen uutena pyyntönä</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Käsittelypäätös</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Tarkista tämä pyyntö</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Valitse ja kopioi alla oleva viesti.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Lähde</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Tila</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Lähetetty</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Epäonnistunut pyyntö säilyy historiassasi. Uusi pyyntö tarkistetaan tämän päivän lähde- ja estolistakäytäntöjen mukaisesti.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Versio</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>Odottaa hyväksyntää</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Peruuta pyyntö</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Sinä — et voi hyväksyä itseäsi</value>
   </data>
 
 </root>

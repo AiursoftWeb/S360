@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>当前状态和已报告的版本</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>详细授权范围与完整版本证据</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>生态系统</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>排除项会从授权中移除受影响的版本。它们不会隐藏已由生产基线报告的受影响版本。</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>展开</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>已过期</value>

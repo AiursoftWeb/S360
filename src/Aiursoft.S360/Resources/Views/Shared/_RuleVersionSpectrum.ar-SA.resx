@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>تجاوز قائمة الحظر المطلق</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>ثغرة CVE نشطة</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>نطاقات النصح النشطة</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>قبول المخاطر النشطة</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>القبول</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>مقبول</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>النصائح</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>الكل</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>نطاق الاعتماد</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>تحذير تدقيق</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>التفويض</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>مصرّح به ويجتاز فحوصات الإيداع الحالية</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>إشعارات الحظر</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>ممنوع</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>يجمع بين أنماط الاعتماد، وقطع قوائم الحظر المطلقة، واستثناءات الثغرات، والفترات النشطة للنصائح، وقبول المخاطر، والإصدارات المسجلة.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>القاعدة الحالية</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>الأدلة وتفاصيل الاستخدام</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>مستبعد</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>مستبعد من القاعدة</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>منتهية الصلاحية</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>تنتهي الصلاحية</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>تصفية الإصدارات حسب الحالة</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>تمت المعالجة</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>تم الإصلاح في</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>ضمن هذه القاعدة</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>مذكورة</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>يتطلب التحقق</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>لم يتم تسجيل أي قواعد موافقة لهذا المصدر.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>لم يتم تسجيل أي إصدارات محددة لهذا المصدر بعد. تُظهر طبقات النطاق أعلاه حدود السياسة؛ وستظهر الإصدارات المسجلة هنا بمجرد إبلاغ CI بها أو ملاحظتها في السجل.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>لا تتداخل أي نطاقات استشارية نشطة مخزنة مع هذا النمط. هذا ليس دليلاً على خلو جميع الإصدارات المشمولة من الثغرات.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>نطاق الإصدارات المرصودة</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>تعذر تحليل نطاق أو أكثر من نطاقات الاستشارة.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>مرتبة من أقدم إصدار إلى أحدث إصدار. انقر على مقطع للمعاينة.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>خارج نطاق الترخيص</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>خارج القاعدة</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>مُلغى بواسطة قائمة الحظر المطلقة</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>نطاق غير مُحلَّل جزئيًا</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>طبقات نطاقات السياسة</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>الإصدار المسبق</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>تعذر تقييم النطاق</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>تفصيل الإصدارات المسجلة</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>المشاريع المُبلَّغ عنها</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>يوجد قبول للمخاطر</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>مقبول المخاطر</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>قاعدة</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>مستثناة من الاعتماد بسبب الاستبعاد</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>هذا المصدر غير مُهيأ حاليًا لفحوصات الحزم.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>النطاق غير المُحلَّل</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>تُعامل النطاقات غير المُحلَّلة بحذر (فشل مغلق) ولا يُفترض أنها آمنة أبدًا.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>نطاق الإصدارات وطبقات السياسات</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>طيف الإصدارات وطبقات السياسة</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>الإصدارات</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>طيف حالة الإصدارات المرئي</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>استثناءات الثغرات الأمنية</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>مسحوبة</value>
+  </data>
+
+</root>

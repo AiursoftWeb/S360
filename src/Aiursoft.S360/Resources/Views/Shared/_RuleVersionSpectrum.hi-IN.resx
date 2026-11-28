@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>निरपेक्ष ब्लॉकलिस्ट ओवरराइड</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>सक्रिय CVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>सक्रिय सलाह सीमाएँ</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>सक्रिय जोखिम स्वीकारण</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>प्रवेश</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>स्वीकृत</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>सूचनाएँ</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>सभी</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>अनुमोदन दायरा</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>ऑडिट चेतावनी</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>अनुमोदन</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>अधिकृत और वर्तमान प्रवेश जांचों से गुजरता है</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>अवरोधक सलाह</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>अवरुद्ध सूचीबद्ध</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>अनुमोदन पैटर्न, निरपेक्ष ब्लॉकलिस्ट कट, कमजोरी अपवाद, सक्रिय सलाह अंतराल, जोखिम स्वीकृतियाँ और दर्ज किए गए संस्करणों को जोड़ता है।</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>वर्तमान नियम</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>प्रमाण और उपयोग विवरण</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>विलोपित</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>नियम से अपवाद</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>समाप्त</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>समाप्ति</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>स्थिति के अनुसार संस्करणों को फ़िल्टर करें</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>सुधारित</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>में ठीक किया गया</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>इस नियम में</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>सूचीबद्ध</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>सत्यापन आवश्यक</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>इस स्रोत के लिए कोई अनुमोदन नियम दर्ज नहीं हैं।</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>इस स्रोत के लिए अभी तक कोई विशिष्ट संस्करण दर्ज नहीं किए गए हैं। ऊपर दिए गए रेंज स्तर नीति सीमाओं को दर्शाते हैं; दर्ज किए गए संस्करण यहाँ तब प्रकट होंगे जब CI द्वारा रिपोर्ट किए जाएँ या रजिस्ट्री में देखे जाएँ।</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>कोई संग्रहीत सक्रिय सलाहकार सीमाएँ इस पैटर्न से ओवरलैप नहीं करतीं। यह सबूत नहीं है कि सभी कवर किए गए संस्करण कमजोरी-मुक्त हैं।</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>प्रेक्षित संस्करण स्पेक्ट्रम</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>एक या अधिक सलाहकार सीमाओं को व्याख्या नहीं किया जा सका।</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>सबसे पुराने से सबसे नए संस्करण के क्रम में व्यवस्थित है। निरीक्षण करने के लिए किसी खंड पर क्लिक करें।</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>अधिकृत क्षेत्र से बाहर</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>नियम से बाहर</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>निर्दिष्ट ब्लॉकलिस्ट द्वारा अधिलेखित</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>आंशिक अनपार्स्ड रेंज</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>नीति सीमा स्तर</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>प्री-रिलीज़</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>रेंज का मूल्यांकन नहीं किया जा सका</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>रिकॉर्डेड वर्ज़न ब्रेकडाउन</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>अभिलेखित परियोजनाएँ</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>जोखिम स्वीकृति मौजूद है</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>जोखिम स्वीकार किया गया</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>नियम</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>व्यवस्थापन से विलोपन द्वारा हटाया गया</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>यह स्रोत वर्तमान में पैकेज जाँचों के लिए कॉन्फ़िगर नहीं है।</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>अव्याख्यात सीमा</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>अनपार्स किए गए रेंज को सावधानीपूर्वक (फेल-क्लोज़्ड) माना जाता है और उन्हें कभी भी सुरक्षित नहीं माना जाता है।</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>संस्करण स्पेक्ट्रम और नीति स्तर</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>वर्जन स्पेक्ट्रम और नीति स्तर</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>संस्करण</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>दृश्य संस्करण स्थिति स्पेक्ट्रम</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>संवेदनशीलता अपवाद</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>निरस्त</value>
+  </data>
+
+</root>

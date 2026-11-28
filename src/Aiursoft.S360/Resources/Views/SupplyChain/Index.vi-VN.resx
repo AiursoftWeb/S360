@@ -63,6 +63,9 @@
   <data name="Back to dependency inventory" xml:space="preserve">
     <value>Quay lại danh mục phụ thuộc</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Danh sách chặn</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>Không tìm thấy gói bạn cần? Gửi yêu cầu</value>
   </data>
@@ -89,6 +92,9 @@
   </data>
   <data name="Expires at (UTC)" xml:space="preserve">
     <value>Hết hạn lúc (UTC)</value>
+  </data>
+  <data name="Expiring soon" xml:space="preserve">
+    <value>Sắp hết hạn</value>
   </data>
   <data name="Find packages" xml:space="preserve">
     <value>Tìm gói</value>
@@ -128,6 +134,9 @@
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Áp dụng quy tắc</value>
+  </data>
+  <data name="No known overlap" xml:space="preserve">
+    <value>Không có chồng chéo nào được biết đến</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>Chưa ghi nhận</value>

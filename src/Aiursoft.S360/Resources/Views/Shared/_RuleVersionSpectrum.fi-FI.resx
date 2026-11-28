@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>Absoluuttinen estolistan ohitus</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>Aktiivinen CVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>Aktiiviset neuvotteluvälit</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Aktiiviset riskinsiennot</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Sallinta</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>Hyväksytty</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>Tiedotteet</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Kaikki</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Hyväksymisalue</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>Tarkastusvaroitus</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Valtuutus</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>Valtuutettu ja läpäisee nykyiset hyväksyntätarkistukset</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>Estävät tiedotteet</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Estelista</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>Yhdistää hyväksymismallit, absoluuttiset estolistaleikkaukset, haavoittuvaisuuden poissuljetut, aktiiviset neuvotteluvälit, riskin hyväksymiset ja rekisteröidyt versiot.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>Nykyinen sääntö</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>Osoitteet ja käyttötiedot</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Suljettu pois</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>Suljettu pois säännöstä</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Vanhentunut</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Vanhenee</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>Suodata versiot tilon mukaan</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Korjattu</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>Korjattu versiossa</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>Tässä säännössä</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>Listattu</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Vaatii tarkistuksen</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>Tälle lähteelle ei ole kirjattu hyväksyntäsääntöjä.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>Tälle lähteelle ei ole vielä kirjattu konkreettisia versioita. Yllä olevat välimatkat kerrokset näyttävät politiikan rajat; kirjatut versiot näkyvät täällä, kun ne on raportoitu CI-järjestelmän kautta tai havaittu rekisteristä.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>Tallennetut aktiiviset neuvotteluväli-alueet eivät päällekkäin tämäläisellä kuviolla. Tämä ei ole todiste siitä, että kaikki kattamat versiot ovat haavoittumattomia.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>Havaittujen versioiden spektri</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>Yksi tai useampi neuvoa koskeva väli ei voitu jäsentää.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>Järjestetty vanhimmasta uuteen versioon. Napsauta segmenttiä tarkastelemaan.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>Valtuutuksen ulkopuolella</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>Säännön ulkopuolella</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>Yliajo absoluuttisella estolistan</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>Osittainen tulkittamaton väli</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>Sääntöalueiden kerrokset</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Esijulkaisu</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Aluetta ei voitu arvioida</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>Rekisteröityjen versioiden jakautuminen</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Rapportoidut hankkeet</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>Riskin hyväksyntä on olemassa</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Riski hyväksytty</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Sääntö</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>Ehdotuksesta poistettu poissulkemalla</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Tätä lähdettä ei ole tällä hetkellä määritetty pakettitarkastuksiin.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>Tulkittu väli</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>Tulkittamattomat välit käsitellään varovaisesti (fail-closed) eikä niitä koskaan pidetä turvallisina.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>Versiospektri &amp; -käytännöt</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>Versiospektri ja käytäntökerrokset</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Versiot</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>Visuaalinen versiontilaspektri</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Haavoittuvuuksien poissulkemiset</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Peruttu</value>
+  </data>
+
+</root>

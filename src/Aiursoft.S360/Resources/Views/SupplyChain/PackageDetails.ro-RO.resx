@@ -30,6 +30,12 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>Starea curentă și versiunile raportate</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>Zone de autorizare detaliate &amp; dovezi complete ale versiunii</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Extinde</value>
+  </data>
   <data name="Expires" xml:space="preserve">
     <value>Expiră</value>
   </data>

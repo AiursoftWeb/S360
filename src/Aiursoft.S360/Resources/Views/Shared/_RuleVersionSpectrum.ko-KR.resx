@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>절대 차단 목록 무시</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>활성 CVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>활성 보안 권고 범위</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>활성 리스크 수용</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>수용</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>승인됨</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>자문</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>전체</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>승인 범위</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>감사 경고</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>승인</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>승인되었으며 현재 승인 검사를 통과했습니다</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>차단 알림</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>차단 목록에 등재됨</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>승인 패턴, 절대 차단 목록 절단, 취약점 제외, 활성 권고 사항 간격, 리스크 수락 및 기록된 버전을 결합합니다.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>현재 규칙</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>증거 및 사용 세부 정보</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>제외됨</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>규칙에서 제외됨</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>만료됨</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>만료</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>상태별로 버전 필터링</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>수정됨</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>수정 버전:</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>이 규칙 내</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>등재된</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>검증 필요</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>이 소스에 대한 승인 규칙이 기록되어 있지 않습니다.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>이 소스에 대해 아직 구체적 버전이 기록되지 않았습니다. 위의 범위 레이어는 정책 경계를 표시하며, CI에 의해 보고되거나 레지스트리에서 관찰된 기록된 버전이 여기에 표시됩니다.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>저장된 활성 보안 권고 범위 중 이 패턴과 겹치는 항목이 없습니다. 이는 대상이 되는 모든 버전이 취약점이 없다는 증거가 아닙니다.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>관측된 버전 스펙트럼</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>하나 이상의 자문 범위를 분석할 수 없습니다.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>가장 오래된 버전부터 가장 최신 버전으로 정렬됩니다. 세그먼트를 클릭하여 자세히 확인하세요.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>승인 범위 외</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>규칙 밖</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>절대 차단 목록에 의해 재정의됨</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>일부 파싱되지 않은 범위</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>정책 범위 레이어</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>사전 출시</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>범위를 평가할 수 없습니다</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>기록된 버전 내역</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>보고된 프로젝트</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>리스크 수락 존재</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>리스크 허용</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>규칙</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>제외로 인해 승인에서 제외됨</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>이 소스는 현재 패키지 체크에 구성되지 않았습니다.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>해석되지 않은 범위</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>분석되지 않은 범위는 보수적으로(fail-closed) 처리되며, 안전하다고 가정되지 않습니다.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>버전 스펙트럼 및 정책 계층</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>버전 스펙트럼 및 정책 레이어</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>버전</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>시각적 버전 상태 스펙트럼</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>취약점 제외</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>취하됨</value>
+  </data>
+
+</root>

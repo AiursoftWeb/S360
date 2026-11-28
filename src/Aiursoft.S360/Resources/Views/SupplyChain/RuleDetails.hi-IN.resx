@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>वर्तमान स्थिति और रिपोर्ट किए गए संस्करण</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>विस्तृत अधिकृत क्षेत्र और पूर्ण संस्करण प्रमाण</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>परिस्थितिकी तंत्र</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>बहिष्करण अधिकृत संस्करणों में से प्रभावित संस्करणों को हटाते हैं। वे ऐसे प्रभावित संस्करण को नहीं छिपाते जिसकी सूचना प्रोडक्शन बेसलाइन पहले ही दे चुकी हो।</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>विस्तार करें</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>समाप्त</value>

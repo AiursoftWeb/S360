@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>Penimpaan daftar blokir absolut</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>CVE Aktif</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>Rentang nasihat aktif</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Penerimaan risiko aktif</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Penerimaan</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>Diterima</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>Advisories</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Semua</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Cakupan persetujuan</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>Peringatan audit</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Otorisasi</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>Diotorisasi dan lolos pemeriksaan penerimaan saat ini</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>Peringatan pemblokiran</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Diblokir</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>Menggabungkan pola persetujuan, pemotongan daftar blokir absolut, pengecualian kerentanan, interval advis aktif, penerimaan risiko, dan versi yang tercatat.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>Aturan saat ini</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>Bukti &amp; detail penggunaan</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Dikecualikan</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>Dikecualikan dari aturan</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Kedaluwarsa</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Berakhir</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>Saring versi berdasarkan status</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Diperbaiki</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>Diperbaiki di</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>Dalam aturan ini</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>Tercantum</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Perlu verifikasi</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>Tidak ada aturan persetujuan yang tercatat untuk sumber ini.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>Belum ada versi konkret yang tercatat untuk sumber ini. Lapisan rentang di atas menunjukkan batas kebijakan; versi yang tercatat akan muncul di sini setelah dilaporkan oleh CI atau diamati di registry.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>Tidak ada rentang advis aktif yang disimpan yang tumpang tindih dengan pola ini. Ini bukan bukti bahwa semua versi yang tercakup bebas dari kerentanan.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>Spektrum versi yang diamati</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>Satu atau lebih rentang advisory tidak dapat diparsing.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>Diurutkan dari versi tertua ke terbaru. Klik segmen untuk memeriksa.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>Di luar otorisasi</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>Di luar aturan</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>Ditimpa oleh daftar blokir absolut</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>Rentang tidak terurai sebagian</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>Lapisan rentang kebijakan</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Pelepasan Pra-rilis</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Rentang tidak dapat dievaluasi</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>Rincian versi yang dicatat</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Proyek yang dilaporkan</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>Penerimaan risiko ada</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risiko diterima</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Aturan</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>Dikurangi dari persetujuan melalui pengecualian</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Sumber ini saat ini belum dikonfigurasi untuk pemeriksaan paket.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>Rentang tidak terurai</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>Rentang yang tidak terurai diperlakukan secara konservatif (gagal-tertutup) dan tidak pernah dianggap aman.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>Spektrum versi &amp; lapisan kebijakan</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>Spektrum versi dan lapisan kebijakan</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Versi</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>Spektrum status versi visual</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Pengecualian kerentanan</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Dicabut</value>
+  </data>
+
+</root>

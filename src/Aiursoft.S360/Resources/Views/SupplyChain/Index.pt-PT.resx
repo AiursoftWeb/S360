@@ -63,6 +63,9 @@
   <data name="Back to dependency inventory" xml:space="preserve">
     <value>Voltar ao inventário de dependências</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Lista de bloqueio</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>Não encontra um pacote? Submeta um pedido</value>
   </data>
@@ -89,6 +92,9 @@
   </data>
   <data name="Expires at (UTC)" xml:space="preserve">
     <value>Expira em (UTC)</value>
+  </data>
+  <data name="Expiring soon" xml:space="preserve">
+    <value>A expirar em breve</value>
   </data>
   <data name="Find packages" xml:space="preserve">
     <value>Encontrar pacotes</value>
@@ -128,6 +134,9 @@
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Aplicar regras</value>
+  </data>
+  <data name="No known overlap" xml:space="preserve">
+    <value>Sem sobreposição conhecida</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>Não registado</value>

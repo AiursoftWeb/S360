@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+      <data name="Absolute blocklist override" xml:space="preserve">
+    <value>Absolut blocklistöverstyrning</value>
+  </data>
+  <data name="Active CVE" xml:space="preserve">
+    <value>Aktiv CVE</value>
+  </data>
+  <data name="Active advisory ranges" xml:space="preserve">
+    <value>Aktiva rådgivningsintervall</value>
+  </data>
+  <data name="Active risk acceptances" xml:space="preserve">
+    <value>Aktiva riskacceptans</value>
+  </data>
+  <data name="Admission" xml:space="preserve">
+    <value>Insläpp</value>
+  </data>
+  <data name="Admitted" xml:space="preserve">
+    <value>Godkänd</value>
+  </data>
+  <data name="Advisories" xml:space="preserve">
+    <value>Varningsmeddelanden</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>Alla</value>
+  </data>
+  <data name="Approval scope" xml:space="preserve">
+    <value>Godkänningsomfattning</value>
+  </data>
+  <data name="Audit warning" xml:space="preserve">
+    <value>Revisionsvarning</value>
+  </data>
+  <data name="Authorization" xml:space="preserve">
+    <value>Auktorisation</value>
+  </data>
+  <data name="Authorized and passes current admission checks" xml:space="preserve">
+    <value>Godkänd och uppfyller aktuella godkännandekontroller</value>
+  </data>
+  <data name="Blocking advisories" xml:space="preserve">
+    <value>Blockerande advisories</value>
+  </data>
+  <data name="Blocklisted" xml:space="preserve">
+    <value>Blocklistad</value>
+  </data>
+  <data name="Combines approval patterns, absolute blocklist cuts, vulnerability exclusions, active advisory intervals, risk acceptances, and recorded versions." xml:space="preserve">
+    <value>Kombinerar godkännandemönster, absoluta blocklistskärningar, sårbarhetsundantag, aktiva rådgivningsintervall, riskacceptanser och registrerade versioner.</value>
+  </data>
+  <data name="Current rule" xml:space="preserve">
+    <value>Aktuell regel</value>
+  </data>
+  <data name="Evidence &amp; usage details" xml:space="preserve">
+    <value>Bevis och användningsdetaljer</value>
+  </data>
+  <data name="Excluded" xml:space="preserve">
+    <value>Utesluten</value>
+  </data>
+  <data name="Excluded from rule" xml:space="preserve">
+    <value>Utesluten från regel</value>
+  </data>
+  <data name="Expired" xml:space="preserve">
+    <value>Förfallen</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Förfaller</value>
+  </data>
+  <data name="Filter versions by status" xml:space="preserve">
+    <value>Filtrera versioner efter status</value>
+  </data>
+  <data name="Fixed" xml:space="preserve">
+    <value>Korrigerad</value>
+  </data>
+  <data name="Fixed in" xml:space="preserve">
+    <value>Åtgärdad i</value>
+  </data>
+  <data name="In this rule" xml:space="preserve">
+    <value>Inom denna regel</value>
+  </data>
+  <data name="Listed" xml:space="preserve">
+    <value>Angiven</value>
+  </data>
+  <data name="Needs verification" xml:space="preserve">
+    <value>Kräver verifiering</value>
+  </data>
+  <data name="No approval rules recorded for this source." xml:space="preserve">
+    <value>Inga godkännanderegler registrerade för denna källa.</value>
+  </data>
+  <data name="No concrete versions recorded yet for this source. The range layers above show policy boundaries; recorded versions appear here once reported by CI or observed in the registry." xml:space="preserve">
+    <value>Inga konkreta versioner har registrerats ännu för denna källa. Intervalllagren ovan visar policygränser; registrerade versioner visas här när de rapporteras av CI eller observeras i registret.</value>
+  </data>
+  <data name="No stored active advisory ranges overlap this pattern. This is not proof that all covered versions are vulnerability-free." xml:space="preserve">
+    <value>Inga lagrade aktiva råderingsintervall överlappar detta mönster. Detta är inte bevis för att alla täckta versioner är fria från sårbarheter.</value>
+  </data>
+  <data name="Observed versions spectrum" xml:space="preserve">
+    <value>Observerad versionsspektrum</value>
+  </data>
+  <data name="One or more advisory ranges could not be parsed." xml:space="preserve">
+    <value>En eller flera rådgivningsintervaller kunde inte tolkas.</value>
+  </data>
+  <data name="Ordered from oldest to newest version. Click a segment to inspect." xml:space="preserve">
+    <value>Ordnade från äldsta till nyaste version. Klicka på ett segment för att inspektera.</value>
+  </data>
+  <data name="Outside authorization" xml:space="preserve">
+    <value>Utanför auktorisation</value>
+  </data>
+  <data name="Outside rule" xml:space="preserve">
+    <value>Utanför regel</value>
+  </data>
+  <data name="Overridden by absolute blocklist" xml:space="preserve">
+    <value>Åsidosatt av absolut blocklista</value>
+  </data>
+  <data name="Partial unparsed range" xml:space="preserve">
+    <value>Delvis oparserad intervall</value>
+  </data>
+  <data name="Policy range layers" xml:space="preserve">
+    <value>Policyintervallager</value>
+  </data>
+  <data name="Prerelease" xml:space="preserve">
+    <value>Förhandsversion</value>
+  </data>
+  <data name="Range could not be evaluated" xml:space="preserve">
+    <value>Intervall kunde inte utvärderas</value>
+  </data>
+  <data name="Recorded version breakdown" xml:space="preserve">
+    <value>Fördelning av registrerade versioner</value>
+  </data>
+  <data name="Reported projects" xml:space="preserve">
+    <value>Rapporterade projekt</value>
+  </data>
+  <data name="Risk acceptance exists" xml:space="preserve">
+    <value>Riskacceptans finns</value>
+  </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risk accepterat</value>
+  </data>
+  <data name="Rule" xml:space="preserve">
+    <value>Regel</value>
+  </data>
+  <data name="Subtracted from approval by exclusion" xml:space="preserve">
+    <value>Utesluten från godkännande genom uteslutning</value>
+  </data>
+  <data name="This source is not currently configured for package checks." xml:space="preserve">
+    <value>Denna källa är för närvarande inte konfigurerad för paketkontroller.</value>
+  </data>
+  <data name="Unparsed range" xml:space="preserve">
+    <value>Omparsad intervall</value>
+  </data>
+  <data name="Unparsed ranges are treated conservatively (fail-closed) and are never assumed safe." xml:space="preserve">
+    <value>Omparsade intervall hanteras försiktigt (fail-closed) och antas aldrig vara säkra.</value>
+  </data>
+  <data name="Version spectrum &amp; policy layers" xml:space="preserve">
+    <value>Versionspektrum &amp; policylager</value>
+  </data>
+  <data name="Version spectrum and policy layers" xml:space="preserve">
+    <value>Versionspektrum och policylager</value>
+  </data>
+  <data name="Versions" xml:space="preserve">
+    <value>Versioner</value>
+  </data>
+  <data name="Visual version status spectrum" xml:space="preserve">
+    <value>Visuell versionstatus-spectrum</value>
+  </data>
+  <data name="Vulnerability exclusions" xml:space="preserve">
+    <value>Sårbarhetsundantag</value>
+  </data>
+  <data name="Withdrawn" xml:space="preserve">
+    <value>Tillbakadragen</value>
+  </data>
+
+</root>

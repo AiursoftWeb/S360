@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>현재 상태 및 보고된 버전</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>상세 권한 영역 및 전체 버전 증거</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>에코시스템</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>제외 항목은 인가 범위에서 영향받는 버전을 제외합니다. 프로덕션 베이스라인에서 이미 보고된 영향받는 버전을 숨기는 것은 아닙니다.</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>펼치기</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>만료됨</value>

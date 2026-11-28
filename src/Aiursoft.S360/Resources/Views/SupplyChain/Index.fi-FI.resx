@@ -63,6 +63,9 @@
   <data name="Back to dependency inventory" xml:space="preserve">
     <value>Takaisin riippuvuuskatelistoon</value>
   </data>
+  <data name="Blocklist" xml:space="preserve">
+    <value>Blocklist</value>
+  </data>
   <data name="Can&apos;t find a package? Submit a request" xml:space="preserve">
     <value>Etkö löydä pakettia? Lähetä pyyntö</value>
   </data>
@@ -89,6 +92,9 @@
   </data>
   <data name="Expires at (UTC)" xml:space="preserve">
     <value>Vanhenee (UTC)</value>
+  </data>
+  <data name="Expiring soon" xml:space="preserve">
+    <value>Vapautuu pian</value>
   </data>
   <data name="Find packages" xml:space="preserve">
     <value>Etsi paketteja</value>
@@ -128,6 +134,9 @@
   </data>
   <data name="Match rules" xml:space="preserve">
     <value>Tarkista säännöt</value>
+  </data>
+  <data name="No known overlap" xml:space="preserve">
+    <value>Ei tunnettuja päällekkäisyyksiä</value>
   </data>
   <data name="Not recorded" xml:space="preserve">
     <value>Ei kirjattu</value>

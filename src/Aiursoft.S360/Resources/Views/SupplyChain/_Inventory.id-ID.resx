@@ -30,6 +30,9 @@
   <data name="All projects" xml:space="preserve">
     <value>Semua proyek</value>
   </data>
+  <data name="All reported dependencies" xml:space="preserve">
+    <value>Semua dependensi yang dilaporkan</value>
+  </data>
   <data name="All statuses" xml:space="preserve">
     <value>Semua status</value>
   </data>
@@ -44,6 +47,9 @@
   </data>
   <data name="Check record" xml:space="preserve">
     <value>Lihat catatan pemeriksaan</value>
+  </data>
+  <data name="Click to expand" xml:space="preserve">
+    <value>Klik untuk memperluas</value>
   </data>
   <data name="Company overview" xml:space="preserve">
     <value>Ikhtisar perusahaan</value>
@@ -78,20 +84,35 @@
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosistem</value>
   </data>
+  <data name="Ecosystem status summary" xml:space="preserve">
+    <value>Ringkasan status ekosistem</value>
+  </data>
   <data name="Evidence needs verification" xml:space="preserve">
     <value>Bukti perlu diverifikasi</value>
   </data>
   <data name="Explore" xml:space="preserve">
     <value>Jelajahi</value>
   </data>
+  <data name="Filter packages in this project" xml:space="preserve">
+    <value>Saring paket dalam proyek ini</value>
+  </data>
+  <data name="Filter packages in this project..." xml:space="preserve">
+    <value>Saring paket dalam proyek ini...</value>
+  </data>
   <data name="Find a project or package, inspect its compliance, and trace why it is used." xml:space="preserve">
     <value>Temukan proyek atau paket, periksa kepatuhannya, dan telusuri alasan penggunaannya.</value>
+  </data>
+  <data name="Interactive dependency graph" xml:space="preserve">
+    <value>Grafik dependensi interaktif</value>
   </data>
   <data name="Inventory views" xml:space="preserve">
     <value>Tampilan inventaris</value>
   </data>
   <data name="Known vulnerabilities" xml:space="preserve">
     <value>Kerentanan yang diketahui</value>
+  </data>
+  <data name="Known vulnerability risks accepted by policy" xml:space="preserve">
+    <value>Risiko kerentanan yang diketahui diterima oleh kebijakan</value>
   </data>
   <data name="Known vulnerability risks have been accepted by policy. Inspect the rules and their expiry dates in the package details." xml:space="preserve">
     <value>Risiko kerentanan yang diketahui telah diterima berdasarkan kebijakan. Periksa aturan dan tanggal kedaluwarsanya di detail paket.</value>
@@ -105,6 +126,9 @@
   <data name="Needs attention" xml:space="preserve">
     <value>Perlu perhatian</value>
   </data>
+  <data name="Needs attention only" xml:space="preserve">
+    <value>Hanya yang perlu perhatian</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Berikutnya</value>
   </data>
@@ -116,6 +140,9 @@
   </data>
   <data name="No matching records" xml:space="preserve">
     <value>Tidak ada data yang cocok</value>
+  </data>
+  <data name="Not included in this audit" xml:space="preserve">
+    <value>Tidak termasuk dalam audit ini</value>
   </data>
   <data name="Not verified" xml:space="preserve">
     <value>Belum diverifikasi</value>
@@ -156,6 +183,9 @@
   <data name="Projects with reports" xml:space="preserve">
     <value>Proyek dengan laporan</value>
   </data>
+  <data name="Quick compliance filters" xml:space="preserve">
+    <value>Filter kepatuhan cepat</value>
+  </data>
   <data name="README badge" xml:space="preserve">
     <value>Lencana README</value>
   </data>
@@ -183,11 +213,17 @@
   <data name="Review the reported version and current approval. Request an appropriate approval or upgrade to an approved, unaffected version; do not downgrade into a vulnerability." xml:space="preserve">
     <value>Tinjau versi yang dilaporkan dan persetujuan saat ini. Ajukan permohonan persetujuan yang sesuai atau tingkatkan ke versi yang disetujui dan tidak terdampak kerentanan; jangan menurunkan versi ke versi yang rentan.</value>
   </data>
+  <data name="Risk accepted" xml:space="preserve">
+    <value>Risiko diterima</value>
+  </data>
   <data name="S360 compliance badge" xml:space="preserve">
     <value>Lencana kepatuhan S360</value>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Cari</value>
+  </data>
+  <data name="Search and inspect every package" xml:space="preserve">
+    <value>Cari dan periksa setiap paket</value>
   </data>
   <data name="Search inventory" xml:space="preserve">
     <value>Cari inventaris</value>

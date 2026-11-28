@@ -21,8 +21,20 @@
       <data name="Already authorized" xml:space="preserve">
     <value>Уже авторизовано</value>
   </data>
+  <data name="Applicants cannot approve their own requests. Ask another reviewer below to review this request." xml:space="preserve">
+    <value>Автори заявок не можуть схвалювати власні запити. Попросіть іншого рецензента нижче переглянути цей запит.</value>
+  </data>
+  <data name="Approval link and message copied." xml:space="preserve">
+    <value>Посилання для схвалення та повідомлення скопійовано.</value>
+  </data>
+  <data name="Approvers" xml:space="preserve">
+    <value>Апробатори</value>
+  </data>
   <data name="Authorized but not check-ready" xml:space="preserve">
     <value>Авторизовано, але перевірку не пройдено</value>
+  </data>
+  <data name="Copy approval link &amp; message" xml:space="preserve">
+    <value>Скопіювати посилання та повідомлення для схвалення</value>
   </data>
   <data name="Current authorization" xml:space="preserve">
     <value>Поточний дозвіл</value>
@@ -42,6 +54,9 @@
   <data name="New review items" xml:space="preserve">
     <value>Нові елементи для перевірки</value>
   </data>
+  <data name="No reviewers with approval permission are currently configured. Contact your system administrator." xml:space="preserve">
+    <value>Зараз не налаштовано жодних рецензентів із правами на схвалення. Зверніться до вашого системного адміністратора.</value>
+  </data>
   <data name="Package" xml:space="preserve">
     <value>Пакет</value>
   </data>
@@ -50,6 +65,9 @@
   </data>
   <data name="Report SHA-256" xml:space="preserve">
     <value>Звіт SHA-256</value>
+  </data>
+  <data name="Request progress" xml:space="preserve">
+    <value>Хід запитів</value>
   </data>
   <data name="Requested" xml:space="preserve">
     <value>Запитано</value>
@@ -63,14 +81,23 @@
   <data name="Resolution is queued or running. Refresh this page for the result." xml:space="preserve">
     <value>Обробку додано до черги або вже виконується. Оновіть цю сторінку, щоб переглянути результат.</value>
   </data>
+  <data name="Resolving &amp; checking" xml:space="preserve">
+    <value>Розв&apos;язання та перевірка</value>
+  </data>
   <data name="Retry as a new request" xml:space="preserve">
     <value>Повторити як новий запит</value>
   </data>
   <data name="Review decision" xml:space="preserve">
     <value>Рішення за результатами розгляду</value>
   </data>
+  <data name="Review this request" xml:space="preserve">
+    <value>Переглянути цей запит</value>
+  </data>
   <data name="SHA-256" xml:space="preserve">
     <value>SHA-256</value>
+  </data>
+  <data name="Select and copy the message below." xml:space="preserve">
+    <value>Виберіть і скопіюйте повідомлення нижче.</value>
   </data>
   <data name="Source" xml:space="preserve">
     <value>Джерело</value>
@@ -80,6 +107,9 @@
   </data>
   <data name="Status" xml:space="preserve">
     <value>Статус</value>
+  </data>
+  <data name="Submitted" xml:space="preserve">
+    <value>Подано</value>
   </data>
   <data name="The failed request stays in your history. The new request is checked against today&apos;s source and blocklist rules." xml:space="preserve">
     <value>Невдалий запит залишиться у вашій історії. Новий запит перевіряється відповідно до правил джерела та списку блокування, чинних сьогодні.</value>
@@ -93,8 +123,14 @@
   <data name="Version" xml:space="preserve">
     <value>Версія</value>
   </data>
+  <data name="Waiting for approval" xml:space="preserve">
+    <value>Очікування схвалення</value>
+  </data>
   <data name="Withdraw request" xml:space="preserve">
     <value>Відкликати запит</value>
+  </data>
+  <data name="You — cannot self-approve" xml:space="preserve">
+    <value>Ви — не можете самостійно затвердити</value>
   </data>
 
 </root>

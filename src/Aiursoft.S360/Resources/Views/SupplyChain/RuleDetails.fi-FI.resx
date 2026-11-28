@@ -39,6 +39,9 @@
   <data name="Current status and reported versions" xml:space="preserve">
     <value>Nykyinen tila ja ilmoitetut versiot</value>
   </data>
+  <data name="Detailed authorization zones &amp; full version evidence" xml:space="preserve">
+    <value>Tarkat valtuutusalueet ja täydet versiotodisteet</value>
+  </data>
   <data name="Ecosystem" xml:space="preserve">
     <value>Ekosysteemi</value>
   </data>
@@ -47,6 +50,9 @@
   </data>
   <data name="Exclusions subtract affected versions from authorization. They do not hide an affected version already reported by a production baseline." xml:space="preserve">
     <value>Poissulkemiset vähentävät valtuutuksesta versiot, joihin haavoittuvuus vaikuttaa. Ne eivät piilota tuotantotason perustason jo raportoimaa haavoittuvaa versiota.</value>
+  </data>
+  <data name="Expand" xml:space="preserve">
+    <value>Laajenna</value>
   </data>
   <data name="Expired" xml:space="preserve">
     <value>Vanhentunut</value>
